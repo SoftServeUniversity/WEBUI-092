@@ -27,14 +27,21 @@ footer {
 .menuBox{
 	float:left;
 }
+.menuBox, .authBox {
+	margin-top:4px;
+}
 .authBox{
+	padding-left:20px;
 	padding-right:5px;
 }
 .authBox, .yearBox {
 	float:right;
 }
 .yearBox{
-	padding-right:20px;
+	padding-right:0px;
+}
+.yearBox select {
+	width:120px;
 }
 .row-comments, 
 .row-headline,
@@ -104,3 +111,4 @@ a:hover {
 .row-tile-list .data {
 	display:block;
 }
+
