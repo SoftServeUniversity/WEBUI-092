@@ -1,0 +1,97 @@
+/* --- general --- */
+html, body {
+height: 100%;
+}
+.wrapper{
+	min-height: 100%;
+	height: auto !important;
+	height: 100%;
+	margin: 0 auto -41px 0;
+} 
+.sub-wrapper {
+	padding-bottom:60px;
+}
+header, footer {
+	
+	padding:10px 10px;
+	background:#F5F5F5;
+}
+header{
+	box-shadow: 0px 1px 2px #bbb;
+	overflow:hidden;
+	margin-bottom:40px;
+	padding-bottom:1px;
+}
+footer {
+	border-top:1px solid #ddd;
+}
+a:hover {
+	cursor:pointer;
+}
+h1 {
+	margin-bottom:20px;
+}
+.menuBox .active a {
+	text-decoration:underline;
+}
+/* --- end general --- */
+
+
+/* --- header --- */
+.menuBox{
+	float:left;
+}
+.menuBox, .authBox {
+	margin-top:4px;
+}
+.authBox{
+	padding-left:20px;
+	padding-right:5px;
+}
+.authBox, .yearBox {
+	float:right;
+}
+.yearBox{
+	padding-right:0px;
+}
+.yearBox select {
+	width:120px;
+}
+.yearBox form,
+.yearBox form>div {
+	margin-bottom:10px !important;
+}
+/* --- end header --- */
+
+
+/* --- main page --- */
+.row-tile-list {
+	margin-bottom:0px !important;
+}
+.row-tile-list .name {
+	margin-bottom:5px;
+	font-size:16px;
+	font-weight:bold;
+	display:block;
+}
+.row-tile-list .item {
+	min-height:107px;
+    position:relative;
+	margin-bottom:20px;
+	box-shadow: 1px 1px 2px #bbb;
+    overflow:hidden;
+	text-align:left;
+	background: #F5F5F5;
+	border-radius:10px;
+	padding:10px;
+	padding-left:105px;
+}
+.row-tile-list img{
+	position:absolute;
+	left:10px;
+}
+.row-tile-list .data {
+	display:block;
+}
+/* --- end main page --- */
+
