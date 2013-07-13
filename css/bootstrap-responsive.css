@@ -904,6 +904,14 @@
 }
 
 @media (max-width: 480px) {
+  /*custom*/
+ 	.menuBox li{
+ 		display:block !important;
+ 	}
+ 	.yearBox {
+ 		margin-top:4px;
+ 	}
+  /*end custom*/
   .nav-collapse {
     -webkit-transform: translate3d(0, 0, 0);
   }
@@ -1105,6 +1113,7 @@
     padding-right: 10px;
     padding-left: 10px;
   }
+  
 }
 
 @media (min-width: 980px) {

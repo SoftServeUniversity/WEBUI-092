@@ -1,3 +1,4 @@
+/* --- general --- */
 html, body {
 height: 100%;
 }
@@ -22,8 +23,21 @@ header{
 	padding-bottom:1px;
 }
 footer {
-	border-top:1px solid #CCCCCC;
+	border-top:1px solid #ddd;
 }
+a:hover {
+	cursor:pointer;
+}
+h1 {
+	margin-bottom:20px;
+}
+.menuBox .active a {
+	text-decoration:underline;
+}
+/* --- end general --- */
+
+
+/* --- header --- */
 .menuBox{
 	float:left;
 }
@@ -43,47 +57,14 @@ footer {
 .yearBox select {
 	width:120px;
 }
-.row-comments, 
-.row-headline,
-.row-progress,
-.row-chart {
-	margin-bottom:20px;
+.yearBox form,
+.yearBox form>div {
+	margin-bottom:10px !important;
 }
-progress {
-  color: #0063a6;
-  width: 100%;
-  height: 20px;
-  border: 1px solid #0063a6;
-  background: #fff;
-}
-.row-comments .inside{
-	min-height:250px;
-	border:1px solid #CCCCCC;
-}
-.tasks-headline {
-	margin-bottom:60px;
-}
-.sepLinks a{
-	padding:0px 10px 0px 10px;
-	display:inline-block;
-	border-left:1px solid #333;
-}
-.sepLinks a:first-child {
-	border-left:none;
-}
-/*common*/
-a:hover {
-	cursor:pointer;
-}
-.marg-xx {
-	margin-bottom:60px;
-}
-.marg-x {
-	margin-bottom:30px;
-}
+/* --- end header --- */
 
 
-/*mainpage*/
+/* --- main page --- */
 .row-tile-list {
 	margin-bottom:0px !important;
 }
@@ -97,7 +78,8 @@ a:hover {
 	min-height:107px;
     position:relative;
 	margin-bottom:20px;
-	box-shadow: 1px 1px 2px #bbb;    overflow:hidden;
+	box-shadow: 1px 1px 2px #bbb;
+    overflow:hidden;
 	text-align:left;
 	background: #F5F5F5;
 	border-radius:10px;
@@ -111,4 +93,5 @@ a:hover {
 .row-tile-list .data {
 	display:block;
 }
+/* --- end main page --- */
 
