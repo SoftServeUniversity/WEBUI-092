@@ -1,0 +1,27 @@
+html, body              { height: 100%; }
+.wrap                   { min-height: 100%; }
+.breadcrumb li          { margin-left: 10px; }
+.container              { width:960px; }
+.dropdown		{ margin-left: 25px; }		
+/*Modal*/
+.history-modal          { width:100px; display: block; margin: 10px auto; }
+li                      { list-style-type: none; } /* Забрати нумерацію за замовчуванням */
+ol                      { counter-reset: list1; } /* Инициируем счетчик */
+ol li:before            { counter-increment: list1; /* Увеличиваем значение счетчика */
+                          content: counter(list1) ". "; /* Выводим число */
+                        }
+ol ol                   { counter-reset: list2; } /* Инициируем счетчик вложенного списка */
+ol ol li:before         { counter-increment: list2; /* Увеличиваем значение счетчика вложенного списка */
+                          content: counter(list1) "." counter(list2) ". "; /* Выводим число */
+                        }
+/*/Progress*/
+.goback-progress-l      { width:20%; margin-right: 5%; text-align: right; }
+.change-progress-l      { width: 20%; }
+.progress               { width: 50%; display: inline-block; }
+.bar                    { width: 50%; }
+/*Footer*/
+.hfooter                { height: 60px; }
+footer                  { background: #F5F5F5; margin-top: -60px; padding-bottom: 20px; height: 40px;
+                          border-top: 1px solid #c0c0c0;
+                        }
+footer p                { margin-top: 20px; }

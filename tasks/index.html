@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Елементарна система обліку особоистої роботи студентів</title>
+
+    <link href="css/bootstrap.css" rel="stylesheet" type="text/css" />
+    <link href="css/bootstrap-responsive.css" rel="stylesheet" type="text/css" />
+
+    <link type="text/css" rel="stylesheet" href="css/style.css" />
+
+    <script src="http://code.jquery.com/jquery-2.0.0.min.js"></script>
+    <script src="js/bootstrap.js"></script>
+
+    <script>
+        $('.dropdown-toggle').dropdown()
+    </script>
+</head>
+<body>
+    <div class="wrap">
+<!--Header Navigation-->
+        <ul class="breadcrumb">
+            <li><a href="#">Факультет</a></li>
+            <li><a href="#">Кафедри</a></li>
+            <li><a href="#">Викладачі</a></li>
+            <li><a href="#">Групи</a></li>
+            <li class="pull-right"><a href="#">Увійти</a></li>
+            <li>
+                <div class="dropdown">
+                    <a class="dropdown-toggle" id="dLabel" role="button" data-toggle="dropdown" data-target="#" href="/page.html">
+                        2013
+                        <b class="caret"></b>
+                    </a>
+                    <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+                        <li><a>2012</a></li>
+                        <li><a>2013</a></li>
+                    </ul>
+                </div>
+            </li>
+        </ul>
+
+        <div class="container">
+            <h3 class="text-center">Чисельне ровязування динамічних багатозначних задач різноманітними методами сучасної науки</h4>
+            <h4 class="text-center">Корнедлій Васильович Джміль, Тиміш Сергій Вікторович</h3>
+            <h5 class="text-center">канд. ф-м. н., доцент кафедри інформаційних систем</h5>
+            <a href="#myModal" role="button" class="history-modal" data-toggle="modal">історія</a>
+<!--Modal History Window-->
+            
+            <div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    <p id="myModalLabel">Історія</p>
+                </div>
+                <div class="modal-body">
+                    <ol>
+                        <li><a>user</a> created task</li>
+                        <li><a>admin</a> changed ...</li>
+                        <li><a>moderator</a> created group
+                            <ol>
+                                <li><a>moderator</a> added student to a group</li>
+                            </ol>
+                        </li>
+                        <li>user created task</li>
+                        <li>admin changed ...</li>
+                        <li>moderator created group
+                            <ol>
+                                <li>moderator added student to a group</li>
+                            </ol>
+                        </li>
+                        <li>user created task</li>
+                        <li>admin changed ...</li>
+                        <li>moderator created group
+                            <ol>
+                                <li>moderator added student to a group</li>
+                            </ol>
+                        </li>
+                        <li>user created task</li>
+                        <li>admin changed ...</li>
+                        <li>moderator created group
+                            <ol>
+                                <li>moderator added student to a group</li>
+                            </ol>
+                        </li>
+                        <li>user created task</li>
+                        <li>admin changed ...</li>
+                        <li>moderator created group
+                            <ol>
+                                <li>moderator added student to a group</li>
+                            </ol>
+                        </li>
+                        <li>user created task</li>
+                        <li>admin changed ...</li>
+                        <li>moderator created group
+                            <ol>
+                                <li>moderator added student to a group</li>
+                            </ol>
+                        </li>
+                    </ol>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+                </div>
+            </div>
+<!--Tasks progress bars-->
+            <div id="task-progress"> 
+                <p class="pull-left goback-progress-l">Завдання 1.</p>
+                <div class="progress">
+                    <div class="bar"></div>
+                </div>
+            </div>
+            <p class="pull-left goback-progress-l">Завдання 2.</p>
+            <div class="progress">
+                <div class="bar"></div>
+            </div>
+            <p class="pull-left goback-progress-l">Завдання 3.</p>
+            <div class="progress">
+                <div class="bar"></div>
+            </div>
+            <p class="pull-left goback-progress-l">Завдання 4.</p>
+            <div class="progress">
+                <div class="bar"></div>
+            </div>
+            <p class="pull-left goback-progress-l">Завдання 5.</p>
+            <div class="progress">
+                <div class="bar"></div>
+            </div>
+            <p class="pull-left goback-progress-l">Завдання 6.</p>
+            <div class="progress">
+                <div class="bar"></div>
+            </div>
+            <p class="pull-left goback-progress-l">Завдання 7.</p>
+            <div class="progress">
+                <div class="bar"></div>
+            </div>
+            <p class="pull-left goback-progress-l">Завдання 8.</p>
+            <div class="progress">
+                <div class="bar"></div>
+            </div>
+            <p class="pull-left goback-progress-l">Завдання 9.</p>
+            <div class="progress">
+                <div class="bar"></div>
+            </div>
+<!--Create Task Form-->
+            <form>
+            <fieldset>
+            <legend>Створити завдання</legend>
+            <label>Назва завдання</label>
+            <input class="input-xxlarge" type="text" placeholder="Введіть текст…">
+            <button type="submit" class="create-btn" id="">Створити</button>
+            </fieldset>
+            </form>
+
+            <div class="hfooter"></div>
+        </div>
+    </div>
+
+    <footer>
+        <p class="text-center">ЛНУ ім. І. Франка, кафедра інформаційних систем, 2013 (с)</p>
+    </footer>
+
+
+    
+</body>
+</html>
