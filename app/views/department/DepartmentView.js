@@ -2,9 +2,8 @@ define([
     'jquery',
     'underscore',
     'backbone',
-    'text!templates/department/departmentTemplate.html',
-    'collections/departments/DepartmentsCollection'
-], function($, _, Backbone, departmentTemplate, DepartmentsCollection){
+    'text!templates/department/departmentTemplate.html'
+], function($, _, Backbone, departmentTemplate){
 
     var DepartmentView =  Backbone.View.extend({
         tagName:'li' ,

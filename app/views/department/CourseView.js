@@ -2,9 +2,8 @@ define([
     'jquery',
     'underscore',
     'backbone',
-    'text!templates/department/courseTemplate.html',
-    'collections/departments/CoursesCollection'
-], function($, _, Backbone, courseTemplate, CoursesCollection){
+    'text!templates/department/courseTemplate.html'
+], function($, _, Backbone, courseTemplate){
 
     var CourseView =  Backbone.View.extend({
         tagName:'li' ,

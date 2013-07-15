@@ -6,7 +6,7 @@ define([
     'views/department/CoursesListView',
     'views/department/ChartView',
     'text!templates/department/MainDepartmentsTemplate.html'
-], function($, _, Backbone, DepartmentsListView, CoursesListView, ChartView, departmentsTemplate){
+], function($, _, Backbone, DepartmentsListView, CoursesListView, ChartView, mainDepartmentsTemplate){
 
     var DepartmentsView =  Backbone.View.extend({
 
@@ -22,7 +22,7 @@ define([
                 departmentsList : departmentsListView.render().$el.html(),
                 coursesList : coursesListView.render().$el.html()
             }
-            var compiledTemplate = _.template( departmentsTemplate, data);
+            var compiledTemplate = _.template( mainDepartmentsTemplate, data);
             $('#content').empty();
             $("#content").append(compiledTemplate);
             var chartView = new ChartView();
