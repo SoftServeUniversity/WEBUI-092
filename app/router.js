@@ -4,13 +4,15 @@ define([
   'underscore',
   'backbone',
   'views/faculty/FacultiesListView',
-], function($, _, Backbone, FacultiesListView) {
+  'views/table/TableView'
+], function($, _, Backbone, FacultiesListView, TableView) {
   
   var AppRouter = Backbone.Router.extend({
     routes: {
       // Define some URL routes
  	  // home
       '': 'homeAction',
+      'table': 'tableIndex',
 
 
       // Default
@@ -29,9 +31,12 @@ define([
         facultiesListView.render();
     });   
    
-    
+    app_router.on('route:tableIndex', function (actions){
+      var tableView = new TableView();
+      tableView.render();
+      console.log('We have trigered the tableIndex route');
+    });
 
-    
     app_router.on('route:defaultAction', function (actions) {
      
        // We have no matching route, lets display the home page 
