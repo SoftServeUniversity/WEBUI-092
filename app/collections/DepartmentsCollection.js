@@ -2,7 +2,7 @@ define([
     'jquery',
     'underscore',
     'backbone',
-    'models/department/DepartmentModel'
+    'models/DepartmentModel'
 ], function($, _, Backbone, DepartmentModel){
 
     var DepartmentsCollection = Backbone.Collection.extend({
