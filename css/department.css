@@ -21,18 +21,18 @@
     margin-bottom: 30px;
     margin-top: 30px;
 }
-.departments , .courses , .groups , .supervisors{
+.departments , .courses , .groups , .teachers{
  margin-bottom: 10px;
 }
-.departments div , .courses div , .groups div , .supervisors div{
+.departments div , .courses div , .groups div , .teachers div{
  display: inline-block;
 }
-#departments-list , .courses-list , .groups-list , .supervisors-list{
+#departments-list , .courses-list , .groups-list , .teachers-list{
     width: 60%;
     margin: 0 auto;
     margin-top: 20px;
 }
-.department , .course , .group , .supervisor {
+.department , .course , .group , .teacher {
     width: 50%;
     text-align: left;
 }

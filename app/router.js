@@ -4,8 +4,9 @@ define([
   'underscore',
   'backbone',
   'views/faculty/FacultiesListView',
-  'views/department/MainDepartmentsView'
-], function($, _, Backbone, FacultiesListView, DepartmentsView) {
+  'views/department/MainFacultyView',
+  'views/department/MainDepartmentView'
+], function($, _, Backbone, FacultiesListView, FacultyView, DepartmentView) {
   
   var AppRouter = Backbone.Router.extend({
     routes: {
@@ -14,6 +15,7 @@ define([
       '': 'homeAction',
 
       'departments':'departmentsAction',
+      'teachers':'teachersAction',
       // Default
       '*actions': 'defaultAction'
     }
@@ -33,8 +35,13 @@ define([
 
     app_router.on('route:departmentsAction', function (actions) {
 
-        var departmentsView = new DepartmentsView();
-        departmentsView.render();
+        var facultyView = new FacultyView();
+        facultyView.render();
+    });
+    app_router.on('route:teachersAction', function (actions) {
+
+        var departmentView = new DepartmentView();
+        departmentView.render();
     });
    
     

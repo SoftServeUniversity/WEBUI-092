@@ -5,10 +5,10 @@ define([
     'views/department/DepartmentsListView',
     'views/department/CoursesListView',
     'views/department/ChartView',
-    'text!templates/department/MainDepartmentsTemplate.html'
-], function($, _, Backbone, DepartmentsListView, CoursesListView, ChartView, mainDepartmentsTemplate){
+    'text!templates/department/MainFacultyTemplate.html'
+], function($, _, Backbone, DepartmentsListView, CoursesListView, ChartView, MainFacultyTemplate){
 
-    var DepartmentsView =  Backbone.View.extend({
+    var FacultyView =  Backbone.View.extend({
 
         initialize:function(){
             this.render();
@@ -22,7 +22,7 @@ define([
                 departmentsList : departmentsListView.render().$el.html(),
                 coursesList : coursesListView.render().$el.html()
             }
-            var compiledTemplate = _.template( mainDepartmentsTemplate, data);
+            var compiledTemplate = _.template( MainFacultyTemplate, data);
             $('#content').empty();
             $("#content").append(compiledTemplate);
             var chartView = new ChartView();
@@ -30,5 +30,5 @@ define([
             return this;
         }
     });
-    return DepartmentsView;
+    return FacultyView;
 });

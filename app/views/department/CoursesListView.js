@@ -8,7 +8,7 @@ define([
 ], function($, _, Backbone, CoursesCollection, CourseView){
 
     var CoursesListView = Backbone.View.extend({
-        collection : new CoursesCollection(courseJSON),
+        collection : new CoursesCollection(),
         tagName: 'ul',
         initialize: function (){
         },
