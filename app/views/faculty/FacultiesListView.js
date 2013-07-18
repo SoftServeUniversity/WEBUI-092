@@ -28,7 +28,6 @@ define([
 
 		var facs_col = new FacultiesCollection();
 		var changes_col = new FacultiesChangeCollection();
-		
 		var facs = facs_col.toJSON();
 		var changes = changes_col.toJSON();
 
@@ -40,7 +39,6 @@ define([
 		});	
 		
 		var facs_changes = new Backbone.Collection(facs_changes);	
-		
 		var data = {
 		  faculties: facs_changes.models,
 		    _: _       	

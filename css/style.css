@@ -84,7 +84,11 @@ h1 {
 	background: #F5F5F5;
 	border-radius:10px;
 	padding:10px;
+}
+.row-tile-list .item .inner {
 	padding-left:105px;
+	min-height:85px;
+
 }
 .row-tile-list img{
 	position:absolute;
@@ -92,6 +96,20 @@ h1 {
 }
 .row-tile-list .data {
 	display:block;
+}
+.progress-small {
+	display:block !important;
+	width:100%;
+}
+.progress-small progress{
+	display:block;
+	border:1px solid #fff;
+	height:5px;
+	width:100%;
+	background:#fff;
+}
+.progress-small .percentage {
+	float:right;
 }
 /* --- end main page --- */
 

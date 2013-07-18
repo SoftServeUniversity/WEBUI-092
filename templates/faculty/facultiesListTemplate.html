@@ -10,6 +10,7 @@
 				 <% } %>
 				 
 						<div class="span4 item">
+						<div class="inner">
 							 <img src="http://placehold.it/80x80" />
 							 <a href="#" class="name">
 							 	<%= faculty.get('name') %>
@@ -20,10 +21,12 @@
 							 <span class="data group">Кількість груп:
 							 	<%= faculty.get('num_groups') %>
 							 </span>
-							 <span class="data progress-small">Прогрес:
-							 	<progress><%= faculty.get('progress') %></progress>
+						</div>
+							 <span class="data progress-small">Прогрес:<span class="percentage"><%= faculty.get('progress') %>%</span>
+							 	<progress value=<%= faculty.get('progress') %>></progress>
 							 </span>
 						</div>
+						
 				
 				 <% if ((id+1)%3 == 0) { %>
 					</div>

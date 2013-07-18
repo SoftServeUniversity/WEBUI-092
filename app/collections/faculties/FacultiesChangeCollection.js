@@ -7,77 +7,77 @@ define([
   var Test = [
 	{
 		"id":1,
-	    "progress":"90",
+	    "progress":"0.9",
 	    "created_at":"19 08 2013",
 	    "updated_at": "22 08 2013"
 	
 	},
 	{
 		"id":2,
-	    "progress":"60",
+	    "progress":"0.6",
 	    "created_at":"19 08 2011",
 	    "updated_at": "22 08 2011"
 	
 	},
 	{
 		"id":3,
-	    "progress":"30",
+	    "progress":"0.3",
 	    "created_at":"19 08 2010",
 	    "updated_at": "22 08 2010"
 	
 	},
 	{
 		"id":4,
-	    "progress":"10",
+	    "progress":"0.1",
 	    "created_at":"19 08 2013",
 	    "updated_at": "22 08 2013"
 	
 	},
 	{
 		"id":5,
-	    "progress":"80",
+	    "progress":"0.5",
 	    "created_at":"19 08 2010",
 	    "updated_at": "22 08 2013"
 	
 	},
 	{
 		"id":6,
-	    "progress":"90",
+	    "progress":"0.3",
 	    "created_at":"19 08 2013",
 	    "updated_at": "22 08 2013"
 	
 	},
 	{
 		"id":7,
-	    "progress":"90",
+	    "progress":"0.7",
 	    "created_at":"19 08 2013",
 	    "updated_at": "22 08 2013"
 	
 	},
 	{
 		"id":8,
-	    "progress":"90",
+	    "progress":"0.5",
 	    "created_at":"19 08 2013",
 	    "updated_at": "22 08 2013"
 	
 	},
 	{
 		"id":9,
-	    "progress":"90",
+	    "progress":"0.6",
 	    "created_at":"19 08 2013",
 	    "updated_at": "22 08 2013"
 	
 	},
 	{
 		"id":10,
-	    "progress":"90",
+	    "progress":"0.4",
 	    "created_at":"19 08 2013",
 	    "updated_at": "22 08 2013"
 	
 	},
 	{
 		"id":11,
-	    "progress":"90",
+	    "progress":"0.6",
 	    "created_at":"19 08 2013",
 	    "updated_at": "22 08 2013"
 	
