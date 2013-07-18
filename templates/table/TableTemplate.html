@@ -10,22 +10,22 @@
       <table class="table table-striped table-bordered" id='my-table'>
         <thead>
           <tr>
-            <th class='first-column'><input type='checkbox' class='controll-checkbox main' id='all'><span class='row-text'>add all</span></th>
             <th>Name</th>
             <th></th>
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td class='first-column'><input type='checkbox' class='controll-checkbox deletable'></td>
-            <td class='td-text'>Some test name</td>
-            <td class='controls'>
-              <ul class="table-controls-uls">
-                <li><a href="#", class='table-controll-link' id='edit'>Edit</a></li>
-                <li><a href="#", class='table-controll-link' id='delete'>Delete</a></li>
-              </ul>
-            </td>
-          </tr>
+          <%_.each('users', function(user){%>
+            <tr class='user'>
+              <td><%= user['name']%></td>
+              <td class='form-controls'>
+                <ul class="table-controls-uls">
+                  <li><a href="#", class='table-controll-link' id='edit'>Edit</a></li>
+                  <li><a href="#", class='table-controll-link' id='delete'>Delete</a></li>
+                </ul>
+              </td>
+            </tr>
+          <%});%>
         </tbody>
       </table>
     </div><!--end id yasinishyn-tabel -->

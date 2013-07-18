@@ -18,7 +18,7 @@ define([
         table: data_col.models,
         _: _        
       }
-      var compiledTemplate = _.template( TableTemplate, data);
+      var compiledTemplate = _.template( TableTemplate, {users: data});
      
       $("#content").html(compiledTemplate);
     }
