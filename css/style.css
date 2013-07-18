@@ -34,6 +34,9 @@ h1 {
 .menuBox .active a {
 	text-decoration:underline;
 }
+a:hover{
+	color:#0088CC;
+}
 /* --- end general --- */
 
 
@@ -65,6 +68,9 @@ h1 {
 
 
 /* --- main page --- */
+.row-headline{
+	margin-bottom:10px;
+}
 .row-tile-list {
 	margin-bottom:0px !important;
 }
@@ -83,30 +89,46 @@ h1 {
 	text-align:left;
 	background: #F5F5F5;
 	border-radius:10px;
-	padding:10px;
+	padding:10px 11px 15px 10px;
+}
+.row-tile-list .item img{
+	padding-bottom:10px;
 }
 .row-tile-list .item .inner {
 	padding-left:90px;
-	min-height:85px;
+	min-height:90px;
+	padding-bottom:20px;
 
 }
 .row-tile-list img{
 	position:absolute;
-	left:10px;
+	left:0px;
 }
 .row-tile-list .data {
 	display:block;
 }
-.progress-small {
-	display:block !important;
+.sup-inner{
+	height:100%;
+
+	float:left;
 	width:100%;
+	position:relative;
+}
+.progress-small {
+	position:absolute;
+	bottom:-2px;
+	width:100%;
+	font-size:12px;
+	display:block !important;
+	
 }
 .progress-small progress{
 	display:block;
 	border:1px solid #fff;
 	height:5px;
 	width:100%;
-	background:#fff;
+	background:#ccc;
+	opacity:0.3;
 }
 .progress-small .percentage {
 	float:right;

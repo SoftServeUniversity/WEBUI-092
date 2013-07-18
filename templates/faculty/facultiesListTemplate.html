@@ -3,6 +3,7 @@
 				Назва навчального закладу
 			</h1>	
 		</div>
+		<div class="equal-height">
 		<% _.each(faculties, function(faculty, id){ %>
 			
 			     <% if ((id)%3 == 0) { %>
@@ -10,21 +11,23 @@
 				 <% } %>
 				 
 						<div class="span4 item">
-						<div class="inner">
-							 <img src="http://placehold.it/80x80" />
-							 <a href="#" class="name">
-							 	<%= faculty.get('name') %>
-							 </a>
-							 <span class="data stud">Кількість студентів: 
-								<%= faculty.get('num_students') %>
-							 </span>
-							 <span class="data group">Кількість груп:
-							 	<%= faculty.get('num_groups') %>
-							 </span>
-						</div>
-							 <span class="data progress-small">Прогрес:<span class="percentage"><%= faculty.get('progress') %>%</span>
+							<div class="sup-inner">
+							<div class="inner">
+								 <img src=<%= faculty.get('img') %> />
+								 <a href="#" class="name">
+								 	<%= faculty.get('name') %>
+								 </a>
+								 <span class="data stud">студентів: 
+									<%= faculty.get('num_students') %>
+								 </span>
+								 <span class="data group">груп:
+								 	<%= faculty.get('num_groups') %>
+								 </span>
+								</div>
+							 <span class="data progress-small">прогрес<span class="percentage"><%= faculty.get('progress')*100 %>%</span>
 							 	<progress value=<%= faculty.get('progress') %>></progress>
 							 </span>
+						 	</div>
 						</div>
 						
 				
@@ -32,3 +35,5 @@
 					</div>
 				 <% } %>
 		<% }); %>
+		</div>
+<script src='/js/equal-height-blocks.js'></script>
