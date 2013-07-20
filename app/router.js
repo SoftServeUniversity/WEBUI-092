@@ -4,7 +4,9 @@ define([
   'underscore',
   'backbone',
   'views/faculty/FacultiesListView',
-], function($, _, Backbone, FacultiesListView) {
+  'views/department/MainFacultyView',
+  'views/department/MainDepartmentView'
+], function($, _, Backbone, FacultiesListView, FacultyView, DepartmentView) {
   
   var AppRouter = Backbone.Router.extend({
     routes: {
@@ -12,7 +14,8 @@ define([
  	  // home
       '': 'homeAction',
 
-
+      'departments':'departmentsAction',
+      'teachers':'teachersAction',
       // Default
       '*actions': 'defaultAction'
     }
@@ -24,17 +27,30 @@ define([
      
     app_router.on('route:homeAction', function (actions) {
      
-       // display the home page 
+       // display the home page
+        $('#content').empty();
         var facultiesListView = new FacultiesListView();
         facultiesListView.render();
-    });   
+    });
+
+    app_router.on('route:departmentsAction', function (actions) {
+
+        var facultyView = new FacultyView();
+        facultyView.render();
+    });
+    app_router.on('route:teachersAction', function (actions) {
+
+        var departmentView = new DepartmentView();
+        departmentView.render();
+    });
    
     
 
     
     app_router.on('route:defaultAction', function (actions) {
-     
-       // We have no matching route, lets display the home page 
+        $('#content').empty();
+
+       // We have no matching route, lets display the home page
         var facultiesListView = new FacultiesListView();
         facultiesListView.render();
     });

@@ -9,6 +9,7 @@ require.config({
     underscore: 'libs/underscore/underscore-min',
     bootstrap: 'libs/bootstrap/bootstrap',
     backbone: 'libs/backbone/backbone-min',
+    highcharts: 'libs/highcharts/highcharts',
     templates: '../templates'
   }
 
