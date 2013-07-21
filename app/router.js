@@ -14,7 +14,7 @@ define([
  	  // home
       '': 'homeAction',
 
-      'departments':'departmentsAction',
+      'faculty/:id':'departmentsAction',
       'teachers':'teachersAction',
       // Default
       '*actions': 'defaultAction'
@@ -33,7 +33,7 @@ define([
         facultiesListView.render();
     });
 
-    app_router.on('route:departmentsAction', function (actions) {
+    app_router.on('route:departmentsAction', function (id) {
 
         var facultyView = new FacultyView();
         facultyView.render();

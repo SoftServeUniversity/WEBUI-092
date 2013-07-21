@@ -25,13 +25,11 @@ define([
       
 
 		var facs_col = new FacultiesCollection();
-		facs_col.fetch({ url: "app/collections/faculties/facultiesCollection.json", async:false, success: function() {
-		    console.log(facs_col);    
+		facs_col.fetch({ url: "app/collections/faculties/facultiesCollection.json", async:false, success: function() { 
 		}});
 		
 		var changes_col = new FacultiesChangeCollection();
 		changes_col.fetch({ url: "app/collections/faculties/facultiesChangeCollection.json", async:false, success: function() {
-		    console.log(changes_col);  
 		}});		
 		
 		
