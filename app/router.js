@@ -36,6 +36,7 @@ define([
     app_router.on('route:departmentsAction', function (id) {
 
         var facultyView = new FacultyView();
+        var facName = facultyView.getFacultyName(id);
         facultyView.render();
     });
     app_router.on('route:teachersAction', function (actions) {

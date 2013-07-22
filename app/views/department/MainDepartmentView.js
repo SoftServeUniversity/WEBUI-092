@@ -14,7 +14,6 @@ define([
             this.render();
         } ,
         render:function(){
-
             var groupsListView = new GroupsListView();
             var teachersListView = new TeachersListView();
 
