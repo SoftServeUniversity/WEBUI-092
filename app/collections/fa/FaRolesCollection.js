@@ -2,8 +2,9 @@ define([
   'jquery',
   'underscore',
   'backbone',
-  'models/fa/FaRole'
-], function($, _, Backbone, FaRole){
+  'localstorage',
+  'models/fa/FaRoleModel'
+], function($, _, Backbone, FaRoleModel){
   
   var FaRolesCollection = function(){
     model:FaRoleModel

@@ -3,16 +3,18 @@ define([
   'jquery',
   'underscore',
   'backbone',
-  'views/faculty/FacultiesListView',
-  'views/table/TableView'
-], function($, _, Backbone, FacultiesListView, TableView) {
+  'localstorage',
+  'views/HelloView',
+], function($, _, Backbone, LocalStorage, HelloView) {
   
   var AppRouter = Backbone.Router.extend({
     routes: {
       // Define some URL routes
- 	  // home
+ 	    // home
       '': 'homeAction',
-      'table': 'tableIndex',
+      'fa_roles': 'faRoles',
+      //delete after tutorial
+      'hello': 'helloAction',
 
 
       // Default
@@ -24,6 +26,10 @@ define([
 
     var app_router = new AppRouter;
      
+    app_router.on('route:helloAction', function (actions){
+      var helloView = new HelloView();
+      helloView.render();
+    });
     app_router.on('route:homeAction', function (actions) {
      
        // display the home page 
@@ -31,10 +37,10 @@ define([
         facultiesListView.render();
     });   
    
-    app_router.on('route:tableIndex', function (actions){
-      var tableView = new TableView();
-      tableView.render();
-      console.log('We have trigered the tableIndex route');
+    app_router.on('route:faRoles', function (actions){
+      var faRolesView = new FaRolesView();
+      faRolesView.render();
+      console.log('We have trigered the fa_role route');
     });
 
     app_router.on('route:defaultAction', function (actions) {
