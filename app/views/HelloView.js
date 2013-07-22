@@ -2,14 +2,16 @@ define([
   'jquery',
   'underscore',
   'backbone',
-], function($, _, Backbone){
+  'text!templates/helloTemplate.html'
+], function($, _, Backbone, helloTemplate){
   var HelloView = Backbone.View.extend({
-    el: '#content',
+    el: $('#content'),
+    template: _.template(helloTemplate),
     initialize: function(){
       this.render();
     },
     render: function(){
-      this.$el.html("Hello World");
+      this.$el.html(this.template({who: 'world'}));
     }
   });
   return HelloView;
