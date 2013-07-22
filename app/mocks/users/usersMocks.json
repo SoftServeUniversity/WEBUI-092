@@ -1,0 +1,19 @@
+{
+      "first_name":"FirrstName_1",
+      "second_name": 'SecondName',
+      "middle_name": 'MiddleName',
+      'email': 'email@example.com',
+      'password': 'foobar',
+      'password_confirmation': 'foobar'
+  
+  },
+  {
+      "first_name":"FirrstName_2",
+      "second_name": 'SecondName',
+      "middle_name": 'MiddleName',
+      'email': 'email@example.com',
+      'password': 'foobar',
+      'password_confirmation': 'foobar'
+  
+  }
+]
