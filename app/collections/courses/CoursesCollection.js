@@ -2,11 +2,12 @@ define([
     'jquery',
     'underscore',
     'backbone',
-    'models/CourseModel'
+    'models/courses/CourseModel'
 ], function($, _, Backbone, CourseModel){
 
     var CoursesCollection = Backbone.Collection.extend({
-        model:CourseModel
+        model:CourseModel,
+        url: "app/mocks/courses.json"
     });
 
     return CoursesCollection;
