@@ -34,6 +34,9 @@ h1 {
 .menuBox .active a {
 	text-decoration:underline;
 }
+a:hover{
+	color:#0088CC;
+}
 /* --- end general --- */
 
 
@@ -65,6 +68,9 @@ h1 {
 
 
 /* --- main page --- */
+.row-headline{
+	margin-bottom:10px;
+}
 .row-tile-list {
 	margin-bottom:0px !important;
 }
@@ -83,20 +89,23 @@ h1 {
 	text-align:left;
 	background: #F5F5F5;
 	border-radius:10px;
-	padding:10px;
-	padding-left:105px;
+	padding:10px 11px 15px 10px;
+}
+.row-tile-list .item img{
+	padding-bottom:10px;
+}
+.row-tile-list .item .inner {
+	padding-left:90px;
+	min-height:90px;
+	padding-bottom:20px;
+
 }
 .row-tile-list img{
 	position:absolute;
-	left:10px;
+	left:0px;
 }
 .row-tile-list .data {
 	display:block;
 }
-/*ManagingTable by Yasinishyn*/
-.table-controls-uls li{
-	list-style: none;
-	display: inline;
-}
-/* --- end main page --- */
+
 

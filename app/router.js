@@ -14,14 +14,8 @@ define([
       // Define some URL routes
  	    // home
       '': 'homeAction',
-<<<<<<< HEAD
-      //roles
-      'fa_roles': 'faRoles',
-=======
+
       'fa/menage_roles': 'faRoles',
-      //delete after tutorial
-      'hello': 'helloAction',
->>>>>>> old-state
 
 
       // Default

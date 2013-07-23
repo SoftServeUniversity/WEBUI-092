@@ -6,6 +6,7 @@ define([
   'localstorage',
   'views/HelloView',
   'views/fa/FaRolesView',
+  'views/faculty/FacultiesListView',
 ], function($, _, Backbone, LocalStorage, HelloView, FaRolesView) {
   
   var AppRouter = Backbone.Router.extend({
@@ -13,9 +14,8 @@ define([
       // Define some URL routes
  	    // home
       '': 'homeAction',
+
       'fa/menage_roles': 'faRoles',
-      //delete after tutorial
-      'hello': 'helloAction',
 
 
       // Default
@@ -26,11 +26,7 @@ define([
   var initialize = function(){
 
     var app_router = new AppRouter;
-     
-    app_router.on('route:helloAction', function (actions){
-      var helloView = new HelloView();
-      helloView.render();
-    });
+
     app_router.on('route:homeAction', function (actions) {
      
        // display the home page 
