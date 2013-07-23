@@ -5,8 +5,9 @@ define([
   'backbone',
   'views/faculty/FacultiesListView',
   'views/department/MainFacultyView',
-  'views/department/MainDepartmentView'
-], function($, _, Backbone, FacultiesListView, FacultyView, MainDepartmentView) {
+  'views/department/MainDepartmentView',
+  'views/work/WorkView'
+], function($, _, Backbone, FacultiesListView, MainFacultyView, MainDepartmentView, WorkView) {
   
   var AppRouter = Backbone.Router.extend({
     routes: {
