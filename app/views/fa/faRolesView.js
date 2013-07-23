@@ -8,10 +8,6 @@ define([
 
   var FaRolesView = Backbone.View.extend({
     el: $('#content'),
-    template: _.template(faRolesTemplate),
-    initialize: function (){
-      this.render();
-    },
     render: function (){
       var that = this;
 

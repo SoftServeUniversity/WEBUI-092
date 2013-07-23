@@ -5,15 +5,19 @@
     <table>
       <thead>
         <tr>
-          <th>User Name</th>
+          <th>Full Name</th>
+          <th>Email</th>
           <th>Role</th>
+          <th>Controls</th>
         </tr>
       </thead>
       <tbody id='content-table'>
         <% _.each(entities, function(entity, id){ %>
           <tr>
             <td><%= entity.get('name')%></td>
+            <td><%= entity.get('email')%></td>
             <td><%= entity.get('role')%></td>
+            <td><button class='btn'>Delete</button></td>
           </tr>
         <% }); %>
       </tbody>
