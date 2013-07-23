@@ -37,7 +37,7 @@ define([
      });
 
       app_router.on('route:departmentAction', function (actions) {
-       var departmentProgressView = new CathedraProgressView();
+       var departmentProgressView = new DepartmentProgressView();
        departmentProgressView.render();
      });
 

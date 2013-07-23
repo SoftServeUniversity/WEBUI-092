@@ -1,0 +1,26 @@
+[
+    {
+        "name": "Іван",
+        "progress": 2,
+        "surname":"Іваненко",
+        "patronymic":"Іванович"
+    },
+    {
+        "name": "Іван",
+        "progress": 8,
+        "surname":"Іваненко",
+        "patronymic":"Іванович"
+    },
+    {
+        "name": "Іван",
+        "progress": 8,
+        "surname":"Іваненко",
+        "patronymic":"Іванович"
+    },
+    {
+        "name": "Іван",
+        "progress": 10,
+        "surname":"Іваненко",
+        "patronymic":"Іванович"
+    }
+]
