@@ -6,7 +6,8 @@ define([
   'localstorage',
   'views/HelloView',
   'views/fa/FaRolesView',
-], function($, _, Backbone, LocalStorage, HelloView, FaRolesView) {
+  'views/faculty/FacultiesListView',
+], function($, _, Backbone, LocalStorage, HelloView, FaRolesView, FacultiesListView) {
   
   var AppRouter = Backbone.Router.extend({
     routes: {
