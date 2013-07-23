@@ -1,0 +1,1 @@
+departmentsListTemplate.html

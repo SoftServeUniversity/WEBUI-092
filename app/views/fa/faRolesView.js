@@ -23,6 +23,17 @@ define([
       var compiledTemplate = _.template( faRolesTemplate, data);
 
       this.$el.html(compiledTemplate);
+    },
+    events: {
+      'click .open-modal' : 'openModal',
+      'click .close-m'      : 'closeModal',
+      'click .save'       : 'closeModal'
+    },
+    openModal: function(){
+      $('#menage-role').modal('show');
+    },
+    closeModal: function(){
+      $('#menage-role').modal('hide');
     }
   });
   return  FaRolesView;
