@@ -17,7 +17,7 @@ define([
 
         '': 'homeAction',
         'group/:id': 'groupProgressAction',
-        'department':'departmentProgressAction',
+        'department/:id':'departmentProgressAction',
         'student/:id':'studentProgressAction',
         'course':'courseProgressAction',
       // Default
@@ -36,7 +36,7 @@ define([
        facultiesListView.render();
      });
 
-      app_router.on('route:departmenProgresstAction', function (actions) {
+      app_router.on('route:departmentProgressAction', function (actions) {
        var departmentProgressView = new DepartmentProgressView();
        departmentProgressView.render();
      });
