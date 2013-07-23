@@ -15,7 +15,6 @@ define([
       rolesList.on('add', this.addAll, this);
       rolesList.on('reset', this.addAll, this);
       rolesList.fetch(); //loades rolies list from licalstorage
-      this.render();
     },
     events: {
       'keypress #new-role': 'createRoleOnEnter'
@@ -25,7 +24,8 @@ define([
         return;
       }
       rolesList.create(this.newAttributes());
-      this.inputUserRole.val('');//cleans inputs box
+      //cleans inputs boxes
+      this.inputUserRole.val('');
       this.inputUserName.val('');
     },
     addOne: function(role){
@@ -33,8 +33,8 @@ define([
       $('#roles-list').append(view.render().el);
     },
     addAll: function(){
-      this.$('#roles-list').html('') //clean the todo list
-      rolesList.each(this.addOne, this);
+      this.$('#roles-list').html(''); // clean the todo list
+      app.todoList.each(this.addOne, this);
     },
     newAttributes: function(){
       return{

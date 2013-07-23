@@ -2,6 +2,8 @@
   <div class='row-fluid'>
     <input id='new-role' placeholder='Enter new role name'></input>
     <input id='new-name' placeholder='Enter new role name'></input>
+    <input class='edit_role' value="<%- user_role %>"></input>
+    <input class='edit_name' value="<%- user_name %>"></input>
     <button class='btn pull-left'>New User</button>
   </div>
   <div class='row-fluid'>
@@ -10,12 +12,17 @@
         <tr>
           <th>User Name</th>
           <th>Role</th>
+          <th>Controls</th>
         </tr>
       </thead>
       <tbody id='main'>
         <tr id='roles-list'>
-          <td>Andrew</td>
-          <td>Student</td>
+          <td class='text-center'>Andrew</td>
+          <td class='text-center'>Student</td>
+          <td class='text-center'>
+            <button class='btn'>Destroy</button>
+            <button class='btn'>Remove</button>
+          </td>
         </tr>
       </tbody>
     </table>

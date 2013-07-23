@@ -14,9 +14,8 @@ define([
       // Define some URL routes
  	    // home
       '': 'homeAction',
+      //roles
       'fa_roles': 'faRoles',
-      //delete after tutorial
-      'hello': 'helloAction',
 
 
       // Default
@@ -27,11 +26,7 @@ define([
   var initialize = function(){
 
     var app_router = new AppRouter;
-     
-    app_router.on('route:helloAction', function (actions){
-      var helloView = new HelloView();
-      helloView.render();
-    });
+
     app_router.on('route:homeAction', function (actions) {
      
        // display the home page 

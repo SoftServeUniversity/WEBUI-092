@@ -7,7 +7,7 @@ define([
 ], function($, _, Backbone, Store, FaRoleModel){
   var FaRolesCollection = Backbone.Collection.extend({
     model: FaRoleModel,
-    localstorage: new Store('backbone-fa-roles')
+    localstorage: new Store('backbone-fa-roles'),
   });
   return FaRolesCollection;
 });

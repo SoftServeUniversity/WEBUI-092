@@ -5,7 +5,7 @@ define([
   
   var FaRoleModel = Backbone.Model.extend({
     defaults: {
-      name: '',
+      role_name: '',
       user_name: ''
     }
   });
