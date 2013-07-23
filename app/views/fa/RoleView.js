@@ -5,7 +5,11 @@ define([
   'text!templates/fa/RoleTemplate.html',
 ], function($, _, Backbone, RolesTemplate){    
   var ElementView = Backbone.View.extend({
+<<<<<<< HEAD
       tagName:'tr' ,
+=======
+      tagName: 'td',
+>>>>>>> old-state
       template: _.template(RoleTemplate),
       render: function(){
         this.$el.html(this.template(this.model.toJSON()));

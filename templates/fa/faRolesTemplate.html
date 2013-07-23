@@ -15,6 +15,7 @@
           <th>Controls</th>
         </tr>
       </thead>
+<<<<<<< HEAD
       <tbody id='main'>
         <tr id='roles-list'>
           <td class='text-center'>Andrew</td>
@@ -24,6 +25,15 @@
             <button class='btn'>Remove</button>
           </td>
         </tr>
+=======
+      <tbody id='content-table'>
+        <% _.each(entities, function(entity, id){ %>
+          <tr>
+            <td><%= entity.get('name')%></td>
+            <td><%= entity.get('role')%></td>
+          </tr>
+        <% }); %>
+>>>>>>> old-state
       </tbody>
     </table>
   </div>

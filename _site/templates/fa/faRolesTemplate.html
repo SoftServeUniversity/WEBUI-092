@@ -1,0 +1,21 @@
+  <div class='row-fluid'>
+    <button class='btn pull-left'>New User</button>
+  </div>
+  <div class='row-fluid'>
+    <table>
+      <thead>
+        <tr>
+          <th>User Name</th>
+          <th>Role</th>
+        </tr>
+      </thead>
+      <tbody id='content-table'>
+        <% _.each(entities, function(entity, id){ %>
+          <tr>
+            <td><%= entity.get('name')%></td>
+            <td><%= entity.get('role')%></td>
+          </tr>
+        <% }); %>
+      </tbody>
+    </table>
+  </div>
