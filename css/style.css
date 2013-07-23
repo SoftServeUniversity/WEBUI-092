@@ -135,3 +135,15 @@ a:hover{
 }
 /* --- end main page --- */
 
+/* --- Nazaruk Sergii CSS --- */
+/* Modal History */
+.history-modal          { display: block; margin-bottom: 20px; }
+#myModal				{ display: none; width: 600px; border-radius: 6px 6px 6px 6px;
+						  margin: 0 auto;
+    					}
+#myModal.active			{ position: fixed; z-index: 1050; opacity: 1; background-color: white;
+    					  left: 10%; right: 10%; top: 10%;
+    					}				    					
+/* Progress */
+#create-btn				{ display: block; margin: 0 auto;}
+#task-progress			{ margin-bottom: 20px; }

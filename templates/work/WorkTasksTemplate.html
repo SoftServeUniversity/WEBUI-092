@@ -1,0 +1,37 @@
+<!--Info-->    
+
+<h3 class="text-center">Чисельне ровязування динамічних багатозначних задач різноманітними методами сучасної науки</h3>
+<h4 class="text-center">Корнедлій Васильович Джміль, Тиміш Сергій Вікторович</h4>
+<h5 class="text-center">канд. ф-м. н., доцент кафедри інформаційних систем</h5>
+
+<<<<<<< HEAD
+<span href="#myModal" role="button" class="history-modal text-right" data-toggle="modal">Історія</span>
+=======
+<a href="#myModal" role="button" class="history-modal span1 offset11" data-toggle="modal">Історія</a>
+>>>>>>> snazatc
+
+<!--Tasks-->
+
+<% _.each(worktasks, function(worktask) {%>
+	<div class="row">
+<<<<<<< HEAD
+		<p class="pull-left span6 text-center taskname"><%= worktask.get("name") %></p>
+=======
+		<p class="span6 text-center taskname"><a href="#"><%= worktask.get("name") %></a></p>
+>>>>>>> snazatc
+		<div class="progress span6">
+		    <div class="bar" style="width:<%= worktask.get("percentage") + "%" %>;"></div>
+		</div>
+	</div>
+<% }); %>
+
+<!--Create Task Form-->
+
+<form>
+	<fieldset>
+		<legend>Створити завдання</legend>
+		<label>Назва завдання</label>
+		<input class="input-xxlarge" type="text">
+		<button type="submit" id="create-btn">Створити</button>
+	</fieldset>
+</form>

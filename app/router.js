@@ -6,7 +6,7 @@ define([
   'views/faculty/FacultiesListView',
   'views/department/MainFacultyView',
   'views/department/MainDepartmentView'
-], function($, _, Backbone, FacultiesListView, MainFacultyView, MainDepartmentView) {
+], function($, _, Backbone, FacultiesListView, FacultyView, MainDepartmentView) {
   
   var AppRouter = Backbone.Router.extend({
     routes: {
@@ -16,6 +16,9 @@ define([
 
       'faculty/:id':'facultyAction',
       'department/:id':'departmentAction',
+      
+      'work': 'workShow',
+
       // Default
       '*actions': 'defaultAction'
     }
@@ -44,6 +47,11 @@ define([
         var mainDepartmentView = new MainDepartmentView();
         mainDepartmentView.initialize();
         mainDepartmentView.loadData(id);
+    });
+
+    app_router.on('route:workShow', function (actions){
+        var workView = new WorkView();
+        workView.render();
     });
    
     
