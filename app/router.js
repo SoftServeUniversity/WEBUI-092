@@ -1,21 +1,24 @@
-// Filename: router.js
 define([
   'jquery',
   'underscore',
   'backbone',
   'views/faculty/FacultiesListView',
-  'views/faculty/MainFacultyView',
-  'views/department/MainDepartmentView'
-], function($, _, Backbone, FacultiesListView, FacultyView, MainDepartmentView) {
+  'views/department/MainFacultyView',
+  'views/department/MainDepartmentView',
+  'views/work/WorkView'
+], function($, _, Backbone, FacultiesListView, MainFacultyView, MainDepartmentView, WorkView) {
   
   var AppRouter = Backbone.Router.extend({
     routes: {
       // Define some URL routes
- 	  // home
+  // home
       '': 'homeAction',
 
       'faculty/:id':'facultyAction',
       'department/:id':'departmentAction',
+      
+      'work': 'workShow',
+
       // Default
       '*actions': 'defaultAction'
     }
@@ -30,24 +33,27 @@ define([
        // display the home page
         $('#content').empty();
         var facultiesListView = new FacultiesListView();
-        facultiesListView.loadData();
+        facultiesListView.render();
     });
 
     app_router.on('route:facultyAction', function (id) {
 
-        var facultyView = new FacultyView();
-        facultyView.getFacultyName(id);
-        facultyView.render();
+        var mainFacultyView = new MainFacultyView();
+        mainFacultyView.initialize();
+        mainFacultyView.loadData(id);
     });
     app_router.on('route:departmentAction', function (id) {
 
         var mainDepartmentView = new MainDepartmentView();
-        mainDepartmentView.getName(id); 
-        mainDepartmentView.render();
+        mainDepartmentView.initialize();
+        mainDepartmentView.loadData(id);
+    });
+
+    app_router.on('route:workShow', function (actions){
+        var workView = new WorkView();
+        workView.render();
     });
    
-    
-
     
     app_router.on('route:defaultAction', function (actions) {
         $('#content').empty();
@@ -60,7 +66,7 @@ define([
 
     Backbone.history.start();
   };
-  return { 
+  return {
     initialize: initialize
   };
 });
