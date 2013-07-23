@@ -4,8 +4,9 @@ define([
   'backbone',
 ], function($, _, Backbone){
 	
-  var WorkCollection = function(){
+
+  var FacultiesChangeCollection = function(){
   	return new Backbone.Collection();
   }
-  return WorkCollection;
+  return FacultiesChangeCollection;
 });

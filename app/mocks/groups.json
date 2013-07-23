@@ -1,0 +1,22 @@
+[
+    {
+        "id" : "1",
+        "name": "ІБ-21",
+        "percentage": 25
+    },
+    {
+        "id" : "2",
+        "name": "КІ-44",
+        "percentage": 80
+    },
+    {
+        "id" : "3",
+        "name": "АТМ-12",
+        "percentage": 80
+    },
+    {
+        "id" : "4",
+        "name": "ЕК-22",
+        "percentage": 100
+    }
+]

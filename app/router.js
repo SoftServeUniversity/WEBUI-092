@@ -4,16 +4,21 @@ define([
   'underscore',
   'backbone',
   'views/faculty/FacultiesListView',
-  'views//work/WorkTasksView'
-], function($, _, Backbone, FacultiesListView, WorkTasksView) {
+  'views/department/MainFacultyView',
+  'views/department/MainDepartmentView',
+  'views/work/WorkView'
+], function($, _, Backbone, FacultiesListView, FacultyView, MainDepartmentView, WorkView) {
   
   var AppRouter = Backbone.Router.extend({
     routes: {
       // Define some URL routes
  	  // home
       '': 'homeAction',
-      'work': 'workShow',
+
+      'faculty/:id':'facultyAction',
+      'department/:id':'departmentAction',
       
+      'work': 'workShow',
 
       // Default
       '*actions': 'defaultAction'
@@ -26,21 +31,37 @@ define([
      
     app_router.on('route:homeAction', function (actions) {
      
-       // display the home page 
+       // display the home page
+        $('#content').empty();
         var facultiesListView = new FacultiesListView();
         facultiesListView.render();
-    });   
-   
-    app_router.on('route:workShow', function (actions){
-      var workTasksView = new WorkTasksView();
-      workTasksView.render();
     });
+
+    app_router.on('route:facultyAction', function (id) {
+
+        var facultyView = new FacultyView();
+        facultyView.getFacultyName(id);
+        facultyView.render();
+    });
+    app_router.on('route:departmentAction', function (id) {
+
+        var mainDepartmentView = new MainDepartmentView();
+        mainDepartmentView.getName(id); 
+        mainDepartmentView.render();
+    });
+
+    app_router.on('route:workShow', function (actions){
+        var workView = new WorkView();
+        workView.render();
+    });
+   
     
 
     
     app_router.on('route:defaultAction', function (actions) {
-     
-       // We have no matching route, lets display the home page 
+        $('#content').empty();
+
+       // We have no matching route, lets display the home page
         var facultiesListView = new FacultiesListView();
         facultiesListView.render();
     });
@@ -52,4 +73,3 @@ define([
     initialize: initialize
   };
 });
-

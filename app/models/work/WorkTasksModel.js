@@ -4,7 +4,7 @@ define([
 ], function(_, Backbone) {
 
 	defaults: {
-		"name": "Task Name", 
+		"name": "Назва завдання", 
     "id": "001", 
     "percentage": "30",
     "workname": ""
