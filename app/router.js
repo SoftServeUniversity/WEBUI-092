@@ -4,7 +4,7 @@ define([
   'underscore',
   'backbone',
   'views/faculty/FacultiesListView',
-  'views/department/MainFacultyView',
+  'views/faculty/MainFacultyView',
   'views/department/MainDepartmentView'
 ], function($, _, Backbone, FacultiesListView, FacultyView, MainDepartmentView) {
   
@@ -30,7 +30,7 @@ define([
        // display the home page
         $('#content').empty();
         var facultiesListView = new FacultiesListView();
-        facultiesListView.render();
+        facultiesListView.loadData();
     });
 
     app_router.on('route:facultyAction', function (id) {

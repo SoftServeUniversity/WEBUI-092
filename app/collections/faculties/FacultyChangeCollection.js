@@ -6,7 +6,9 @@ define([
 	
 
   var FacultyChangeCollection = function(){
-  	return new Backbone.Collection();
+  	var c = new Backbone.Collection();
+  	c.url = "app/mocks/facultyChange.json";
+  	return c;
   }
   return FacultyChangeCollection;
 });

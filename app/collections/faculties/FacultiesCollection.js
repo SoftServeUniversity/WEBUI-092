@@ -4,9 +4,11 @@ define([
   'backbone',
 ], function($, _, Backbone){
 	
-
+	
   var FacultiesCollection = function(){
-  	return new Backbone.Collection();
+  	var c =  new Backbone.Collection();
+  	c.url = "app/mocks/faculties.json";
+  	return c;
   }
   return FacultiesCollection;
 });
