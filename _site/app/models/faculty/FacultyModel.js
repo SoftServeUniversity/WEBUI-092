@@ -3,8 +3,8 @@ define([
   'backbone'
 ], function(_, Backbone) {
   
-  var FaRoleModel = Backbone.Model.extend({});
+  var FacultyModel = Backbone.Model.extend({});
 
-  return FaRoleModel;
+  return FacultyModel;
 
 });
