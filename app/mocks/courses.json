@@ -1,13 +1,13 @@
 [
-    {
+    {  "id":1,
         "name": "5 курс",
         "percentage": "75"
     },
-    {
+    {  "id":2,
         "name": "3 курс",
         "percentage": "50"
     },
-    {
+    {  "id":3,
         "name": "4 курс",
         "percentage":"80"
     }

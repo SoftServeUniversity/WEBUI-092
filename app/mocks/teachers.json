@@ -1,22 +1,22 @@
 [
 
-    {
+    {  "id":1,
         "name": "Мокренко П.П",
         "percentage": "75"
     },
-    {
+    {  "id":2,
         "name": "Гаранюк А.Б.",
         "percentage": "50"
     },
-    {
+    {  "id":3,
         "name": "Цап Н.В.",
         "percentage":"80"
     },
-    {
+    {  "id":4,
         "name": "Гаранюк А.Б.",
         "percentage": "50"
     },
-    {
+    {  "id":5,
         "name": "Цап Н.В.",
         "percentage":"80"
     }

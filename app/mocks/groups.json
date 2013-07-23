@@ -1,20 +1,20 @@
 [
-    {
+    {   "id": 1,
         "name": "ІБК-21",
         "progress": 2,
         "num_students":24
     },
-    {
+    {   "id": 2,
         "name": "КІФ-44",
         "progress": 8,
         "num_students":22
     },
-    {
+    {   "id": 3,
         "name": "АТВ-12",
         "progress": 8,
         "num_students":14
     },
-    {
+    {   "id": 4,
         "name": "ЕКУ-22",
         "progress": 10,
         "num_students":21

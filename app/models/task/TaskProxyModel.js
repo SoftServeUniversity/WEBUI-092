@@ -7,9 +7,9 @@ define([
   var TaskProxyModel = Backbone.Model.extend({
     initialize : function (attributes) {
         var task = new TaskModel( {id: attributes.id});
-        console.log(this);
         this.set('name', attributes.description);
         this.set('progress', attributes.percentage) ;
+        this.set('name_with_url', '<a href=#/task/'+this.id+'>'+this.get('name')+'</a>');
         return task;
     }
   });

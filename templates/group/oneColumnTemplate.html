@@ -21,7 +21,7 @@
     <% _.each(entities, function(entity, id){ %>
     <li>
       <div class="entity">
-         <%= entity.get('name') %> <%= entity.get('count') %>
+         <%= entity.get('name_with_url') %> <%= entity.get('count') %>
         <progress value=<%= entity.get('progress') %> max="10"></progress>
       </li>
       <% }); %>

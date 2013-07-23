@@ -16,10 +16,10 @@ define([
       routes: {
 
         '': 'homeAction',
-        'group': 'groupAction',
-        'department':'departmentAction',
-        'student':'studentAction',
-        'course':'courseAction',
+        'group/:id': 'groupProgressAction',
+        'department':'departmentProgressAction',
+        'student/:id':'studentProgressAction',
+        'course':'courseProgressAction',
       // Default
       '*actions': 'defaultAction'
     }
@@ -36,24 +36,24 @@ define([
        facultiesListView.render();
      });
 
-      app_router.on('route:departmentAction', function (actions) {
+      app_router.on('route:departmenProgresstAction', function (actions) {
        var departmentProgressView = new DepartmentProgressView();
        departmentProgressView.render();
      });
 
-      app_router.on('route:groupAction', function (actions) {
+      app_router.on('route:groupProgressAction', function (actions) {
 
         var groupProgressView = new GroupProgressView();
         groupProgressView.render();
       });
 
-      app_router.on('route:studentAction', function (actions) {
+      app_router.on('route:studentProgressAction', function (actions) {
 
         var studentProgressView = new StudentProgressView();
         studentProgressView.render();
       });
 
-      app_router.on('route:courseAction', function (actions) {
+      app_router.on('route:courseProgressAction', function (actions) {
 
         var courseProgressView = new CourseProgressView();
         courseProgressView.render();

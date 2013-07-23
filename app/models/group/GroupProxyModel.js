@@ -11,6 +11,8 @@ define([
         this.set('name',"Група " + attributes.name + ". " );
         this.set('progress', attributes.progress) ;
         this.set('count',"Кількість cтудентів - " +" " + attributes.num_students) ;
+        this.set('name_with_url', '<a href=#/group/'+this.id+'>'+attributes.name+'</a>');
+
         return group;
     }
   });
