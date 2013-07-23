@@ -86,7 +86,7 @@ h1 {
 	padding:10px;
 	padding-left:105px;
 }
-.row-tile-list img{
+.row-tile-list img {
 	position:absolute;
 	left:10px;
 }
@@ -95,15 +95,15 @@ h1 {
 }
 /* --- end main page --- */
 
-/* --- Nazaruk Sergii CSS--- */
+/* --- Nazaruk Sergii CSS --- */
 /*Modal*/
-.history-modal          { display: block; text-align: right; margin-bottom: 10px; }
-/*Ordered list 1.1.1...*/
-ol.modal-list 			{ counter-reset: item }
-li.modal-list 			{ display: block }
-li.modal-list:before 	{ content: counters(item, ".") " "; counter-increment: item }
+.history-modal          { display: block; margin-bottom: 20px; }
+#myModal				{ display: none; width: 600px; border-radius: 6px 6px 6px 6px;
+						  margin: 0 auto;
+    					}
+#myModal.active			{ position: fixed; z-index: 1050; opacity: 1; background-color: white;
+    					  left: 10%; right: 10%; top: 10%;
+    					}				    					
 /*/Progress*/
-.goback-progress-l      { width:40%; text-align: center; }
-.progress               { width: 50%; display: inline-block; }
-.create-btn				{ display: block; margin: 0 auto;}
+#create-btn				{ display: block; margin: 0 auto;}
 #task-progress			{ margin-bottom: 20px; }

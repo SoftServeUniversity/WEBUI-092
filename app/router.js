@@ -4,7 +4,7 @@ define([
   'underscore',
   'backbone',
   'views/faculty/FacultiesListView',
-  'views/WorkTasksView'
+  'views//work/WorkTasksView'
 ], function($, _, Backbone, FacultiesListView, WorkTasksView) {
   
   var AppRouter = Backbone.Router.extend({
@@ -13,7 +13,7 @@ define([
  	  // home
       '': 'homeAction',
       'work': 'workShow',
-
+      
 
       // Default
       '*actions': 'defaultAction'

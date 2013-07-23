@@ -1,0 +1,29 @@
+<!--Info-->    
+
+<h3 class="text-center">Чисельне розязування динамічних багатозначних задач різноманітними методами сучасної науки</h3>
+<h4 class="text-center">Корнелій Васильович Джміль, Тиміш Сергій Вікторович</h4>
+<h5 class="text-center">канд. ф-м. н., доцент кафедри інформаційних систем</h5>
+
+<a href="#myModal" role="button" class="history-modal span1 offset11" data-toggle="modal">Історія</a>
+
+<!--Tasks-->
+
+<% _.each(worktasks, function(worktask) {%>
+	<div class="row">
+		<p class="span6 text-center taskname editable"><%= worktask.get("name") %></p>
+		<div class="progress span6">
+		    <div class="bar" style="width:<%= worktask.get("percentage") + "%" %>;"></div>
+		</div>
+	</div>
+<% }); %>
+
+<!--Create Task Form-->
+
+<form>
+	<fieldset>
+		<legend>Створити завдання</legend>
+		<label>Назва завдання</label>
+		<input class="input-xxlarge" type="text">
+		<button type="submit" id="create-btn">Створити</button>
+	</fieldset>
+</form>
