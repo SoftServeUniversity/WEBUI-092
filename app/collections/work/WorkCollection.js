@@ -1,11 +1,12 @@
 define([
   'jquery',
   'underscore',
-  'backbone',
+  'backbone'
 ], function($, _, Backbone){
-	
+  
   var WorkCollection = function(){
-  	return new Backbone.Collection();
+    return new Backbone.Collection();
   }
   return WorkCollection;
+  
 });
