@@ -107,5 +107,9 @@ a:hover{
 .row-tile-list .data {
 	display:block;
 }
-
-
+.red{
+	color: red;
+}
+.a-little-margin-right{
+	margin-right: 3px;
+}
