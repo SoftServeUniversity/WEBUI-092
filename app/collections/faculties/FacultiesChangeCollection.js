@@ -5,8 +5,8 @@ define([
 ], function($, _, Backbone){
 	
 
-  var FacultiesCollection = function(){
+  var FacultiesChangeCollection = function(){
   	return new Backbone.Collection();
   }
-  return FacultiesCollection;
+  return FacultiesChangeCollection;
 });
