@@ -1,2 +1,5 @@
 # Ignore jekyll
 _site/
+.project
+.gitignore
+.idea/
