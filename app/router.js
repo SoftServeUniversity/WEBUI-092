@@ -25,7 +25,7 @@ define([
         'faculty/:id':'facultyAction',
         'teacher/:id':'teacherProgressAction',
         'department/:id':'departmentAction',
-        'work': 'workShow',
+        'work/:id': 'workShow',
       // Default
       '*actions': 'defaultAction'
     }

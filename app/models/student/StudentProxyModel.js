@@ -10,7 +10,7 @@ define([
         console.log(this);
         this.set('name', attributes.name +' ' +attributes.patronymic + ' ' + attributes.surname);
         this.set('progress', attributes.progress) ;
-        this.set('name_with_url', '<a href=#/student/'+this.id+'>'+this.get('name')+'</a>');
+        this.set('name_with_url', '<a href=#/work/'+this.id+'>'+this.get('name')+'</a>');
         return student;
     }
   });
