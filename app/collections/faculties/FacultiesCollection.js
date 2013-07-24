@@ -2,6 +2,7 @@ define([
   'jquery',
   'underscore',
   'backbone',
+<<<<<<< HEAD
 ], function($, _, Backbone){
 
   var Test = [
@@ -65,5 +66,15 @@ define([
   var FacultiesCollection = function(){
   	return new Backbone.Collection(Test);
   }
+=======
+  'models/faculties/FacultyModel'
+], function($, _, Backbone, FacultyModel){
+	
+  var FacultiesCollection = Backbone.Collection.extend({
+  	model: FacultyModel,
+  	url: "app/mocks/faculties.json"
+  });
+  
+>>>>>>> 2cb217e218404e7ee4b1e88fedd6ca4a6fef6a2b
   return FacultiesCollection;
 });

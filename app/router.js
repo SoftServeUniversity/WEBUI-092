@@ -1,4 +1,3 @@
-// Filename: router.js
 define([
   'jquery',
   'underscore',
@@ -7,18 +6,24 @@ define([
   'views/group/GroupProgressView',
   'views/student/StudentProgressView',
   'views/course/CourseProgressView',
+  'views/department/MainFacultyView',
+  'views/department/MainDepartmentView',
+  'views/work/WorkView'
 
   ],
-  function($, _, Backbone, FacultiesListView, GroupProgressView, StudentProgressView, CourseProgressView) {
+  function($, _, Backbone, FacultiesListView, GroupProgressView, StudentProgressView, CourseProgressView,  MainFacultyView, MainDepartmentView, WorkView) {
+
 
     var AppRouter = Backbone.Router.extend({
       routes: {
 
         '': 'homeAction',
         'group/:id': 'groupProgressAction',
-        'department/:id':'departmentProgressAction',
         'student/:id':'studentProgressAction',
         'course':'courseProgressAction',
+        'faculty/:id':'facultyAction',
+      'department/:id':'departmentAction',
+      'work': 'workShow',
       // Default
       '*actions': 'defaultAction'
     }
@@ -58,6 +63,25 @@ define([
         courseProgressView.render();
       });
 
+           app_router.on('route:facultyAction', function (id) {
+
+        var mainFacultyView = new MainFacultyView();
+        mainFacultyView.initialize();
+        mainFacultyView.loadData(id);
+    });
+
+    app_router.on('route:departmentAction', function (id) {
+
+        var mainDepartmentView = new MainDepartmentView();
+        mainDepartmentView.initialize();
+        mainDepartmentView.loadData(id);
+    });
+
+    app_router.on('route:workShow', function (actions){
+        var workView = new WorkView();
+        workView.render();
+    });
+
       app_router.on('route:defaultAction', function (actions) {
 
        // We have no matching route, lets display the home page
@@ -74,3 +98,4 @@ define([
       initialize: initialize
     };
   });
+

@@ -1,22 +1,46 @@
 [
     {   "id": 1,
         "name": "ІБК-21",
-        "progress": 2,
+        "percentage": 2,
         "num_students":24
     },
     {   "id": 2,
         "name": "КІФ-44",
-        "progress": 8,
+        "percentage": 8,
         "num_students":22
     },
     {   "id": 3,
         "name": "АТВ-12",
-        "progress": 8,
+        "percentage": 8,
         "num_students":14
     },
     {   "id": 4,
         "name": "ЕКУ-22",
-        "progress": 10,
+        "percentage": 10,
         "num_students":21
+    },
+    {
+        "id" : "5",
+        "name": "ІБ-21",
+        "percentage": 25,
+        "num_students":24
+
+    },
+    {
+        "id" : "6",
+        "name": "КІ-44",
+        "percentage": 80,
+        "num_students":24
+
+    },
+    {
+        "id" : "7",
+        "name": "АТМ-12",
+        "percentage": 80
+    },
+    {
+        "id" : "8",
+        "name": "ЕК-22",
+        "percentage": 100
     }
 ]
