@@ -8,10 +8,11 @@ define([
   'views/course/CourseProgressView',
   'views/department/MainFacultyView',
   'views/department/MainDepartmentView',
+  'views/teacher/TeacherProgressView',
   'views/work/WorkView'
 
   ],
-  function($, _, Backbone, FacultiesListView, GroupProgressView, StudentProgressView, CourseProgressView,  MainFacultyView, MainDepartmentView, WorkView) {
+  function($, _, Backbone, FacultiesListView, GroupProgressView, StudentProgressView, CourseProgressView,  MainFacultyView, MainDepartmentView,TeacherProgressView, WorkView) {
 
 
     var AppRouter = Backbone.Router.extend({
@@ -20,10 +21,11 @@ define([
         '': 'homeAction',
         'group/:id': 'groupProgressAction',
         'student/:id':'studentProgressAction',
-        'course':'courseProgressAction',
+        'course/:id':'courseProgressAction',
         'faculty/:id':'facultyAction',
-      'department/:id':'departmentAction',
-      'work': 'workShow',
+        'teacher/:id':'teacherProgressAction',
+        'department/:id':'departmentAction',
+        'work': 'workShow',
       // Default
       '*actions': 'defaultAction'
     }
@@ -37,13 +39,15 @@ define([
 
        // display the home page
        var facultiesListView = new FacultiesListView();
-       facultiesListView.render();
+       facultiesListView.loadData();
      });
 
-      app_router.on('route:departmentProgressAction', function (actions) {
-       var departmentProgressView = new DepartmentProgressView();
-       departmentProgressView.render();
-     });
+       app_router.on('route:workShow', function (actions){
+        var workView = new WorkView();
+        workView.render();
+    });
+
+
 
       app_router.on('route:groupProgressAction', function (actions) {
 
@@ -77,10 +81,12 @@ define([
         mainDepartmentView.loadData(id);
     });
 
-    app_router.on('route:workShow', function (actions){
-        var workView = new WorkView();
-        workView.render();
-    });
+          app_router.on('route:teacherProgressAction', function (actions) {
+       var teacherProgressView = new TeacherProgressView();
+       teacherProgressView.render();
+     });
+
+
 
       app_router.on('route:defaultAction', function (actions) {
 

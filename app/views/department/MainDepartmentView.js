@@ -39,7 +39,7 @@ define([
                     that.trigger('DataLoaded', 'Teachers',teachers_col);
                 }
             });
-            
+
             dep_change_col = new DepartmentChangeCollection();
             dep_change_col.fetch({
                 success:function () {
@@ -79,10 +79,12 @@ define([
             var dep_name = deps_col.get(depId).toJSON().name;
 
             var groupsListView = new ListView({
-                collection:groups_col
+                collection:groups_col,
+                linkTo:"group"
             });
             var teachersListView = new ListView({
-                collection:teachers_col
+                collection:teachers_col,
+                linkTo:"teacher"
             });
             var chartView = new ChartView({
 				collection:dep_change_col

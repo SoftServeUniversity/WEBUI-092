@@ -146,13 +146,12 @@ progress {
 progress::-webkit-progress-bar { background: #FA4F37;}
 progress::-webkit-progress-value { background: #69EB63; }
 
-.entities_list progress {
-  font-size: .6em;
-  line-height: 1.5em;
-  text-indent: .5em;
-
-  max-height: 1.8em;
-  border: 2px solid #005580;
+.entity {
+  float:left;
+  text-align:left;
+}
+.entities_list .progress {
+  min-height:15px;
 
 }
 .entities_list {

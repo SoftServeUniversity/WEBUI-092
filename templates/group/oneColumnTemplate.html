@@ -19,9 +19,9 @@
  <div class="entities_list " >
     <% _.each(entities, function(entity, id){ %>
     <div class="row-fluid">
-      <div class="entity span3 offset3" style="float:left; ">
+      <div class="entity span3 offset3">
          <%= entity.get('id') %>. <%= entity.get('name_with_url') %> <%= entity.get('count') %></div>
-          <div class="progress progress-striped span3" style="min-height:15px" >
+          <div class="progress progress-striped span3"  >
         <div class="bar" style="width:  <%= entity.get('progress') %>%;"></div> </div>
       </div>
       <% }); %>

@@ -36,7 +36,7 @@ define([
                     that.trigger('DataLoaded', 'Courses',courses_col);
                 }
             });
-            
+
             faculty_change_col = new FacultyChangeCollection();
             faculty_change_col.fetch({
                 success:function () {
@@ -79,7 +79,8 @@ define([
                 linkTo:"department"
             });
             var coursesListView = new ListView({
-                collection:courses_col
+                collection:courses_col,
+                linkTo:"course"
             });
 			var chartView = new ChartView({
 				collection:faculty_change_col

@@ -21,14 +21,14 @@
     },
     {
         "id" : "5",
-        "name": "ІБ-21",
+        "name": "ІБВ-21",
         "percentage": 25,
         "num_students":24
 
     },
     {
         "id" : "6",
-        "name": "КІ-44",
+        "name": "КІВ-44",
         "percentage": 80,
         "num_students":24
 
@@ -36,11 +36,15 @@
     {
         "id" : "7",
         "name": "АТМ-12",
-        "percentage": 80
+        "percentage": 80,
+        "num_students":24
+
     },
     {
         "id" : "8",
-        "name": "ЕК-22",
-        "percentage": 100
+        "name": "ЕКВ-22",
+        "percentage": 100,
+        "num_students":24
+
     }
 ]
