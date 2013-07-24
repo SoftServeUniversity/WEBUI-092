@@ -4,7 +4,7 @@ define([
 ], function(_, Backbone) {
 
 	defaults: {
-		"id": "001",
+		"id": "1",
 		"parent_id": "0"
 	    "username": "username", 
 	    "item": "changed smth"
