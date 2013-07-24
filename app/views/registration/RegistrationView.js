@@ -36,17 +36,32 @@ define([
          'firstName': $("#regForm").find("#inputFirstNameReg").val(),
          'fatherName': $("#regForm").find("#inputFatherNameReg").val(),
          'role': $("#regForm").find("#role").val(),
-         'selectGroupReg': $("#regForm").find("#selectGroupReg").val(),
          'inputLoginReg': $("#regForm").find("#inputLoginReg").val(),
          'inputPasswordReg': $("#regForm").find("#inputPasswordReg").val()
 
        });
 
+       var role = userRegModel.get('role');
+
+       if(role == 'Student'){
+          userRegModel.set({
+            'selectGroupReg': $("#regForm").find("#selectGroupReg").val()
+          });
+       }else if(role == 'Teacher'){
+          userRegModel.set({
+            'scienceStage': $("#regForm").find("#inputScienceStageReg").val(),
+            'sciencePosition': $("#regForm").find("#inputPositionReg").val(),
+            'selectDepartment': $("#regForm").find("#selectDepartmentReg").val()
+          });
+       }
+
       // THIS.MODEL.VALIDATE();
-      
-      alert(userRegModel.get("lastName"));
-      userRegModel.save();
-      alert('Reg form has been sent');
+
+      var a = userRegModel.toJSON();
+      console.log(a);
+
+      //userRegModel.save(a);
+      //alert('Reg form has been sent');
 
     },
     log : function(e){
@@ -61,11 +76,12 @@ define([
         'inputPasswordLog': $("#logForm").find("#inputPasswordLog").val()
 
       });
-      var a = userLogModel.get("inputLoginLog");
       
-      alert(a);
-      userLogModel.save();
-      alert('Log form has been sent');
+      var a = userLogModel.toJSON();
+      console.log(a);
+
+      //userLogModel.save();
+      //alert('Log form has been sent');
     }
   });
 
