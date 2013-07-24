@@ -237,3 +237,70 @@ hr.task-comment-line{
 }
 
 /*****end task page*****/
+
+/*-----enter form---------*/
+
+#launch{
+	top:0;
+	position: absolute;
+	right:0;
+	overflow: hidden;
+	background: ;
+	border-radius: 0 0 0 100px;
+	box-shadow: 0 1px 2px;
+	width:400px;
+	display: none;
+	z-index: 999;
+}
+#launch h3, #launch-reg h3{
+	text-align: center;
+	opacity: .8;
+}
+#launch #close-btn{
+	position:absolute;
+	color:gold;
+	bottom: 45px;
+	left:0px;
+	font-size:.8em;
+	width: 100px;
+	box-shadow: -1px 1px 3px #000;
+	transform: skew(-25deg, 0deg) matrix(2.3, 1.6, -0.4, 1, 0, 0);
+	-webkit-transform: skew(-25deg, 0deg) matrix(2.3, 1.7, -0.4, 1, 0, 0);
+	-o-transform: skew(-25deg, 0deg) matrix(2.3, 1.7, -0.4, 1, 0, 0);
+	-ms-transform: skew(-25deg, 0deg) matrix(2.3, 1.7, -0.4, 1, 0, 0);
+}
+#launch #close-btn:hover{
+	box-shadow: -1px 1px 2px #000;
+}
+#launch input{
+	background-color:transparent;
+}
+#launch #form-checkbox{
+	font-size: .8em;
+}
+#launch select{
+	background:transparent;
+}
+#regMod{
+	display: none;
+}
+
+.gradient {
+	background: #fefcea; /* Для старых браузров */
+	background: -moz-linear-gradient(top, #fff, #eae2ee, #fff); /* Firefox 3.6+ */
+	/* Chrome 1-9, Safari 4-5 */
+	background: -webkit-gradient(linear, left top, left bottom, 
+	            color-stop(0%,#fff), color-stop(30%,#eae2ee), color-stop(100%,#fff));
+	/* Chrome 10+, Safari 5.1+ */
+	background: -webkit-linear-gradient(top, #fff, #eae2ee, #fff);
+	background: -o-linear-gradient(top, #fff, #eae2ee, #fff); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top, #fff, #eae2ee, #fff); /* IE10 */
+	background: linear-gradient(top, #fff, #eae2ee, #fff); /* CSS3 */ 
+	padding: 10px;
+	border: 1px solid #333;
+}
+.center{
+	text-align: center;
+}
+
+/*--end enter form---------*/ 

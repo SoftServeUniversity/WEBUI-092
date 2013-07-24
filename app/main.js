@@ -8,8 +8,10 @@ require.config({
     jquery: 'libs/jquery/jquery-min',
     jqueryui: 'libs/jquery-ui/jquery-ui',
     underscore: 'libs/underscore/underscore-min',
+    jqBootstrapValidation: 'libs/jqBootstrapValidation/jqBootstrapValidation',
     bootstrap: 'libs/bootstrap/bootstrap',
     backbone: 'libs/backbone/backbone-min',
+    reg: 'libs/reg/reg',
     highcharts: 'libs/highcharts/highcharts',
     templates: '../templates'
   }

@@ -3,6 +3,7 @@ define([
   'underscore',
   'backbone',
   'views/faculty/FacultiesListView',
+  'views/registration/RegistrationView',
   'views/group/GroupProgressView',
   'views/student/StudentProgressView',
   'views/course/CourseProgressView',
@@ -17,7 +18,7 @@ define([
   'views/notFoundView'
 
   ],
-  function($, _, Backbone, FacultiesListView, GroupProgressView, StudentProgressView, CourseProgressView,  MainFacultyView, MainDepartmentView,TeacherProgressView, WorkView, FaRolesView, FaDepartmentsView, taskView, TaskCollection, NotFoundView) {
+  function($, _, Backbone, FacultiesListView, RegistrationView, GroupProgressView, StudentProgressView, CourseProgressView,  MainFacultyView, MainDepartmentView,TeacherProgressView, WorkView, FaRolesView, FaDepartmentsView, taskView, TaskCollection, NotFoundView) {
     var AppRouter = Backbone.Router.extend({
       routes: {
         '': 'homeAction',
@@ -44,6 +45,8 @@ define([
        var facultiesListView = new FacultiesListView();
        facultiesListView.loadData();
       });
+
+      
 
        app_router.on('route:workShow', function (actions){
         var workView = new WorkView();
