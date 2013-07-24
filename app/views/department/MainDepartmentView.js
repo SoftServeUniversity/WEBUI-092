@@ -8,9 +8,11 @@ define([
     'views/department/ChartView',
     'text!templates/department/MainTemplate.html',
     'collections/departments/DepartmentsCollection',
+    'collections/departments/DepartmentChangeCollection',
 
 
-], function($, _, Backbone, GroupsCollection, TeachersCollection, ListView, ChartView, MainTemplate, DepartmentsCollection){
+
+], function($, _, Backbone, GroupsCollection, TeachersCollection, ListView, ChartView, MainTemplate, DepartmentsCollection, DepartmentChangeCollection){
 
     var DepartmentView =  Backbone.View.extend({
         loadData: function(id){
@@ -37,12 +39,21 @@ define([
                     that.trigger('DataLoaded', 'Teachers',teachers_col);
                 }
             });
+            
+            dep_change_col = new DepartmentChangeCollection();
+            dep_change_col.fetch({
+                success:function () {
+                    that.trigger('DataLoaded', 'DepChange', dep_change_col);
+                }
+            });
         },
 
         initialize:function(){
             var isDepLoaded = false;
             var isGroupsLoaded = false;
             var isTeachersLoaded = false;
+            var isDepChangeLoaded = false;
+
             var that = this;
 
             this.on('DataLoaded', function (item) {
@@ -55,7 +66,10 @@ define([
                 if (item == 'Teachers'){
                     isTeachersLoaded = true;
                 }
-                if ((isDepLoaded && isGroupsLoaded && isTeachersLoaded) == true){
+                if (item == 'DepChange'){
+                    isDepChangeLoaded = true;
+                }
+                if ((isDepLoaded && isGroupsLoaded && isTeachersLoaded && isDepChangeLoaded) == true){
                     that.render();
                 }
             });
@@ -70,6 +84,9 @@ define([
             var teachersListView = new ListView({
                 collection:teachers_col
             });
+            var chartView = new ChartView({
+				collection:dep_change_col
+            });
 
             var data = {
                 name: dep_name,
@@ -80,7 +97,6 @@ define([
             }
             var compiledTemplate = _.template( MainTemplate, data);
             $("#content").html(compiledTemplate);
-            var chartView = new ChartView();
             chartView.render();
             return this;
         }

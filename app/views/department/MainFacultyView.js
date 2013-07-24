@@ -7,18 +7,18 @@ define([
     'views/department/ListView',
     'views/department/ChartView',
     'text!templates/department/MainTemplate.html',
-    'collections/faculties/FacultiesCollection'
+    'collections/faculties/FacultiesCollection',
+    'collections/faculties/FacultyChangeCollection'
+], function($, _, Backbone, DepartmentsCollection, CoursesCollection, ListView, ChartView, MainTemplate, FacultiesCollection, FacultyChangeCollection){
 
-], function($, _, Backbone, DepartmentsCollection, CoursesCollection, ListView, ChartView, MainTemplate, FacultiesCollection){
-
-    var FacultyView = Backbone.View.extend({
+    var MainFacultyView = Backbone.View.extend({
         loadData: function(id){
             facId = id;
             var that = this;
 
             facs_col = new FacultiesCollection();
-            facs_col.fetch({ url: "app/collections/faculties/facultiesCollection.json",
-                success: function () {
+            facs_col.fetch({
+            	success: function () {
                     that.trigger('DataLoaded', 'Facs', facs_col);
                 }
             });
@@ -36,12 +36,20 @@ define([
                     that.trigger('DataLoaded', 'Courses',courses_col);
                 }
             });
+            
+            faculty_change_col = new FacultyChangeCollection();
+            faculty_change_col.fetch({
+                success:function () {
+                    that.trigger('DataLoaded', 'FacultyChange', faculty_change_col);
+                }
+            });
         },
 
         initialize:function(){
             var isFacLoaded = false;
             var isDepsLoaded = false;
             var isCoursesLoaded = false;
+            var isFacChangeLoaded = false;
             var that = this;
 
             this.on('DataLoaded', function (item) {
@@ -54,7 +62,10 @@ define([
                 if (item == 'Courses'){
                     isCoursesLoaded = true;
                 }
-                if ((isFacLoaded && isDepsLoaded && isCoursesLoaded) == true){
+                if (item == 'FacultyChange'){
+                    isFacChangeLoaded = true;
+                }
+                if ((isFacLoaded && isDepsLoaded && isCoursesLoaded && isFacChangeLoaded) == true){
                     that.render();
                 }
             });
@@ -70,6 +81,10 @@ define([
             var coursesListView = new ListView({
                 collection:courses_col
             });
+			var chartView = new ChartView({
+				collection:faculty_change_col
+            });
+
 
             var data = {
                 name: fac_name,
@@ -80,10 +95,10 @@ define([
             }
             var compiledTemplate = _.template( MainTemplate, data);
             $("#content").html(compiledTemplate);
-            var chartView = new ChartView();
             chartView.render();
             return this;
         }
     });
-    return FacultyView;
+    return MainFacultyView;
 });
+

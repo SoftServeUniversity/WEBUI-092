@@ -11,12 +11,11 @@ define([
   var AppRouter = Backbone.Router.extend({
     routes: {
       // Define some URL routes
-  // home
+      // home
       '': 'homeAction',
-
+      
       'faculty/:id':'facultyAction',
       'department/:id':'departmentAction',
-      
       'work': 'workShow',
 
       // Default
@@ -33,7 +32,7 @@ define([
        // display the home page
         $('#content').empty();
         var facultiesListView = new FacultiesListView();
-        facultiesListView.render();
+        facultiesListView.loadData();
     });
 
     app_router.on('route:facultyAction', function (id) {
@@ -56,11 +55,11 @@ define([
    
     
     app_router.on('route:defaultAction', function (actions) {
-        $('#content').empty();
 
        // We have no matching route, lets display the home page
+        $('#content').empty();
         var facultiesListView = new FacultiesListView();
-        facultiesListView.render();
+        facultiesListView.loadData();
     });
 
 

@@ -2,13 +2,14 @@ define([
   'jquery',
   'underscore',
   'backbone',
-], function($, _, Backbone){
-	
+  'models/faculties/FacultiesChangeModel'
 
-  var FacultiesChangeCollection = function(){
-  	var c = new Backbone.Collection();
-  	c.url = "app/mocks/facultiesChange.json";
-  	return c;
-  }
+], function($, _, Backbone, FacultiesChangeModel){
+
+  var FacultiesChangeCollection = Backbone.Collection.extend({
+  	model: FacultiesChangeModel,
+  	url: "app/mocks/facultiesChange.json"
+  });
+  
   return FacultiesChangeCollection;
 });
