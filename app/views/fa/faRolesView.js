@@ -8,10 +8,6 @@ define([
 
   var FaRolesView = Backbone.View.extend({
     el: $('#content'),
-    template: _.template(faRolesTemplate),
-    initialize: function (){
-      this.render();
-    },
     render: function (){
       var that = this;
 
@@ -27,6 +23,17 @@ define([
       var compiledTemplate = _.template( faRolesTemplate, data);
 
       this.$el.html(compiledTemplate);
+    },
+    events: {
+      'click .open-modal' : 'openModal',
+      'click .close-m'      : 'closeModal',
+      'click .save'       : 'closeModal'
+    },
+    openModal: function(){
+      $('#menage-role').modal('show');
+    },
+    closeModal: function(){
+      $('#menage-role').modal('hide');
     }
   });
   return  FaRolesView;

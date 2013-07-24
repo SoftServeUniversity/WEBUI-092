@@ -7,8 +7,8 @@ define([
     defaults:{
       id: null,
       name: null,
-      email: null,
-      role: null
+      head: null,
+      faculty: null
     }
   });
 

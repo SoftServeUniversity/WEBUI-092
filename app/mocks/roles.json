@@ -1,18 +1,28 @@
 [
-  {
-    'name': 'Andrew',
-    'role': 'student'
-  },
-  {
-    'name': 'Olena',
-    'role': 'student'
-  },
-  {
-    'name': 'Yura',
-    'role': 'teacher'
-  },
-  {
-    'name': 'Oleg',
-    'role': 'faculty administrator'
-  }
+
+    {
+        "name": "Some Name",
+        "role": "student",
+        "email": "example@email.com"
+    },
+    {
+        "name": "Some Name",
+        "role": "student",
+        "email": "example@email.com"
+    },
+    {
+        "name": "Some Name",
+        "role": "student",
+        "email": "example@email.com"
+    },
+    {
+        "name": "Some Name",
+        "role": "student",
+        "email": "example@email.com"
+    },
+    {
+        "name": "Some Name",
+        "role": "student",
+        "email": "example@email.com"
+    }
 ]
