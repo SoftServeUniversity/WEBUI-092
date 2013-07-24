@@ -10,7 +10,7 @@
 
 <% _.each(worktasks, function(worktask) {%>
 	<div class="row">
-		<p class="span6 text-center taskname"><a href="#"><%= worktask.get("name") %></a></p>
+		<p class="span6 text-center taskname"><a href="#/work/<%= worktask.get("id") %>"><%= worktask.get("name") %></a></p>
 		<div class="progress span6">
 		    <div class="bar" style="width:<%= worktask.get("percentage") + "%" %>;"></div>
 		</div>
