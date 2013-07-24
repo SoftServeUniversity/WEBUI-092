@@ -1,24 +1,36 @@
 define([
+
   'jquery',
   'underscore',
   'backbone',
   'bootstrap',
   'jqBootstrapValidation',
   'reg',
-  'models/student/StudentModel'
-], function($, _, Backbone, bootstrap, jqBootstrapValidation, reg, StudentModel){
+  'models/student/StudentModel',
+  'text!templates/registration/registrationTemplate.html'
+
+], function($, _, Backbone, bootstrap, jqBootstrapValidation, reg, StudentModel, registrationTemplate){
+
   var RegistrationView = Backbone.View.extend({
+
     el: $("#authBox"),
     model: StudentModel,
 
     events: {
-      'click #sendFormReg' : 'send',
-      'click #submit-btn' : 'send'
+      'click #sendFormReg' : 'reg',
+      'click #sendFormLog' : 'log'
     },
-    send : function(){
+   /**/ render: function(){
+      var compiledTemplate = _.template( registrationTemplate );
+      $("#authBox").html(compiledTemplate);
+    },
+    reg : function(e){
+      e.preventDefault();
+        var userRegModel = new StudentModel({
+          url : "/app/mocks"
+        });
 
-
-      /* this.model.set({
+       userRegModel.set({
 
          'lastName': $("#regForm").find("#inputLastNameReg").val(),
          'firstName': $("#regForm").find("#inputFirstNameReg").val(),
@@ -31,10 +43,29 @@ define([
        });
 
       // THIS.MODEL.VALIDATE();
-      */
-      alert('form sent');
-      //this.model.save();
+      
+      alert(userRegModel.get("lastName"));
+      userRegModel.save();
+      alert('Reg form has been sent');
 
+    },
+    log : function(e){
+      e.preventDefault();
+      var userLogModel = new StudentModel({
+        url : "/app/mocks"
+      });
+
+      userLogModel.set({
+
+        'inputLoginLog': $("#logForm").find("#inputLoginLog").val(),
+        'inputPasswordLog': $("#logForm").find("#inputPasswordLog").val()
+
+      });
+      var a = userLogModel.get("inputLoginLog");
+      
+      alert(a);
+      userLogModel.save();
+      alert('Log form has been sent');
     }
   });
 

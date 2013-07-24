@@ -45,6 +45,7 @@ define([
        var facultiesListView = new FacultiesListView();
        facultiesListView.loadData();
        var registrationView = new RegistrationView();
+       registrationView.render();
       });
 
       
