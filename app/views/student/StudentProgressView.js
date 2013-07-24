@@ -3,8 +3,8 @@ define([
   'underscore',
   'backbone',
   'text!templates/group/oneColumnTemplate.html',
-  'collections/tasks/TasksCollection'],
-   function($, _, Backbone, oneColumnTemplate, TasksCollection){
+  'collections/tasks/TasksProxyCollection'],
+   function($, _, Backbone, oneColumnTemplate, TasksProxyCollection){
 
     var StudentProgressView = Backbone.View.extend({
       el: $("#content"),
@@ -13,7 +13,7 @@ define([
 
         var that = this;
 
-        var tasksCollection = new TasksCollection();
+        var tasksCollection = new TasksProxyCollection();
             tasksCollection.fetch({
                 url: "app/mocks/tasks.json",
                 async:false
