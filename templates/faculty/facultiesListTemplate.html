@@ -15,7 +15,7 @@
 							<div class="inner">
 								 <img src=<%= faculty.get('img') %> />
 								 <a href="#" class="name">
-								 	<%= faculty.get('name') %>
+								 	<a href=#/faculty/<%= faculty.get('id') %>><%= faculty.get('name') %></a>
 								 </a>
 								 <span class="data stud">студентів: 
 									<%= faculty.get('num_students') %>

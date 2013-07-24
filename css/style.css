@@ -7,12 +7,12 @@ height: 100%;
 	height: auto !important;
 	height: 100%;
 	margin: 0 auto -41px 0;
-} 
+}
 .sub-wrapper {
 	padding-bottom:60px;
 }
 header, footer {
-	
+
 	padding:10px 10px;
 	background:#F5F5F5;
 }
@@ -107,6 +107,70 @@ a:hover{
 .row-tile-list .data {
 	display:block;
 }
+
+.progress-small {
+	position:absolute;
+	bottom:-2px;
+	width:100%;
+	font-size:12px;
+	display:block !important;
+}
+
+
+
+/* --- end main page --- */
+
+/* --- begin one-column page ---*/
+progress {
+  color: #0063a6;
+  width: 100%;
+  height: 20px;
+  border: 1px solid #0063a6;
+  background: #fff;
+}
+progress::-webkit-progress-bar { background: #FA4F37;}
+progress::-webkit-progress-value { background: #69EB63; }
+
+.entity {
+  float:left;
+  text-align:left;
+}
+.entities_list .progress {
+  min-height:15px;
+
+}
+.entities_list {
+
+  margin: 0 auto;
+  margin-top: 20px;
+}
+#group_progress_chart{
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  position:relative;
+}
+
+.group_progress_chart{
+  margin-top: 25px;
+  position:relative;
+}
+/* --- end one-column page ---*/
+
+
+/* --- Nazaruk Sergii CSS --- */
+/* Modal History */
+.history-modal          { display: block; margin-bottom: 20px; }
+#myModal				{ display: none; width: 600px; border-radius: 6px 6px 6px 6px;
+						  margin: 0 auto;
+    					}
+#myModal.active			{ position: fixed; z-index: 1050; opacity: 1; background-color: white;
+    					  left: 10%; right: 10%; top: 10%;
+    					}
+/* Progress */
+#create-btn				{ display: block; margin: 0 auto;}
+#task-progress			{ margin-bottom: 20px; }
+
 /*Yasinishyn start*/
 .red{
 	color: red;
