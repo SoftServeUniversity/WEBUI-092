@@ -6,7 +6,7 @@ define([
   'jqBootstrapValidation',
   'reg',
   'models/student/StudentModel'
-], function($, _, Backbone, StudentModel, bootstrap, jqBootstrapValidation, reg){
+], function($, _, Backbone, bootstrap, jqBootstrapValidation, reg, StudentModel){
   var RegistrationView = Backbone.View.extend({
     el: $("#authBox"),
     model: StudentModel,

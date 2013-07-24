@@ -44,6 +44,7 @@ define([
        // display the home page
        var facultiesListView = new FacultiesListView();
        facultiesListView.loadData();
+       var registrationView = new RegistrationView();
       });
 
       
