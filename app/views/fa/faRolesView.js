@@ -13,7 +13,7 @@ define([
 
       var faRolesCollection = new FaRolesCollection();
         faRolesCollection.fetch({
-            url: "app/mocks/roles.json",
+            url: "app/mocks/fa/roles.json",
             async: false
         });
       var data = {

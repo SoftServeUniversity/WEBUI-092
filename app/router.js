@@ -3,12 +3,10 @@ define([
   'jquery',
   'underscore',
   'backbone',
-  'localstorage',
-  'views/HelloView',
   'views/fa/FaRolesView',
   'views/faculty/FacultiesListView',
   'views/fa/FaDepartmentsView',
-], function($, _, Backbone, LocalStorage, HelloView, FaRolesView, FacultiesListView, FaDepartmentsView) {
+], function($, _, Backbone, FaRolesView, FacultiesListView, FaDepartmentsView) {
   
   var AppRouter = Backbone.Router.extend({
     routes: {

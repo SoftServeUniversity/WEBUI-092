@@ -107,9 +107,25 @@ a:hover{
 .row-tile-list .data {
 	display:block;
 }
+/*Yasinishyn start*/
 .red{
 	color: red;
 }
 .a-little-margin-right{
-	margin-right: 3px;
+	margin-right: 10px;
+	margin-top: 7px;
 }
+.a-litle-hint{
+	color: grey;
+	font-size: 10px;
+}
+#menage-department-import textarea{
+	width: 98%;
+}
+#content-table tr td > input, #content-table tr td > select{
+	width: 50% !important;
+}
+.departments-buttons{
+	margin-left: 0 !important;
+}
+/*Yasinishyn end*/
