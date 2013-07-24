@@ -20,9 +20,10 @@
   <ol>
     <% _.each(entities, function(entity, id){ %>
     <li>
-      <div class="entity">
-         <%= entity.get('name_with_url') %> <%= entity.get('count') %>
-        <progress value=<%= entity.get('progress') %> max="10"></progress>
+      <div class="entity" style="float:left; margin-right:25px">
+         <%= entity.get('name_with_url') %> <%= entity.get('count') %></div>
+          <div class="progress progress-striped">
+        <div class="bar" style="width:  <%= entity.get('progress') %>%;"></div> </div>
       </li>
       <% }); %>
     </ol>

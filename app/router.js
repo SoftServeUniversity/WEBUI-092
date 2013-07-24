@@ -5,12 +5,11 @@ define([
   'backbone',
   'views/faculty/FacultiesListView',
   'views/group/GroupProgressView',
-  'views/department/DepartmentProgressView',
   'views/student/StudentProgressView',
-  'views/course/CourseProgressView'
+  'views/course/CourseProgressView',
 
   ],
-  function($, _, Backbone, FacultiesListView, GroupProgressView, DepartmentProgressView, StudentProgressView, CourseProgressView) {
+  function($, _, Backbone, FacultiesListView, GroupProgressView, StudentProgressView, CourseProgressView) {
 
     var AppRouter = Backbone.Router.extend({
       routes: {
@@ -53,7 +52,7 @@ define([
         studentProgressView.render();
       });
 
-      app_router.on('route:courseProgressAction', function (actions) {
+       app_router.on('route:courseProgressAction', function (actions) {
 
         var courseProgressView = new CourseProgressView();
         courseProgressView.render();

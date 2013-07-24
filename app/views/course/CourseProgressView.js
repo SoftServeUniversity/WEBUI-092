@@ -19,7 +19,6 @@ define([
                 async:false
             });
 
-
         var data = {
           header: 'Курс_1',
           subheader_1: 'Факультет',
