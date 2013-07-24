@@ -21,7 +21,7 @@
 .element{
  margin-bottom: 10px;
 }
-hr {
+.dividing_line {
     border-top: 2px solid #808080 !important;
 }
 .element div {
