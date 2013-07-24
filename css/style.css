@@ -16,7 +16,7 @@ header, footer {
 	padding:10px 10px;
 	background:#F5F5F5;
 }
-header{
+header{ 
 	box-shadow: 0px 1px 2px #bbb;
 	overflow:hidden;
 	margin-bottom:40px;
@@ -193,3 +193,47 @@ progress::-webkit-progress-value { background: #69EB63; }
 	margin-left: 0 !important;
 }
 /*Yasinishyn end*/
+/*****start task page*****/
+
+.centeredContent{
+	text-align: center;
+}
+.boldText{
+	font-weight: bold;
+}
+.italicText{
+	font-style: italic;
+}
+.mainbar{
+	margin: 5px;
+}
+.btn-navbar{
+	margin-bottom: 5px;
+}
+#chart{
+	margin-bottom: 15px;
+}
+hr.task-comment-line{
+	margin: 5px 0 !important;
+}
+#input-log{
+	margin: 0;
+}
+.display-block{
+	display: block;
+}
+#line-range{
+	min-height:0;
+	margin: 7px 12px;
+}
+.ui-spinner-input{
+	width: 30px;
+}
+.add-comment{
+	margin: 15px 0 0 0;
+}
+.left-side{
+	text-align: left;
+}
+
+/*****end task page*****/

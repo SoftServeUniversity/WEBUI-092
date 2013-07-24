@@ -11,9 +11,13 @@ define([
   'views/teacher/TeacherProgressView',
   'views/work/WorkView',
   'views/fa/faRolesView',
-  'views/fa/faDepartmentsView'
+  'views/fa/faDepartmentsView',
+  'views/task/taskView',
+  'collections/task/TaskCollection',
+  'views/notFoundView'
+
   ],
-  function($, _, Backbone, FacultiesListView, GroupProgressView, StudentProgressView, CourseProgressView,  MainFacultyView, MainDepartmentView,TeacherProgressView, WorkView, FaRolesView, FaDepartmentsView) {
+  function($, _, Backbone, FacultiesListView, GroupProgressView, StudentProgressView, CourseProgressView,  MainFacultyView, MainDepartmentView,TeacherProgressView, WorkView, FaRolesView, FaDepartmentsView, taskView, TaskCollection, NotFoundView) {
     var AppRouter = Backbone.Router.extend({
       routes: {
         '': 'homeAction',
@@ -26,6 +30,7 @@ define([
         'work/:id': 'workShow',
         'fa/menage_roles': 'faRoles',
         'fa/menage_departments' : 'faMenageDepartments',
+        'work/:id/:taskid': 'taskShow',
       // Default
       '*actions': 'defaultAction'
       }
@@ -93,6 +98,19 @@ define([
         faDepartmentsView.render();
       });
 
+    app_router.on('route:taskShow', function (taskid, id) {
+
+        var tasks = new TaskCollection;
+        tasks.fetch({async:false});
+        var task = tasks.get(id);
+        if(!tasks.get(id)){
+          var pageNotFound = new NotFoundView();
+          pageNotFound.render();
+          return;
+        }
+        var currentTask = new taskView({"model": task});
+        currentTask.render();
+    });   
 
       app_router.on('route:defaultAction', function (actions) {
         // We have no matching route, lets display the home page
