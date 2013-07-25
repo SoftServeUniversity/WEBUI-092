@@ -247,7 +247,7 @@ hr.task-comment-line{
 	overflow: hidden;
 	background: ;
 	border-radius: 0 0 0 100px;
-	box-shadow: 0 1px 2px;
+	/*box-shadow: 0 0 2px #BBBBBB;*/
 	width:400px;
 	display: none;
 	z-index: 999;
@@ -286,18 +286,18 @@ hr.task-comment-line{
 }
 
 .gradient {
-	background: #fefcea; /* Для старых браузров */
-	background: -moz-linear-gradient(top, #fff, #eae2ee, #fff); /* Firefox 3.6+ */
+	background: #F5F5F5; /* Для старых браузров */
+	background: -moz-linear-gradient(top, #F5F5F5, #F5F5F5, #fff); /* Firefox 3.6+ */
 	/* Chrome 1-9, Safari 4-5 */
 	background: -webkit-gradient(linear, left top, left bottom, 
-	            color-stop(0%,#fff), color-stop(30%,#eae2ee), color-stop(100%,#fff));
+	            color-stop(0%,#f6f4f4), color-stop(30%,#F5F5F5), color-stop(100%,#fff));
 	/* Chrome 10+, Safari 5.1+ */
-	background: -webkit-linear-gradient(top, #fff, #eae2ee, #fff);
-	background: -o-linear-gradient(top, #fff, #eae2ee, #fff); /* Opera 11.10+ */
-	background: -ms-linear-gradient(top, #fff, #eae2ee, #fff); /* IE10 */
-	background: linear-gradient(top, #fff, #eae2ee, #fff); /* CSS3 */ 
+	background: -webkit-linear-gradient(top, #F5F5F5, #F5F5F5, #fff);
+	background: -o-linear-gradient(top, #F5F5F5, #F5F5F5, #fff); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top, #F5F5F5, #F5F5F5, #fff); /* IE10 */
+	background: linear-gradient(top, #F5F5F5, #F5F5F5, #fff); /* CSS3 */ 
 	padding: 10px;
-	border: 1px solid #333;
+	border-bottom: 1px solid #333;
 }
 .center{
 	text-align: center;
