@@ -1,75 +1,104 @@
-// Filename: router.js
 define([
   'jquery',
   'underscore',
   'backbone',
   'views/faculty/FacultiesListView',
+  'views/group/GroupProgressView',
+  'views/student/StudentProgressView',
+  'views/course/CourseProgressView',
   'views/department/MainFacultyView',
   'views/department/MainDepartmentView',
-  'views/work/WorkView'
-], function($, _, Backbone, FacultiesListView, FacultyView, MainDepartmentView, WorkView) {
-  
-  var AppRouter = Backbone.Router.extend({
-    routes: {
-      // Define some URL routes
- 	  // home
-      '': 'homeAction',
+  'views/teacher/TeacherProgressView',
+  'views/work/MainWorkView'
 
-      'faculty/:id':'facultyAction',
-      'department/:id':'departmentAction',
-      
-      'work': 'workShow',
+  ],
+  function($, _, Backbone, FacultiesListView, GroupProgressView, StudentProgressView, CourseProgressView,  MainFacultyView, MainDepartmentView,TeacherProgressView, MainWorkView) {
 
+    var AppRouter = Backbone.Router.extend({
+      routes: {
+        ''              : 'homeAction',
+        'group/:id'     : 'groupProgressAction',
+        'student/:id'   : 'studentProgressAction',
+        'course/:id'    : 'courseProgressAction',
+        'faculty/:id'   : 'facultyAction',
+        'teacher/:id'   : 'teacherProgressAction',
+        'department/:id': 'departmentAction',
+        'work/:id'      : 'workShowAction',
       // Default
-      '*actions': 'defaultAction'
+        '*actions'      : 'defaultAction'
     }
   });
-  
-  var initialize = function(){
 
-    var app_router = new AppRouter;
-     
-    app_router.on('route:homeAction', function (actions) {
-     
+    var initialize = function(){
+
+      var app_router = new AppRouter;
+
+      app_router.on('route:homeAction', function (actions) {
+
        // display the home page
-        $('#content').empty();
-        var facultiesListView = new FacultiesListView();
-        facultiesListView.render();
-    });
+       var facultiesListView = new FacultiesListView();
+       facultiesListView.loadData();
+      });
 
-    app_router.on('route:facultyAction', function (id) {
+      app_router.on('route:workShowAction', function (id){
+        var workView = new MainWorkView();
+        workView.initialize();
+        workView.loadData(id);
 
-        var facultyView = new FacultyView();
-        facultyView.getFacultyName(id);
-        facultyView.render();
-    });
-    app_router.on('route:departmentAction', function (id) {
+      });
+
+      app_router.on('route:groupProgressAction', function (actions) {
+
+        var groupProgressView = new GroupProgressView();
+        groupProgressView.render();
+      });
+
+      app_router.on('route:studentProgressAction', function (actions) {
+
+        var studentProgressView = new StudentProgressView();
+        studentProgressView.render();
+      });
+
+      app_router.on('route:courseProgressAction', function (actions) {
+
+        var courseProgressView = new CourseProgressView();
+        courseProgressView.render();
+      });
+
+      app_router.on('route:facultyAction', function (id) {
+
+        var mainFacultyView = new MainFacultyView();
+        mainFacultyView.initialize();
+        mainFacultyView.loadData(id);
+      });
+
+      app_router.on('route:departmentAction', function (id) {
 
         var mainDepartmentView = new MainDepartmentView();
-        mainDepartmentView.getName(id); 
-        mainDepartmentView.render();
-    });
+        mainDepartmentView.initialize();
+        mainDepartmentView.loadData(id);
+      });
 
-    app_router.on('route:workShow', function (actions){
-        var workView = new WorkView();
-        workView.render();
-    });
-   
-    
+      app_router.on('route:teacherProgressAction', function (actions) {
+       var teacherProgressView = new TeacherProgressView();
+       teacherProgressView.render();
+      });
 
-    
-    app_router.on('route:defaultAction', function (actions) {
-        $('#content').empty();
+
+
+      app_router.on('route:defaultAction', function (actions) {
 
        // We have no matching route, lets display the home page
-        var facultiesListView = new FacultiesListView();
-        facultiesListView.render();
-    });
+       var facultiesListView = new FacultiesListView();
+       facultiesListView.render();
+      });
 
+      Backbone.history.start();
+    };
 
-    Backbone.history.start();
-  };
-  return { 
-    initialize: initialize
-  };
-});
+    return {
+      initialize: initialize
+    };
+    
+  });
+

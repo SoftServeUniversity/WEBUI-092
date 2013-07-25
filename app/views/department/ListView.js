@@ -15,9 +15,9 @@ define([
             // linkTo - is used for creating <a> links if it is needed
                 var counter = 1;
                 this.collection.each(function(element) {
-                var elementView = new ElementView({model: element, linkTo: this.options.linkTo});
-                this.$el.append(elementView.render(counter++).el);
-            }, this);
+                    var elementView = new ElementView({model: element, linkTo: this.options.linkTo});
+                    this.$el.append(elementView.render(counter++).el);
+                }, this);
 
             return this;
         }

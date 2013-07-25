@@ -1,22 +1,50 @@
 [
-    {
-        "id" : "1",
-        "name": "ІБ-21",
-        "percentage": 25
+    {   "id": 5,
+        "name": "ІБК-21",
+        "percentage": 2,
+        "num_students":24
+    },
+    {   "id": 8,
+        "name": "КІФ-44",
+        "percentage": 8,
+        "num_students":22
+    },
+    {   "id": 7,
+        "name": "АТВ-12",
+        "percentage": 8,
+        "num_students":14
+    },
+    {   "id": 4,
+        "name": "ЕКУ-22",
+        "percentage": 10,
+        "num_students":21
     },
     {
-        "id" : "2",
-        "name": "КІ-44",
-        "percentage": 80
+        "id" : "5",
+        "name": "ІБВ-21",
+        "percentage": 25,
+        "num_students":24
+
     },
     {
-        "id" : "3",
+        "id" : "6",
+        "name": "КІВ-44",
+        "percentage": 80,
+        "num_students":24
+
+    },
+    {
+        "id" : "7",
         "name": "АТМ-12",
-        "percentage": 80
+        "percentage": 80,
+        "num_students":24
+
     },
     {
-        "id" : "4",
-        "name": "ЕК-22",
-        "percentage": 100
+        "id" : "8",
+        "name": "ЕКВ-22",
+        "percentage": 100,
+        "num_students":24
+
     }
 ]

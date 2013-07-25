@@ -2,47 +2,93 @@ define([
     'jquery',
     'underscore',
     'backbone',
-    'collections/DepartmentsCollection',
-    'collections/CoursesCollection',
+    'collections/departments/DepartmentsCollection',
+    'collections/courses/CoursesCollection',
     'views/department/ListView',
     'views/department/ChartView',
     'text!templates/department/MainTemplate.html',
     'collections/faculties/FacultiesCollection',
+    'collections/faculties/FacultyChangeCollection'
+], function($, _, Backbone, DepartmentsCollection, CoursesCollection, ListView, ChartView, MainTemplate, FacultiesCollection, FacultyChangeCollection){
 
-], function($, _, Backbone,DepartmentsCollection, CoursesCollection, ListView, ChartView, MainTemplate, FacultiesCollection){
+    var MainFacultyView = Backbone.View.extend({
+        loadData: function(id){
+            facId = id;
+            var that = this;
 
-    var FacultyView =  Backbone.View.extend({
-        getFacultyName: function(id){
-        	var facs_col = new FacultiesCollection();
-			facs_col.fetch({ url: "app/collections/faculties/facultiesCollection.json", async:false});
-			this.fac_name = facs_col.get(id).toJSON().name;
+            facs_col = new FacultiesCollection();
+            facs_col.fetch({
+            	success: function () {
+                    that.trigger('DataLoaded', 'Facs', facs_col);
+                }
+            });
+
+            departments_col = new DepartmentsCollection();
+            departments_col.fetch({
+                success:function () {
+                    that.trigger('DataLoaded', 'Deps', departments_col);
+                }
+            });
+
+            courses_col = new CoursesCollection();
+            courses_col.fetch({
+                success:function () {
+                    that.trigger('DataLoaded', 'Courses',courses_col);
+                }
+            });
+
+            faculty_change_col = new FacultyChangeCollection();
+            faculty_change_col.fetch({
+                success:function () {
+                    that.trigger('DataLoaded', 'FacultyChange', faculty_change_col);
+                }
+            });
         },
+
         initialize:function(){
-            this.render();
+            var isFacLoaded = false;
+            var isDepsLoaded = false;
+            var isCoursesLoaded = false;
+            var isFacChangeLoaded = false;
+            var that = this;
+
+            this.on('DataLoaded', function (item) {
+                if (item == 'Facs') {
+                    isFacLoaded = true;
+                }
+                if (item == 'Deps'){
+                    isDepsLoaded = true;
+                }
+                if (item == 'Courses'){
+                    isCoursesLoaded = true;
+                }
+                if (item == 'FacultyChange'){
+                    isFacChangeLoaded = true;
+                }
+                if ((isFacLoaded && isDepsLoaded && isCoursesLoaded && isFacChangeLoaded) == true){
+                    that.render();
+                }
+            });
         },
+
         render:function(){
-            var departmentsCollection = new DepartmentsCollection();
-            departmentsCollection.fetch({
-                url: "app/mocks/departments.json",
-                async:false
-            });
-            var coursesCollection = new CoursesCollection();
-            coursesCollection.fetch({
-                url: "app/mocks/courses.json",
-                async:false
-            });
+            var fac_name = facs_col.get(facId).toJSON().name;
 
             var departmentsListView = new ListView({
-                collection:departmentsCollection,
+                collection:departments_col,
                 linkTo:"department"
             });
             var coursesListView = new ListView({
-                collection:coursesCollection
+                collection:courses_col,
+                linkTo:"course"
+            });
+			var chartView = new ChartView({
+				collection:faculty_change_col
             });
 
+
             var data = {
-                // name defined temporary
-                name: this.fac_name,
+                name: fac_name,
                 firstListTitle: "Список кафедр",
                 secondListTitle: "Список курсів",
                 firstList : departmentsListView.render().$el.html(),
@@ -50,10 +96,10 @@ define([
             }
             var compiledTemplate = _.template( MainTemplate, data);
             $("#content").html(compiledTemplate);
-            var chartView = new ChartView();
             chartView.render();
             return this;
         }
     });
-    return FacultyView;
+    return MainFacultyView;
 });
+

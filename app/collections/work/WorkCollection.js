@@ -1,12 +1,16 @@
 define([
   'jquery',
   'underscore',
-  'backbone'
-], function($, _, Backbone){
+  'backbone',
+  'models/work/WorkTasksModel'
+], function($, _, Backbone, WorkTasksModel){
   
-  var WorkCollection = function(){
-    return new Backbone.Collection();
-  }
+  var WorkCollection = Backbone.Collection.extend({
+  	model: WorkTasksModel,
+  	url: 'app/mocks/work/worktasks.json'
+
+  });
+  
   return WorkCollection;
-  
+
 });

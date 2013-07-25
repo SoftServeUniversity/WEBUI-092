@@ -1,13 +1,7 @@
 <div class="row-fluid">
-    <div class="span1"><%= counter%>.</div>
-    <div class="span4 name ">
-    <% if (typeof(linkTo) != "undefined") { %>
-        <!-- example of link #/teachers/5 -->
-        <a href="#/<%=linkTo%>/<%=id%>"><%= name%> </a>
-    <% } else { %>
-        <%= name%>
-    <% }%>
-        </div>
+    <div class="span6 name ">
+        <%= counter%>. &nbsp;<a href="#/<%=linkTo%>/<%=id%>"><%= name%> </a>
+    </div>
     <div class="span6 progress progress-striped">
         <div class="bar" style="width:  <%= percentage %>%;"></div> </div>
 </div>
