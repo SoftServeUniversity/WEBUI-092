@@ -1,0 +1,28 @@
+[
+
+    {
+        "name": "Some Name",
+        "role": "student",
+        "email": "example@email.com"
+    },
+    {
+        "name": "Some Name",
+        "role": "student",
+        "email": "example@email.com"
+    },
+    {
+        "name": "Some Name",
+        "role": "student",
+        "email": "example@email.com"
+    },
+    {
+        "name": "Some Name",
+        "role": "student",
+        "email": "example@email.com"
+    },
+    {
+        "name": "Some Name",
+        "role": "student",
+        "email": "example@email.com"
+    }
+]

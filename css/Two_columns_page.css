@@ -1,0 +1,51 @@
+
+.heading {
+    font-size: 30px;
+    font-style: italic;
+    text-align: center;
+    margin-bottom: 30px;
+    margin-top: 30px;
+}
+.title {
+    font-size: 20px;
+    font-style: italic;
+    margin: 0 auto;
+    text-align: center;
+    margin-bottom: 20px;
+}
+.content{
+    margin: 0 auto;
+    margin-bottom: 30px;
+    margin-top: 30px;
+}
+.element{
+ margin-bottom: 10px;
+}
+.dividing_line {
+    border-top: 2px solid #808080 !important;
+}
+.element div {
+ display: inline-block;
+}
+#firstList, #secondList{
+    margin: 0 auto;
+    margin-top: 20px;
+}
+.name{
+    text-align: left;
+}
+.element_name {
+    text-align: left;
+}
+.progressBar{
+    margin-bottom: -4px;
+    margin-left: 15px;
+}
+#chart{
+    border-style: ridge;
+    margin: 0 auto;
+    padding-top: 25px;
+    height: 300px;
+}
+
+

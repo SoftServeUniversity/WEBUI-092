@@ -1,0 +1,250 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<title>default</title>
+	<link rel="stylesheet" href="css/bootstrap.css">
+	<link rel="stylesheet" href="css/bootstrap-responsive.css">
+	<link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/Two_columns_page.css">
+      <link rel="stylesheet" href="css/jquery-ui.css">
+  
+    <!--this file loads everything-->
+    <script data-main="app/main" src="app/libs/require/require.js"></script>
+
+
+	<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+</head>	
+<body>
+	<div class="wrapper">
+		<div class="sub-wrapper">
+			<header>
+				<div class="menuBox">
+					<ul class="inline">
+						<li><a href="#">Факультети</a></li>
+						<li><a href="#/departments">Кафедри</a></li>
+						<li><a href="#/teachers">Викладачі</a></li>
+						<li><a href="#/groups">Групи</a></li>
+					</ul>
+				</div>
+				<div id="authBox" class="authBox">
+					<button id="launch-btn" class="btn btn-primary pull-right">
+							Увійти
+					</button>
+					<section id="launch" class="gradient">
+				  <div class="form-header">
+					    <h3>Залогуйтесь</h3>
+				    </div>
+				    <div class="form-body">
+						<form id="logForm" class="form-horizontal">
+						<div class="control-group">
+						    <label class="control-label" for="inputLoginReg">Логін</label>
+						    <div class="controls">
+
+						    	<input type="text" name="inputLoginReg" required id="inputLoginReg" placeholder="Ваш логін" data-validation-regex-regex="[\wА-Яа-я]{3,20}" data-validation-regex-message="Тільки букви і цифри від кількістю від 3 до 20 ">
+
+						    </div>
+					    </div>
+					    <div class="control-group">
+						    <label class="control-label" for="inputPasswordReg">Пароль</label>
+						    <div class="controls">
+
+						    	<input type="password" name="inputPasswordReg" required id="inputPasswordReg" placeholder="Введіть свій пароль" name="password" data-validation-regex-regex="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$" data-validation-regex-message="Повинен містити великі та маленькі латинські букви і цифри. Мінімум 8 символів">
+
+						    </div>
+					    </div>
+
+
+						    <div class="control-group">
+							    <div class="controls">
+								    <label class="checkbox" id="form-checkbox">
+								    	<input type="checkbox">Запам'ятати мене
+								    </label>
+								    <button id="submit-btn" type="button" class="btn btn-primary">Увійти</button>
+							    </div>
+						    </div>
+					    </form>
+				    </div>
+
+
+				    <div class="form-footer">
+					    <a id="close-btn" class="btn btn-danger small-btn">Закрити</a>
+					    <a href="#regMod" role='button' class='pull-right' data-toggle='modal'>Зареєструватись</a>
+				    </div>
+				</section>
+				<section id="regMod" class="modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+				  <div class="modal-header">
+
+					    <h3 id="myModelLabel" class="center">Заповніть реєстраційну форму</h3>
+				    </div>
+				    <div class="modal-body">
+						<form class="form-horizontal" action="/app/mocks/" method="post" id="regForm" name="regForm">
+						    <div class="control-group">
+							    <label class="control-label" for="inputLastNameReg">Прізвище</label>
+							    <div class="controls">
+							   
+								<input type="text" name="lastName" autofocus required id="inputLastNameReg" placeholder="Введіть свое прізвище" data-validation-regex-regex="[А-Яа-яїєі]{3,25}" data-validation-regex-message="Тільки українські та російські букви, від 3 до 25">	
+	
+							    	
+							    </div>
+						    </div>
+						    <div class="control-group">
+							    <label class="control-label" for="inputFirstNameReg">Ім'я</label>
+							    <div class="controls">
+
+							    	<input type="text" name="firstName" required id="inputFirstNameReg" placeholder="Введіть свое ім'я" data-validation-regex-regex="[А-Яа-яїєі]{3,25}" data-validation-regex-message="Тільки українські та російські букви, від 3 до 25">
+
+							    </div>
+						    </div>
+
+						    <div class="control-group">
+							    <label class="control-label" for="inputFartherNameReg">По-батькові</label>
+							    <div class="controls">
+
+							    	<input type="text" name="fatherName" required id="inputFartherNameReg" placeholder="Введіть свое ім'я по-батькові" data-validation-regex-regex="[А-Яа-яїєі]{3,25}" data-validation-regex-message="Тільки українські та російські букви, від 3 до 25">
+
+							    </div>
+						    </div>
+
+						    <div class="control-group">
+							    <label class="control-label" for="role">Роль</label>
+							    <div class="controls">
+
+							    	<select required id="role" name="role">
+							    		<option>
+							    			User
+							    		</option>
+							    		<option>
+							    			Teacher
+							    		</option>
+							    		<option>
+							    			Student
+							    		</option>
+							    	</select>
+
+							    </div>
+						    </div>
+
+						    <div class="control-group roleStudent">
+							    <label class="control-label" for="selectGroupReg">Група</label>
+							    <div class="controls">
+
+							    	<select required id="selectGroupReg" name="groupName">
+							    		<option>
+							    			WebUI92
+							    		</option>
+							    		<option>
+							    			WebUI93
+							    		</option>
+							    		<option>
+							    			WebUI94
+							    		</option>
+							    	</select>
+
+							    </div>
+						    </div>
+
+						    <div class="control-group roleTeacher">
+							    <label class="control-label" for="inputScienceStageReg">Вчений ступінь</label>
+							    <div class="controls">
+
+							    	<input type="text" name="inputScienceStageReg" id="inputScienceStageReg" placeholder="Введіть свій вчений ступінь" data-validation-regex-regex="[А-Яа-яїєі]{3,25}" data-validation-regex-message="Тільки українські та російські букви, від 3 до 25">
+
+							    </div>
+						    </div>
+
+						    <div class="control-group roleTeacher">
+							    <label class="control-label" for="inputPositionReg">Вчене звання</label>
+							    <div class="controls">
+
+							    	<input type="text" name="inputPositionReg" id="inputPositionReg" placeholder="Введіть свое вчене звання" data-validation-regex-regex="[А-Яа-яїєі]{3,25}" data-validation-regex-message="Тільки українські та російські букви, від 3 до 25">
+
+							    </div>
+						    </div>
+
+						    <div class="control-group roleTeacher">
+							    <label class="control-label" for="selectDepartmentReg">Кафедра</label>
+							    <div class="controls">
+
+							    	<select required id="selectDepartmentReg" name="selectDepartmentReg">
+							    		<option>
+							    			Кафедра-1
+							    		</option>
+							    		<option>
+							    			Кафедра-2
+							    		</option>
+							    		<option>
+							    			Кафедра-3
+							    		</option>
+							    	</select>
+
+							    </div>
+						    </div>
+
+						    <div class="control-group">
+							    <label class="control-label" for="inputLoginReg">Логін</label>
+							    <div class="controls">
+
+							    	<input type="text" name="inputLoginReg" required id="inputLoginReg" placeholder="Ваш логін" data-validation-regex-regex="[\wА-Яа-я]{3,20}" data-validation-regex-message="Тільки букви і цифри від кількістю від 3 до 20 ">
+
+							    </div>
+						    </div>
+						    <div class="control-group">
+							    <label class="control-label" for="inputPasswordReg">Пароль</label>
+							    <div class="controls">
+
+							    	<input type="password" name="inputPasswordReg" required id="inputPasswordReg" placeholder="Введіть свій пароль" name="password" data-validation-regex-regex="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$" data-validation-regex-message="Повинен містити великі та маленькі латинські букви і цифри. Мінімум 8 символів">
+
+							    </div>
+						    </div>
+						    <div class="control-group">
+							    <div class="controls">
+								    <button id="sendFormReg" type="button" class="btn btn-primary">Відправити
+								    </button>
+								    <button class="btn" data-dismiss = "modal" aria-hidden = "true">
+								    	Вийти
+								    </button>
+							    </div>
+						    </div>
+					    </form>
+					    </div>
+					</section>	
+				</div>					
+				<div class="yearBox">
+					<form class="form-horizontal">
+						<div class="control-group">
+							<label class="control-label" for="sel-year">Навчальний рік: </label>
+							<div class="controls">
+								<select id="sel-year">
+									<option>2011-2012</option>
+									<option>2012-2013</option>
+									<option>2013-2014</option>
+								</select>
+							</div>
+						</div>
+					</form>
+				</div>
+			</header>
+			<article class="text-center">
+				<div id ="content" class="container">
+					
+
+						<!-- all content goes here -->
+							
+				</div>
+			</article>
+		</div>
+	</div>
+	<footer>
+		<div class="container">
+			<div class="row">
+				<div class="span12 text-center">
+					ЛНУ ім І.Франка, кафедра інформаційних систем 2013 &copy;
+				</div>
+			</div>
+		</div>
+	</footer>
+</body>
+</html>
+
+
+
