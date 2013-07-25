@@ -255,6 +255,7 @@ hr.task-comment-line{
 #launch h3, #launch-reg h3{
 	text-align: center;
 	opacity: .8;
+	margin-bottom: 30px;
 }
 #launch #close-btn{
 	position:absolute;
