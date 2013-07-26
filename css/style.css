@@ -79,6 +79,7 @@ a:hover{
 	font-size:16px;
 	font-weight:bold;
 	display:block;
+	text-shadow:0px 1px 0px #FFFFFF;
 }
 .row-tile-list .item {
 	min-height:107px;
@@ -107,17 +108,34 @@ a:hover{
 .row-tile-list .data {
 	display:block;
 }
-
+.sup-inner{
+	height:100%;
+	float:left;
+	width:100%;
+	position:relative;
+}
 .progress-small {
-	position:absolute;
-	bottom:-2px;
+    bottom: -5px;
+    display: block !important;
+    font-size: 12px;
+    position: absolute;
+    width: 100%;
+}
+.progress-small .progress{
+	margin-top:2px;
+	margin-bottom:5px;
+	height:5px;
 	width:100%;
 	font-size:12px;
 	display:block !important;
+	opacity:0.7;
+	background:#fff;
+	box-shadow:0px 0px 2px #bbb;
+	}
+
+.progress-small .percentage {
+    float: right;
 }
-
-
-
 /* --- end main page --- */
 
 /* --- begin one-column page ---*/
