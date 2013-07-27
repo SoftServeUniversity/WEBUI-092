@@ -4,7 +4,8 @@ define([
   'backbone',
   'text!templates/fa/faRolesTemplate.html',
   'collections/fa/FaRolesCollection',
-], function($, _, Backbone, faRolesTemplate, FaRolesCollection){   
+  'collections/faculties/FacultiesCollection'
+], function($, _, Backbone, faRolesTemplate, FaRolesCollection, FacultiesCollection){   
 
   var FaRolesView = Backbone.View.extend({
     el: $('#content'),

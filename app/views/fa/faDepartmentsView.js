@@ -4,32 +4,90 @@ define([
   'backbone',
   'text!templates/fa/departmentsListTemplate.html',
   'collections/fa/FaDepartmentsCollection',
-], function($, _, Backbone, departmentsListTemplate, FaDepartmentsCollection){   
+  
+  //для виведення селектів завантажуєм колекцію факультетів
+  'collections/faculties/FacultiesCollection',
+
+], function($, _, Backbone, departmentsListTemplate, FaDepartmentsCollection, FacultiesCollection){   
+
 
   var FaDepartmentsView = Backbone.View.extend({
     el: $('#content'),
+    initialize: function() {
+      var DLoaded = false;
+      var FLoaded = false;
+      
+      /*
+       * коли завантажилась яка-небудь з колекцій -
+       * викликається цей handler
+       */
+      this.on('DataLoaded', function(flag, value){
+    	if (flag=='DLoaded'){
+     	  DLoaded = true;
+    	};
+    	if (flag=='FLoaded'){
+    	  FLoaded = true;
+    	};
+    	
+    	/*
+    	 * коли завантажились всі колекції - передаєм дані в render() метод
+    	 */
+    	if ((DLoaded == true) && (FLoaded == true)){
+    		this.render();
+    	}
+      })
+    },
+  
+   /*
+    * тепер колекції факультетів і кафедр завантажуються асинхронно: 
+    * метод loadData викликається в файлі routes.js
+    */    
+    loadData: function () {
+      
+      var that = this;
+      that.facultiesCollection = new FacultiesCollection();
+	    that.facultiesCollection.fetch({
+	      success: function (){
+           	that.trigger('DataLoaded', 'DLoaded', that.facultiesCollection)
+	      } 
+	    });
+      that.faDepartmentsCollection = new FaDepartmentsCollection();
+        that.faDepartmentsCollection.fetch({
+           success: function(){
+           	that.trigger('DataLoaded', 'FLoaded', that.faDepartmentsCollection)
+           }
+        });
+    },
+    
     render: function (){
       var that = this;
 
-      var faDepartmentsCollection = new FaDepartmentsCollection();
-        faDepartmentsCollection.fetch({
-            url: "app/mocks/fa/departments.json",
-            async: false
-        });
       var data = {
-          entities: faDepartmentsCollection.models,
-          _: _
-        };
+        entities: that.faDepartmentsCollection.models,
+        faculties: that.facultiesCollection.models,
+        _: _
+      };
       var compiledTemplate = _.template( departmentsListTemplate, data);
 
       this.$el.html(compiledTemplate);
     },
     events: {
+      // показати приховані інпути (краще завжди задавати цей клас, щоб не плодити хендлерів)	
+      'dblclick .dblclick-text'   : 'showInput',
+      //зберегти зміни дані в інпуті змінено  
+      'blur .dblclick-input'      : 'saveData',
+      
       'click .open-modal'         : 'openModal',
       'click .close-m'            : 'closeModal',
       'click .save'               : 'closeModal',
       'click .open-modal-import'  : 'openModalImport',
       'click #newDepartment'      : 'newDepartment'
+    },
+    showInput: function(e){
+       $(e.target).css('display', 'none').next().css('display','block');	 
+    },
+    saveData: function (e){
+    	//тут я ще нічого не зробив
     },
     openModal: function(){
       $('#menage-department').modal('show');

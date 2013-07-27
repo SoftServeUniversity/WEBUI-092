@@ -37,6 +37,9 @@ h1 {
 a:hover{
 	color:#0088CC;
 }
+.dblclick-input {
+	display:none;
+}
 /* --- end general --- */
 
 
