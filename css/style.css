@@ -90,7 +90,7 @@ a:hover{
 	text-align:left;
 	background: #F5F5F5;
 	border-radius:10px;
-	padding:10px 11px 15px 10px;
+	padding:0px 11px 0px 10px;
 }
 .row-tile-list .item img{
 	padding-bottom:10px;
@@ -99,6 +99,7 @@ a:hover{
 	padding-left:90px;
 	min-height:90px;
 	padding-bottom:20px;
+	padding-top:10px;
 
 }
 .row-tile-list img{
@@ -110,15 +111,14 @@ a:hover{
 }
 .sup-inner{
 	height:100%;
-	float:left;
 	width:100%;
 	position:relative;
+	overflow:hidden;
 }
 .progress-small {
-    bottom: -5px;
+    bottom: 10px;
     display: block !important;
     font-size: 12px;
-    position: absolute;
     width: 100%;
 }
 .progress-small .progress{
