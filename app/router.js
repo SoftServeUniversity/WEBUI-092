@@ -15,10 +15,11 @@ define([
   'views/fa/faDepartmentsView',
   'views/task/taskView',
   'collections/task/TaskCollection',
-  'views/notFoundView'
+  'views/notFoundView',
+  'views/fa/DBView'
 
   ],
-  function($, _, Backbone, FacultiesListView, RegistrationView, GroupProgressView, StudentProgressView, CourseProgressView,  MainFacultyView, MainDepartmentView,TeacherProgressView, WorkView, FaRolesView, FaDepartmentsView, taskView, TaskCollection, NotFoundView) {
+  function($, _, Backbone, FacultiesListView, RegistrationView, GroupProgressView, StudentProgressView, CourseProgressView,  MainFacultyView, MainDepartmentView,TeacherProgressView, WorkView, FaRolesView, FaDepartmentsView, taskView, TaskCollection, NotFoundView, DBView) {
     var AppRouter = Backbone.Router.extend({
       routes: {
         '': 'homeAction',
@@ -31,6 +32,7 @@ define([
         'work/:id': 'workShow',
         'fa/menage_roles': 'faRoles',
         'fa/menage_departments' : 'faMenageDepartments',
+        'fa/manage_db' : 'faManageDB',
         'work/:id/:taskid': 'taskShow',
       // Default
       '*actions': 'defaultAction'
@@ -101,6 +103,11 @@ define([
       app_router.on('route:faMenageDepartments', function (actions){
         var faDepartmentsView = new FaDepartmentsView();
         faDepartmentsView.render();
+      });
+
+      app_router.on('route:faManageDB', function (actions){
+        var dbView = new DBView();
+        dbView.render();
       });
 
     app_router.on('route:taskShow', function (taskid, id) {

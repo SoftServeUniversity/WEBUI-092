@@ -47,5 +47,62 @@
     padding-top: 25px;
     height: 300px;
 }
+.containerDb {
+    width:100px;
+    margin: 0 auto;
+    margin-top: 10px;
+    height:25px;
+}
 
+.upload {
+    position:relative;
+}
 
+.upload > input[type=file] {
+    display:block;
+    width:100%;
+    height:100%;
+    opacity:0;
+}
+
+.upload > .btn {
+    position:absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:#efefef;
+    color: #0088CC;
+    border:solid 2px #ddd;
+    border-radius:4px;
+    text-align:center;
+    font-size:14px;
+    line-height: 30px;
+    z-index:0;
+}
+
+.upload:hover > .btn {
+    background:#f7f7f7;
+    color:#333;
+}
+
+.upload:active > .btn {
+    background:#efefef;
+    color:#333;
+    margin-top:1px;
+}
+
+.tab-content {
+    overflow: visible;
+}
+.imgLoader{
+   width: 30px;
+   margin: 0 auto;
+   margin-top: 25px;
+}
+.btn {
+    color: #0088CC;
+}
+.DBTab {
+ text-align: left;
+}
