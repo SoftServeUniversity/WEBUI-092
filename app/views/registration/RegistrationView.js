@@ -20,7 +20,7 @@ define([
       'click #sendFormReg' : 'reg',
       'click #sendFormLog' : 'log'
     },
-   /**/ render: function(){
+      render: function(){
       var compiledTemplate = _.template( registrationTemplate );
       $("#authBox").html(compiledTemplate);
     },
@@ -60,7 +60,11 @@ define([
        firstN = userRegModel.get('firstName'),
        fatherN = userRegModel.get('fatherName');
 
-      if(log.length > 0 && pass.length > 0 && lastN.length > 0 && firstN.length > 0 && fatherN.length > 0){
+      if(log.length > 0 && 
+        pass.length > 0 && 
+        lastN.length > 0 &&
+        firstN.length > 0 &&
+        fatherN.length > 0){
 
           e.preventDefault();
 
@@ -75,12 +79,6 @@ define([
               console.log(a);
             }
         }
-      //var a = userRegModel.toJSON();
-      //console.log(a);
-
-      //userRegModel.save(a);
-      //alert('Reg form has been sent');
-
     },
     log : function(e){
       var userLogModel = new StudentModel({
@@ -98,7 +96,9 @@ define([
       var pass = userLogModel.get('inputPasswordLog');
 
       if(log.length > 0 && pass.length > 0){
+
           e.preventDefault();
+
             if(
                 $('#inputLoginLog[aria-invalid = true]').is('input') == false &&
                 $('#inputPasswordLog[aria-invalid = true]').is('input') == false 
@@ -107,11 +107,7 @@ define([
               console.log(a);
             }
         }
-      
-      //userLogModel.save();
-      //alert('Log form has been sent');
     }
   });
-
     return RegistrationView;
 });

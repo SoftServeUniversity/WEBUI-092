@@ -260,13 +260,13 @@ hr.task-comment-line{
 /*-----enter form---------*/
 
 #launch{
-	top:0;
+	top:51px;
 	position: absolute;
 	right:0;
 	overflow: hidden;
 	background: ;
 	border-radius: 0 0 0 100px;
-	/*box-shadow: 0 0 2px #BBBBBB;*/
+	box-shadow: 4px 1px 1px #BBBBBB;/**/
 	width:400px;
 	display: none;
 	z-index: 999;
@@ -321,6 +321,10 @@ hr.task-comment-line{
 }
 .center{
 	text-align: center;
+}
+div.help-block ul li{
+	list-style-type: none;
+	margin-left:-20px;
 }
 
 /*--end enter form---------*/ 
