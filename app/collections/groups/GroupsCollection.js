@@ -2,7 +2,7 @@ define([
     'jquery',
     'underscore',
     'backbone',
-    'models/groups/GroupModel'
+    'models/group/GroupModel'
 ], function($, _, Backbone, GroupModel){
 
     var GroupsCollection = Backbone.Collection.extend({

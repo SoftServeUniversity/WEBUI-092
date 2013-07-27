@@ -2,7 +2,7 @@ define([
     'jquery',
     'underscore',
     'backbone',
-    'models/teachers/TeacherModel'
+    'models/teacher/TeacherModel'
 ], function($, _, Backbone, TeacherModel){
 
     var TeachersCollection = Backbone.Collection.extend({
