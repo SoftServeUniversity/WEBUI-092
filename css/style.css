@@ -44,9 +44,7 @@ a:hover{
 .menuBox{
 	float:left;
 }
-.menuBox, .authBox {
-	margin-top:4px;
-}
+
 .authBox{
 	padding-left:20px;
 	padding-right:5px;
