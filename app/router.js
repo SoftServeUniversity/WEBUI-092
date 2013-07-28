@@ -103,7 +103,6 @@ define([
 
       app_router.on('route:faMenageDepartments', function (actions){
         var faDepartmentsView = new FaDepartmentsView();
-        faDepartmentsView.loadData();
       });
 
       app_router.on('route:faManageDB', function (actions){

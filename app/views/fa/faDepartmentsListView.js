@@ -2,7 +2,7 @@ define([
   'jquery',
   'underscore',
   'backbone',
-  'text!templates/fa/departmentsTemplate.html',
+  'text!templates/fa/departmentsListTemplate.html',
   'collections/fa/FaDepartmentsCollection',
   
   //для виведення селектів завантажуєм колекцію факультетів
