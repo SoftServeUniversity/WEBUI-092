@@ -39,6 +39,8 @@ a:hover{
 }
 .toggle-input {
 	display:none;
+	margin-bottom:0px;
+
 }
 /* --- end general --- */
 

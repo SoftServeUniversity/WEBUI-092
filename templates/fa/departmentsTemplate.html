@@ -1,4 +1,3 @@
-
 <div class='row-fluid'>
   <div class='span12'>
     <ul class="nav nav-tabs">
@@ -26,20 +25,37 @@
             	<input name='name' class='toggle-input' value="<%= entity.get('name')%>"/>
             </td>
             <td>
-              <span class='toggle-text'><%= entity.get('head')%></span>
-              <input name='head' class='toggle-input' value="<%= entity.get('head')%>"/>
+                <span class='toggle-text'>
+                    <% var teacherid = entity.get('teacher_id'); %>
+                	<% var teacher =  _.where(teachers, {id:teacherid}); %>
+                	<%= teacher[0].get('name') %>
+                </span>
+                <select class='toggle-input' name='teacher_id'>
+                <% _.each(teachers, function(teacher){ %>
+	            	<% if (teacher.get('id') == entity.get('teacher_id')) { %>
+			          <option selected value="<%= teacher.get('id') %>">
+				    <% } else { %>
+					  <option value="<%= teacher.get('id') %>">
+			        <% } %>  
+			        <%= teacher.get('name') %></option>   
+                  <% }) %>
+                </select>              
             </td>
+            
             <td>
-                <span class='toggle-text' >
-            	  <%= entity.get('faculty_name') %>
+                <span class='toggle-text'>
+                    <% var facultyid = entity.get('faculty_id'); %>
+                	<% var faculty =  _.where(faculties, {id:facultyid}); %>
+                	<%= faculty[0].get('name') %>
                 </span>
                 <select class='toggle-input' name='faculty_id'>
-            	  <% _.each(faculties, function(faculty, id){ %>
+            	  <% _.each(faculties, function(faculty){ %>
             	    <% if (faculty.get('id') == entity.get('faculty_id')) { %>
-			          <option selected value="<%= faculty.get('id') %>"><%= entity.get('faculty_name') %></option>
+			          <option selected value="<%= faculty.get('id') %>">
 				    <% } else { %>
-					  <option value="<%= faculty.get('id') %>"><%= faculty.get('name') %></option>
+					  <option value="<%= faculty.get('id') %>">
 			        <% } %>
+			        <%= faculty.get('name') %></option>
                   <% }) %>
                 </select>              
             </td>

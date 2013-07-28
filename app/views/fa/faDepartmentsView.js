@@ -3,23 +3,29 @@ define([
   'underscore',
   'backbone',
   'text!templates/fa/departmentsTemplate.html',
+  'collections/teachers/TeachersCollection',
   'collections/fa/FaDepartmentsCollection',
-  
+
   //для виведення селектів завантажуєм колекцію факультетів
   'collections/faculties/FacultiesCollection',
 
-], function($, _, Backbone, departmentsListTemplate, FaDepartmentsCollection, FacultiesCollection){   
+], function($, _, Backbone, departmentsListTemplate, TeachersCollection, FaDepartmentsCollection, FacultiesCollection){   
 
 
   var FaDepartmentsView = Backbone.View.extend({
     
     el: $('#content'),
+    
     initialize: function() {
-   
+      var that=this;
       var DLoaded = false;
       var FLoaded = false;
-      
-      
+      var TLoaded = false;
+      /*
+      * bindAll fixes a loss of scope. For example when we need to use
+      * this.render inside a setTimeout callback or event handler
+      * 
+      */
       _.bindAll(this, 'loadData');
       
       /*
@@ -27,18 +33,25 @@ define([
        * викликається цей handler
        */
       this.on('DataLoaded', function(flag, value){
+
     	if (flag=='DLoaded'){
      	  DLoaded = true;
     	};
     	if (flag=='FLoaded'){
     	  FLoaded = true;
     	};
+    	if (flag=='TLoaded'){
+    	  TLoaded = true;
+    	};
     	
     	/*
     	 * коли завантажились всі колекції - передаєм дані в render() метод
     	 */
-    	if ((DLoaded == true) && (FLoaded == true)){
+    	if ((DLoaded == true) && (FLoaded == true) && (TLoaded == true)){
     		this.render();
+    		 DLoaded = false;
+             FLoaded = false;
+             TLoaded = false;
     	}
       });
       
@@ -47,8 +60,16 @@ define([
       * цей метод відповідає за завантаження колекцій 
       */
      this.loadData(); 
+     
+     
+     /*
+      * якщо стались зміни в якійсь з моделей - рендеримо ще раз
+      */
+     this.faDepartmentsCollection.bind('change', function(){
+	    that.loadData();
+	  });
+     
       
- 
       /*
        * якщо хтось клікнув на текстове поле і нічого в ньому не змінив,
        * то ховаєм поле, коли юзер клікає деінде
@@ -62,23 +83,23 @@ define([
 	    }
 
       })
-  
-      /*
-       * bindAll fixes a loss of scope. For example when we need to use
-       * this.render inside a setTimeout callback or event handler
-       * 
-       */
-  
-  
+ 
     },
   
    /*
-    * тепер колекції факультетів і кафедр завантажуються асинхронно: 
-    * метод loadData викликається в файлі routes.js
+    * колекції факультетів і кафедр завантажуються асинхронно: 
     */    
     loadData: function () {
       //console.log('hello from loaddata');
       var that=this;
+      
+      this.teachersCollection = new TeachersCollection();
+	  this.teachersCollection.fetch({
+	    success: function (){
+          that.trigger('DataLoaded', 'TLoaded', that.teachersCollection)
+	    } 
+	  });
+
       this.facultiesCollection = new FacultiesCollection();
 	  this.facultiesCollection.fetch({
 	    success: function (){
@@ -90,19 +111,14 @@ define([
         success: function(){
           that.trigger('DataLoaded', 'FLoaded', that.faDepartmentsCollection)
         }
-      });
-          
-	  this.faDepartmentsCollection.bind('change', function(){
-	    that.loadData();
-	  });
-    	
+      });   	
     },
     
     render: function (){
-
       var data = {
         entities: this.faDepartmentsCollection.models,
         faculties: this.facultiesCollection.models,
+        teachers: this.teachersCollection.models,
         _: _
       };
       var compiledTemplate = _.template( departmentsListTemplate, data);
