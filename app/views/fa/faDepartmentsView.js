@@ -81,13 +81,15 @@ define([
       'click .close-m'            : 'closeModal',
       'click .save'               : 'closeModal',
       'click .open-modal-import'  : 'openModalImport',
-      'click #newDepartment'      : 'newDepartment'
+      'click #newDepartment'      : 'newDepartment', 
+      'click #create_button'      : 'saveData'
     },
     showInput: function(e){
        $(e.target).css('display', 'none').next().css('display','block');	 
     },
     saveData: function (e){
     	//тут я ще нічого не зробив
+      alert('Data Saved!');
     },
     openModal: function(){
       $('#menage-department').modal('show');
@@ -100,7 +102,7 @@ define([
       $('#menage-department-import').modal('show');
     },
     newDepartment: function(){
-      $('#content-table').append("<tr><td class='text-center'><input type='text' size='10' placeholder='Ender Name'></td><td class='text-center'><select><option selected value='Крокодил Гена'>Крокодил Гена</option><option value='Edvart Шапокляк'>Edvart Шапокляк</option><option value='Лариса Linkoln'>Лариса Linkoln</option></select></td><td class='text-center'><select><option selected value='Doing Nothing'>Doing Nothing</option><option value='Pickup'>Pickup</option><option value='Mathematics'>Mathematics</option></select></td><td class='text-center'><button class='btn btn-success'>Create</button></td></tr>");
+      $('#content-table').append("<tr><td class='text-center'><input type='text' size='10' placeholder='Ender Name'></td><td class='text-center'><select><option selected value='Крокодил Гена'>Крокодил Гена</option><option value='Edvart Шапокляк'>Edvart Шапокляк</option><option value='Лариса Linkoln'>Лариса Linkoln</option></select></td><td class='text-center'><select><option selected value='Doing Nothing'>Doing Nothing</option><option value='Pickup'>Pickup</option><option value='Mathematics'>Mathematics</option></select></td><td class='text-center'><button class='btn btn-success' id='create_button'>Create</button></td></tr>");
     }
   });
   return  FaDepartmentsView;
