@@ -7,7 +7,7 @@ define([
   'views/group/GroupProgressView',
   'views/student/StudentProgressView',
   'views/course/CourseProgressView',
-  'views/department/MainFacultyView',
+  'views/faculty/MainFacultyView',
   'views/department/MainDepartmentView',
   'views/teacher/TeacherProgressView',
   'views/work/WorkView',
@@ -15,25 +15,28 @@ define([
   'views/fa/faDepartmentsView',
   'views/task/taskView',
   'collections/task/TaskCollection',
-  'views/notFoundView'
+  'views/notFoundView',
+  'views/fa/DBView'
 
   ],
-  function($, _, Backbone, FacultiesListView, RegistrationView, GroupProgressView, StudentProgressView, CourseProgressView,  MainFacultyView, MainDepartmentView,TeacherProgressView, WorkView, FaRolesView, FaDepartmentsView, taskView, TaskCollection, NotFoundView) {
+  function($, _, Backbone, FacultiesListView, RegistrationView, GroupProgressView, StudentProgressView, CourseProgressView,  MainFacultyView, MainDepartmentView,TeacherProgressView, WorkView, FaRolesView, FaDepartmentsView, taskView, TaskCollection, NotFoundView, DBView) {
     var AppRouter = Backbone.Router.extend({
       routes: {
-        '': 'homeAction',
-        'group/:id': 'groupProgressAction',
-        'student/:id':'studentProgressAction',
-        'course/:id':'courseProgressAction',
-        'faculty/:id':'facultyAction',
-        'teacher/:id':'teacherProgressAction',
-        'department/:id':'departmentAction',
-        'work/:id': 'workShow',
-        'fa/menage_roles': 'faRoles',
-        'fa/menage_departments' : 'faMenageDepartments',
-        'work/:id/:taskid': 'taskShow',
-      // Default
-      '*actions': 'defaultAction'
+        ''                       : 'homeAction',
+        'group/:id'              : 'groupProgressAction',
+        'student/:id'            :'studentProgressAction',
+        'course/:id'             :'courseProgressAction',
+        'faculty/:id'            :'facultyAction',
+        'teacher/:id'            :'teacherProgressAction',
+        'department/:id'         :'departmentAction',
+        'work/:id'               : 'workShow',
+        'fa/menage_roles'        : 'faRoles',
+        'fa/menage_departments'  : 'faMenageDepartments',
+        'fa/manage_db'           : 'faManageDB',
+        'work/:id/:taskid'       : 'taskShow',
+      
+        // Default
+        '*actions': 'defaultAction'
       }
     });
     var initialize = function(){
@@ -100,7 +103,12 @@ define([
 
       app_router.on('route:faMenageDepartments', function (actions){
         var faDepartmentsView = new FaDepartmentsView();
-        faDepartmentsView.render();
+        faDepartmentsView.loadData();
+      });
+
+      app_router.on('route:faManageDB', function (actions){
+        var dbView = new DBView();
+        dbView.render();
       });
 
     app_router.on('route:taskShow', function (taskid, id) {
@@ -120,7 +128,7 @@ define([
       app_router.on('route:defaultAction', function (actions) {
         // We have no matching route, lets display the home page
         var facultiesListView = new FacultiesListView();
-        facultiesListView.render();
+        facultiesListView.loadData();
       });
       Backbone.history.start();
     };

@@ -14,9 +14,8 @@
 							<div class="sup-inner">
 							<div class="inner">
 								 <img src=<%= faculty.get('img') %> />
-								 <a href="#" class="name">
-								 	<a href=#/faculty/<%= faculty.get('id') %>><%= faculty.get('name') %></a>
-								 </a>
+								 <a class="name" href=#/faculty/<%= faculty.get('id') %>><%= faculty.get('name') %></a>
+							
 								 <span class="data stud">студентів: 
 									<%= faculty.get('num_students') %>
 								 </span>
@@ -24,8 +23,14 @@
 								 	<%= faculty.get('num_groups') %>
 								 </span>
 								</div>
-							 <span class="data progress-small">прогрес<span class="percentage"><%= faculty.get('progress')*100 %>%</span>
-							 	<progress value=<%= faculty.get('progress') %>></progress>
+							 <span class="data progress-small">
+							 	<span class="text">прогрес</span>
+							 	<span class="percentage"><%= faculty.get('progress')*100 %>%</span>
+							 	
+							 	<div class="progress progress-striped">
+									<div class="bar" style="width:<%= faculty.get('progress')*100 %>%" ></div>
+								</div>
+
 							 </span>
 						 	</div>
 						</div>

@@ -2,7 +2,7 @@ define([
     'jquery',
     'underscore',
     'backbone',
-    'views/department/ElementView'
+    'views/shared/ElementView'
 ], function($, _, Backbone, ElementView){
 
     var ListView = Backbone.View.extend({

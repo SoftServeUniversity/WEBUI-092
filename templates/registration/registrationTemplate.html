@@ -8,10 +8,12 @@
 				    <div class="form-body">
 						<form id="logForm" class="form-horizontal">
 						<div class="control-group">
-						    <label class="control-label" for="inputLoginLog">Логін</label>
+						    <label class="control-label" for="inputLoginLog">
+						    	Login
+						    </label>
 						    <div class="controls">
 
-						    	<input type="text" name="inputLoginLog" required id="inputLoginLog" placeholder="Ваш логін" data-validation-regex-regex="[\wА-Яа-я]{3,20}" data-validation-regex-message="Тільки букви і цифри від кількістю від 3 до 20 ">
+						    	<input type="text" class="logForm" name="inputLoginLog" required id="inputLoginLog" placeholder="Ваш логін" data-validation-regex-regex="[\wА-Яа-я]{3,20}" data-validation-regex-message="Тільки англійські букви і цифри кількістю від 3 до 20 ">
 
 						    </div>
 					    </div>
@@ -19,7 +21,7 @@
 						    <label class="control-label" for="inputPasswordLog">Пароль</label>
 						    <div class="controls">
 
-						    	<input type="password" name="inputPasswordLog" required id="inputPasswordLog" placeholder="Введіть свій пароль" name="password" data-validation-regex-regex="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$" data-validation-regex-message="Повинен містити великі та маленькі латинські букви і цифри. Мінімум 8 символів">
+						    	<input type="password" class="logForm" name="inputPasswordLog" required id="inputPasswordLog" placeholder="Введіть свій пароль" name="password" data-validation-regex-regex="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$" data-validation-regex-message="Повинен містити великі та маленькі латинські букви і цифри. Мінімум 8 символів">
 
 						    </div>
 					    </div>
@@ -30,7 +32,7 @@
 								    <label class="checkbox" id="form-checkbox">
 								    	<input type="checkbox">Запам'ятати мене
 								    </label>
-								    <button id="sendFormLog" type="button" class="btn btn-primary">Увійти</button>
+								    <button id="sendFormLog" type="submit" class="btn btn-primary">Увійти</button>
 							    </div>
 						    </div>
 					    </form>
@@ -48,7 +50,7 @@
 					    <h3 id="myModelLabel" class="center">Заповніть реєстраційну форму</h3>
 				    </div>
 				    <div class="modal-body">
-						<form class="form-horizontal" action="/app/mocks/" method="post" id="regForm" name="regForm">
+						<form class="form-horizontal" action="#" method="post" id="regForm" name="regForm">
 						    <div class="control-group">
 							    <label class="control-label" for="inputLastNameReg">Прізвище</label>
 							    <div class="controls">
@@ -71,7 +73,7 @@
 							    <label class="control-label" for="inputFartherNameReg">По-батькові</label>
 							    <div class="controls">
 
-							    	<input type="text" name="fatherName" required id="inputFartherNameReg" placeholder="Введіть свое ім'я по-батькові" data-validation-regex-regex="[А-Яа-яїєі]{3,25}" data-validation-regex-message="Тільки українські та російські букви, від 3 до 25">
+							    	<input type="text" name="fatherName" required id="inputFatherNameReg" placeholder="Введіть свое ім'я по-батькові" data-validation-regex-regex="[А-Яа-яїєі]{3,25}" data-validation-regex-message="Тільки українські та російські букви, від 3 до 25">
 
 							    </div>
 						    </div>
@@ -155,7 +157,7 @@
 							    <label class="control-label" for="inputLoginReg">Логін</label>
 							    <div class="controls">
 
-							    	<input type="text" name="inputLoginReg" required id="inputLoginReg" placeholder="Ваш логін" data-validation-regex-regex="[\wА-Яа-я]{3,20}" data-validation-regex-message="Тільки букви і цифри від кількістю від 3 до 20 ">
+							    	<input type="text" name="inputLoginReg" required id="inputLoginReg" placeholder="Ваш логін" data-validation-regex-regex="[\wА-Яа-я]{3,20}" data-validation-regex-message="Тільки англійські букви і цифри від кількістю від 3 до 20 ">
 
 							    </div>
 						    </div>

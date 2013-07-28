@@ -37,6 +37,9 @@ h1 {
 a:hover{
 	color:#0088CC;
 }
+.dblclick-input {
+	display:none;
+}
 /* --- end general --- */
 
 
@@ -44,9 +47,7 @@ a:hover{
 .menuBox{
 	float:left;
 }
-.menuBox, .authBox {
-	margin-top:4px;
-}
+
 .authBox{
 	padding-left:20px;
 	padding-right:5px;
@@ -79,6 +80,7 @@ a:hover{
 	font-size:16px;
 	font-weight:bold;
 	display:block;
+	text-shadow:0px 1px 0px #FFFFFF;
 }
 .row-tile-list .item {
 	min-height:107px;
@@ -89,7 +91,7 @@ a:hover{
 	text-align:left;
 	background: #F5F5F5;
 	border-radius:10px;
-	padding:10px 11px 15px 10px;
+	padding:0px 11px 0px 10px;
 }
 .row-tile-list .item img{
 	padding-bottom:10px;
@@ -98,6 +100,7 @@ a:hover{
 	padding-left:90px;
 	min-height:90px;
 	padding-bottom:20px;
+	padding-top:10px;
 
 }
 .row-tile-list img{
@@ -107,17 +110,33 @@ a:hover{
 .row-tile-list .data {
 	display:block;
 }
-
+.sup-inner{
+	height:100%;
+	width:100%;
+	position:relative;
+	overflow:hidden;
+}
 .progress-small {
-	position:absolute;
-	bottom:-2px;
+    bottom: 10px;
+    display: block !important;
+    font-size: 12px;
+    width: 100%;
+}
+.progress-small .progress{
+	margin-top:2px;
+	margin-bottom:5px;
+	height:5px;
 	width:100%;
 	font-size:12px;
 	display:block !important;
+	opacity:0.7;
+	background:#fff;
+	box-shadow:0px 0px 2px #bbb;
+	}
+
+.progress-small .percentage {
+    float: right;
 }
-
-
-
 /* --- end main page --- */
 
 /* --- begin one-column page ---*/
@@ -241,13 +260,13 @@ hr.task-comment-line{
 /*-----enter form---------*/
 
 #launch{
-	top:0;
+	top:51px;
 	position: absolute;
 	right:0;
 	overflow: hidden;
 	background: ;
 	border-radius: 0 0 0 100px;
-	box-shadow: 0 1px 2px;
+	box-shadow: 4px 1px 1px #BBBBBB;/**/
 	width:400px;
 	display: none;
 	z-index: 999;
@@ -255,6 +274,7 @@ hr.task-comment-line{
 #launch h3, #launch-reg h3{
 	text-align: center;
 	opacity: .8;
+	margin-bottom: 30px;
 }
 #launch #close-btn{
 	position:absolute;
@@ -286,21 +306,25 @@ hr.task-comment-line{
 }
 
 .gradient {
-	background: #fefcea; /* Для старых браузров */
-	background: -moz-linear-gradient(top, #fff, #eae2ee, #fff); /* Firefox 3.6+ */
+	background: #F5F5F5; /* Для старых браузров */
+	background: -moz-linear-gradient(top, #F5F5F5, #F5F5F5, #fff); /* Firefox 3.6+ */
 	/* Chrome 1-9, Safari 4-5 */
 	background: -webkit-gradient(linear, left top, left bottom, 
-	            color-stop(0%,#fff), color-stop(30%,#eae2ee), color-stop(100%,#fff));
+	            color-stop(0%,#f6f4f4), color-stop(30%,#F5F5F5), color-stop(100%,#fff));
 	/* Chrome 10+, Safari 5.1+ */
-	background: -webkit-linear-gradient(top, #fff, #eae2ee, #fff);
-	background: -o-linear-gradient(top, #fff, #eae2ee, #fff); /* Opera 11.10+ */
-	background: -ms-linear-gradient(top, #fff, #eae2ee, #fff); /* IE10 */
-	background: linear-gradient(top, #fff, #eae2ee, #fff); /* CSS3 */ 
+	background: -webkit-linear-gradient(top, #F5F5F5, #F5F5F5, #fff);
+	background: -o-linear-gradient(top, #F5F5F5, #F5F5F5, #fff); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top, #F5F5F5, #F5F5F5, #fff); /* IE10 */
+	background: linear-gradient(top, #F5F5F5, #F5F5F5, #fff); /* CSS3 */ 
 	padding: 10px;
-	border: 1px solid #333;
+	border-bottom: 1px solid #333;
 }
 .center{
 	text-align: center;
+}
+div.help-block ul li{
+	list-style-type: none;
+	margin-left:-20px;
 }
 
 /*--end enter form---------*/ 

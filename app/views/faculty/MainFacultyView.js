@@ -4,9 +4,9 @@ define([
     'backbone',
     'collections/departments/DepartmentsCollection',
     'collections/courses/CoursesCollection',
-    'views/department/ListView',
-    'views/department/ChartView',
-    'text!templates/department/MainTemplate.html',
+    'views/shared/ListView',
+    'views/shared/ChartView',
+    'text!templates/shared/MainTemplate.html',
     'collections/faculties/FacultiesCollection',
     'collections/faculties/FacultyChangeCollection'
 ], function($, _, Backbone, DepartmentsCollection, CoursesCollection, ListView, ChartView, MainTemplate, FacultiesCollection, FacultyChangeCollection){

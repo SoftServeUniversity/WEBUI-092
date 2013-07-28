@@ -1,14 +1,18 @@
-$(document).ready(resizeEqual);
 function resizeEqual(){
+
+	 //reset position to relative, so we get correct height for containing element
+     $('.progress-small').css('position','relative');
+
 	 var currentTallest = 0,
      currentRowStart = 0,
      rowDivs = new Array(),
      $el,
      topPosition = 0;
-
  $('.equal-height>div>*').each(function() {
    
    $el = $(this);
+   $el.css('height', '');
+
    topPostion = $el.position().top;
    
    if (currentRowStart != topPostion) {
@@ -38,16 +42,18 @@ function resizeEqual(){
    }
    
  })
+  
+  //reset position back to absolute, so element is positioned correctly;
+     $('.progress-small').css('position','absolute');
 }
+
 function clearResize(){
 	$('.equal-height>div>*').each(function() {
 		$(this).height('');
 	})
-}
+};
 
 
 $(window).on('resize', function(){
-	if($(window).width()>755){resizeEqual()} else {
-		clearResize();
-	}
+	resizeEqual();
 })

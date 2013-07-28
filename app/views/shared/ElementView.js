@@ -2,7 +2,7 @@ define([
     'jquery',
     'underscore',
     'backbone',
-    'text!templates/department/elementTemplate.html'
+    'text!templates/shared/elementTemplate.html'
 ], function($, _, Backbone, elementTemplate){
 
     var ElementView =  Backbone.View.extend({

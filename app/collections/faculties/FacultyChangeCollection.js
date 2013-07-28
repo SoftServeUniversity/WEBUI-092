@@ -2,7 +2,7 @@ define([
   'jquery',
   'underscore',
   'backbone',
-  'models/faculties/FacultyChangeModel'
+  'models/faculty/FacultyChangeModel'
 ], function($, _, Backbone, FacultyChangeModel){
 
 	var FacultyChangeCollection = Backbone.Collection.extend({

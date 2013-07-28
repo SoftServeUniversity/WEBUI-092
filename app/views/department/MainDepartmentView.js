@@ -4,9 +4,9 @@ define([
     'backbone',
     'collections/groups/GroupsCollection',
     'collections/teachers/TeachersCollection',
-    'views/department/ListView',
-    'views/department/ChartView',
-    'text!templates/department/MainTemplate.html',
+    'views/shared/ListView',
+    'views/shared/ChartView',
+    'text!templates/shared/MainTemplate.html',
     'collections/departments/DepartmentsCollection',
     'collections/departments/DepartmentChangeCollection',
 

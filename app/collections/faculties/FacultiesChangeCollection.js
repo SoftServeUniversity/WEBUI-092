@@ -2,7 +2,7 @@ define([
   'jquery',
   'underscore',
   'backbone',
-  'models/faculties/FacultiesChangeModel'
+  'models/faculty/FacultiesChangeModel'
 
 ], function($, _, Backbone, FacultiesChangeModel){
 

@@ -4,6 +4,7 @@
     <ul class="nav nav-tabs">
       <li><a href="#/fa/menage_roles">Manage Roles</a></li>
       <li class="active"><a href="#/fa/menage_departments">Manage Departments</a></li>
+      <li style="float: right"><a href="#/fa/manage_db" >Database Management</a></li>
     </ul>
     <div class='page-header'>
       <h1 class='text-left'>Manage Departments</h1>
@@ -22,7 +23,22 @@
           <tr>
             <td class='text-center'><%= entity.get('name')%></td>
             <td class='text-center'><%= entity.get('head')%></td>
-            <td class='text-center'><%= entity.get('faculty')%></td>
+            <td class='text-center'>
+              <form>
+	              <span class="dblclick-text">
+	            	<%= entity.get('faculty_name') %>
+	              </span>
+	              <select class="dblclick-input">
+	            	<% _.each(faculties, function(faculty, id){ %>
+	            	  <% if (faculty.get('id') == entity.get('faculty_id')) { %>
+				        <option selected value="<%= faculty.get('id') %>"><%= entity.get('faculty_name') %></option>
+					  <% } else { %>
+						<option value="<%= faculty.get('id') %>"><%= faculty.get('name') %></option>
+				      <% } %>
+	                <% }) %>
+	              </select>
+              </form>
+            </td>
             <td class='text-center'>
               <button class='btn open-modal' type="button" data-toggle="modal" data-target='menage-department'>Delete</button>
               <div class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" id='menage-department'>

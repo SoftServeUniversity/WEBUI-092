@@ -20,12 +20,11 @@ define([
       'click #sendFormReg' : 'reg',
       'click #sendFormLog' : 'log'
     },
-   /**/ render: function(){
+      render: function(){
       var compiledTemplate = _.template( registrationTemplate );
       $("#authBox").html(compiledTemplate);
     },
     reg : function(e){
-      e.preventDefault();
         var userRegModel = new StudentModel({
           url : "/app/mocks"
         });
@@ -55,17 +54,33 @@ define([
           });
        }
 
-      // THIS.MODEL.VALIDATE();
+      var log = userRegModel.get('inputLoginReg'),
+       pass = userRegModel.get('inputPasswordReg'),
+       lastN = userRegModel.get('lastName'),
+       firstN = userRegModel.get('firstName'),
+       fatherN = userRegModel.get('fatherName');
 
-      var a = userRegModel.toJSON();
-      console.log(a);
+      if(log.length > 0 && 
+        pass.length > 0 && 
+        lastN.length > 0 &&
+        firstN.length > 0 &&
+        fatherN.length > 0){
 
-      //userRegModel.save(a);
-      //alert('Reg form has been sent');
+          e.preventDefault();
 
+            if(
+                $('#inputLastNameReg[aria-invalid = true]').is('input') == false &&
+                $('#inputFirstNameReg[aria-invalid = true]').is('input') == false &&
+                $('#inputFatherNameReg[aria-invalid = true]').is('input') == false &&
+                $('#inputLoginReg[aria-invalid = true]').is('input') == false &&
+                $('#inputPasswordReg[aria-invalid = true]').is('input') == false 
+              ){
+              var a = userRegModel.toJSON();
+              console.log(a);
+            }
+        }
     },
     log : function(e){
-      e.preventDefault();
       var userLogModel = new StudentModel({
         url : "/app/mocks"
       });
@@ -76,14 +91,23 @@ define([
         'inputPasswordLog': $("#logForm").find("#inputPasswordLog").val()
 
       });
-      
-      var a = userLogModel.toJSON();
-      console.log(a);
 
-      //userLogModel.save();
-      //alert('Log form has been sent');
+      var log = userLogModel.get('inputLoginLog');
+      var pass = userLogModel.get('inputPasswordLog');
+
+      if(log.length > 0 && pass.length > 0){
+
+          e.preventDefault();
+
+            if(
+                $('#inputLoginLog[aria-invalid = true]').is('input') == false &&
+                $('#inputPasswordLog[aria-invalid = true]').is('input') == false 
+              ){
+              var a = userLogModel.toJSON();
+              console.log(a);
+            }
+        }
     }
   });
-
     return RegistrationView;
 });
