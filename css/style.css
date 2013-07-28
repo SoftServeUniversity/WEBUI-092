@@ -37,7 +37,8 @@ h1 {
 a:hover{
 	color:#0088CC;
 }
-.toggle-input {
+
+.list .toggle-input {
 	display:none;
 	margin-bottom:0px;
 

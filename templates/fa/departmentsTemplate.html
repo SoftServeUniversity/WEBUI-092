@@ -8,7 +8,8 @@
     <div class='page-header'>
       <h1 class='text-left'>Manage Departments</h1>
     </div>
-    <table class="table">
+
+	<table id="content-table" class="table">
       <thead>
         <tr>
           <th>Name</th>
@@ -17,66 +18,9 @@
           <th>Controls</th>
         </tr>
       </thead>
-      <tbody id='content-table'>
-        <% _.each(entities, function(entity){ %>
-          <tr class="model" id="model_<%= entity.get('id') %>">
-            <td>
-            	<span class='toggle-text'><%= entity.get('name')%></span>
-            	<input name='name' class='toggle-input' value="<%= entity.get('name')%>"/>
-            </td>
-            <td>
-                <span class='toggle-text'>
-                    <% var teacherid = entity.get('teacher_id'); %>
-                	<% var teacher =  _.where(teachers, {id:teacherid}); %>
-                	<%= teacher[0].get('name') %>
-                </span>
-                <select class='toggle-input' name='teacher_id'>
-                <% _.each(teachers, function(teacher){ %>
-	            	<% if (teacher.get('id') == entity.get('teacher_id')) { %>
-			          <option selected value="<%= teacher.get('id') %>">
-				    <% } else { %>
-					  <option value="<%= teacher.get('id') %>">
-			        <% } %>  
-			        <%= teacher.get('name') %></option>   
-                  <% }) %>
-                </select>              
-            </td>
-            
-            <td>
-                <span class='toggle-text'>
-                    <% var facultyid = entity.get('faculty_id'); %>
-                	<% var faculty =  _.where(faculties, {id:facultyid}); %>
-                	<%= faculty[0].get('name') %>
-                </span>
-                <select class='toggle-input' name='faculty_id'>
-            	  <% _.each(faculties, function(faculty){ %>
-            	    <% if (faculty.get('id') == entity.get('faculty_id')) { %>
-			          <option selected value="<%= faculty.get('id') %>">
-				    <% } else { %>
-					  <option value="<%= faculty.get('id') %>">
-			        <% } %>
-			        <%= faculty.get('name') %></option>
-                  <% }) %>
-                </select>              
-            </td>
-            <td class='text-center'>
-              <button class='btn open-modal' type="button" data-toggle="modal" data-target='menage-department'>Delete</button>
-              <div class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" id='menage-department'>
-                <button type="button" class="close a-little-margin-right" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <div class="modal-body">
-                  <h1 class='red'>Are you sure?</h1>
-                  <p>this may ...tra...la...la...</p>
-                </div>
-                <div class="modal-footer">
-                  <button class="btn close-m">No</button>
-                  <button class="btn btn-danger save">Yes</button>
-                </div>
-              </div>
-            </td>
-          </tr>
-        <% }); %>
-      </tbody>
+		<%= list %>       
     </table>
+
   </div>
   <div class='span12 text-left departments-buttons'>
     <button class='btn btn-primary' id='newDepartment'>New Department</button>

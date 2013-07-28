@@ -2,14 +2,17 @@ define([
   'jquery',
   'underscore',
   'backbone',
+  'views/fa/DepartmentListView',
+  'views/fa/DepartmentElementView',
+
   'text!templates/fa/departmentsTemplate.html',
   'collections/teachers/TeachersCollection',
   'collections/fa/FaDepartmentsCollection',
-
-  //для виведення селектів завантажуєм колекцію факультетів
   'collections/faculties/FacultiesCollection',
+  'models/department/DepartmentModel'
 
-], function($, _, Backbone, departmentsListTemplate, TeachersCollection, FaDepartmentsCollection, FacultiesCollection){   
+
+], function($, _, Backbone, DepartmentListView, DepartmentElementView, departmentsTemplate, TeachersCollection, FaDepartmentsCollection, FacultiesCollection, DepartmentModel){   
 
 
   var FaDepartmentsView = Backbone.View.extend({
@@ -17,17 +20,13 @@ define([
     el: $('#content'),
     
     initialize: function() {
+    	console.log('init')
+
       var that=this;
       var DLoaded = false;
       var FLoaded = false;
       var TLoaded = false;
-      /*
-      * bindAll fixes a loss of scope. For example when we need to use
-      * this.render inside a setTimeout callback or event handler
-      * 
-      */
-      _.bindAll(this, 'loadData');
-      
+
       /*
        * коли завантажилась яка-небудь з колекцій -
        * викликається цей handler
@@ -48,11 +47,14 @@ define([
     	 * коли завантажились всі колекції - передаєм дані в render() метод
     	 */
     	if ((DLoaded == true) && (FLoaded == true) && (TLoaded == true)){
-    		this.render();
-    		 DLoaded = false;
-             FLoaded = false;
-             TLoaded = false;
+
+             this.render();
+    	         console.log('dataLoaded')
+
+    	
     	}
+
+      
       });
       
      
@@ -62,12 +64,6 @@ define([
      this.loadData(); 
      
      
-     /*
-      * якщо стались зміни в якійсь з моделей - рендеримо ще раз
-      */
-     this.faDepartmentsCollection.bind('change', function(){
-	    that.loadData();
-	  });
      
       
       /*
@@ -78,32 +74,32 @@ define([
       	var input = $('.toggle-input').first().get(0);
         if ($(e.target).closest('.toggle-input').length > 0){	
 	    } else {
-	      $('.toggle-input').css('display','none');
-	      $('.toggle-text').css('display', 'block');	
+	      $('.list .toggle-input').css('display','none');
+	      $('.list .toggle-text').css('display', 'block');	
 	    }
 
       })
- 
     },
   
    /*
     * колекції факультетів і кафедр завантажуються асинхронно: 
     */    
     loadData: function () {
-      //console.log('hello from loaddata');
+
+      console.log('hello from loaddata');
       var that=this;
       
-      this.teachersCollection = new TeachersCollection();
-	  this.teachersCollection.fetch({
+      this.faTeachersCollection = new TeachersCollection();
+	  this.faTeachersCollection.fetch({
 	    success: function (){
-          that.trigger('DataLoaded', 'TLoaded', that.teachersCollection)
+          that.trigger('DataLoaded', 'TLoaded', that.faTeachersCollection)
 	    } 
 	  });
 
-      this.facultiesCollection = new FacultiesCollection();
-	  this.facultiesCollection.fetch({
+      this.faFacultiesCollection = new FacultiesCollection();
+	  this.faFacultiesCollection.fetch({
 	    success: function (){
-          that.trigger('DataLoaded', 'DLoaded', that.facultiesCollection)
+          that.trigger('DataLoaded', 'DLoaded', that.faFacultiesCollection)
 	    } 
 	  });
       this.faDepartmentsCollection = new FaDepartmentsCollection();
@@ -112,17 +108,34 @@ define([
           that.trigger('DataLoaded', 'FLoaded', that.faDepartmentsCollection)
         }
       });   	
+
+      /*
+      * якщо стались зміни в якійсь з моделей - рендеримо ще раз
+      */
+
+      this.faDepartmentsCollection.off('change', this.loadData);
+	  this.faDepartmentsCollection.on('change', this.loadData);
+
     },
+
     
     render: function (){
+    	console.log('asdf');
+
+
+      var params = {
+        entities:this.faDepartmentsCollection,
+      	teachers:this.faTeachersCollection,
+      	faculties:this.faFacultiesCollection	
+      }	;
+
+      var departmentListView = new DepartmentListView(params);
+      //console.log(departmentListView.$el.html())
       var data = {
-        entities: this.faDepartmentsCollection.models,
-        faculties: this.facultiesCollection.models,
-        teachers: this.teachersCollection.models,
+        list: departmentListView.$el.html(),
         _: _
       };
-      var compiledTemplate = _.template( departmentsListTemplate, data);
-
+      var compiledTemplate = _.template( departmentsTemplate, data);
       this.$el.html(compiledTemplate);
     },
     
@@ -136,7 +149,7 @@ define([
       'click .close-m'            : 'closeModal',
       'click .save'               : 'closeModal',
       'click .open-modal-import'  : 'openModalImport',
-      'click #newDepartment'      : 'newDepartment'
+      'click #newDepartment'      : 'createNew'
     },
     showInput: function(e){
        $(e.target).css('display', 'none').next().css('display','block');	
@@ -162,9 +175,24 @@ define([
 
         model.set(field_name, $(e.target).val());
         model.save();
-        $('.toggle-input').css('display','none');
-	    $('.toggle-text').css('display', 'block');
+        $('.list .toggle-input').css('display','none');
+	    $('.list .toggle-text').css('display', 'block');
        }   
+    },
+    createNew: function(){
+      $('.new-item').css('display', 'none');
+      var el = "#content-table";
+      var newModel = new  DepartmentModel();
+      
+      var data = {
+      	newElement:true,
+    	entity:newModel,
+    	teachers: this.faTeachersCollection.models,
+    	faculties: this.faFacultiesCollection.models
+      };
+      var elementView = new  DepartmentElementView(data);
+      
+      $(el).append(elementView.$el.html())
     },
 
     openModal: function(){
@@ -177,9 +205,6 @@ define([
     openModalImport: function(){
       $('#menage-department-import').modal('show');
     },
-    newDepartment: function(){
-      $('#content-table').append("<tr><td class='text-center'><input type='text' size='10' placeholder='Ender Name'></td><td class='text-center'><select><option selected value='Крокодил Гена'>Крокодил Гена</option><option value='Edvart Шапокляк'>Edvart Шапокляк</option><option value='Лариса Linkoln'>Лариса Linkoln</option></select></td><td class='text-center'><select><option selected value='Doing Nothing'>Doing Nothing</option><option value='Pickup'>Pickup</option><option value='Mathematics'>Mathematics</option></select></td><td class='text-center'><button class='btn btn-success'>Create</button></td></tr>");
-    }
   });
   return  FaDepartmentsView;
 });
