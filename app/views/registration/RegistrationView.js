@@ -88,7 +88,8 @@ define([
       userLogModel.set({
 
         'inputLoginLog': $("#logForm").find("#inputLoginLog").val(),
-        'inputPasswordLog': $("#logForm").find("#inputPasswordLog").val()
+        'inputPasswordLog': $("#logForm").find("#inputPasswordLog").val(),
+        'inputPasswordLog': $("#logForm").find("#rememberMe").val()
 
       });
 
