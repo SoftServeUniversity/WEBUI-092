@@ -6,7 +6,7 @@ define([
 ], function($, _, Backbone, DepartmentModel){
 
     var DepartmentsCollection = Backbone.Collection.extend({
-        model:DepartmentModel ,
+        model:DepartmentModel,
         url: "app/mocks/departments.json"
     });
 
