@@ -23,6 +23,7 @@ define([
     },
 
     el: $("#content"),
+    
     initialize : function(){
 		this.loadData();
     },

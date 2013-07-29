@@ -4,73 +4,26 @@ define([
   'backbone',
   'views/fa/DepartmentListView',
   'views/fa/DepartmentElementView',
-
   'text!templates/fa/departmentsTemplate.html',
   'collections/teachers/TeachersCollection',
   'collections/fa/FaDepartmentsCollection',
   'collections/faculties/FacultiesCollection',
   'models/department/DepartmentModel'
 
-
-
 ], function($, _, Backbone, DepartmentListView, DepartmentElementView, departmentsTemplate, TeachersCollection, FaDepartmentsCollection, FacultiesCollection, DepartmentModel){   
 
 
-  var FaDepartmentsView = Backbone.View.extend({
+    var FaDepartmentsView = Backbone.View.extend({
     
     el: $('#content'),
     
     initialize: function() {
-    	console.log('init')
-
-      var that=this;
-      var DLoaded = false;
-      var FLoaded = false;
-      var TLoaded = false;
+      this.loadData();      
 
       /*
-       * коли завантажилась яка-небудь з колекцій -
-       * викликається цей handler
-       */
-      this.on('DataLoaded', function(flag, value){
-
-    	if (flag=='DLoaded'){
-     	  DLoaded = true;
-    	};
-    	if (flag=='FLoaded'){
-    	  FLoaded = true;
-    	};
-    	if (flag=='TLoaded'){
-    	  TLoaded = true;
-    	};
-    	
-    	/*
-    	 * коли завантажились всі колекції - передаєм дані в render() метод
-    	 */
-    	if ((DLoaded == true) && (FLoaded == true) && (TLoaded == true)){
-
-             this.render();
-    	         console.log('dataLoaded')
-
-    	
-    	}
-
-      
-      });
-      
-     
-     /*
-      * цей метод відповідає за завантаження колекцій 
+      * якщо хтось клікнув на текстове поле і нічого в ньому не змінив,
+      * то ховаєм поле, коли юзер клікає деінде
       */
-     this.loadData(); 
-     
-     
-     
-      
-      /*
-       * якщо хтось клікнув на текстове поле і нічого в ньому не змінив,
-       * то ховаєм поле, коли юзер клікає деінде
-       */
       $('body').on('click',function(e){
       	var input = $('.toggle-input').first().get(0);
         if ($(e.target).closest('.toggle-input').length > 0){	
@@ -81,39 +34,23 @@ define([
 
       })
     },
-  
-   /*
-    * колекції факультетів і кафедр завантажуються асинхронно: 
-    */    
+    
+    //завантаження колекцій 
     loadData: function () {
-
-      console.log('hello from loaddata');
       var that=this;
       
       this.faTeachersCollection = new TeachersCollection();
-	  this.faTeachersCollection.fetch({
-	    success: function (){
-          that.trigger('DataLoaded', 'TLoaded', that.faTeachersCollection)
-	    } 
-	  });
-
       this.faFacultiesCollection = new FacultiesCollection();
-	  this.faFacultiesCollection.fetch({
-	    success: function (){
-          that.trigger('DataLoaded', 'DLoaded', that.faFacultiesCollection)
-	    } 
-	  });
       this.faDepartmentsCollection = new FaDepartmentsCollection();
-      this.faDepartmentsCollection.fetch({
-        success: function(){
-          that.trigger('DataLoaded', 'FLoaded', that.faDepartmentsCollection)
-        }
-      });   	
-
+      
+      $.when(this.faTeachersCollection.fetch() && this.faFacultiesCollection.fetch() 
+      && this.faDepartmentsCollection.fetch()).then(function(){
+        that.render();	
+      })   
+             	
       /*
-      * якщо стались зміни в якійсь з моделей - рендеримо ще раз
+      * якщо стались зміни в якійсь з моделей - завнтажуємо колекції і рендеримо ще раз
       */
-
       this.faDepartmentsCollection.off('change', this.loadData);
 	  this.faDepartmentsCollection.on('change', this.loadData);
 
@@ -121,8 +58,6 @@ define([
 
     
     render: function (){
-    	console.log('asdf');
-
 
       var params = {
         entities:this.faDepartmentsCollection,
@@ -131,7 +66,6 @@ define([
       }	;
 
       var departmentListView = new DepartmentListView(params);
-      //console.log(departmentListView.$el.html())
       var data = {
         list: departmentListView.$el.html(),
         _: _
@@ -150,13 +84,15 @@ define([
       'click .close-m'            : 'closeModal',
       'click .save'               : 'closeModal',
       'click .open-modal-import'  : 'openModalImport',
-      'click #newDepartment'      : 'newDepartment', 
+      'click #newDepartment'      : 'createNew', 
       'click #create_button'      : 'saveData'//,
-      //'click #newDepartment'      : 'createNew'
     },
+    
     showInput: function(e){
        $(e.target).css('display', 'none').next().css('display','block');	
     },
+    
+    //якщо змінено одне з полів існуючих елементів
     changed: function (e){
     	
       if ((e.type == 'keypress' && e.keyCode == 13) || e.type == 'focusout'){
@@ -168,20 +104,29 @@ define([
         var model_id = parseInt(entity_id.match(/\d+$/).join(''));	
        
         var model = (this.faDepartmentsCollection.get(model_id));
-        
-        //змінена модель
-        //console.log(mod);
-        
-        //поле і значення, що додаються до моделі
-        // console.log(field_name);
-        //console.log($(e.target).val())
 
         model.set(field_name, $(e.target).val());
         model.save();
+
         $('.list .toggle-input').css('display','none');
 	    $('.list .toggle-text').css('display', 'block');
        }   
     },
+    
+    createNew: function(){
+      $('.new-item').css('display', 'none');
+      var el = "#content-table";
+      var newModel = new DepartmentModel();
+      var data = {
+        newElement:true,
+        entity:newModel,
+        teachers: this.faTeachersCollection.models,
+        faculties: this.faFacultiesCollection.models
+      };
+      var elementView = new DepartmentElementView(data);
+      $(el).append(elementView.$el.html())
+    },
+    
     saveData: function (e){
       //Валідація поля name за допомогою регулярних виразів
       var name = document.getElementById("dept-name").value;
@@ -198,22 +143,6 @@ define([
       }
       console.log(name);
     },
-
-    /*createNew: function(){
-      $('.new-item').css('display', 'none');
-      var el = "#content-table";
-      var newModel = new  DepartmentModel();
-      
-      var data = {
-      	newElement:true,
-    	entity:newModel,
-    	teachers: this.faTeachersCollection.models,
-    	faculties: this.faFacultiesCollection.models
-      };
-      var elementView = new  DepartmentElementView(data);
-      
-      $(el).append(elementView.$el.html())
-    },*/
 
     openModal: function(){
       $('#menage-department').modal('show');

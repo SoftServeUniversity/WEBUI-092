@@ -15,6 +15,7 @@ define([
 ], function($, _, Backbone, GroupsCollection, TeachersCollection, ListView, ChartView, MainTemplate, DepartmentsCollection, DepartmentChangeCollection){
 
     var DepartmentView =  Backbone.View.extend({
+        
         loadData: function(){
             var that = this;
 
