@@ -57,7 +57,6 @@ define([
 					"date": commentDate,
 					"content": content
 				});
-				console.log(this.collection);
 				this.collection.unshift(newCommentModel);
 			},
 			slider: function(){
