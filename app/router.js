@@ -10,7 +10,7 @@ define([
   'views/faculty/MainFacultyView',
   'views/department/MainDepartmentView',
   'views/teacher/TeacherProgressView',
-  'views/work/WorkView',
+  'views/work/MainWorkView',
   'views/fa/faRolesView',
   'views/fa/faDepartmentsView',
   'views/task/taskView',
@@ -19,17 +19,17 @@ define([
   'views/fa/DBView'
 
   ],
-  function($, _, Backbone, FacultiesListView, RegistrationView, GroupProgressView, StudentProgressView, CourseProgressView,  MainFacultyView, MainDepartmentView,TeacherProgressView, WorkView, FaRolesView, FaDepartmentsView, taskView, TaskCollection, NotFoundView, DBView) {
+  function($, _, Backbone, FacultiesListView, RegistrationView, GroupProgressView, StudentProgressView, CourseProgressView,  MainFacultyView, MainDepartmentView,TeacherProgressView, MainWorkView, FaRolesView, FaDepartmentsView, taskView, TaskCollection, NotFoundView, DBView) {
     var AppRouter = Backbone.Router.extend({
       routes: {
         ''                       : 'homeAction',
         'group/:id'              : 'groupProgressAction',
-        'student/:id'            :'studentProgressAction',
-        'course/:id'             :'courseProgressAction',
-        'faculty/:id'            :'facultyAction',
-        'teacher/:id'            :'teacherProgressAction',
-        'department/:id'         :'departmentAction',
-        'work/:id'               : 'workShow',
+        'student/:id'            : 'studentProgressAction',
+        'course/:id'             : 'courseProgressAction',
+        'faculty/:id'            : 'facultyAction',
+        'teacher/:id'            : 'teacherProgressAction',
+        'department/:id'         : 'departmentAction',
+        'work/:id'               : 'workShowAction',
         'fa/menage_roles'        : 'faRoles',
         'fa/menage_departments'  : 'faMenageDepartments',
         'fa/manage_db'           : 'faManageDB',
@@ -51,29 +51,23 @@ define([
        registrationView.render();
       });
 
-      
-
-       app_router.on('route:workShow', function (actions){
-        var workView = new WorkView();
-        workView.render();
+      app_router.on('route:workShowAction', function (id){
+        var workView = new MainWorkView();
+        workView.initialize();
+        workView.loadData(id);
       });
 
-
-
       app_router.on('route:groupProgressAction', function (actions) {
-
         var groupProgressView = new GroupProgressView();
         groupProgressView.render();
       });
 
       app_router.on('route:studentProgressAction', function (actions) {
-
         var studentProgressView = new StudentProgressView();
         studentProgressView.render();
       });
 
        app_router.on('route:courseProgressAction', function (actions) {
-
         var courseProgressView = new CourseProgressView();
         courseProgressView.render();
       });
@@ -85,7 +79,6 @@ define([
       });
 
       app_router.on('route:departmentAction', function (id) {
-
         var mainDepartmentView = new MainDepartmentView();
         mainDepartmentView.initialize();
         mainDepartmentView.loadData(id);
@@ -111,7 +104,6 @@ define([
       });
 
     app_router.on('route:taskShow', function (taskid, id) {
-
         var tasks = new TaskCollection;
         tasks.fetch({async:false});
         var task = tasks.get(id);

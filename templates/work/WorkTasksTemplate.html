@@ -1,23 +1,12 @@
-<!--Info-->    
+<h3><%= workname %></h3>
+<h4><%= studentname %></h4>
+<h5><%= teachername %></h5>
 
-<h3 class="text-center">Чисельне ровязування динамічних багатозначних задач різноманітними методами сучасної науки</h3>
-<h4 class="text-center">Корнедлій Васильович Джміль, Тиміш Сергій Вікторович</h4>
-<h5 class="text-center">канд. ф-м. н., доцент кафедри інформаційних систем</h5>
+<a href="#myModal" role="button" class="span1 offset11 history-modal" data-toggle="modal">Історія</a>
 
-<a href="#myModal" role="button" class="history-modal span1 offset11" data-toggle="modal">Історія</a>
-
-<!--Tasks-->
-
-<% _.each(worktasks, function(worktask) {%>
-	<div class="row">
-		<p class="span6 text-center taskname"><a href="#/work/<%= worktask.get("id") %>"><%= worktask.get("name") %></a></p>
-		<div class="progress span6">
-		    <div class="bar" style="width:<%= worktask.get("percentage") + "%" %>;"></div>
-		</div>
-	</div>
-<% }); %>
-
-<!--Create Task Form-->
+<div>
+	<%= tasksList %>
+</div>
 
 <form>
 	<fieldset>

@@ -5,6 +5,7 @@
 // Their usage will become more apparent futher along in the tutorial.
 require.config({
   paths: {
+    editinplace: 'libs/jquery/edit-in-place',
     jquery: 'libs/jquery/jquery-min',
     jqueryui: 'libs/jquery-ui/jquery-ui',
     underscore: 'libs/underscore/underscore-min',

@@ -5,9 +5,7 @@
     </div>
     <div class="modal-body">
         <ol class="modal-list">
-            <% _.each(historymodal, function(items) {%> 
-            <li><a><%= items.get("username") %></a> <%= items.get("item") %></li>  
-            <% }); %> 
+            <%= historyList %>
         </ol>
     </div>
     <div class="modal-footer">
