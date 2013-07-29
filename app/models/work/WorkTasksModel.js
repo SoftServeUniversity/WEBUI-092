@@ -5,10 +5,12 @@ define([
   var WorkTasksModel = Backbone.Model.extend({
     defaults: {
       "name": "Завдання", 
-      "id": "1", 
-      "percentage": "30",
+      "id": 1, 
+      "percentage": 30,
       "workname": ""
     }
   }); 
 
+  return WorkTasksModel;
+  
 });
