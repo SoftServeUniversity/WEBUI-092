@@ -39,7 +39,7 @@ define([
 				var newTaskProcess = $(e.currentTarget).find('#number-range').val();
 			   
 				this.model.url = "../";
-				this.model.save({"process": newTaskProcess}, {success: function(){console.log('a;a;a;a;aa;a;a;a;a;a;')}});
+				this.model.save({"process": newTaskProcess}, {success: function(){console.log('')}});
 				// console.log(this.model.url);
 			  
 
