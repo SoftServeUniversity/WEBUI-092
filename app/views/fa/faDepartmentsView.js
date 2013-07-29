@@ -88,12 +88,14 @@ define([
        $(e.target).css('display', 'none').next().css('display','block');	 
     },
     saveData: function (e){
+      //Валідація поля name за допомогою регулярних виразів
       var name = document.getElementById("dept-name").value;
       var ck_name = /^[A-Za-z0-9 ]{3,20}$/;
       if (ck_name.test(name)) {
         $('#department-header').append("<div class='alert alert-success'><strong>Success!</strong>You have successfully created a department.</div>");
         window.setTimeout(function () {
           $('.alert-success').fadeOut();
+          $('.alert-error').fadeOut();
         }, 2000);
       }
       else{
