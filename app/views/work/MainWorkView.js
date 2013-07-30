@@ -17,42 +17,19 @@ function($, evil, _, Backbone, bootstrap, WorkTasksTemplate, WorkHistoryTemplate
   
   var WorkTasksView = Backbone.View.extend({ 
 
-    loadData: function(id){
-      workId = id;
+    loadData: function(){
       var that = this;
 
       work_col = new WorkCollection();
-      work_col.fetch({
-        success: function () {
-          that.trigger('DataLoaded', 'Work', work_col);
-        }
-      });
-
       history_col = new WorkHistoryCollection();
-      history_col.fetch({
-        success:function () {
-          that.trigger('DataLoaded', 'History', history_col);
-        }
-      });
+      $.when(work_col.fetch() && history_col.fetch()).then(function(){
+        that.render();
+      })
     },
 
-    initialize:function(){
-      var isWorkLoaded = false;
-      var isHistoryLoaded = false;
-
-      var that = this;
-
-      this.on('DataLoaded', function (item) {
-        if (item == 'Work') {
-          isWorkLoaded = true;
-        }
-        if (item == 'History'){
-          isHistoryLoaded = true;
-        }
-        if ((isWorkLoaded && isHistoryLoaded) == true){
-          that.render();
-        }
-      });
+    initialize:function(id){
+      this.loadData();
+      this.id = id;
     },
 
     el: $("#content"),
@@ -96,14 +73,8 @@ function($, evil, _, Backbone, bootstrap, WorkTasksTemplate, WorkHistoryTemplate
     },
 
     events: {
-      "click .history-modal"  : "showHistory",
       "click #create-btn"     : "addTask",
       "dblclick .taskname"    : "editTask"
-    },
-
-    showHistory: function(e){
-      e.preventDefault();
-      $('#myModal').show();
     },
 
     addTask: function(e) {
@@ -113,7 +84,7 @@ function($, evil, _, Backbone, bootstrap, WorkTasksTemplate, WorkHistoryTemplate
         "id": 1, 
         "percentage": 0 
       }
-        console.log(newWorkTaskModel);
+      console.log(newWorkTaskModel);
       work_col.unshift(newWorkTaskModel);
     },
 
