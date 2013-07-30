@@ -17,7 +17,7 @@ define([
     el: $('#content'),
 
     setActiveMenu: function(id){
-    	$('.nav-tabs').removeClass('active').find('#'+id).addClass('active');
+    	$('.nav-tabs *').removeClass('active').find('#'+id).addClass('active');
     },
     
     initialize: function(){
@@ -41,7 +41,7 @@ define([
       ];
     
       this.render();
-
+      this.manage_departments()
     },
     events: {
      'click #database-tab' : 'manage_database',
@@ -51,14 +51,14 @@ define([
     
     manage_database: function(){
       this.setActiveMenu('database-tab');
-      console.log('managing db');
     },
     manage_roles: function(){
       this.setActiveMenu('roles-tab');
-      console.log('managing roles');
     },
     manage_departments: function(){   	
+      this.setActiveMenu('departments-tab');
       var FaDepartmentsView = new faDepartmentsView();  
+      
     },
     
 
