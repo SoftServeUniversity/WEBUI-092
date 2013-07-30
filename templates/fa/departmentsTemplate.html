@@ -1,27 +1,4 @@
-<div class='row-fluid'>
-  <div class='span12'>
-    <ul class="nav nav-tabs">
-      <li><a href="#/fa/menage_roles">Manage Roles</a></li>
-      <li class="active"><a href="#/fa/menage_departments">Manage Departments</a></li>
-      <li style="float: right"><a href="#/fa/manage_db" >Database Management</a></li>
-    </ul>
-    <div class='page-header' id='dept-header'>
-      <h1 class='text-left'>Manage Departments</h1>
-    </div>
-
-	<table id="content-table" class="table">
-      <thead>
-        <tr>
-          <th>Name</th>
-          <th>Head</th>
-          <th>Faculty</th>
-          <th>Controls</th>
-        </tr>
-      </thead>
-		<%= list %>       
-    </table>
-
-  </div>
+  <%=table %>
   <div class='span12 text-left departments-buttons'>
     <button class='btn btn-primary' id='newDepartment'>New Department</button>
     <button class='btn open-modal-import' type="button" data-toggle="modal" data-target='menage-department-import'>Import (coma seporated)</button>

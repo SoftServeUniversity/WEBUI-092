@@ -15,7 +15,7 @@ define([
 
     var FaDepartmentsView = Backbone.View.extend({
     
-    el: $('#content'),
+    el: '#admin',
     
     initialize: function() {
       this.loadData();      
@@ -46,6 +46,7 @@ define([
       $.when(this.faTeachersCollection.fetch() && this.faFacultiesCollection.fetch() 
       && this.faDepartmentsCollection.fetch()).then(function(){
         that.render();	
+        
       })   
              	
       /*
@@ -58,20 +59,26 @@ define([
 
     
     render: function (){
-
       var params = {
         entities:this.faDepartmentsCollection,
       	teachers:this.faTeachersCollection,
       	faculties:this.faFacultiesCollection	
       }	;
-
+    
+ 
+            
       var departmentListView = new DepartmentListView(params);
+      department_table = departmentListView.$el.html();
+      
       var data = {
-        list: departmentListView.$el.html(),
-        _: _
-      };
+      	table: department_table
+      }
+      
       var compiledTemplate = _.template( departmentsTemplate, data);
       this.$el.html(compiledTemplate);
+      
+      
+      return this;
     },
     
     events: {
@@ -141,7 +148,6 @@ define([
       else{
         $('#dept-header').append("<div class='alert alert-error'><a class='close' data-dismiss='alert'>×</a> <strong>Error!</strong>Name should be between 3 and 20 characters.</div>");
       }
-      console.log(name);
     },
 
     openModal: function(){
@@ -154,6 +160,9 @@ define([
     openModalImport: function(){
       $('#menage-department-import').modal('show');
     },
+    newDepartment: function(){
+      $('#content-table').append("<tr><td class='text-center'><input id='dept-name' type='text' size='10' placeholder='Enter Name'/></td><td class='text-center'><select><option selected value='Крокодил Гена'>Крокодил Гена</option><option value='Edvart Шапокляк'>Edvart Шапокляк</option><option value='Лариса Linkoln'>Лариса Linkoln</option></select></td><td class='text-center'><select><option selected value='Doing Nothing'>Doing Nothing</option><option value='Pickup'>Pickup</option><option value='Mathematics'>Mathematics</option></select></td><td class='text-center'><button class='btn btn-success' id='create_button'>Create</button></td></tr>");
+    }
   });
   return  FaDepartmentsView;
 });
