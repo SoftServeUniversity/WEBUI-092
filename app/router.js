@@ -16,10 +16,11 @@ define([
   'views/task/taskView',
   'collections/task/TaskCollection',
   'views/notFoundView',
-  'views/fa/DBView'
+  'views/fa/DBView', 
+  'views/fa/faCoursesListView'
 
   ],
-  function($, _, Backbone, FacultiesListView, RegistrationView, GroupProgressView, StudentProgressView, CourseProgressView,  MainFacultyView, MainDepartmentView,TeacherProgressView, MainWorkView, FaRolesView, FaDepartmentsView, taskView, TaskCollection, NotFoundView, DBView) {
+  function($, _, Backbone, FacultiesListView, RegistrationView, GroupProgressView, StudentProgressView, CourseProgressView,  MainFacultyView, MainDepartmentView,TeacherProgressView, MainWorkView, FaRolesView, FaDepartmentsView, taskView, TaskCollection, NotFoundView, DBView, faCoursesListView) {
     var AppRouter = Backbone.Router.extend({
       routes: {
         ''                       : 'homeAction',
@@ -33,6 +34,7 @@ define([
         'fa/menage_roles'        : 'faRoles',
         'fa/menage_departments'  : 'faMenageDepartments',
         'fa/manage_db'           : 'faManageDB',
+        'fa/manage_courses'      : 'faManageCourses',
         'work/:id/:taskid'       : 'taskShow',
       
         // Default
@@ -98,18 +100,23 @@ define([
         dbView.render();
       });
 
-    app_router.on('route:taskShow', function (taskid, id) {
-        var tasks = new TaskCollection;
-        tasks.fetch({async:false});
-        var task = tasks.get(id);
-        if(!tasks.get(id)){
-          var pageNotFound = new NotFoundView();
-          pageNotFound.render();
-          return;
-        }
-        var currentTask = new taskView({"model": task});
-        currentTask.render();
-    });   
+      app_router.on('route:faManageCourses', function (actions){
+        var CoursesView = new faCoursesListView();
+        CoursesView.render();
+      });
+
+      app_router.on('route:taskShow', function (taskid, id) {
+          var tasks = new TaskCollection;
+          tasks.fetch({async:false});
+          var task = tasks.get(id);
+          if(!tasks.get(id)){
+            var pageNotFound = new NotFoundView();
+            pageNotFound.render();
+            return;
+          }
+          var currentTask = new taskView({"model": task});
+          currentTask.render();
+      });   
 
       app_router.on('route:defaultAction', function (actions) {
         // We have no matching route, lets display the home page
