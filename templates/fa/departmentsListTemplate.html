@@ -1,15 +1,4 @@
-
-<div class='row-fluid'>
-  <div class='span12'>
-    <ul class="nav nav-tabs">
-      <li><a href="#/fa/menage_roles">Manage Roles</a></li>
-      <li class="active"><a href="#/fa/menage_departments">Manage Departments</a></li>
-      <li style="float: right"><a href="#/fa/manage_db" >Database Management</a></li>
-    </ul>
-    <div class='page-header' id='dept-header'>
-      <h1 class='text-left'>Manage Departments</h1>
-    </div>
-    <table class="table">
+	<table id="content-table" class="table">
       <thead>
         <tr>
           <th>Name</th>
@@ -18,61 +7,5 @@
           <th>Controls</th>
         </tr>
       </thead>
-      <tbody id='content-table'>
-        <% _.each(entities, function(entity, id){ %>
-          <tr>
-            <td class='text-center'><%= entity.get('name')%></td>
-            <td class='text-center'><%= entity.get('head')%></td>
-            <td class='text-center'>
-              <form>
-	              <span class="dblclick-text">
-	            	<%= entity.get('faculty_name') %>
-	              </span>
-	              <select class="dblclick-input">
-	            	<% _.each(faculties, function(faculty, id){ %>
-	            	  <% if (faculty.get('id') == entity.get('faculty_id')) { %>
-				        <option selected value="<%= faculty.get('id') %>"><%= entity.get('faculty_name') %></option>
-					  <% } else { %>
-						<option value="<%= faculty.get('id') %>"><%= faculty.get('name') %></option>
-				      <% } %>
-	                <% }) %>
-	              </select>
-              </form>
-            </td>
-            <td class='text-center'>
-              <button class='btn open-modal' type="button" data-toggle="modal" data-target='menage-department'>Delete</button>
-              <div class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" id='menage-department'>
-                <button type="button" class="close a-little-margin-right" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <div class="modal-body">
-                  <h1 class='red'>Are you sure?</h1>
-                  <p>this may ...tra...la...la...</p>
-                </div>
-                <div class="modal-footer">
-                  <button class="btn close-m">No</button>
-                  <button class="btn btn-danger save">Yes</button>
-                </div>
-              </div>
-            </td>
-          </tr>
-        <% }); %>
-      </tbody>
+		<%= elViews %>       
     </table>
-  </div>
-  <div class='span12 text-left departments-buttons'>
-    <button class='btn btn-primary' id='newDepartment'>New Department</button>
-    <button class='btn open-modal-import' type="button" data-toggle="modal" data-target='menage-department-import'>Import (coma seporated)</button>
-    <div class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" id='menage-department-import'>
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h3>Import Departments</h3>
-      </div>
-      <div class="modal-body">
-        <p class='a-litle-hint'>Type in new departments, and separate them by commas. For example "DepartmentName DepartmentHead DepartmentFaculty, AnotherDepartmentName AnotherDepartmentHead......., and so on."</p>
-        <p><textarea rows="10" cols="45" name="text"></textarea></p>
-      </div>
-      <div class="modal-footer">
-        <button class="btn close-m">Import</button>
-      </div>
-    </div>
-  </div>
-</div>
