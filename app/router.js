@@ -46,7 +46,6 @@ define([
       app_router.on('route:homeAction', function (actions) {
        // display the home page
        var facultiesListView = new FacultiesListView();
-       facultiesListView.loadData();
        var registrationView = new RegistrationView();
        registrationView.render();
       });
@@ -74,16 +73,11 @@ define([
       });
 
       app_router.on('route:facultyAction', function (id) {
-        var mainFacultyView = new MainFacultyView();
-        mainFacultyView.initialize();
-        mainFacultyView.loadData(id);
+        var mainFacultyView = new MainFacultyView(id);
       });
 
       app_router.on('route:departmentAction', function (id) {
-
-        var mainDepartmentView = new MainDepartmentView();
-        mainDepartmentView.initialize();
-        mainDepartmentView.loadData(id);
+        var mainDepartmentView = new MainDepartmentView(id);
       });
 
       app_router.on('route:teacherProgressAction', function (actions) {
@@ -98,7 +92,6 @@ define([
 
       app_router.on('route:faMenageDepartments', function (actions){
         var faDepartmentsView = new FaDepartmentsView();
-        faDepartmentsView.loadData();
       });
 
       app_router.on('route:faManageDB', function (actions){

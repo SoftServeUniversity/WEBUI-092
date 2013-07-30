@@ -14,35 +14,18 @@ define([
     loadData: function (){
 	    var that = this;
 	
-	    var faculties_col    = new FacultiesCollection();
-	    faculties_col.fetch({success:function(){
-	      that.trigger('DataLoaded', 'Faculties', faculties_col);
-	    }});
-	
-	    var changes_col = new FacultiesChangeCollection();
-	    changes_col.fetch({success:function(){
-	      that.trigger('DataLoaded', 'FacultiesChanges', changes_col);
-	    }});
+	    this.faculties_col    = new FacultiesCollection();
+	    this.changes_col = new FacultiesChangeCollection();
+
+        $.when(this.faculties_col.fetch() && this.changes_col.fetch()).then(function(){
+        	that.render();
+        })
     },
 
     el: $("#content"),
-
+    
     initialize : function(){
-		var isFacLoaded, isFacChangesLoaded;
-
-		this.on('DataLoaded', function (item, data) {
-			if (item == 'Faculties') {
-			  isFacLoaded = true;
-			  this.faculties_col = data;
-			}
-			if (item == 'FacultiesChanges'){
-			  isFacChangesLoaded = true;
-			  this.changes_col = data;
-			}
-			if (isFacLoaded && isFacChangesLoaded){
-			  this.render();
-			}
-		});
+		this.loadData();
     },
 
     render: function(){
