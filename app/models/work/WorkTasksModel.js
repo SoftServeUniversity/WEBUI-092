@@ -6,7 +6,7 @@ define([
     defaults: {
       "name": "Завдання", 
       "id": 1, 
-      "percentage": 30,
+      "percentage": null,
       "workname": ""
     }
   }); 

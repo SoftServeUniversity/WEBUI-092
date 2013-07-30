@@ -52,22 +52,23 @@ define([
       });
 
       app_router.on('route:workShowAction', function (id){
-        var workView = new MainWorkView();
-        workView.initialize();
-        workView.loadData(id);
+        var workView = new MainWorkView(id);
       });
 
       app_router.on('route:groupProgressAction', function (actions) {
+
         var groupProgressView = new GroupProgressView();
         groupProgressView.render();
       });
 
       app_router.on('route:studentProgressAction', function (actions) {
+
         var studentProgressView = new StudentProgressView();
         studentProgressView.render();
       });
 
        app_router.on('route:courseProgressAction', function (actions) {
+
         var courseProgressView = new CourseProgressView();
         courseProgressView.render();
       });
@@ -79,6 +80,7 @@ define([
       });
 
       app_router.on('route:departmentAction', function (id) {
+
         var mainDepartmentView = new MainDepartmentView();
         mainDepartmentView.initialize();
         mainDepartmentView.loadData(id);
@@ -105,6 +107,7 @@ define([
       });
 
     app_router.on('route:taskShow', function (taskid, id) {
+
         var tasks = new TaskCollection;
         tasks.fetch({async:false});
         var task = tasks.get(id);
