@@ -183,9 +183,8 @@ progress::-webkit-progress-value { background: #69EB63; }
 /* --- Nazaruk Sergii CSS --- */
 /* Modal History */
 .history-modal          { display: block; margin-bottom: 20px; }
-#myModal				{ display: none; width: 600px; border-radius: 6px 6px 6px 6px;
-						  margin: 0 auto;
-    					}
+.modal-list				{ font-size: 12px; }
+#myModal				{ display: none; width: 600px; border-radius: 6px; margin: 0 auto; }
 #myModal.active			{ position: fixed; z-index: 1050; opacity: 1; background-color: white;
     					  left: 10%; right: 10%; top: 10%;
     					}
