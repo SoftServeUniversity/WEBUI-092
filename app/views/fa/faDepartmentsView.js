@@ -15,7 +15,7 @@ define([
 
     var FaDepartmentsView = Backbone.View.extend({
     
-    el: $('#content'),
+    el: '#admin',
     
     initialize: function() {
       this.loadData();      
@@ -46,6 +46,7 @@ define([
       $.when(this.faTeachersCollection.fetch() && this.faFacultiesCollection.fetch() 
       && this.faDepartmentsCollection.fetch()).then(function(){
         that.render();	
+        
       })   
              	
       /*
@@ -58,20 +59,26 @@ define([
 
     
     render: function (){
-
       var params = {
         entities:this.faDepartmentsCollection,
       	teachers:this.faTeachersCollection,
       	faculties:this.faFacultiesCollection	
       }	;
-
+    
+ 
+            
       var departmentListView = new DepartmentListView(params);
+      department_table = departmentListView.$el.html();
+      
       var data = {
-        list: departmentListView.$el.html(),
-        _: _
-      };
+      	table: department_table
+      }
+      
       var compiledTemplate = _.template( departmentsTemplate, data);
       this.$el.html(compiledTemplate);
+      
+      
+      return this;
     },
     
     events: {
@@ -141,7 +148,6 @@ define([
       else{
         $('#dept-header').append("<div class='alert alert-error'><a class='close' data-dismiss='alert'>×</a> <strong>Error!</strong>Name should be between 3 and 20 characters.</div>");
       }
-      console.log(name);
     },
 
     openModal: function(){

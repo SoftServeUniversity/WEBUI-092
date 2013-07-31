@@ -23,6 +23,6 @@ define([
     }
 
   });
-  return ListView;
+  return  ListView;
 });
 

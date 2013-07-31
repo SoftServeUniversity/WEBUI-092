@@ -16,7 +16,6 @@ require.config({
     highcharts: 'libs/highcharts/highcharts',
     templates: '../templates'
   }
-
 });
 
 require([

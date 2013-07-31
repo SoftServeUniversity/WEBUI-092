@@ -5,7 +5,15 @@
     </div>
     <div class="modal-body">
         <ol class="modal-list">
-            <%= historyList %>
+            <% _.each(historymodal, function(items) {%> 
+            <div class="row-fluid">
+            <li>
+                <b class="span2"><%= items.get("username") %></b>
+                <span class="span7"><%= items.get("item") %> </span>
+                <span class="span3"><%= items.get("date") %></span>
+            </li>  
+            </div>
+            <% }); %> 
         </ol>
     </div>
     <div class="modal-footer">

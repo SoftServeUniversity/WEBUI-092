@@ -2,8 +2,10 @@ define([
     'jquery',
     'underscore',
     'backbone',
-    'views/fa/DepartmentElementView'
-], function($, _, Backbone, DepartmentElementView){
+    'views/fa/DepartmentElementView',
+    'text!templates/fa/departmentsListTemplate.html'
+
+], function($, _, Backbone, DepartmentElementView, DepartmentsListTemplate){
 
     var DepartmentListView = Backbone.View.extend({
         collection : null, 
@@ -12,16 +14,28 @@ define([
         },
         render:function(){
           var that = this;
-             
+          
+          //all element views 
+          var elViews = [];   
+          
           that.options.entities.each(function(entity) {
             var data = {
               entity:entity,
               teachers: that.options.teachers.models,
               faculties: that.options.faculties.models
             };                
+
+            
             var elementView = new  DepartmentElementView(data);	
-            that.$el.append(elementView.$el.html())
+            elViews += elementView.$el.html();
           })
+          data = {
+          	elViews: elViews
+          }
+           
+            var compiledTemplate = _.template( DepartmentsListTemplate, data);
+            this.$el.append(compiledTemplate);
+
         return this;    
         }
     });
