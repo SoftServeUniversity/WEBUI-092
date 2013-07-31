@@ -7,7 +7,10 @@ define([
         defaults:{
             id: null,
             name: null,
-            percentage: 0
+            percentage: 0,
+            sayBuhaha: function() {
+            	return 'bu-ha-ha';
+            }
         }
     });
 
