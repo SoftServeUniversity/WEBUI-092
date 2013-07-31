@@ -7,13 +7,12 @@ define([
   'text!templates/work/WorkTasksTemplate.html',
   'text!templates/work/WorkHistoryTemplate.html',
   'text!templates/work/elementTemplate.html',
-  'text!templates/work/historyTemplate.html',
   'collections/work/WorkCollection',
   'collections/work/WorkHistoryCollection',
-  'views/work/TasksListView',
-  'views/work/HistoryListView'
+  'views/work/TasksListView'
+
 ], 
-function($, evil, _, Backbone, bootstrap, WorkTasksTemplate, WorkHistoryTemplate, elementTemplate, historyTemplate, WorkCollection, WorkHistoryCollection, TasksListView, HistoryListView){
+function($, evil, _, Backbone, bootstrap, WorkTasksTemplate, WorkHistoryTemplate, elementTemplate, WorkCollection, WorkHistoryCollection, TasksListView){
   
   var WorkTasksView = Backbone.View.extend({ 
 
@@ -42,18 +41,16 @@ function($, evil, _, Backbone, bootstrap, WorkTasksTemplate, WorkHistoryTemplate
       });
 
       var data = {
-        workname: "Чисельне ровязування динамічних багатозначних задач різноманітними методами сучасної науки",
+        workname: "Чисельне ровязування динамічних багатозначних задач різноманітними \
+        методами сучасної науки",
         studentname: "Корнелій Васильович Джміль",
-        teachername: "Тиміш Сергій Вікторович, канд. ф-м. н., доцент кафедри інформаційних систем",
-        tasksList : tasksListView.render().$el.html()
+        teachername: "Тиміш Сергій Вікторович, канд. ф-м. н., доцент кафедри інформаційних \
+        систем",
+        tasksList: tasksListView.render().$el.html()
       }
 
-      var historyListView = new HistoryListView({
-        collection:history_col
-      });
-
       var historydata = {
-        historyList : historyListView.render().$el.html()
+        historymodal: history_col.models
       }
 
       var workTemplate = _.template(WorkTasksTemplate, data);
