@@ -54,6 +54,7 @@ define([
     },
     manage_roles: function(){
       this.setActiveMenu('roles-tab');
+      var FaRolesView = new faRolesView();
     },
     manage_departments: function(){   	
       this.setActiveMenu('departments-tab');

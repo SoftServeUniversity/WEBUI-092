@@ -25,16 +25,20 @@ define([
       this.$el.html(compiledTemplate);
     },
     events: {
-      'click .open-modal' : 'openModal',
+      'click .open-modal'   : 'openModal',
       'click .close-m'      : 'closeModal',
-      'click .save'       : 'closeModal'
+      'click #new_course'   : 'newCourse'
     },
     openModal: function(){
       $('#menage-role').modal('show');
     },
     closeModal: function(){
       $('#menage-role').modal('hide');
+    },
+    newCourse: function(){
+      $('#content-table').append("<tr><td class='text-center'><input id='dept-name' type='text' size='10' placeholder='Enter Name'/></td><td class='text-center'><input id='dept-name' type='text' size='10' placeholder='Enter Progress'/></td><td class='text-center'><button class='btn btn-success' id='create_button'>Create</button></td></tr>");
     }
+
   });
   return  faCoursesListView;
 });
