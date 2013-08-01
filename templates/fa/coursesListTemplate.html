@@ -1,0 +1,39 @@
+<div class='row-fluid'>
+  <div class='span12'>
+    <div class='page-header'>
+      <h1 class='text-left'>Manage Courses</h1>
+    </div>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Percentage</th>
+          <th>Controls</th>
+        </tr>
+      </thead>
+      <tbody id='content-table'>
+        <% _.each(entities, function(entity, id){ %>
+          <tr>
+            <td class='text-center'><%= entity.get('name')%></td>
+            <td class='text-center'><%= entity.get('percentage')%></td>
+            <td class='text-center'>
+              <button class='btn open-modal' type="button" data-toggle="modal" data-target='menage-department'>Delete</button>
+              <div class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" id='menage-department'>
+                <button type="button" class="close a-little-margin-right" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <div class="modal-body">
+                  <h1 class='red'>Are you sure?</h1>
+                  <p>this may ...tra...la...la...</p>
+                </div>
+                <div class="modal-footer">
+                  <button class="btn close-m">No</button>
+                  <button class="btn btn-danger save">Yes</button>
+                </div>
+              </div>
+            </td>
+          </tr>
+        <% }); %>
+      </tbody>
+    </table>
+  </div>
+  <button class='btn btn-primary text-left' id='new_course'>New Course</button>
+</div>
