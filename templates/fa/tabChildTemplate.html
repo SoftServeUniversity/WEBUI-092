@@ -1,0 +1,41 @@
+<table class="table">
+<tr>
+<% for(var d_item in data) { %>
+	
+	 <% for ( var d_field in d_item ){ %>
+    <th>
+      <%= data[d_item].label %>
+    </th>
+    <% } %>
+
+<% } %>
+</tr>  
+  
+  
+  <% for(var item in entity) { %>	
+    <tr>
+  	  <% for ( var field in item ){ %>
+
+	     
+	     <% for(var d_item in data) { %>
+			
+			<% for ( var d_field in d_item ){ %>
+		      
+		      <%if (data[d_item]._link){ 
+		      	var link = data[d_item]._link
+		      	%>
+		      	<th>
+		      		<% console.log(entity[field][link])
+		      		%>
+		        </th>
+		      <% } %>
+		   
+		    <% } %>
+
+        <% } %>
+
+	  <% } %>
+	
+	</tr>	
+  <% }; %>
+</table>

@@ -12,6 +12,7 @@ require.config({
     jqBootstrapValidation: 'libs/jqBootstrapValidation/jqBootstrapValidation',
     bootstrap: 'libs/bootstrap/bootstrap',
     backbone: 'libs/backbone/backbone-min',
+    backbone_relational: 'libs/backbone/backbone-relational',
     reg: 'libs/reg/reg',
     highcharts: 'libs/highcharts/highcharts',
     templates: '../templates'

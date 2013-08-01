@@ -1,3 +1,10 @@
+
+/* Контейнер табів і таблиць
+ * 
+ * Цей View відповідає за створення таб-меню, і додавання до нього хендлерів, 
+ * за підвантаження і передачу в ці хендлери subView (наприклад 'TabChildDepartmentsView').
+ */
+
 define([
   'jquery',
   'underscore',
@@ -6,16 +13,27 @@ define([
   'text!templates/fa/faPageTemplate.html',
   'views/fa/DepartmentListView',
   'views/fa/DepartmentElementView',
-
   'collections/teachers/TeachersCollection',
   'collections/fa/FaDepartmentsCollection',
   'collections/faculties/FacultiesCollection',
-  'views/fa/faDepartmentsView',
-], function($, _, Backbone, MenuView, faPageTemplate, DepartmentListView, DepartmentElementView, TeachersCollection, FaDepartmentsCollection, FacultiesCollection, faDepartmentsView){   
-   
-  var FaView = Backbone.View.extend({
-    el: $('#content'),
+  'views/fa/tabParentView',
 
+  //subViews для хендлерів
+  'views/fa/tabChildDepartmentsView'
+
+], function($, _, Backbone, MenuView, faPageTemplate, DepartmentListView,
+	        DepartmentElementView, TeachersCollection, FaDepartmentsCollection,
+	        FacultiesCollection, TabParentView, TabChildDepartmentsView){   
+  
+
+  
+  var FaView = Backbone.View.extend({
+    
+    el: $('#content'),
+    el_tab_content: '#tab-content',
+    el_tab_menu: '#tab-menu',
+    
+    //Додавання активного класу до таби меню
     setActiveMenu: function(id){
     	$('.nav-tabs *').removeClass('active').find('#'+id).addClass('active');
     },
@@ -23,8 +41,8 @@ define([
     initialize: function(){
    
       var that = this;
-    
-      //set menu items for tab menu
+
+      //Додавання таби до меню
       this.menuItems = [ 
         {
           id:'departments-tab',
@@ -39,10 +57,17 @@ define([
           label: 'Manage database',    
         }
       ];
-    
-      this.render();
-      this.manage_departments()
+
+      //активна вкладка по замовчуванню
+      this.manage_departments();
+      
+      //Підписка до рендерингу subView             	
+      vent.on('tabChildSupViewLoaded', function(){
+        that.render();
+      })
     },
+    
+    
     events: {
      'click #database-tab' : 'manage_database',
      'click #roles-tab' : 'manage_roles',
@@ -55,10 +80,16 @@ define([
     manage_roles: function(){
       this.setActiveMenu('roles-tab');
     },
-    manage_departments: function(){   	
-      this.setActiveMenu('departments-tab');
-      var FaDepartmentsView = new faDepartmentsView();  
-      
+    manage_departments: function(){   
+	  var that = this;
+	  this.setActiveMenu('departments-tab');
+      this.tabParentView = new TabParentView(TabChildDepartmentsView);
+
+	  vent.on('tabChildSupViewLoaded', function(){
+        $(this.el_tab_content).html(that.tabParentView.$el.html()) 
+        
+        //console.log(that.tabParentView.$el.html())
+      })
     },
     
 
@@ -68,10 +99,20 @@ define([
       var menuView = new MenuView(data);
 
       
-      var compiledTemplate = _.template( faPageTemplate);
+      var compiledTemplate = _.template(faPageTemplate);
 
       this.$el.html(compiledTemplate);
-      $('#tab-menu').html(menuView.$el.html());
+      $(this.el_tab_menu).html(menuView.$el.html());
+      
+      $(this.el_tab_content).html(this.tabParentView.$el.html())
+      
+      
+      //console.log(this.tabParentView.$el.html())
+      
+      /*забираємо всі хендлери, щоб коли буде клік на табу не 
+       * рендерився увесь вю (див manage_departments - vent.on)
+       */
+      vent.off('tabChildSupViewLoaded');
     },
   });
   return  FaView;

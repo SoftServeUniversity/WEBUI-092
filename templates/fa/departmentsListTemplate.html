@@ -9,3 +9,41 @@
       </thead>
 		<%= elViews %>       
     </table>
+    
+
+		<% for(var d_item in data) { %>
+			
+			 <% for ( var d_field in d_item ){ %>
+		    <td>
+		      <%= entity[item].name %>
+		    </td>
+		    <% } %>
+			
+			<% if (d.type = 'selectbox') {
+		       
+		       <span class='toggle-text'>
+                    <% var teacherid = entity.get('teacher_id'); %>
+                	<% var teacher =  _.where(teachers, {id:teacherid}); %>
+                    <%= teacher[0].get('name') %>
+               </span>
+               
+		       <select class='toggle-input' name='teacher_id'>
+                <% _.each(teachers, function(teacher){ %>
+                	
+	            	<% if (teacher.get('id') == entity.get('teacher_id')) { %>
+			          <option selected value="<%= teacher.get('id') %>">
+				    <% } else { %>
+					  <option value="<%= teacher.get('id') %>">
+			        <% } %>  
+			        <%= teacher.get('name') %></option>   
+                  <% }) %>
+                </select>  
+
+		    <% } %>
+		
+		
+		</td>
+		
+    <% } %>
+	
+	

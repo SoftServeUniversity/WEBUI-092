@@ -21,6 +21,19 @@ define([
 
   ],
   function($, _, Backbone, FacultiesListView, RegistrationView, GroupProgressView, StudentProgressView, CourseProgressView,  MainFacultyView, MainDepartmentView,TeacherProgressView, MainWorkView, FaRolesView, FaDepartmentsView, taskView, TaskCollection, NotFoundView, DBView, FaView) {
+  	
+  	
+  	vent = _.extend({}, Backbone.Events);
+  	/*this is an event aggregator to create global events
+  	 *  
+  	 *  vent.on("some:event", function(){
+     *     console.log("some event was fired");
+     *  });
+     *
+     *  vent.trigger("some:event");
+    */ 
+  	
+  	
     var AppRouter = Backbone.Router.extend({
       routes: {
         ''                       : 'homeAction',
