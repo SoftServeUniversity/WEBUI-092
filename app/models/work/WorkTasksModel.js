@@ -7,7 +7,10 @@ define([
       "name": "Завдання", 
       "id": 1, 
       "percentage": null,
-      "workname": ""
+      "workname": "",
+      sayShowWorkModel: function() {
+        return 'show workmodel';
+      }
     }
   }); 
 
