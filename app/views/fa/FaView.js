@@ -13,17 +13,14 @@ define([
   'text!templates/fa/faPageTemplate.html',
   'views/fa/DepartmentListView',
   'views/fa/DepartmentElementView',
-  'collections/teachers/TeachersCollection',
   'collections/fa/FaDepartmentsCollection',
-  'collections/faculties/FacultiesCollection',
   'views/fa/tabParentView',
 
   //subViews для хендлерів
   'views/fa/tabChildDepartmentsView'
 
 ], function($, _, Backbone, MenuView, faPageTemplate, DepartmentListView,
-	        DepartmentElementView, TeachersCollection, FaDepartmentsCollection,
-	        FacultiesCollection, TabParentView, TabChildDepartmentsView){   
+	        DepartmentElementView, FaDepartmentsCollection, TabParentView, TabChildDepartmentsView){   
   
 
   
@@ -64,16 +61,22 @@ define([
       //Підписка до рендерингу subView             	
       GlobalEventBus.on('tabChildSupViewLoaded', function(){
         that.render();
-      })
+      }) 
     },
-    
-    
     events: {
+     //tab click
      'click #database-tab' : 'manage_database',
      'click #roles-tab' : 'manage_roles',
      'click #departments-tab' : 'manage_departments',
+    	
+     //table events
+     'dblclick .toggle-text'     : 'showInput',
+     //зберегти зміни, коли дані в інпуті змінено  
+     'blur .toggle-input'        : 'changed',
+     'keypress .toggle-input'    : 'changed',
     },
     
+    //tab handlers  
     manage_database: function(){
       this.setActiveMenu('database-tab');
     },
@@ -92,6 +95,39 @@ define([
         //console.log(that.tabParentView.$el.html())
       })
     },
+
+
+
+    //table handlers    
+    showInput: function(e){
+       $(e.target).css('display', 'none').prev().css('display','block');	
+    },
+    
+    //якщо змінено одне з полів існуючих елементів
+    changed: function (e){
+    	
+      if ((e.type == 'keypress' && e.keyCode == 13) || e.type == 'focusout'){
+    	
+        var field_name = $(e.target).attr('name');
+        
+        //отримуєм id моделі
+        var entity_id = $(e.target).closest('.model').attr('id');
+        var model_id = parseInt(entity_id.match(/\d+$/).join(''));	
+       
+        var model = (this.FaDepartmentsCollection.get(model_id));
+
+        model.set(field_name, $(e.target).val());
+        model.save();
+
+        $('.toggle-list .toggle-input').css('display','none');
+	    $('.toggle-list .toggle-text').css('display', 'block');
+       }   
+    },      
+    
+    
+    
+    
+    
     
 
     render: function (){
@@ -106,6 +142,21 @@ define([
       $(this.el_tab_menu).html(menuView.$el.html());
       
       $(this.el_tab_content).html(this.tabParentView.$el.html())
+      
+      
+      
+      /*
+      * якщо хтось клікнув на текстове поле і нічого в ньому не змінив,
+      * то ховаєм поле, коли юзер клікає деінде
+      */
+      $('body').on('click',function(e){
+        if ($(e.target).closest('.toggle-input').length > 0){	
+	    } else {
+	      $('.toggle-list .toggle-list').css('display','none');
+	      $('.toggle-list .toggle-list').css('display', 'block');	
+	    }
+
+      })
       
       
       //console.log(this.tabParentView.$el.html())

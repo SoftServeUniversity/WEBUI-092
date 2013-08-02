@@ -17,8 +17,13 @@ define([
     initialize: function(config){
       var data = this.buildJSON(config);
       this.render(data);
+      
+
+      
+      
 
     },
+
     
     buildJSON: function(config){
     //loop through all entities

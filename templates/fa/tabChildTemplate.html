@@ -1,5 +1,5 @@
 <table class="table">
-<tr>
+<tr class="toggle-list">
 <% for(var d_item in data) { %>
 	
 	 <% for ( var d_field in d_item ){ %>
@@ -11,7 +11,7 @@
 <% } %>
 </tr>  
   <% for(var entity in entities) { %>	
-    <tr>
+    <tr class="toggle-list model" id="<%= entities[entity]['id'] %>">
       <% for(var field in entities[entity]){ %>
           <% if ($.inArray(field, entities[entity]['visible_fields']) > -1) { %>
             
