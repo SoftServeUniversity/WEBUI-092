@@ -13,29 +13,66 @@
   
   
   <% for(var item in entity) { %>	
+  	
     <tr>
-  	  <% for ( var field in item ){ %>
-
-	     
-	     <% for(var d_item in data) { %>
-			
+  	  
+	
+	
+     <% for(var d_item in data) { %>
+		
+		
 			<% for ( var d_field in d_item ){ %>
 		      
+
+		      
+		      <% for (var field in item){ %>
+		      		<% var lin = data[d_item]._link %>
+		      		
+		      		<%if (data[d_item]._link){ 
+		      	      console.log(lin);
+		      	      console.log(entity[item][lin])
+		      	    }%>
+
 		      <%if (data[d_item]._link){ 
-		      	var link = data[d_item]._link
+		      	//console.log(lin);
+		      	//console.log(item[field])
+		      	//console.log(item[field])
 		      	%>
-		      	<th>
-		      		<% console.log(entity[field][link])
-		      		%>
-		        </th>
+		      	
+		      	<td>
+		      	    
+		      	    <%= entity[item][lin] %>
+		      		
+		        </td>
+		        
 		      <% } %>
+		
+		
+				
+		             <% var a = entity[item][lin];%>
+			     
+			     
+			     
+			     <% } %>
+		      
+		      
+		      
+		      
+		      
 		   
 		    <% } %>
 
         <% } %>
 
-	  <% } %>
+
+	
+	
+	
+	
+	
 	
 	</tr>	
+	
   <% }; %>
+  
 </table>
