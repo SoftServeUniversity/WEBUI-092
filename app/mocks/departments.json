@@ -22,7 +22,7 @@
         "teacher_id":4,
         "faculty_id":4
     },
-    {  "id" : 5,
+    {   "id" : 5,
         "name": "Кафедра комп'ютерних наук (КН)",
         "percentage": 25,
         "teacher_id":5,

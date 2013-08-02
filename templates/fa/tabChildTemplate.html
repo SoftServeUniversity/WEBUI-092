@@ -10,69 +10,53 @@
 
 <% } %>
 </tr>  
-  
-  
-  <% for(var item in entity) { %>	
-  	
+  <% for(var entity in entities) { %>	
     <tr>
-  	  
-	
-	
-     <% for(var d_item in data) { %>
-		
-		
-			<% for ( var d_field in d_item ){ %>
-		      
+      <% for(var field in entities[entity]){ %>
+          <% if ($.inArray(field, entities[entity]['visible_fields']) > -1) { %>
+            
+            <td>
 
-		      
-		      <% for (var field in item){ %>
-		      		<% var lin = data[d_item]._link %>
-		      		
-		      		<%if (data[d_item]._link){ 
-		      	      console.log(lin);
-		      	      console.log(entity[item][lin])
-		      	    }%>
+            <% //--------if it is a text field %>
+            <% if (!($.inArray(field, entities[entity]['selectbox_items']) > -1)){ %>
+            
+              <input name="<%=field %>" class='toggle-input' value="<%= entities[entity][field] %>"/>
+              <span class='toggle-text'>
+                <%=  entities[entity][field] %>
+              </span>
+            
+            <% //--------if it is a select field %>
+            <% } else { %>
+            
+              <select class='toggle-input' name="<%= field %>">
+                <% var options_array = entities[entity][field+'_collection'];
+                  
+                  for (i=0; i<options_array.length; i++){ %>
+                  	
+					<% //add 'selected' to current option %>
+                  	<%if(options_array[i]['id'] == entities[entity][field]){ 
+                  		var active_name = options_array[i]['name']; %>
+                  	  <option selected>
+                  	    <%= active_name %>
+                  	  </option>
+                  	<% } %>
+                  	
+                  	<% //print options from loaded collection %>
+                    <option value="<%= entities[entity][field] %>"><%= options_array[i]['name'] %></option>
+                  	
+                  <% } %>
+              </select> 
 
-		      <%if (data[d_item]._link){ 
-		      	//console.log(lin);
-		      	//console.log(item[field])
-		      	//console.log(item[field])
-		      	%>
-		      	
-		      	<td>
-		      	    
-		      	    <%= entity[item][lin] %>
-		      		
-		        </td>
-		        
-		      <% } %>
-		
-		
-				
-		             <% var a = entity[item][lin];%>
-			     
-			     
-			     
-			     <% } %>
-		      
-		      
-		      
-		      
-		      
-		   
-		    <% } %>
-
-        <% } %>
-
-
-	
-	
-	
-	
-	
-	
-	</tr>	
-	
+              <span class='toggle-text'>	
+                <%=  active_name %>
+              </span>
+                 
+            <% } %>
+            
+          </td>
+          
+          <% } %>
+      <% } %>
+    </tr>
   <% }; %>
-  
 </table>
