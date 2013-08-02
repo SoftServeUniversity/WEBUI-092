@@ -28,18 +28,17 @@ define([
     },
     
     render: function (){
-      //console.log('----------')
+      console.log('hello from tab-parent view')
+
       var compiledTemplate = _.template(TabParentTemplate);
       
       this.$el.empty();
      
-     console.log("tabParent - render")
-
       this.$el.append(this.TabChildSupView.$el.html())
       this.$el.append(compiledTemplate());  
       
-      //console.log(this.$el.html())
       return this;
+      GlobalEventBus.off('tabChildSupViewLoaded');
     },
     
   });

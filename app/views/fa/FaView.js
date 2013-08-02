@@ -7,6 +7,7 @@
 
 define([
   'jquery',
+  'bootstrapselect',
   'underscore',
   'backbone',
   'views/shared/MenuView',
@@ -14,29 +15,29 @@ define([
   'views/fa/DepartmentListView',
   'views/fa/DepartmentElementView',
   'collections/fa/FaDepartmentsCollection',
-  'views/fa/tabParentView',
 
   //subViews для хендлерів
-  'views/fa/tabChildDepartmentsView'
+  'views/fa/tabChildDepartmentsView',
+  'views/fa/tabChildRolesView'
 
-], function($, _, Backbone, MenuView, faPageTemplate, DepartmentListView,
-	        DepartmentElementView, FaDepartmentsCollection, TabParentView, TabChildDepartmentsView){   
+], function($, bootstrapselect, _,  Backbone, MenuView, faPageTemplate, DepartmentListView,
+	        DepartmentElementView, FaDepartmentsCollection, TabChildDepartmentsView, TabChildRolesView){   
   
 
   
   var FaView = Backbone.View.extend({
     
     el: $('#content'),
-    el_tab_content: '#tab-content',
     el_tab_menu: '#tab-menu',
-    
+    el_tab_content: '#tab-content',
+
     //Додавання активного класу до таби меню
     setActiveMenu: function(id){
     	$('.nav-tabs *').removeClass('active').find('#'+id).addClass('active');
     },
     
     initialize: function(){
-   
+      
       var that = this;
 
       //Додавання таби до меню
@@ -55,13 +56,15 @@ define([
         }
       ];
 
-      //активна вкладка по замовчуванню
-      this.manage_departments();
+
       
       //Підписка до рендерингу subView             	
-      GlobalEventBus.on('tabChildSupViewLoaded', function(){
-        that.render();
+      GlobalEventBus.on('tabChildSupViewLoaded', function(tabContent){
+        that.render(tabContent);
       }) 
+          //активна вкладка по замовчуванню
+      this.manage_departments();
+    
     },
     events: {
      //tab click
@@ -81,19 +84,15 @@ define([
       this.setActiveMenu('database-tab');
     },
     manage_roles: function(){
-      this.setActiveMenu('roles-tab');
-      var FaRolesView = new faRolesView();
+	  var that = this;
+	  this.setActiveMenu('roles-tab');
+      this.tabParentView = new TabChildRolesView();
+
     },
     manage_departments: function(){   
 	  var that = this;
 	  this.setActiveMenu('departments-tab');
-      this.tabParentView = new TabParentView(TabChildDepartmentsView);
-
-	  GlobalEventBus.on('tabChildSupViewLoaded', function(){
-        $(this.el_tab_content).html(that.tabParentView.$el.html()) 
-        
-        //console.log(that.tabParentView.$el.html())
-      })
+      this.tabParentView = new TabChildDepartmentsView();
     },
 
 
@@ -114,10 +113,10 @@ define([
         var entity_id = $(e.target).closest('.model').attr('id');
         var model_id = parseInt(entity_id.match(/\d+$/).join(''));	
        
-        var model = (this.FaDepartmentsCollection.get(model_id));
-
-        model.set(field_name, $(e.target).val());
-        model.save();
+        //var model = (this.FaDepartmentsCollection.get(model_id));
+//
+        //model.set(field_name, $(e.target).val());
+        //model.save();
 
         $('.toggle-list .toggle-input').css('display','none');
 	    $('.toggle-list .toggle-text').css('display', 'block');
@@ -130,20 +129,17 @@ define([
     
     
 
-    render: function (){
+    render: function (tabContent){
       var that = this;
       data = this.menuItems;
       var menuView = new MenuView(data);
 
       
       var compiledTemplate = _.template(faPageTemplate);
-
       this.$el.html(compiledTemplate);
+      
       $(this.el_tab_menu).html(menuView.$el.html());
-      
-      $(this.el_tab_content).html(this.tabParentView.$el.html())
-      
-      
+      $(this.el_tab_content).html(tabContent)
       
       /*
       * якщо хтось клікнув на текстове поле і нічого в ньому не змінив,
@@ -152,8 +148,8 @@ define([
       $('body').on('click',function(e){
         if ($(e.target).closest('.toggle-input').length > 0){	
 	    } else {
-	      $('.toggle-list .toggle-list').css('display','none');
-	      $('.toggle-list .toggle-list').css('display', 'block');	
+	      $('.toggle-list .toggle-input').css('display','none');
+	      $('.toggle-list .toggle-text').css('display', 'block');	
 	    }
 
       })
@@ -164,7 +160,15 @@ define([
       /*забираємо всі хендлери, щоб коли буде клік на табу не 
        * рендерився увесь вю (див manage_departments - GlobalEventBus.on)
        */
+     //GlobalEventBus.off('tabChildSupViewLoaded');
+     
       GlobalEventBus.off('tabChildSupViewLoaded');
+      GlobalEventBus.on('tabChildSupViewLoaded', function(tabContent){
+         $(that.el_tab_content).html(tabContent) 
+         $('#content select').selectpicker()      
+      })
+      
+      $('#content select').selectpicker() 
     },
   });
   return  FaView;

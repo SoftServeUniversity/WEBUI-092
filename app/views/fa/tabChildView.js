@@ -15,26 +15,30 @@ define([
     tagName: 'div',
     
     initialize: function(config){
+    	      
+
       var data = this.buildJSON(config);
+    
       this.render(data);
-      
-
-      
-      
-
+     
     },
 
     
     buildJSON: function(config){
+      var json_data=config.entity.toJSON();
     //loop through all entities
       var rel = {};
       var visible_fields = [];
+      var labels = [];
         //loop through data
-        for (i=0; i<config.data.length; i++) {  
+        for (i=0; i<config.data.length; i++) {
+
+          var rel_link = config.data[i]['_link'];
+          var label = config.data[i]['label']; 
+           
           if (config.data[i]['src']){
              //console.log(config.data[i]['src'])
-             var rel_link = config.data[i]['_link'];
-               
+              
              var rel_src = config.data[i]['src'];
                
              var obj = {};
@@ -43,39 +47,45 @@ define([
                
              //array of foreign keys, mapped to collections
              rel[rel_link]=obj;
-               
+            
           }
           
+          labels.push(label);
           visible_fields.push(config.data[i]['_link'])
         }
 
-        for (a=0; a<config.entity.length; a++){
-           config.entity[a]['selectbox_items'] = []  
+        
+        for (a=0; a<json_data.length; a++){
+           json_data[a]['selectbox_items'] = [];  
 
-          for (var e_obj in config.entity[a]){
+          for (var e_obj in json_data[a]){
             if (e_obj in rel){    
-              //console.log(rel[e_obj]);
-              config.entity[a]['selectbox_items'].push(e_obj);
-              config.entity[a][e_obj+'_collection'] = rel[e_obj];
-              config.entity[a]['visible_fields'] = visible_fields;
+
+              json_data[a]['selectbox_items'].push(e_obj);
+              json_data[a][e_obj+'_collection'] = rel[e_obj];
             }
+            
+            json_data[a]['visible_fields'] = visible_fields;
+            json_data[a]['labels'] = labels;
+           
           }
 
         }
         
-        data = {
-         entities: config.entity
-        };
-        return data;
-      
+        var data = {};
+        data.entities = json_data;
+
+        return data; 
     },
     
     
+    
     render: function (data){
-      console.log(data);
-      //console.log(config)
+      var that = this;
       var compiledTemplate = _.template(tabChildTemplate, data);
-      this.$el.prepend(compiledTemplate);
+      
+     
+      that.$el.html(compiledTemplate);
       
       return this;
     },

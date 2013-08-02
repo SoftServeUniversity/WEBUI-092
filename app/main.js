@@ -11,6 +11,7 @@ require.config({
     underscore: 'libs/underscore/underscore-min',
     jqBootstrapValidation: 'libs/jqBootstrapValidation/jqBootstrapValidation',
     bootstrap: 'libs/bootstrap/bootstrap',
+    bootstrapselect: 'libs/bootstrap/bootstrap-select.min',
     backbone: 'libs/backbone/backbone-min',
     backbone_relational: 'libs/backbone/backbone-relational',
     reg: 'libs/reg/reg',

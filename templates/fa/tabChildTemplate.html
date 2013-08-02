@@ -1,26 +1,24 @@
 <table class="table">
-<tr class="toggle-list">
-<% for(var d_item in data) { %>
-	
-	 <% for ( var d_field in d_item ){ %>
-    <th>
-      <%= data[d_item].label %>
-    </th>
-    <% } %>
-
-<% } %>
-</tr>  
-  <% for(var entity in entities) { %>	
+  <% var first = true; %>
+  
+  
+  <% for(var entity in entities) { %>
+  	<% if (first){ %>
+  	  <tr>
+  	  	<% for(i=0; i<entities[entity]['labels'].length; i++){ %>
+  	    	<th class="text-center"><%= entities[entity]['labels'][i] %></th>
+  	    <% } %>
+  	  </tr>
+  	<% } %>	
+  	
     <tr class="toggle-list model" id="<%= entities[entity]['id'] %>">
       <% for(var field in entities[entity]){ %>
           <% if ($.inArray(field, entities[entity]['visible_fields']) > -1) { %>
-            
             <td>
 
             <% //--------if it is a text field %>
             <% if (!($.inArray(field, entities[entity]['selectbox_items']) > -1)){ %>
-            
-              <input name="<%=field %>" class='toggle-input' value="<%= entities[entity][field] %>"/>
+              <input type="text" name="<%=field %>" class='toggle-input input-xlarge' value="<%= entities[entity][field] %>"/>
               <span class='toggle-text'>
                 <%=  entities[entity][field] %>
               </span>
@@ -28,7 +26,7 @@
             <% //--------if it is a select field %>
             <% } else { %>
             
-              <select class='toggle-input' name="<%= field %>">
+              <select class='toggle-input input-xlarge' name="<%= field %>">
                 <% var options_array = entities[entity][field+'_collection'];
                   
                   for (i=0; i<options_array.length; i++){ %>
@@ -58,5 +56,25 @@
           <% } %>
       <% } %>
     </tr>
+    
+  <% first = false; %>
   <% }; %>
 </table>
+
+  <div class='span12 text-left departments-buttons'>
+    <button class='btn btn-primary' id='newDepartment'>New Department</button>
+    <button class='btn open-modal-import' type="button" data-toggle="modal" data-target='menage-department-import'>Import (coma seporated)</button>
+    <div class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" id='menage-department-import'>
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h3>Import Departments</h3>
+      </div>
+      <div class="modal-body">
+        <p class='a-litle-hint'>Type in new departments, and separate them by commas. For example "DepartmentName DepartmentHead DepartmentFaculty, AnotherDepartmentName AnotherDepartmentHead......., and so on."</p>
+        <p><textarea rows="10" cols="45" name="text"></textarea></p>
+      </div>
+      <div class="modal-footer">
+        <button class="btn close-m">Import</button>
+      </div>
+    </div>
+  </div>

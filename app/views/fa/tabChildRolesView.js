@@ -4,44 +4,38 @@
  * і викликає з цими параметрами tabChildView
  */
 
-
 define([
+	
   'jquery',
   'underscore',
   'backbone',
-  'views/fa/tabChildView',
-  'models/department/DepartmentModel',
-
-  'collections/departments/DepartmentsCollection',
-  'collections/faculties/FacultiesCollection',
-  'collections/teachers/TeachersCollection'
-
-], function($, _, Backbone, TabChildView, DepartmentModel, DepartmentsCollection, FacultiesCollection, TeachersCollection){   
-   
-  var TabChildDepartmentsView = Backbone.View.extend({
+  'collections/fa/FaRolesCollection',
+  'views/fa/tabChildView'
+], function($, _, Backbone, FaRolesCollection, TabChildView){   
+	 
+  var tabChildRolesView = Backbone.View.extend({
 
 
     tagName: 'div',
 
     setConfig: function(){
+    	
       var config = {
-        entity: this.departments_col,
+        entity: this.faRolesCollection,
         data: [{
             _link: 'name',
-            label:'Department Name',
+            label:'Role Name',
             type:'text'
           },
           {
-            _link: 'teacher_id',
-            label: 'Department Head',
-            type:'select',
-            src:this.teachers_col.toJSON()
+            _link: 'role',
+            label: 'Role',
+            type:'text'
           },
           {
-            _link: 'faculty_id',
-            label: 'Faculty Name',
-            type:'select',
-            src:this.faculties_col.toJSON()
+            _link: 'email',
+            label: 'Email',
+            type:'text'
           }
         ]
       };
@@ -52,17 +46,15 @@ define([
     loadData: function(){
       var that = this; 
       
-      this.departments_col = new DepartmentsCollection();
-      this.faculties_col = new FacultiesCollection();
-      this.teachers_col = new TeachersCollection();
-      
-      $.when(this.departments_col.fetch() && this.faculties_col.fetch() && this.teachers_col.fetch()).then(function(){
+      this.faRolesCollection = new FaRolesCollection();
+
+      $.when(this.faRolesCollection.fetch()).then(function(){
         that.trigger('onDataLoaded');
       })
     },
 
 
-    initialize: function(){         
+    initialize: function(){        
       var that = this;
       
       that.loadData();  
@@ -77,7 +69,7 @@ define([
       var that=this;
         
       //console.log(that.childView.$el.html());
-      var htmlContent = that.childView.$el.html()
+      var htmlContent = that.childView.$el.html();
       
       //when everything has loaded - trigger global event
       GlobalEventBus.trigger('tabChildSupViewLoaded', htmlContent);
@@ -86,6 +78,16 @@ define([
   
   });
   
-  return  TabChildDepartmentsView;
+  return  tabChildRolesView;
   
 });
+
+
+
+
+
+
+
+
+
+
