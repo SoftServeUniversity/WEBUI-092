@@ -21,7 +21,7 @@ define([
       this.TabChildSupView = new tabChildSupView();
       
       //subscribe to rendering of child Super View 
-      vent.on('tabChildSupViewLoaded', function(){
+      GlobalEventBus.on('tabChildSupViewLoaded', function(){
       	that.render();
       })
       
@@ -33,6 +33,8 @@ define([
       
       this.$el.empty();
      
+     console.log("tabParent - render")
+
       this.$el.append(this.TabChildSupView.$el.html())
       this.$el.append(compiledTemplate());  
       

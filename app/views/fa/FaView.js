@@ -62,7 +62,7 @@ define([
       this.manage_departments();
       
       //Підписка до рендерингу subView             	
-      vent.on('tabChildSupViewLoaded', function(){
+      GlobalEventBus.on('tabChildSupViewLoaded', function(){
         that.render();
       })
     },
@@ -86,7 +86,7 @@ define([
 	  this.setActiveMenu('departments-tab');
       this.tabParentView = new TabParentView(TabChildDepartmentsView);
 
-	  vent.on('tabChildSupViewLoaded', function(){
+	  GlobalEventBus.on('tabChildSupViewLoaded', function(){
         $(this.el_tab_content).html(that.tabParentView.$el.html()) 
         
         //console.log(that.tabParentView.$el.html())
@@ -111,9 +111,9 @@ define([
       //console.log(this.tabParentView.$el.html())
       
       /*забираємо всі хендлери, щоб коли буде клік на табу не 
-       * рендерився увесь вю (див manage_departments - vent.on)
+       * рендерився увесь вю (див manage_departments - GlobalEventBus.on)
        */
-      vent.off('tabChildSupViewLoaded');
+      GlobalEventBus.off('tabChildSupViewLoaded');
     },
   });
   return  FaView;

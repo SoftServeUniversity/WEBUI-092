@@ -31,7 +31,7 @@ define([
      *
      *  vent.trigger("some:event");
     */   	
-  	vent = _.extend({}, Backbone.Events);
+  	GlobalEventBus = _.extend({}, Backbone.Events);
 
   	
 
