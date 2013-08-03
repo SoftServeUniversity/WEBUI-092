@@ -30,6 +30,7 @@ define([
   var FaView = Backbone.View.extend({
     
     el: $('#content'),
+    el_admin_content: '#admin-content',
     el_tab_menu: '#tab-menu',
     el_tab_content: '#tab-content',
 
@@ -98,10 +99,11 @@ define([
     manage_database: function(){
       this.setActiveMenu('database-tab');
       var tabDbView = new TabDbView();
-      
       $(this.el_tab_content).html(tabDbView.$el.html())
-      
+      this.hideAdminButtons();
     },
+    
+    
     manage_roles: function(){
 	  var that = this;
 	  this.setActiveMenu('roles-tab');
@@ -116,20 +118,27 @@ define([
 
 
     showCreateNew: function(){
-    	var that = this;        if ($('#new_entity').length < 1){
-	    	var newElementView = new NewElementView(that.config);
+      var that = this;      if ($('#new_entity').length < 1){
+	    var newElementView = new NewElementView(that.config);
 	    	
-	    	$(that.el_tab_content + ' table tbody').append(newElementView.$el.html())
-	    	var that = this;
-	    	var newEntity = new that.config.model();
-	    	$('#content select').selectpicker() 
-    	} else {
-    		$('#new_entity').remove();
-    	}    
+	    $(that.el_tab_content + ' table tbody').append(newElementView.$el.html())
+	    var that = this;
+	    var newEntity = new that.config.model();
+	      $('#content select').selectpicker() 
+      } else {
+    	$('#new_entity').remove();
+      }    
     },
     
     showInput: function(e){
-       $(e.target).css('display', 'none').prev().css('display','block');	
+      $(e.target).css('display', 'none').prev().css('display','block');	
+    },
+    
+    hideAdminButtons: function(){
+      $('.admin-buttons').css('display', 'none')
+    },
+    showAdminButtons: function(){
+      $('.admin-buttons').css('display', 'block')
     },
     
     //якщо змінено одне з полів існуючих елементів
@@ -196,11 +205,11 @@ define([
        */     
       GlobalEventBus.off('tabChildSupViewLoaded');
       GlobalEventBus.on('tabChildSupViewLoaded', function(tabContent, config){
-      	 that.config = config;
-         $(that.el_tab_content).html(tabContent);
-         
-         that.trigger('onChildConfigLoaded');
-         $('#content select').selectpicker()      
+        that.config = config;
+        $(that.el_tab_content).html(tabContent);
+        that.showAdminButtons();
+        that.trigger('onChildConfigLoaded');
+        $('#content select').selectpicker()      
       })
       
       $('#content select').selectpicker() 

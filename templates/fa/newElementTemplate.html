@@ -1,21 +1,26 @@
   <% var first = true %>
   <% for(var entity in entities) { %>
   	<% if(first == true){ %>
-  	<tr id="new_entity">
+  	  <tr id="new_entity">
   	  
-      <% for(var field in entities[entity]){ %>
+      
+      
+      <% var visible_fields = entities[0].visible_fields %>  
+      <% for (t=0; t<visible_fields.length; t++){ 
+        var field = visible_fields[t]; %>
+         
           <% if ($.inArray(field, entities[entity]['visible_fields']) > -1) { %>
             <td>
 
             <% //--------if it is a text field %>
             <% if (!($.inArray(field, entities[entity]['selectbox_items']) > -1)){ %>
-              <input type="text" name="<%=field %>" class='toggle-input input-large' value="<%= entities[entity][field] %>"/>
+              <input type="text" name="<%=field %>" class='toggle-input input-xlarge' value="<%= entities[entity][field] %>"/>
 
             
             <% //--------if it is a select field %>
             <% } else { %>
             
-              <select class='toggle-input input-large' name="<%= field %>">
+              <select class='toggle-input input-xlarge' name="<%= field %>">
                 <% var options_array = entities[entity][field+'_collection'];
                   
                   for (i=0; i<options_array.length; i++){ %>
@@ -27,14 +32,12 @@
               </select> 
                  
             <% } %>
-            
-          </td>
-          
+                      
           <% } %>
-      <% } %>
-          <td>
-          	<button class='btn btn-success' id='create_button'>Create</button>
-          </td>
+        <% } %>
+        <td>
+          <button class='btn btn-success' id='create_button'>Create</button>
+        </td>
       <% } %>
       
     </tr>
