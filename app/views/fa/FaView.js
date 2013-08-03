@@ -12,16 +12,18 @@ define([
   'backbone',
   'views/shared/MenuView',
   'text!templates/fa/faPageTemplate.html',
-  'views/fa/DepartmentListView',
-  'views/fa/DepartmentElementView',
-  'collections/fa/FaDepartmentsCollection',
 
+  'collections/fa/FaDepartmentsCollection',
+  'views/fa/tabDbView',
+ 
+  'views/fa/newElementView',
+  
   //subViews для хендлерів
   'views/fa/tabChildDepartmentsView',
   'views/fa/tabChildRolesView'
 
-], function($, bootstrapselect, _,  Backbone, MenuView, faPageTemplate, DepartmentListView,
-	        DepartmentElementView, FaDepartmentsCollection, TabChildDepartmentsView, TabChildRolesView){   
+], function($, bootstrapselect, _,  Backbone, MenuView, faPageTemplate,
+	        FaDepartmentsCollection, TabDbView, NewElementView, TabChildDepartmentsView, TabChildRolesView){   
   
 
   
@@ -37,7 +39,6 @@ define([
     },
     
     initialize: function(){
-      
       var that = this;
 
       //Додавання таби до меню
@@ -56,11 +57,17 @@ define([
         }
       ];
 
-
+      this.on('onChildConfigLoaded', function(){
+      	//now we have child config in that.config
+      	$('.new-button').html(that.config.buttons['create']);
+      })
       
       //Підписка до рендерингу subView             	
-      GlobalEventBus.on('tabChildSupViewLoaded', function(tabContent){
+      GlobalEventBus.on('tabChildSupViewLoaded', function(tabContent, config){
+      	that.config = config;
         that.render(tabContent);
+        that.trigger('onChildConfigLoaded');
+
       }) 
           //активна вкладка по замовчуванню
       this.manage_departments();
@@ -77,27 +84,50 @@ define([
      //зберегти зміни, коли дані в інпуті змінено  
      'blur .toggle-input'        : 'changed',
      'keypress .toggle-input'    : 'changed',
+     
+     //modal windows
+     'click .open-modal' : 'openModal',
+     'click .close-m'      : 'closeModal',
+     'click .save'       : 'closeModal',
+     'click .open-modal-import'  : 'openModalImport',
+     'click #newDepartment'      : 'showCreateNew', 
+     'click #create_button'      : 'saveData'//,
     },
     
     //tab handlers  
     manage_database: function(){
       this.setActiveMenu('database-tab');
+      var tabDbView = new TabDbView();
+      
+      $(this.el_tab_content).html(tabDbView.$el.html())
+      
     },
     manage_roles: function(){
 	  var that = this;
 	  this.setActiveMenu('roles-tab');
-      this.tabParentView = new TabChildRolesView();
+      this.tabView = new TabChildRolesView();
 
     },
     manage_departments: function(){   
 	  var that = this;
 	  this.setActiveMenu('departments-tab');
-      this.tabParentView = new TabChildDepartmentsView();
+      this.tabView = new TabChildDepartmentsView();
     },
 
 
-
-    //table handlers    
+    showCreateNew: function(){
+    	var that = this;        if ($('#new_entity').length < 1){
+	    	var newElementView = new NewElementView(that.config);
+	    	
+	    	$(that.el_tab_content + ' table tbody').append(newElementView.$el.html())
+	    	var that = this;
+	    	var newEntity = new that.config.model();
+	    	$('#content select').selectpicker() 
+    	} else {
+    		$('#new_entity').remove();
+    	}    
+    },
+    
     showInput: function(e){
        $(e.target).css('display', 'none').prev().css('display','block');	
     },
@@ -110,23 +140,27 @@ define([
         var field_name = $(e.target).attr('name');
         
         //отримуєм id моделі
-        var entity_id = $(e.target).closest('.model').attr('id');
-        var model_id = parseInt(entity_id.match(/\d+$/).join(''));	
-       
-        //var model = (this.FaDepartmentsCollection.get(model_id));
-//
-        //model.set(field_name, $(e.target).val());
-        //model.save();
-
+        var model_id = $(e.target).closest('.model').attr('model_id'); 
+        
         $('.toggle-list .toggle-input').css('display','none');
 	    $('.toggle-list .toggle-text').css('display', 'block');
        }   
     },      
-    
-    
-    
-    
-    
+
+    openModal: function(e){
+      modal_id = ($(e.target).attr('data-target'));
+      $('#'+modal_id).modal('show');
+    },
+    closeModal: function(){
+      $('#manage-department').modal('hide');
+      $('#manage-department-import').modal('hide');
+    },
+    openModalImport: function(){
+      $('#manage-department-import').modal('show');
+    },
+    saveData: function(){
+    	alert('saving dont work')
+    },
     
 
     render: function (tabContent){
@@ -159,12 +193,13 @@ define([
       
       /*забираємо всі хендлери, щоб коли буде клік на табу не 
        * рендерився увесь вю (див manage_departments - GlobalEventBus.on)
-       */
-     //GlobalEventBus.off('tabChildSupViewLoaded');
-     
+       */     
       GlobalEventBus.off('tabChildSupViewLoaded');
-      GlobalEventBus.on('tabChildSupViewLoaded', function(tabContent){
-         $(that.el_tab_content).html(tabContent) 
+      GlobalEventBus.on('tabChildSupViewLoaded', function(tabContent, config){
+      	 that.config = config;
+         $(that.el_tab_content).html(tabContent);
+         
+         that.trigger('onChildConfigLoaded');
          $('#content select').selectpicker()      
       })
       

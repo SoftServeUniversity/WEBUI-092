@@ -9,9 +9,12 @@ define([
   'jquery',
   'underscore',
   'backbone',
+  
+  'models/fa/FaRoleModel',
   'collections/fa/FaRolesCollection',
   'views/fa/tabChildView'
-], function($, _, Backbone, FaRolesCollection, TabChildView){   
+  
+], function($, _, Backbone, FaRoleModel, FaRolesCollection, TabChildView){   
 	 
   var tabChildRolesView = Backbone.View.extend({
 
@@ -21,7 +24,8 @@ define([
     setConfig: function(){
     	
       var config = {
-        entity: this.faRolesCollection,
+      	model: FaRoleModel,
+        col: this.faRolesCollection,
         data: [{
             _link: 'name',
             label:'Role Name',
@@ -37,7 +41,10 @@ define([
             label: 'Email',
             type:'text'
           }
-        ]
+        ],
+        buttons: {
+        	create: 'New Role'
+        }
       };
       
       return config;
@@ -72,7 +79,7 @@ define([
       var htmlContent = that.childView.$el.html();
       
       //when everything has loaded - trigger global event
-      GlobalEventBus.trigger('tabChildSupViewLoaded', htmlContent);
+      GlobalEventBus.trigger('tabChildSupViewLoaded', htmlContent, that.config);
       return this;
     }
   

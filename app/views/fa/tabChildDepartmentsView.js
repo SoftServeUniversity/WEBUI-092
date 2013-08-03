@@ -25,7 +25,8 @@ define([
 
     setConfig: function(){
       var config = {
-        entity: this.departments_col,
+      	model: DepartmentModel,
+        col: this.departments_col,
         data: [{
             _link: 'name',
             label:'Department Name',
@@ -43,7 +44,10 @@ define([
             type:'select',
             src:this.faculties_col.toJSON()
           }
-        ]
+        ],
+        buttons: {
+        	create: 'New Department'
+        }
       };
       
       return config;
@@ -80,7 +84,7 @@ define([
       var htmlContent = that.childView.$el.html()
       
       //when everything has loaded - trigger global event
-      GlobalEventBus.trigger('tabChildSupViewLoaded', htmlContent);
+      GlobalEventBus.trigger('tabChildSupViewLoaded', htmlContent, that.config);
       return this;
     }
   

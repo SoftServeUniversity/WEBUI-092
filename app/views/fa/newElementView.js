@@ -7,10 +7,11 @@ define([
   'jquery',
   'underscore',
   'backbone',
-  'text!templates/fa/tabChildTemplate.html'
-], function($, _, Backbone, tabChildTemplate){   
+  'text!templates/fa/newElementTemplate.html'
+  
+], function($, _, Backbone, newElementTemplate){   
    
-  var TabChildView = Backbone.View.extend({
+  var NewElementView = Backbone.View.extend({
     
     tagName: 'div',
     
@@ -52,6 +53,7 @@ define([
           labels.push(label);
           visible_fields.push(config.data[i]['_link'])
         }
+
         
         for (a=0; a<json_data.length; a++){
            json_data[a]['selectbox_items'] = [];  
@@ -82,7 +84,7 @@ define([
       var that = this;
       
       
-      var compiledTemplate = _.template(tabChildTemplate, data);
+      var compiledTemplate = _.template(newElementTemplate, data);
 
       that.$el.html(compiledTemplate);
       
@@ -91,6 +93,6 @@ define([
     
   });
   
-  return  TabChildView;
+  return NewElementView;
   
 });
