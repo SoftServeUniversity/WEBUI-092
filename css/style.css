@@ -22,6 +22,7 @@ header{
 	margin-bottom:40px;
 	padding-bottom:1px;
 }
+
 footer {
 	border-top:1px solid #ddd;
 }
@@ -37,8 +38,9 @@ h1 {
 a:hover{
 	color:#0088CC;
 }
-
-.list .toggle-input {
+#tab-content td{ 
+}
+.toggle-list .toggle-input {
 	display:none;
 	margin-bottom:0px;
 
@@ -339,4 +341,13 @@ div.help-block ul li{
 .nav-tabs .active {
     background:#EEEEEE;	
 }
-
+#tab-content table td,
+#tab-content table th{
+	border:none;
+}
+#tab-content table tr:first-child{
+	border-top:none;
+}
+#tab-content table tr{
+	border-top: 1px solid #DDDDDD;
+}

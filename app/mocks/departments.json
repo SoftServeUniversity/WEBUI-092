@@ -1,41 +1,59 @@
 [
     {   "id":1,
         "name": "Кафедра прикладної математики",
-        "percentage": 25
+        "percentage": 25,
+        "teacher_id":1,
+        "faculty_id":1
     },
     {   "id":2,
         "name": "Кафедра геодезії",
-        "percentage": 80
+        "percentage": 80,
+        "teacher_id":2,
+        "faculty_id":2
     },
     {   "id":3,
-        "name": "Кафедра міжнародних відносин"
+        "name": "Кафедра міжнародних відносин",
+        "teacher_id":3,
+        "faculty_id":3
     },
     {   "id":4,
         "name": "Кафедра економіки",
-        "percentage": 100
+        "percentage": 100,
+        "teacher_id":4,
+        "faculty_id":4
     },
-    {  "id" : "5",
+    {   "id" : 5,
         "name": "Кафедра комп'ютерних наук (КН)",
-        "percentage": "25"
+        "percentage": 25,
+        "teacher_id":5,
+        "faculty_id":5
     },
     {
-        "id" : "6",
+        "id" : 6,
         "name": "Кафедра комп'ютерної інженерії (КІ)",
-        "percentage": "80"
+        "percentage": 80,
+        "teacher_id":6,
+        "faculty_id":6
     },
     {
-        "id" : "7",
+        "id" : 7,
         "name": "Кафедра програмної інженерії (ПІ)",
-        "percentage": "60"
+        "percentage": 60,
+        "teacher_id":7,
+        "faculty_id":7
     },
     {
-        "id" : "8",
+        "id" : 8,
         "name": "Кафедра математичних методів в інженерії (МН)",
-        "percentage": "100"
+        "percentage": 100,
+        "teacher_id":8,
+        "faculty_id":8
     },
     {
-        "id" : "9",
+        "id" : 9,
         "name": "Кафедра інформатики і математичного моделювання (ММ)",
-        "percentage": "50"
+        "percentage": 50,
+        "teacher_id":9,
+        "faculty_id":9
     }
 ]
