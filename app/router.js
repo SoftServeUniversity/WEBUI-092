@@ -11,16 +11,15 @@ define([
   'views/department/MainDepartmentView',
   'views/teacher/TeacherProgressView',
   'views/work/MainWorkView',
-  'views/fa/faRolesView',
-  'views/fa/faDepartmentsView',
   'views/task/taskView',
   'collections/task/TaskCollection',
   'views/notFoundView',
-  'views/fa/DBView',
   'views/fa/FaView',
-  'views/fa/faCoursesListView'
 
-  ], function($, _, Backbone, FacultiesListView, RegistrationView, GroupProgressView, StudentProgressView, CourseProgressView,  MainFacultyView, MainDepartmentView,TeacherProgressView, MainWorkView, FaRolesView, FaDepartmentsView, taskView, TaskCollection, NotFoundView, DBView, FaView, faCoursesListView) {
+  ], function($, _, Backbone, FacultiesListView, RegistrationView, GroupProgressView,
+  	          StudentProgressView, CourseProgressView,  MainFacultyView, MainDepartmentView,
+  	          TeacherProgressView, MainWorkView, taskView, TaskCollection, NotFoundView, FaView
+             ) {
 
 
   	/*this is an event aggregator to create global events
@@ -46,10 +45,6 @@ define([
         'department/:id'         : 'departmentAction',
         'work/:id'               : 'workShowAction',
         'fa'                     : 'viewFacultyAdminPage',
-        'fa/menage_roles'        : 'faRoles',
-        'fa/menage_departments'  : 'faMenageDepartments',
-        'fa/manage_db'           : 'faManageDB',
-        'fa/manage_courses'      : 'faManageCourses',
         'work/:id/:taskid'       : 'taskShow',
       
         // Default
@@ -106,7 +101,7 @@ define([
         teacherProgressView.render();
       });
 
-      app_router.on('route:faRoles', function (actions){
+      /*app_router.on('route:faRoles', function (actions){
         var faRolesView = new FaRolesView();
         faRolesView.render();
       });
@@ -123,7 +118,7 @@ define([
       app_router.on('route:faManageCourses', function (actions){
         var CoursesView = new faCoursesListView();
         CoursesView.render();
-      });
+      });*/
  
       app_router.on('route:taskShow', function (taskid, id) {
 

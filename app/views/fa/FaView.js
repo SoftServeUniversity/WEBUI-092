@@ -12,18 +12,15 @@ define([
   'backbone',
   'views/shared/MenuView',
   'text!templates/fa/faPageTemplate.html',
-
-  'collections/fa/FaDepartmentsCollection',
   'views/fa/tabDbView',
- 
-  'views/fa/newElementView',
+  'views/fa/newElementView',  
   
   //subViews для хендлерів
   'views/fa/tabChildDepartmentsView',
   'views/fa/tabChildRolesView'
-
+  
 ], function($, bootstrapselect, _,  Backbone, MenuView, faPageTemplate,
-	        FaDepartmentsCollection, TabDbView, NewElementView, TabChildDepartmentsView, TabChildRolesView){   
+	        TabDbView, NewElementView, TabChildDepartmentsView, TabChildRolesView){   
   
 
   

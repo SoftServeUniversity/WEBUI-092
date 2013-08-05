@@ -49,7 +49,8 @@ define([
       
       return config;
     },
-    
+
+
     loadData: function(){
       var that = this; 
       
@@ -69,7 +70,7 @@ define([
       	that.config = that.setConfig();
       	that.childView = new TabChildView(that.config);
         that.render();
-      });     
+      });   
     },
 
     render: function (){
