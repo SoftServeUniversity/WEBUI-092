@@ -19,10 +19,11 @@ define([
   'views/fa/tabChildDepartmentsView',
   'views/fa/tabChildRolesView',
   'views/fa/tabChildCoursesView',
-  'views/fa/tabChildGroupsView'
+  'views/fa/tabChildGroupsView', 
+  'views/fa/tabDbView'
   
 ], function($, bootstrapselect, _,  Backbone, MenuView, faPageTemplate,
-	        TabDbView, NewElementView, TabChildDepartmentsView, TabChildRolesView, TabChildCoursesView, TabChildGroupsView){   
+	        TabDbView, NewElementView, TabChildDepartmentsView, TabChildRolesView, TabChildCoursesView, TabChildGroupsView, TabDbView){   
   
 
   
@@ -107,14 +108,13 @@ define([
     },
     
     //tab handlers  
-    manage_database: function(){
+    /*manage_database: function(){
       this.setActiveMenu('database-tab');
       var tabDbView = new TabDbView();
       $(this.el_tab_content).html(tabDbView.$el.html())
       this.hideAdminButtons();
-    },
-    
-    
+    },*/
+      
     manage_roles: function(){
 	  var that = this;
 	  this.setActiveMenu('roles-tab');
@@ -136,7 +136,11 @@ define([
     this.setActiveMenu('groups-tab');
       this.tabView = new TabChildGroupsView();
     },
-
+    manage_database: function(){   
+    var that = this;
+    this.setActiveMenu('database-tab');
+      this.tabView = new TabDbView();
+    },
 
     showCreateNew: function(){
       var that = this;
