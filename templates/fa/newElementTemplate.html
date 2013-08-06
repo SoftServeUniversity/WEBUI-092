@@ -14,7 +14,7 @@
 
             <% //--------if it is a text field %>
             <% if (!($.inArray(field, entities[entity]['selectbox_items']) > -1)){ %>
-              <input type="text" name="<%=field %>" class='toggle-input input-xlarge' value="<%= entities[entity][field] %>"/>
+              <input id="name_field" type="text" name="<%=field %>" class='toggle-input input-xlarge' value="<%= entities[entity][field] %>"/>
 
             
             <% //--------if it is a select field %>
