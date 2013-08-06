@@ -1,0 +1,25 @@
+<h1>Listing faculties</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>User</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @faculties.each do |faculty| %>
+  <tr>
+    <td><%= faculty.name %></td>
+    <td><%= faculty.user_id %></td>
+    <td><%= link_to 'Show', faculty %></td>
+    <td><%= link_to 'Edit', edit_faculty_path(faculty) %></td>
+    <td><%= link_to 'Destroy', faculty, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Faculty', new_faculty_path %>

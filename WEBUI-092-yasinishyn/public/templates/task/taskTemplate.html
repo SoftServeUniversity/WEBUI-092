@@ -1,0 +1,49 @@
+<div class="row-fluid show-grid">
+	<div class="span12 left-side">
+		<!-- Виводимо ім’я нашого завдання-->
+		<h1 class="centeredContent"><%= task.get("name") %></h1>
+		<div class="row-fluid show-grid" style="margin-bottom: 20px;">
+			<div class="span10">
+				<div class="progress progress-striped mainbar" style="height: 30px;">
+					<div class="bar" style="width: <%= task.get("process") + "%" %>;"></div>
+				</div>
+			</div>
+			<div class="span2 centeredContent">
+				<!--Button to trigger modal -->
+				<a id="changebtn" class="btn btn-primary mainbar" role="button" data-toggle="modal">Внести&nbsp;зміни</a>
+			</div>
+		</div>
+		<div class="modal hide fade" id="change">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal">&times;</button>
+				<h2>Внести зміни</h2> 
+			</div>
+			<form action="" method="post" id="input-log">
+
+				<div class="modal-body">
+					<div class="change-range row-fluid">
+						<p class="span12">Ваш поточний прогрес виконання роботи становить <span class="boldText"><%= task.get("process") + "%" %></span> </p>
+						<div id="line-range" class="span9 display-block"></div>
+						<input id="number-range">
+					</div>			
+					<div class="add-comment row-fluid">
+						<textarea name="task-comment" id="task-comment" class="span12" placeholder="Комментар до змін"></textarea>
+					</div>
+				</div>
+
+				<div class="modal-footer">
+					<button class="btn btn" data-dismiss="modal" type="button">Скасувати</button>
+					<input class="btn btn-primary"  type="submit" value="Додати">
+				</div>
+
+			</form>
+		</div>
+		<!-- Start Temp chart-->
+		<div id="chart">
+			<img src="http://placehold.it/1000x300" alt="">
+		</div>
+		<!-- End Temp chart-->
+		<%= comments %>
+	</div>
+
+</div>

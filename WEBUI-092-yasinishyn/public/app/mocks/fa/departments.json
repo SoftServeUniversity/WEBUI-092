@@ -1,0 +1,38 @@
+[
+
+    {
+        "id"  : 1,
+        "name": "test1",
+        "head": "Head Test Name1",
+        "faculty_id": 1,
+        "teacher_id": 3
+    },
+    {
+        "id"  : 2,
+        "name": "test2",
+        "head": "Head Test Name2",
+        "faculty_id": 2,
+        "teacher_id": 4
+    },
+    {
+        "id"  : 3,
+        "name": "test3",
+        "head": "Head Test Name3",
+        "faculty_id": 5,
+        "teacher_id": 6
+    },
+    {
+        "id"  : 4,
+        "name": "test1",
+        "head": "Head Test Name4",
+        "faculty_id": 4,
+        "teacher_id": 8
+    },
+    {
+        "id"  : 5,
+        "name": "test1",
+        "head": "Head Test Name5",
+        "faculty_id": 6,
+        "teacher_id": 1
+    }
+]

@@ -1,0 +1,107 @@
+[
+  {
+    "id": 1,
+    "parent_id": 0,
+    "username": "студент", 
+    "item": "створив дуже цікаве і корисне завдання",
+    "date": "2013-07-20 13:12:01"
+  },
+  {
+    "id": 2,
+    "parent_id": 0,
+    "username": "адміністратор", 
+    "item": "змінив дуже цікаве і корисне завдання",
+    "date": "2013-07-20 14:12:01"
+  },
+  {
+    "id": 3,
+    "parent_id": 0,
+    "username": "модератор", 
+    "item": "сторив групу студентів",
+    "date": "2013-07-20 15:12:01"
+  },
+  {
+    "id": 4,
+    "parent_id": 3,
+    "username": "модератор", 
+    "item": "додав студента до групи",
+    "date": "2013-07-20 16:12:01"
+  },
+  {
+    "id": 5,
+    "parent_id": 4,
+    "username": "модератор", 
+    "item": "created a subgroup",
+    "date": "2013-07-20 17:12:01"
+  },
+  {
+    "id": 6,
+    "parent_id": 0,
+    "username": "модератор", 
+    "item": "added student to a subgroup",
+    "date": "2013-07-20 18:12:01"
+  },
+  {
+    "id": 7,
+    "parent_id": 0,
+    "username": "студент", 
+    "item": "створив дуже цікаве і корисне завдання",
+    "date": "2013-07-20 19:12:01"
+  },
+  {
+    "id": 8,
+    "parent_id": 0,
+    "username": "адміністратор", 
+    "item": "змінив дуже цікаве і корисне завдання",
+    "date": "2013-07-20 20:12:01"
+  },
+  {
+    "id": 9,
+    "parent_id": 0,
+    "username": "модератор", 
+    "item": "сторив групу студентів",
+    "date": "2013-07-20 21:12:01"
+  },
+  {
+    "id": 10,
+    "parent_id": 3,
+    "username": "модератор", 
+    "item": "додав студента до групи",
+    "date": "2013-07-21 13:12:01"
+  },
+  {
+    "id": 11,
+    "parent_id": 4,
+    "username": "модератор", 
+    "item": "created a subgroup",
+    "date": "2013-07-21 14:12:01"
+  },
+  {
+    "id": 12,
+    "parent_id": 0,
+    "username": "модератор", 
+    "item": "added student to a subgroup",
+    "date": "2013-07-22 13:12:01"
+  },
+  {
+    "id": 13,
+    "parent_id": 0,
+    "username": "модератор", 
+    "item": "added student to a subgroup",
+    "date": "2013-07-23 13:12:01"
+  },
+  {
+    "id": 14,
+    "parent_id": 0,
+    "username": "модератор", 
+    "item": "added student to a subgroup",
+    "date": "2013-07-24 13:12:01"
+  },
+  {
+    "id": 15,
+    "parent_id": 0,
+    "username": "модератор", 
+    "item": "added student to a subgroup",
+    "date": "2013-07-25 13:12:01"
+  }
+]

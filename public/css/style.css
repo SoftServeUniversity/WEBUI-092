@@ -1,0 +1,353 @@
+/* --- general --- */
+html, body {
+height: 100%;
+}
+.wrapper{
+	min-height: 100%;
+	height: auto !important;
+	height: 100%;
+	margin: 0 auto -41px 0;
+}
+.sub-wrapper {
+	padding-bottom:60px;
+}
+header, footer {
+
+	padding:10px 10px;
+	background:#F5F5F5;
+}
+header{ 
+	box-shadow: 0px 1px 2px #bbb;
+	overflow:hidden;
+	margin-bottom:40px;
+	padding-bottom:1px;
+}
+
+footer {
+	border-top:1px solid #ddd;
+}
+a:hover {
+	cursor:pointer;
+}
+h1 {
+	margin-bottom:20px;
+}
+.menuBox .active a {
+	text-decoration:underline;
+}
+a:hover{
+	color:#0088CC;
+}
+#tab-content td{ 
+}
+.toggle-list .toggle-input {
+	display:none;
+	margin-bottom:0px;
+
+}
+/* --- end general --- */
+
+
+/* --- header --- */
+.menuBox{
+	float:left;
+}
+
+.authBox{
+	padding-left:20px;
+	padding-right:5px;
+}
+.authBox, .yearBox {
+	float:right;
+}
+.yearBox{
+	padding-right:0px;
+}
+.yearBox select {
+	width:120px;
+}
+.yearBox form,
+.yearBox form>div {
+	margin-bottom:10px !important;
+}
+/* --- end header --- */
+
+
+/* --- main page --- */
+.row-headline{
+	margin-bottom:10px;
+}
+.row-tile-list {
+	margin-bottom:0px !important;
+}
+.row-tile-list .name {
+	margin-bottom:5px;
+	font-size:16px;
+	font-weight:bold;
+	display:block;
+	text-shadow:0px 1px 0px #FFFFFF;
+}
+.row-tile-list .item {
+	min-height:107px;
+    position:relative;
+	margin-bottom:20px;
+	box-shadow: 1px 1px 2px #bbb;
+    overflow:hidden;
+	text-align:left;
+	background: #F5F5F5;
+	border-radius:10px;
+	padding:0px 11px 0px 10px;
+}
+.row-tile-list .item img{
+	padding-bottom:10px;
+}
+.row-tile-list .item .inner {
+	padding-left:90px;
+	min-height:90px;
+	padding-bottom:20px;
+	padding-top:10px;
+
+}
+.row-tile-list img{
+	position:absolute;
+	left:0px;
+}
+.row-tile-list .data {
+	display:block;
+}
+.sup-inner{
+	height:100%;
+	width:100%;
+	position:relative;
+	overflow:hidden;
+}
+.progress-small {
+    bottom: 10px;
+    display: block !important;
+    font-size: 12px;
+    width: 100%;
+}
+.progress-small .progress{
+	margin-top:2px;
+	margin-bottom:5px;
+	height:5px;
+	width:100%;
+	font-size:12px;
+	display:block !important;
+	opacity:0.7;
+	background:#fff;
+	box-shadow:0px 0px 2px #bbb;
+	}
+
+.progress-small .percentage {
+    float: right;
+}
+/* --- end main page --- */
+
+/* --- begin one-column page ---*/
+progress {
+  color: #0063a6;
+  width: 100%;
+  height: 20px;
+  border: 1px solid #0063a6;
+  background: #fff;
+}
+progress::-webkit-progress-bar { background: #FA4F37;}
+progress::-webkit-progress-value { background: #69EB63; }
+
+.entity {
+  float:left;
+  text-align:left;
+}
+.entities_list .progress {
+  min-height:15px;
+
+}
+.entities_list {
+
+  margin: 0 auto;
+  margin-top: 20px;
+}
+#group_progress_chart{
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  position:relative;
+}
+
+.group_progress_chart{
+  margin-top: 25px;
+  position:relative;
+}
+/* --- end one-column page ---*/
+
+
+/* --- Nazaruk Sergii CSS --- */
+/* Modal History */
+.history-modal          { display: block; margin-bottom: 20px; }
+.modal-list				{ font-size: 12px; }
+#myModal				{ display: none; width: 600px; border-radius: 6px; margin: 0 auto; }
+#myModal.active			{ position: fixed; z-index: 1050; opacity: 1; background-color: white;
+    					  left: 10%; right: 10%; top: 10%;
+    					}
+/* Progress */
+#create-btn				{ display: block; margin: 0 auto;}
+#task-progress			{ margin-bottom: 20px; }
+
+/*Yasinishyn start*/
+.red{
+	color: red;
+}
+.a-little-margin-right{
+	margin-right: 10px;
+	margin-top: 7px;
+}
+.a-litle-hint{
+	color: grey;
+	font-size: 10px;
+}
+#menage-department-import textarea{
+	width: 98%;
+}
+#content-table tr td > input, #content-table tr td > select{
+	width: 50% !important;
+}
+.departments-buttons{
+	margin-left: 0 !important;
+}
+/*Yasinishyn end*/
+/*****start task page*****/
+
+.centeredContent{
+	text-align: center;
+}
+.boldText{
+	font-weight: bold;
+}
+.italicText{
+	font-style: italic;
+}
+.mainbar{
+	margin: 5px;
+}
+.btn-navbar{
+	margin-bottom: 5px;
+}
+#chart{
+	margin-bottom: 15px;
+}
+hr.task-comment-line{
+	margin: 5px 0 !important;
+}
+#input-log{
+	margin: 0;
+}
+.display-block{
+	display: block;
+}
+#line-range{
+	min-height:0;
+	margin: 7px 12px;
+}
+.ui-spinner-input{
+	width: 30px;
+}
+.add-comment{
+	margin: 15px 0 0 0;
+}
+.left-side{
+	text-align: left;
+}
+
+/*****end task page*****/
+
+/*-----enter form---------*/
+
+#launch{
+	top:51px;
+	position: absolute;
+	right:0;
+	overflow: hidden;
+	background: ;
+	border-radius: 0 0 0 100px;
+	box-shadow: 4px 1px 1px #BBBBBB;/**/
+	width:400px;
+	display: none;
+	z-index: 999;
+}
+#launch h3, #launch-reg h3{
+	text-align: center;
+	opacity: .8;
+	margin-bottom: 30px;
+}
+#launch #close-btn{
+	position:absolute;
+	color:gold;
+	bottom: 45px;
+	left:0px;
+	font-size:.8em;
+	width: 100px;
+	box-shadow: -1px 1px 3px #000;
+	transform: skew(-25deg, 0deg) matrix(2.3, 1.6, -0.4, 1, 0, 0);
+	-webkit-transform: skew(-25deg, 0deg) matrix(2.3, 1.7, -0.4, 1, 0, 0);
+	-o-transform: skew(-25deg, 0deg) matrix(2.3, 1.7, -0.4, 1, 0, 0);
+	-ms-transform: skew(-25deg, 0deg) matrix(2.3, 1.7, -0.4, 1, 0, 0);
+}
+#launch #close-btn:hover{
+	box-shadow: -1px 1px 2px #000;
+}
+#launch input{
+	background-color:transparent;
+}
+#launch #form-checkbox{
+	font-size: .8em;
+}
+#launch select{
+	background:transparent;
+}
+#regMod{
+	display: none;
+}
+
+.gradient {
+	background: #F5F5F5; /* Для старых браузров */
+	background: -moz-linear-gradient(top, #F5F5F5, #F5F5F5, #fff); /* Firefox 3.6+ */
+	/* Chrome 1-9, Safari 4-5 */
+	background: -webkit-gradient(linear, left top, left bottom, 
+	            color-stop(0%,#f6f4f4), color-stop(30%,#F5F5F5), color-stop(100%,#fff));
+	/* Chrome 10+, Safari 5.1+ */
+	background: -webkit-linear-gradient(top, #F5F5F5, #F5F5F5, #fff);
+	background: -o-linear-gradient(top, #F5F5F5, #F5F5F5, #fff); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top, #F5F5F5, #F5F5F5, #fff); /* IE10 */
+	background: linear-gradient(top, #F5F5F5, #F5F5F5, #fff); /* CSS3 */ 
+	padding: 10px;
+	border-bottom: 1px solid #333;
+}
+.center{
+	text-align: center;
+}
+div.help-block ul li{
+	list-style-type: none;
+	margin-left:-20px;
+}
+
+/*--end enter form---------*/ 
+
+
+
+
+
+/*----admin page----*/
+.nav-tabs .active {
+    background:#EEEEEE;	
+}
+#tab-content table td,
+#tab-content table th{
+	border:none;
+}
+#tab-content table tr:first-child{
+	border-top:none;
+}
+#tab-content table tr{
+	border-top: 1px solid #DDDDDD;
+}

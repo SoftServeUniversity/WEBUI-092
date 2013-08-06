@@ -1,0 +1,59 @@
+h1. Webui92
+
+This application is developed by softserve academy students 
+
+h2. Ruby on Rails
+
+This application requires:
+
+* Ruby version 2.0.0
+* Rails version 3.2.13
+
+
+h2. Database
+
+This application uses PostgreSQL with ActiveRecord.
+
+h2. Development
+
+* Template Engine: Underscore
+* Testing Framework: RSpec and Factory Girl and Cucumber for backend, and jasmine for frontend
+* Front-end Framework: Twitter Bootstrap
+* Authentication: Devise
+* Authorization: CanCan
+* Frontend framework: Backbone
+
+h2. Getting Started
+
+...
+
+h2. Documentation and Support
+
+This is the only documentation.
+
+h4. Issues
+
+....
+
+h2. Similar Projects
+
+...
+
+h2. Contributing
+
+If you make improvements to this application, please share with others.
+
+* Fork the project on GitHub.
+* Make your feature addition or bug fix.
+* Commit with Git.
+* Send the author a pull request.
+
+If you add functionality to this application, create an alternative implementation, or build an application that is similar, please contact me and I'll add a note to the README so that others can find your work.
+
+h2. Credits
+
+...
+
+h2. License
+
+...

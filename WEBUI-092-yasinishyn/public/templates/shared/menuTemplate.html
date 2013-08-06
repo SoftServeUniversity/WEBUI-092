@@ -1,0 +1,7 @@
+<ul class="nav nav-tabs">
+   <% _.each (items, function(item){ %>
+   	<li>
+   		<a id=<%= item.id %> onclick="return false;" ><%= item.label %></a>
+    </li>
+   	<% }) %>
+</ul>  
