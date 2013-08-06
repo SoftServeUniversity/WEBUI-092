@@ -1,3 +1,15 @@
+   <div class='row-fluid'>
+    <div class='span12'>
+        <ul class="nav nav-tabs">
+            <li><a href="#/fa/menage_roles">Manage Roles</a></li>
+            <li class="active"><a href="#/fa/menage_departments">Manage Departments</a></li>
+            <li class="active" style="float: right"><a href="#/fa/manage_db" >Database Management</a></li>
+        </ul>
+        <div class='page-header'>
+            <h1 class='text-left'>Admin DB Manager</h1>
+        </div>
+
+    </div>
     <div class="tabbable tabs-left">
         <ul class="nav nav-tabs">
             <li class="active">
@@ -20,26 +32,62 @@
                         <option value="2012-2013">2012-2013</option>
                     </select>
                     </br>
+                    <input type="button" class='btn' value="Pull dump">
                 </div>
-                <input type="button" class='btn' value="Pull dump">
             </div>
             <div class="tab-pane" id="loadDump">
-                <div class="DBTab">
-                    <div class="containerDb upload">
-                        <span class="btn">Upload your file</span>
-                        <input type="file"/>
+
+
+
+            <div class="DBTab">
+                <script type="text/javascript">
+                    $(document).ready(function() {
+
+                        $('#file').change(function()
+                        {
+
+                            $('#file').each(function() {
+                                var name = this.value;
+                                reWin = /.*\\(.*)/;
+                                var fileTitle = name.replace(reWin, "$1");
+                                reUnix = /.*\/(.*)/;
+                                fileTitle = fileTitle.replace(reUnix, "$1");
+                                $('#name').html(fileTitle);
+                            });
+
+                        });
+
+                    });
+
+                </script>
+                <form action="" method="post" enctype="multipart/form-data" name="form1">
+
+
+
+                    <a class="btn" id="loadFile">
+                        <div>Choose file</div>
+                        <input  type="file" size="1" style="" name="file" id="file">
+                    </a>
+                    <div id="name"></div>
+
+                    <div>
+                        <input id="submit" class="btn" type="submit" value="Load dump"/>
                     </div>
-                    <div class="imgLoader">
-                        <img   src="i/ajax-loader.gif" >
-                    </div>
-                </div>
+                </form>
+
+
+            </div>
+            <div id="imgLoader">
+                <img   src="i/ajax-loader.gif" >
+            </div>
+
             </div>
             <div class="tab-pane" id="backUp">
                 <div class="DBTab">
                     <input type="radio" name="group1" value="increment" checked> Increment<br>
                     <input type="radio" name="group1" value="full"> Full<br>
                     <span>Last backup 12.06.2013</span>
-
+                    <br>
                     <input type="button" class='btn' value="Backup">
 
                 </div>
@@ -48,3 +96,4 @@
         </div>
 
     </div>
+</div>

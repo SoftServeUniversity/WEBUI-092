@@ -12,28 +12,67 @@ define([
 ], function($, _, Backbone, DepartmentsCollection, CoursesCollection, ListView, ChartView, MainTemplate, FacultiesCollection, FacultyChangeCollection){
 
     var MainFacultyView = Backbone.View.extend({
-        
-        loadData: function(){
-            var that = this;
-           
-            faculties_col = new FacultiesCollection();
+        loadData: function(id){
+            facId = id;
+            var me = this;
+
+            facs_col = new FacultiesCollection();
+            facs_col.fetch({
+                success: function () {
+                    me.trigger('DataLoaded', 'Facs');
+                }
+            });
+
             departments_col = new DepartmentsCollection();
+            departments_col.fetch({
+                success:function () {
+                    me.trigger('DataLoaded', 'Deps');
+                }
+            });
+
             courses_col = new CoursesCollection();
+            courses_col.fetch({
+                success:function () {
+                    me.trigger('DataLoaded', 'Courses');
+                }
+            });
+
             faculty_change_col = new FacultyChangeCollection();
-            
-            $.when(faculties_col.fetch() && departments_col.fetch()  
-            && courses_col.fetch() && faculty_change_col.fetch()).then(function(){
-            	that.render();
-            })
+            faculty_change_col.fetch({
+                success:function () {
+                    me.trigger('DataLoaded', 'FacultyChange');
+                }
+            });
         },
 
-        initialize:function(id){
-        	this.element_id = id; 
-        	this.loadData();
+        initialize:function(){
+            var isFacLoaded = false;
+            var isDepsLoaded = false;
+            var isCoursesLoaded = false;
+            var isFacChangeLoaded = false;
+            var me = this;
+
+            this.on('DataLoaded', function (item) {
+                if (item == 'Facs') {
+                    isFacLoaded = true;
+                }
+                if (item == 'Deps'){
+                    isDepsLoaded = true;
+                }
+                if (item == 'Courses'){
+                    isCoursesLoaded = true;
+                }
+                if (item == 'FacultyChange'){
+                    isFacChangeLoaded = true;
+                }
+                if ((isFacLoaded && isDepsLoaded && isCoursesLoaded && isFacChangeLoaded) == true){
+                    me.render();
+                }
+            });
         },
 
         render:function(){
-            var faculty_name = faculties_col.get(this.element_id).toJSON().name;
+            var fac_name = facs_col.get(facId).toJSON().name;
 
             var departmentsListView = new ListView({
                 collection:departments_col,
@@ -43,13 +82,13 @@ define([
                 collection:courses_col,
                 linkTo:"course"
             });
-			var chartView = new ChartView({
-				collection:faculty_change_col
+            var chartView = new ChartView({
+                collection:faculty_change_col
             });
 
 
             var data = {
-                name: faculty_name,
+                name: fac_name,
                 firstListTitle: "Список кафедр",
                 secondListTitle: "Список курсів",
                 firstList : departmentsListView.render().$el.html(),
@@ -63,4 +102,3 @@ define([
     });
     return MainFacultyView;
 });
-
