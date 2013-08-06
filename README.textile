@@ -25,7 +25,12 @@ h2. Development
 
 h2. Getting Started
 
-...
+  1) clone master (current project)
+  then:
+    1) run "bundle install"
+    2) start you pg server, for example by runing "pg_ctl -D /usr/local/var/postgres -l logfile start" command
+    2) run 'rake db:create && rake db:migrate'
+    3) run "rails server" or 'rails s'
 
 h2. Documentation and Support
 
