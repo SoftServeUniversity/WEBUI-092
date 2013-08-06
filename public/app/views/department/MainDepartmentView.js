@@ -14,45 +14,86 @@ define([
 
 ], function($, _, Backbone, GroupsCollection, TeachersCollection, ListView, ChartView, MainTemplate, DepartmentsCollection, DepartmentChangeCollection){
 
-    var DepartmentView =  Backbone.View.extend({
-        
-        loadData: function(){
-            var that = this;
+    var MainDepartmentView =  Backbone.View.extend({
+        loadData: function(id){
+          depId = id;
+            var me = this;
 
-        	deps_col = new DepartmentsCollection();
+            deps_col = new DepartmentsCollection();
+            deps_col.fetch({
+                success: function () {
+                   me.trigger('DataLoaded', 'Deps');
+                }
+            });
+
             groups_col = new GroupsCollection();
+            groups_col.fetch({
+                success:function () {
+                    me.trigger('DataLoaded', 'Groups');
+                }
+            });
+
             teachers_col = new TeachersCollection();
+            teachers_col.fetch({
+               success:function () {
+                    me.trigger('DataLoaded', 'Teachers');
+                }
+            });
+
             dep_change_col = new DepartmentChangeCollection();
+            dep_change_col.fetch({
+                success:function () {
+                    me.trigger('DataLoaded', 'DepChange');
+                }
+            });
+
+         },
+ 
+        initialize:function(){
+            var isDepLoaded = false;
+            var isGroupsLoaded = false;
+            var isTeachersLoaded = false;
+            var isDepChangeLoaded = false;
+
+            var me = this;
+
+            this.on('DataLoaded', function (item) {
+                if (item == 'Deps') {
+                    isDepLoaded = true;
+                }
+                if (item == 'Groups'){
+                    isGroupsLoaded = true;
+                }
+                if (item == 'Teachers'){
+                    isTeachersLoaded = true;
+                }
+                if (item == 'DepChange'){
+                    isDepChangeLoaded = true;
+                }
+                if (isDepLoaded && isGroupsLoaded && isTeachersLoaded && isDepChangeLoaded){
+                    me.render();
+                }
+            });
+
+         },
+ 
+         render:function(){
+            var dep_name = deps_col.get(depId).toJSON().name;
+
+ 
+             var groupsListView = new ListView({
+                 collection:groups_col,
+                 linkTo:"group"
+             });
             
-            $.when(deps_col.fetch() && groups_col.fetch() 
-            && teachers_col.fetch() && dep_change_col.fetch()).then(function(){
-            	that.render();
-            })
-        },
-
-        initialize:function(id){
-        	this.id = id;
-        	this.loadData(this.id);
-        },
-
-        render:function(){
-        	var that = this;
-        	
-            var dep_name = deps_col.get(that.id).toJSON().name;
-
-            var groupsListView = new ListView({
-                collection:groups_col,
-                linkTo:"group"
+             var teachersListView = new ListView({
+                 collection:teachers_col,
+                 linkTo:"teacher"
+             });
+             
+              var chartView = new ChartView({
+                collection:dep_change_col
             });
-            
-            var teachersListView = new ListView({
-                collection:teachers_col,
-                linkTo:"teacher"
-            });
-            var chartView = new ChartView({
-				collection:dep_change_col
-            });
-
             var data = {
                 name: dep_name,
                 firstListTitle: "Список груп",
@@ -66,5 +107,5 @@ define([
             return this;
         }
     });
-    return DepartmentView;
+    return MainDepartmentView;
 });

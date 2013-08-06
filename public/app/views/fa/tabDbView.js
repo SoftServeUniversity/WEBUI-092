@@ -1,30 +1,28 @@
 define([
-  'jquery',
-  'underscore',
-  'backbone',
-  'text!templates/fa/tabDbTemplate.html'
-], function($, _, Backbone, tabDbTemplate){   
-   
-  var TabDbView = Backbone.View.extend({
-    
-    tagName: 'div',
-    
-    initialize: function(){
-      this.render();
-    },
-  
-    render: function (data){
-      var that = this;
+    'jquery',
+    'underscore',
+    'backbone',
+    'text!templates/fa/dbManagementTemplate.html'
+], function($, _, Backbone, dbManagementTemplate){
 
-      var compiledTemplate = _.template(tabDbTemplate);
+    var DBView = Backbone.View.extend({
+        el: $('#content'),
+        render: function (){
+            var that = this;
 
-      that.$el.html(compiledTemplate);
-      
-      return this;
-    },
-    
-  });
-  
-  return  TabDbView;
-  
+            var compiledTemplate = _.template( dbManagementTemplate);
+
+            this.$el.html(compiledTemplate);
+        },
+
+        events: {
+        "click #submit" : "imgLoader"
+        },
+        imgLoader: function(){
+            $('#imgLoader').show();
+        }
+    });
+
+
+    return  DBView;
 });
