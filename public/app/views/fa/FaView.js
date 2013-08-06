@@ -17,10 +17,12 @@ define([
   
   //subViews для хендлерів
   'views/fa/tabChildDepartmentsView',
-  'views/fa/tabChildRolesView'
+  'views/fa/tabChildRolesView',
+  'views/fa/tabChildCoursesView',
+  'views/fa/tabChildGroupsView'
   
 ], function($, bootstrapselect, _,  Backbone, MenuView, faPageTemplate,
-	        TabDbView, NewElementView, TabChildDepartmentsView, TabChildRolesView){   
+	        TabDbView, NewElementView, TabChildDepartmentsView, TabChildRolesView, TabChildCoursesView, TabChildGroupsView){   
   
 
   
@@ -50,6 +52,16 @@ define([
           label: 'Manage roles',    
         },
         {
+          id:'courses-tab',
+          label: 'Manage Courses',
+
+        },
+        {
+          id:'groups-tab',
+          label: 'Manage Groups',
+
+        },
+        {
           id:'database-tab',
           label: 'Manage database',    
         }
@@ -76,7 +88,9 @@ define([
      'click #database-tab' : 'manage_database',
      'click #roles-tab' : 'manage_roles',
      'click #departments-tab' : 'manage_departments',
-    	
+     'click #courses-tab' : 'manage_courses',
+     'click #groups-tab'  : 'manage_groups', 
+
      //table events
      'dblclick .toggle-text'     : 'showInput',
      //зберегти зміни, коли дані в інпуті змінено  
@@ -111,6 +125,16 @@ define([
 	  var that = this;
 	  this.setActiveMenu('departments-tab');
       this.tabView = new TabChildDepartmentsView();
+    },
+    manage_courses: function(){   
+    var that = this;
+    this.setActiveMenu('courses-tab');
+      this.tabView = new TabChildCoursesView();
+    },
+    manage_groups: function(){   
+    var that = this;
+    this.setActiveMenu('groups-tab');
+      this.tabView = new TabChildGroupsView();
     },
 
 
