@@ -28,7 +28,7 @@ h2. Getting Started
   * 1) clone master (current project)
   * then:
    ** 1) run "bundle install"
-   ** 2) start you pg server, for example by runing "pg_ctl -D /usr/local/var/postgres -l logfile start" command
+   ** 2) start you pg server, for example by runing "pg_ctl -D /usr/local/var/postgres -l logfile start" command or "pg_ctl -D /Users/Oleg/.rvm/var/postgres -l /Users/Oleg/.rvm/var/postgres/server.log start" on OS X Moutain Lion
    ** 2) run 'rake db:create && rake db:migrate'
    ** 3) run "rails server" or 'rails s'
 
