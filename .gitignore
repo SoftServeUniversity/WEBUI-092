@@ -1,6 +1,0 @@
-# Ignore jekyll
-_site/
-.project
-.gitignore
-.idea/
-.DS_Store
