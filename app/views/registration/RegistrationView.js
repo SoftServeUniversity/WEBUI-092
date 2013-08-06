@@ -35,6 +35,7 @@ define([
          'firstName': $("#regForm").find("#inputFirstNameReg").val(),
          'fatherName': $("#regForm").find("#inputFatherNameReg").val(),
          'role': $("#regForm").find("#role").val(),
+         'email': $("#regForm").find("#inputEmailReg").val(),
          'inputLoginReg': $("#regForm").find("#inputLoginReg").val(),
          'inputPasswordReg': $("#regForm").find("#inputPasswordReg").val()
 
@@ -57,6 +58,7 @@ define([
       var log = userRegModel.get('inputLoginReg'),
        pass = userRegModel.get('inputPasswordReg'),
        lastN = userRegModel.get('lastName'),
+       email = userRegModel.get('email'),
        firstN = userRegModel.get('firstName'),
        fatherN = userRegModel.get('fatherName');
 
@@ -72,6 +74,7 @@ define([
                 $('#inputLastNameReg[aria-invalid = true]').is('input') == false &&
                 $('#inputFirstNameReg[aria-invalid = true]').is('input') == false &&
                 $('#inputFatherNameReg[aria-invalid = true]').is('input') == false &&
+                $('#inputEmailReg[aria-invalid = true]').is('input') == false &&
                 $('#inputLoginReg[aria-invalid = true]').is('input') == false &&
                 $('#inputPasswordReg[aria-invalid = true]').is('input') == false 
               ){
