@@ -10,10 +10,15 @@
 # Ignore the default SQLite database.
 /db/*.sqlite3
 
+# Ignore logfile.
+log/development.log
+
 # Ignore all logfiles and tempfiles.
 /log/*.log
 /tmp
+
 # Ignore uploaded images
 /public/uploads
+
 #ignore database configuration to prevent leak
 /config/database.yml
