@@ -30,6 +30,6 @@ define([
     }
   });
 
-    return  DBView;
+    return  TabDbView;
 
 });
