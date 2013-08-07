@@ -18,7 +18,7 @@ header, footer {
 }
 header{ 
 	box-shadow: 0px 1px 2px #bbb;
-	overflow:hidden;
+	min-height:35px;
 	margin-bottom:40px;
 	padding-bottom:1px;
 }
@@ -63,9 +63,10 @@ a:hover{
 .yearBox{
 	padding-right:0px;
 }
-.yearBox select {
+.yearBox .bootstrap-select {
 	width:120px;
 }
+
 .yearBox form,
 .yearBox form>div {
 	margin-bottom:10px !important;

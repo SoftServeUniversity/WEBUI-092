@@ -23,7 +23,7 @@ define([
         col: this.groups_col,
         data: [{
             _link: 'name',
-            label:'Department Name',
+            label:'Group Name',
             type:'text'
           },
           {  
@@ -46,7 +46,7 @@ define([
           }
         ],
         buttons: {
-        	create: 'New Department'
+        	create: 'New Group'
         }
       };
       
