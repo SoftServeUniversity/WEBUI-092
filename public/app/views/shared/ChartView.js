@@ -8,6 +8,7 @@ define([
     var ChartView = Backbone.View.extend({
  
         initialize: function (){
+            
             changes = this.collection.toJSON(); 
             
             chartArray = [];

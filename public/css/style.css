@@ -18,7 +18,7 @@ header, footer {
 }
 header{ 
 	box-shadow: 0px 1px 2px #bbb;
-	overflow:hidden;
+	min-height:35px;
 	margin-bottom:40px;
 	padding-bottom:1px;
 }
@@ -63,9 +63,10 @@ a:hover{
 .yearBox{
 	padding-right:0px;
 }
-.yearBox select {
+.yearBox .bootstrap-select {
 	width:120px;
 }
+
 .yearBox form,
 .yearBox form>div {
 	margin-bottom:10px !important;
@@ -350,4 +351,112 @@ div.help-block ul li{
 }
 #tab-content table tr{
 	border-top: 1px solid #DDDDDD;
+}
+
+
+/* oohurtc */
+
+.heading {
+	font-size: 30px;
+	font-style: italic;
+	text-align: center;
+	margin-bottom: 30px;
+	margin-top: 30px;
+}
+
+.title {
+	font-size: 20px;
+	font-style: italic;
+	margin: 0 auto;
+	text-align: center;
+	margin-bottom: 20px;
+}
+
+.content {
+	margin: 0 auto;
+	margin-bottom: 30px;
+	margin-top: 30px;
+}
+
+.element {
+	margin-bottom: 10px;
+}
+
+.dividing_line {
+	border-top: 2px solid #808080 !important;
+}
+
+.element div {
+	display: inline-block;
+}
+
+#firstList, #secondList {
+	margin: 0 auto;
+	margin-top: 20px;
+}
+
+.name {
+	text-align: left;
+}
+
+.element_name {
+	text-align: left;
+}
+
+.progressBar {
+	margin-bottom: -4px;
+	margin-left: 15px;
+}
+
+#chart {
+	border-style: ridge;
+	margin: 0 auto;
+	padding-top: 25px;
+	height: 300px;
+}
+
+.containerDb {
+	width: 100px;
+	margin: 0 auto;
+	margin-top: 10px;
+	height: 25px;
+}
+
+.tab-content {
+	overflow: visible;
+}
+
+.DBTab {
+	text-align: left;
+}
+
+#imgLoader {
+	display: none;
+	width: 60px;
+	margin: 0 auto;
+	margin-top: 25px;
+}
+
+#loadFile {
+	overflow: hidden;
+	width: 75px;
+	height: 20px;
+}
+
+#loadFile input {
+	margin-top: -50px;
+	margin-left: -410px;
+	-moz-opacity: 0;
+	filter: alpha(opacity=0);
+	opacity: 0;
+	font-size: 150px;
+	height: 100px;
+}
+
+#loadData {
+	margin-top: 10px;
+}
+
+#name {
+	display: inline-block;
 }

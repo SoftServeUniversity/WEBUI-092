@@ -5,7 +5,7 @@ define([
   'jquery',
   'underscore',
   'backbone',
-  'text!templates/fa/newElementTemplate.html'
+  'text!templates/admin/newElementTemplate.html'
   
 ], function($, _, Backbone, newElementTemplate){   
    

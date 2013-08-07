@@ -9,33 +9,34 @@ define([
   'jquery',
   'underscore',
   'backbone',
+  'views/admin/tabChildView',
+  'models/department/DepartmentModel',
 
-  'views/fa/tabChildView',
-  'models/course/CourseModel',
-  'collections/courses/CoursesCollection',
-  'collections/faculties/FacultiesCollection'
+  'collections/departments/DepartmentsCollection',
+  'collections/faculties/FacultiesCollection',
+  'collections/teachers/TeachersCollection'
 
-
-], function($, _, Backbone, TabChildView, CourseModel, CoursesCollection, FacultiesCollection){   
+], function($, _, Backbone, TabChildView, DepartmentModel, DepartmentsCollection, FacultiesCollection, TeachersCollection){   
    
-  var TabChildCoursesView = Backbone.View.extend({
+  var TabChildDepartmentsView = Backbone.View.extend({
 
 
     tagName: 'div',
 
     setConfig: function(){
       var config = {
-      	model: CourseModel,
-        col: this.courses_col,
+      	model: DepartmentModel,
+        col: this.departments_col,
         data: [{
             _link: 'name',
-            label:'Course Name',
+            label:'Department Name',
             type:'text'
           },
           {
-            _link: 'year_of_start',
-            label:'Year Of Start',
-            type:'text'
+            _link: 'teacher_id',
+            label: 'Department Head',
+            type:'select',
+            src:this.teachers_col.toJSON()
           },
           {
             _link: 'faculty_id',
@@ -43,14 +44,9 @@ define([
             type:'select',
             src:this.faculties_col.toJSON()
           }
-          /*,{
-            _link: 'percentage',
-            label: 'Percentage',
-            type:'text',
-          }*/
         ],
         buttons: {
-        	create: 'New Course'
+        	create: 'New Department'
         }
       };
       
@@ -60,10 +56,11 @@ define([
     loadData: function(){
       var that = this; 
       
-      this.courses_col = new CoursesCollection();
+      this.departments_col = new DepartmentsCollection();
       this.faculties_col = new FacultiesCollection();
-
-      $.when(this.courses_col.fetch() && this.faculties_col.fetch()).then(function(){
+      this.teachers_col = new TeachersCollection();
+      
+      $.when(this.departments_col.fetch() && this.faculties_col.fetch() && this.teachers_col.fetch()).then(function(){
         that.trigger('onDataLoaded');
       })
     },
@@ -93,6 +90,6 @@ define([
   
   });
   
-  return  TabChildCoursesView;
+  return  TabChildDepartmentsView;
   
 });

@@ -1,23 +1,16 @@
-/*
- * View, що отримує конфігураційний масив,
- * підвантажує всі необхідні колекції (масиви для селект-боксів)
- * і викликає з цими параметрами tabChildView
- */
-
-
 define([
   'jquery',
   'underscore',
   'backbone',
-  'views/fa/tabChildView',
+  'views/admin/tabChildView',
   'models/group/GroupModel',
 
   'collections/groups/GroupsCollection',
   'collections/courses/CoursesCollection',
-  'collections/departments/DepartmentsCollection',
-  'collections/teachers/TeachersCollection'
+  'collections/teachers/TeachersCollection',
+  'collections/departments/DepartmentsCollection'
 
-], function($, _, Backbone, TabChildView, GroupModel, GroupsCollection, CoursesCollection, DepartmentsCollection, TeachersCollection){   
+], function($, _, Backbone, TabChildView, GroupModel, GroupsCollection, CoursesCollection, TeachersCollection, DepartmentsCollection){   
    
   var TabChildGroupsView = Backbone.View.extend({
 
@@ -33,34 +26,23 @@ define([
             label:'Group Name',
             type:'text'
           },
-          {
-            _link: 'number_of_students',
-            label: 'Number Of Studs',
-            type:'text'
-          },
-          {
-            _link: 'teacher_id',
-            label: 'Department Head',
-            type:'select',
-            src:this.teachers_col.toJSON()
-          },
-          {
+          {  
             _link: 'course_id',
             label: 'Course',
             type:'select',
             src:this.courses_col.toJSON()
           },
           {
-            _link: 'department_id',
-            label: 'Department',
-            type:'select',
-            src:this.departments_col.toJSON()
-          },
-          {
             _link: 'teacher_id',
-            label: 'Curator',
+            label: 'Teacher Name',
             type:'select',
             src:this.teachers_col.toJSON()
+          },
+          {
+            _link: 'department_id',
+            label: 'Department Name',
+            type:'select',
+            src:this.departments_col.toJSON()
           }
         ],
         buttons: {
@@ -73,14 +55,19 @@ define([
     
     loadData: function(){
       var that = this; 
+      var date = new Date().getMilliseconds();
 
       this.groups_col = new GroupsCollection();
-      this.courses_col = new CoursesCollection();      
-      this.departments_col = new DepartmentsCollection();
+      this.courses_col = new CoursesCollection();
       this.teachers_col = new TeachersCollection();
+      this.departments_col = new DepartmentsCollection();
       
-      $.when(this.groups_col.fetch() && this.courses_col.fetch() && this.departments_col.fetch() && this.teachers_col.fetch()).then(function(){
+      $.when(this.groups_col.fetch() && this.courses_col.fetch() && this.teachers_col.fetch() && this.departments_col.fetch()).then(function(){
         that.trigger('onDataLoaded');
+        
+        var date2 = new Date().getMilliseconds();
+
+        console.log('loadData takes in milliseconds --- ' + (date2 - date));
       })
     },
 

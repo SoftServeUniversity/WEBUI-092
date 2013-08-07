@@ -10,9 +10,9 @@ define([
   'underscore',
   'backbone',
   
-  'models/fa/FaRoleModel',
-  'collections/fa/FaRolesCollection',
-  'views/fa/tabChildView'
+  'models/admin/FaRoleModel',
+  'collections/admin/FaRolesCollection',
+  'views/admin/tabChildView'
   
 ], function($, _, Backbone, FaRoleModel, FaRolesCollection, TabChildView){   
 	 
