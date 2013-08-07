@@ -14,13 +14,13 @@
 
             <% //--------if it is a text field %>
             <% if (!($.inArray(field, entities[entity]['selectbox_items']) > -1)){ %>
-              <input id="name_field" type="text" name="<%=field %>" class='toggle-input input-xlarge' value="<%= entities[entity][field] %>"/>
+              <input id="name_field" type="text" name="<%=field %>" class='toggle-input input-medium' value="<%= entities[entity][field] %>"/>
 
             
             <% //--------if it is a select field %>
             <% } else { %>
             
-              <select class='toggle-input input-xlarge' name="<%= field %>">
+              <select class='toggle-input input-medium' name="<%= field %>">
                 <% var options_array = entities[entity][field+'_collection'];
                   
                   for (i=0; i<options_array.length; i++){ %>

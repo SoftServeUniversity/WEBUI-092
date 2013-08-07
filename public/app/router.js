@@ -97,13 +97,17 @@ define([
       });
 
       app_router.on('route:facultyAction', function (id) {
-        var mainFacultyView = new MainFacultyView(id);
+        var mainFacultyView = new MainFacultyView();
+        mainFacultyView.initialize();
+        mainFacultyView.loadData(id);
       });
 
       app_router.on('route:departmentAction', function (id) {
-        var mainDepartmentView = new MainDepartmentView(id);
+        var mainDepartmentView = new MainDepartmentView();
+        mainDepartmentView.initialize();
+        mainDepartmentView.loadData(id);
       });
-
+      
       app_router.on('route:teacherProgressAction', function (actions) {
         var teacherProgressView = new TeacherProgressView();
         teacherProgressView.render();

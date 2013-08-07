@@ -16,15 +16,20 @@ define([
     render: function (data){
       var that = this;
 
-      var compiledTemplate = _.template(tabDbTemplate);
+      var compiledTemplate = _.template( TabDBTemplate);
 
-      that.$el.html(compiledTemplate);
-      
-      return this;
+       this.$el.html(compiledTemplate);
     },
-    
+
+    events: {
+      "click #submit" : "imgLoader"
+    },
+
+    imgLoader: function(){
+      $('#imgLoader').show();
+    }
   });
-  
-  return  TabDbView;
-  
+
+    return  DBView;
+
 });

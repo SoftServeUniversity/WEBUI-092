@@ -1,4 +1,7 @@
 Webui92::Application.routes.draw do
+  resources :progress_changes
+
+
   resources :tasks
 
 
