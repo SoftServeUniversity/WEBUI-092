@@ -72,8 +72,10 @@ define([
         
         var data = {};
         data.entities = json_data;
+        
 
         return data; 
+    
     },
     
     
