@@ -1,50 +1,53 @@
-    <div class="tabbable tabs-left">
-        <ul class="nav nav-tabs">
-            <li class="active">
-                <a href="#pullDump" data-toggle="tab">Pull dump</a>
-            </li>
-            <li >
-                <a href="#loadDump" data-toggle="tab">Load dump</a>
-            </li>
-            <li>
-                <a href="#backUp" data-toggle="tab">BackUp</a>
-            </li>
-        </ul>
-        <div class="tab-content">
-            <div class="tab-pane active" id="pullDump">
-                <div class="DBTab">
-                    <span><h4>Select the year</h4></span>
-                    <select>
-                        <option selected value="2010-2011">2010-2011</option>
-                        <option value="2011-2012">2011-2012</option>
-                        <option value="2012-2013">2012-2013</option>
-                    </select>
-                    </br>
-                </div>
+<div class="tabbable tabs-left">
+    <ul class="nav nav-tabs">
+        <li class="active">
+            <a href="#pullDump" data-toggle="tab">Pull dump</a>
+        </li>
+        <li >
+            <a href="#loadDump" data-toggle="tab">Load dump</a>
+        </li>
+        <li>
+            <a href="#backUp" data-toggle="tab">BackUp</a>
+        </li>
+    </ul>
+    <div class="tab-content">
+        <div class="tab-pane active" id="pullDump">
+            <div class="DBTab">
+                <span><h4>Select the year</h4></span>
+                <select>
+                    <option selected value="2010-2011">2010-2011</option>
+                    <option value="2011-2012">2011-2012</option>
+                    <option value="2012-2013">2012-2013</option>
+                </select>
+                </br>
                 <input type="button" class='btn' value="Pull dump">
             </div>
-            <div class="tab-pane" id="loadDump">
-                <div class="DBTab">
-                    <div class="containerDb upload">
-                        <span class="btn">Upload your file</span>
-                        <input type="file"/>
-                    </div>
-                    <div class="imgLoader">
-                        <img   src="i/ajax-loader.gif" >
-                    </div>
-                </div>
-            </div>
-            <div class="tab-pane" id="backUp">
-                <div class="DBTab">
-                    <input type="radio" name="group1" value="increment" checked> Increment<br>
-                    <input type="radio" name="group1" value="full"> Full<br>
-                    <span>Last backup 12.06.2013</span>
-
-                    <input type="button" class='btn' value="Backup">
-
-                </div>
-            </div>
-
         </div>
-
+        <div class="tab-pane" id="loadDump">
+            <div class="DBTab">
+                <form action="" method="post" enctype="multipart/form-data" name="form1" onsubmit="return false;">
+                    <a class="btn" id="loadFile">
+                        <div>Choose file</div>
+                        <input  type="file" size="1" style="" name="file" id="file">
+                    </a>
+                    <div id="name"></div>
+                    <div>
+                        <input id="loadData" class="btn" type="submit" value="Load dump"/>
+                    </div>
+                </form>
+            </div>
+            <div id="imgLoader">
+                <img src="i/ajax-loader.gif">
+            </div>
+        </div>
+        <div class="tab-pane" id="backUp">
+            <div class="DBTab">
+                <input type="radio" name="group1" value="increment" checked> Increment<br>
+                <input type="radio" name="group1" value="full"> Full<br>
+                <span>Last backup 12.06.2013</span>
+                <br>
+                <input type="button" class='btn' value="Backup">
+            </div>
+        </div>
     </div>
+</div>
