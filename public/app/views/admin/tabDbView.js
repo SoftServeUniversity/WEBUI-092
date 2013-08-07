@@ -16,7 +16,7 @@ define([
     render: function (data){
       var that = this;
 
-      var compiledTemplate = _.template( TabDBTemplate);
+      var compiledTemplate = _.template(tabDbTemplate);
 
        this.$el.html(compiledTemplate);
     },
