@@ -2,12 +2,12 @@ define([
   'jquery',
   'underscore',
   'backbone',
-  'models/fa/FaRoleModel',
+  'models/admin/FaRoleModel',
 ], function($, _, Backbone, FaRoleModel){
 
  var FaRolesCollection = Backbone.Collection.extend({
     model: FaRoleModel,
-    url: "app/mocks/fa/roles.json"
+    url: "app/mocks/admin/roles.json"
   });
   return FaRolesCollection;
 

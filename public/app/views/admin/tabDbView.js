@@ -2,7 +2,7 @@ define([
   'jquery',
   'underscore',
   'backbone',
-  'text!templates/fa/tabDbTemplate.html'
+  'text!templates/admin/tabDbTemplate.html'
 ], function($, _, Backbone, tabDbTemplate){   
    
   var TabDbView = Backbone.View.extend({

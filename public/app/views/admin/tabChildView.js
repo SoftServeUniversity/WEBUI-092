@@ -7,7 +7,7 @@ define([
   'jquery',
   'underscore',
   'backbone',
-  'text!templates/fa/tabChildTemplate.html'
+  'text!templates/admin/tabChildTemplate.html'
 ], function($, _, Backbone, tabChildTemplate){   
    
   var TabChildView = Backbone.View.extend({

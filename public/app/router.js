@@ -14,11 +14,14 @@ define([
   'views/task/taskView',
   'collections/task/TaskCollection',
   'views/notFoundView',
-  'views/fa/FaView',
+  'views/admin/adminFacultyView',
+  'views/admin/adminView',
+
 
   ], function($, _, Backbone, FacultiesListView, RegistrationView, GroupProgressView,
   	          StudentProgressView, CourseProgressView,  MainFacultyView, MainDepartmentView,
-  	          TeacherProgressView, MainWorkView, taskView, TaskCollection, NotFoundView, FaView
+  	          TeacherProgressView, MainWorkView, taskView, TaskCollection, NotFoundView,
+              AdminFacultyView, AdminView
              ) {
 
 
@@ -44,7 +47,8 @@ define([
         'teacher/:id'            : 'teacherProgressAction',
         'department/:id'         : 'departmentAction',
         'work/:id'               : 'workShowAction',
-        'fa'                     : 'viewFacultyAdminPage',
+        'fa'                     : 'viewAdminFacultyPage',
+        'admin'                  : 'viewAdminPage',
         'work/:id/:taskid'       : 'taskShow',
       
         // Default
@@ -66,9 +70,13 @@ define([
         var workView = new MainWorkView(id);
       });
 
-      app_router.on('route:viewFacultyAdminPage', function (){
-        var faView = new FaView();
-      })
+      app_router.on('route:viewAdminFacultyPage', function (){
+        var adminFacultyView = new AdminFacultyView();
+      });
+
+      app_router.on('route:viewAdminPage', function (){
+        var adminView = new AdminView();
+      });
 
       app_router.on('route:groupProgressAction', function (actions) {
 
