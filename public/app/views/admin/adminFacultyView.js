@@ -10,9 +10,10 @@ define([
   //subViews for handlers
   'views/admin/tabParentDepartmentsView',
   'views/admin/tabParentRolesView',
-  
+  'views/admin/tabParentCoursesView',
+
 ], function ($, bootstrapselect, _,  Backbone,
-            ParentAdminView, TabParentDepartmentsView, TabParentRolesView) {   
+            ParentAdminView, TabParentDepartmentsView, TabParentRolesView, TabParentCoursesView) {   
   
 var AdminFacultyView = ParentAdminView.extend({  
   
@@ -27,6 +28,11 @@ var AdminFacultyView = ParentAdminView.extend({
       id:'roles-tab',
       label: 'Manage roles',
       action: 'manage_roles'
+    },
+    {
+      id:'courses-tab',
+      label: 'Manage Courses',
+      action: 'manage_courses'
     }
   ],
 
@@ -39,6 +45,11 @@ var AdminFacultyView = ParentAdminView.extend({
   manage_roles: function(){
     this.activeMenuId = 'roles-tab';
     this.tabView = new TabParentRolesView();
+    this.showAdminButtons();
+  },
+  manage_courses: function(){
+    this.activeMenuId = 'courses-tab';
+    this.tabView = new TabParentCoursesView();
     this.showAdminButtons();
   }
 

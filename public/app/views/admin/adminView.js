@@ -11,7 +11,7 @@ define([
   'views/admin/tabParentRolesView',
   'views/admin/tabParentGroupsView',
 
-  'views/admin/tabDbView',
+  'views/admin/tabDbView'
   
 ], function ($, _,  Backbone,
             ParentAdminView, TabParentDepartmentsView, TabParentRolesView, TabParentGroupsView, TabDbView) {   
@@ -79,6 +79,26 @@ var AdminView = ParentAdminView.extend({
     this.tabView = new TabParentDepartmentsView();
     this.activeMenuId = 'departments-tab';
     this.showAdminButtons();
+  },
+
+  events : {
+    "click #loadData" : "imgLoader",
+    "change #file" : "showFileName"
+  },
+
+  imgLoader : function(){
+    $('#imgLoader').show();
+  },
+
+  showFileName : function(){
+    $('#file').each(function() {
+      var name = this.value;
+      reWin = /.*\\(.*)/;
+      var fileTitle = name.replace(reWin, "$1");
+      reUnix = /.*\/(.*)/;
+      fileTitle = fileTitle.replace(reUnix, "$1");
+      $('#name').html(fileTitle);
+    });
   }
 
 });

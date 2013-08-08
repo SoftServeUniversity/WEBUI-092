@@ -13,23 +13,14 @@ define([
       this.render();
     },
   
-    render: function (data){
+    render: function (){
       var that = this;
-
       var compiledTemplate = _.template(tabDbTemplate);
-
-       this.$el.html(compiledTemplate);
-    },
-
-    events: {
-      "click #submit" : "imgLoader"
-    },
-
-    imgLoader: function(){
-      $('#imgLoader').show();
+      this.$el.html(compiledTemplate);
     }
+
   });
 
-    return  TabDbView;
+  return  TabDbView;
 
 });

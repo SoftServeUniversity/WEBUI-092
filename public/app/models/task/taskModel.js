@@ -3,7 +3,7 @@ define([
   'backbone'
 ], function(_, Backbone) {
   
-  var taskModel = Backbone.Model.extend({
+  var TaskModel = Backbone.Model.extend({
 	defaults: {
 	    "id": Math.round(Math.random()*10e10),
 	    "name": "Завдання №1",
@@ -12,6 +12,6 @@ define([
 	}
   });
 
-  return taskModel;
+  return TaskModel;
 
 });
