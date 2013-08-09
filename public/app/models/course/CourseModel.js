@@ -4,6 +4,7 @@ define([
 ], function(_, Backbone) {
 
     var CourseModel = Backbone.Model.extend({
+        url: "http://localhost:3000/courses.json",
         defaults:{
             id: null,
             name: null,

@@ -1778,3 +1778,103 @@ Started GET "/courses.json" for 127.0.0.1 at 2013-08-09 10:01:56 +0300
 Processing by CoursesController#index as JSON
   [1m[35mCourse Load (0.4ms)[0m  SELECT "courses".* FROM "courses" 
 Completed 200 OK in 2ms (Views: 0.4ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/courses.json" for 127.0.0.1 at 2013-08-09 10:20:04 +0300
+Processing by CoursesController#index as JSON
+  [1m[36mCourse Load (0.5ms)[0m  [1mSELECT "courses".* FROM "courses" [0m
+Completed 200 OK in 2ms (Views: 0.5ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/courses.json" for 127.0.0.1 at 2013-08-09 10:20:06 +0300
+Processing by CoursesController#index as JSON
+  [1m[35mCourse Load (0.2ms)[0m  SELECT "courses".* FROM "courses" 
+Completed 200 OK in 1ms (Views: 0.4ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/courses.json" for 127.0.0.1 at 2013-08-09 10:20:22 +0300
+Processing by CoursesController#index as JSON
+  [1m[36mCourse Load (0.3ms)[0m  [1mSELECT "courses".* FROM "courses" [0m
+Completed 200 OK in 1ms (Views: 0.4ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/courses.json" for 127.0.0.1 at 2013-08-09 10:20:24 +0300
+Processing by CoursesController#index as JSON
+  [1m[35mCourse Load (0.2ms)[0m  SELECT "courses".* FROM "courses" 
+Completed 200 OK in 1ms (Views: 0.4ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/courses.json" for 127.0.0.1 at 2013-08-09 10:20:28 +0300
+Processing by CoursesController#index as JSON
+  [1m[36mCourse Load (0.3ms)[0m  [1mSELECT "courses".* FROM "courses" [0m
+Completed 200 OK in 1ms (Views: 0.4ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/courses.json" for 127.0.0.1 at 2013-08-09 10:20:30 +0300
+Processing by CoursesController#index as JSON
+  [1m[35mCourse Load (0.3ms)[0m  SELECT "courses".* FROM "courses" 
+Completed 200 OK in 1ms (Views: 0.4ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/courses.json" for 127.0.0.1 at 2013-08-09 10:20:34 +0300
+Processing by CoursesController#index as JSON
+  [1m[36mCourse Load (0.3ms)[0m  [1mSELECT "courses".* FROM "courses" [0m
+Completed 200 OK in 1ms (Views: 0.4ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/courses.json" for 127.0.0.1 at 2013-08-09 10:25:25 +0300
+Processing by CoursesController#index as JSON
+  [1m[35mCourse Load (0.3ms)[0m  SELECT "courses".* FROM "courses" 
+Completed 200 OK in 2ms (Views: 0.6ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/courses.json" for 127.0.0.1 at 2013-08-09 10:39:12 +0300
+Processing by CoursesController#index as JSON
+  [1m[36mCourse Load (0.3ms)[0m  [1mSELECT "courses".* FROM "courses" [0m
+Completed 200 OK in 1ms (Views: 0.4ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/courses.json" for 127.0.0.1 at 2013-08-09 10:55:51 +0300
+Processing by CoursesController#index as JSON
+  [1m[35mCourse Load (0.3ms)[0m  SELECT "courses".* FROM "courses" 
+Completed 200 OK in 1ms (Views: 0.4ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/courses.json" for 127.0.0.1 at 2013-08-09 11:08:29 +0300
+Processing by CoursesController#index as JSON
+  [1m[36mCourse Load (0.3ms)[0m  [1mSELECT "courses".* FROM "courses" [0m
+Completed 200 OK in 1ms (Views: 0.4ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/courses.json" for 127.0.0.1 at 2013-08-09 11:08:37 +0300
+Processing by CoursesController#index as JSON
+  [1m[35mCourse Load (0.3ms)[0m  SELECT "courses".* FROM "courses" 
+Completed 200 OK in 1ms (Views: 0.4ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/courses.json" for 127.0.0.1 at 2013-08-09 11:11:53 +0300
+Processing by CoursesController#index as JSON
+  [1m[36mCourse Load (0.3ms)[0m  [1mSELECT "courses".* FROM "courses" [0m
+Completed 200 OK in 1ms (Views: 0.4ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/courses.json" for 127.0.0.1 at 2013-08-09 11:14:20 +0300
+Processing by CoursesController#index as JSON
+  [1m[35mCourse Load (0.4ms)[0m  SELECT "courses".* FROM "courses" 
+Completed 200 OK in 1ms (Views: 0.4ms | ActiveRecord: 0.4ms)
+
+
+Started POST "/courses.json" for 127.0.0.1 at 2013-08-09 11:14:24 +0300
+Processing by CoursesController#create as JSON
+  Parameters: {"id"=>nil, "name"=>"1234", "year_of_start"=>"2007-05-12", "faculty"=>nil, "percentage"=>0, "faculty_id"=>nil, "course"=>{"faculty_id"=>nil, "name"=>"1234", "year_of_start"=>"2007-05-12"}}
+WARNING: Can't verify CSRF token authenticity
+  [1m[36m (0.3ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (42.9ms)[0m  INSERT INTO "courses" ("created_at", "faculty_id", "name", "updated_at", "year_of_start") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["created_at", Fri, 09 Aug 2013 08:14:24 UTC +00:00], ["faculty_id", nil], ["name", "1234"], ["updated_at", Fri, 09 Aug 2013 08:14:24 UTC +00:00], ["year_of_start", Sat, 12 May 2007]]
+  [1m[36m (0.6ms)[0m  [1mCOMMIT[0m
+Completed 201 Created in 50ms (Views: 1.8ms | ActiveRecord: 44.0ms)
+
+
+Started GET "/courses.json" for 127.0.0.1 at 2013-08-09 11:14:54 +0300
+Processing by CoursesController#index as JSON
+  [1m[35mCourse Load (0.3ms)[0m  SELECT "courses".* FROM "courses" 
+Completed 200 OK in 2ms (Views: 0.6ms | ActiveRecord: 0.3ms)

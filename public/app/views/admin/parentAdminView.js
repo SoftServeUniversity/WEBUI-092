@@ -144,6 +144,16 @@ define([
       var ck_name = /^[A-Za-z0-9 ]{3,20}$/;
       if (ck_name.test(name)) {
         $('#content').prepend("<div class='alert alert-success'><strong>Success!</strong>You have successfully created a department.</div>");
+
+        var newEntity = new this.config.model();
+        var entityValues = $("#new_entity").find('*[name]');
+        $(entityValues).each(function(index, element){
+          var temp_value = $(element).val();
+          var temp_name = $(element).attr('name');
+          newEntity.set(temp_name, temp_value);
+        })
+        console.log(newEntity)
+        newEntity.save()
       }
       else{
         $('#content').prepend("<div class='alert alert-error'><strong>Error!</strong>Name should be between 3 and 20 characters.</div>");
