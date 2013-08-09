@@ -63,7 +63,7 @@ define([
       this.courses_col = new CoursesCollection();
       this.faculties_col = new FacultiesCollection();
 
-      $.when(this.courses_col.fetch() && this.faculties_col.fetch()).then(function(){
+      $.when(this.courses_col.fetch() /*&& this.faculties_col.fetch()*/).then(function(){
         that.trigger('onDataLoaded');
       })
     },
