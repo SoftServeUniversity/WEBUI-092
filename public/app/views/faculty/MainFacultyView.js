@@ -16,8 +16,8 @@ define([
             facId = id;
             var me = this;
 
-            facs_col = new FacultiesCollection();
-            facs_col.fetch({
+            faculties_col = new FacultiesCollection();
+            faculties_col.fetch({
                 success: function () {
                     me.trigger('DataLoaded', 'Facs');
                 }
@@ -72,7 +72,7 @@ define([
         },
 
         render:function(){
-            var fac_name = facs_col.get(facId).toJSON().name;
+            var fac_name = faculties_col.get(facId).toJSON().name;
 
             var departmentsListView = new ListView({
                 collection:departments_col,
