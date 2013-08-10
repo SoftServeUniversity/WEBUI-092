@@ -1,0 +1,23 @@
+<h1>Listing table_dictionaries</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @table_dictionaries.each do |table_dictionary| %>
+  <tr>
+    <td><%= table_dictionary.name %></td>
+    <td><%= link_to 'Show', table_dictionary %></td>
+    <td><%= link_to 'Edit', edit_table_dictionary_path(table_dictionary) %></td>
+    <td><%= link_to 'Destroy', table_dictionary, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Table dictionary', new_table_dictionary_path %>

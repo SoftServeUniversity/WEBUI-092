@@ -1,4 +1,10 @@
 Webui92::Application.routes.draw do
+  resources :table_dictionaries
+
+
+  resources :progress_changes
+
+
   resources :tasks
 
 

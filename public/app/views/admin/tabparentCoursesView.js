@@ -4,65 +4,72 @@
  * і викликає з цими параметрами tabChildView
  */
 
+
 define([
-	
   'jquery',
   'underscore',
   'backbone',
-  
-  'models/fa/FaRoleModel',
-  'collections/fa/FaRolesCollection',
-  'views/fa/tabChildView'
-  
-], function($, _, Backbone, FaRoleModel, FaRolesCollection, TabChildView){   
-	 
-  var tabChildRolesView = Backbone.View.extend({
+
+  'views/admin/tabChildView',
+  'models/course/CourseModel',
+  'collections/courses/CoursesCollection',
+  'collections/faculties/FacultiesCollection'
+
+
+], function($, _, Backbone, TabChildView, CourseModel, CoursesCollection, FacultiesCollection){   
+   
+  var TabChildCoursesView = Backbone.View.extend({
 
 
     tagName: 'div',
 
     setConfig: function(){
-    	
       var config = {
-      	model: FaRoleModel,
-        col: this.faRolesCollection,
+      	model: CourseModel,
+        col: this.courses_col,
         data: [{
             _link: 'name',
-            label:'Role Name',
+            label:'Course Name',
             type:'text'
           },
           {
-            _link: 'role',
-            label: 'Role',
+            _link: 'year_of_start',
+            label:'Year Of Start',
             type:'text'
           },
           {
-            _link: 'email',
-            label: 'Email',
-            type:'text'
+            _link: 'faculty_id',
+            label: 'Faculty Name',
+            type:'select',
+            src:this.faculties_col.toJSON()
           }
+          /*,{
+            _link: 'percentage',
+            label: 'Percentage',
+            type:'text',
+          }*/
         ],
         buttons: {
-        	create: 'New Role'
+        	create: 'New Course'
         }
       };
       
       return config;
     },
-
-
+    
     loadData: function(){
       var that = this; 
       
-      this.faRolesCollection = new FaRolesCollection();
+      this.courses_col = new CoursesCollection();
+      this.faculties_col = new FacultiesCollection();
 
-      $.when(this.faRolesCollection.fetch()).then(function(){
+      $.when(this.courses_col.fetch() && this.faculties_col.fetch()).then(function(){
         that.trigger('onDataLoaded');
       })
     },
 
 
-    initialize: function(){        
+    initialize: function(){         
       var that = this;
       
       that.loadData();  
@@ -70,14 +77,14 @@ define([
       	that.config = that.setConfig();
       	that.childView = new TabChildView(that.config);
         that.render();
-      });   
+      });     
     },
 
     render: function (){
       var that=this;
         
       //console.log(that.childView.$el.html());
-      var htmlContent = that.childView.$el.html();
+      var htmlContent = that.childView.$el.html()
       
       //when everything has loaded - trigger global event
       GlobalEventBus.trigger('tabChildSupViewLoaded', htmlContent, that.config);
@@ -86,16 +93,6 @@ define([
   
   });
   
-  return  tabChildRolesView;
+  return  TabChildCoursesView;
   
 });
-
-
-
-
-
-
-
-
-
-

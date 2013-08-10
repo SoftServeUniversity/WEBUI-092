@@ -1,50 +1,74 @@
 [
     {   "id": 1,
         "name": "ІБК-21",
+        "course_id": 2,
+        "department_id": 1,
+        "teacher_id":2,
         "percentage": 2,
-        "num_students":24
+        "number_of_students":24
     },
     {   "id": 2,
         "name": "КІФ-44",
+        "course_id": 2,
+        "department_id": 1,
+        "teacher_id":2,
         "percentage": 8,
-        "num_students":22
+        "number_of_students":22
     },
     {   "id": 3,
         "name": "АТВ-12",
+        "course_id": 2,
+        "department_id": 1,
+        "teacher_id":2,
         "percentage": 8,
-        "num_students":14
+        "number_of_students":14
     },
     {   "id": 4,
         "name": "ЕКУ-22",
+        "course_id": 2,
+        "department_id": 1,
+        "teacher_id":2,
         "percentage": 10,
-        "num_students":21
+        "number_of_students":21
     },
     {
         "id" : "5",
         "name": "ІБВ-21",
+        "course_id": 2,
+        "department_id": 1,
+        "teacher_id":2,
         "percentage": 25,
-        "num_students":24
+        "number_of_students":24
 
     },
     {
         "id" : "6",
         "name": "КІВ-44",
+        "course_id": 2,
+        "department_id": 1,
+        "teacher_id":2,
         "percentage": 80,
-        "num_students":24
+        "number_of_students":24
 
     },
     {
         "id" : "7",
         "name": "АТМ-12",
+        "course_id": 2,
+        "department_id": 1,
+        "teacher_id":2,
         "percentage": 80,
-        "num_students":24
+        "number_of_students":24
 
     },
     {
         "id" : "8",
         "name": "ЕКВ-22",
+        "course_id": 2,
+        "department_id": 1,
+        "teacher_id":2,
         "percentage": 100,
-        "num_students":24
+        "number_of_students":24
 
     }
 ]

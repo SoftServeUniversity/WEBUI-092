@@ -9,7 +9,7 @@ define([
   'jquery',
   'underscore',
   'backbone',
-  'views/fa/tabChildView',
+  'views/admin/tabChildView',
   'models/department/DepartmentModel',
 
   'collections/departments/DepartmentsCollection',

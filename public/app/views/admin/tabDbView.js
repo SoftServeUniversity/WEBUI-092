@@ -2,7 +2,7 @@ define([
   'jquery',
   'underscore',
   'backbone',
-  'text!templates/fa/tabDbTemplate.html'
+  'text!templates/admin/tabDbTemplate.html'
 ], function($, _, Backbone, tabDbTemplate){   
    
   var TabDbView = Backbone.View.extend({
@@ -13,18 +13,14 @@ define([
       this.render();
     },
   
-    render: function (data){
+    render: function (){
       var that = this;
-
       var compiledTemplate = _.template(tabDbTemplate);
+      this.$el.html(compiledTemplate);
+    }
 
-      that.$el.html(compiledTemplate);
-      
-      return this;
-    },
-    
   });
-  
+
   return  TabDbView;
-  
+
 });
