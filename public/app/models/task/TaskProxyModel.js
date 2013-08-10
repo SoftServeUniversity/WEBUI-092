@@ -1,7 +1,7 @@
 define([
   'underscore',
   'backbone',
-  'models/task/TaskModel'
+  'models/task/taskModel'
 ], function(_, Backbone, TaskModel) {
 
   var TaskProxyModel = Backbone.Model.extend({
