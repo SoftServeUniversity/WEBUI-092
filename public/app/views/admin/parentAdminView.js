@@ -140,6 +140,7 @@ define([
 
     saveData: function(){
       //Валідація поля name за допомогою регулярних виразів
+      var me = this;
       var name = document.getElementById("name_field").value;
       var ck_name = /^[A-Za-z0-9 ]{3,20}$/;
       if (ck_name.test(name)) {
@@ -153,7 +154,11 @@ define([
           newEntity.set(temp_name, temp_value);
         })
         console.log(newEntity)
-        newEntity.save()
+        /*newEntity.save({}, {success: function(){
+          me.config = config;        
+          me.render(tabContent);
+          me.trigger('onChildConfigLoaded');
+        }})*/
       }
       else{
         $('#content').prepend("<div class='alert alert-error'><strong>Error!</strong>Name should be between 3 and 20 characters.</div>");
