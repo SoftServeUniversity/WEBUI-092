@@ -72,7 +72,7 @@ define([
      'click .close-m'            : 'closeModal',
      'click .save'               : 'closeModal',
      'click .open-modal-import'  : 'openModalImport',
-     'click #newDepartment'      : 'createNewElement', 
+     'click #newElement'      : 'createNewElement', 
      'click #create_button'      : 'saveData',
      'click #remove_button'      : 'removeData'
     },
