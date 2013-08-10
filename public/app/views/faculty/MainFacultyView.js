@@ -72,7 +72,7 @@ define([
         },
 
         render:function(){
-            var fac_name = faculties_col.get(facId).toJSON().name;
+            var faculty_name = faculties_col.get(facId).toJSON().name;
 
             var departmentsListView = new ListView({
                 collection:departments_col,
@@ -88,7 +88,7 @@ define([
 
 
             var data = {
-                name: fac_name,
+                name: faculty_name,
                 firstListTitle: "Список кафедр",
                 secondListTitle: "Список курсів",
                 firstList : departmentsListView.render().$el.html(),
