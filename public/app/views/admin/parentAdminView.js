@@ -68,12 +68,13 @@ define([
      'keypress .toggle-input'    : 'changed',
      
      //modal windows
-     'click .open-modal' : 'openModal',
-     'click .close-m'      : 'closeModal',
-     'click .save'       : 'closeModal',
+     'click .open-modal'         : 'openModal',
+     'click .close-m'            : 'closeModal',
+     'click .save'               : 'closeModal',
      'click .open-modal-import'  : 'openModalImport',
      'click #newDepartment'      : 'createNewElement', 
-     'click #create_button'      : 'saveData'
+     'click #create_button'      : 'saveData',
+     'click #remove_button'      : 'removeData'
     },
     //add click handler for each tab
     addTabHandlers: function(){
@@ -167,6 +168,10 @@ define([
           $('.alert-success').fadeOut();
           $('.alert-error').fadeOut();
         }, 3000);
+    },
+
+    removeData: function(){
+      console.log("removeData");
     },
 
 
