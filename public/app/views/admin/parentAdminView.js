@@ -68,12 +68,13 @@ define([
      'keypress .toggle-input'    : 'changed',
      
      //modal windows
-     'click .open-modal' : 'openModal',
-     'click .close-m'      : 'closeModal',
-     'click .save'       : 'closeModal',
+     'click .open-modal'         : 'openModal',
+     'click .close-m'            : 'closeModal',
+     'click .save'               : 'closeModal',
      'click .open-modal-import'  : 'openModalImport',
-     'click #newDepartment'      : 'createNewElement', 
-     'click #create_button'      : 'saveData'
+     'click #newElement'      : 'createNewElement', 
+     'click #create_button'      : 'saveData',
+     'click #remove_button'      : 'removeData'
     },
     //add click handler for each tab
     addTabHandlers: function(){
@@ -140,10 +141,25 @@ define([
 
     saveData: function(){
       //Валідація поля name за допомогою регулярних виразів
+      var me = this;
       var name = document.getElementById("name_field").value;
       var ck_name = /^[A-Za-z0-9 ]{3,20}$/;
       if (ck_name.test(name)) {
         $('#content').prepend("<div class='alert alert-success'><strong>Success!</strong>You have successfully created a department.</div>");
+
+        var newEntity = new this.config.model();
+        var entityValues = $("#new_entity").find('*[name]');
+        $(entityValues).each(function(index, element){
+          var temp_value = $(element).val();
+          var temp_name = $(element).attr('name');
+          newEntity.set(temp_name, temp_value);
+        })
+        console.log(newEntity)
+        /*newEntity.save({}, {success: function(){
+          me.config = config;        
+          me.render(tabContent);
+          me.trigger('onChildConfigLoaded');
+        }})*/
       }
       else{
         $('#content').prepend("<div class='alert alert-error'><strong>Error!</strong>Name should be between 3 and 20 characters.</div>");
@@ -152,6 +168,10 @@ define([
           $('.alert-success').fadeOut();
           $('.alert-error').fadeOut();
         }, 3000);
+    },
+
+    removeData: function(){
+      console.log("removeData");
     },
 
 
