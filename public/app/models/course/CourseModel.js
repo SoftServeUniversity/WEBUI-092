@@ -10,7 +10,8 @@ define([
             year_of_start: null,
             faculty: null,
             percentage: 0
-        }
+        },
+        urlRoot: 'courses/'
 
     });
 

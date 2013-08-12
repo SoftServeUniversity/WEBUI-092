@@ -37,6 +37,10 @@ define([
     	$('.nav-tabs *').removeClass('active').find('#'+id).addClass('active');
     },
     
+    reloadTab: function () {
+      $('.nav-tabs .active').trigger('click');
+    },
+
     initialize: function(){
       var me = this;
       
@@ -73,8 +77,8 @@ define([
      //modal windows
      'click .save'               : 'closeModal',
      'click .open-modal-import'  : 'openModalImport',
-     'click #newElement'         : 'createNewElement', 
-     'click #create_button'      : 'saveData',
+     'click #newElement'         : 'appendNewElementRow', 
+     'click #create_button'      : 'saveElement',
      'click .delete-button'      : 'showRemoveDialog'
     },
 
@@ -86,7 +90,7 @@ define([
       })
     },    
 
-    createNewElement: function(){  
+    appendNewElementRow: function(){  
       var me = this;
       
       if ($('#new_entity').length < 1){
@@ -94,8 +98,6 @@ define([
         var newElementView = new NewElementView(me.config);
 	      $(me.el_tab_content + ' table tbody').append(newElementView.$el.html())
         $('#content select').selectpicker() 
-
-        var newEntity = new me.config.model();
       
       } else {
 
@@ -146,9 +148,21 @@ define([
        new RemoveDialogView(model_id, collection);
     },
 
-    saveData: function(){
+    saveElement: function(){
+      var me = this, name;
+      var model = new me.config.model;
+
+      $("input[data-field]").each(function(){
+          field = $(this).attr('name');
+          value =  $(this).val();
+          console.log(value);
+          model.set(field, value);
+      });
+
+      model.save();
+      me.reloadTab();
       //Валідація поля name за допомогою регулярних виразів
-      var me = this;
+      /*var me = this;
       var name = document.getElementById("name_field").value;
       var ck_name = /^[A-Za-z0-9 ]{3,20}$/;
       if (ck_name.test(name)) {
@@ -160,20 +174,20 @@ define([
           var temp_value = $(element).val();
           var temp_name = $(element).attr('name');
           newEntity.set(temp_name, temp_value);
-        })
+        })*/
         /*newEntity.save({}, {success: function(){
           me.config = config;        
           me.render(tabContent);
           me.trigger('onChildConfigLoaded');
         }})*/
-      }
+      /*}
       else{
         $('#content').prepend("<div class='alert alert-error'><strong>Error!</strong>Name should be between 3 and 20 characters.</div>");
       }
       window.setTimeout(function () {
           $('.alert-success').fadeOut();
           $('.alert-error').fadeOut();
-        }, 3000);
+        }, 3000);*/
     },
 
 
