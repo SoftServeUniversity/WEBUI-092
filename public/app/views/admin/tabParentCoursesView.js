@@ -18,7 +18,7 @@ define([
 
     setConfig: function(){
       var config = {
-      	model: CourseModel,
+        model: CourseModel,
         col: this.courses_col,
         data: [{
             _link: 'name',
@@ -36,14 +36,9 @@ define([
             type:'select',
             src:this.faculties_col.toJSON()
           }
-          /*,{
-            _link: 'percentage',
-            label: 'Percentage',
-            type:'text',
-          }*/
         ],
         buttons: {
-        	create: 'New Course'
+          create: 'New Course'
         }
       };
       
@@ -52,27 +47,41 @@ define([
     
     loadData: function(){
       var that = this; 
-      
+      this.courses_col ='';
+      this.faculties_col = '';
       this.courses_col = new CoursesCollection();
       this.faculties_col = new FacultiesCollection();
 
-      $.when(this.courses_col.fetch() && this.faculties_col.fetch()).then(function(){
-        that.trigger('onDataLoaded');
-        console.log(that.faculties_col)
-      })
+      this.courses_col.fetch({async:true, success: function() {
+        that.trigger('onDataLoaded', 'Courses');
+      }})
+      this.faculties_col.fetch({async:true, success: function() {
+        that.trigger('onDataLoaded', 'Faculties');
+      }})
 
     },
 
 
     initialize: function(){         
       var that = this;
+      var courses = false;
+      var faculties = false; 
+      this.on('onDataLoaded', function(flag){
+ 
+        if (flag == 'Courses') {
+          courses = true;
+        }
+        if (flag == 'Faculties') {
+          faculties = true;
+        }         
+        if ((courses == true) && (faculties == true)){
+          that.config = that.setConfig();
+          that.childView = new TabChildView(that.config);
+          that.render();
+        }
+      });  
       
-      that.loadData();  
-      this.on('onDataLoaded', function(){
-      	that.config = that.setConfig();
-      	that.childView = new TabChildView(that.config);
-        that.render();
-      });     
+      that.loadData();   
     },
 
     render: function (){

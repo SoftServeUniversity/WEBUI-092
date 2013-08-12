@@ -21,16 +21,18 @@ var RemoveDialogView = Backbone.View.extend(
     
     _.bindAll(this, 'cancelAction');
     _.bindAll(this, 'removeElement');
+    _.bindAll(this, 'keyPressHandler');
+
 
     this.render();
-    this.removeZombieEvents();
     this.addEventHandlers();
   },
 
-  //some events persisted from earlier calls to 'new removeDialogView()'
+  //remove events what remain from earlier calls to 'new removeDialogView()'
   removeZombieEvents: function () {
       $('.confirm-yes').off('click');
       $('.confirm-no').off('click');
+      $(document).off('keypress', this.keyPressHandler);
   },
 
   //when using event object there was no way to remove zombie events.
@@ -38,6 +40,15 @@ var RemoveDialogView = Backbone.View.extend(
   addEventHandlers: function () {
     $('.confirm-yes').on('click', this.removeElement);
     $('.confirm-no').on('click', this.cancelAction);
+    $(document).on('keypress', this.keyPressHandler);
+  },
+
+
+  //to confirm removal with Enter
+  keyPressHandler: function(e){
+      if (e.keyCode == 13){
+          this.removeElement(); 
+    }
   },
 
   hideModal: function () {
@@ -60,7 +71,7 @@ var RemoveDialogView = Backbone.View.extend(
     this.hideModal();
   },
   
-  removeElement: function () {
+  removeElement: function (e) {
     var model = this.collection.get(this.model_id);
 
     var options = {
@@ -77,6 +88,9 @@ var RemoveDialogView = Backbone.View.extend(
 
     $('.nav-tabs .active').trigger('click')
     this.hideModal();
+
+
+    this.removeZombieEvents()
   }
 
 

@@ -9,10 +9,6 @@ define([
         model:CourseModel,
         url: "/courses"
     });
-    test = new CoursesCollection;
-    test.fetch();
-    console.log(test);
 
     return CoursesCollection;
-
 });
