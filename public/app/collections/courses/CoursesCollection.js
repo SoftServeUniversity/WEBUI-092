@@ -7,10 +7,11 @@ define([
 
     var CoursesCollection = Backbone.Collection.extend({
         model:CourseModel,
-        url: "http://localhost:3000/courses.json"
+        url: "/courses"
     });
-    test = new CoursesCollection
-    console.log(test.toJSON());
+    test = new CoursesCollection;
+    test.fetch();
+    console.log(test);
 
     return CoursesCollection;
 

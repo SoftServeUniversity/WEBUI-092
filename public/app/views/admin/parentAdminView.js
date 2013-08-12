@@ -7,9 +7,11 @@ define([
   'backbone',
   'views/shared/MenuView',
   'text!templates/admin/parentAdminTemplate.html',
-  'views/admin/newElementView'
+  'views/admin/newElementView',
+  'views/admin/removeDialogView'
 
-], function($, bootstrapselect, _,  Backbone, MenuView, parentAdminTemplate, NewElementView){   
+
+], function($, bootstrapselect, _,  Backbone, MenuView, parentAdminTemplate, NewElementView, RemoveDialogView){   
 
   var AdminParentView = Backbone.View.extend({
     
@@ -56,6 +58,7 @@ define([
       }) 
 
       this.loadDefaultActiveTab(this.defaultActiveTab);
+            
     },
 
     //remove all events, (to remove events bound in previous adminView.extend)
@@ -68,19 +71,18 @@ define([
      'keypress .toggle-input'    : 'changed',
      
      //modal windows
-     'click .open-modal'         : 'openModal',
-     'click .close-m'            : 'closeModal',
      'click .save'               : 'closeModal',
      'click .open-modal-import'  : 'openModalImport',
-     'click #newElement'      : 'createNewElement', 
+     'click #newElement'         : 'createNewElement', 
      'click #create_button'      : 'saveData',
-     'click #remove_button'      : 'removeData'
+     'click .delete-button'      : 'showRemoveDialog'
     },
+
     //add click handler for each tab
     addTabHandlers: function(){
       var me = this;
       _.each(this.tabMenuConfig, function (item){
-         me.events['click #'+ item['id']] = item['action'];
+        me.events['click #'+ item['id']] = item['action'];
       })
     },    
 
@@ -105,7 +107,6 @@ define([
     showInput: function(e){
       $(e.target).css('display', 'none').prev().css('display','block');	
     },
-    
     hideAdminButtons: function(){
       $('.admin-buttons').css('display', 'none')
     },
@@ -115,14 +116,13 @@ define([
     
     //some input in tab has been changed
     changed: function (e){
-    	
       if ((e.type == 'keypress' && e.keyCode == 13) || e.type == 'focusout'){
         var field_name = $(e.target).attr('name'); 
         var model_id = $(e.target).closest('.model').attr('model_id'); 
         
         $('.toggle-list .toggle-input').css('display','none');
 	      $('.toggle-list .toggle-text').css('display', 'block');
-       }   
+      }   
     },      
 
     openModal: function(e){
@@ -137,6 +137,13 @@ define([
 
     openModalImport: function(){
       $('#manage-department-import').modal('show');
+    },
+
+
+    showRemoveDialog: function(e){
+       var model_id = $(e.target).closest('.model').attr('model_id');
+       var collection = this.config.col;
+       new RemoveDialogView(model_id, collection);
     },
 
     saveData: function(){
@@ -154,7 +161,6 @@ define([
           var temp_name = $(element).attr('name');
           newEntity.set(temp_name, temp_value);
         })
-        console.log(newEntity)
         /*newEntity.save({}, {success: function(){
           me.config = config;        
           me.render(tabContent);
@@ -168,10 +174,6 @@ define([
           $('.alert-success').fadeOut();
           $('.alert-error').fadeOut();
         }, 3000);
-    },
-
-    removeData: function(){
-      console.log("removeData");
     },
 
 
