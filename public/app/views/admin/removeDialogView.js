@@ -27,26 +27,31 @@ var RemoveDialogView = Backbone.View.extend(
     this.addEventHandlers();
   },
 
+  //some events persisted from earlier calls to 'new removeDialogView()'
   removeZombieEvents: function () {
       $('.confirm-yes').off('click');
       $('.confirm-no').off('click');
   },
 
+  //when using event object there was no way to remove zombie events.
+  //assigning events manually works better
   addEventHandlers: function () {
     $('.confirm-yes').on('click', this.removeElement);
     $('.confirm-no').on('click', this.cancelAction);
   },
 
-
   hideModal: function () {
     $(this.el_modal).modal('hide');
   },
+  showModal: function () {
+    $(this.el_modal).modal('show');
+  },
+
   render: function () {
     if($(this.el_modal).length==0){
 	    $(this.el).append(this.templ());
 	  } 
-    $(this.el_modal).modal('show');
-     
+    this.showModal();     
 	  return this;
   },
 
@@ -70,7 +75,7 @@ var RemoveDialogView = Backbone.View.extend(
     model.destroy(options);
     this.collection.remove(model);
 
-
+    $('.nav-tabs .active').trigger('click')
     this.hideModal();
   }
 

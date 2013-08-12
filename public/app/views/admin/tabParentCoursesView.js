@@ -58,7 +58,9 @@ define([
 
       $.when(this.courses_col.fetch() && this.faculties_col.fetch()).then(function(){
         that.trigger('onDataLoaded');
+        console.log(that.faculties_col)
       })
+
     },
 
 
