@@ -32,7 +32,7 @@ define([
 
     //add active class to tab menu
     addActiveClass: function(id){
-    	$('.nav-tabs *').removeClass('active').find('#'+id).addClass('active');
+      $('.nav-tabs *').removeClass('active').find('#'+id).addClass('active');
     },
     
     initialize: function(){
@@ -45,12 +45,12 @@ define([
 
       //when child config loads we can update buttons' titles in parent view
       this.on('onChildConfigLoaded', function(){
-      	$('.new-button').html(me.config.buttons['create']);
+        $('.new-button').html(me.config.buttons['create']);
       })
       
       //Subview has rendered             	
       GlobalEventBus.on('tabChildSupViewLoaded', function(tabContent, config){     	
-        me.config = config;        
+        me.config = config;
         me.render(tabContent);
         me.trigger('onChildConfigLoaded');
       }) 
@@ -72,7 +72,7 @@ define([
      'click .close-m'            : 'closeModal',
      'click .save'               : 'closeModal',
      'click .open-modal-import'  : 'openModalImport',
-     'click #newElement'      : 'createNewElement', 
+     'click #newElement'         : 'createNewElement', 
      'click #create_button'      : 'saveData',
      'click #remove_button'      : 'removeData'
     },
@@ -88,9 +88,9 @@ define([
       var me = this;
       
       if ($('#new_entity').length < 1){
-	      
+        
         var newElementView = new NewElementView(me.config);
-	      $(me.el_tab_content + ' table tbody').append(newElementView.$el.html())
+        $(me.el_tab_content + ' table tbody').append(newElementView.$el.html())
         $('#content select').selectpicker() 
 
         var newEntity = new me.config.model();
@@ -115,13 +115,13 @@ define([
     
     //some input in tab has been changed
     changed: function (e){
-    	
+      
       if ((e.type == 'keypress' && e.keyCode == 13) || e.type == 'focusout'){
         var field_name = $(e.target).attr('name'); 
         var model_id = $(e.target).closest('.model').attr('model_id'); 
         
         $('.toggle-list .toggle-input').css('display','none');
-	      $('.toggle-list .toggle-text').css('display', 'block');
+        $('.toggle-list .toggle-text').css('display', 'block');
        }   
     },      
 
@@ -207,9 +207,9 @@ define([
       //hide all toggle-inputs when user clicks not on input
       $('body').on('click',function(e){
         if ($(e.target).closest('.toggle-input').length <= 0){	
-	        $('.toggle-list .toggle-input').css('display','none');
-	        $('.toggle-list .toggle-text').css('display', 'block');	
-	      }
+          $('.toggle-list .toggle-input').css('display','none');
+          $('.toggle-list .toggle-text').css('display', 'block');	
+        }
       })
       
       // next time child view loads - only tab content will render and button text update 
