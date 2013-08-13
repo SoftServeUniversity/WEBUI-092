@@ -1,9 +1,17 @@
 beforeEach(function() {
   this.addMatchers({
-    toBePlaying: function(expectedSong) {
-      var player = this.actual;
-      return player.currentlyPlayingSong === expectedSong && 
-             player.isPlaying;
+    toEqualCollection: function(expectedCollection) {
+      var actualCollection = this.actual;
+      if (actualCollection.length != expectedCollection.length){
+        return false;
+      }
+
+      for (var i = 0; i < actualCollection.length ; i++){
+        if (!_.isEqual(actualCollection.at(i).attributes,expectedCollection.at(i).attributes)){
+          return false;
+        }
+      }
+      return true;
     }
   });
 });

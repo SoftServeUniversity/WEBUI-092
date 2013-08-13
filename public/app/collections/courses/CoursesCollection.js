@@ -9,8 +9,7 @@ define([
         model:CourseModel,
         url: "http://localhost:3000/courses.json"
     });
-    test = new CoursesCollection
-    console.log(test.toJSON());
+
 
     return CoursesCollection;
 
