@@ -53,6 +53,9 @@ var AdminView = ParentAdminView.extend({
   initialize: function(){
     //call parent's initialize method
     this.constructor.__super__.initialize.apply(this);
+    
+    //extend inherited events with own events
+    _.extend(this.events, this.events_own)
   },
 
   //tab menu buttons handlers  
@@ -81,7 +84,7 @@ var AdminView = ParentAdminView.extend({
     this.showAdminButtons();
   },
 
-  events : {
+  events_own : {
     "click #loadData" : "imgLoader",
     "change #file" : "showFileName"
   },

@@ -7,7 +7,7 @@ define([
 
     var CoursesCollection = Backbone.Collection.extend({
         model:CourseModel,
-        url: "http://localhost:3000/courses.json"
+        url: "/courses"
     });
 
 
