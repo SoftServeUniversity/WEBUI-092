@@ -37,7 +37,7 @@ function($, evil, _, Backbone, bootstrap, WorkTasksTemplate, WorkHistoryTemplate
 
       var tasksListView = new TasksListView({
         collection:work_col,
-        linkTo:"work"
+        linkTo:"work/id"
       });
 
       var data = {
