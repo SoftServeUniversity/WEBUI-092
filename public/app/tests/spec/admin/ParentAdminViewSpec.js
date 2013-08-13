@@ -22,7 +22,7 @@
 */
 
 describe('Parent Admin View :: event handlers on user actions', function() {
-
+  var adminView;
   beforeEach(function(){
     var that = this;
 
@@ -30,17 +30,17 @@ describe('Parent Admin View :: event handlers on user actions', function() {
 
         runs( function () {
             require(['views/admin/adminView'], function(AdminView) {
-              that.adminView = new AdminView();
+              adminView = new AdminView();
             })
         });
 
-        waitsFor(function () {return that.adminView; } , 'Admin view load timed out', 1000);
+        waitsFor(function () { return adminView; } , 'Admin view load timeout', 1000);
 
   });
   
   //цей виконається (teacher має метод sayBuhaha, що повертає 'bu-ha-ha')
   it('should be truthy', function(){
-     expect(typeof this.adminView.initialize).toBe("function")  
+     expect(typeof adminView.initialize).toBe("function")  
    });
   
 });
