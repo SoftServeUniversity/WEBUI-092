@@ -25,7 +25,8 @@ define([
 
     buildJSON: function(config){
       var json_data=config.col.toJSON();
-    //loop through all entities
+      
+      //loop through all entities
       var rel = {};
       var visible_fields = [];
       var labels = [];
@@ -69,13 +70,13 @@ define([
           }
 
         }
-        
         var data = {};
         data.entities = json_data;
         
+        
 
         return data; 
-    
+
     },
     
     

@@ -13,7 +13,6 @@ require.config({
     bootstrap: 'libs/bootstrap/bootstrap',
     bootstrapselect: 'libs/bootstrap/bootstrap-select.min',
     backbone: 'libs/backbone/backbone-min',
-    backbone_relational: 'libs/backbone/backbone-relational',
     reg: 'libs/reg/reg',
     highcharts: 'libs/highcharts/highcharts',
     templates: '../templates'

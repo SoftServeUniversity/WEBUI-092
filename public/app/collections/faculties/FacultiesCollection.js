@@ -7,8 +7,12 @@ define([
 
   var FacultiesCollection = Backbone.Collection.extend({
     model: FacultyModel,
-    url: "app/mocks/faculties.json"
+    url: "/faculties"
   });
 
+  var Fac = new FacultiesCollection()
+      Fac.fetch();
+
+  console.log(Fac.toJSON())
   return FacultiesCollection;
 });

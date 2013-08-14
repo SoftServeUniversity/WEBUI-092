@@ -7,8 +7,9 @@ define([
 
     var CoursesCollection = Backbone.Collection.extend({
         model:CourseModel,
-        url: "app/mocks/courses.json"
+        url: "/courses"
     });
+
 
     return CoursesCollection;
 

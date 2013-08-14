@@ -55,32 +55,56 @@ define([
     
     loadData: function(){
       var that = this; 
-      var date = new Date().getMilliseconds();
 
       this.groups_col = new GroupsCollection();
       this.courses_col = new CoursesCollection();
       this.teachers_col = new TeachersCollection();
       this.departments_col = new DepartmentsCollection();
       
-      $.when(this.groups_col.fetch() && this.courses_col.fetch() && this.teachers_col.fetch() && this.departments_col.fetch()).then(function(){
-        that.trigger('onDataLoaded');
-        
-        var date2 = new Date().getMilliseconds();
-
-        console.log('loadData takes in milliseconds --- ' + (date2 - date));
-      })
+      this.groups_col.fetch({success: function(){
+        that.trigger('onDataLoaded', 'Groups');
+      }})
+      this.courses_col.fetch({success: function(){
+        that.trigger('onDataLoaded', 'Courses');
+      }})
+      this.teachers_col.fetch({success: function(){
+        that.trigger('onDataLoaded', 'Teachers');
+      }})
+      this.departments_col.fetch({success: function(){
+        that.trigger('onDataLoaded', 'Departments');
+      }})
     },
 
 
     initialize: function(){         
       var that = this;
       
-      that.loadData();  
-      this.on('onDataLoaded', function(){
-      	that.config = that.setConfig();
-      	that.childView = new TabChildView(that.config);
-        that.render();
-      });     
+      that.loadData(); 
+      var groups = false;
+      var courses = false;
+      var teachers = false;
+      var departments = false;
+
+      this.on('onDataLoaded', function(flag){
+
+        if (flag == 'Groups'){
+          groups = true
+        }
+        if (flag == 'Courses'){
+          courses = true
+        }
+        if (flag == 'Teachers'){
+          teachers = true
+        }
+        if (flag == 'Departments'){
+          departments = true
+        }
+        if (groups == true && courses == true && teachers == true && departments == true) {
+          that.config = that.setConfig();
+          that.childView = new TabChildView(that.config);
+          that.render(); 
+        }
+      })     
     },
 
     render: function (){

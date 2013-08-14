@@ -7,9 +7,11 @@ define([
   'backbone',
   'views/shared/MenuView',
   'text!templates/admin/parentAdminTemplate.html',
-  'views/admin/newElementView'
+  'views/admin/newElementView',
+  'views/admin/removeDialogView'
 
-], function($, bootstrapselect, _,  Backbone, MenuView, parentAdminTemplate, NewElementView){   
+
+], function($, bootstrapselect, _,  Backbone, MenuView, parentAdminTemplate, NewElementView, RemoveDialogView){   
 
   var AdminParentView = Backbone.View.extend({
     
@@ -35,6 +37,10 @@ define([
     	$('.nav-tabs *').removeClass('active').find('#'+id).addClass('active');
     },
     
+    reloadTab: function () {
+      $('.nav-tabs .active').trigger('click');
+    },
+
     initialize: function(){
       var me = this;
       
@@ -56,6 +62,7 @@ define([
       }) 
 
       this.loadDefaultActiveTab(this.defaultActiveTab);
+            
     },
 
     //remove all events, (to remove events bound in previous adminView.extend)
@@ -68,22 +75,22 @@ define([
      'keypress .toggle-input'    : 'changed',
      
      //modal windows
-     'click .open-modal' : 'openModal',
-     'click .close-m'      : 'closeModal',
-     'click .save'       : 'closeModal',
+     'click .save'               : 'closeModal',
      'click .open-modal-import'  : 'openModalImport',
-     'click #newDepartment'      : 'createNewElement', 
-     'click #create_button'      : 'saveData'
+     'click #newElement'         : 'appendNewElementRow', 
+     'click #create_button'      : 'saveElement',
+     'click .delete-button'      : 'showRemoveDialog'
     },
+
     //add click handler for each tab
     addTabHandlers: function(){
       var me = this;
       _.each(this.tabMenuConfig, function (item){
-         me.events['click #'+ item['id']] = item['action'];
+        me.events['click #'+ item['id']] = item['action'];
       })
     },    
 
-    createNewElement: function(){  
+    appendNewElementRow: function(){  
       var me = this;
       
       if ($('#new_entity').length < 1){
@@ -91,8 +98,6 @@ define([
         var newElementView = new NewElementView(me.config);
 	      $(me.el_tab_content + ' table tbody').append(newElementView.$el.html())
         $('#content select').selectpicker() 
-
-        var newEntity = new me.config.model();
       
       } else {
 
@@ -104,7 +109,6 @@ define([
     showInput: function(e){
       $(e.target).css('display', 'none').prev().css('display','block');	
     },
-    
     hideAdminButtons: function(){
       $('.admin-buttons').css('display', 'none')
     },
@@ -114,14 +118,13 @@ define([
     
     //some input in tab has been changed
     changed: function (e){
-    	
       if ((e.type == 'keypress' && e.keyCode == 13) || e.type == 'focusout'){
         var field_name = $(e.target).attr('name'); 
         var model_id = $(e.target).closest('.model').attr('model_id'); 
         
         $('.toggle-list .toggle-input').css('display','none');
 	      $('.toggle-list .toggle-text').css('display', 'block');
-       }   
+      }   
     },      
 
     openModal: function(e){
@@ -138,20 +141,53 @@ define([
       $('#manage-department-import').modal('show');
     },
 
-    saveData: function(){
+
+    showRemoveDialog: function(e){
+       var model_id = $(e.target).closest('.model').attr('model_id');
+       var collection = this.config.col;
+       new RemoveDialogView(model_id, collection);
+    },
+
+    saveElement: function(){
+      var me = this, name;
+      var model = new me.config.model;
+
+      $("input[data-field]").each(function(){
+          field = $(this).attr('name');
+          value =  $(this).val();
+          console.log(value);
+          model.set(field, value);
+      });
+
+      model.save();
+      me.reloadTab();
       //Валідація поля name за допомогою регулярних виразів
+      /*var me = this;
       var name = document.getElementById("name_field").value;
       var ck_name = /^[A-Za-z0-9 ]{3,20}$/;
       if (ck_name.test(name)) {
         $('#content').prepend("<div class='alert alert-success'><strong>Success!</strong>You have successfully created a department.</div>");
-      }
+
+        var newEntity = new this.config.model();
+        var entityValues = $("#new_entity").find('*[name]');
+        $(entityValues).each(function(index, element){
+          var temp_value = $(element).val();
+          var temp_name = $(element).attr('name');
+          newEntity.set(temp_name, temp_value);
+        })*/
+        /*newEntity.save({}, {success: function(){
+          me.config = config;        
+          me.render(tabContent);
+          me.trigger('onChildConfigLoaded');
+        }})*/
+      /*}
       else{
         $('#content').prepend("<div class='alert alert-error'><strong>Error!</strong>Name should be between 3 and 20 characters.</div>");
       }
       window.setTimeout(function () {
           $('.alert-success').fadeOut();
           $('.alert-error').fadeOut();
-        }, 3000);
+        }, 3000);*/
     },
 
 

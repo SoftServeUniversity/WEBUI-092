@@ -60,9 +60,17 @@ define([
       this.faculties_col = new FacultiesCollection();
       this.teachers_col = new TeachersCollection();
       
-      $.when(this.departments_col.fetch() && this.faculties_col.fetch() && this.teachers_col.fetch()).then(function(){
-        that.trigger('onDataLoaded');
-      })
+      this.departments_col.fetch({success: function(){
+        that.trigger('onDataLoaded', 'Departments');
+      }})
+      this.faculties_col.fetch({success: function(){
+        that.trigger('onDataLoaded', 'Faculties');
+      }})
+      this.teachers_col.fetch({success: function(){
+        that.trigger('onDataLoaded', 'Teachers');
+      }})
+           
+
     },
 
 
@@ -70,10 +78,28 @@ define([
       var that = this;
       
       that.loadData();  
-      this.on('onDataLoaded', function(){
-      	that.config = that.setConfig();
-      	that.childView = new TabChildView(that.config);
-        that.render();
+      
+      var departments = false;
+      var faculties = false;
+      var teachers = false;
+
+      this.on('onDataLoaded', function(flag){
+
+        if (flag == 'Departments') {
+          departments = true;
+        }
+        if (flag == 'Faculties') {
+          faculties = true;
+        }
+        if (flag == 'Teachers') {
+          teachers = true;
+        }
+        if(departments == true && faculties == true && teachers == true) {
+          that.config = that.setConfig();
+          that.childView = new TabChildView(that.config);
+          that.render();
+        }
+ 
       });     
     },
 
