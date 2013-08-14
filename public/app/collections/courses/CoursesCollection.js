@@ -10,5 +10,7 @@ define([
         url: "/courses"
     });
 
+
     return CoursesCollection;
+
 });

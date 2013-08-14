@@ -25,14 +25,7 @@ define([
              ) {
 
 
-  	/*this is an event aggregator to create global events
-  	 *  
-  	 *  vent.on("some:event", function(){
-     *     console.log("some event was fired");
-     *  });
-     *
-     *  vent.trigger("some:event");
-    */   	
+  	
   	GlobalEventBus = _.extend({}, Backbone.Events);
 
   	

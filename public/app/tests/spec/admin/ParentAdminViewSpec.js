@@ -4,7 +4,7 @@ describe('Parent Admin View :: event handlers on user actions', function() {
     var that = this;
 
     
-
+        GlobalEventBus = _.extend({}, Backbone.Events);
         runs( function () {
             require(['views/admin/adminView'], function(AdminView) {
               adminView = new AdminView();

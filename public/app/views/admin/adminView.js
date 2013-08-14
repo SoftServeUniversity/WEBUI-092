@@ -51,6 +51,8 @@ var AdminView = ParentAdminView.extend({
   ],
 
   initialize: function(){
+    console.log('initi')
+
     //call parent's initialize method
     this.constructor.__super__.initialize.apply(this);
     
