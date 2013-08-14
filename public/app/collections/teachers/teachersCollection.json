@@ -1,0 +1,74 @@
+[
+    {
+        "id": 0,
+        "last_name": "Мокренко",
+        "first_name": "Павло",
+        "middle_name": "Петрович",
+        "degree": "к.е.н., професор",
+        "department": "Кафедра прикладної математики",
+        "completeness": 75
+    },
+    {
+        "id": 1,
+        "last_name": "Григоренко",
+        "first_name": "Павло",
+        "middle_name": "Петрович",
+        "degree": "д.ф.-т.н., професор",
+        "department": "Кафедра геодезії",
+        "completeness": 15
+    },
+    {
+        "id": 2,
+        "last_name": "Сидорчук",
+        "first_name": "Павло",
+        "middle_name": "Петрович",
+        "degree": "к.е.н., професор",
+        "department": "Кафедра міжнародних відносин",
+        "completeness": 45
+    },
+    {
+        "id": 3,
+        "last_name": "Локас",
+        "first_name": "Павло",
+        "middle_name": "Петрович",
+        "degree": "к.е.н., професор",
+        "department": "Кафедра обліку і аудиту",
+        "completeness": 84
+    },
+    {
+        "id": 4,
+        "last_name": "Гураль",
+        "first_name": "Павло",
+        "middle_name": "Петрович",
+        "degree": "к.е.н., доцент",
+        "department": "Кафедра комп'ютерної інженерії (КІ)",
+        "completeness": 63
+    },
+    {
+        "id": 5,
+        "last_name": "Медовик",
+        "first_name": "Павло",
+        "middle_name": "Петрович",
+        "degree": "к.е.н., доцент",
+        "department": "Кафедра комп'ютерної інженерії (КІ)",
+        "completeness": 85
+    },
+    {
+        "id": 6,
+        "last_name": "Займивітер",
+        "first_name": "Павло",
+        "middle_name": "Петрович",
+        "degree": "к.е.н., доцент",
+        "department": "Кафедра комп'ютерної інженерії (КІ)",
+        "completeness": 10
+    },
+    {
+        "id": 7,
+        "last_name": "Підбийоко",
+        "first_name": "Павло",
+        "middle_name": "Петрович",
+        "degree": "к.е.н., доцент",
+        "department": "Кафедра комп'ютерної інженерії (КІ)",
+        "completeness": 35
+    }
+]

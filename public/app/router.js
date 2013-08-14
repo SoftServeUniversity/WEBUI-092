@@ -16,19 +16,20 @@ define([
   'views/notFoundView',
   'views/admin/adminFacultyView',
   'views/admin/adminView',
+  'views/teacher/TeacherView'
 
 
   ], function($, _, Backbone, FacultiesListView, RegistrationView, GroupProgressView,
   	          StudentProgressView, CourseProgressView,  MainFacultyView, MainDepartmentView,
   	          TeacherProgressView, MainWorkView, taskView, TaskCollection, NotFoundView,
-              AdminFacultyView, AdminView
+              AdminFacultyView, AdminView, TeacherView
              ) {
 
 
-  	
+
   	GlobalEventBus = _.extend({}, Backbone.Events);
 
-  	
+
 
     var AppRouter = Backbone.Router.extend({
       routes: {
@@ -37,13 +38,14 @@ define([
         'student/:id'            : 'studentProgressAction',
         'course/:id'             : 'courseProgressAction',
         'faculty/:id'            : 'facultyAction',
-        'teacher/:id'            : 'teacherProgressAction',
+        'teacher/p:id'           : 'teacherProgressAction',
+        'teacher/:id'            : 'teacherAction',
         'department/:id'         : 'departmentAction',
         'work/:id'               : 'workShowAction',
         'fa'                     : 'viewAdminFacultyPage',
         'admin'                  : 'viewAdminPage',
         'work/:id/:taskid'       : 'taskShow',
-      
+
         // Default
         '*actions': 'defaultAction'
       }
@@ -100,10 +102,14 @@ define([
         mainDepartmentView.initialize();
         mainDepartmentView.loadData(id);
       });
-      
+
       app_router.on('route:teacherProgressAction', function (actions) {
         var teacherProgressView = new TeacherProgressView();
         teacherProgressView.render();
+      });
+
+      app_router.on('route:teacherAction', function (id) {
+        var teacherView = new TeacherView(id);
       });
 
       /*app_router.on('route:faRoles', function (actions){
@@ -124,7 +130,7 @@ define([
         var CoursesView = new faCoursesListView();
         CoursesView.render();
       });*/
- 
+
       app_router.on('route:taskShow', function (taskid, id) {
 
           var tasks = new TaskCollection;
@@ -137,7 +143,7 @@ define([
           }
           var currentTask = new taskView({"model": task});
           currentTask.render();
-      });   
+      });
 
       app_router.on('route:defaultAction', function (actions) {
         // We have no matching route, lets display the home page

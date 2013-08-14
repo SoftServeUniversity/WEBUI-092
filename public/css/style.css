@@ -16,7 +16,7 @@ header, footer {
 	padding:10px 10px;
 	background:#F5F5F5;
 }
-header{ 
+header{
 	box-shadow: 0px 1px 2px #bbb;
 	min-height:35px;
 	margin-bottom:40px;
@@ -38,7 +38,7 @@ h1 {
 a:hover{
 	color:#0088CC;
 }
-#tab-content td{ 
+#tab-content td{
 }
 .toggle-list .toggle-input {
 	display:none;
@@ -314,13 +314,13 @@ hr.task-comment-line{
 	background: #F5F5F5; /* Для старых браузров */
 	background: -moz-linear-gradient(top, #F5F5F5, #F5F5F5, #fff); /* Firefox 3.6+ */
 	/* Chrome 1-9, Safari 4-5 */
-	background: -webkit-gradient(linear, left top, left bottom, 
+	background: -webkit-gradient(linear, left top, left bottom,
 	            color-stop(0%,#f6f4f4), color-stop(30%,#F5F5F5), color-stop(100%,#fff));
 	/* Chrome 10+, Safari 5.1+ */
 	background: -webkit-linear-gradient(top, #F5F5F5, #F5F5F5, #fff);
 	background: -o-linear-gradient(top, #F5F5F5, #F5F5F5, #fff); /* Opera 11.10+ */
 	background: -ms-linear-gradient(top, #F5F5F5, #F5F5F5, #fff); /* IE10 */
-	background: linear-gradient(top, #F5F5F5, #F5F5F5, #fff); /* CSS3 */ 
+	background: linear-gradient(top, #F5F5F5, #F5F5F5, #fff); /* CSS3 */
 	padding: 10px;
 	border-bottom: 1px solid #333;
 }
@@ -332,7 +332,7 @@ div.help-block ul li{
 	margin-left:-20px;
 }
 
-/*--end enter form---------*/ 
+/*--end enter form---------*/
 
 
 
@@ -340,7 +340,7 @@ div.help-block ul li{
 
 /*----admin page----*/
 .nav-tabs .active {
-    background:#EEEEEE;	
+    background:#EEEEEE;
 }
 #tab-content table td,
 #tab-content table th{
@@ -459,4 +459,12 @@ div.help-block ul li{
 
 #name {
 	display: inline-block;
+}
+
+#dialogAddStudentWork {
+  display: none;
+  top: 0;
+  width: auto;
+  heigth: auto;
+  text-align: left;
 }
