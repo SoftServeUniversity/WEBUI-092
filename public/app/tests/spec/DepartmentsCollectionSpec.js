@@ -23,11 +23,12 @@ describe('DepartmentsCollection', function() {
     beforeEach(function(){
         require(['underscore', 'collections/departments/DepartmentsCollection', 'models/department/DepartmentModel'],
             function(_, DepartmentsCollection, DepartmentsModel) {
-            me.actualDepartmentsCollection = new DepartmentsCollection();
             me.expectedDepartmentsCollection = new DepartmentsCollection();
             me.expectedDepartmentsCollection.push(new DepartmentsModel({id:1, name:"Кафедра прикладної математики", percentage:25, head_of_department:1, faculty_id:1}));
             me.expectedDepartmentsCollection.push(new DepartmentsModel({id:3, name:"Кафедра міжнародних відносин", percentage:0, head_of_department:3, faculty_id:3}));
             me.expectedDepartmentsCollection.push(new DepartmentsModel({id:4, name:"Кафедра економіки", percentage:100, head_of_department:4, faculty_id:4}));
+            
+            me.actualDepartmentsCollection = new DepartmentsCollection();
             spyOn($, 'ajax').andCallFake(function(options) {
                 options.success(MOCK_GET_DATA);
             });

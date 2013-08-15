@@ -12,7 +12,7 @@ define([
   'views/teacher/TeacherProgressView',
   'views/work/MainWorkView',
   'views/task/taskView',
-  'collections/task/TaskCollection',
+  'collections/tasks/TasksCollection',
   'views/notFoundView',
   'views/admin/adminFacultyView',
   'views/admin/adminView',
@@ -21,7 +21,7 @@ define([
 
   ], function($, _, Backbone, FacultiesListView, RegistrationView, GroupProgressView,
   	          StudentProgressView, CourseProgressView,  MainFacultyView, MainDepartmentView,
-  	          TeacherProgressView, MainWorkView, taskView, TaskCollection, NotFoundView,
+  	          TeacherProgressView, MainWorkView, taskView, TasksCollection, NotFoundView,
               AdminFacultyView, AdminView, TeacherView
              ) {
 
@@ -133,7 +133,7 @@ define([
 
       app_router.on('route:taskShow', function (taskid, id) {
 
-          var tasks = new TaskCollection;
+          var tasks = new TasksCollection;
           tasks.fetch({async:false});
           var task = tasks.get(id);
           if(!tasks.get(id)){

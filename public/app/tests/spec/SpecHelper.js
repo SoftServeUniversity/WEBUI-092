@@ -1,3 +1,4 @@
+//Matcher for comparing two collections
 beforeEach(function() {
   this.addMatchers({
     toEqualCollection: function(expectedCollection) {

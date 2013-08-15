@@ -70,9 +70,9 @@ define([
 
     events: {
      //table events
-     'dblclick .toggle-text'     : 'showInput',
-     'blur .toggle-input'        : 'changed',
-     'keypress .toggle-input'    : 'changed',
+     'dblclick .model .toggle-text'     : 'showInput',
+     'blur .model .toggle-input'        : 'changed',
+     'keypress .model .toggle-input'    : 'changed',
      
      //modal windows
      'click .save'               : 'closeModal',
@@ -97,7 +97,7 @@ define([
 	      
         var newElementView = new NewElementView(me.config);
 	      $(me.el_tab_content + ' table tbody').append(newElementView.$el.html())
-        $('#content select').selectpicker() 
+        //$('#content select').selectpicker() 
       
       } else {
 
@@ -116,16 +116,39 @@ define([
       $('.admin-buttons').css('display', 'block')
     },
     
+
     //some input in tab has been changed
     changed: function (e){
+      var me = this;
       if ((e.type == 'keypress' && e.keyCode == 13) || e.type == 'focusout'){
         var field_name = $(e.target).attr('name'); 
         var model_id = $(e.target).closest('.model').attr('model_id'); 
+        var toggle_text = $(e.target).closest('.model').find('.toggle-text')
         
+        var field_value = $(e.target).val();
+        
+        me.modelSaveOnChange({
+          id:model_id,
+          field_name: field_name,
+          field_value: field_value
+        });
+         
         $('.toggle-list .toggle-input').css('display','none');
 	      $('.toggle-list .toggle-text').css('display', 'block');
+        me.reloadTab();
       }   
     },      
+    
+    modelSaveOnChange: function(data){
+      var a =this.config.col.get(data.id);
+      var field_name = data.field_name;
+      var field_value = data.field_value;
+      
+      putData = {};
+      putData[field_name]=field_value;
+      a.set(putData)
+      a.save();
+    },
 
     openModal: function(e){
       modal_id = ($(e.target).attr('data-target'));
@@ -155,39 +178,12 @@ define([
       $("input[data-field]").each(function(){
           field = $(this).attr('name');
           value =  $(this).val();
-          console.log(value);
           model.set(field, value);
       });
 
       model.save();
       me.reloadTab();
-      //Валідація поля name за допомогою регулярних виразів
-      /*var me = this;
-      var name = document.getElementById("name_field").value;
-      var ck_name = /^[A-Za-z0-9 ]{3,20}$/;
-      if (ck_name.test(name)) {
-        $('#content').prepend("<div class='alert alert-success'><strong>Success!</strong>You have successfully created a department.</div>");
 
-        var newEntity = new this.config.model();
-        var entityValues = $("#new_entity").find('*[name]');
-        $(entityValues).each(function(index, element){
-          var temp_value = $(element).val();
-          var temp_name = $(element).attr('name');
-          newEntity.set(temp_name, temp_value);
-        })*/
-        /*newEntity.save({}, {success: function(){
-          me.config = config;        
-          me.render(tabContent);
-          me.trigger('onChildConfigLoaded');
-        }})*/
-      /*}
-      else{
-        $('#content').prepend("<div class='alert alert-error'><strong>Error!</strong>Name should be between 3 and 20 characters.</div>");
-      }
-      window.setTimeout(function () {
-          $('.alert-success').fadeOut();
-          $('.alert-error').fadeOut();
-        }, 3000);*/
     },
 
 
@@ -205,7 +201,7 @@ define([
       var me = this;
       $(me.el_tab_content).html(tabContent);
       me.addActiveClass(this.activeMenuId)
-      $('#content select').selectpicker() 
+      //$('#content select').selectpicker() 
     },
 
     render: function (tabContent){
@@ -236,7 +232,7 @@ define([
         me.trigger('onChildConfigLoaded');
       })
 
-      $('#content select').selectpicker() 
+      //$('#content select').selectpicker() 
     }
   
   });

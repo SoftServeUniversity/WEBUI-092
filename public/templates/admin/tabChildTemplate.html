@@ -39,13 +39,13 @@
 		  <% //add 'selected' to current option %>
           <%if(options_array[i]['id'] == entities[entity][field]){ 
             var active_name = options_array[i]['name']; %>
-             <option selected>
+             <option value="<%= options_array[i]['id'] %>" selected>
                <%= active_name %>
              </option>
           <% } %>
                   	
           <% //print options from loaded collection %>
-          <option value="<%= entities[entity][field] %>"><%= options_array[i]['name'] %></option>
+          <option value="<%= options_array[i]['id'] %>"><%= options_array[i]['name'] %></option>
                   	
         <% } %>
         </select> 

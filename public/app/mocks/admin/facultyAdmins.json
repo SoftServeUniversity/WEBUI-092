@@ -1,0 +1,38 @@
+[
+
+    {
+        "id":1,
+        "name": "Some Name",
+        "lastName": "Some Name",
+        "middleName": "Some Name",
+        "email": "example@email.com"
+    },
+    {
+        "id":2,
+        "name": "Some Name",
+        "lastName": "Some Name",
+        "middleName": "Some Name",
+        "email": "example@email.com"
+    },
+    {
+        "id":3,
+        "name": "Some Name",
+        "lastName": "Some Name",
+        "middleName": "Some Name",
+        "email": "example@email.com"
+    },
+    {
+        "id":4,
+        "name": "Some Name",
+        "lastName": "Some Name",
+        "middleName": "Some Name",
+        "email": "example@email.com"
+    },
+    {
+        "id":5,
+        "name": "Some Name",
+        "lastName": "Some Name",
+        "middleName": "Some Name",
+        "email": "example@email.com"
+    }
+]
