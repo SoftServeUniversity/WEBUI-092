@@ -20,7 +20,7 @@ define([
 
   ], function($, _, Backbone, FacultiesListView, RegistrationView, GroupProgressView,
   	          StudentProgressView, CourseProgressView,  MainFacultyView, MainDepartmentView,
-  	          TeacherProgressView, MainWorkView, taskView, TasksCollection, NotFoundView,
+  	          TeacherProgressView, MainWorkView, TaskView, TasksCollection, NotFoundView,
               AdminFacultyView, AdminView
              ) {
 
@@ -135,7 +135,7 @@ define([
             pageNotFound.render();
             return;
           }
-          var currentTask = new taskView({"model": task});
+          var currentTask = new TaskView({"model": task});
           currentTask.render();
       });   
 

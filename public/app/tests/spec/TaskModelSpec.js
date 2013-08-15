@@ -18,7 +18,6 @@ describe('Task Model', function() {
   });
 
   it('should have defaults', function(){  
-    console.log(this.unvalidTask)
     expect( this.defTask.get("id") &&
             this.defTask.get("name") &&
             this.defTask.get("process") &&
