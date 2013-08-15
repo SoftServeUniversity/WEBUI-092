@@ -9,7 +9,8 @@ define([
     'text!templates/teacher/teacherTemplate.html',
     'collections/faculties/FacultiesCollection',
     'collections/faculties/FacultyChangeCollection',
-    'collections/teachers/TeachersCollection'
+    'collections/teachers/TeachersCollection',
+    'collections/students/StudentsProxyCollectionForTeacherPage'
 ], function($, _, Backbone,
             DepartmentsCollection,
             CoursesCollection,
@@ -18,7 +19,8 @@ define([
             teacherTemplate,
             FacultiesCollection,
             FacultyChangeCollection,
-            TeachersCollection){
+            TeachersCollection,
+            StudentsProxyCollectionForTeacherPage){
 
     var TeacherView = Backbone.View.extend({
         initialize:function(id){
@@ -31,6 +33,13 @@ define([
                 }
             });
 
+            students_col = new StudentsProxyCollectionForTeacherPage();
+            students_col.fetch({
+                success: function() {
+                    that.trigger('DataLoaded', 'Students');
+                }
+            });
+
             faculty_change_col = new FacultyChangeCollection();
             faculty_change_col.fetch({
                 success:function () {
@@ -39,6 +48,7 @@ define([
             });
 
             var isTeachLoaded = false;
+            var isStudentsLoaded = false;
             var isFacChangeLoaded = false;
 
 
@@ -47,11 +57,15 @@ define([
                     isTeachLoaded = true;
                 }
 
+                if (item == 'Students'){
+                    isStudentsLoaded = true;
+                }
+
                 if (item == 'FacultyChange'){
                     isFacChangeLoaded = true;
                 }
 
-                if ((isTeachLoaded && isFacChangeLoaded) == true){
+                if ((isTeachLoaded && isFacChangeLoaded && isStudentsLoaded) == true){
                     that.render(id);
                 }
             });
@@ -59,7 +73,10 @@ define([
 
         render:function(id){
           var teacher = teachers_col.get(id).toJSON();
-
+/*
+          var students = teachers_col.get.toJSON();
+          console.info(students);
+*/
           var chartView = new ChartView({
             collection:faculty_change_col
           });
