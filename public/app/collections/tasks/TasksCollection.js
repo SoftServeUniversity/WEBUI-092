@@ -4,9 +4,9 @@ define([
 	'backbone',
 	'models/task/taskModel'
 	], function($, _, Backbone, taskModel){
-		var tasksCollection =  Backbone.Collection.extend({
-			'url': 'app/collections/task/taskCollectionJson.json',
+		var TasksCollection =  Backbone.Collection.extend({
+			'url': 'http://localhost:3000/tasks.json',
 			model: taskModel
 		});
-		return tasksCollection;
+		return TasksCollection;
 	});

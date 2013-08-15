@@ -56,9 +56,10 @@ define([
       
       this.faRolesCollection = new FaRolesCollection();
 
-      $.when(this.faRolesCollection.fetch()).then(function(){
+      this.faRolesCollection.fetch({ success: function(){
         that.trigger('onDataLoaded');
-      })
+      }})
+
     },
 
 

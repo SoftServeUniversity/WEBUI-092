@@ -6,7 +6,7 @@ define([
 	'jqueryui',
 	'text!templates/task/taskTemplate.html',
 	'views/task/taskCommentsView',
-	'collections/task/CommentsCollection',
+	'collections/tasks/CommentsCollection',
 	'models/task/commentModel'
 	], function($, _, Backbone, bootstrap, jqueryui, taskTemplate, taskCommentsView, CommentsCollection, commentModel){
 		var TaskView = Backbone.View.extend({

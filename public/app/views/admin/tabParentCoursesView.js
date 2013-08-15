@@ -51,11 +51,11 @@ define([
       this.faculties_col = '';
       this.courses_col = new CoursesCollection();
       this.faculties_col = new FacultiesCollection();
-
-      this.courses_col.fetch({async:true, success: function() {
+      
+      this.courses_col.fetch({success: function() {
         that.trigger('onDataLoaded', 'Courses');
       }})
-      this.faculties_col.fetch({async:true, success: function() {
+      this.faculties_col.fetch({success: function() {
         that.trigger('onDataLoaded', 'Faculties');
       }})
 
@@ -66,6 +66,7 @@ define([
       var that = this;
       var courses = false;
       var faculties = false; 
+      
       this.on('onDataLoaded', function(flag){
  
         if (flag == 'Courses') {
