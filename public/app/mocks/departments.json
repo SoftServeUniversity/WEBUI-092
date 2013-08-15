@@ -6,13 +6,14 @@
         "faculty_id":1
     },
     {   "id":2,
-        "name": "Кафедра teyeueiiieioeгеодезії",
+        "name": "Кафедра геодезії",
         "percentage": 80,
         "teacher_id":2,
         "faculty_id":2
     },
     {   "id":3,
         "name": "Кафедра міжнародних відносин",
+        "percentage": 80,
         "teacher_id":3,
         "faculty_id":3
     },
