@@ -91,10 +91,12 @@ var AdminView = ParentAdminView.extend({
     "change #file" : "showFileName"
   },
 
+  //loading imgLoader while file is loading
   imgLoader : function(){
     $('#imgLoader').show();
   },
 
+  //show filename of loading file
   showFileName : function(){
     $('#file').each(function() {
       var name = this.value;
