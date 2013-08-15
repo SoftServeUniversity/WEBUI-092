@@ -73,19 +73,26 @@ define([
 
         render:function(id){
           var teacher = teachers_col.get(id).toJSON();
-/*
-          var students = teachers_col.get.toJSON();
-          console.info(students);
-*/
+
+          var students = students_col.toJSON();
+          courses = {};
+          for (var i = 0; i < students.length; i++) {
+            var course_number = 'course_'+students[i].course;
+            if (!(course_number in courses)){
+              courses[course_number] = [];
+            }
+            courses[course_number].push(students[i]);
+          };
+          console.log(courses);
+
           var chartView = new ChartView({
             collection:faculty_change_col
           });
 
           var data = {
-            teacher: teacher
-          }
+            teacher: teacher,
 
-          console.info(data.name)
+          }
 
           var compiledTemplate = _.template(teacherTemplate, data);
           $("#content").html(compiledTemplate);
