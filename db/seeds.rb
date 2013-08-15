@@ -17,6 +17,8 @@ user = User.find_or_create_by_email :name => ENV['ADMIN_NAME'].dup, :email => EN
 puts 'user: ' << user.name
 user.add_role :admin
 
+
+
 dep_names = [
   "Кафедра прикладної математики(ПМ)",
   "Кафедра геодезії(КГ)",
@@ -38,6 +40,7 @@ if Department.all.empty?
 end
 
 
+
 course_names = [
   "1 курс",
   "4 курс",
@@ -53,6 +56,8 @@ if Course.all.empty?
     puts 'created new test course ' << course.name
   end
 end
+
+
 
 group_names = [
   "АМ-31",

@@ -6,14 +6,10 @@ describe('Teacher Model :: says stuff', function() {
       that.teacher = new TeacherModel();
     })
   });
-  //цей виконається (teacher має метод sayBuhaha, що повертає 'bu-ha-ha')
-  it('should be able to say bu-ha-ha', function(){
-    expect(this.teacher.defaults.sayBuhaha()).toBe('bu-ha-ha');
+  
+  it('should be fine', function(){
+    expect('test').toBe('test');
   });
   
-  //тут буде помилочка
-  /*it('should be able to say chuchuka', function(){
-    expect(this.teacher.defaults.sayChuchuka()).toEqual("chuchuka");
-  });*/
 
 });

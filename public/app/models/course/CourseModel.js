@@ -8,8 +8,7 @@ define([
             id: null,
             name: null,
             year_of_start: null,
-            faculty: null,
-            percentage: 0
+            faculty: null
         },
         urlRoot: 'courses/'
 
