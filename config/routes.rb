@@ -1,4 +1,8 @@
 Webui92::Application.routes.draw do
+
+  get "backup/full_backup"
+  get "backup/restore_from_backup"
+
   resources :table_dictionaries
 
 

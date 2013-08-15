@@ -3,6 +3,9 @@ development:
   encoding: unicode
   database: webui_dev
   pool: 5
+  user: webui
+  password: webui
+
 
 test:
   adapter: postgresql
