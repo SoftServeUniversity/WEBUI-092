@@ -141,7 +141,7 @@ define([
             pageNotFound.render();
             return;
           }
-          var currentTask = new taskView({"model": task});
+          var currentTask = new TaskView({"model": task});
           currentTask.render();
       });
 
