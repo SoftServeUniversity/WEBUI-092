@@ -85,102 +85,24 @@
 
 <br />
 
-<div class="row-fluid">
-  <div class="span12"><h4 class="centeredContent">3 курс</h4></div>
-</div> <!-- End class="row-fluid" -->
+<% for (var course in students){ %>
+  <div class="row-fluid">
+    <div class="span12"><h4 class="text-center"><%= course %> курс</h4></div>
+  </div>
+  <% console.log(students[course]) %>
+  <% for ( var i=0; i<students[course].length; i++ ) {%>
 
-<div class="row-fluid">
-  <div class="span4">1. Прізвище та ініціали студента</div>
-  <div class="span1">ЕПП-31</div>
-  <div class="span5">Назва роботи студента, яка мабуть велика і займе два рядочки, а може і три</div>
-  <div class="span2">
-    <div class="progress">
-      <div class="bar" style="width: 34%;"></div>
+  <div class="row-fluid text-left">
+    <div class="span4"><%= i + 1 %>. <%= students[course][i]['name_with_url'] %></div>
+    <div class="span1"><%= students[course][i]['id_group'] %></div>
+    <div class="span5"><%= students[course][i]['work'] %></div>
+    <div class="span2">
+      <div class="progress">
+        <div class="bar" style="width:<%= students[course][i]['progress'] %>%"></div>
+      </div>
     </div>
-  </div>
-</div> <!-- End class="row-fluid" -->
+  </div> <!-- End class="row-fluid" -->
 
-<div class="row-fluid">
-<div class="span4">2. Прізвище та ініціали студента</div>
-<div class="span1">ЕПП-31</div>
-<div class="span5">Назва роботи студента, яка мабуть велика і займе два рядочки, а може і три</div>
-<div class="span2">
-  <div class="progress">
-    <div class="bar" style="width: 45%;"></div>
-  </div>
-</div>
-</div> <!-- End class="row-fluid" -->
 
-<div class="row-fluid">
-  <div class="span12"><h4 class="centeredContent">4 курс</h4></div>
-</div> <!-- End class="row-fluid" -->
-
-<div class="row-fluid">
-<div class="span4">3. Прізвище та ініціали студента</div>
-<div class="span1">ЕПП-42</div>
-<div class="span5">Назва роботи студента, яка мабуть велика і займе два рядочки, а може і три</div>
-<div class="span2">
-  <div class="progress">
-    <div class="bar" style="width: 12%;"></div>
-  </div>
-</div>
-</div> <!-- End class="row-fluid" -->
-
-<div class="row-fluid">
-<div class="span4">4. Прізвище та ініціали студента</div>
-<div class="span1">ЕПП-43</div>
-<div class="span5">Назва роботи студента, яка мабуть велика і займе два рядочки, а може і три</div>
-<div class="span2">
-  <div class="progress">
-    <div class="bar" style="width: 85%;"></div>
-  </div>
-</div>
-</div> <!-- End class="row-fluid" -->
-
-<div class="row-fluid">
-<div class="span4">5. Прізвище та ініціали студента</div>
-<div class="span1">ЕПП-41</div>
-<div class="span5">Назва роботи студента, яка мабуть велика і займе два рядочки, а може і три</div>
-<div class="span2">
-  <div class="progress">
-    <div class="bar" style="width: 100%;"></div>
-  </div>
-</div>
-</div> <!-- End class="row-fluid" -->
-
-<div class="row-fluid">
-<div class="span12"><h4 class="centeredContent">5 курс</h4></div>
-</div> <!-- End class="row-fluid" -->
-
-<div class="row-fluid">
-<div class="span4">6. Прізвище та ініціали студента</div>
-<div class="span1">ЕПП-51</div>
-<div class="span5">Назва роботи студента, яка мабуть велика і займе два рядочки, а може і три</div>
-<div class="span2">
-  <div class="progress">
-    <div class="bar" style="width: 0%;"></div>
-  </div>
-</div>
-</div> <!-- End class="row-fluid" -->
-
-<div class="row-fluid">
-<div class="span4">7. Прізвище та ініціали студента</div>
-<div class="span1">ЕПП-52</div>
-<div class="span5">Назва роботи студента, яка мабуть велика і займе два рядочки, а може і три</div>
-<div class="span2">
-  <div class="progress">
-    <div class="bar" style="width: 16%;"></div>
-  </div>
-</div>
-</div> <!-- End class="row-fluid" -->
-
-<div class="row-fluid">
-<div class="span4">8. Прізвище та ініціали студента</div>
-<div class="span1">ЕПП-51</div>
-<div class="span5">Назва роботи студента, яка мабуть велика і займе два рядочки, а може і три</div>
-<div class="span2">
-  <div class="progress">
-    <div class="bar" style="width: 28%;"></div>
-  </div>
-</div>
-</div> <!-- End class="row-fluid" -->
+  <% } %>
+<% } %>

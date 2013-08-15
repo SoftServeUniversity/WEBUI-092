@@ -74,16 +74,17 @@ define([
         render:function(id){
           var teacher = teachers_col.get(id).toJSON();
 
-          var students = students_col.toJSON();
-          courses = {};
-          for (var i = 0; i < students.length; i++) {
-            var course_number = 'course_'+students[i].course;
-            if (!(course_number in courses)){
-              courses[course_number] = [];
+          var students_json = students_col.toJSON();
+
+          students = {};
+          for (var i = 0; i < students_json.length; i++) {
+            var course_number = students_json[i].course;
+            if (!(course_number in students)){
+              students[course_number] = [];
             }
-            courses[course_number].push(students[i]);
+            students[course_number].push(students_json[i]);
           };
-          console.log(courses);
+          console.log(students);
 
           var chartView = new ChartView({
             collection:faculty_change_col
@@ -91,7 +92,7 @@ define([
 
           var data = {
             teacher: teacher,
-
+            students: students
           }
 
           var compiledTemplate = _.template(teacherTemplate, data);
