@@ -84,7 +84,6 @@ define([
             }
             students[course_number].push(students_json[i]);
           };
-          console.log(students);
 
           var chartView = new ChartView({
             collection:faculty_change_col

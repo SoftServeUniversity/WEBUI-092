@@ -2,42 +2,42 @@
 
     {  "id":1,
         "name": "Мокренко П.П",
-        "percentage": "75"
+        "percentage": 75
     },
     {  "id":2,
         "name": "Гаранюк А.Б.",
-        "percentage": "50"
+        "percentage": 50
     },
     {  "id":3,
         "name": "Цап Н.В.",
-        "percentage":"80"
+        "percentage":80
     },
     {  "id":4,
         "name": "Гаранюк А.Б.",
-        "percentage": "50"
+        "percentage": 50
     },
     {  "id" : 5,
         "name": "Мокренко П.П",
-        "percentage": "75"
+        "percentage": 75
     },
     {
         "id" : 6,
         "name": "Гаранюк А.Б.",
-        "percentage": "50"
+        "percentage": 50
     },
     {
         "id" : 7,
         "name": "Цап Н.В.",
-        "percentage":"80"
+        "percentage":80
     },
     {
         "id" : 8,
         "name": "Петрів А.Б.",
-        "percentage": "50"
+        "percentage": 50
     },
     {
         "id" : 9,
         "name": "Кукайло Н.В.",
-        "percentage":"80"
+        "percentage":80
     }
 ]
