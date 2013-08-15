@@ -15,7 +15,7 @@ describe Task do
     @task_work.should eq 1
   end
 
-  it 'should have a valid name' do
+  it 'should have a valid name and work_id' do
     @unvalid_task.should_not be_valid
   end
 
