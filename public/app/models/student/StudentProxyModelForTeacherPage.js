@@ -6,7 +6,6 @@ define([
 
   var StudentProxyModelForTeacherPage = Backbone.Model.extend({
     initialize : function (attributes) {
-        console.info(attributes);
         var student = new StudentModel( {id: attributes.id});
         this.set('name', attributes.last_name + ' ' +attributes.first_name + ' ' + attributes.middle_name);
         this.set('work', attributes.work);

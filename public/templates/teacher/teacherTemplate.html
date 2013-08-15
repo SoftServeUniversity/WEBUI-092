@@ -69,7 +69,7 @@
 
       <div class="modal-footer">
         <a class="btn" href="#" data-dismiss="modal" aria-hidden="true" >Закрити</a>
-        <a class="btn" href="#" onclick="alert('Дані збережено.\nДодавайте ще.')">Зберегти і додати ще</a>
+        <a class="btn" href="#" onclick="alert('Дані збережено.\nДодавайте ще.')" data-dismiss="modal" aria-hidden="true">Зберегти і додати ще</a>
         <a class="btn btn-primary" data-dismiss="modal" aria-hidden="true" href="#"
         onclick="alert('Дані збережено.')">Зберегти</a>
       </div>
@@ -89,7 +89,6 @@
   <div class="row-fluid">
     <div class="span12"><h4 class="text-center"><%= course %> курс</h4></div>
   </div>
-  <% console.log(students[course]) %>
   <% for ( var i=0; i<students[course].length; i++ ) {%>
 
   <div class="row-fluid text-left">
