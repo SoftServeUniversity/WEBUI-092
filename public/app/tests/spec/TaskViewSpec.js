@@ -18,8 +18,5 @@ describe("Task View", function() {
   it("should have succeed initialize", function() {
     expect(taskView.initialize()).toBeTruthy();
   });
-  it("should have succeed render", function() {
-    expect(taskView.render()).toBeTruthy();
-  });
 
 });
