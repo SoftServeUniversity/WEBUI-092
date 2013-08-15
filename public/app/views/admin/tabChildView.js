@@ -1,8 +1,3 @@
-/*
- * Цей View отримує при ініціалізації всі необхідні дані
- * для побудови вмісту табів і рендерить універсальний tabChildTemplate
- */
-
 define([
   'jquery',
   'underscore',
@@ -15,10 +10,8 @@ define([
     tagName: 'div',
     
     initialize: function(config){
-    	      
 
       var data = this.buildJSON(config);
-    
       this.render(data);
      
     },
@@ -30,6 +23,7 @@ define([
       var rel = {};
       var visible_fields = [];
       var labels = [];
+        
         //loop through data
         for (i=0; i<config.data.length; i++) {
 
@@ -73,22 +67,15 @@ define([
         var data = {};
         data.entities = json_data;
         
-        
-
         return data; 
-
     },
     
-    
-    
+
     render: function (data){
       var that = this;
-      
-      
-      var compiledTemplate = _.template(tabChildTemplate, data);
 
-      that.$el.html(compiledTemplate);
-      
+      var compiledTemplate = _.template(tabChildTemplate, data);
+      that.$el.html(compiledTemplate);  
       return this;
     },
     
