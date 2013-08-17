@@ -8,13 +8,14 @@ define([
 
   //subViews for handlers
   'views/admin/tabParentDepartmentsView',
+  'views/admin/tabParentAdminsView',
   'views/admin/tabParentRolesView',
   'views/admin/tabParentGroupsView',
 
   'views/admin/tabDbView'
   
 ], function ($, _,  Backbone,
-            ParentAdminView, TabParentDepartmentsView, TabParentRolesView, TabParentGroupsView, TabDbView) {   
+            ParentAdminView, TabParentDepartmentsView, TabParentAdminsView, TabParentRolesView, TabParentGroupsView, TabDbView) {   
   
 var AdminView = ParentAdminView.extend({  
   
@@ -24,6 +25,12 @@ var AdminView = ParentAdminView.extend({
 
   //tab menu buttons (you can add your buttons here)
   tabMenuConfig: [
+
+    {
+      id:'admins-tab',
+      label: 'Manage faculty admins',
+      action: 'manage_admins'
+    },
     {
 
       id:'roles-tab',
@@ -60,7 +67,12 @@ var AdminView = ParentAdminView.extend({
     _.extend(this.events, this.events_own)
   },
 
-  //tab menu buttons handlers  
+  //tab menu buttons handlers
+  manage_admins: function(){
+    this.activeMenuId = 'admins-tab';
+    this.tabView = new TabParentAdminsView();
+    this.showAdminButtons();
+  },  
   manage_database: function(){
     this.addActiveClass('database-tab');
     var tabDbView = new TabDbView();
