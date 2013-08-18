@@ -31,7 +31,7 @@ define([
         }
       }
     },
-
+  
     //add active class to tab menu
     addActiveClass: function(id){
     	$('.nav-tabs *').removeClass('active').find('#'+id).addClass('active');
