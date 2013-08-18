@@ -11,15 +11,20 @@ define([
 
 ], function($, _, Backbone, TabChildView, CourseModel, CoursesCollection, FacultiesCollection){   
    
-  var TabChildCoursesView = Backbone.View.extend({
+  var TabChildCoursesView = TabChildView.extend({
 
-
-    tagName: 'div',
+    collections_classes: {
+      courses: CoursesCollection,
+      faculties: FacultiesCollection
+    },
 
     setConfig: function(){
-      var config = {
+      var me = this; 
+      
+      config = {
+
         model: CourseModel,
-        col: this.courses_col,
+        col: me.collections.courses,
         data: [{
             _link: 'name',
             label:'Course Name',
@@ -34,70 +39,29 @@ define([
             _link: 'faculty_id',
             label: 'Faculty Name',
             type:'select',
-            src:this.faculties_col.toJSON()
+            src: me.collections.faculties
           }
         ],
+
         buttons: {
           create: 'New Course'
         }
       };
-      
+
       return config;
     },
+
+    initialize: function(){ 
+      var me = this;
+
+      //call parent's initialize method passing tab configuration
+      this.constructor.__super__.initialize.apply(this);
     
-    loadData: function(){
-      var that = this; 
-      this.courses_col ='';
-      this.faculties_col = '';
-      this.courses_col = new CoursesCollection();
-      this.faculties_col = new FacultiesCollection();
-      
-      this.courses_col.fetch({success: function() {
-        that.trigger('onDataLoaded', 'Courses');
-      }})
-      this.faculties_col.fetch({success: function() {
-        that.trigger('onDataLoaded', 'Faculties');
-      }})
+      //extend inherited events with own events
+      _.extend(this.events, this.events_own)
 
     },
-
-
-    initialize: function(){         
-      var that = this;
-      var courses = false;
-      var faculties = false; 
-      
-      this.on('onDataLoaded', function(flag){
- 
-        if (flag == 'Courses') {
-          courses = true;
-        }
-        if (flag == 'Faculties') {
-          faculties = true;
-        }         
-        if ((courses == true) && (faculties == true)){
-          that.config = that.setConfig();
-          that.childView = new TabChildView(that.config);
-          that.render();
-        }
-      });  
-      
-      that.loadData();   
-    },
-
-    render: function (){
-      var that=this;
-        
-      //console.log(that.childView.$el.html());
-      var htmlContent = that.childView.$el.html()
-      
-      //when everything has loaded - trigger global event
-      GlobalEventBus.trigger('tabChildSupViewLoaded', htmlContent, that.config);
-      return this;
-    }
-  
   });
   
-  return  TabChildCoursesView;
-  
+  return  TabChildCoursesView; 
 });

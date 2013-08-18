@@ -9,16 +9,37 @@ define([
     
     tagName: 'div',
     
-    initialize: function(config){
+    initialize: function(){
+      var me = this; 
+      this.on('onDataLoaded', function(flag){
 
-      var data = this.buildJSON(config);
-      this.render(data);
-     
+          var loaded_num = 0; 
+          for ( collection in me['collections'] ) {
+            loaded_num ++; 
+          }
+
+          //if all collections have loaded
+          if (me.collections_number == loaded_num){
+
+            me.config = this.setConfig();
+            var data = me.buildJSON(me.config)
+            me.render(data)
+            
+            GlobalEventBus.trigger('tabChildSupViewLoaded', me.$el.html(), me.config);
+
+          }
+      })
+        
+      
+      this.loadData();
+
+
     },
 
     buildJSON: function(config){
+
       var json_data=config.col.toJSON();
-      
+
       //loop through all entities
       var rel = {};
       var visible_fields = [];
@@ -70,14 +91,42 @@ define([
         return data; 
     },
     
+  
 
     render: function (data){
       var that = this;
-
+      //console.log(data)
       var compiledTemplate = _.template(tabChildTemplate, data);
       that.$el.html(compiledTemplate);  
+      //console.log(compiledTemplate)
       return this;
     },
+
+
+
+
+
+    //new stuff 
+    loadData: function(){
+
+      var me = this;
+      me['collections_number'] = 0;
+      me['collections'] = {};
+      
+
+      for (var c in me.collections_classes){
+        me['collections_number'] ++;
+      }
+      //console.log(me['tab_collections'])
+      for (var c in me.collections_classes){
+        me['collections'][c] = new me.collections_classes[c]();
+        me['collections'][c].fetch({ success: function(i) {
+            me.trigger('onDataLoaded', i); }(c)  
+        })
+      }
+    },
+
+
     
   });
   
