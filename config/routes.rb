@@ -31,6 +31,7 @@ Webui92::Application.routes.draw do
     root :to => 'home#index'
   end
   root :to => "home#index"
-  devise_for :users
-  resources :users
+  devise_for :users, controllers: { sessions: 'user_sessions/sessions' }
+  
+  post 'user_helper/receive_current_user'
 end

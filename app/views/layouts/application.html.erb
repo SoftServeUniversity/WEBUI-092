@@ -10,6 +10,7 @@
   <!--this file loads everything-->
   <script data-main="app/main" src="app/libs/require/require.js"></script>
   <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+  <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
   <%= yield(:head) %>
 </head> 
@@ -26,7 +27,7 @@
           </ul>
         </div>
 
-        <div id="authBox" class="authBox"></div>  
+        <div id="authBox" class="authBox"><button id="launch-btn" class="btn btn-primary pull-right">Увійти</button></div>  
                 
         <div class="yearBox">
           <form class="form-horizontal">
@@ -62,8 +63,13 @@
     </div>
   </footer>
   
-  
+  <% if user_signed_in? %>
+    <%= link_to 'logout', destroy_user_session_path, method: :delete %>
+  <% end %>
 </body>
+  <script type="text/javascript">
+    //receive current user
+  </script>
 </html>
 
 

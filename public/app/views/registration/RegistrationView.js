@@ -7,22 +7,23 @@ define([
   'jqBootstrapValidation',
   'reg',
   'models/student/StudentModel',
-  'text!templates/registration/registrationTemplate.html'
+  'text!templates/registration/registrationTemplate.html',
+  'views/user/loginView',
+], function($, _, Backbone, bootstrap, jqBootstrapValidation, reg, StudentModel, registrationTemplate, LoginView){
 
-], function($, _, Backbone, bootstrap, jqBootstrapValidation, reg, StudentModel, registrationTemplate){
-
-  var RegistrationView = Backbone.View.extend({
+  return Backbone.View.extend({
 
     el: $("#authBox"),
     model: StudentModel,
 
     events: {
       'click #sendFormReg' : 'reg',
-      'click #sendFormLog' : 'log'
+      'click #sendFormLog' : 'log',
+      'click #logout'      : 'logout'
     },
-      render: function(){
+    render: function(){
       var compiledTemplate = _.template( registrationTemplate );
-      $("#authBox").html(compiledTemplate);
+      $("#authBox").append(compiledTemplate);
     },
     reg : function(e){
         var userRegModel = new StudentModel({
@@ -80,35 +81,22 @@ define([
             }
         }
     },
-    log : function(e){
-      var userLogModel = new StudentModel({
-        url : "/app/mocks"
-      });
-
-      userLogModel.set({
-
-        'inputLoginLog': $("#logForm").find("#inputLoginLog").val(),
-        'inputPasswordLog': $("#logForm").find("#inputPasswordLog").val(),
-        'inputPasswordLog': $("#logForm").find("#rememberMe").val()
-
-      });
-
-      var log = userLogModel.get('inputLoginLog');
-      var pass = userLogModel.get('inputPasswordLog');
-
-      if(log.length > 0 && pass.length > 0){
-
-          e.preventDefault();
-
-            if(
-                $('#inputLoginLog[aria-invalid = true]').is('input') == false &&
-                $('#inputPasswordLog[aria-invalid = true]').is('input') == false 
-              ){
-              var a = userLogModel.toJSON();
-              console.log(a);
-            }
-        }
+    log: function(e){
+      //login fields can't be blank
+      console.log('__y_s__trigered log from RegistrationView. Pass controll to LoginView');
+      if($('#inputLoginLog[aria-invalid = true]').is('input') == false && $('#inputPasswordLog[aria-invalid = true]').is('input') == false ){
+        e.preventDefault();
+        var loginView = new LoginView();
+        loginView.login();
+      }else{
+        //notification
+      }
+    },
+    logout: function(e){
+      console.log('__y_s__trigered logout from RegistrationView. Pass controll to LoginView');
+      e.preventDefault();
+      var logOut = new LoginView();
+      logOut.logout();
     }
   });
-    return RegistrationView;
 });

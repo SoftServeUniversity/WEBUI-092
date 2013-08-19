@@ -16,7 +16,9 @@ require.config({
     reg: 'libs/reg/reg',
     highcharts: 'libs/highcharts/highcharts',
     templates: '../templates',
-    sync: 'libs/sync/backbone.sync.rails'
+    sync: 'libs/sync/backbone.sync.rails',
+    marionette: 'libs/marionette/backbone.marionette',
+    modelbinder: 'libs/modelbinder/backbone.modelbinder'
   }
 });
 

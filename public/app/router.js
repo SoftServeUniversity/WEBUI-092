@@ -2,6 +2,7 @@ define([
   'jquery',
   'underscore',
   'backbone',
+  'marionettes/user/init',
   'views/faculty/FacultiesListView',
   'views/registration/RegistrationView',
   'views/group/GroupProgressView',
@@ -19,7 +20,7 @@ define([
   'views/teacher/TeacherView'
 
 
-  ], function($, _, Backbone, FacultiesListView, RegistrationView, GroupProgressView,
+  ], function($, _, Backbone, GlobalUser, FacultiesListView, RegistrationView, GroupProgressView,
   	          StudentProgressView, CourseProgressView,  MainFacultyView, MainDepartmentView,
   	          TeacherProgressView, MainWorkView, taskView, TasksCollection, NotFoundView,
               AdminFacultyView, AdminView, TeacherView
