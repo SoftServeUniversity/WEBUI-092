@@ -219,6 +219,9 @@ progress::-webkit-progress-value { background: #69EB63; }
 /*Yasinishyn end*/
 /*****start task page*****/
 
+.rightContent{
+  text-align: right;
+}
 .centeredContent{
 	text-align: center;
 }
