@@ -16,11 +16,13 @@ define([
           var loaded_num = 0; 
           for ( collection in me['collections'] ) {
             loaded_num ++; 
+
           }
-
+          console.log(flag)
+          //console.log( me.collections )
           //if all collections have loaded
-          if (me.collections_number == loaded_num){
 
+          if (me.collections_number == loaded_num){
             me.config = this.setConfig();
             var data = me.buildJSON(me.config)
             me.render(data)
@@ -38,8 +40,10 @@ define([
 
     buildJSON: function(config){
 
-      var json_data=config.col.toJSON();
+      var me = this;
 
+      var json_data=config.col.toJSON();
+      //console.log(json_data)
       //loop through all entities
       var rel = {};
       var visible_fields = [];
@@ -120,8 +124,9 @@ define([
       //console.log(me['tab_collections'])
       for (var c in me.collections_classes){
         me['collections'][c] = new me.collections_classes[c]();
-        me['collections'][c].fetch({ success: function(i) {
-            me.trigger('onDataLoaded', i); }(c)  
+        me['collections'][c].fetch({ success: function(c) {
+            (function(i){me.trigger('onDataLoaded', i)})(c); 
+          }  
         })
       }
     },
