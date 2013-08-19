@@ -4,7 +4,8 @@
 	    "name":"Технологій програмування",
 	    "num_students": 99,
 	    "num_groups": 66,
-	    "img":"i/faculties/8.png"
+	    "img":"i/faculties/8.png",
+	    "teacher_id": 1
 	
 	},
 	{
@@ -12,63 +13,63 @@
 	    "name":"Комп’ютерних мереж і телекомунікацій",
 	    "num_students": 81,
 	    "num_groups": 53,
-	    "img":"i/faculties/7.png"
-	
+	    "img":"i/faculties/7.png",
+	    "teacher_id": 2
 	},
 	{
 	    "id": 3,
 	    "name":"Економічної кібернетики",
 	    "num_students": 90,
 	    "num_groups": 40,
-	    "img":"i/faculties/9.png"
-	
+	    "img":"i/faculties/9.png",
+	    "teacher_id": 3
 	},
 	{
 	    "id": 4,
 	    "name":"Інформаційних систем",
 	    "num_students": 58,
 	    "num_groups": 41,
-	    "img":"i/faculties/7.png"
-	
+	    "img":"i/faculties/7.png",
+	    "teacher_id": 4
 	},
 	{
 	    "id": 5,
 	    "name":"Інформаційних і дистанційних технологій",
 	    "num_students": 66,
 	    "num_groups": 1,
-	    "img":"i/faculties/7.png"
-	
+	    "img":"i/faculties/7.png",
+	    "teacher_id": 5
 	},
 	{
 	    "id": 6,
 	    "name":"Комп’ютерних наук і економічної кібернетики",
 	    "num_students": 63,
 	    "num_groups": 6,
-	    "img":"i/faculties/9.png"
-	
+	    "img":"i/faculties/9.png",
+	    "teacher_id": 6
 	},
 	{
 	    "id": 7,
 	    "name":"Комп'ютерно-інформаційних систем",
 	    "num_students": 99,
 	    "num_groups": 66,
-	    "img":"i/faculties/8.png"
-	
+	    "img":"i/faculties/8.png",
+	    "teacher_id": 7
 	},
 	{
 	    "id": 8,
 	    "name":"Прикладної математики та комп'ютерних технологій",
 	    "num_students": 99,
 	    "num_groups": 66,
-	    "img":"i/faculties/8.png"
-	
+	    "img":"i/faculties/8.png",
+	    "teacher_id": 8	
 	},
 	{
 	    "id": 9,
 	    "name":"Системи автоматизованого проектування",
 	    "num_students": 99,
 	    "num_groups": 66,
-	    "img":"i/faculties/9.png"
-	
+	    "img":"i/faculties/9.png",
+	    "teacher_id": 9	
 	}
 ]

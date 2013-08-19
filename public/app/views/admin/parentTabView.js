@@ -35,6 +35,7 @@ define([
     */
     buildJSON: function(config){
 
+      //console.log(config)
       var me = this;
 
       var json_data=config.collection.toJSON();
@@ -61,13 +62,13 @@ define([
           labels.push(label);
           visible_fields.push(config.data[i]['_link'])
         }
-        
+        //console.log(rel)
         for (a=0; a<json_data.length; a++){
            json_data[a]['selectbox_items'] = [];  
 
           for (var e_obj in json_data[a]){
-            if (e_obj in rel){    
 
+            if (e_obj in rel){    
               json_data[a]['selectbox_items'].push(e_obj);
               json_data[a][e_obj+'_collection'] = rel[e_obj];
             }
