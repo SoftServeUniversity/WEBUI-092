@@ -4,15 +4,14 @@
   <%= teacher.middle_name %>
 </h2>
 <h3><%= teacher.degree %></h3>
+<h4><%= teacher.department %></h4>
 
 <div class="row-fluid">
-  <div class="centeredContent span2"></div>
-  <div class="centeredContent span8">
-    <h4><%= teacher.department %></h4>
-  </div>
-  <div class="span1">
+  <div class="span12 rightContent">
 
     <a data-target="#dialogAddStudentWork" data-toggle="modal">Додати роботу</a>
+    <a> | </a>
+    <a href="#">Підтвердити студентів</a>
 
     <div id="dialogAddStudentWork" class="modal hide fade">
 
@@ -74,10 +73,6 @@
       </div>
 
     </div> <!-- End modal window -->
-  </div>
-
-  <div class="centeredContent span1">
-    <a href="#">Підтвердити студентів</a>
   </div>
 </div>
 
