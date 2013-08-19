@@ -22,7 +22,7 @@ var AdminView = ParentAdminView.extend({
   
   headline: 'Admin Page',
   
-  defaultActiveTab: 'faculties-tab',
+  defaultActiveTab: 'admins-tab',
 
   //tab menu buttons (you can add your buttons here)
   tabMenuConfig: [
