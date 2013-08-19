@@ -4,16 +4,14 @@
   <%= teacher.middle_name %>
 </h2>
 <h3><%= teacher.degree %></h3>
+<h4><%= teacher.department %></h4>
 
 <div class="row-fluid">
-  <div class="centeredContent span2"></div>
-  <div class="centeredContent span8">
-    <h4><%= teacher.department %></h4>
-  </div>
-  <div class="span1">
+  <div class="span12 rightContent">
 
-    <!--<a href="#dialogAddStudentWork" data-toggle="modal">Додати роботу</a>-->
-    <input href="#dialogAddStudentWork" value='Додати роботу' type='button' data-toggle="modal"/>
+    <a data-target="#dialogAddStudentWork" data-toggle="modal">Додати роботу</a>
+    <a> | </a>
+    <a href="#">Підтвердити студентів</a>
 
     <div id="dialogAddStudentWork" class="modal hide fade">
 
@@ -78,8 +76,6 @@
   </div>
 </div>
 
-  <div class="centeredContent span1"></div>
-
 <!-- ГРАФІК -->
 <div id="chart"></div>
 
@@ -94,7 +90,7 @@
   <div class="row-fluid text-left">
     <div class="span4"><%= i + 1 %>. <%= students[course][i]['name_with_url'] %></div>
     <div class="span1"><%= students[course][i]['id_group'] %></div>
-    <div class="span5"><%= students[course][i]['work'] %></div>
+    <div class="span5"><%= students[course][i]['work_name'] %></div>
     <div class="span2">
       <div class="progress">
         <div class="bar" style="width:<%= students[course][i]['progress'] %>%"></div>

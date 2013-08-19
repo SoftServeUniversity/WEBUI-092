@@ -219,6 +219,9 @@ progress::-webkit-progress-value { background: #69EB63; }
 /*Yasinishyn end*/
 /*****start task page*****/
 
+.rightContent{
+  text-align: right;
+}
 .centeredContent{
 	text-align: center;
 }
@@ -263,7 +266,9 @@ hr.task-comment-line{
 /*****end task page*****/
 
 /*-----enter form---------*/
+.roleStudent, .roleTeacher{
 
+}
 #launch{
 	top:46px;
 	position: absolute;
@@ -308,6 +313,9 @@ hr.task-comment-line{
 }
 #regMod{
 	display: none;
+}
+#regForm .controls{
+	width: 35%;
 }
 
 .gradient {

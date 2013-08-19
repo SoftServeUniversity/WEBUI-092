@@ -54,14 +54,11 @@ define([
       });
     },
     logout: function(){
-      console.log('__y_s__ Now I am in loginView.logout')
       var userLogout = new UserLogout();
       userLogout.set({"authenticity_token": $("meta[name='csrf-token']").attr('content')})
       userLogout.save(userLogout.attributes,{
         success: function(userSession, response){
-          console.log('__y_s__ deleting user session in loginView.logout')
           if (response.csrfToken) {
-            console.log(response.csrfToken);
             $("meta[name='csrf-token']").attr('content', response.csrfToken);
           }
           GlobalUser.vent.trigger("authentication:logged_out");
