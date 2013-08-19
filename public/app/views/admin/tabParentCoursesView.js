@@ -2,12 +2,10 @@ define([
   'jquery',
   'underscore',
   'backbone',
-
   'views/admin/tabChildView',
   'models/course/CourseModel',
   'collections/courses/CoursesCollection',
   'collections/faculties/FacultiesCollection'
-
 
 ], function($, _, Backbone, TabChildView, CourseModel, CoursesCollection, FacultiesCollection){   
    
@@ -18,13 +16,14 @@ define([
       faculties: FacultiesCollection
     },
 
+    //runs when all collections have loaded
     setConfig: function(){
       var me = this; 
       
       config = {
 
         model: CourseModel,
-        col: me.collections.courses,
+        collection: me.collections.courses,
         data: [{
             _link: 'name',
             label:'Course Name',
@@ -52,15 +51,10 @@ define([
     },
 
     initialize: function(){ 
-      var me = this;
-
-      //call parent's initialize method passing tab configuration
+      //call parent's initialize method
       this.constructor.__super__.initialize.apply(this);
-    
-      //extend inherited events with own events
-      _.extend(this.events, this.events_own)
-
     },
+
   });
   
   return  TabChildCoursesView; 

@@ -10,35 +10,39 @@ define([
   
 ], function($, _, Backbone, FaAdminModel, FaAdminsCollection, TabChildView){   
 	 
-  var tabChildAdminsView = Backbone.View.extend({
+  var tabChildAdminsView = TabChildView.extend({
 
 
-    tagName: 'div',
+    collections_classes: {
+      fadmins: FaAdminsCollection
+    },
 
     setConfig: function(){
-    	
+    	var me = this;
+
       var config = {
-      	model: FaAdminModel,
-        col: this.faAdminsCollection,
+      	
+        model: FaAdminModel,
+        collection: me.collections.fadmins,
         data: [{
             _link: 'name',
             label:'Name',
-            type:'text'
+            type :'text'
           },
           {
             _link: 'lastName',
             label:'Last Name',
-            type:'text'
+            type :'text'
           },
           {
             _link: 'middleName',
             label:'Middle Name',
-            type:'text'
+            type :'text'
           },
           {
             _link: 'email',
             label: 'Email',
-            type:'text'
+            type :'text'
           }
         ],
         buttons: {
@@ -49,39 +53,9 @@ define([
       return config;
     },
 
-
-    loadData: function(){
-      var that = this; 
-      
-      this.faAdminsCollection = new FaAdminsCollection();
-
-      this.faAdminsCollection.fetch({ success: function(){
-        that.trigger('onDataLoaded');
-      }})
-
-    },
-
-
-    initialize: function(){        
-      var that = this;
-      
-      that.loadData();  
-      this.on('onDataLoaded', function(){
-      	that.config = that.setConfig();
-      	that.childView = new TabChildView(that.config);
-        that.render();
-      });   
-    },
-
-    render: function (){
-      var that=this;
-        
-      //console.log(that.childView.$el.html());
-      var htmlContent = that.childView.$el.html();
-      
-      //when everything has loaded - trigger global event
-      GlobalEventBus.trigger('tabChildSupViewLoaded', htmlContent, that.config);
-      return this;
+    initialize: function(){ 
+      //call parent's initialize method
+      this.constructor.__super__.initialize.apply(this);
     }
   
   });

@@ -10,40 +10,31 @@ define([
     tagName: 'div',
     
     initialize: function(){
+      
       var me = this; 
-      this.on('onDataLoaded', function(flag){
-
-          var loaded_num = 0; 
-          for ( collection in me['collections'] ) {
-            loaded_num ++; 
-
-          }
-          console.log(flag)
-          //console.log( me.collections )
-          //if all collections have loaded
-
-          if (me.collections_number == loaded_num){
+      
+      this.on('onDataLoaded', function(){
+           
             me.config = this.setConfig();
             var data = me.buildJSON(me.config)
             me.render(data)
             
             GlobalEventBus.trigger('tabChildSupViewLoaded', me.$el.html(), me.config);
-
-          }
       })
-        
-      
+
       this.loadData();
-
-
     },
 
+    /* 
+    * bind all collections needed for select-boxes, labels, visible items
+    * to items and their fields
+    */
     buildJSON: function(config){
 
       var me = this;
 
-      var json_data=config.col.toJSON();
-      //console.log(json_data)
+      var json_data=config.collection.toJSON();
+      
       //loop through all entities
       var rel = {};
       var visible_fields = [];
@@ -55,18 +46,12 @@ define([
           var rel_link = config.data[i]['_link'];
           var label = config.data[i]['label']; 
            
-          if (config.data[i]['src']){
-             //console.log(config.data[i]['src'])
-              
-             var rel_src = config.data[i]['src'];
-               
-             var obj = {};
-              
-             obj = rel_src;
+          //if select box
+          if (config.data[i]['src']){      
+             var rel_src = config.data[i]['src'].toJSON();
                
              //array of foreign keys, mapped to collections
-             rel[rel_link]=obj;
-            
+             rel[rel_link]=rel_src;
           }
           
           labels.push(label);
@@ -87,52 +72,44 @@ define([
             json_data[a]['labels'] = labels;
            
           }
-
         }
         var data = {};
         data.entities = json_data;
         
         return data; 
     },
-    
-  
 
     render: function (data){
       var that = this;
-      //console.log(data)
       var compiledTemplate = _.template(tabChildTemplate, data);
       that.$el.html(compiledTemplate);  
-      //console.log(compiledTemplate)
       return this;
     },
 
-
-
-
-
-    //new stuff 
+    //method to load all collections for tab 
     loadData: function(){
 
       var me = this;
-      me['collections_number'] = 0;
+      var collections_length = 0;
+      var loadCounter = 0;
       me['collections'] = {};
-      
 
       for (var c in me.collections_classes){
-        me['collections_number'] ++;
+        collections_length++;
       }
-      //console.log(me['tab_collections'])
+
       for (var c in me.collections_classes){
         me['collections'][c] = new me.collections_classes[c]();
         me['collections'][c].fetch({ success: function(c) {
-            (function(i){me.trigger('onDataLoaded', i)})(c); 
+            loadCounter++;
+            if (loadCounter == collections_length){
+              me.trigger('onDataLoaded');
+            }
           }  
         })
       }
     },
 
-
-    
   });
   
   return  TabChildView;

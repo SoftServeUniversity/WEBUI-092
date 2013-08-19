@@ -140,7 +140,7 @@ define([
     },      
     
     modelSaveOnChange: function(data){
-      var a =this.config.col.get(data.id);
+      var a =this.config.collection.get(data.id);
       var field_name = data.field_name;
       var field_value = data.field_value;
       

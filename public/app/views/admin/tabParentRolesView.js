@@ -3,23 +3,27 @@ define([
   'jquery',
   'underscore',
   'backbone',
-  
   'models/admin/FaRoleModel',
   'collections/admin/FaRolesCollection',
   'views/admin/tabChildView'
-  
+
 ], function($, _, Backbone, FaRoleModel, FaRolesCollection, TabChildView){   
 	 
-  var tabChildRolesView = Backbone.View.extend({
+  var tabChildRolesView = TabChildView.extend({
 
 
-    tagName: 'div',
+    collections_classes: {
+      roles: FaRolesCollection
+    },
 
     setConfig: function(){
-    	
+
+    	var me = this; 
+
       var config = {
-      	model: FaRoleModel,
-        col: this.faRolesCollection,
+      	
+        model: FaRoleModel,
+        collection: me.collections.roles,
         data: [{
             _link: 'name',
             label:'Role Name',
@@ -42,48 +46,26 @@ define([
       };
       
       return config;
-    },
-
-
-    loadData: function(){
-      var that = this; 
-      
-      this.faRolesCollection = new FaRolesCollection();
-
-      this.faRolesCollection.fetch({ success: function(){
-        that.trigger('onDataLoaded');
-      }})
 
     },
-
-
-    initialize: function(){        
-      var that = this;
-      
-      that.loadData();  
-      this.on('onDataLoaded', function(){
-      	that.config = that.setConfig();
-      	that.childView = new TabChildView(that.config);
-        that.render();
-      });   
-    },
-
-    render: function (){
-      var that=this;
-        
-      //console.log(that.childView.$el.html());
-      var htmlContent = that.childView.$el.html();
-      
-      //when everything has loaded - trigger global event
-      GlobalEventBus.trigger('tabChildSupViewLoaded', htmlContent, that.config);
-      return this;
+    
+    initialize: function(){ 
+      //call parent's initialize method
+      this.constructor.__super__.initialize.apply(this);
     }
+
   
   });
   
   return  tabChildRolesView;
   
 });
+
+
+
+
+
+
 
 
 
