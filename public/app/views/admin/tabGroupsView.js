@@ -17,7 +17,8 @@ define([
     collections_classes: {
       groups      : GroupsCollection,
       courses     : CoursesCollection,
-      teachers    : TeachersCollection
+      teachers    : TeachersCollection,
+      departments : DepartmentsCollection
     },
 
     setConfig: function(){

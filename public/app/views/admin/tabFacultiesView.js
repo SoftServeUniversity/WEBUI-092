@@ -26,12 +26,12 @@ define([
         collection: me.collections.faculties,
         data      : [{
             _link: 'name',
-            label:'Department Name',
+            label:'Faculty Name',
             type:'text'
           },
           {
             _link: 'teacher_id',
-            label: 'Department Head',
+            label: 'Faculty Head',
             type:'select',
             src:me.collections.teachers
           }
