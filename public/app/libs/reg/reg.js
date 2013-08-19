@@ -6,8 +6,9 @@
 
         $("input[type=text], input[type=password]").jqBootstrapValidation(); 
         
-        $('#launch-btn').click(function(){
-            console.log('Log In');
+        $('#launch-btn').click(function(e){
+          e.preventDefault();
+          console.log('Log In');
           $(this).hide();
           $('#launch').slideDown(300);
 

@@ -19,16 +19,11 @@ var AdminFacultyView = ParentAdminView.extend({
   
   headline: 'Faculty Admin Page',
   
-  defaultActiveTab: 'admins-tab',
+  defaultActiveTab: 'roles-tab',
 
   //tab menu buttons (you can add your buttons here)
   tabMenuConfig: [
 
-    {
-      id:'admins-tab',
-      label: 'Manage admins',
-      action: 'manage_admins'
-    },
     {
 
       id:'roles-tab',
