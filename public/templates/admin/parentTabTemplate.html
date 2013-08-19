@@ -1,0 +1,76 @@
+<table class="table">
+  <% var first = true; %>
+  <% //display table headers %>
+  <% for(var entity in entities) { %>
+  	<% if (first){ %>
+  	  <tr>
+  	  	<% for(i=0; i<entities[entity]['labels'].length; i++){ %>
+  	    	<th class="text-center"><%= entities[entity]['labels'][i] %></th>
+  	    <% } %>
+  	  </tr>
+    <% } %>
+  
+  
+  
+    <% var visible_fields = entities[0].visible_fields %>
+    <tr class="toggle-list model" model_id="<%= entities[entity]['id'] %>">
+      
+    <% for (t=0; t<visible_fields.length; t++){ 
+      var field = visible_fields[t]; %>
+         
+      <td>
+
+      <% //--------if it is a text field %>
+      <% if (!($.inArray(field, entities[entity]['selectbox_items']) > -1)){ %>
+        <input type="text" name="<%=field %>" class='toggle-input input-large' value="<%= entities[entity][field] %>"/>
+          <span class='toggle-text'>
+            <%=  entities[entity][field] %>
+          </span>
+            
+      <% //--------if it is a select field %>
+      <% } else { %>
+            
+        <select class='toggle-input input-large' name="<%= field %>">
+            
+        <% var options_array = entities[entity][field+'_collection'];
+                  
+        for (i=0; i<options_array.length; i++){ %>
+                  	
+		  <% //add 'selected' to current option %>
+          <%if(options_array[i]['id'] == entities[entity][field]){ 
+            var active_name = options_array[i]['name']; %>
+             <option value="<%= options_array[i]['id'] %>" selected>
+               <%= active_name %>
+             </option>
+          <% } %>
+                  	
+          <% //print options from loaded collection %>
+          <option value="<%= options_array[i]['id'] %>"><%= options_array[i]['name'] %></option>
+                  	
+        <% } %>
+        </select> 
+
+        <span class='toggle-text'>	
+          <%=  active_name %>
+        </span>
+                 
+      <% } %>      
+    
+      </td>
+          
+    <% } %>
+     
+     
+     
+     
+      
+    <td class='text-center'>
+      <button class='btn open-modal delete-button' type="button" data-toggle="modal" data-target='delete-modal'>Delete</button>
+    </td>
+    
+  </tr>
+    
+  <% first = false; %>
+  <% }; %>
+</table>
+

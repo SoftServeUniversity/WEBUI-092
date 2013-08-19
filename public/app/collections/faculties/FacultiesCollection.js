@@ -10,9 +10,5 @@ define([
     url: "app/mocks/faculties.json"
   });
 
-  var Fac = new FacultiesCollection()
-      Fac.fetch();
-
-  console.log(Fac.toJSON())
   return FacultiesCollection;
 });

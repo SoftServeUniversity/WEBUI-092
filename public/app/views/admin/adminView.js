@@ -7,14 +7,14 @@ define([
   'views/admin/parentAdminView',
 
   //subViews for handlers
-  'views/admin/tabParentDepartmentsView',
-  'views/admin/tabParentRolesView',
-  'views/admin/tabParentGroupsView',
+  'views/admin/tabDepartmentsView',
+  'views/admin/tabRolesView',
+  'views/admin/tabGroupsView',
 
   'views/admin/tabDbView'
   
 ], function ($, _,  Backbone,
-            ParentAdminView, TabParentDepartmentsView, TabParentRolesView, TabParentGroupsView, TabDbView) {   
+            ParentAdminView, TabDepartmentsView, TabRolesView, TabGroupsView, TabDbView) {   
   
 var AdminView = ParentAdminView.extend({  
   
@@ -51,8 +51,6 @@ var AdminView = ParentAdminView.extend({
   ],
 
   initialize: function(){
-    console.log('initi')
-
     //call parent's initialize method
     this.constructor.__super__.initialize.apply(this);
     
@@ -70,18 +68,18 @@ var AdminView = ParentAdminView.extend({
 
   manage_roles: function(){
     this.activeMenuId = 'roles-tab';
-    this.tabView = new TabParentRolesView();
+    this.tabView = new TabRolesView();
     this.showAdminButtons();
   },
 
   manage_groups: function(){
     this.activeMenuId = 'groups-tab';
-    this.tabView = new TabParentGroupsView();
+    this.tabView = new TabGroupsView();
     this.showAdminButtons();
   },
     
   manage_departments: function(){   
-    this.tabView = new TabParentDepartmentsView();
+    this.tabView = new TabDepartmentsView();
     this.activeMenuId = 'departments-tab';
     this.showAdminButtons();
   },

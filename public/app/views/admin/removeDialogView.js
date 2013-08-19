@@ -2,9 +2,9 @@ define([
   'jquery',
   'underscore',
   'backbone',
-  'views/admin/tabChildView',
+  'views/admin/parentTabView',
   'text!templates/admin/removeDialogTemplate.html'
-], function($, _, Backbone, TabChildView, removeDialogTemplate){   
+], function($, _, Backbone, ParentTabView, removeDialogTemplate){   
 
 var RemoveDialogView = Backbone.View.extend(
 {
