@@ -7,9 +7,8 @@ define([
   'views/admin/parentAdminView',
 
   //subViews for handlers
-  'views/admin/tabDepartmentsView',
   /*'views/admin/tabRolesView',*/
-  'views/admin/tabGroupsView',
+ 
   'views/admin/tabAdminsView',
   'views/admin/tabFacultiesView',
 
@@ -17,13 +16,13 @@ define([
   
 ], function ($, _,  Backbone,
 
-            ParentAdminView, TabDepartmentsView, /*TabRolesView,*/ TabGroupsView, TabAdminsView, TabFacultiesView, TabDbView) {   
+            ParentAdminView, /*TabRolesView,*/ TabAdminsView, TabFacultiesView, TabDbView) {   
   
 var AdminView = ParentAdminView.extend({  
   
   headline: 'Admin Page',
   
-  defaultActiveTab: 'departments-tab',
+  defaultActiveTab: 'faculties-tab',
 
   //tab menu buttons (you can add your buttons here)
   tabMenuConfig: [
@@ -38,16 +37,7 @@ var AdminView = ParentAdminView.extend({
       label: 'Manage roles',
       action: 'manage_roles'
     },*/
-    {
-      id:'departments-tab',
-      label: 'Manage departments',
-      action: 'manage_departments'
-    },
-    {
-      id:'groups-tab',
-      label: 'Manage groups',
-      action: 'manage_groups'
-    },
+
     {
       id:'faculties-tab',
       label: 'Manage faculties',
@@ -87,17 +77,6 @@ var AdminView = ParentAdminView.extend({
     this.showAdminButtons();
   },*/
 
-  manage_groups: function(){
-    this.activeMenuId = 'groups-tab';
-    this.tabView = new TabGroupsView();
-    this.showAdminButtons();
-  },
-    
-  manage_departments: function(){   
-    this.tabView = new TabDepartmentsView();
-    this.activeMenuId = 'departments-tab';
-    this.showAdminButtons();
-  },
   
   manage_faculties: function(){   
     this.tabView = new TabFacultiesView();

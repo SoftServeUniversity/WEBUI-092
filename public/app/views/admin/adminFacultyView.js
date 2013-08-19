@@ -9,31 +9,44 @@ define([
 
   //subViews for handlers
   'views/admin/tabAdminsView',
-  'views/admin/tabRolesView',
   'views/admin/tabCoursesView',
+  
+  'views/admin/tabGroupsView',
+  'views/admin/tabDepartmentsView',
+  'views/admin/tabTeachersView'
+
 
 ], function ($, bootstrapselect, _,  Backbone,
-            ParentAdminView, TabAdminsView, TabRolesView, TabCoursesView) {   
+            ParentAdminView, TabAdminsView, TabCoursesView, TabGroupsView, TabDepartmentsView, TabTeachersView) {   
   
 var AdminFacultyView = ParentAdminView.extend({  
   
   headline: 'Faculty Admin Page',
   
-  defaultActiveTab: 'roles-tab',
+  defaultActiveTab: 'courses-tab',
 
   //tab menu buttons (you can add your buttons here)
   tabMenuConfig: [
 
     {
-
-      id:'roles-tab',
-      label: 'Manage roles',
-      action: 'manage_roles'
-    },
-    {
       id:'courses-tab',
       label: 'Manage Courses',
       action: 'manage_courses'
+    },
+    {
+      id:'departments-tab',
+      label: 'Manage Departments',
+      action: 'manage_departments'
+    },
+    {
+      id:'groups-tab',
+      label: 'Manage Groups',
+      action: 'manage_groups'
+    },
+    {
+      id:'teachers-tab',
+      label: 'Manage Teachers',
+      action: 'manage_teachers'
     }
   ],
   
@@ -57,6 +70,21 @@ var AdminFacultyView = ParentAdminView.extend({
   manage_courses: function(){
     this.activeMenuId = 'courses-tab';
     this.tabView = new TabCoursesView();
+    this.showAdminButtons();
+  },
+  manage_groups: function(){
+    this.activeMenuId = 'groups-tab';
+    this.tabView = new TabGroupsView();
+    this.showAdminButtons();
+  },
+  manage_departments: function(){
+    this.activeMenuId = 'departments-tab';
+    this.tabView = new TabDepartmentsView();
+    this.showAdminButtons();
+  },
+  manage_teachers: function(){
+    this.activeMenuId = 'teachers-tab';
+    this.tabView = new TabTeachersView();
     this.showAdminButtons();
   }
 

@@ -339,6 +339,9 @@ div.help-block ul li{
 
 
 /*----admin page----*/
+#tab-content th{
+	white-space: nowrap !Important;
+}
 #tab-menu .nav-tabs .active:hover,
 #tab-menu .nav-tabs .active {
     background:#0088CC !important;
