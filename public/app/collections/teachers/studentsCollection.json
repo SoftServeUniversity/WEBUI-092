@@ -1,32 +1,35 @@
 [
     {
-        "id_student": "1",
+        "id_student": "15",
         "last_name": "Іваненко",
         "first_name": "Іван",
         "middle_name": "Іванович",
         "course": 3,
         "id_group": "ІПП-31",
-        "work": "Назва теми, яку виконує студент",
+        "work_id": 3,
+        "work_name": "Назва роботи студента",
         "progress": 80
     },
     {
-        "id_student": "2",
+        "id_student": "18",
         "last_name": "Петренко",
         "first_name": "Петро",
         "middle_name": "Петрович",
         "course": 3,
         "id_group": "ІПП-31",
-        "work": "Назва теми, яку виконує студент",
+        "work_id": 25,
+        "work_name": "Назва роботи студента",
         "progress": 10
     },
         {
-        "id_student": "3",
+        "id_student": "19",
         "last_name": "Василенко",
         "first_name": "Василь",
         "middle_name": "Вікторович",
         "course": 4,
         "id_group": "ІПП-42",
-        "work": "Назва теми, яку виконує студент",
+        "work_id": 5,
+        "work_name": "Назва роботи студента",
         "progress": 28
     },
         {
@@ -36,7 +39,8 @@
         "middle_name": "Теодорівна",
         "course": 4,
         "id_group": "ІПП-42",
-        "work": "Назва теми, яку виконує студент",
+        "work_id": 16,
+        "work_name": "Назва роботи студента",
         "progress": 65
     },
     {
@@ -46,7 +50,8 @@
         "middle_name": "Амінійович",
         "course": 4,
         "id_group": "ІПП-42",
-        "work": "Назва теми, яку виконує студент",
+        "work_id": 154,
+        "work_name": "Назва роботи студента",
         "progress": 95
     },
     {
@@ -56,7 +61,8 @@
         "middle_name": "Григорович",
         "course": 5,
         "id_group": "ІПП-51",
-        "work": "Назва теми, яку виконує студент",
+        "work_id": 62,
+        "work_name": "Назва роботи студента",
         "progress": 75
     },
         {
@@ -66,7 +72,8 @@
         "middle_name": "Юрійович",
         "course": 5,
         "id_group": "ІПП-52",
-        "work": "Назва теми, яку виконує студент",
+        "work_id": 22,
+        "work_name": "Назва роботи студента",
         "progress": 16
     },
         {
@@ -76,7 +83,8 @@
         "middle_name": "Матвійович",
         "course": 5,
         "id_group": "ІПП-51",
-        "work": "Назва теми, яку виконує студент",
+        "work_id": 33,
+        "work_name": "Назва роботи студента",
         "progress": 25
     },
         {
@@ -86,7 +94,8 @@
         "middle_name": "Степанович",
         "course": 5,
         "id_group": "ІПП-52",
-        "work": "Назва теми, яку виконує студент",
+        "work_id": 44,
+        "work_name": "Назва роботи студента",
         "progress": 39
     }
 ]

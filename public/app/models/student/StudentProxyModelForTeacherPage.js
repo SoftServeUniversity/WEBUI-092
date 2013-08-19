@@ -6,11 +6,12 @@ define([
 
   var StudentProxyModelForTeacherPage = Backbone.Model.extend({
     initialize : function (attributes) {
-        var student = new StudentModel( {id: attributes.id});
+        var student = new StudentModel({id: attributes.id});
         this.set('name', attributes.last_name + ' ' +attributes.first_name + ' ' + attributes.middle_name);
-        this.set('work', attributes.work);
+        this.set('work_id', attributes.work_id);
+        this.set('work_name', attributes.work_name);
         this.set('progress', attributes.progress);
-        this.set('name_with_url', '<a href=#/work/' + attributes.id_student + '>' +this.get('name')+'</a>');
+        this.set('name_with_url', '<a href=#/work/' + attributes.work_id + '>' +this.get('name')+'</a>');
         return student;
     }
   });
