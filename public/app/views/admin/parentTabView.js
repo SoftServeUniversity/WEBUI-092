@@ -19,6 +19,10 @@ define([
             var data = me.buildJSON(me.config)
             me.render(data)
             
+
+
+            //merge two configs (we'll need both fields and buttons config)
+            me.config.entities = data.entities;
             GlobalEventBus.trigger('tabChildSupViewLoaded', me.$el.html(), me.config);
       })
 

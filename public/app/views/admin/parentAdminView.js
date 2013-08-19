@@ -92,15 +92,15 @@ define([
 
     appendNewElementRow: function(){  
       var me = this;
-      
       if ($('#new_entity').length < 1){
 	      
-        var newElementView = new NewElementView(me.config);
-	      $(me.el_tab_content + ' table tbody').append(newElementView.$el.html())
+        var newElementView = new NewElementView();
+        var content = newElementView.render(me.config);
+	      $(me.el_tab_content + ' table tbody').append(content.$el.html())
         //$('#content select').selectpicker() 
       
       } else {
-
+       
     	  $('#new_entity').remove();
       
       }    
@@ -227,6 +227,7 @@ define([
       // next time child view loads - only tab content will render and button text update 
       GlobalEventBus.off('tabChildSupViewLoaded');
       GlobalEventBus.on('tabChildSupViewLoaded', function(tabContent, config){
+        console.log(config)
         me.config = config;
         me.renderTab(tabContent);
         me.trigger('onChildConfigLoaded');
