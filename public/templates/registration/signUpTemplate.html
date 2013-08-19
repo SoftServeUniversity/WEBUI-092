@@ -1,0 +1,92 @@
+<section id="sign-up-container">
+  <div class="page-header">
+    <h1 id="myModelLabel" class="text-center">Заповніть реєстраційну форму</h3>
+  </div>
+  <div class="sign-in-body">
+    <form class="form-horizontal" id="regForm" name="regForm">
+      <div class="control-group">
+        <label class="control-label" for="user[email]">Email</label>
+        <div class="controls">
+          <input type="text" name="user[email]" autofocus required id="inputLastNameReg" placeholder="Введіть Bаш email" data-validation-regex-regex="^[\w\.-_\+]+@[\w-]+(\.\w{2,4})+$" data-validation-regex-message="Будь-ласка введіть валідний email">  
+        </div>
+      </div>
+      <div class="control-group">
+        <label class="control-label" for="user[last_name]">Прізвище</label>
+        <div class="controls">
+          <input type="text" name="user[last_name]" autofocus required id="inputLastNameReg" placeholder="Введіть свое прізвище" data-validation-regex-regex="[А-Яа-яїєі]{3,25}" data-validation-regex-message="Тільки українські та російські букви, від 3 до 25">  
+        </div>
+      </div>
+      <div class="control-group">
+        <label class="control-label" for="user[name]">Ім'я</label>
+        <div class="controls">
+          <input type="text" name="user[name]" required id="inputFirstNameReg" placeholder="Введіть свое ім'я" data-validation-regex-regex="[А-Яа-яїєі]{3,25}" data-validation-regex-message="Тільки українські та російські букви, від 3 до 25">
+        </div>
+      </div>
+      <div class="control-group">
+        <label class="control-label" for="user[middle_name]">По-батькові</label>
+        <div class="controls">
+          <input type="text" name="user[middle_name]" required id="inputFatherNameReg" placeholder="Введіть свое ім'я по-батькові" data-validation-regex-regex="[А-Яа-яїєі]{3,25}" data-validation-regex-message="Тільки українські та російські букви, від 3 до 25">
+        </div>
+      </div>
+      <div class="control-group">
+        <label class="control-label" for="suser[role_attributes][role]">Роль</label>
+        <div class="controls">
+          <select  id="role" name="suser[role_attributes][role]">
+            <option>User</option>
+            <option>Teacher</option>
+            <option>Student</option>
+          </select>
+
+        </div>
+      </div>
+
+      <div class="control-group roleStudent">
+        <label class="control-label" for="suser[group_attributes][group]">Група</label>
+        <div class="controls">
+          <select  id="selectGroupReg" name="suser[group_attributes][group]">
+            <option>WebUI92</option>
+            <option>WebUI93</option>
+            <option>WebUI94</option>
+          </select>
+        </div>
+      </div>
+      <div class="control-group roleTeacher">
+        <label class="control-label" for="suser[teacher_attributes][degree]">Вчений ступінь</label>
+        <div class="controls">
+          <input type="text" name="suser[teacher_attributes][degree]" id="inputScienceStageReg" placeholder="Введіть свій вчений ступінь" data-validation-regex-regex="[А-Яа-яїєі]{3,25}" data-validation-regex-message="Тільки українські та російські букви, від 3 до 25">
+        </div>
+      </div>
+      <div class="control-group roleTeacher">
+        <label class="control-label" for="suser[teacher_attributes][title]">Вчене звання</label>
+        <div class="controls">
+          <input type="text" name="suser[teacher_attributes][title]" id="inputPositionReg" placeholder="Введіть свое вчене звання" data-validation-regex-regex="[А-Яа-яїєі]{3,25}" data-validation-regex-message="Тільки українські та російські букви, від 3 до 25">
+        </div>
+      </div>
+      <div class="control-group roleTeacher">
+        <label class="control-label" for="suser[department_attributes][department]">Кафедра</label>
+        <div class="controls">
+          <select  id="selectDepartmentReg" name="suser[department_attributes][department]">
+            <option>Кафедра-1</option>
+            <option>Кафедра-2</option>
+            <option>Кафедра-3</option>
+          </select>
+        </div>
+      </div>
+      <div class="control-group">
+        <label class="control-label" for="user[password]">Пароль</label>
+        <div class="controls">
+          <input type="password" name="user[password]" required  id="inputPasswordReg" placeholder="Введіть свій пароль" name="password" data-validation-regex-regex="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$" data-validation-regex-message="Повинен містити великі та маленькі латинські букви і цифри. Мінімум 8 символів">
+        </div>
+      </div>
+      <div class="control-group">
+        <label class="control-label" for="user[password_confirmation]">Підтвердження паролю</label>
+        <div class="controls">
+          <input type="password" name="user[password_confirmation]" required id="inputPasswordReg" placeholder="Введіть свій пароль" name="password" data-validation-regex-regex="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$" data-validation-regex-message="Повинен містити великі та маленькі латинські букви і цифри. Мінімум 8 символів">
+        </div>
+      </div>
+      <div class="control-group">
+        <input type='submit' id="sendFormReg" class="btn btn-primary" value='Відправити'></input>
+      </div>
+    </form>
+  </div>
+</section>

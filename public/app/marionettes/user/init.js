@@ -31,11 +31,10 @@ define([
   GlobalUser.vent.on("authentication:logged_in", function() {
     $('#launch-btn').replaceWith(GlobalUser.layouts.logged_in);
     $('#launch').slideUp(300);
-    console.log('__y_s__vent.on("authentication:logged_in"');
+    window.location.hash = '/';
   });
 
   GlobalUser.vent.on("authentication:logged_out", function() {
-    console.log('__y_s__I am in GlobalUser.vent.on("authentication:logged_out", function()');
     $('#logout').replaceWith(GlobalUser.layouts.logged_out);
   });
 
@@ -44,11 +43,9 @@ define([
     if (user != false){
       GlobalUser.currentUser = GlobalUser.Models.User.set(user);
       GlobalUser.vent.trigger("authentication:logged_in");
-      console.log(GlobalUser.currentUser);
     }else{
       GlobalUser.currentUser = null;
       GlobalUser.vent.trigger("authentication:logged_out");
-      console.log(GlobalUser.currentUser);
     }
   }, 'json');
 

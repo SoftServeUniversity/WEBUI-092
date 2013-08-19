@@ -263,7 +263,9 @@ hr.task-comment-line{
 /*****end task page*****/
 
 /*-----enter form---------*/
+.roleStudent, .roleTeacher{
 
+}
 #launch{
 	top:46px;
 	position: absolute;
@@ -308,6 +310,9 @@ hr.task-comment-line{
 }
 #regMod{
 	display: none;
+}
+#regForm .controls{
+	width: 35%;
 }
 
 .gradient {

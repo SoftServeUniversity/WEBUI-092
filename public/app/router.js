@@ -17,19 +17,18 @@ define([
   'views/notFoundView',
   'views/admin/adminFacultyView',
   'views/admin/adminView',
-  'views/teacher/TeacherView'
+  'views/teacher/TeacherView',
+  'views/user/signUpView'
 
 
   ], function($, _, Backbone, GlobalUser, FacultiesListView, RegistrationView, GroupProgressView,
   	          StudentProgressView, CourseProgressView,  MainFacultyView, MainDepartmentView,
   	          TeacherProgressView, MainWorkView, taskView, TasksCollection, NotFoundView,
-              AdminFacultyView, AdminView, TeacherView
+              AdminFacultyView, AdminView, TeacherView, UserSingUpView
              ) {
 
 
-
   	GlobalEventBus = _.extend({}, Backbone.Events);
-
 
 
     var AppRouter = Backbone.Router.extend({
@@ -46,6 +45,7 @@ define([
         'fa'                     : 'viewAdminFacultyPage',
         'admin'                  : 'viewAdminPage',
         'work/:id/:taskid'       : 'taskShow',
+        'sign_up'                : 'userSingUp',
 
         // Default
         '*actions': 'defaultAction'
@@ -111,6 +111,11 @@ define([
 
       app_router.on('route:teacherAction', function (id) {
         var teacherView = new TeacherView(id);
+      });
+
+      app_router.on('route:userSingUp', function(){
+        var userSignUp = new UserSingUpView();
+        userSignUp.render();
       });
 
       /*app_router.on('route:faRoles', function (actions){
