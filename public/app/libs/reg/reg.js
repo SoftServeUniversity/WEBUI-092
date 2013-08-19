@@ -6,7 +6,8 @@
 
         $("input[type=text], input[type=password]").jqBootstrapValidation(); 
         
-        $('#launch-btn').click(function(e){
+        // #launch-btn is a dinamic element, that because we need to delegate it functionality
+        $("#authBox").delegate('#launch-btn','click', function(e){
           e.preventDefault();
           console.log('Log In');
           $(this).hide();
