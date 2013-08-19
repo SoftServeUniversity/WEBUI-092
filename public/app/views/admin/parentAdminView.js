@@ -80,7 +80,8 @@ define([
      'click .open-modal-import'  : 'openModalImport',
      //'click #newElement'         : 'appendNewElementRow', 
      'click #create_button'      : 'saveElement',
-     'click .delete-button'      : 'showRemoveDialog'
+     'click .delete-button'      : 'showRemoveDialog',
+     'click .verify-button'      : 'verifyElement'
     },
 
     //add click handler for each tab
@@ -183,6 +184,25 @@ define([
       model.save();
       me.reloadTab();
 
+    },
+
+    verifyElement: function(e){
+      var model_id = $(e.target).closest('.model').attr('model_id');
+      var model = this.config.collection.get(model_id);
+      
+      var options = {
+        success: function (model, response) {
+            console.log('remove success');
+        },
+        error: function (model, response) {
+            console.log('remove error');
+        }
+      };
+
+      model.set('verified', 1);
+      model.save(options);
+
+      $('.nav-tabs .active').trigger('click')
     },
 
 

@@ -339,12 +339,28 @@ div.help-block ul li{
 
 
 /*----admin page----*/
-.nav-tabs .active {
-    background:#EEEEEE;
+#tab-menu .nav-tabs .active:hover,
+#tab-menu .nav-tabs .active {
+    background:#0088CC !important;
+    color: #fff;
+}
+#tab-menu .nav-tabs a{
+    border:none !Important;
+    border-bottom:1px solid #0088cc !important;
+}	
+
+#tab-menu .nav-tabs a:hover {
+	background:#CFE4FC !Important;
+}
+#tab-menu .nav-tabs {
+	border-bottom: 1px solid #0088CC;
 }
 #tab-content table td,
 #tab-content table th{
 	border:none;
+}
+#tab-content td {
+	vertical-align:middle;
 }
 #tab-content table tr:first-child{
 	border-top:none;
@@ -352,8 +368,14 @@ div.help-block ul li{
 #tab-content table tr{
 	border-top: 1px solid #DDDDDD;
 }
+tr.notverified {
+	background:#FAFAA5;
+	outline:2px solid yellow;
+}    
 
-
+td.text-right {
+	text-align:right;
+}
 /* oohurtc */
 
 .heading {

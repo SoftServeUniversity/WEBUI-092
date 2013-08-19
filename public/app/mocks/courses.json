@@ -1,7 +1,7 @@
 [
     {  
       "id": 1,
-      "name": "2 курс",
+      "name": "1 курс",
       "year_of_start": "2012",
       "faculty_id": 1,
       "percentage": 100
@@ -15,21 +15,21 @@
     },
     { 
       "id": 3,
-      "name": "2 курс",
+      "name": "3 курс",
       "year_of_start": "2012",
       "faculty_id": 1,
       "percentage": 40
     },
     {
       "id": 4,
-      "name": "2 курс",
+      "name": "4 курс",
       "year_of_start": "2012",
       "faculty_id": 2,
       "percentage": 30
     },
     {
       "id": 5,
-      "name": "2 курс",
+      "name": "5 курс",
       "year_of_start": "2012",
       "faculty_id": 1,
       "percentage": 70

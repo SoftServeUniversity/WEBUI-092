@@ -31,7 +31,7 @@ define([
           },
           {
             _link: 'teacher_id',
-            label: 'Faculty Head',
+            label: 'Faculty Admin',
             type:'select',
             src:me.collections.teachers
           }
