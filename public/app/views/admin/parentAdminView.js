@@ -43,8 +43,9 @@ define([
 
     initialize: function(){
       var me = this;
-      
+
       this.events = JSON.parse(JSON.stringify(this.events));
+
 
       //extend events with events from child
       this.addTabHandlers();
@@ -67,7 +68,7 @@ define([
 
     //remove all events, (to remove events bound in previous adminView.extend)
     events: {},
-
+    
     events: {
      //table events
      'dblclick .model .toggle-text'     : 'showInput',
@@ -77,7 +78,7 @@ define([
      //modal windows
      'click .save'               : 'closeModal',
      'click .open-modal-import'  : 'openModalImport',
-     'click #newElement'         : 'appendNewElementRow', 
+     //'click #newElement'         : 'appendNewElementRow', 
      'click #create_button'      : 'saveElement',
      'click .delete-button'      : 'showRemoveDialog'
     },
@@ -90,17 +91,15 @@ define([
       })
     },    
 
-    appendNewElementRow: function(){  
+    appendNewElementRow: function(){
       var me = this;
       if ($('#new_entity').length < 1){
-	      
         var newElementView = new NewElementView();
         var content = newElementView.render(me.config);
 	      $(me.el_tab_content + ' table tbody').append(content.$el.html())
         //$('#content select').selectpicker() 
       
       } else {
-       
     	  $('#new_entity').remove();
       
       }    
@@ -224,10 +223,15 @@ define([
 	      }
       })
       
+      //HACK !!! (this must be placed in this.events, but i can't get it working across
+      // both admin pages: it fires two times when i switch to different admin page)
+      $('#newElement').click(function(){
+        me.appendNewElementRow();
+      });
+
       // next time child view loads - only tab content will render and button text update 
       GlobalEventBus.off('tabChildSupViewLoaded');
       GlobalEventBus.on('tabChildSupViewLoaded', function(tabContent, config){
-        console.log(config)
         me.config = config;
         me.renderTab(tabContent);
         me.trigger('onChildConfigLoaded');

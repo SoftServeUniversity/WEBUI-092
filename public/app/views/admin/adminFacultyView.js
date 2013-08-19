@@ -41,6 +41,7 @@ var AdminFacultyView = ParentAdminView.extend({
       action: 'manage_courses'
     }
   ],
+  
 
   initialize: function(){
     //call parent's initialize method
