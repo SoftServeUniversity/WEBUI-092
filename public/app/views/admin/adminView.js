@@ -4,6 +4,7 @@ define([
   'jquery',
   'underscore',
   'backbone',
+  'collections/admin/FaAdminsCollection',
   'views/admin/parentAdminView',
 
   //subViews for handlers
@@ -14,7 +15,7 @@ define([
 
   'views/admin/tabDbView'
   
-], function ($, _,  Backbone,
+], function ($, _,  Backbone, FaAdminsCollection,
 
             ParentAdminView, /*TabRolesView,*/ TabAdminsView, TabFacultiesView, TabDbView) {   
   
@@ -30,7 +31,10 @@ var AdminView = ParentAdminView.extend({
     {
       id:'admins-tab',
       label: 'Manage faculty admins',
-      action: 'manage_admins'
+      action: 'manage_admins',
+
+      /*verification: true,
+      collection: FaAdminsCollection*/
     },
     /*{
       id:'roles-tab',

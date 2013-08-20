@@ -63,7 +63,8 @@ define([
       }) 
 
       this.loadDefaultActiveTab(this.defaultActiveTab);
-            
+      
+      /*this.checkVerification();*/    
     },
 
     //remove all events, (to remove events bound in previous adminView.extend)
@@ -222,6 +223,21 @@ define([
       me.addActiveClass(this.activeMenuId)
       //$('#content select').selectpicker() 
     },
+    
+    /*checkVerification: function (){
+      for ( var i in this.tabMenuConfig ) {
+        if (this.tabMenuConfig[i]['verification'] = true){
+          if (typeof this.tabMenuConfig[i]['collection'] == 'function'){
+            this.tabMenuConfig[i]['collection'].fetch({
+              success: function(){
+
+              }
+            })
+          }
+        }
+
+      }
+    },*/
 
     render: function (tabContent){
       var me = this;
