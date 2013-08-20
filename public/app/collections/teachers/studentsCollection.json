@@ -1,0 +1,101 @@
+[
+    {
+        "id_student": "15",
+        "last_name": "Іваненко",
+        "first_name": "Іван",
+        "middle_name": "Іванович",
+        "course": 3,
+        "id_group": "ІПП-31",
+        "work_id": 3,
+        "work_name": "Назва роботи студента",
+        "progress": 80
+    },
+    {
+        "id_student": "18",
+        "last_name": "Петренко",
+        "first_name": "Петро",
+        "middle_name": "Петрович",
+        "course": 3,
+        "id_group": "ІПП-31",
+        "work_id": 25,
+        "work_name": "Назва роботи студента",
+        "progress": 10
+    },
+        {
+        "id_student": "19",
+        "last_name": "Василенко",
+        "first_name": "Василь",
+        "middle_name": "Вікторович",
+        "course": 4,
+        "id_group": "ІПП-42",
+        "work_id": 5,
+        "work_name": "Назва роботи студента",
+        "progress": 28
+    },
+        {
+        "id_student": "4",
+        "last_name": "Губенко",
+        "first_name": "Марія",
+        "middle_name": "Теодорівна",
+        "course": 4,
+        "id_group": "ІПП-42",
+        "work_id": 16,
+        "work_name": "Назва роботи студента",
+        "progress": 65
+    },
+    {
+        "id_student": "5",
+        "last_name": "Рубенс",
+        "first_name": "Фернандо",
+        "middle_name": "Амінійович",
+        "course": 4,
+        "id_group": "ІПП-42",
+        "work_id": 154,
+        "work_name": "Назва роботи студента",
+        "progress": 95
+    },
+    {
+        "id_student": "6",
+        "last_name": "Каськів",
+        "first_name": "Ігор",
+        "middle_name": "Григорович",
+        "course": 5,
+        "id_group": "ІПП-51",
+        "work_id": 62,
+        "work_name": "Назва роботи студента",
+        "progress": 75
+    },
+        {
+        "id_student": "7",
+        "last_name": "Роздовбай",
+        "first_name": "Микола",
+        "middle_name": "Юрійович",
+        "course": 5,
+        "id_group": "ІПП-52",
+        "work_id": 22,
+        "work_name": "Назва роботи студента",
+        "progress": 16
+    },
+        {
+        "id_student": "8",
+        "last_name": "Сокіл",
+        "first_name": "Тарас",
+        "middle_name": "Матвійович",
+        "course": 5,
+        "id_group": "ІПП-51",
+        "work_id": 33,
+        "work_name": "Назва роботи студента",
+        "progress": 25
+    },
+        {
+        "id_student": "9",
+        "last_name": "Вовк",
+        "first_name": "Ігор",
+        "middle_name": "Степанович",
+        "course": 5,
+        "id_group": "ІПП-52",
+        "work_id": 44,
+        "work_name": "Назва роботи студента",
+        "progress": 39
+    }
+]

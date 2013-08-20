@@ -16,7 +16,7 @@ header, footer {
 	padding:10px 10px;
 	background:#F5F5F5;
 }
-header{ 
+header{
 	box-shadow: 0px 1px 2px #bbb;
 	min-height:35px;
 	margin-bottom:40px;
@@ -38,7 +38,7 @@ h1 {
 a:hover{
 	color:#0088CC;
 }
-#tab-content td{ 
+#tab-content td{
 }
 .toggle-list .toggle-input {
 	display:none;
@@ -219,6 +219,9 @@ progress::-webkit-progress-value { background: #69EB63; }
 /*Yasinishyn end*/
 /*****start task page*****/
 
+.rightContent{
+  text-align: right;
+}
 .centeredContent{
 	text-align: center;
 }
@@ -263,9 +266,11 @@ hr.task-comment-line{
 /*****end task page*****/
 
 /*-----enter form---------*/
+.roleStudent, .roleTeacher{
 
+}
 #launch{
-	top:51px;
+	top:46px;
 	position: absolute;
 	right:0;
 	overflow: hidden;
@@ -309,18 +314,21 @@ hr.task-comment-line{
 #regMod{
 	display: none;
 }
+#regForm .controls{
+	width: 35%;
+}
 
 .gradient {
 	background: #F5F5F5; /* Для старых браузров */
 	background: -moz-linear-gradient(top, #F5F5F5, #F5F5F5, #fff); /* Firefox 3.6+ */
 	/* Chrome 1-9, Safari 4-5 */
-	background: -webkit-gradient(linear, left top, left bottom, 
+	background: -webkit-gradient(linear, left top, left bottom,
 	            color-stop(0%,#f6f4f4), color-stop(30%,#F5F5F5), color-stop(100%,#fff));
 	/* Chrome 10+, Safari 5.1+ */
 	background: -webkit-linear-gradient(top, #F5F5F5, #F5F5F5, #fff);
 	background: -o-linear-gradient(top, #F5F5F5, #F5F5F5, #fff); /* Opera 11.10+ */
 	background: -ms-linear-gradient(top, #F5F5F5, #F5F5F5, #fff); /* IE10 */
-	background: linear-gradient(top, #F5F5F5, #F5F5F5, #fff); /* CSS3 */ 
+	background: linear-gradient(top, #F5F5F5, #F5F5F5, #fff); /* CSS3 */
 	padding: 10px;
 	border-bottom: 1px solid #333;
 }
@@ -332,19 +340,38 @@ div.help-block ul li{
 	margin-left:-20px;
 }
 
-/*--end enter form---------*/ 
+/*--end enter form---------*/
 
 
 
 
 
 /*----admin page----*/
-.nav-tabs .active {
-    background:#EEEEEE;	
+#tab-content th{
+	white-space: nowrap !Important;
+}
+#tab-menu .nav-tabs .active:hover,
+#tab-menu .nav-tabs .active {
+    background:#0088CC !important;
+    color: #fff;
+}
+#tab-menu .nav-tabs a{
+    border:none !Important;
+    border-bottom:1px solid #0088cc !important;
+}	
+
+#tab-menu .nav-tabs a:hover {
+	background:#CFE4FC !Important;
+}
+#tab-menu .nav-tabs {
+	border-bottom: 1px solid #0088CC;
 }
 #tab-content table td,
 #tab-content table th{
 	border:none;
+}
+#tab-content td {
+	vertical-align:middle;
 }
 #tab-content table tr:first-child{
 	border-top:none;
@@ -352,8 +379,14 @@ div.help-block ul li{
 #tab-content table tr{
 	border-top: 1px solid #DDDDDD;
 }
+tr.notverified {
+	background:#FAFAA5;
+	outline:2px solid yellow;
+}    
 
-
+td.text-right {
+	text-align:right;
+}
 /* oohurtc */
 
 .heading {
@@ -459,4 +492,12 @@ div.help-block ul li{
 
 #name {
 	display: inline-block;
+}
+
+#dialogAddStudentWork {
+  display: none;
+  top: 0;
+  width: auto;
+  heigth: auto;
+  text-align: left;
 }

@@ -11,7 +11,7 @@
 /db/*.sqlite3
 
 # Ignore logfile.
-log/development.log
+/log/development.log
 
 # Ignore all logfiles and tempfiles.
 /log/*.log

@@ -48,7 +48,7 @@ define([
             });
 
          },
- 
+
         initialize:function(){
             var isDepLoaded = false;
             var isGroupsLoaded = false;
@@ -76,21 +76,21 @@ define([
             });
 
          },
- 
+
          render:function(){
             var dep_name = deps_col.get(depId).toJSON().name;
 
- 
+
              var groupsListView = new ListView({
                  collection:groups_col,
                  linkTo:"group"
              });
-            
+
              var teachersListView = new ListView({
                  collection:teachers_col,
                  linkTo:"teacher"
              });
-             
+
               var chartView = new ChartView({
                 collection:dep_change_col
             });

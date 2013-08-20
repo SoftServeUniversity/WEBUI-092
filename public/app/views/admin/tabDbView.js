@@ -3,16 +3,16 @@ define([
   'underscore',
   'backbone',
   'text!templates/admin/tabDbTemplate.html'
-], function($, _, Backbone, tabDbTemplate){   
-   
+], function($, _, Backbone, tabDbTemplate){
+
   var TabDbView = Backbone.View.extend({
-    
+
     tagName: 'div',
-    
+
     initialize: function(){
       this.render();
     },
-  
+
     render: function (){
       var that = this;
       var compiledTemplate = _.template(tabDbTemplate);

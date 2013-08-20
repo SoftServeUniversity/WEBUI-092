@@ -7,43 +7,43 @@ define([
   'views/admin/parentAdminView',
 
   //subViews for handlers
-  'views/admin/tabParentDepartmentsView',
-  'views/admin/tabParentRolesView',
-  'views/admin/tabParentGroupsView',
+  /*'views/admin/tabRolesView',*/
+ 
+  'views/admin/tabAdminsView',
+  'views/admin/tabFacultiesView',
 
   'views/admin/tabDbView'
   
 ], function ($, _,  Backbone,
-            ParentAdminView, TabParentDepartmentsView, TabParentRolesView, TabParentGroupsView, TabDbView) {   
+
+            ParentAdminView, /*TabRolesView,*/ TabAdminsView, TabFacultiesView, TabDbView) {   
   
 var AdminView = ParentAdminView.extend({  
   
   headline: 'Admin Page',
   
-  defaultActiveTab: 'departments-tab',
+  defaultActiveTab: 'admins-tab',
 
   //tab menu buttons (you can add your buttons here)
   tabMenuConfig: [
-    {
 
+    {
+      id:'admins-tab',
+      label: 'Manage faculty admins',
+      action: 'manage_admins'
+    },
+    /*{
       id:'roles-tab',
       label: 'Manage roles',
       action: 'manage_roles'
-    },
-    {
+    },*/
 
-      id:'departments-tab',
-      label: 'Manage departments',
-      action: 'manage_departments'
-    },
     {
-
-      id:'groups-tab',
-      label: 'Manage groups',
-      action: 'manage_groups'
-    },
+      id:'faculties-tab',
+      label: 'Manage faculties',
+      action: 'manage_faculties'
+    },    
     {
-
       id:'database-tab',
       label: 'Manage database',
       action: 'manage_database'
@@ -58,7 +58,12 @@ var AdminView = ParentAdminView.extend({
     _.extend(this.events, this.events_own)
   },
 
-  //tab menu buttons handlers  
+  //tab menu buttons handlers
+  manage_admins: function(){
+    this.activeMenuId = 'admins-tab';
+    this.tabView = new TabAdminsView();
+    this.showAdminButtons();
+  },  
   manage_database: function(){
     this.addActiveClass('database-tab');
     var tabDbView = new TabDbView();
@@ -66,21 +71,16 @@ var AdminView = ParentAdminView.extend({
     this.hideAdminButtons();
   },
 
-  manage_roles: function(){
+  /*manage_roles: function(){
     this.activeMenuId = 'roles-tab';
-    this.tabView = new TabParentRolesView();
+    this.tabView = new TabRolesView();
     this.showAdminButtons();
-  },
+  },*/
 
-  manage_groups: function(){
-    this.activeMenuId = 'groups-tab';
-    this.tabView = new TabParentGroupsView();
-    this.showAdminButtons();
-  },
-    
-  manage_departments: function(){   
-    this.tabView = new TabParentDepartmentsView();
-    this.activeMenuId = 'departments-tab';
+  
+  manage_faculties: function(){   
+    this.tabView = new TabFacultiesView();
+    this.activeMenuId = 'faculties-tab';
     this.showAdminButtons();
   },
 
@@ -89,10 +89,12 @@ var AdminView = ParentAdminView.extend({
     "change #file" : "showFileName"
   },
 
+  //loading imgLoader while file is loading
   imgLoader : function(){
     $('#imgLoader').show();
   },
 
+  //show filename of loading file
   showFileName : function(){
     $('#file').each(function() {
       var name = this.value;

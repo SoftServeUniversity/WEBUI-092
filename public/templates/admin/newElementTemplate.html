@@ -26,7 +26,7 @@
                   for (i=0; i<options_array.length; i++){ %>
                   	
                   	<% //print options from loaded collection %>
-                    <option value="<%= entities[entity][field] %>"><%= options_array[i]['name'] %></option>
+                    <option value="<%= options_array[i]['id'] %>"><%= options_array[i]['name'] %></option>
                   	
                   <% } %>
               </select> 
@@ -35,7 +35,7 @@
                       
           <% } %>
         <% } %>
-        <td>
+        <td class='text-right'>
           <button class='btn btn-success' id='create_button'>Create</button>
         </td>
       <% } %>

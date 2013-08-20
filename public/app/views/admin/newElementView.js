@@ -5,18 +5,18 @@ define([
   'jquery',
   'underscore',
   'backbone',
-  'views/admin/tabChildView',
+  'views/admin/parentTabView',
   'text!templates/admin/newElementTemplate.html'
   
-], function($, _, Backbone, TabChildView, newElementTemplate){   
+], function($, _, Backbone, ParentTabView, newElementTemplate){   
    
-  var NewElementView = TabChildView.extend({
+  var NewElementView = ParentTabView.extend({
     
     tagName: 'div',
     
 
     render: function (data){
-      
+      console.log(data)
       var that = this;
       
       var compiledTemplate = _.template(newElementTemplate, data);
