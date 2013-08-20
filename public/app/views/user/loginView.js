@@ -27,6 +27,7 @@ define([
 
     login: function() {
       $('#sendFormLog').attr('value', 'Завантаження...');
+      $('.alert').remove();
       GlobalUser.Models.User = new User();
 
       var self = this,
