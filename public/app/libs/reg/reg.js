@@ -50,6 +50,16 @@ $(function () {
   
 });
 
+// error type
+function alertType(data){
+  var res;
+  for (first in data){ 
+    res = first;
+    break;
+  } 
+  return res
+}
+
 // to serialize to json with mested attributes
 jQuery.fn.MytoJson = function(options) {
 

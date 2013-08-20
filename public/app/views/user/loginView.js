@@ -5,17 +5,15 @@ define([
   'bootstrap',
   'jqBootstrapValidation',
   'reg',
-  'text!templates/registration/registrationTemplate.html',
   'marionettes/user/init',
   'models/user/user_session',
-  'helpers/user/notifications',
   'models/user/user',
-  'models/user/user_logout'
-], function($, _, Backbone, bootstrap, jqBootstrapValidation, reg, registrationTemplate, GlobalUser, UserSession, Notifications, User, UserLogout){ 
+  'models/user/user_logout',
+  'text!templates/shared/errorNotificationTemplate.html',
+], function($, _, Backbone, bootstrap, jqBootstrapValidation, reg, GlobalUser, UserSession, User, UserLogout, errorNotificationTemplate){ 
   GlobalUser.Views.Unauthenticated = GlobalUser.Views.Unauthenticated || {};
 
   GlobalUser.Views.Unauthenticated.Login = Backbone.Marionette.ItemView.extend({
-    template: registrationTemplate,
     el: $('#logForm'),
 
     initialize: function() {
@@ -28,7 +26,7 @@ define([
     },
 
     login: function() {
-      GlobalUser.Helpers.Notifications = new Notifications();
+      $('#sendFormLog').attr('value', 'Завантаження...');
       GlobalUser.Models.User = new User();
 
       var self = this,
@@ -41,15 +39,16 @@ define([
 
       this.model.save(this.model.attributes, {
         success: function(userSession, response) {
-          el.find('.btn-primary').button('reset');
           GlobalUser.currentUser = GlobalUser.Models.User.set(response);
           console.log(GlobalUser.currentUser);
           GlobalUser.vent.trigger("authentication:logged_in");
         },
         error: function(userSession, response) {
-          var result = $.parseJSON(response.responseText);
-          el.prepend(GlobalUser.Helpers.Notifications.error(result.error));
-          el.find('.btn-primary').button('reset');
+          var data = $.parseJSON(response.responseText);
+          //getting alert type for bootstrap error messages view. This function is in libs/reg/reg
+          data.alertType = alertType(data);
+          $('#launch').prepend(_.template(errorNotificationTemplate, data));
+          $('#sendFormLog').attr('value', 'Увійти');
         }
       });
     },
