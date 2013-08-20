@@ -32,10 +32,8 @@ $(function () {
     $('#example').tooltip('hide');
   });
 
-  $(".roleStudent").hide();
-  $(".roleTeacher").hide();
 
-  $('#role').change(function(){
+  $('#content').delegate('#role', 'change', function(e){
     if($(this).val() == 'Student'){
       $('.roleStudent').show();
       $('.roleTeacher').hide();

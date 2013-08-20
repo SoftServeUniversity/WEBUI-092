@@ -27,10 +27,12 @@ define([
       $("#content").html(_.template(signUpTemplate));
       $('#launch').slideUp(100);
       $('#launch-btn').show();
+      $(this.el).find(".roleStudent").hide();
+      $(this.el).find(".roleTeacher").hide();
     },
 
     events: {
-      'submit #regForm': 'signup'
+      'submit #regForm': 'signup',
     },
 
     signup: function(e) {
@@ -50,6 +52,7 @@ define([
 
         GlobalUser.Models.User = new User();
 
+        // MytoJson transforms(serializes) forms input data into json. The definition can be found in libs/reg/reg.js
         var frmData = $('#regForm').MytoJson();
         frmData.authenticity_token = $("meta[name='csrf-token']").attr('content')
         this.model.set(frmData);
@@ -71,8 +74,6 @@ define([
                 data = {
                   'error' : error
                 };
-                console.log(data);
-                console.log(field);
                 $('#'+field+'_group .controls').append(_.template(fieldErrorNoticeTemplate, data));
               });
             });
@@ -81,7 +82,6 @@ define([
         });
       }else{
         //hende frontend validations
-        console.log('__y_s__ I am in signUpView on signup: function(e) { But faled validation');
       }
     }
   });
