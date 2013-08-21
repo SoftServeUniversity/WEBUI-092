@@ -181,7 +181,20 @@ define([
           model.set(field, value);
       });
 
-      model.save();
+      //model.save() with responses
+      model.save({att1 : "value"}, {
+        success: function(model, response){
+          console.log('success');
+          $('#content').prepend("<div class='alert alert-success'><strong>Success!</strong>You have successfully created a new entity.</div>");
+        },
+        error: function(model, response){
+          console.log('error');
+        }
+      })
+      window.setTimeout(function () {
+        $('.alert-success').fadeOut();
+        $('.alert-error').fadeOut();
+      }, 3000);
       me.reloadTab();
 
     },
