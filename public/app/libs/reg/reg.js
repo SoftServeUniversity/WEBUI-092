@@ -32,10 +32,8 @@ $(function () {
     $('#example').tooltip('hide');
   });
 
-  $(".roleStudent").hide();
-  $(".roleTeacher").hide();
 
-  $('#role').change(function(){
+  $('#content').delegate('#role', 'change', function(e){
     if($(this).val() == 'Student'){
       $('.roleStudent').show();
       $('.roleTeacher').hide();
@@ -49,6 +47,16 @@ $(function () {
   });
   
 });
+
+// error type
+function alertType(data){
+  var res;
+  for (first in data){ 
+    res = first;
+    break;
+  } 
+  return res
+}
 
 // to serialize to json with mested attributes
 jQuery.fn.MytoJson = function(options) {

@@ -9,7 +9,9 @@ define([
   'marionettes/user/init',
   'models/user/user_registration',
   'models/user/user',
-], function($, _, Backbone, bootstrap, jqBootstrapValidation, reg, signUpTemplate, GlobalUser, UserRegistration, User){ 
+  'text!templates/shared/errorNotificationTemplate.html',
+  'text!templates/shared/fieldErrorNoticeTemplate.html'
+], function($, _, Backbone, bootstrap, jqBootstrapValidation, reg, signUpTemplate, GlobalUser, UserRegistration, User, errorNotificationTemplate, fieldErrorNoticeTemplate){ 
   GlobalUser.Views.Unauthenticated = GlobalUser.Views.Unauthenticated || {};
 
   GlobalUser.Views.Unauthenticated.Signup = Backbone.Marionette.ItemView.extend({
@@ -25,30 +27,32 @@ define([
       $("#content").html(_.template(signUpTemplate));
       $('#launch').slideUp(100);
       $('#launch-btn').show();
+      $(this.el).find(".roleStudent").hide();
+      $(this.el).find(".roleTeacher").hide();
     },
 
     events: {
-      'submit #regForm': 'signup'
+      'submit #regForm': 'signup',
     },
 
     signup: function(e) {
       e.preventDefault();
+      var el = $(this.el);
+      el.find('.alert').remove();
+      el.find('.help-block').remove();
+      el.find('.control-group.error').removeClass('error');
+      el.find('.btn-primary').attr('value', 'Завантаження...');
       if(
         $('#inputLastNameReg[aria-invalid = true]').is('input') == false &&
         $('#inputFirstNameReg[aria-invalid = true]').is('input') == false &&
         $('#inputFatherNameReg[aria-invalid = true]').is('input') == false &&
         $('#inputLoginReg[aria-invalid = true]').is('input') == false &&
         $('#inputPasswordReg[aria-invalid = true]').is('input') == false ){
-        var self = this,
-          el = $(this.el);
+        var self = this;
 
         GlobalUser.Models.User = new User();
 
-        el.find('.btn-primary').attr('value', 'Завантаження...');
-        el.find('.alert-error').remove();
-        el.find('.help-block').remove();
-        el.find('.control-group.error').removeClass('error');
-
+        // MytoJson transforms(serializes) forms input data into json. The definition can be found in libs/reg/reg.js
         var frmData = $('#regForm').MytoJson();
         frmData.authenticity_token = $("meta[name='csrf-token']").attr('content')
         this.model.set(frmData);
@@ -58,24 +62,26 @@ define([
             GlobalUser.vent.trigger("authentication:logged_in");
           },
           error: function(userSession, response) {
-            console.log('__y_s__registration error.');
-            console.log(response);
-            /*
             var result = $.parseJSON(response.responseText);
-            el.find('form').prepend(GlobalUser.Helpers.Notifications.error("Unable to complete signup."));
+            var data = {
+              'error' : 'Не вдалось зареєструватись! Спробуйте ще раз. ',
+              'alertType' : 'error'
+            };
+            el.find('form').prepend(_.template(errorNotificationTemplate, data));
             _(result.errors).each(function(errors,field) {
               $('#'+field+'_group').addClass('error');
               _(errors).each(function(error, i) {
-                $('#'+field+'_group .controls').append(GlobalUser.Helpers.FormHelpers.fieldHelp(error));
+                data = {
+                  'error' : error
+                };
+                $('#'+field+'_group .controls').append(_.template(fieldErrorNoticeTemplate, data));
               });
             });
-            el.find('input.btn-primary').button('reset');
-            */
+            el.find('.btn-primary').attr('value', 'Відправити');
           }
         });
       }else{
         //hende frontend validations
-        console.log('__y_s__ I am in signUpView on signup: function(e) { But faled validation');
       }
     }
   });

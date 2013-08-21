@@ -34,7 +34,7 @@ define([
   
     //add active class to tab menu
     addActiveClass: function(id){
-    	$('.nav-tabs *').removeClass('active').find('#'+id).addClass('active');
+      $('.nav-tabs *').removeClass('active').find('#'+id).addClass('active');
     },
     
     reloadTab: function () {
@@ -53,11 +53,11 @@ define([
 
       //when child config loads we can update buttons' titles in parent view
       this.on('onChildConfigLoaded', function(){
-      	$('.new-button').html(me.config.buttons['create']);
+        $('.new-button').html(me.config.buttons['create']);
       })
       
-      //Subview has rendered             	
-      GlobalEventBus.on('tabChildSupViewLoaded', function(tabContent, config){     	
+      //Subview has rendered              
+      GlobalEventBus.on('tabChildSupViewLoaded', function(tabContent, config){      
         me.config = config;        
         me.render(tabContent);
         me.trigger('onChildConfigLoaded');
@@ -99,17 +99,17 @@ define([
       if ($('#new_entity').length < 1){
         var newElementView = new NewElementView();
         var content = newElementView.render(me.config);
-	      $(me.el_tab_content + ' table tbody').append(content.$el.html())
+        $(me.el_tab_content + ' table tbody').append(content.$el.html())
         //$('#content select').selectpicker() 
       
       } else {
-    	  $('#new_entity').remove();
+        $('#new_entity').remove();
       
       }    
     },
     
     showInput: function(e){
-      $(e.target).css('display', 'none').prev().css('display','block');	
+      $(e.target).css('display', 'none').prev().css('display','block'); 
     },
     hideAdminButtons: function(){
       $('.admin-buttons').css('display', 'none')
@@ -136,7 +136,7 @@ define([
         });
          
         $('.toggle-list .toggle-input').css('display','none');
-	      $('.toggle-list .toggle-text').css('display', 'block');
+        $('.toggle-list .toggle-text').css('display', 'block');
         me.reloadTab();
       }   
     },      
@@ -183,7 +183,20 @@ define([
           model.set(field, value);
       });
 
-      model.save();
+      //model.save() with responses
+      model.save({att1 : "value"}, {
+        success: function(model, response){
+          console.log('success');
+          $('#content').prepend("<div class='alert alert-success'><strong>Success!</strong>You have successfully created a new entity.</div>");
+        },
+        error: function(model, response){
+          console.log('error');
+        }
+      })
+      window.setTimeout(function () {
+        $('.alert-success').fadeOut();
+        $('.alert-error').fadeOut();
+      }, 3000);
       me.reloadTab();
 
     },
@@ -254,10 +267,10 @@ define([
       
       //hide all toggle-inputs when user clicks not on input
       $('body').on('click',function(e){
-        if ($(e.target).closest('.toggle-input').length <= 0){	
-	        $('.toggle-list .toggle-input').css('display','none');
-	        $('.toggle-list .toggle-text').css('display', 'block');	
-	      }
+        if ($(e.target).closest('.toggle-input').length <= 0){  
+          $('.toggle-list .toggle-input').css('display','none');
+          $('.toggle-list .toggle-text').css('display', 'block'); 
+        }
       })
       
       //HACK !!! (this must be placed in this.events, but i can't get it working across
