@@ -1,0 +1,27 @@
+<h3><%= students_of_teach_group[0].group_name %></h3>
+</hr>
+<h4>Студенти для підтвердження</h4>
+
+<% for ( var i=0; i<students_for_confirm.length; i++ ) {%>
+  <div class="row-fluid text-left">
+    <div class="span5"><%= i + 1 %>. <%= students_for_confirm[i]['full_name'] %>
+    </div>
+    <div class="span4"><%= students_for_confirm[i]['email'] %></div>
+    <div class="span3">
+      <input type="button" value="Додати" class="td">
+    </div>
+  </div> <!-- End class="row-fluid" -->
+<% } %>
+
+</hr>
+<h4>Підтверджені студенти групи</h4>
+<% for ( var i=0; i<students_of_teach_group.length; i++ ) {%>
+  <div class="row-fluid text-left">
+    <div class="span5"><%= i + 1 %>. <%= students_of_teach_group[i]['full_name'] %>
+    </div>
+    <div class="span4"><%= students_of_teach_group[i]['email'] %></div>
+    <div class="span3">
+      <input type="button" value="Видалити" class="td">
+    </div>
+  </div><!-- End class="row-fluid" -->
+<% } %>

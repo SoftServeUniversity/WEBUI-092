@@ -1,0 +1,23 @@
+<!-- ГРАФІК -->
+<div id="chart"></div>
+
+<br />
+
+<!-- List of thesis of students current teacher-->
+<% for (var course in students){ %>
+  <div class="row-fluid">
+    <div class="span12"><h4 class="text-center"><%= course %> курс</h4></div>
+  </div>
+  <% for ( var i=0; i<students[course].length; i++ ) {%>
+  <div class="row-fluid text-left">
+    <div class="span4"><%= i + 1 %>. <%= students[course][i]['name_with_url'] %></div>
+    <div class="span1"><%= students[course][i]['id_group'] %></div>
+    <div class="span5"><%= students[course][i]['work_name'] %></div>
+    <div class="span2">
+      <div class="progress">
+        <div class="bar" style="width:<%= students[course][i]['progress'] %>%"></div>
+      </div>
+    </div>
+  </div> <!-- End class="row-fluid" -->
+  <% } %>
+<% } %>
