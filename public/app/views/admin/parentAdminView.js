@@ -7,9 +7,11 @@ define([
   'backbone',
   'views/shared/MenuView',
   'text!templates/admin/parentAdminTemplate.html',
-  'views/admin/newElementView'
+  'views/admin/newElementView',
+  'views/admin/removeDialogView'
 
-], function($, bootstrapselect, _,  Backbone, MenuView, parentAdminTemplate, NewElementView){   
+
+], function($, bootstrapselect, _,  Backbone, MenuView, parentAdminTemplate, NewElementView, RemoveDialogView){   
 
   var AdminParentView = Backbone.View.extend({
     
@@ -29,16 +31,21 @@ define([
         }
       }
     },
-
+  
     //add active class to tab menu
     addActiveClass: function(id){
       $('.nav-tabs *').removeClass('active').find('#'+id).addClass('active');
     },
     
+    reloadTab: function () {
+      $('.nav-tabs .active').trigger('click');
+    },
+
     initialize: function(){
       var me = this;
-      
+
       this.events = JSON.parse(JSON.stringify(this.events));
+
 
       //extend events with events from child
       this.addTabHandlers();
@@ -56,47 +63,53 @@ define([
       }) 
 
       this.loadDefaultActiveTab(this.defaultActiveTab);
+            
     },
 
     //remove all events, (to remove events bound in previous adminView.extend)
     events: {},
-
+    
     events: {
      //table events
-     'dblclick .toggle-text'     : 'showInput',
-     'blur .toggle-input'        : 'changed',
-     'keypress .toggle-input'    : 'changed',
+     'dblclick .model .toggle-text'     : 'showInput',
+     'blur .model .toggle-input'        : 'changed',
+     'keypress .model .toggle-input'    : 'changed',
      
      //modal windows
-     'click .open-modal'         : 'openModal',
-     'click .close-m'            : 'closeModal',
      'click .save'               : 'closeModal',
      'click .open-modal-import'  : 'openModalImport',
-     'click #newElement'         : 'createNewElement', 
-     'click #create_button'      : 'saveData',
-     'click #remove_button'      : 'removeData'
+     //'click #newElement'         : 'appendNewElementRow', 
+     'click #create_button'      : 'saveElement',
+     'click .delete-button'      : 'showRemoveDialog',
+     'click .verify-button'      : 'verifyElement'
     },
+
     //add click handler for each tab
     addTabHandlers: function(){
       var me = this;
       _.each(this.tabMenuConfig, function (item){
-         me.events['click #'+ item['id']] = item['action'];
+        me.events['click #'+ item['id']] = item['action'];
       })
     },    
 
-    createNewElement: function(){  
+    appendNewElementRow: function(){
       var me = this;
-      
       if ($('#new_entity').length < 1){
+<<<<<<< HEAD
         
         var newElementView = new NewElementView(me.config);
         $(me.el_tab_content + ' table tbody').append(newElementView.$el.html())
         $('#content select').selectpicker() 
 
         var newEntity = new me.config.model();
+=======
+        var newElementView = new NewElementView();
+        var content = newElementView.render(me.config);
+	      $(me.el_tab_content + ' table tbody').append(content.$el.html())
+        //$('#content select').selectpicker() 
+>>>>>>> ee0e36de0030fa2547919814521fde177854bf4f
       
       } else {
-
     	  $('#new_entity').remove();
       
       }    
@@ -105,7 +118,6 @@ define([
     showInput: function(e){
       $(e.target).css('display', 'none').prev().css('display','block');	
     },
-    
     hideAdminButtons: function(){
       $('.admin-buttons').css('display', 'none')
     },
@@ -113,17 +125,39 @@ define([
       $('.admin-buttons').css('display', 'block')
     },
     
+
     //some input in tab has been changed
     changed: function (e){
-      
+      var me = this;
       if ((e.type == 'keypress' && e.keyCode == 13) || e.type == 'focusout'){
         var field_name = $(e.target).attr('name'); 
         var model_id = $(e.target).closest('.model').attr('model_id'); 
+        var toggle_text = $(e.target).closest('.model').find('.toggle-text')
         
+        var field_value = $(e.target).val();
+        
+        me.modelSaveOnChange({
+          id:model_id,
+          field_name: field_name,
+          field_value: field_value
+        });
+         
         $('.toggle-list .toggle-input').css('display','none');
-        $('.toggle-list .toggle-text').css('display', 'block');
-       }   
+	      $('.toggle-list .toggle-text').css('display', 'block');
+        me.reloadTab();
+      }   
     },      
+    
+    modelSaveOnChange: function(data){
+      var a =this.config.collection.get(data.id);
+      var field_name = data.field_name;
+      var field_value = data.field_value;
+      
+      putData = {};
+      putData[field_name]=field_value;
+      a.set(putData)
+      a.save();
+    },
 
     openModal: function(e){
       modal_id = ($(e.target).attr('data-target'));
@@ -139,39 +173,45 @@ define([
       $('#manage-department-import').modal('show');
     },
 
-    saveData: function(){
-      //Валідація поля name за допомогою регулярних виразів
-      var me = this;
-      var name = document.getElementById("name_field").value;
-      var ck_name = /^[A-Za-z0-9 ]{3,20}$/;
-      if (ck_name.test(name)) {
-        $('#content').prepend("<div class='alert alert-success'><strong>Success!</strong>You have successfully created a department.</div>");
 
-        var newEntity = new this.config.model();
-        var entityValues = $("#new_entity").find('*[name]');
-        $(entityValues).each(function(index, element){
-          var temp_value = $(element).val();
-          var temp_name = $(element).attr('name');
-          newEntity.set(temp_name, temp_value);
-        })
-        console.log(newEntity)
-        /*newEntity.save({}, {success: function(){
-          me.config = config;        
-          me.render(tabContent);
-          me.trigger('onChildConfigLoaded');
-        }})*/
-      }
-      else{
-        $('#content').prepend("<div class='alert alert-error'><strong>Error!</strong>Name should be between 3 and 20 characters.</div>");
-      }
-      window.setTimeout(function () {
-          $('.alert-success').fadeOut();
-          $('.alert-error').fadeOut();
-        }, 3000);
+    showRemoveDialog: function(e){
+       var model_id = $(e.target).closest('.model').attr('model_id');
+       var collection = this.config.col;
+       new RemoveDialogView(model_id, collection);
     },
 
-    removeData: function(){
-      console.log("removeData");
+    saveElement: function(){
+      var me = this, name;
+      var model = new me.config.model;
+
+      $("input[data-field]").each(function(){
+          field = $(this).attr('name');
+          value =  $(this).val();
+          model.set(field, value);
+      });
+
+      model.save();
+      me.reloadTab();
+
+    },
+
+    verifyElement: function(e){
+      var model_id = $(e.target).closest('.model').attr('model_id');
+      var model = this.config.collection.get(model_id);
+      
+      var options = {
+        success: function (model, response) {
+            console.log('remove success');
+        },
+        error: function (model, response) {
+            console.log('remove error');
+        }
+      };
+
+      model.set('verified', 1);
+      model.save(options);
+
+      $('.nav-tabs .active').trigger('click')
     },
 
 
@@ -189,7 +229,7 @@ define([
       var me = this;
       $(me.el_tab_content).html(tabContent);
       me.addActiveClass(this.activeMenuId)
-      $('#content select').selectpicker() 
+      //$('#content select').selectpicker() 
     },
 
     render: function (tabContent){
@@ -212,6 +252,12 @@ define([
         }
       })
       
+      //HACK !!! (this must be placed in this.events, but i can't get it working across
+      // both admin pages: it fires two times when i switch to different admin page)
+      $('#newElement').click(function(){
+        me.appendNewElementRow();
+      });
+
       // next time child view loads - only tab content will render and button text update 
       GlobalEventBus.off('tabChildSupViewLoaded');
       GlobalEventBus.on('tabChildSupViewLoaded', function(tabContent, config){
@@ -220,7 +266,7 @@ define([
         me.trigger('onChildConfigLoaded');
       })
 
-      $('#content select').selectpicker() 
+      //$('#content select').selectpicker() 
     }
   
   });

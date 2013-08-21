@@ -13,18 +13,20 @@ require.config({
     bootstrap: 'libs/bootstrap/bootstrap',
     bootstrapselect: 'libs/bootstrap/bootstrap-select.min',
     backbone: 'libs/backbone/backbone-min',
-    backbone_relational: 'libs/backbone/backbone-relational',
     reg: 'libs/reg/reg',
     highcharts: 'libs/highcharts/highcharts',
-    templates: '../templates'
+    templates: '../templates',
+    sync: 'libs/sync/backbone.sync.rails',
+    marionette: 'libs/marionette/backbone.marionette',
+    modelbinder: 'libs/modelbinder/backbone.modelbinder'
   }
 });
 
 require([
   // Load our app module and pass it to our definition function
-  'app',
+  'app'
 
-], function(App){
+], function(App, sync){
   // The "app" dependency is passed in as "App"
   // Again, the other dependencies passed in are not "AMD" therefore don't pass a parameter to this function
   App.initialize();

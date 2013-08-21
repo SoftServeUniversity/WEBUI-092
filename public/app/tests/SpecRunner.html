@@ -13,21 +13,20 @@
 
 
 
-  <!-- include source files here... -->
-  <script type="text/javascript" src="src/Player.js"></script>
-  <script type="text/javascript" src="src/Song.js"></script>
+  <script type="text/javascript" src="spec/SpecHelper.js"></script>
 
   <!-- include spec files here... -->
-  <script type="text/javascript" src="spec/SpecHelper.js"></script>
-  <script type="text/javascript" src="spec/PlayerSpec.js"></script>
-  <script type="text/javascript" src="spec/TeacherModelSpec.js"></script>
+  <script type="text/javascript" src='spec/TaskModelSpec.js'></script>
+  <script type="text/javascript" src='spec/TaskCollectionSpec.js'></script>
+  <script type="text/javascript" src='spec/TaskViewSpec.js'></script>
   <script type="text/javascript" src="spec/WorkModelSpec.js"></script>
   <script type="text/javascript" src='spec/FacultyModelSpec.js'></script>
-
-
+  <script type="text/javascript" src='spec/admin/ParentAdminViewSpec.js'></script>
+  <script type="text/javascript" src="spec/StudentProxyModelSpec.js"></script>
+  <script type="text/javascript" src="spec/StudentModelSpec.js"></script>
+  <script type="text/javascript" src='spec/DepartmentsCollectionSpec.js'></script>
+  <script type="text/javascript" src="spec/TeacherModelSpec.js"></script>
   <script type="text/javascript">
-  
-  
     (function() {
       var jasmineEnv = jasmine.getEnv();
       jasmineEnv.updateInterval = 1000;
@@ -55,7 +54,7 @@
 
     })();
   </script>
-
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
 </head>
 
 <body>

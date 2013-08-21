@@ -6,11 +6,10 @@ define([
     var TeacherModel = Backbone.Model.extend({
         defaults:{
             id: null,
-            name: null,
-            percentage: 0,
-            sayBuhaha: function() {
-            	return 'bu-ha-ha';
-            }
+            name: 'Мокренко А.Б.',
+            degree: 0,
+            userRef: 0,
+            departmentRef: 0
         }
     });
 

@@ -1,4 +1,8 @@
 Webui92::Application.routes.draw do
+
+  get "backup/full_backup"
+  get "backup/restore_from_backup"
+
   resources :table_dictionaries
 
 
@@ -22,11 +26,12 @@ Webui92::Application.routes.draw do
 
   resources :faculties
 
-
+  get '/test', to: redirect('/app/tests/SpecRunner.html')
   authenticated :user do
     root :to => 'home#index'
   end
   root :to => "home#index"
-  devise_for :users
-  resources :users
+  devise_for :users, controllers: { sessions: 'user_sessions/sessions', registrations: 'user_registrations/registrations' }
+  
+  post 'user_helper/receive_current_user'
 end

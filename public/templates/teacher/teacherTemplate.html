@@ -1,0 +1,103 @@
+<h2>
+  <%= teacher.last_name %>
+  <%= teacher.first_name %>
+  <%= teacher.middle_name %>
+</h2>
+<h3><%= teacher.degree %></h3>
+<h4><%= teacher.department %></h4>
+
+<div class="row-fluid">
+  <div class="span12 rightContent">
+
+    <a data-target="#dialogAddStudentWork" data-toggle="modal">Додати роботу</a>
+    <a> | </a>
+    <a href="#">Підтвердити студентів</a>
+
+    <div id="dialogAddStudentWork" class="modal hide fade">
+
+      <div class="modal-header">
+        <button class="close" data-dismiss="modal">×</button>
+        <h3>Створення завдання</h3>
+      </div>
+
+      <div class="modal-body">
+
+        <form id="taskCreateForm">
+
+          <p>Введіть назву роботи:<br>
+            <textarea id="txtAreaNameTheme"
+            name="txtAreaNameTheme"></textarea>
+          </p>
+
+          <p><label for="selGroup">Виберіть групу:</label>
+          <select id="selGroup" name="selGroup">
+            <option></option>
+            <option>ПМІ-31</option>
+            <option>ПМІ-32</option>
+            <option>ПМІ-41</option>
+            <option>ПМІ-42</option>
+            <option>ПМІ-51</option>
+            <option>ПМІ-52</option>
+            <option>ПМІ-53</option>
+            <option>ПМІ-54</option>
+          </select></p>
+
+          <p><label for="selStudent">Виберіть студента:</label>
+          <select id="selStudent" name="selStudent">
+            <option></option>
+            <option>Петро Петрович (ніколи його не знадуйте при людях)</option>
+            <option>Міфічний студент, якого ніхто ніколи не бачив</option>
+            <option>Відмінник</option>
+            <option>Студент, який всім надоїв, тому йому автоматом ставлять "задовільно"</option>
+          </select></p>
+
+          <p><label>Виберіть етапи виконання роботи:</label>
+              <input type="checkbox" id="check0"> Вивчення літератури за темою роботи<br>
+              <input type="checkbox" id="check1"> Параграф 1</br>
+              <input type="checkbox" id="check2"> Параграф 2</br>
+              <input type="checkbox" id="check3"> Параграф 3</br>
+              <input type="checkbox" id="check4"> Параграф 4</br>
+              <input type="checkbox" id="check5"> Вступ та Висновки</br>
+              <input type="checkbox" id="check6"> Попередній захист роботи</br>
+          </p>
+
+        </form> <!-- End tas -->
+
+      </div>
+
+      <div class="modal-footer">
+        <a class="btn" href="#" data-dismiss="modal" aria-hidden="true" >Закрити</a>
+        <a class="btn" href="#" onclick="alert('Дані збережено.\nДодавайте ще.')" data-dismiss="modal" aria-hidden="true">Зберегти і додати ще</a>
+        <a class="btn btn-primary" data-dismiss="modal" aria-hidden="true" href="#"
+        onclick="alert('Дані збережено.')">Зберегти</a>
+      </div>
+
+    </div> <!-- End modal window -->
+  </div>
+</div>
+
+<!-- ГРАФІК -->
+<div id="chart"></div>
+
+<br />
+
+<% for (var course in students){ %>
+  <div class="row-fluid">
+    <div class="span12"><h4 class="text-center"><%= course %> курс</h4></div>
+  </div>
+  <% for ( var i=0; i<students[course].length; i++ ) {%>
+
+  <div class="row-fluid text-left">
+    <div class="span4"><%= i + 1 %>. <%= students[course][i]['name_with_url'] %></div>
+    <div class="span1"><%= students[course][i]['id_group'] %></div>
+    <div class="span5"><%= students[course][i]['work_name'] %></div>
+    <div class="span2">
+      <div class="progress">
+        <div class="bar" style="width:<%= students[course][i]['progress'] %>%"></div>
+      </div>
+    </div>
+  </div> <!-- End class="row-fluid" -->
+
+
+  <% } %>
+<% } %>
