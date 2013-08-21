@@ -43,7 +43,8 @@ define([
 
     initialize: function(){
       var me = this;
-
+ 
+      //ADD COMMENT !!!!!
       this.events = JSON.parse(JSON.stringify(this.events));
 
 
