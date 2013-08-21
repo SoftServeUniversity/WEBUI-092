@@ -1,20 +1,28 @@
+#development:
+  #adapter: mysql2
+  #encoding: unicode
+  #database: webui_dev
+  #pool: 5
+  #user: webui
+  #password: webui
 development:
-  adapter: postgresql
-  encoding: unicode
+  adapter: mysql2
+  encoding: utf8
   database: webui_dev
-  pool: 5
-  user: webui
-  password: webui
+  username: root
+  password: 
 
 
 test:
-  adapter: postgresql
-  encoding: unicode
-  database: webuis_test
-  pool: 5
+  adapter: mysql2
+  encoding: utf8
+  database: webui_test
+  username: root
+  password: 
 
 production:
-  adapter: postgresql
-  encoding: unicode
-  database: webuis_production
-  pool: 5
+  adapter: mysql2
+  encoding: utf8
+  database: webui_production
+  username: root
+  password: 
