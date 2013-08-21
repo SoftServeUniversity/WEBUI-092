@@ -55,9 +55,9 @@ define([
         $('.new-button').html(me.config.buttons['create']);
       })
       
-      //Subview has rendered             	
-      GlobalEventBus.on('tabChildSupViewLoaded', function(tabContent, config){     	
-        me.config = config;
+      //Subview has rendered              
+      GlobalEventBus.on('tabChildSupViewLoaded', function(tabContent, config){      
+        me.config = config;        
         me.render(tabContent);
         me.trigger('onChildConfigLoaded');
       }) 
@@ -95,28 +95,19 @@ define([
     appendNewElementRow: function(){
       var me = this;
       if ($('#new_entity').length < 1){
-<<<<<<< HEAD
-        
-        var newElementView = new NewElementView(me.config);
-        $(me.el_tab_content + ' table tbody').append(newElementView.$el.html())
-        $('#content select').selectpicker() 
-
-        var newEntity = new me.config.model();
-=======
         var newElementView = new NewElementView();
         var content = newElementView.render(me.config);
-	      $(me.el_tab_content + ' table tbody').append(content.$el.html())
+        $(me.el_tab_content + ' table tbody').append(content.$el.html())
         //$('#content select').selectpicker() 
->>>>>>> ee0e36de0030fa2547919814521fde177854bf4f
       
       } else {
-    	  $('#new_entity').remove();
+        $('#new_entity').remove();
       
       }    
     },
     
     showInput: function(e){
-      $(e.target).css('display', 'none').prev().css('display','block');	
+      $(e.target).css('display', 'none').prev().css('display','block'); 
     },
     hideAdminButtons: function(){
       $('.admin-buttons').css('display', 'none')
@@ -143,7 +134,7 @@ define([
         });
          
         $('.toggle-list .toggle-input').css('display','none');
-	      $('.toggle-list .toggle-text').css('display', 'block');
+        $('.toggle-list .toggle-text').css('display', 'block');
         me.reloadTab();
       }   
     },      
@@ -246,9 +237,9 @@ define([
       
       //hide all toggle-inputs when user clicks not on input
       $('body').on('click',function(e){
-        if ($(e.target).closest('.toggle-input').length <= 0){	
+        if ($(e.target).closest('.toggle-input').length <= 0){  
           $('.toggle-list .toggle-input').css('display','none');
-          $('.toggle-list .toggle-text').css('display', 'block');	
+          $('.toggle-list .toggle-text').css('display', 'block'); 
         }
       })
       
