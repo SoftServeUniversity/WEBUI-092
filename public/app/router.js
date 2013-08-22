@@ -17,14 +17,15 @@ define([
   'views/notFoundView',
   'views/admin/adminFacultyView',
   'views/admin/adminView',
-  'views/teacher/TeacherView',
+  'views/teacher/MainTeacherView',
+  'views/teacher/TeacherGroupView',
   'views/user/signUpView'
 
 
   ], function($, _, Backbone, GlobalUser, FacultiesListView, RegistrationView, GroupProgressView,
   	          StudentProgressView, CourseProgressView,  MainFacultyView, MainDepartmentView,
   	          TeacherProgressView, MainWorkView, TaskView, TasksCollection, NotFoundView,
-              AdminFacultyView, AdminView, TeacherView, UserSingUpView
+              AdminFacultyView, AdminView, MainTeacherView, TeacherGroupView, UserSingUpView
              ) {
 
 
@@ -40,6 +41,7 @@ define([
         'faculty/:id'            : 'facultyAction',
         'teacher/p:id'           : 'teacherProgressAction',
         'teacher/:id'            : 'teacherAction',
+        'teacher/:id/group'      : 'teacherGroupAction',
         'department/:id'         : 'departmentAction',
         'work/:id'               : 'workShowAction',
         'fa'                     : 'viewAdminFacultyPage',
@@ -110,7 +112,11 @@ define([
       });
 
       app_router.on('route:teacherAction', function (id) {
-        var teacherView = new TeacherView(id);
+        var mainTeacherView = new MainTeacherView(id);
+      });
+
+      app_router.on('route:teacherGroupAction', function (id) {
+        var teacherGroupView = new TeacherGroupView(id);
       });
 
       app_router.on('route:userSingUp', function(){
