@@ -75,6 +75,7 @@ define([
 
         render:function(id, teachers_col, students_col, faculty_change_col){
           var teacher = teachers_col.get(id).toJSON();
+          console.log(teacher);
 
           var students_json = students_col.toJSON();
 

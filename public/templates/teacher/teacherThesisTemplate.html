@@ -21,3 +21,25 @@
   </div> <!-- End class="row-fluid" -->
   <% } %>
 <% } %>
+
+<!-- List of thesis of students current teacher
+<% for (var course in students){ %>
+  <table class="table table-hover .table-condensed">
+    <caption><h4 class="text-center"><%= course %> курс</h4></caption>
+    <tbody>
+      <% for ( var i=0; i<students[course].length; i++ ) {%>
+        <tr>
+          <td><%= i + 1 %>. <%= students[course][i]['name_with_url'] %></td>
+          <td><%= students[course][i]['id_group'] %></td>
+          <td><%= students[course][i]['work_name'] %></td>
+          <td>
+            <div class="progress">
+              <div class="bar" style="width:<%= students[course][i]['progress'] %>%"></div>
+            </div>
+          </td>
+        </tr>
+      <% } %>
+    </tbody>
+  </table>
+<% } %>
+-->
