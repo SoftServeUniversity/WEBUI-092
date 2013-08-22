@@ -72,6 +72,7 @@ var RemoveDialogView = Backbone.View.extend(
   },
   
   removeElement: function (e) {
+    console.log(this)
     var model = this.collection.get(this.model_id);
 
     var options = {

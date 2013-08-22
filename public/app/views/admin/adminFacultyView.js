@@ -21,32 +21,32 @@ define([
   
 var AdminFacultyView = ParentAdminView.extend({  
   
-  headline: 'Faculty Admin Page',
+  headline: 'Адміністратор факультету',
   
-  defaultActiveTab: 'courses-tab',
+  defaultActiveTab: 'teachers-tab',
 
   //tab menu buttons (you can add your buttons here)
   tabMenuConfig: [
 
     {
+      id:'teachers-tab',
+      label: 'Викладачі',
+      action: 'manage_teachers'
+    },
+    {
       id:'courses-tab',
-      label: 'Manage Courses',
+      label: 'Курси',
       action: 'manage_courses'
     },
     {
       id:'departments-tab',
-      label: 'Manage Departments',
+      label: 'Кафедри',
       action: 'manage_departments'
     },
     {
       id:'groups-tab',
-      label: 'Manage Groups',
+      label: 'Групи',
       action: 'manage_groups'
-    },
-    {
-      id:'teachers-tab',
-      label: 'Manage Teachers',
-      action: 'manage_teachers'
     }
   ],
   

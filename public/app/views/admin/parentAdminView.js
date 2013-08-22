@@ -169,7 +169,7 @@ define([
 
     showRemoveDialog: function(e){
        var model_id = $(e.target).closest('.model').attr('model_id');
-       var collection = this.config.col;
+       var collection = this.config.collection;
        new RemoveDialogView(model_id, collection);
     },
 
@@ -272,7 +272,7 @@ define([
           $('.toggle-list .toggle-text').css('display', 'block'); 
         }
       })
-      
+
       //HACK !!! (this must be placed in this.events, but i can't get it working across
       // both admin pages: it fires two times when i switch to different admin page)
       $('#newElement').click(function(){

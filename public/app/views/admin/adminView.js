@@ -21,7 +21,7 @@ define([
   
 var AdminView = ParentAdminView.extend({  
   
-  headline: 'Admin Page',
+  headline: 'Адміністратор',
   
   defaultActiveTab: 'admins-tab',
 
@@ -30,9 +30,8 @@ var AdminView = ParentAdminView.extend({
 
     {
       id:'admins-tab',
-      label: 'Manage faculty admins',
-      action: 'manage_admins',
-
+      label: 'Адміністратори факультетів',
+      action: 'manage_admins'
       /*verification: true,
       collection: FaAdminsCollection*/
     },
@@ -44,13 +43,14 @@ var AdminView = ParentAdminView.extend({
 
     {
       id:'faculties-tab',
-      label: 'Manage faculties',
+      label: 'Факультети',
       action: 'manage_faculties'
     },    
     {
       id:'database-tab',
-      label: 'Manage database',
+      label: 'Управління базою даних',
       action: 'manage_database'
+
     }
   ],
 
