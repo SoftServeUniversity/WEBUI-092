@@ -1,16 +1,9 @@
-#development:
-  #adapter: mysql2
-  #encoding: unicode
-  #database: webui_dev
-  #pool: 5
-  #user: webui
-  #password: webui
 development:
   adapter: mysql2
   encoding: utf8
   database: webui_dev
   username: root
-  password: 
+  password: futngkvjbmhoy70yo
 
 
 test:
@@ -18,11 +11,11 @@ test:
   encoding: utf8
   database: webui_test
   username: root
-  password: 
+  password:
 
 production:
   adapter: mysql2
   encoding: utf8
   database: webui_production
   username: root
-  password: 
+  password:

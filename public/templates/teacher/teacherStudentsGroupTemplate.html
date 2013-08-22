@@ -7,8 +7,8 @@
     <div class="span5"><%= i + 1 %>. <%= students_for_confirm[i]['full_name'] %>
     </div>
     <div class="span4"><%= students_for_confirm[i]['email'] %></div>
-    <div class="span3">
-      <input type="button" value="Додати" class="td">
+    <div class="span3 rightContent">
+      <input type="button" value="Додати" class="btn btn-success">
     </div>
   </div> <!-- End class="row-fluid" -->
 <% } %>
@@ -20,8 +20,8 @@
     <div class="span5"><%= i + 1 %>. <%= students_of_teach_group[i]['full_name'] %>
     </div>
     <div class="span4"><%= students_of_teach_group[i]['email'] %></div>
-    <div class="span3">
-      <input type="button" value="Видалити" class="td">
+    <div class="span3 rightContent">
+      <input type="button" value="Видалити" class="btn btn-danger">
     </div>
   </div><!-- End class="row-fluid" -->
 <% } %>
