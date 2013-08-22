@@ -23,7 +23,7 @@ define([
 
   ], function($, _, Backbone, GlobalUser, FacultiesListView, RegistrationView, GroupProgressView,
   	          StudentProgressView, CourseProgressView,  MainFacultyView, MainDepartmentView,
-  	          TeacherProgressView, MainWorkView, taskView, TasksCollection, NotFoundView,
+  	          TeacherProgressView, MainWorkView, TaskView, TasksCollection, NotFoundView,
               AdminFacultyView, AdminView, TeacherView, UserSingUpView
              ) {
 
