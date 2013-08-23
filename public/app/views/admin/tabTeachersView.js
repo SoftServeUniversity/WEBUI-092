@@ -4,33 +4,59 @@ define([
   'backbone',
   'views/admin/parentTabView',
   'models/group/GroupModel',
-  'collections/teachers/TeachersCollection'
+  'collections/teachers/TeachersCollection',
+  'collections/faculties/FacultiesCollection',
+  'collections/groups/GroupsCollection'
+
+
 
 ], function($, _, Backbone, ParentTabView, GroupModel,
-            TeachersCollection){   
+            TeachersCollection, FacultiesCollection, GroupsCollection){   
    
   var TabTeachersView = ParentTabView.extend({
 
     collections_classes: {
-      teachers    : TeachersCollection,
+      teachers     : TeachersCollection,
+      faculties    : FacultiesCollection,
+      groups       : GroupsCollection,
+
+
     },
 
     setConfig: function(){
-      
+
       var me = this;
       
+      // verification HACK
+      me.verification = {
+        collection:me.collections.teachers,
+        tab_id:'teachers-tab'
+      };
+
       var config = {
       	
         model     : GroupModel,
         collection: me.collections.teachers,
         data      : [{
             _link: 'name',
-            label: 'Teacher Name',
+            label: 'Ім\'я викладача',
             type : 'text'
+          },
+          {
+            _link: 'faculty_id',
+            label: 'Факультет',
+            type:'select',
+            src:me.collections.faculties
+          },
+          {
+            _link: 'group_id',
+            label: 'Група',
+            type:'select',
+            src:me.collections.groups
           }
         ],
         buttons: {
-        	create : 'New Teacher'
+        	create : 'Додати викладача'
         }
       
       };

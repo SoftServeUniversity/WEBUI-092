@@ -73,15 +73,16 @@
      
      
       
-    <td class='text-right'>
-      <button class='btn open-modal delete-button btn-danger' type="button" data-toggle="modal" data-target='delete-modal'>Delete</button>
-    </td>
-    
-    
-    <td class='text-right'>
-     <% if (entities[entity]['verified'] == 0){ %>
-      <button class='btn btn-warning verify-button' type="button" data-toggle="modal" data-target=''>Verify</button>
+    <td class="text-right">
+      <% if (entities[entity]['verified'] == 0){ %>
+      <button class='btn btn-warning verify-button' type="button" data-toggle="modal" data-target=''>Підтвердити</button>
      <% } %>
+    </td>
+    <td>
+
+      <button class='btn open-modal delete-button btn-danger' type="button" data-toggle="modal" data-target='delete-modal'>Видалити</button>
+
+
     </td>
 
   </tr>

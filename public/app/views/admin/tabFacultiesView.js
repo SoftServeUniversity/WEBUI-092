@@ -26,18 +26,18 @@ define([
         collection: me.collections.faculties,
         data      : [{
             _link: 'name',
-            label:'Faculty Name',
+            label:'Факультет',
             type:'text'
           },
           {
             _link: 'teacher_id',
-            label: 'Faculty Admin',
+            label: 'Адміністратор факультету',
             type:'select',
             src:me.collections.teachers
           }
         ],
         buttons: {
-        	create: 'New Faculty'
+        	create: 'Додати факультет'
         }
 
       };

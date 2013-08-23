@@ -20,23 +20,29 @@ define([
     setConfig: function(){
     	var me = this;
 
+      // verification HACK
+      me.verification = {
+        collection:me.collections.fadmins,
+        tab_id:'admins-tab'
+      }
+
       var config = {
       	
         model: FaAdminModel,
         collection: me.collections.fadmins,
         data: [{
             _link: 'name',
-            label:'Name',
+            label:'Ім\'я',
             type :'text'
           },
           {
             _link: 'lastName',
-            label:'Last Name',
+            label:'Прізвище',
             type :'text'
           },
           {
             _link: 'middleName',
-            label:'Middle Name',
+            label:'По-батькові',
             type :'text'
           },
           {
@@ -46,7 +52,7 @@ define([
           }
         ],
         buttons: {
-        	create: 'New Admin'
+        	create: 'Додати адміністратора факультету'
         }
       };
       
