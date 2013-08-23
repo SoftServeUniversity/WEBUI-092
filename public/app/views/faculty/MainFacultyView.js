@@ -26,9 +26,13 @@ define([
             departments_col = new DepartmentsCollection();
             departments_col.fetch({
                 success:function () {
+                    departments_col = departments_col.getByFaculty(id)
                     me.trigger('DataLoaded', 'Deps');
                 }
             });
+
+            //console.log(departments_col.getFacultyDepartments(id))
+
 
             courses_col = new CoursesCollection();
             courses_col.fetch({

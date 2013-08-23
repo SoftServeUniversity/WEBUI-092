@@ -1,0 +1,74 @@
+[
+    {
+        "id_student": "101",
+        "last_name": "Матвійчук",
+        "first_name": "Іван",
+        "middle_name": "Іванович",
+        "group_name": "ІПП-34",
+        "email": "Матвійчук@uif.com"
+    },
+    {
+        "id_student": "102",
+        "last_name": "Гарасименко",
+        "first_name": "Петро",
+        "middle_name": "Петрович",
+        "group_name": "ІПП-34",
+        "email": "Гарасименко@uif.com"
+    },
+        {
+        "id_student": "103",
+        "last_name": "Тиміш",
+        "first_name": "Василь",
+        "middle_name": "Вікторович",
+        "group_name": "ІПП-34",
+        "email": "Тиміш@uif.com"
+    },
+        {
+        "id_student": "104",
+        "last_name": "Головач",
+        "first_name": "Марія",
+        "middle_name": "Теодорівна",
+        "group_name": "ІПП-34",
+        "email": "Головач@uif.com"
+    },
+    {
+        "id_student": "105",
+        "last_name": "Дзіжзьо",
+        "first_name": "Фернандо",
+        "middle_name": "Амінійович",
+        "group_name": "ІПП-34",
+        "email": "Дзіжзьо@uif.com"
+    },
+    {
+        "id_student": "106",
+        "last_name": "Каструба",
+        "first_name": "Ігор",
+        "middle_name": "Григорович",
+        "group_name": "ІПП-34",
+        "email": "Каструба@uif.com"
+    },
+        {
+        "id_student": "107",
+        "last_name": "Крутивус",
+        "first_name": "Микола",
+        "middle_name": "Юрійович",
+        "group_name": "ІПП-34",
+        "email": "Крутивус@uif.com"
+    },
+        {
+        "id_student": "108",
+        "last_name": "Макогін",
+        "first_name": "Тарас",
+        "middle_name": "Матвійович",
+        "group_name": "ІПП-34",
+        "email": "Макогін@uif.com"
+    },
+        {
+        "id_student": "109",
+        "last_name": "Крук",
+        "first_name": "Ігор",
+        "middle_name": "Степанович",
+        "group_name": "ІПП-34",
+        "email": "Крук@uif.com"
+    }
+]

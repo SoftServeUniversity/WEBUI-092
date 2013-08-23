@@ -6,9 +6,9 @@ define([
   ],
   function($, _, Backbone, StudentProxyModelForTeacherPage)
   {
-    var StudentsProxyCollectionForTeacherPage = Backbone.Collection.extend({
+    var StudentsCollectionOfTeacherGroup = Backbone.Collection.extend({
       model:StudentProxyModelForTeacherPage,
-      url: "app/collections/teachers/studentsCollection.json"
+      url: "app/collections/teachers/studentsOfTeacherGroup.json"
     });
-    return StudentsProxyCollectionForTeacherPage;
+    return StudentsCollectionOfTeacherGroup;
   });

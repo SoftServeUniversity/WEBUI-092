@@ -24,6 +24,12 @@ define([
             //merge two configs (we'll need both fields and buttons config)
             me.config.entities = data.entities;
             GlobalEventBus.trigger('tabChildSupViewLoaded', me.$el.html(), me.config);
+      
+            // verification HACK !!!
+            if (me.verification){
+              me.checkVerification();
+            }
+
       })
 
       this.loadData();
@@ -89,6 +95,17 @@ define([
       var compiledTemplate = _.template(parentTabTemplate, data);
       that.$el.html(compiledTemplate);  
       return this;
+    },
+
+    // verification HACK !!!
+    checkVerification: function(){
+      var me = this;
+      var collection = this.verification.collection.toJSON();
+      $.each(collection, function(key, value){
+        if (value['verified'] == 0){
+          $('#'+me.verification.tab_id).addClass('needs-verification')
+        }
+      })
     },
 
     //method to load all collections for tab 

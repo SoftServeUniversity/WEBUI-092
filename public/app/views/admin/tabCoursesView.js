@@ -27,24 +27,24 @@ define([
         collection: me.collections.courses,
         data: [{
             _link: 'name',
-            label:'Course Name',
+            label:'Назва курсу',
             type:'text'
           },
           {
             _link: 'year_of_start',
-            label:'Year Of Start',
+            label:'Початок навчання',
             type:'text'
           },
           {
             _link: 'faculty_id',
-            label: 'Faculty Name',
+            label: 'Факультет',
             type:'select',
             src: me.collections.faculties
           }
         ],
 
         buttons: {
-          create: 'New Course'
+          create: 'Додати курс'
         }
       };
 
