@@ -33,7 +33,6 @@ define([
       var self = this,
           el = $(this.el);
 
-      el.find('input.btn-primary').button('loading');
       el.find('.alert-error').remove();
 
       this.model.set({"authenticity_token": $("meta[name='csrf-token']").attr('content'), 'user': {'email': $('#inputLoginLog').val(), 'password': $('#inputPasswordLog').val()}});
@@ -43,6 +42,7 @@ define([
           GlobalUser.currentUser = GlobalUser.Models.User.set(response);
           console.log(GlobalUser.currentUser);
           GlobalUser.vent.trigger("authentication:logged_in");
+          $('#sendFormLog').attr('value', 'Увійти');
         },
         error: function(userSession, response) {
           var data = $.parseJSON(response.responseText);

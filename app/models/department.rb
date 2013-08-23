@@ -7,4 +7,5 @@ class Department < ActiveRecord::Base
   #validates :name, format: { whith: /[\w\s'",.а-яіїґ-—]{1,256}/i, message: 'some message' }
 
   belongs_to :faculty
+  has_many :teachers
 end
