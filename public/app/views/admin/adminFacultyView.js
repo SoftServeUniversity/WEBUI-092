@@ -24,7 +24,7 @@ var AdminFacultyView = ParentAdminView.extend({
   
   headline: 'Адміністратор факультету',
   
-  defaultActiveTab: 'teachers-tab',
+  defaultActiveTab: 'works-tab',
 
   //tab menu buttons (you can add your buttons here)
   tabMenuConfig: [

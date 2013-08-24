@@ -29,7 +29,6 @@
          
       <td>
       <% var field_type = entities[entity]['field_types'][t] %>
-
       <% //--------if it is a text field %>      
       
       <% if (field_type == 'text'){ %>
@@ -100,8 +99,15 @@
     </td>
     <td>
 
-      <button class='btn open-modal delete-button btn-danger' type="button" data-toggle="modal" data-target='delete-modal'>Видалити</button>
+      <% var item_buttons = entities[entity]['item_buttons']; %>
 
+      <% if (!item_buttons || item_buttons['remove'] != false) { %>
+      <button class='btn open-modal delete-button btn-danger' type="button" data-toggle="modal" data-target='delete-modal'>Видалити</button>
+      <% } %>
+
+      <% if (item_buttons && item_buttons['edit'] != false) { %>
+          <button class='btn open-modal edit-button' type="button" data-toggle="modal" data-target='delete-modal'>Редагувати</button>
+      <% } %>
 
     </td>
 
