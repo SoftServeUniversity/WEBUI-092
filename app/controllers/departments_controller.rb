@@ -10,7 +10,7 @@ class DepartmentsController < ApplicationController
 
       format.json { render json: @departments }
     end
-    respond_with @departments = Department.all
+
   end
 
   # GET /departments/1
