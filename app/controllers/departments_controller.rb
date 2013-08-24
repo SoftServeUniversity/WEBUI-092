@@ -1,4 +1,6 @@
 class DepartmentsController < ApplicationController
+
+  respond_to :json
   # GET /departments
   # GET /departments.json
   def index
@@ -8,48 +10,25 @@ class DepartmentsController < ApplicationController
 
       format.json { render json: @departments }
     end
+    respond_with @departments = Department.all
   end
 
   # GET /departments/1
   # GET /departments/1.json
   def show
-    @department = Department.find(params[:id])
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @department }
-    end
+    respond_with @department = Department.find(params[:id])
   end
 
-  # GET /departments/new
-  # GET /departments/new.json
-  def new
-    @department = Department.new
-
-    respond_to do |format|
-      format.html # new.html.erb
-      format.json { render json: @department }
-    end
-  end
-
-  # GET /departments/1/edit
-  def edit
-    @department = Department.find(params[:id])
-  end
 
   # POST /departments
   # POST /departments.json
   def create
     @department = Department.new(params[:department])
 
-    respond_to do |format|
-      if @department.save
-        format.html { redirect_to @department, notice: 'Department was successfully created.' }
-        format.json { render json: @department, status: :created, location: @department }
-      else
-        format.html { render action: "new" }
-        format.json { render json: @department.errors, status: :unprocessable_entity }
-      end
+    if @department.save
+      respond_with @department, status: :created, location: @department
+    else
+      respond_with @department.errors, status: :unprocessable_entity 
     end
   end
 
@@ -58,14 +37,10 @@ class DepartmentsController < ApplicationController
   def update
     @department = Department.find(params[:id])
 
-    respond_to do |format|
-      if @department.update_attributes(params[:department])
-        format.html { redirect_to @department, notice: 'Department was successfully updated.' }
-        format.json { head :no_content }
-      else
-        format.html { render action: "edit" }
-        format.json { render json: @department.errors, status: :unprocessable_entity }
-      end
+    if @department.update_attributes(params[:department])
+      respond_with head :no_content 
+    else
+      respond_with @department.errors, status: :unprocessable_entity 
     end
   end
 
@@ -75,9 +50,6 @@ class DepartmentsController < ApplicationController
     @department = Department.find(params[:id])
     @department.destroy
 
-    respond_to do |format|
-      format.html { redirect_to departments_url }
-      format.json { head :no_content }
-    end
+    respond_with head :no_content 
   end
 end

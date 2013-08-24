@@ -11,4 +11,6 @@ class Department < ActiveRecord::Base
   def self.search(faculty)
     where(faculty_id: faculty)
   end
+
+  has_many :teachers
 end

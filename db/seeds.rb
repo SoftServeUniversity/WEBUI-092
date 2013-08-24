@@ -12,7 +12,27 @@ YAML.load(ENV['ROLES']).each do |role|
   Role.find_or_create_by_name({ :name => role }, :without_protection => true)
   puts 'role: ' << role
 end
+
 puts 'DEFAULT USERS'
 user = User.find_or_create_by_email :name => ENV['ADMIN_NAME'].dup, :email => ENV['ADMIN_EMAIL'].dup, :password => ENV['ADMIN_PASSWORD'].dup, :password_confirmation => ENV['ADMIN_PASSWORD'].dup
 puts 'user: ' << user.name
 user.add_role :admin
+
+f = Faculty.find_or_create_by_name name: 'test fac'
+puts f.name
+
+if Department.all.empty?
+  s = 'ABC'
+  10.times do |time| 
+    d = Department.create! name: (s.next! + time.to_s), faculty_id: f.id
+    puts 'created '<< d.name
+  end
+end
+
+if Group.all.empty?
+  s = 'ABC'
+  10.times do |time| 
+    d = Group.create! name: (s.next! + time.to_s), department_id: f.id, course_id: f.id, teacher_id: f.id
+    puts 'created '<< d.name
+  end
+end
