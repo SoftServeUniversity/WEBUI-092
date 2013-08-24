@@ -47,6 +47,7 @@ define([
       var json_data=config.collection.toJSON();
       
       //loop through all entities
+      var field_types = [];
       var rel = {};
       var visible_fields = [];
       var labels = [];
@@ -65,13 +66,20 @@ define([
              rel[rel_link]=rel_src;
           }
           
+          //get field type to each field
+          if (config.data[i]['type']){
+            field_types.push(config.data[i]['type'])
+          }
+
           labels.push(label);
           visible_fields.push(config.data[i]['_link'])
         }
+
         //console.log(rel)
         for (a=0; a<json_data.length; a++){
            json_data[a]['selectbox_items'] = [];  
 
+          var counter = 0;
           for (var e_obj in json_data[a]){
 
             if (e_obj in rel){    
@@ -81,7 +89,9 @@ define([
             
             json_data[a]['visible_fields'] = visible_fields;
             json_data[a]['labels'] = labels;
-           
+            json_data[a]['field_types'] = field_types;
+            
+            counter++;
           }
         }
         var data = {};

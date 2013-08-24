@@ -28,16 +28,18 @@
       var field = visible_fields[t]; %>
          
       <td>
+      <% var field_type = entities[entity]['field_types'][t] %>
 
-      <% //--------if it is a text field %>
-      <% if (!($.inArray(field, entities[entity]['selectbox_items']) > -1)){ %>
+      <% //--------if it is a text field %>      
+      
+      <% if (field_type == 'text'){ %>
         <input type="text" name="<%=field %>" class='toggle-input input-large' value="<%= entities[entity][field] %>"/>
           <span class='toggle-text'>
             <%=  entities[entity][field] %>
           </span>
             
       <% //--------if it is a select field %>
-      <% } else { %>
+      <% } else if (field_type == 'select') { %>
             
         <select class='toggle-input input-large' name="<%= field %>">
             
@@ -45,7 +47,8 @@
                   
         for (i=0; i<options_array.length; i++){ %>
                   	
-		  <% //add 'selected' to current option %>
+<%        //add 'selected' to current option %>
+          
           <%if(options_array[i]['id'] == entities[entity][field]){ 
             var active_name = options_array[i]['name']; %>
              <option value="<%= options_array[i]['id'] %>" selected>
@@ -58,20 +61,37 @@
                   	
         <% } %>
         </select> 
-
         <span class='toggle-text'>	
           <%=  active_name %>
         </span>
-                 
-      <% } %>      
-    
+
+      
+      <% //--------if it is a static field %>                 
+      <% } else if (field_type == 'static') {%>      
+
+        <span>  
+
+          <% var options_array = entities[entity][field+'_collection'];
+           if (options_array) {      
+            for (i=0; i<options_array.length; i++){          
+              if(options_array[i]['id'] == entities[entity][field]){ 
+                var active_name = options_array[i]['name'];%> 
+                   <%= active_name %>
+              <% }
+             } 
+           } else { %>
+          <%= entities[entity][field] %>
+          <% } %>  
+          
+        </span>          
+       
+        <% } %>
+
       </td>
           
     <% } %>
      
-     
-     
-     
+
       
     <td class="text-right">
       <% if (entities[entity]['verified'] == 0){ %>

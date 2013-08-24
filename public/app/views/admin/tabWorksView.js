@@ -4,15 +4,17 @@ define([
   'backbone',
   'views/admin/parentTabView',
   'models/work/WorkTasksModel',
-  'collections/work/WorkCollection'
+  'collections/work/WorkCollection',
+  'collections/students/StudentsCollection'
 
 ], function($, _, Backbone, ParentTabView, WorkModel,
-            WorkCollection){   
+            WorkCollection, StudentsCollection){   
    
   var TabWorksView = ParentTabView.extend({
 
     collections_classes: {
-      works       : WorkCollection
+      works       : WorkCollection,
+      students    : StudentsCollection
     },
 
     setConfig: function(){
@@ -25,7 +27,13 @@ define([
         data      : [{
             _link: 'name',
             label:'Роботи',
-            type:'text'
+            type:'static'
+          },
+          {
+            _link: 'student_id',
+            label:'Студент',
+            type:'static',
+            src: me.collections.students
           }
         ],
         buttons: {
