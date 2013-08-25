@@ -5,7 +5,7 @@ define([
   'underscore',
   'backbone',
   'text!templates/admin/tabInfoTemplate.html',
-  'models/InfoModel',
+  'models/info/InfoModel',
   'libs/bootstrap_wysihtml5/js/bootstrap-wysihtml5',
   'libs/bootstrap_wysihtml5/locales/bootstrap-wysihtml5.ua-UA'
 
@@ -19,7 +19,7 @@ define([
       var me = this;
       
       this.model = new InfoModel();
-      ajaxData = this.model.fetch({async:false});
+      var ajaxData = this.model.fetch({async:false});
       this.model.set({content: ajaxData.responseText});
       this.render();
     

@@ -19,13 +19,16 @@ define([
   'views/admin/adminView',
   'views/teacher/MainTeacherView',
   'views/teacher/TeacherGroupView',
-  'views/user/signUpView'
+  'views/user/signUpView',
+  'views/info/infoView'
+
 
 
   ], function($, _, Backbone, GlobalUser, FacultiesListView, RegistrationView, GroupProgressView,
   	          StudentProgressView, CourseProgressView,  MainFacultyView, MainDepartmentView,
   	          TeacherProgressView, MainWorkView, taskView, TasksCollection, NotFoundView,
-              AdminFacultyView, AdminView, MainTeacherView, TeacherGroupView, UserSingUpView
+              AdminFacultyView, AdminView, MainTeacherView, TeacherGroupView, UserSingUpView,
+              InfoView
              ) {
 
 
@@ -48,7 +51,7 @@ define([
         'admin'                  : 'viewAdminPage',
         'work/:id/:taskid'       : 'taskShow',
         'sign_up'                : 'userSingUp',
-
+        'info'                   : 'infoAction',
         // Default
         '*actions': 'defaultAction'
       }
@@ -124,24 +127,10 @@ define([
         userSignUp.render();
       });
 
-      /*app_router.on('route:faRoles', function (actions){
-        var faRolesView = new FaRolesView();
-        faRolesView.render();
+      app_router.on('route:infoAction', function(){
+        var infoView = new InfoView();
       });
 
-      app_router.on('route:faMenageDepartments', function (actions){
-        var faDepartmentsView = new FaDepartmentsView();
-      });
-
-      app_router.on('route:faManageDB', function (actions){
-        var dbView = new DBView();
-        dbView.render();
-      });
-
-      app_router.on('route:faManageCourses', function (actions){
-        var CoursesView = new faCoursesListView();
-        CoursesView.render();
-      });*/
 
       app_router.on('route:taskShow', function (taskid, id) {
 
