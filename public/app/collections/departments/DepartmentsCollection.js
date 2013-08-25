@@ -8,7 +8,8 @@ define([
     var DepartmentsCollection = Backbone.Collection.extend({
         model:DepartmentModel,
         url: "app/mocks/departments.json",
-   
+        //url: "/departments.json",
+
 
         getByFaculty: function(faculty_id){
           filtered = this.filter(function(item) {
