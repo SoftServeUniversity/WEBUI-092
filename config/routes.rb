@@ -29,6 +29,10 @@ Webui92::Application.routes.draw do
 
   resources :faculties
 
+  
+  resources :info
+
+
   get '/test', to: redirect('/app/tests/SpecRunner.html')
   authenticated :user do
     root :to => 'home#index'
