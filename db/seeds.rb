@@ -18,6 +18,12 @@ user = User.find_or_create_by_email :name => ENV['ADMIN_NAME'].dup, :email => EN
 puts 'user: ' << user.name
 user.add_role :admin
 
+#adding default role for old users records
+
+User.all.each do |user|
+  user.add_role :guest if user.roles.empty?
+end
+
 f = Faculty.find_or_create_by_name name: 'test fac'
 puts f.name
 

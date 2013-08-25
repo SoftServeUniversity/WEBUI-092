@@ -28,9 +28,14 @@ define([
     main: '#main'
   });
 
+  //callbacks
+
   GlobalUser.vent.on("authentication:logged_in", function() {
+    GlobalUser.currentUser = GlobalUser.Models.User.set(GlobalUser.currentUser);
+    GlobalUser.currentUser.role = GlobalUser.Models.User.getRole();
     $('#launch-btn').replaceWith(GlobalUser.layouts.logged_in);
     $('#launch').slideUp(300);
+    $('#authBox').prepend('<a href="/#' + GlobalUser.currentUser.role + '">' + GlobalUser.currentUser.role + '</a>');
     window.location.hash = '/';
   });
 
