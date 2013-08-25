@@ -2,12 +2,12 @@ define([
   'jquery',
   'underscore',
   'backbone',
-  'models/student/StudentProxyModel'
+  'models/student/StudentModel'
   ],
-  function($, _, Backbone, StudentProxyModel)
+  function($, _, Backbone, StudentModel)
   {
     var StudentsCollection = Backbone.Collection.extend({
-      model:StudentProxyModel,
+      model:StudentModel,
       url: 'app/mocks/students.json'
     });
     return StudentsCollection;

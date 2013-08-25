@@ -30,6 +30,10 @@ define([
               me.checkVerification();
             }
 
+            //add event handlers from current tab
+            if (me.addCustomEvents) {me.addCustomEvents ()}
+
+
       })
 
       this.loadData();
@@ -41,12 +45,13 @@ define([
     */
     buildJSON: function(config){
 
-      //console.log(config)
       var me = this;
 
       var json_data=config.collection.toJSON();
       
+      //json_data['item_buttons'] = {};
       //loop through all entities
+      var field_types = [];
       var rel = {};
       var visible_fields = [];
       var labels = [];
@@ -56,7 +61,7 @@ define([
 
           var rel_link = config.data[i]['_link'];
           var label = config.data[i]['label']; 
-           
+
           //if select box
           if (config.data[i]['src']){      
              var rel_src = config.data[i]['src'].toJSON();
@@ -65,13 +70,21 @@ define([
              rel[rel_link]=rel_src;
           }
           
+          //get field type to each field
+          if (config.data[i]['type']){
+            field_types.push(config.data[i]['type'])
+          }
+
           labels.push(label);
           visible_fields.push(config.data[i]['_link'])
         }
+
         //console.log(rel)
         for (a=0; a<json_data.length; a++){
            json_data[a]['selectbox_items'] = [];  
+           json_data[a]['item_buttons'] = {};
 
+          var counter = 0;
           for (var e_obj in json_data[a]){
 
             if (e_obj in rel){    
@@ -81,19 +94,22 @@ define([
             
             json_data[a]['visible_fields'] = visible_fields;
             json_data[a]['labels'] = labels;
-           
+            json_data[a]['field_types'] = field_types;
+            json_data[a]['item_buttons'] = config.item_buttons
+            counter++;
           }
+          
+        
         }
         var data = {};
         data.entities = json_data;
-        
         return data; 
     },
 
     render: function (data){
-      var that = this;
+      var me = this;
       var compiledTemplate = _.template(parentTabTemplate, data);
-      that.$el.html(compiledTemplate);  
+      me.$el.html(compiledTemplate);  
       return this;
     },
 

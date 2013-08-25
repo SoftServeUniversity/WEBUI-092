@@ -31,20 +31,6 @@ $(function () {
     $('#regMod').slideUp(300);
     $('#example').tooltip('hide');
   });
-
-
-  $('#content').delegate('#role', 'change', function(e){
-    if($(this).val() == 'Student'){
-      $('.roleStudent').show();
-      $('.roleTeacher').hide();
-    }else if($(this).val() == 'Teacher'){
-      $('.roleTeacher').show();
-      $('.roleStudent').hide();
-    }else if($(this).val() == 'User'){
-      $('.roleTeacher').hide();
-      $('.roleStudent').hide();
-    }
-  });
   
 });
 

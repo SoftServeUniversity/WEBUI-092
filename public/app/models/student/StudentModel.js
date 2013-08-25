@@ -10,7 +10,8 @@ define([
           patronymic: "Петрович",
           surname: "Петренко",
           progress: 5
-        }
+        },
+        url: '/app/mocks/student.json'
   });
 
   return StudentModel;
