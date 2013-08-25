@@ -16,9 +16,10 @@ define([
   'text!templates/registration/DepartmentOptionTemplate.html',
   'collections/groups/TemporaryGroupsCollection',
   'text!templates/registration/StudentAttributesTemplate.html',
-  'text!templates/registration/GroupOptionTemplate.html'
+  'text!templates/registration/GroupOptionTemplate.html',
+  'text!templates/registration/RoleOptionTemplate.html'
 ], function($, _, Backbone, bootstrap, jqBootstrapValidation, reg, signUpTemplate, GlobalUser, UserRegistration, User, errorNotificationTemplate, fieldErrorNoticeTemplate, 
-  TemporaryDepartmentCollection, TeacherAttributesTemplate, DepartmentOptionTemplate, TemporaryGroupsCollection, StudentAttributesTemplate, GroupOptionTemplate){ 
+  TemporaryDepartmentCollection, TeacherAttributesTemplate, DepartmentOptionTemplate, TemporaryGroupsCollection, StudentAttributesTemplate, GroupOptionTemplate, RoleOptionTemplate){ 
 
   GlobalUser.Views.Unauthenticated = GlobalUser.Views.Unauthenticated || {};
 
@@ -37,17 +38,27 @@ define([
       $('#launch-btn').show();
       $(this.el).find(".roleStudent").hide();
       $(this.el).find(".roleTeacher").hide();
+      this.populate_roles_select();
     },
 
     events: {
       'submit #regForm': 'signup',
-      'change #role'   : 'loadDepartmets'
+      'change #roles-select'   : 'loadDepartmets'
+    },
+
+    populate_roles_select: function(){
+      var el = $(this.el);
+      $.post('user_helper/populate_roles_select', null, function(roles){
+        _.each(roles, function(role) {
+          el.find('#roles-select').prepend( _.template( RoleOptionTemplate, role ) );
+        });
+      }, 'json');
     },
 
     loadDepartmets: function(e){
       var el = $(this.el);
       var value = e.currentTarget.value;
-      if(value == 'Student'){
+      if(value == 'student'){
         var groups = new TemporaryGroupsCollection();
         // adds theacher fields
         el.find('.roleStudent').html(_.template(StudentAttributesTemplate));
@@ -64,7 +75,7 @@ define([
         });
         el.find('.roleStudent').show();
         el.find('.roleTeacher').html('');
-      }else if(value == 'Teacher'){
+      }else if(value == 'teacher'){
         var departments = new TemporaryDepartmentCollection();
         // adds theacher fields
         el.find('.roleTeacher').html(_.template(TeacherAttributesTemplate));
