@@ -3,6 +3,9 @@ require 'spec_helper'
 describe User do
 
   before(:each) do
+    YAML.load(ENV['ROLES']).each do |role|
+      Role.find_or_create_by_name({ :name => role }, :without_protection => true)
+    end
     @attr = {
       :name => "Example User",
       :email => "user@example.com",
@@ -13,6 +16,23 @@ describe User do
 
   it "should create a new instance given a valid attribute" do
     User.create!(@attr)
+  end
+
+  it 'should have default guest role' do
+    user = User.create!(@attr)
+    (user.has_role? :guest ).should be true
+  end
+
+  it 'should not has guest role if role is changed' do
+    user = User.create!(@attr)
+    user.add_role :admin
+    (user.has_role? :guest ).should_not be true
+  end
+
+  it 'should has new role if the role was changed' do
+    user = User.create!(@attr)
+    user.add_role :admin
+    (user.has_role? :admin ).should be true
   end
 
   it "should require an email address" do
