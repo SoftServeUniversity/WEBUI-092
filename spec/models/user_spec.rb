@@ -23,6 +23,20 @@ describe User do
     (user.has_role? :guest ).should be true
   end
 
+  it 'role should be panding if given without not panding flag' do
+    user = User.create!(@attr)
+    user.add_role :admin
+    user.reload
+    user.role_pending.should be false
+  end
+
+  it 'pending set to true, should give not pending role' do
+    user = User.create!(@attr)
+    user.add_role(:admin, true)
+    user.reload
+    user.role_pending.should be true
+  end
+
   it 'should not has guest role if role is changed' do
     user = User.create!(@attr)
     user.add_role :admin
