@@ -10,7 +10,7 @@ class Teacher < ActiveRecord::Base
 
   #all new users with 'teacher' assoction present, will automaticly have role_panding => true
   def add_panding_role
-    self.user.roles << Role.find_by_name("teacher")
+    self.user.add_role :teacher
     self.user.role_pending = true
     self.user.save
   end
