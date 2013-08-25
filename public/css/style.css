@@ -403,6 +403,13 @@ tr.notverified {
 .admin-headline {
 	margin-top:25px !Important;
 }
+
+.wysiwyg {
+	overflow:hidden;
+}
+
+
+
 /* oohurtc */
 
 .heading {

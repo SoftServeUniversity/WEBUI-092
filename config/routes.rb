@@ -29,6 +29,10 @@ Webui92::Application.routes.draw do
 
   resources :faculties
 
+  
+  resources :info
+
+
   get '/test', to: redirect('/app/tests/SpecRunner.html')
   authenticated :user do
     root :to => 'home#index'
@@ -38,6 +42,9 @@ Webui92::Application.routes.draw do
   
   post 'user_helper/receive_current_user'
   post 'user_helper/role_pending'
+<<<<<<< HEAD
   post 'user_helper/return_current_role'
   post 'user_helper/populate_roles_select'
+=======
+>>>>>>> 6b609b3295948f8610488799661f34350894eade
 end
