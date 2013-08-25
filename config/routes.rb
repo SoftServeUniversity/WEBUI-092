@@ -38,4 +38,5 @@ Webui92::Application.routes.draw do
   
   post 'user_helper/receive_current_user'
   post 'user_helper/role_pending'
+  post 'user_helper/return_current_role'
 end

@@ -40,7 +40,6 @@ define([
       this.model.save(this.model.attributes, {
         success: function(userSession, response) {
           GlobalUser.currentUser = GlobalUser.Models.User.set(response);
-          console.log(GlobalUser.currentUser);
           GlobalUser.vent.trigger("authentication:logged_in");
           $('#sendFormLog').attr('value', 'Увійти');
         },

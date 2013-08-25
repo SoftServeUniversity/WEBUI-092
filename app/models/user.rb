@@ -17,8 +17,20 @@ class User < ActiveRecord::Base
   accepts_nested_attributes_for :teacher
   accepts_nested_attributes_for :student
 
+  before_create :add_default_role
+
   def role_pending?
     role_pending
   end
+
+  def add_role role
+    remove_role :guest #user must have only one role
+    roles << Role.find_by_name(role)
+  end
+
+  private
+    def add_default_role
+      roles << Role.find_by_name('guest')
+    end
   
 end
