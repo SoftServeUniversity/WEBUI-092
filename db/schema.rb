@@ -19,6 +19,7 @@ ActiveRecord::Schema.define(:version => 20130823180010) do
     t.integer  "faculty_id"
     t.datetime "created_at",    :null => false
     t.datetime "updated_at",    :null => false
+    t.integer  "percentage"
   end
 
   create_table "departments", :force => true do |t|
@@ -27,6 +28,7 @@ ActiveRecord::Schema.define(:version => 20130823180010) do
     t.integer  "faculty_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.integer  "percentage"
   end
 
   add_index "departments", ["faculty_id"], :name => "index_departments_on_faculty_id"
@@ -109,6 +111,16 @@ ActiveRecord::Schema.define(:version => 20130823180010) do
 
   add_index "teachers", ["department_id"], :name => "index_teachers_on_department_id"
   add_index "teachers", ["user_id"], :name => "index_teachers_on_user_id"
+
+  create_table "thesis_changes", :force => true do |t|
+    t.string   "action"
+    t.string   "user_name"
+    t.string   "value"
+    t.integer  "auditable_id"
+    t.string   "auditable_type"
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
+  end
 
   create_table "users", :force => true do |t|
     t.string   "name",                   :default => "",    :null => false

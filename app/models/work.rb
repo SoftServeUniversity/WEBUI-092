@@ -3,11 +3,6 @@ class Work < ActiveRecord::Base
 
   belongs_to :student
   has_many :tasks
-  has_many :thesis_changes, :as => :historical
+  has_many :thesis_changes, :as => :auditable
 
-  after_commit logChanges
-
-  def logChanges
-    @log = ThesisChange.new
-  end
 end

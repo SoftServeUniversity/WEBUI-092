@@ -1,0 +1,30 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Type of entity:</b>
+  <%= @thesis_change.type_of_entity %>
+</p>
+
+<p>
+  <b>User:</b>
+  <%= @thesis_change.user_id %>
+</p>
+
+<p>
+  <b>Value:</b>
+  <%= @thesis_change.value %>
+</p>
+
+<p>
+  <b>Type of change:</b>
+  <%= @thesis_change.type_of_change %>
+</p>
+
+<p>
+  <b>Work:</b>
+  <%= @thesis_change.work_id %>
+</p>
+
+
+<%= link_to 'Edit', edit_thesis_change_path(@thesis_change) %> |
+<%= link_to 'Back', thesis_changes_path %>

@@ -1,6 +1,6 @@
 class ThesisChange < ActiveRecord::Base
-  attr_accessible :type, :user_id, :value
+  attr_accessible :action, :user_name, :value
 
-  belongs_to :historical, :polymorphic => true
+  belongs_to :auditable, :polymorphic => true
 
 end

@@ -5,5 +5,5 @@ class Task < ActiveRecord::Base
   validates :name, length: { in: 1..250 }
   
   belongs_to :work
-  has_many :thesis_changes, :as => :historical
+  has_many :thesis_changes, :as => :auditable
 end
