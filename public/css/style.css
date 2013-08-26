@@ -534,6 +534,8 @@ tr.notverified {
     margin-right: 5px;
     position: relative;
     display: inline-block;
+    color: #000;
+    background: #F5F5F5;
 }
 .wizard a:hover {
 	text-decoration: none;
@@ -554,12 +556,12 @@ tr.notverified {
     height: 0;
     border-top: 20px inset transparent;
     border-bottom: 20px inset transparent;
-    border-left: 20px solid transparent;
     position: absolute;
     content: "";
     top: 0;
     right: -20px;
     z-index: 2;
+    border-left: 20px solid #F5F5F5;
 
 }
 .wizard a:first-child:before,
@@ -570,24 +572,13 @@ tr.notverified {
     -webkit-border-radius: 4px 0 0 4px;
        -moz-border-radius: 4px 0 0 4px;
             border-radius: 4px 0 0 4px;
-    		color: #fff;
+    	
 }
 .wizard a:last-child {
     -webkit-border-radius: 0 4px 4px 0;
        -moz-border-radius: 0 4px 4px 0;
             border-radius: 0 4px 4px 0;
-    		color: #fff;
-}
-.wizard a{
-	border-radius: 0;
-	border:0;
-	background: #F5F5F5;
-}
-.wizard a:after{
-	border-left: 20px solid #F5F5F5;
-}
-.wizard a{
-	color: #fff;
+    		
 }
 #main-header-button{
 	
