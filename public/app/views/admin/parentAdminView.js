@@ -43,7 +43,8 @@ define([
 
     initialize: function(){
       var me = this;
-
+ 
+      //ADD COMMENT !!!!!
       this.events = JSON.parse(JSON.stringify(this.events));
 
 
@@ -63,7 +64,8 @@ define([
       }) 
 
       this.loadDefaultActiveTab(this.defaultActiveTab);
-            
+      
+      /*this.checkVerification();*/    
     },
 
     //remove all events, (to remove events bound in previous adminView.extend)
@@ -167,7 +169,7 @@ define([
 
     showRemoveDialog: function(e){
        var model_id = $(e.target).closest('.model').attr('model_id');
-       var collection = this.config.col;
+       var collection = this.config.collection;
        new RemoveDialogView(model_id, collection);
     },
 
@@ -235,6 +237,21 @@ define([
       me.addActiveClass(this.activeMenuId)
       //$('#content select').selectpicker() 
     },
+    
+    /*checkVerification: function (){
+      for ( var i in this.tabMenuConfig ) {
+        if (this.tabMenuConfig[i]['verification'] = true){
+          if (typeof this.tabMenuConfig[i]['collection'] == 'function'){
+            this.tabMenuConfig[i]['collection'].fetch({
+              success: function(){
+
+              }
+            })
+          }
+        }
+
+      }
+    },*/
 
     render: function (tabContent){
       var me = this;
@@ -255,7 +272,7 @@ define([
           $('.toggle-list .toggle-text').css('display', 'block'); 
         }
       })
-      
+
       //HACK !!! (this must be placed in this.events, but i can't get it working across
       // both admin pages: it fires two times when i switch to different admin page)
       $('#newElement').click(function(){

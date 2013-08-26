@@ -29,48 +29,19 @@
         </div>
       </div>
       <div class="control-group">
-        <label class="control-label" for="suser[role_attributes][role]">Роль</label>
+        <label class="control-label" for="role_attributes[role]">Роль</label>
         <div class="controls">
-          <select  id="role" name="suser[role_attributes][role]">
-            <option>User</option>
-            <option>Teacher</option>
-            <option>Student</option>
+          <select  id="roles-select" name="role_attributes[role]">
+            <!--population of select with proper options will be handled in signUpView-->
           </select>
 
         </div>
       </div>
-
-      <div class="control-group roleStudent">
-        <label class="control-label" for="suser[group_attributes][group]">Група</label>
-        <div class="controls">
-          <select  id="selectGroupReg" name="suser[group_attributes][group]">
-            <option>WebUI92</option>
-            <option>WebUI93</option>
-            <option>WebUI94</option>
-          </select>
-        </div>
+      <div class='roleStudent'>
+        <!--template with student_attributes will go here-->
       </div>
-      <div class="control-group roleTeacher">
-        <label class="control-label" for="suser[teacher_attributes][degree]">Вчений ступінь</label>
-        <div class="controls">
-          <input type="text" name="suser[teacher_attributes][degree]" id="inputScienceStageReg" placeholder="Введіть свій вчений ступінь" data-validation-regex-regex="[А-Яа-яїєі]{3,25}" data-validation-regex-message="Тільки українські та російські букви, від 3 до 25">
-        </div>
-      </div>
-      <div class="control-group roleTeacher">
-        <label class="control-label" for="suser[teacher_attributes][title]">Вчене звання</label>
-        <div class="controls">
-          <input type="text" name="suser[teacher_attributes][title]" id="inputPositionReg" placeholder="Введіть свое вчене звання" data-validation-regex-regex="[А-Яа-яїєі]{3,25}" data-validation-regex-message="Тільки українські та російські букви, від 3 до 25">
-        </div>
-      </div>
-      <div class="control-group roleTeacher">
-        <label class="control-label" for="suser[department_attributes][department]">Кафедра</label>
-        <div class="controls">
-          <select  id="selectDepartmentReg" name="suser[department_attributes][department]">
-            <option>Кафедра-1</option>
-            <option>Кафедра-2</option>
-            <option>Кафедра-3</option>
-          </select>
-        </div>
+      <div class='roleTeacher'>
+        <!--template with teacher_attributes will go here-->
       </div>
       <div class="control-group" id='password_group'>
         <label class="control-label" for="user[password]">Пароль</label>

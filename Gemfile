@@ -19,13 +19,8 @@ gem 'simple_form'
 group :development do
   gem 'better_errors'
   gem 'binding_of_caller'
-  gem 'guard-bundler'
-  gem 'guard-cucumber'
-  gem 'guard-rails'
-  gem 'guard-rspec'
   gem 'quiet_assets'
   gem 'rb-fchange', :require=>false
-  gem 'rb-fsevent', :require=>false
   gem 'rb-inotify', :require=>false
 end
 group :development, :test do
@@ -36,9 +31,17 @@ group :production do
   gem 'unicorn'
 end
 group :test do
+  gem 'simplecov', :require => false
   gem 'capybara'
-  gem 'cucumber-rails', :require=>false
   gem 'database_cleaner'
   gem 'email_spec'
   gem 'launchy'
+  gem 'guard-rspec'
+  gem 'guard-bundler'
+  gem 'guard-cucumber'
+  gem 'guard-rails'
+  gem 'guard-spork'
+  gem 'growl'
+  gem 'spork'
+  gem 'rb-fsevent', '~> 0.9'
 end

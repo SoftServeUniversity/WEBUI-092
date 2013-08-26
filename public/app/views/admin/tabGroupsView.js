@@ -31,30 +31,30 @@ define([
         collection: me.collections.groups,
         data      : [{
             _link: 'name',
-            label: 'Group Name',
+            label: 'Група',
             type : 'text'
           },
           {  
             _link: 'course_id',
-            label: 'Course',
+            label: 'Курс',
             type : 'select',
             src  : me.collections.courses
           },
           {
             _link: 'teacher_id',
-            label: 'Teacher Name',
+            label: 'Куратор групи',
             type : 'select',
             src  : me.collections.teachers
           },
           {
             _link: 'department_id',
-            label: 'Department Name',
+            label: 'Кафедра',
             type : 'select',
             src  : me.collections.departments
           }
         ],
         buttons: {
-        	create : 'New Group'
+        	create : 'Додати групу'
         }
       
       };

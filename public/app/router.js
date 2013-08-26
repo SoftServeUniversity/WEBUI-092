@@ -17,14 +17,18 @@ define([
   'views/notFoundView',
   'views/admin/adminFacultyView',
   'views/admin/adminView',
-  'views/teacher/TeacherView',
-  'views/user/signUpView'
+  'views/teacher/MainTeacherView',
+  'views/teacher/TeacherGroupView',
+  'views/user/signUpView',
+  'views/info/infoView'
+
 
 
   ], function($, _, Backbone, GlobalUser, FacultiesListView, RegistrationView, GroupProgressView,
   	          StudentProgressView, CourseProgressView,  MainFacultyView, MainDepartmentView,
   	          TeacherProgressView, MainWorkView, taskView, TasksCollection, NotFoundView,
-              AdminFacultyView, AdminView, TeacherView, UserSingUpView
+              AdminFacultyView, AdminView, MainTeacherView, TeacherGroupView, UserSingUpView,
+              InfoView
              ) {
 
 
@@ -40,13 +44,14 @@ define([
         'faculty/:id'            : 'facultyAction',
         'teacher/p:id'           : 'teacherProgressAction',
         'teacher/:id'            : 'teacherAction',
+        'teacher/:id/group'      : 'teacherGroupAction',
         'department/:id'         : 'departmentAction',
         'work/:id'               : 'workShowAction',
         'fa'                     : 'viewAdminFacultyPage',
         'admin'                  : 'viewAdminPage',
         'work/:id/:taskid'       : 'taskShow',
         'sign_up'                : 'userSingUp',
-
+        'info'                   : 'infoAction',
         // Default
         '*actions': 'defaultAction'
       }
@@ -110,7 +115,11 @@ define([
       });
 
       app_router.on('route:teacherAction', function (id) {
-        var teacherView = new TeacherView(id);
+        var mainTeacherView = new MainTeacherView(id);
+      });
+
+      app_router.on('route:teacherGroupAction', function (id) {
+        var teacherGroupView = new TeacherGroupView(id);
       });
 
       app_router.on('route:userSingUp', function(){
@@ -118,24 +127,10 @@ define([
         userSignUp.render();
       });
 
-      /*app_router.on('route:faRoles', function (actions){
-        var faRolesView = new FaRolesView();
-        faRolesView.render();
+      app_router.on('route:infoAction', function(){
+        var infoView = new InfoView();
       });
 
-      app_router.on('route:faMenageDepartments', function (actions){
-        var faDepartmentsView = new FaDepartmentsView();
-      });
-
-      app_router.on('route:faManageDB', function (actions){
-        var dbView = new DBView();
-        dbView.render();
-      });
-
-      app_router.on('route:faManageCourses', function (actions){
-        var CoursesView = new faCoursesListView();
-        CoursesView.render();
-      });*/
 
       app_router.on('route:taskShow', function (taskid, id) {
 

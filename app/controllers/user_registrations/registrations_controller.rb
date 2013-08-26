@@ -16,6 +16,7 @@ class UserRegistrations::RegistrationsController < Devise::RegistrationsControll
     build_resource(sign_up_params)
 
     if resource.save
+      resource.add_role(params[:role_attributes][:role], true)
       if resource.active_for_authentication?
         set_flash_message :notice, :signed_up if is_navigational_format?
         sign_up(resource_name, resource)

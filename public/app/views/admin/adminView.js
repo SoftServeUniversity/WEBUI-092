@@ -4,6 +4,7 @@ define([
   'jquery',
   'underscore',
   'backbone',
+  'collections/admin/FaAdminsCollection',
   'views/admin/parentAdminView',
 
   //subViews for handlers
@@ -12,15 +13,15 @@ define([
   'views/admin/tabAdminsView',
   'views/admin/tabFacultiesView',
 
-  'views/admin/tabDbView'
-  
-], function ($, _,  Backbone,
+  'views/admin/tabDbView',
+  'views/admin/tabInfoView'  
+], function ($, _,  Backbone, FaAdminsCollection,
 
-            ParentAdminView, /*TabRolesView,*/ TabAdminsView, TabFacultiesView, TabDbView) {   
+            ParentAdminView, /*TabRolesView,*/ TabAdminsView, TabFacultiesView, TabDbView, TabInfoView) {   
   
 var AdminView = ParentAdminView.extend({  
   
-  headline: 'Admin Page',
+  headline: 'Адміністратор',
   
   defaultActiveTab: 'admins-tab',
 
@@ -29,8 +30,10 @@ var AdminView = ParentAdminView.extend({
 
     {
       id:'admins-tab',
-      label: 'Manage faculty admins',
+      label: 'Адміністратори факультетів',
       action: 'manage_admins'
+      /*verification: true,
+      collection: FaAdminsCollection*/
     },
     /*{
       id:'roles-tab',
@@ -40,13 +43,18 @@ var AdminView = ParentAdminView.extend({
 
     {
       id:'faculties-tab',
-      label: 'Manage faculties',
+      label: 'Факультети',
       action: 'manage_faculties'
     },    
     {
       id:'database-tab',
-      label: 'Manage database',
+      label: 'Управління базою даних',
       action: 'manage_database'
+    },    
+    {
+      id:'info-tab',
+      label: 'Інформація про систему',
+      action: 'manage_info'
     }
   ],
 
@@ -70,7 +78,32 @@ var AdminView = ParentAdminView.extend({
     $(this.el_tab_content).html(tabDbView.$el.html())
     this.hideAdminButtons();
   },
+  manage_info: function(){
+    var me = this; 
 
+    this.addActiveClass('info-tab');
+    var tabInfoView = new TabInfoView();
+    $(this.el_tab_content).html(tabInfoView.$el.html())
+    this.hideAdminButtons();
+
+    var editor = $('.wysiwyg').wysihtml5({locale: "ua-UA"}); 
+    
+    $('body iframe').load(function(){    
+
+      var listen_event = true;
+      $('body iframe').contents().find('body').bind("keydown click", function(e){
+          setTimeout(function(){
+              if(listen_event){
+                 var content = $('body iframe').contents().find('body').html();
+
+                 GlobalEventBus.trigger('infoChanged', content)
+              }
+          },1);
+      });
+   
+    })
+
+  },
   /*manage_roles: function(){
     this.activeMenuId = 'roles-tab';
     this.tabView = new TabRolesView();
@@ -82,6 +115,11 @@ var AdminView = ParentAdminView.extend({
     this.tabView = new TabFacultiesView();
     this.activeMenuId = 'faculties-tab';
     this.showAdminButtons();
+  },
+
+
+  testFunction: function(){
+    alert('bla');
   },
 
   events_own : {

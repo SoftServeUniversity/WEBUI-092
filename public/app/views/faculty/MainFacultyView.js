@@ -25,10 +25,20 @@ define([
 
             departments_col = new DepartmentsCollection();
             departments_col.fetch({
-                success:function () {
-                    me.trigger('DataLoaded', 'Deps');
+                data: {
+                    ourdata: {
+                        faculty_id:2,
+                        some_id:4
+                    }
+                },
+                success: function () {
+                   me.trigger('DataLoaded', 'Deps');
                 }
+
             });
+
+            //console.log(departments_col.getFacultyDepartments(id))
+
 
             courses_col = new CoursesCollection();
             courses_col.fetch({

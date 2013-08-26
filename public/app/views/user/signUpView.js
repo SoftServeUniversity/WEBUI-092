@@ -10,8 +10,17 @@ define([
   'models/user/user_registration',
   'models/user/user',
   'text!templates/shared/errorNotificationTemplate.html',
-  'text!templates/shared/fieldErrorNoticeTemplate.html'
-], function($, _, Backbone, bootstrap, jqBootstrapValidation, reg, signUpTemplate, GlobalUser, UserRegistration, User, errorNotificationTemplate, fieldErrorNoticeTemplate){ 
+  'text!templates/shared/fieldErrorNoticeTemplate.html',
+  'collections/departments/TemporaryDepartmentCollection',
+  'text!templates/registration/TeacherAttributesTemplate.html',
+  'text!templates/registration/DepartmentOptionTemplate.html',
+  'collections/groups/TemporaryGroupsCollection',
+  'text!templates/registration/StudentAttributesTemplate.html',
+  'text!templates/registration/GroupOptionTemplate.html',
+  'text!templates/registration/RoleOptionTemplate.html'
+], function($, _, Backbone, bootstrap, jqBootstrapValidation, reg, signUpTemplate, GlobalUser, UserRegistration, User, errorNotificationTemplate, fieldErrorNoticeTemplate, 
+  TemporaryDepartmentCollection, TeacherAttributesTemplate, DepartmentOptionTemplate, TemporaryGroupsCollection, StudentAttributesTemplate, GroupOptionTemplate, RoleOptionTemplate){ 
+
   GlobalUser.Views.Unauthenticated = GlobalUser.Views.Unauthenticated || {};
 
   GlobalUser.Views.Unauthenticated.Signup = Backbone.Marionette.ItemView.extend({
@@ -29,10 +38,64 @@ define([
       $('#launch-btn').show();
       $(this.el).find(".roleStudent").hide();
       $(this.el).find(".roleTeacher").hide();
+      this.populate_roles_select();
     },
 
     events: {
       'submit #regForm': 'signup',
+      'change #roles-select'   : 'loadDepartmets'
+    },
+
+    populate_roles_select: function(){
+      var el = $(this.el);
+      $.post('user_helper/populate_roles_select', null, function(roles){
+        _.each(roles, function(role) {
+          el.find('#roles-select').prepend( _.template( RoleOptionTemplate, role ) );
+        });
+      }, 'json');
+    },
+
+    loadDepartmets: function(e){
+      var el = $(this.el);
+      var value = e.currentTarget.value;
+      if(value == 'student'){
+        var groups = new TemporaryGroupsCollection();
+        // adds theacher fields
+        el.find('.roleStudent').html(_.template(StudentAttributesTemplate));
+        groups.fetch({
+          success: function(collection, response) {
+            _.each(collection.models, function(model) {
+              //populate department select with all curent departments. Pleace create atleast one department to test this.
+              el.find('#group-id-select').prepend(_.template(GroupOptionTemplate, model.toJSON()));
+            });
+          },
+          error: function(userSession, response) {
+            //error hendler goes here
+          }
+        });
+        el.find('.roleStudent').show();
+        el.find('.roleTeacher').html('');
+      }else if(value == 'teacher'){
+        var departments = new TemporaryDepartmentCollection();
+        // adds theacher fields
+        el.find('.roleTeacher').html(_.template(TeacherAttributesTemplate));
+        departments.fetch({
+          success: function(collection, response) {
+            _.each(collection.models, function(model) {
+              //populate department select with all curent departments. Pleace create atleast one department to test this.
+              el.find('#depertent-id-select').prepend(_.template(DepartmentOptionTemplate, model.toJSON()));
+            });
+          },
+          error: function(userSession, response) {
+            //error hendler goes here
+          }
+        });
+        el.find('.roleTeacher').show();
+        el.find('.roleStudent').html('');
+      }else if(value == 'User'){
+        el.find('.roleTeacher').html('');
+        el.find('.roleStudent').html('');
+      }
     },
 
     signup: function(e) {
