@@ -7,7 +7,7 @@ define([
 
     var DepartmentsCollection = Backbone.Collection.extend({
         model:DepartmentModel,
-        url: "/departments",
+        url: "app/mocks/departments.json",
    
 
         /*  filtered = this.filter(function(item) {
