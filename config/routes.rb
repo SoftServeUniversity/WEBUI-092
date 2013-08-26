@@ -26,7 +26,6 @@ Webui92::Application.routes.draw do
 
   resources :departments
 
-
   resources :faculties
 
   
@@ -42,4 +41,6 @@ Webui92::Application.routes.draw do
   
   post 'user_helper/receive_current_user'
   post 'user_helper/role_pending'
+  post 'user_helper/return_current_role'
+  post 'user_helper/populate_roles_select'
 end
