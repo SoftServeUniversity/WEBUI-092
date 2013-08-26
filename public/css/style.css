@@ -581,30 +581,10 @@ tr.notverified {
 .wizard a{
 	border-radius: 0;
 	border:0;
+	background: #F5F5F5;
 }
-.wizard a:nth-child(1){
-	background: #006dcc;
-}
-.wizard a:nth-child(2){
-	background: #da4f49;
-}
-.wizard a:nth-child(3){
-	background: #faa732;
-}
-.wizard a:nth-child(4){
-	background: #5bb75b;
-}
-.wizard a:nth-child(1):after{
-	border-left: 20px solid #006dcc;
-}
-.wizard a:nth-child(2):after{
-	border-left: 20px solid #da4f49;
-}
-.wizard a:nth-child(3):after{
-	border-left: 20px solid #faa732;
-}
-.wizard a:nth-child(4):after{
-	border-left: 20px solid #5bb75b;
+.wizard a:after{
+	border-left: 20px solid #F5F5F5;
 }
 .wizard a{
 	color: #fff;
