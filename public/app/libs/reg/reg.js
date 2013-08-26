@@ -34,7 +34,7 @@ $(function () {
   
 });
 
-// error type
+// error type for error monice bootstrap view
 function alertType(data){
   var res;
   for (first in data){ 
@@ -55,6 +55,8 @@ function isJSON(data) {
     }
     return isJson;
 }
+
+
 
 // to serialize to json with mested attributes
 jQuery.fn.MytoJson = function(options) {
