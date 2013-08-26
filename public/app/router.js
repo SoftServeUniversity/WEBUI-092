@@ -20,7 +20,8 @@ define([
   'views/teacher/MainTeacherView',
   'views/teacher/TeacherGroupView',
   'views/user/signUpView',
-  'views/info/infoView'
+  'views/info/infoView',
+  'views/breadcrumbs/BreadcrumbsView'
 
 
 
@@ -28,7 +29,7 @@ define([
   	          StudentProgressView, CourseProgressView,  MainFacultyView, MainDepartmentView,
   	          TeacherProgressView, MainWorkView, taskView, TasksCollection, NotFoundView,
               AdminFacultyView, AdminView, MainTeacherView, TeacherGroupView, UserSingUpView,
-              InfoView
+              InfoView, BreadcrumbsView
              ) {
 
 
@@ -65,6 +66,7 @@ define([
        var facultiesListView = new FacultiesListView();
        var registrationView = new RegistrationView();
        registrationView.render();
+       var breadcrumbsView = new BreadcrumbsView();
       });
 
       app_router.on('route:workShowAction', function (id){
@@ -83,6 +85,7 @@ define([
 
         var groupProgressView = new GroupProgressView();
         groupProgressView.render();
+        var breadcrumbsView = new BreadcrumbsView();
       });
 
       app_router.on('route:studentProgressAction', function (actions) {
@@ -101,12 +104,14 @@ define([
         var mainFacultyView = new MainFacultyView();
         mainFacultyView.initialize();
         mainFacultyView.loadData(id);
+        var breadcrumbsView = new BreadcrumbsView();
       });
 
       app_router.on('route:departmentAction', function (id) {
         var mainDepartmentView = new MainDepartmentView();
         mainDepartmentView.initialize();
         mainDepartmentView.loadData(id);
+        var breadcrumbsView = new BreadcrumbsView();
       });
 
       app_router.on('route:teacherProgressAction', function (actions) {
