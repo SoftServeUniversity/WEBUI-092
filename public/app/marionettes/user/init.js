@@ -1,4 +1,5 @@
 define([
+    'reg',
     'underscore',
     'backbone',
     'modelbinder',
@@ -6,7 +7,7 @@ define([
     'text!templates/user/loggedInTemplate.html',
     'text!templates/user/loggedOutTemplate.html',
     'models/user/user',
-], function(_, Backbone, binder, Marionette, loggedInTemplate, loggedOutTemplate, User) {
+], function(regLib, _, Backbone, binder, Marionette, loggedInTemplate, loggedOutTemplate, User) {
   GlobalUser = new Backbone.Marionette.Application();
 
   GlobalUser.Views = {};
@@ -28,9 +29,15 @@ define([
     main: '#main'
   });
 
+  //callbacks
+
   GlobalUser.vent.on("authentication:logged_in", function() {
+    $(document).trigger('csrfToken');
+    GlobalUser.currentUser = GlobalUser.Models.User.set(GlobalUser.currentUser);
+    GlobalUser.currentUser.role = GlobalUser.Models.User.getRole();
     $('#launch-btn').replaceWith(GlobalUser.layouts.logged_in);
     $('#launch').slideUp(300);
+    $('#authBox').prepend('<a href="/#' + GlobalUser.currentUser.role + '">' + GlobalUser.currentUser.role + '</a>');
     window.location.hash = '/';
   });
 
@@ -39,6 +46,7 @@ define([
   });
 
   //receive current user
+  $(document).trigger('csrfToken');
   $.post('user_helper/receive_current_user', null, function(user){
     if (user != false){
       GlobalUser.currentUser = GlobalUser.Models.User.set(user);

@@ -30,8 +30,12 @@ h2. Getting Started
    ** 1) run "bundle install"
    ** 2) NO NEED TO INSTALL PG FOR NOW  start you pg server, for example by runing "pg_ctl -D /usr/local/var/postgres -l logfile start" command or "pg_ctl -D /Users/Oleg/.rvm/var/postgres -l /Users/Oleg/.rvm/var/postgres/server.log start" on OS X Moutain Lion
    ** 2.1) Install MySQL. If you need a password for Oracle website just visit bugmenot.com and find the password.
-   ** 2) run 'rake db:create && rake db:migrate'
+   ** 2) run 'rake db:create && rake db:migrate && rake db:seed'
    ** 3) run "rails server" or 'rails s'
+
+h2. testing
+
+  * 1) rake db:test:prepare && rake db:test:load
 
 h2. Documentation and Support
 

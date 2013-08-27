@@ -19,13 +19,17 @@ define([
   'views/admin/adminView',
   'views/teacher/MainTeacherView',
   'views/teacher/TeacherGroupView',
-  'views/user/signUpView'
+  'views/user/signUpView',
+  'views/info/infoView',
+  'views/breadcrumbs/BreadcrumbsView'
+
 
 
   ], function($, _, Backbone, GlobalUser, FacultiesListView, RegistrationView, GroupProgressView,
   	          StudentProgressView, CourseProgressView,  MainFacultyView, MainDepartmentView,
   	          TeacherProgressView, MainWorkView, taskView, TasksCollection, NotFoundView,
-              AdminFacultyView, AdminView, MainTeacherView, TeacherGroupView, UserSingUpView
+              AdminFacultyView, AdminView, MainTeacherView, TeacherGroupView, UserSingUpView,
+              InfoView, BreadcrumbsView
              ) {
 
 
@@ -48,7 +52,7 @@ define([
         'admin'                  : 'viewAdminPage',
         'work/:id/:taskid'       : 'taskShow',
         'sign_up'                : 'userSingUp',
-
+        'info'                   : 'infoAction',
         // Default
         '*actions': 'defaultAction'
       }
@@ -62,6 +66,7 @@ define([
        var facultiesListView = new FacultiesListView();
        var registrationView = new RegistrationView();
        registrationView.render();
+       var breadcrumbsView = new BreadcrumbsView();
       });
 
       app_router.on('route:workShowAction', function (id){
@@ -80,6 +85,7 @@ define([
 
         var groupProgressView = new GroupProgressView();
         groupProgressView.render();
+        var breadcrumbsView = new BreadcrumbsView();
       });
 
       app_router.on('route:studentProgressAction', function (actions) {
@@ -98,12 +104,14 @@ define([
         var mainFacultyView = new MainFacultyView();
         mainFacultyView.initialize();
         mainFacultyView.loadData(id);
+        var breadcrumbsView = new BreadcrumbsView();
       });
 
       app_router.on('route:departmentAction', function (id) {
         var mainDepartmentView = new MainDepartmentView();
         mainDepartmentView.initialize();
         mainDepartmentView.loadData(id);
+        var breadcrumbsView = new BreadcrumbsView();
       });
 
       app_router.on('route:teacherProgressAction', function (actions) {
@@ -124,24 +132,10 @@ define([
         userSignUp.render();
       });
 
-      /*app_router.on('route:faRoles', function (actions){
-        var faRolesView = new FaRolesView();
-        faRolesView.render();
+      app_router.on('route:infoAction', function(){
+        var infoView = new InfoView();
       });
 
-      app_router.on('route:faMenageDepartments', function (actions){
-        var faDepartmentsView = new FaDepartmentsView();
-      });
-
-      app_router.on('route:faManageDB', function (actions){
-        var dbView = new DBView();
-        dbView.render();
-      });
-
-      app_router.on('route:faManageCourses', function (actions){
-        var CoursesView = new faCoursesListView();
-        CoursesView.render();
-      });*/
 
       app_router.on('route:taskShow', function (taskid, id) {
 

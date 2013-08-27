@@ -1,22 +1,18 @@
 class DepartmentsController < ApplicationController
 
   respond_to :json
+  
   # GET /departments
   # GET /departments.json
   def index
-    @departments = Department.search(params[:faculty_id])
-    respond_to do |format|
-      format.html # index.html.erb
-
-      format.json { render json: @departments }
-    end
-    respond_with @departments = Department.all
+    respond_with  Department.all
   end
+
 
   # GET /departments/1
   # GET /departments/1.json
   def show
-    respond_with @department = Department.find(params[:id])
+    respond_with  Department.find(params[:id])
   end
 
 

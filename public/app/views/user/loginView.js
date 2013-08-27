@@ -35,12 +35,11 @@ define([
 
       el.find('.alert-error').remove();
 
-      this.model.set({"authenticity_token": $("meta[name='csrf-token']").attr('content'), 'user': {'email': $('#inputLoginLog').val(), 'password': $('#inputPasswordLog').val()}});
+      this.model.set({'user': {'email': $('#inputLoginLog').val(), 'password': $('#inputPasswordLog').val()}});
 
       this.model.save(this.model.attributes, {
         success: function(userSession, response) {
           GlobalUser.currentUser = GlobalUser.Models.User.set(response);
-          console.log(GlobalUser.currentUser);
           GlobalUser.vent.trigger("authentication:logged_in");
           $('#sendFormLog').attr('value', 'Увійти');
         },
@@ -55,7 +54,7 @@ define([
     },
     logout: function(){
       var userLogout = new UserLogout();
-      userLogout.set({"authenticity_token": $("meta[name='csrf-token']").attr('content')})
+      userLogout.set({})
       userLogout.save(userLogout.attributes,{
         success: function(userSession, response){
           if (response.csrfToken) {
