@@ -40,7 +40,6 @@ define([
 
                                 breadcrumbsObj.push(arr); 
 
-
                                 if(a[i].department_id){
                                     current = new DepartmentsCollection();
                                     breadcrumbsFetch();
@@ -65,59 +64,32 @@ define([
             }
 
             function breadcrumbsFind(){
-                
-                switch(collType){
+    
+                if(collType){
+                    str = collType.toLowerCase().replace(/\b[a-z]/g, function(letter) {
+                        return letter.toUpperCase();
+                    });
+                    
+                    str = str.replace(/y$/, "ie");
+                    console.log(str);
+                    var collectionName = str+"sCollection";
+                        
+                    eval('current = new ' + collectionName + '()');
+                    
+                    breadcrumbsFetch();
 
-                    case 'faculty':
-                        current = new FacultiesCollection();
-                    break;
-
-                    case 'department':
-                        current = new DepartmentsCollection();
-                    break;
-
-                    case 'group':
-                        current = new GroupsCollection();
-                    break;
-
-                    default:
-                        return;
+                    breadcrumbsShow();
+                }else{
+                    return;
                 }
-
                 
-
-                /*------------------------------------------------------------------------
-                Замість блоку вище я б хотів реалізувати динамічне формування змінної.
-                Щось на зразок цього:
-
-                str = collType.toLowerCase().replace(/\b[a-z]/g, function(letter) {
-                    return letter.toUpperCase();
-                });
-                str.replace(/\/$y/, "ie");
-                var collectionName = str+"sCollection";
-                current = new collectionName();
-
-
-                TypeError: collectionName is not a constructor
-
-
-                Ще пробував робити голобальну змінну:
-
-                window.collectionName = str+"sCollection";
-                current = window[collectionName]();
-
-                також та сама помилка.
-                --------------------------------------------------------------------------*/
-                
-                
-                breadcrumbsFetch();
-
             }
 
-            breadcrumbsFind();
-
-            breadcrumbsShow();
+                breadcrumbsFind();
+                
+           
             
+
             function breadcrumbsShow(){
 
                 breadcrumbsObj.reverse();
