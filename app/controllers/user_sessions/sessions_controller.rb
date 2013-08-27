@@ -1,5 +1,6 @@
 class UserSessions::SessionsController < Devise::SessionsController
-  
+  include UserInfo
+
   respond_to :json
 
   before_filter :authenticate_user!, :except => [:create]
@@ -20,10 +21,15 @@ class UserSessions::SessionsController < Devise::SessionsController
     set_flash_message(:notice, :signed_in) if is_navigational_format?
     sign_in(resource_name, resource)
     respond_with resource, :location => after_sign_in_path_for(resource)
+    if !session['warden.user.user.key'].nil?
+      user = User.find(session['warden.user.user.key'][0][0])
+      UserInfo.current_user = user.name + " " + user.last_name;
+    end
   end
 
   # DELETE /resource/sign_out
   def destroy
+    UserInfo.current_user = nil;
     signed_out = (Devise.sign_out_all_scopes ? sign_out : sign_out(resource_name))
     render :json => {
       'csrfParam' => request_forgery_protection_token,

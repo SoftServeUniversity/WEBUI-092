@@ -1,0 +1,31 @@
+<h1>Listing thesis_changes</h1>
+
+<table>
+  <tr>
+    <th>Type of entity</th>
+    <th>User</th>
+    <th>Value</th>
+    <th>Type of change</th>
+    <th>Work</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @thesis_changes.each do |thesis_change| %>
+  <tr>
+    <td><%= thesis_change.type_of_entity %></td>
+    <td><%= thesis_change.user_id %></td>
+    <td><%= thesis_change.value %></td>
+    <td><%= thesis_change.type_of_change %></td>
+    <td><%= thesis_change.work_id %></td>
+    <td><%= link_to 'Show', thesis_change %></td>
+    <td><%= link_to 'Edit', edit_thesis_change_path(thesis_change) %></td>
+    <td><%= link_to 'Destroy', thesis_change, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Thesis change', new_thesis_change_path %>

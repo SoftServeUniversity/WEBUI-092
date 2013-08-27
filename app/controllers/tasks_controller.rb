@@ -17,7 +17,7 @@ class TasksController < ApplicationController
 
     respond_to do |format|
       format.html # show.html.erb
-      format.json { render json: @task }
+      format.json { render json: @task.to_json(:include => :thesis_changes) }
     end
   end
 

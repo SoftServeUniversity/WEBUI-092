@@ -17,7 +17,10 @@ class WorksController < ApplicationController
 
     respond_to do |format|
       format.html # show.html.erb
-      format.json { render json: @work }
+      format.json { render json: @work.to_json(:include => {
+        :thesis_changes => {},
+        :tasks => {:include => :thesis_changes}
+      })}
     end
   end
 
