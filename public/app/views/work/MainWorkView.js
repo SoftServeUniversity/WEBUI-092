@@ -7,23 +7,33 @@ define([
   'text!templates/work/WorkTasksTemplate.html',
   'text!templates/work/WorkHistoryTemplate.html',
   'text!templates/work/elementTemplate.html',
+  'models/work/WorkModel',
   'collections/work/WorkCollection',
   'collections/work/WorkHistoryCollection',
   'views/work/TasksListView'
 
 ], 
-function($, evil, _, Backbone, bootstrap, WorkTasksTemplate, WorkHistoryTemplate, elementTemplate, WorkCollection, WorkHistoryCollection, TasksListView){
+function($, evil, _, Backbone, bootstrap, WorkTasksTemplate, WorkHistoryTemplate, elementTemplate, WorkModel, WorkCollection, WorkHistoryCollection, TasksListView){
   
   var WorkTasksView = Backbone.View.extend({ 
 
     loadData: function(){
       var that = this;
 
-      work_col = new WorkCollection();
+      work = new WorkModel();
+      tasks_col = new WorkCollection();
       history_col = new WorkHistoryCollection();
-      $.when(work_col.fetch() && history_col.fetch()).then(function(){
-        that.render();
-      })
+        work.fetch({
+        success : function(){
+          tasks_col.add(work.get('tasks'));
+          history_col.add(work.get('thesis_changes'));
+          _.each(tasks_col.models, function(task){
+            history_col.add(task.get('thesis_changes'));
+          })
+          that.render();
+        }
+      });
+
     },
 
     initialize:function(id){
@@ -36,13 +46,12 @@ function($, evil, _, Backbone, bootstrap, WorkTasksTemplate, WorkHistoryTemplate
     render: function(){
 
       var tasksListView = new TasksListView({
-        collection:work_col,
+        collection:tasks_col,
         linkTo:"work/id"
       });
 
       var data = {
-        workname: "Чисельне ровязування динамічних багатозначних задач різноманітними \
-        методами сучасної науки",
+        workname: work.get('name'),
         studentname: "Корнелій Васильович Джміль",
         teachername: "Тиміш Сергій Вікторович, канд. ф-м. н., доцент кафедри інформаційних \
         систем",
@@ -82,7 +91,7 @@ function($, evil, _, Backbone, bootstrap, WorkTasksTemplate, WorkHistoryTemplate
         "percentage": 0 
       }
       console.log(newWorkTaskModel);
-      work_col.unshift(newWorkTaskModel);
+      tasks_col.unshift(newWorkTaskModel);
     },
 
     editTask: function(e) {

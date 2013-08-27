@@ -1,0 +1,119 @@
+{
+    "created_at": "2013-08-26T16:03:28Z",
+    "id": 2,
+    "name": "Чисельне розвязування динамічних багатозначних задач різноманітними методами сучасної науки",
+    "progress": "15",
+    "student_id": null,
+    "updated_at": "2013-08-26T16:03:28Z",
+    "thesis_changes": [
+        {
+            "action": "CREATE",
+            "auditable_id": 2,
+            "auditable_type": "Work",
+            "created_at": "2013-08-26T16:03:28Z",
+            "id": 1,
+            "updated_at": "2013-08-26T16:03:28Z",
+            "user_name": "Tolik",
+            "value": "name - nice_name; progress - 15; "
+        },
+        {
+            "action": "UPDATE",
+            "auditable_id": 2,
+            "auditable_type": "Work",
+            "created_at": "2013-08-26T16:03:37Z",
+            "id": 2,
+            "updated_at": "2013-08-26T16:03:37Z",
+            "user_name": "Vadik",
+            "value": "name - nice_name; progress - 45; "
+        },
+        {
+            "action": "UPDATE",
+            "auditable_id": 2,
+            "auditable_type": "Work",
+            "created_at": "2013-08-26T18:31:46Z",
+            "id": 8,
+            "updated_at": "2013-08-26T18:31:46Z",
+            "user_name": "Valentyn",
+            "value": "name - nice_name; progress - ; "
+        }
+    ],
+    "tasks": [
+        {
+            "created_at": "2013-08-26T18:29:20Z",
+            "id": 1,
+            "name": "taskname",
+            "updated_at": "2013-08-26T18:29:20Z",
+            "work_id": 2,
+            "thesis_changes": [
+                {
+                    "action": "CREATE",
+                    "auditable_id": 1,
+                    "auditable_type": "Task",
+                    "created_at": "2013-08-26T18:29:20Z",
+                    "id": 3,
+                    "updated_at": "2013-08-26T18:29:20Z",
+                    "user_name": "anonymous",
+                    "value": "name - taskname; "
+                },
+                {
+                    "action": "UPDATE",
+                    "auditable_id": 1,
+                    "auditable_type": "Task",
+                    "created_at": "2013-08-26T18:31:30Z",
+                    "id": 6,
+                    "updated_at": "2013-08-26T18:31:30Z",
+                    "user_name": "anonymous",
+                    "value": "name - taskname; "
+                },
+                {
+                    "action": "UPDATE",
+                    "auditable_id": 1,
+                    "auditable_type": "Task",
+                    "created_at": "2013-08-26T18:31:35Z",
+                    "id": 7,
+                    "updated_at": "2013-08-26T18:31:35Z",
+                    "user_name": "anonymous",
+                    "value": "name - taskname; "
+                }
+            ]
+        },
+        {
+            "created_at": "2013-08-26T18:29:33Z",
+            "id": 2,
+            "name": "taskname2",
+            "updated_at": "2013-08-26T18:29:33Z",
+            "work_id": 2,
+            "thesis_changes": [
+                {
+                    "action": "CREATE",
+                    "auditable_id": 2,
+                    "auditable_type": "Task",
+                    "created_at": "2013-08-26T18:29:33Z",
+                    "id": 4,
+                    "updated_at": "2013-08-26T18:29:33Z",
+                    "user_name": "anonymous",
+                    "value": "name - taskname2; "
+                }
+            ]
+        },
+        {
+            "created_at": "2013-08-26T18:29:39Z",
+            "id": 3,
+            "name": "taskname3",
+            "updated_at": "2013-08-26T18:29:39Z",
+            "work_id": 2,
+            "thesis_changes": [
+                {
+                    "action": "CREATE",
+                    "auditable_id": 3,
+                    "auditable_type": "Task",
+                    "created_at": "2013-08-26T18:29:39Z",
+                    "id": 5,
+                    "updated_at": "2013-08-26T18:29:39Z",
+                    "user_name": "anonymous",
+                    "value": "name - taskname3; "
+                }
+            ]
+        }
+    ]
+}
