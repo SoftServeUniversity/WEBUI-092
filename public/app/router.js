@@ -46,7 +46,7 @@ define([
         'work/:id'               : 'workShowAction',
         'fa'                     : 'viewAdminFacultyPage',
         'admin'                  : 'viewAdminPage',
-        'work/:id/:taskid'       : 'taskShow',
+        'task/:id'               : 'taskShow',
         'sign_up'                : 'userSingUp',
 
         // Default
@@ -65,7 +65,7 @@ define([
       });
 
       app_router.on('route:workShowAction', function (id){
-        var workView = new MainWorkView(id);
+        var workView = new MainWorkView({"id": id});
       });
 
       app_router.on('route:viewAdminFacultyPage', function (){
@@ -143,18 +143,17 @@ define([
         CoursesView.render();
       });*/
 
-      app_router.on('route:taskShow', function (taskid, id) {
+      app_router.on('route:taskShow', function (id) {
 
-          var tasks = new TasksCollection;
+          /*var tasks = new TasksCollection;
           tasks.fetch({async:false});
           var task = tasks.get(id);
           if(!tasks.get(id)){
             var pageNotFound = new NotFoundView();
             pageNotFound.render();
             return;
-          }
-          var currentTask = new TaskView({"model": task});
-          currentTask.render();
+          }*/
+          var currentTask = new TaskView({"id": id});
       });
 
       app_router.on('route:defaultAction', function (actions) {

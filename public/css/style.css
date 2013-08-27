@@ -517,3 +517,35 @@ tr.notverified {
   heigth: auto;
   text-align: left;
 }
+
+
+/****************/
+#sortable { 
+  list-style-type: none; 
+  margin: 0; 
+  padding: 0; 
+  clear: both;
+}
+.draggable-item {
+  border: 1px solid #f3f3f3;
+  border-radius: 10px;
+  padding: 3px;
+  margin-bottom: 5px;
+  background: #fff;
+}
+.draggable-item:hover {
+  border: 1px solid #ddd;
+}
+.draggable-item:active {
+  background: #f9f9f9
+}
+.taskname {
+  min-height: 20px !important;
+}
+.task-item-progress{
+  min-height: 20px !important; 
+  margin-bottom: 0 !important;
+}
+.ui-icon-arrowthick-2-n-s {
+  cursor: pointer;
+}

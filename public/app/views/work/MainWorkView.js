@@ -9,46 +9,76 @@ define([
   'text!templates/work/elementTemplate.html',
   'collections/work/WorkCollection',
   'collections/work/WorkHistoryCollection',
-  'views/work/TasksListView'
+  'views/work/TasksListView',
+  'models/work/WorkModel',
+  'models/task/TaskModel',
+  'collections/tasks/ProgressesCollection'
+
 
 ], 
-function($, evil, _, Backbone, bootstrap, WorkTasksTemplate, WorkHistoryTemplate, elementTemplate, WorkCollection, WorkHistoryCollection, TasksListView){
+function($, evil, _, Backbone, bootstrap, WorkTasksTemplate, 
+        WorkHistoryTemplate, elementTemplate, WorkCollection, 
+        WorkHistoryCollection, TasksListView, WorkModel, TaskModel, ProgressesCollection){
   
   var WorkTasksView = Backbone.View.extend({ 
 
     loadData: function(){
-      var that = this;
-
-      work_col = new WorkCollection();
+      var me = this;
+      this.model = new WorkModel({"id": me.id});
+      this.model.fetch({async:false})
+      this.work_col = new WorkCollection();
       history_col = new WorkHistoryCollection();
-      $.when(work_col.fetch() && history_col.fetch()).then(function(){
-        that.render();
+      this.progresses = new ProgressesCollection()
+      this.progresses.fetch({url: 'http://localhost:3000/work/' + me.id + '/tasks/progresses.json', async:false})
+      // console.log(this.progresses)
+      $.when(this.work_col.fetch({url: "http://localhost:3000/work/" + me.id + "/tasks.json", async:false}) && history_col.fetch({async:false})).then(function(){
+        me.render();
       })
+      console.log(this.work_col)
     },
-
-    initialize:function(id){
+    updatePriority: function (items) {
+      var me = this;
+      _.each(items, function (item) {
+        var taskId = $(item).attr("task-id");
+        var newPriority = ($(item).index()) + 1;
+        var currentTask = me.work_col.get(taskId);
+        currentTask.set("priority", newPriority);
+        currentTask.save()
+      });
+      // console.log(this.work_col.toJSON())
+    },
+    initialize:function(){
+      var me = this;
       this.loadData();
-      this.id = id;
+      $( "#sortable" ).sortable({ 
+        // revert: true,
+        stop: function(event, ui) {
+          console.log(ui.item.index());
+          var new_position = $(this).sortable();
+          me.updatePriority( new_position.context.children)
+        }
+     });
+      $( "#sortable" ).disableSelection();
+
     },
 
     el: $("#content"),
 
     render: function(){
-
       var tasksListView = new TasksListView({
-        collection:work_col,
-        linkTo:"work/id"
+        collection: this.work_col,
+        taskProgresses: this.progresses
       });
 
       var data = {
-        workname: "Чисельне ровязування динамічних багатозначних задач різноманітними \
-        методами сучасної науки",
-        studentname: "Корнелій Васильович Джміль",
-        teachername: "Тиміш Сергій Вікторович, канд. ф-м. н., доцент кафедри інформаційних \
-        систем",
+        work: this.model,
+        // workname: "Чисельне ровязування динамічних багатозначних задач різноманітними \
+        // методами сучасної науки",
+        // studentname: "Корнелій Васильович Джміль",
+        // teachername: "Тиміш Сергій Вікторович, канд. ф-м. н., доцент кафедри інформаційних \
+        // систем",
         tasksList: tasksListView.render().$el.html()
       }
-
       var historydata = {
         historymodal: history_col.models
       }
@@ -59,35 +89,20 @@ function($, evil, _, Backbone, bootstrap, WorkTasksTemplate, WorkHistoryTemplate
       $("#content").html(workTemplate);
       $("#content").append(historyTemplate); 
 
-      // Edit Tasks
-      $(".taskname").editInPlace({
-        url: "app/mocks/work/worktasks.json",
-        callback: function(original_element, html){
-          return(html);
-        }
-      });
-      // End Edit Task
     },
 
     events: {
-      "click #create-btn"     : "addTask",
-      "dblclick .taskname"    : "editTask"
+      "click #create-btn" : "addTask"
     },
 
     addTask: function(e) {
       e.preventDefault();
-      var newWorkTaskModel = {
-        "name": "Завдання", 
-        "id": 1, 
-        "percentage": 0 
-      }
-      console.log(newWorkTaskModel);
-      work_col.unshift(newWorkTaskModel);
-    },
-
-    editTask: function(e) {
-      e.preventDefault();
-    },
+      var me = this;
+      var taskName = $("#task-name").val();
+      var newTask = new TaskModel({name: taskName, priority: 0, work_id: this.id, user_id: 1});
+      newTask.save();
+      
+    }
 
   });
 
