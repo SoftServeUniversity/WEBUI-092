@@ -8,7 +8,6 @@ define([
   'libs/jquery/equal-height-blocks'
 ], function($, _, Backbone, facultiesListTemplate, FacultiesCollection, FacultiesChangeCollection , equalizeHeight){
 
-
   var FacultiesListView = Backbone.View.extend({
 
   loadData: function (){
@@ -30,7 +29,6 @@ define([
   
   initialize : function(){
     this.loadData();
-
     var facultiesLoaded = false;
     var facultiesChangesLoaded = false; 
     

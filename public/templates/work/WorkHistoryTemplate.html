@@ -5,13 +5,15 @@
     </div>
     <div class="modal-body">
         <ol class="modal-list">
-            <% _.each(historymodal, function(items) {%> 
+            <% _.each(historymodal, function(item) {%>
             <div class="row-fluid">
-            <li>
-                <b class="span2"><%= items.get("username") %></b>
-                <span class="span7"><%= items.get("item") %> </span>
-                <span class="span3"><%= items.get("date") %></span>
-            </li>  
+            <ul style="list-style-type: none;">
+                <span class="span1"><%= item.get("auditable_type") %></span>
+                <span class="span2"><%= item.get("action") %></span>
+                <span class="span3"><%= item.get("value") %> </span>
+                <span class="span2"><%= item.get("user_name") %></span>
+                <span class="span4"><%= item.get("created_at") %></span>
+            </ul>
             </div>
             <% }); %> 
         </ol>

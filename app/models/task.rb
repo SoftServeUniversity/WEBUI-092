@@ -7,6 +7,7 @@ class Task < ActiveRecord::Base
   belongs_to :work
   has_many :task_changes
   has_many :task_progresses
+  has_many :thesis_changes, :as => :auditable
   
   after_create :create_progress_and_change
   def create_progress_and_change

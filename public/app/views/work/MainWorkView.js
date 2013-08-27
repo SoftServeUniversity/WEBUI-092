@@ -7,6 +7,7 @@ define([
   'text!templates/work/WorkTasksTemplate.html',
   'text!templates/work/WorkHistoryTemplate.html',
   'text!templates/work/elementTemplate.html',
+  'models/work/WorkModel',
   'collections/work/WorkCollection',
   'collections/work/WorkHistoryCollection',
   'views/work/TasksListView',

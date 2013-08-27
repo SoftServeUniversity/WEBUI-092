@@ -7,7 +7,8 @@ define([
   function($, _, Backbone, StudentProxyModel)
   {
     var StudentsCollection = Backbone.Collection.extend({
-      model:StudentProxyModel
+      model:StudentProxyModel,
+      url: 'app/mocks/students.json'
     });
     return StudentsCollection;
   });

@@ -31,24 +31,10 @@ $(function () {
     $('#regMod').slideUp(300);
     $('#example').tooltip('hide');
   });
-
-
-  $('#content').delegate('#role', 'change', function(e){
-    if($(this).val() == 'Student'){
-      $('.roleStudent').show();
-      $('.roleTeacher').hide();
-    }else if($(this).val() == 'Teacher'){
-      $('.roleTeacher').show();
-      $('.roleStudent').hide();
-    }else if($(this).val() == 'User'){
-      $('.roleTeacher').hide();
-      $('.roleStudent').hide();
-    }
-  });
   
 });
 
-// error type
+// error type for error monice bootstrap view
 function alertType(data){
   var res;
   for (first in data){ 
@@ -57,6 +43,20 @@ function alertType(data){
   } 
   return res
 }
+//check if object is json
+function isJSON(data) {
+    var isJson = false
+    try {
+        // this works with JSON string and JSON object, not sure about others
+       var json = $.parseJSON(data);
+       isJson = typeof json === 'object' ;
+    } catch (ex) {
+        console.error('data is not JSON');
+    }
+    return isJson;
+}
+
+
 
 // to serialize to json with mested attributes
 jQuery.fn.MytoJson = function(options) {

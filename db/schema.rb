@@ -19,6 +19,7 @@ ActiveRecord::Schema.define(:version => 20130820155658) do
     t.integer  "faculty_id"
     t.datetime "created_at",    :null => false
     t.datetime "updated_at",    :null => false
+    t.integer  "percentage"
   end
 
   create_table "departments", :force => true do |t|
@@ -27,6 +28,7 @@ ActiveRecord::Schema.define(:version => 20130820155658) do
     t.integer  "faculty_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.integer  "percentage"
   end
 
   add_index "departments", ["faculty_id"], :name => "index_departments_on_faculty_id"
@@ -75,8 +77,9 @@ ActiveRecord::Schema.define(:version => 20130820155658) do
   create_table "students", :force => true do |t|
     t.integer  "user_id"
     t.integer  "group_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",                      :null => false
+    t.datetime "updated_at",                      :null => false
+    t.boolean  "group_pending", :default => true
   end
 
   add_index "students", ["group_id"], :name => "index_students_on_group_id"
@@ -119,12 +122,34 @@ ActiveRecord::Schema.define(:version => 20130820155658) do
 
   add_index "tasks", ["work_id"], :name => "index_tasks_on_work_id"
 
+  create_table "teachers", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "department_id"
+    t.string   "degree"
+    t.string   "title"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+  end
+
+  add_index "teachers", ["department_id"], :name => "index_teachers_on_department_id"
+  add_index "teachers", ["user_id"], :name => "index_teachers_on_user_id"
+
+  create_table "thesis_changes", :force => true do |t|
+    t.string   "action"
+    t.string   "user_name"
+    t.string   "value"
+    t.integer  "auditable_id"
+    t.string   "auditable_type"
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
+  end
+
   create_table "users", :force => true do |t|
-    t.string   "name",                   :default => "", :null => false
-    t.string   "last_name",              :default => "", :null => false
-    t.string   "middle_name",            :default => "", :null => false
-    t.string   "email",                  :default => "", :null => false
-    t.string   "encrypted_password",     :default => "", :null => false
+    t.string   "name",                   :default => "",    :null => false
+    t.string   "last_name",              :default => "",    :null => false
+    t.string   "middle_name",            :default => "",    :null => false
+    t.string   "email",                  :default => "",    :null => false
+    t.string   "encrypted_password",     :default => "",    :null => false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
@@ -133,8 +158,9 @@ ActiveRecord::Schema.define(:version => 20130820155658) do
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
-    t.datetime "created_at",                             :null => false
-    t.datetime "updated_at",                             :null => false
+    t.datetime "created_at",                                :null => false
+    t.datetime "updated_at",                                :null => false
+    t.boolean  "role_pending",           :default => false
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

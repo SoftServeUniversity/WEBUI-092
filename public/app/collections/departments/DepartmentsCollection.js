@@ -10,12 +10,11 @@ define([
         url: "app/mocks/departments.json",
    
 
-        getByFaculty: function(faculty_id){
-          filtered = this.filter(function(item) {
+        /*  filtered = this.filter(function(item) {
             return item.get("faculty_id") == faculty_id;
           });
           return new DepartmentsCollection(filtered);
-        }
+        }*/
 
 
     });
