@@ -6,15 +6,15 @@ define([
     'views/shared/RemoveDialogView'
 ], function($, _, Backbone, tableRowTemplate, RemoveDialogView){
 
-    var TableRowView =  Backbone.View.extend({
+    var TableRowView = Backbone.View.extend({
         tagName:'tr' ,
         template: _.template(tableRowTemplate),
         linkTo: null,
-        events {
-          'click .button': 'showRemoveDialog'
+        events: {
+          'click .btn-danger': 'showRemoveDialog'
         },
         showRemoveDialog: function(){
-          new RemoveDialogView({model: this.model});
+          removeDialogView = new RemoveDialogView({model: this.model});
         },
         initialize:function(){
             this.render();

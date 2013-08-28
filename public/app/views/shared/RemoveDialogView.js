@@ -1,10 +1,11 @@
+
 define([
   'jquery',
   'underscore',
   'backbone',
   'views/admin/parentTabView',
   'text!templates/admin/removeDialogTemplate.html'
-], function($, _, Backbone, ParentTabView, removeDialogTemplate){   
+], function($, _, Backbone, ParentTabView, removeDialogTemplate){
 
 var RemoveDialogView = Backbone.View.extend(
 {
@@ -13,7 +14,7 @@ var RemoveDialogView = Backbone.View.extend(
 
   initialize: function () {
     this.template = _.template(removeDialogTemplate);
-    
+
     _.bindAll(this, 'cancelAction');
     _.bindAll(this, 'removeElement');
     _.bindAll(this, 'keyPressHandler');
@@ -40,7 +41,7 @@ var RemoveDialogView = Backbone.View.extend(
   //to confirm removal with Enter
   keyPressHandler: function(e){
       if (e.keyCode == 13){
-          this.removeElement(); 
+          this.removeElement();
     }
   },
 
@@ -55,8 +56,8 @@ var RemoveDialogView = Backbone.View.extend(
   render: function () {
     if($(this.el_modal).length==0){
 	    $(this.el).append(this.template());
-	  } 
-    this.showModal();     
+	  }
+    this.showModal();
 	  return this;
   },
 
@@ -64,7 +65,7 @@ var RemoveDialogView = Backbone.View.extend(
   cancelAction: function () {
     this.hideModal();
   },
-  
+
   removeElement: function (e) {
 
     var options = {
