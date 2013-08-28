@@ -556,61 +556,15 @@ tr.notverified {
   cursor: pointer;
 }
 /*--------breadcrumbs navigation-----------*/
-.wizard{
-	display: block;
-	margin-bottom:40px;
-
+.breadcrumb{
+	background: transparent;
 }
-.wizard a {
-    padding: 10px 25px 10px;
-    margin-right: 5px;
-    position: relative;
-    display: inline-block;
-    color: #000;
-    background: #F5F5F5;
+.breadcrumb li:last-child a{
+	color:inherit;
 }
-.wizard a:hover {
+.breadcrumb li:last-child a:hover, .breadcrumb li:last-child{
 	text-decoration: none;
-}
-.wizard a:before {
-    width: 0;
-    height: 0;
-    border-top: 20px inset transparent;
-    border-bottom: 20px inset transparent;
-    border-left: 20px solid #fff;
-    position: absolute;
-    content: "";
-    top: 0;
-    left: 0;
-}
-.wizard a:after {
-    width: 0;
-    height: 0;
-    border-top: 20px inset transparent;
-    border-bottom: 20px inset transparent;
-    position: absolute;
-    content: "";
-    top: 0;
-    right: -20px;
-    z-index: 2;
-    border-left: 20px solid #F5F5F5;
-
-}
-.wizard a:first-child:before,
-.wizard a:last-child:after {
-    border: none;
-}
-.wizard a:first-child {
-    -webkit-border-radius: 4px 0 0 4px;
-       -moz-border-radius: 4px 0 0 4px;
-            border-radius: 4px 0 0 4px;
-    	
-}
-.wizard a:last-child {
-    -webkit-border-radius: 0 4px 4px 0;
-       -moz-border-radius: 0 4px 4px 0;
-            border-radius: 0 4px 4px 0;
-    		
+	cursor: default;
 }
 #main-header-button{
 	
