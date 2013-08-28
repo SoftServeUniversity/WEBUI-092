@@ -19,9 +19,10 @@ define([
       var me = this;
       
       this.model = new InfoModel();
-      var ajaxData = this.model.fetch({async:false});
-      this.model.set({content: ajaxData.responseText});
-      this.render();
+
+      var ajaxData = me.model.fetch({async:false, success: function(response){
+        me.render(response.toJSON());
+      }});
     
       GlobalEventBus.on('infoChanged', function(content){
         me.updateInfo(content)
