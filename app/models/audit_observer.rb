@@ -15,6 +15,7 @@ class AuditObserver < ActiveRecord::Observer
   end
 
   def process_record(record, action)
+    ThesisChangeMailer.test_email.deliver
     @thesisChange = ThesisChange.new
     @thesisChange.action = action
     value = "";
