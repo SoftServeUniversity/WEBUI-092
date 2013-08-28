@@ -8,7 +8,7 @@ define([
   'views/shared/MenuView',
   'text!templates/admin/parentAdminTemplate.html',
   'views/admin/newElementView',
-  'views/admin/removeDialogView'
+  'views/shared/removeDialogView'
 
 
 ], function($, bootstrapselect, _,  Backbone, MenuView, parentAdminTemplate, NewElementView, RemoveDialogView){   
@@ -168,9 +168,10 @@ define([
 
 
     showRemoveDialog: function(e){
-       var model_id = $(e.target).closest('.model').attr('model_id');
-       var collection = this.config.collection;
-       new RemoveDialogView(model_id, collection);
+      var model_id = $(e.target).closest('.model').attr('model_id');
+      var model = this.config.collection.get(model_id);
+
+      new RemoveDialogView({model: model});
     },
 
     saveElement: function(){
