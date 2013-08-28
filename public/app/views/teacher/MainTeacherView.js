@@ -8,8 +8,7 @@ define([
     'views/shared/ChartView',
     'text!templates/teacher/mainTeacherTemplate.html',
     'text!templates/teacher/teacherThesisTemplate.html',
-    'collections/faculties/FacultiesCollection',
-    'collections/faculties/FacultyChangeCollection',
+    'collections/teachers/TeacherChangeCollection',
     'collections/teachers/TeachersCollection',
     'collections/students/StudentsProxyCollectionForTeacherPage'
 ], function($, _, Backbone,
@@ -19,8 +18,7 @@ define([
             ChartView,
             mainTeacherTemplate,
             teacherThesisTemplate,
-            FacultiesCollection,
-            FacultyChangeCollection,
+            TeacherChangeCollection,
             TeachersCollection,
             StudentsProxyCollectionForTeacherPage){
 
@@ -28,22 +26,22 @@ define([
         initialize:function(id){
             var that = this;
 
-            var teachers_col = new TeachersCollection();
-            teachers_col.fetch({
+            var teachersCollection = new TeachersCollection();
+            teachersCollection.fetch({
                 success: function() {
                     that.trigger('DataLoaded', 'Teachs');
                 }
             });
 
-            var students_col = new StudentsProxyCollectionForTeacherPage();
-            students_col.fetch({
+            var studentsCollection = new StudentsProxyCollectionForTeacherPage();
+            studentsCollection.fetch({
                 success: function() {
                     that.trigger('DataLoaded', 'Students');
                 }
             });
 
-            var faculty_change_col = new FacultyChangeCollection();
-            faculty_change_col.fetch({
+            var teacherChangeCollection = new TeacherChangeCollection();
+            teacherChangeCollection.fetch({
                 success:function () {
                     that.trigger('DataLoaded', 'FacultyChange');
                 }
@@ -68,23 +66,23 @@ define([
                 }
 
                 if ((isTeachLoaded && isFacChangeLoaded && isStudentsLoaded) == true){
-                    that.render(id, teachers_col, students_col, faculty_change_col);
+                    that.render(id, teachersCollection, studentsCollection, teacherChangeCollection);
                 }
             });
         },
 
-        render:function(id, teachers_col, students_col, faculty_change_col){
-          var teacher = teachers_col.get(id).toJSON();
+        render:function(id, teachersCollection, studentsCollection, teacherChangeCollection){
+          var teacher = teachersCollection.get(id).toJSON();
 
-          var students_json = students_col.toJSON();
+          var studentsJSON = studentsCollection.toJSON();
 
           var students = {};
-          for (var i = 0; i < students_json.length; i++) {
-            var course_number = students_json[i].course;
+          for (var i = 0; i < studentsJSON.length; i++) {
+            var course_number = studentsJSON[i].course;
             if (!(course_number in students)){
               students[course_number] = [];
             }
-            students[course_number].push(students_json[i]);
+            students[course_number].push(studentsJSON[i]);
           };
 
           var dataForMainTeacherTemplate = {
@@ -100,7 +98,7 @@ define([
           $("#teacherPageContent").html(teacherThesisCompiledTemplate);
 
           var chartView = new ChartView({
-            collection:faculty_change_col
+            collection: teacherChangeCollection
           });
           chartView.render();
 
