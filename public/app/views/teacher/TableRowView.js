@@ -2,17 +2,24 @@ define([
     'jquery',
     'underscore',
     'backbone',
-    'text!templates/shared/elementTemplate.html'
-], function($, _, Backbone, elementTemplate){
+    'text!templates/teacher/tableRowTemplate.html',
+    'views/shared/RemoveDialogView'
+], function($, _, Backbone, tableRowTemplate, RemoveDialogView){
 
-    var ElementView =  Backbone.View.extend({
-        tagName:'div' ,
-        template: _.template(elementTemplate),
+    var TableRowView =  Backbone.View.extend({
+        tagName:'tr' ,
+        template: _.template(tableRowTemplate),
         linkTo: null,
-
+        events {
+          'click .button': 'showRemoveDialog'
+        },
+        showRemoveDialog: function(){
+          new RemoveDialogView({model: this.model});
+        },
         initialize:function(){
             this.render();
-        } ,
+        },
+
         render:function(counter){
             // counter -  is used for mark each element in a table
             // linkTo - is used for creating <a> links if it is needed
@@ -23,5 +30,5 @@ define([
         }
     });
 
-    return ElementView;
+    return TableRowView;
 });

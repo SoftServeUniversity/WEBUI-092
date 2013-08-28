@@ -4,7 +4,7 @@
   <caption><h4>Студенти для підтвердження</h4></caption>
   <tbody>
     <% for ( var i=0; i<students_for_confirm.length; i++ ) {%>
-      <tr model_id ='23'>
+      <tr>
         <td><%= i + 1 %>. <%= students_for_confirm[i]['full_name'] %></td>
         <td><%= students_for_confirm[i]['email'] %></td>
         <td>
@@ -18,6 +18,8 @@
     <% } %>
   <tbody>
 </table>
+
+
 
 <!-- Modal dialog for remove student if bad group-->
 <div id="dialogRejectStudentFromGroup" class="modal hide fade">

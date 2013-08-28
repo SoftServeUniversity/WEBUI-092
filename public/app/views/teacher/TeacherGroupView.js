@@ -4,6 +4,7 @@ define([
     'backbone',
     'collections/departments/DepartmentsCollection',
     'collections/courses/CoursesCollection',
+    'views/teacher/TableView',
     'text!templates/teacher/mainTeacherTemplate.html',
     'text!templates/teacher/teacherStudentsGroupTemplate.html',
     'collections/faculties/FacultiesCollection',
@@ -14,6 +15,7 @@ define([
 ], function($, _, Backbone,
             DepartmentsCollection,
             CoursesCollection,
+            TableView,
             mainTeacherTemplate,
             teacherStudentsGroupTemplate,
             FacultiesCollection,
@@ -26,29 +28,29 @@ define([
         initialize:function(id){
             var that = this;
 
-            var teachers_col = new TeachersCollection();
-            teachers_col.fetch({
+            this.teachers_col = new TeachersCollection();
+            this.teachers_col.fetch({
                 success: function() {
                     that.trigger('DataLoaded', 'Teachs');
                 }
             });
 
-            var students_col_for_confirm = new StudentsCollectionForTeacherConfirmations();
-            students_col_for_confirm.fetch({
+            this.students_col_for_confirm = new StudentsCollectionForTeacherConfirmations();
+            this.students_col_for_confirm.fetch({
                 success: function() {
                     that.trigger('DataLoaded', 'StudentsForConfirm');
                 }
             });
 
-            var students_col_of_teach_group = new StudentsCollectionOfTeacherGroup();
-            students_col_of_teach_group.fetch({
+            this.students_col_of_teach_group = new StudentsCollectionOfTeacherGroup();
+            this.students_col_of_teach_group.fetch({
                 success: function() {
                     that.trigger('DataLoaded', 'StudentsOfTeacherGroup');
                 }
             });
 
-            var faculty_change_col = new FacultyChangeCollection();
-            faculty_change_col.fetch({
+            this.faculty_change_col = new FacultyChangeCollection();
+            this.faculty_change_col.fetch({
                 success:function () {
                     that.trigger('DataLoaded', 'FacultyChange');
                 }
@@ -79,16 +81,16 @@ define([
 
                 if ((isTeachLoaded && isFacChangeLoaded &&
                      isStudentsForConfirmLoaded && isStudentsOfTeacherGroupLoaded) == true){
-                    that.render(id, teachers_col, students_col_for_confirm, students_col_of_teach_group, faculty_change_col);
+                    that.render(id);
                 }
             });
         },
 
-        render:function(id, teachers_col, students_col_for_confirm, students_col_of_teach_group, faculty_change_col){
-          var teacher = teachers_col.get(id).toJSON();
+        render:function(id){
+          var teacher = this.teachers_col.get(id).toJSON();
 
-          var students_col_for_confirm_json = students_col_for_confirm.toJSON();
-          var students_col_of_teach_group = students_col_of_teach_group.toJSON();
+          var students_col_for_confirm_json = this.students_col_for_confirm.toJSON();
+          var students_col_of_teach_group = this.students_col_of_teach_group.toJSON();
 
           var dataForMainTeacherTemplate = {
             teacher: teacher
@@ -100,9 +102,12 @@ define([
             students_for_confirm: students_col_for_confirm_json,
             students_of_teach_group: students_col_of_teach_group
           }
-
+/*
           var teacherStudentsGroupCompiledTemplate = _.template(teacherStudentsGroupTemplate, dataForTeacherThesisTemplate);
           $("#teacherPageContent").html(teacherStudentsGroupCompiledTemplate);
+*/
+          var tableView = new TableView({collection: this.students_col_for_confirm});
+          $("#teacherPageContent").html(tableView.el);
 
           return this;
         }
