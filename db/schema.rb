@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130820155658) do
+ActiveRecord::Schema.define(:version => 20130823180010) do
 
   create_table "courses", :force => true do |t|
     t.string   "name"
@@ -19,7 +19,6 @@ ActiveRecord::Schema.define(:version => 20130820155658) do
     t.integer  "faculty_id"
     t.datetime "created_at",    :null => false
     t.datetime "updated_at",    :null => false
-    t.integer  "percentage"
   end
 
   create_table "departments", :force => true do |t|
@@ -28,7 +27,6 @@ ActiveRecord::Schema.define(:version => 20130820155658) do
     t.integer  "faculty_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
-    t.integer  "percentage"
   end
 
   add_index "departments", ["faculty_id"], :name => "index_departments_on_faculty_id"

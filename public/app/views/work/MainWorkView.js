@@ -7,7 +7,6 @@ define([
   'text!templates/work/WorkTasksTemplate.html',
   'text!templates/work/WorkHistoryTemplate.html',
   'text!templates/work/elementTemplate.html',
-  'models/work/WorkModel',
   'collections/work/WorkCollection',
   'collections/work/WorkHistoryCollection',
   'views/work/TasksListView',
@@ -26,12 +25,11 @@ function($, evil, _, Backbone, bootstrap, WorkTasksTemplate,
     loadData: function(){
       var me = this;
       this.model = new WorkModel({"id": me.id});
-      this.model.fetch({async:false})
+      this.model.fetch({async:false});
       this.work_col = new WorkCollection();
       history_col = new WorkHistoryCollection();
       this.progresses = new ProgressesCollection()
       this.progresses.fetch({url: 'http://localhost:3000/work/' + me.id + '/tasks/progresses.json', async:false})
-      // console.log(this.progresses)
       $.when(this.work_col.fetch({url: "http://localhost:3000/work/" + me.id + "/tasks.json", async:false}) && history_col.fetch({async:false})).then(function(){
         me.render();
       })
@@ -46,13 +44,11 @@ function($, evil, _, Backbone, bootstrap, WorkTasksTemplate,
         currentTask.set("priority", newPriority);
         currentTask.save()
       });
-      // console.log(this.work_col.toJSON())
     },
     initialize:function(){
       var me = this;
       this.loadData();
       $( "#sortable" ).sortable({ 
-        // revert: true,
         stop: function(event, ui) {
           console.log(ui.item.index());
           var new_position = $(this).sortable();
@@ -73,11 +69,6 @@ function($, evil, _, Backbone, bootstrap, WorkTasksTemplate,
 
       var data = {
         work: this.model,
-        // workname: "Чисельне ровязування динамічних багатозначних задач різноманітними \
-        // методами сучасної науки",
-        // studentname: "Корнелій Васильович Джміль",
-        // teachername: "Тиміш Сергій Вікторович, канд. ф-м. н., доцент кафедри інформаційних \
-        // систем",
         tasksList: tasksListView.render().$el.html()
       }
       var historydata = {
