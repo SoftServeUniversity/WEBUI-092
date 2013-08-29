@@ -11,19 +11,10 @@ height: 100%;
 .sub-wrapper {
 	padding-bottom:60px;
 }
-header, footer {
-
-	padding:10px 10px;
-	background:#F5F5F5;
-}
-header{
-	box-shadow: 0px 1px 2px #bbb;
-	min-height:35px;
-	padding-bottom:1px;
-}
-
 footer {
 	border-top:1px solid #ddd;
+	padding:10px 10px;
+	background:#F5F5F5;
 }
 a:hover {
 	cursor:pointer;
@@ -48,6 +39,12 @@ a:hover{
 
 
 /* --- header --- */
+header .navbar .yearBox .control-group, header .navbar .yearBox .form-horizontal{
+	margin:0 !important;
+}
+header .control-group .control-label{
+	margin-top: 5px; 
+}
 .menuBox{
 	float:left;
 }
@@ -526,6 +523,7 @@ tr.notverified {
 /*--------breadcrumbs navigation-----------*/
 .breadcrumb{
 	background: transparent;
+	margin-top: -20px;
 }
 .breadcrumb li:last-child a{
 	color:inherit;
@@ -534,6 +532,7 @@ tr.notverified {
 	text-decoration: none;
 	cursor: default;
 }
+<<<<<<< HEAD
 #main-header-button{
 	
 	font-family: Arial, Helvetica, sans-serif;
