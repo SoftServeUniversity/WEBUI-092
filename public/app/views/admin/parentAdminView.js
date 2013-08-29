@@ -239,12 +239,7 @@ define([
       var me = this;
       $(me.el_tab_content).html(tabContent);
       me.addActiveClass(this.activeMenuId)
-      
-      $('.DataTable').dataTable({
-        "oLanguage": {
-          "sUrl": "app/libs/datatables/dataTables.ukrainian.txt"
-        }
-      });
+      $('.DataTable').dataTable();
 
       //$('#content select').selectpicker()
     },
