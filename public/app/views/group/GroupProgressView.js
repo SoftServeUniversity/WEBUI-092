@@ -15,7 +15,7 @@ define([
 
         var studentsCollection = new StudentsProxyCollection();
             studentsCollection.fetch({
-                url: "app/mocks/students.json",
+                url: "/students/",
                 async:false
             });
 

@@ -24,21 +24,114 @@ User.all.each do |user|
   user.add_role :guest if user.roles.empty?
 end
 
-f = Faculty.find_or_create_by_name name: 'test fac'
-puts f.name
+#Users table
+if User.all.empty?
+  s = 'User_ABC'
+  9.times do |time| 
+    fc = User.create! name: (s.next! + time.to_s)
+    puts 'created '<< fc.name
+  end
+end
 
+#Faculty Table
+if Faculty.all.empty?
+  s = 'Faculty_ABC'
+  9.times do |time| 
+    fc = Faculty.create! name: (s.next! + time.to_s)
+    puts 'created '<< fc.name
+  end
+end
+
+#Department Table
 if Department.all.empty?
-  s = 'ABC'
+  s = 'Department_ABC'
   10.times do |time| 
-    d = Department.create! name: (s.next! + time.to_s), faculty_id: f.id
+    dp = Department.create! name: (s.next! + time.to_s), faculty_id: 1
+    puts 'created '<< dp.name
+  end
+end
+
+#Group Table
+if Group.all.empty?
+  s = 'Group_ABC'
+  10.times do |time| 
+    d = Group.create! name: (s.next! + time.to_s)
     puts 'created '<< d.name
   end
 end
 
-if Group.all.empty?
-  s = 'ABC'
+#Course Table
+if Course.all.empty?
+  s = 'Course_ABC'
   10.times do |time| 
-    d = Group.create! name: (s.next! + time.to_s), department_id: f.id, course_id: f.id, teacher_id: f.id
+    d = Course.create! name: (s.next! + time.to_s), year_of_start: "2012-02-01"
     puts 'created '<< d.name
   end
 end
+
+#Student Table
+#if Student.all.empty?
+#  s = 'Student_ABC'
+#  9.times do |time| 
+#    fc = Student.create! last_name: (s.next! + time.to_s)
+#    puts 'created '<< fc.last_name
+#  end
+#end
+
+#Task Table
+if Task.all.empty?
+  s = 'Task_ABC'
+  10.times do |time| 
+    d = Task.create! name: (s.next! + time.to_s), work_id: 1
+    puts 'created '<< d.name
+  end
+end
+
+#Teachers Table
+#if Teacher.all.empty?
+#  s = 'Teacher_ABC'
+#  9.times do |time| 
+#    fc = Teacher.create! name: (s.next! + time.to_s)
+#    puts 'created '<< fc.name
+#  end
+#end
+
+#Works Table
+if Work.all.empty?
+  s = 'Work_ABC'
+  10.times do |time| 
+    d = Work.create! name: (s.next! + time.to_s)
+    puts 'created '<< d.name
+  end
+end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -14,10 +14,10 @@ define([
         var that = this;
 
         var groupsCollection = new GroupsProxyCollection();
-            groupsCollection.fetch({
-                url: "app/mocks/groups.json",
-                async:false
-            });
+        groupsCollection.fetch({
+          //url: "/groups/",
+          async:false
+        });
 
         var data = {
           header: 'Курс_1',

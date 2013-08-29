@@ -9,7 +9,7 @@ define([
             name: null,
             head_of_department: null,
             faculty: null,
-            percentage: 0
+            percentage: 15
         }
     });
 

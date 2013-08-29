@@ -7,7 +7,8 @@ define([
 
     var GroupsCollection = Backbone.Collection.extend({
         model:GroupModel,
-        url: "app/mocks/groups.json"
+        //url: "app/mocks/groups.json"
+        url: "/groups/"
     });
 
     return GroupsCollection;

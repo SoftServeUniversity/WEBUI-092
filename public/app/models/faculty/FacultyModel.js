@@ -5,13 +5,13 @@ define([
   
   var FacultyModel = Backbone.Model.extend({
   	    defaults: {
-  	    	/*id:1,
+  	    	id:1,
 		      name:"Назва факультету",
-		      num_students: 99,
-		      num_groups: 99,
-		      img:"i/faculties/8.png"*/
+		      num_groups: 50, //caculate
+          head: 1,
+		      img:"i/faculties/8.png", //external
+          progress: 0.2 //external
         },
-        urlRoot: '/faculties/'
   });
 
   return FacultyModel;
