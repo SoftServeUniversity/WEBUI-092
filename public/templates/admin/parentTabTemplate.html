@@ -1,13 +1,17 @@
-<table class="table">
+<table class="table <%= table_class %>">
   <% var first = true; %>
   <% //display table headers %>
   <% for(var entity in entities) { %>
   	<% if (first){ %>
-  	  <tr>
+  	  <thead>
+      <tr>
   	  	<% for(i=0; i<entities[entity]['labels'].length; i++){ %>
   	    	<th class="text-center"><%= entities[entity]['labels'][i] %></th>
   	    <% } %>
+        <th class="hidden"></th>
+        <th class="hidden"></th>
   	  </tr>
+    </thead>
     <% } %>
   
   

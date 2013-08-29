@@ -5,7 +5,6 @@ class WorksController < ApplicationController
     @works = Work.all
 
     respond_to do |format|
-      format.html # index.html.erb
       format.json { render json: @works }
     end
   end
@@ -23,6 +22,26 @@ class WorksController < ApplicationController
       })}
     end
   end
+ #get /work/:id/tasks
+  def show_tasks
+    @tasks = Task.where(work_id: params[:id]).order("priority ASC")
+
+    respond_to do |format|
+      format.json { render json: @tasks }
+    end
+  end
+  # get work/:id/tasks/progresses
+  def show_tasks_with_progresses
+    @tasks = Task.where(work_id: params[:id]).order("priority ASC")
+    @progresses = []
+    @tasks.each do |task|
+      @progresses.push(TaskProgress.where(task_id: task.id).last)
+    end
+    respond_to do |format|
+      format.json { render json: @progresses }
+    end
+
+  end
 
   # GET /works/new
   # GET /works/new.json
@@ -30,7 +49,6 @@ class WorksController < ApplicationController
     @work = Work.new
 
     respond_to do |format|
-      format.html # new.html.erb
       format.json { render json: @work }
     end
   end

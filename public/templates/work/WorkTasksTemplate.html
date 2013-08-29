@@ -1,18 +1,20 @@
-<h3><%= workname %></h3>
-<h4><%= studentname %></h4>
-<h5><%= teachername %></h5>
-
-<a href="#myModal" role="button" class="span1 offset11 history-modal" data-toggle="modal">історія</a>
+<h3><%= work.get("name") %></h3>
+<h4>Тут вставити ім’я студента з id: <%= work.get("student_id") %></h4>
+<h5>Бобало Юрій</h5>
 
 <div>
-	<%= tasksList %>
+  <a href="#myModal" role="button" class="span1 offset11 history-modal" data-toggle="modal">історія</a>
 </div>
 
+<ul id="sortable">
+  <%= tasksList %>
+</ul>
+
 <form>
-	<fieldset>
-		<legend>Створити завдання</legend>
-		<label>Назва завдання</label>
-		<input class="input-xxlarge" type="text">
-		<button type="submit" id="create-btn">Створити</button>
-	</fieldset>
+  <fieldset>
+    <legend>Створити завдання</legend>
+    <label>Назва завдання</label>
+    <input id="task-name" class="input-xxlarge" type="text">
+    <button type="submit" id="create-btn">Створити</button>
+  </fieldset>
 </form>

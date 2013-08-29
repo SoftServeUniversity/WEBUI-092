@@ -27,8 +27,8 @@ define([
 
   ], function($, _, Backbone, GlobalUser, FacultiesListView, RegistrationView, GroupProgressView,
   	          StudentProgressView, CourseProgressView,  MainFacultyView, MainDepartmentView,
-  	          TeacherProgressView, MainWorkView, taskView, TasksCollection, NotFoundView,
-              AdminFacultyView, AdminView, MainTeacherView, TeacherGroupView, UserSingUpView,
+  	          TeacherProgressView, MainWorkView, TaskView, TasksCollection, NotFoundView,
+              AdminFacultyView, AdminView, MainTeacherView, TeacherGroupView, UserSingUpView, 
               InfoView, BreadcrumbsView
              ) {
 
@@ -50,7 +50,7 @@ define([
         'work/:id'               : 'workShowAction',
         'fa'                     : 'viewAdminFacultyPage',
         'admin'                  : 'viewAdminPage',
-        'work/:id/:taskid'       : 'taskShow',
+        'task/:id'               : 'taskShow',
         'sign_up'                : 'userSingUp',
         'info'                   : 'infoAction',
         // Default
@@ -70,15 +70,18 @@ define([
       });
 
       app_router.on('route:workShowAction', function (id){
-        var workView = new MainWorkView(id);
+        var workView = new MainWorkView({"id": id});
+        var breadcrumbsView = new BreadcrumbsView();
       });
 
       app_router.on('route:viewAdminFacultyPage', function (){
         var adminFacultyView = new AdminFacultyView();
+        var breadcrumbsView = new BreadcrumbsView();
       });
 
       app_router.on('route:viewAdminPage', function (){
         var adminView = new AdminView();
+        var breadcrumbsView = new BreadcrumbsView();
       });
 
       app_router.on('route:groupProgressAction', function (actions) {
@@ -92,12 +95,14 @@ define([
 
         var studentProgressView = new StudentProgressView();
         studentProgressView.render();
+        var breadcrumbsView = new BreadcrumbsView();
       });
 
        app_router.on('route:courseProgressAction', function (actions) {
 
         var courseProgressView = new CourseProgressView();
         courseProgressView.render();
+        var breadcrumbsView = new BreadcrumbsView();
       });
 
       app_router.on('route:facultyAction', function (id) {
@@ -117,38 +122,44 @@ define([
       app_router.on('route:teacherProgressAction', function (actions) {
         var teacherProgressView = new TeacherProgressView();
         teacherProgressView.render();
+        var breadcrumbsView = new BreadcrumbsView();
       });
 
       app_router.on('route:teacherAction', function (id) {
         var mainTeacherView = new MainTeacherView(id);
+        var breadcrumbsView = new BreadcrumbsView();
       });
 
       app_router.on('route:teacherGroupAction', function (id) {
         var teacherGroupView = new TeacherGroupView(id);
+        var breadcrumbsView = new BreadcrumbsView();
       });
 
       app_router.on('route:userSingUp', function(){
         var userSignUp = new UserSingUpView();
         userSignUp.render();
+        var breadcrumbsView = new BreadcrumbsView();
       });
 
       app_router.on('route:infoAction', function(){
         var infoView = new InfoView();
+        var breadcrumbsView = new BreadcrumbsView();
       });
 
 
-      app_router.on('route:taskShow', function (taskid, id) {
+      app_router.on('route:taskShow', function (id) {
 
-          var tasks = new TasksCollection;
+          /*var tasks = new TasksCollection;
           tasks.fetch({async:false});
           var task = tasks.get(id);
           if(!tasks.get(id)){
             var pageNotFound = new NotFoundView();
             pageNotFound.render();
             return;
-          }
-          var currentTask = new TaskView({"model": task});
+          }*/
+          var currentTask = new TaskView({"id": id});
           currentTask.render();
+          var breadcrumbsView = new BreadcrumbsView();
       });
 
       app_router.on('route:defaultAction', function (actions) {

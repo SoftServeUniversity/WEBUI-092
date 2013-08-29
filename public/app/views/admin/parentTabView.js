@@ -32,7 +32,7 @@ define([
 
             //add event handlers from current tab
             if (me.addCustomEvents) {me.addCustomEvents ()}
-
+           
 
       })
 
@@ -56,6 +56,9 @@ define([
       var visible_fields = [];
       var labels = [];
         
+      if (!config.table_class) {
+        config.table_class='';
+      }
         //loop through data
         for (i=0; i<config.data.length; i++) {
 
@@ -98,11 +101,13 @@ define([
             json_data[a]['item_buttons'] = config.item_buttons
             counter++;
           }
-          
-        
+
         }
+
         var data = {};
         data.entities = json_data;
+        
+        data['table_class'] = config.table_class
         return data; 
     },
 

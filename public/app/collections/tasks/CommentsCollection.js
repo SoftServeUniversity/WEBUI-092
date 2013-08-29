@@ -6,7 +6,7 @@ define([
 	], function($, _, Backbone, commentModel){
 
 		var CommentsCollection = Backbone.Collection.extend({
-			'url': 'app/collections/tasks/commentsCollection.json',
+			//'url': 'app/collections/tasks/commentsCollection.json',
 			model: commentModel
 		});
 
