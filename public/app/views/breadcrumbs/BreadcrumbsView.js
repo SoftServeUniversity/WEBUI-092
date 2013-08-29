@@ -78,14 +78,29 @@ define([
                     
                     breadcrumbsFetch();
 
-                    breadcrumbsShow();
+                        breadcrumbsShow();
                 }else{
                     return;
                 }
                 
             }
+                console.log(collType);
 
-                breadcrumbsFind();
+                if( 
+                    collType == 'faculty' || 
+                    collType == 'department' || 
+                    collType == 'course' ||
+                    collType == 'group' ||
+                    collType == 'teacher' ||
+                    collType == 'student' ||
+                    collType == 'work' ||
+                    collType == 'task'
+                    ){
+                    breadcrumbsFind();
+                    }else{
+                        $('.breadcrumb li').remove();
+                    }
+                    
                 
     
             function breadcrumbsShow(){
@@ -130,6 +145,8 @@ define([
                     $('.breadcrumb li').remove();
                     location.href = "#/";
                 });
+                    
+                
                 $('.breadcrumb a').on('click', function(){
                         var crumbClassValue = $(this).attr('id');
                         var underscorePosition = crumbClassValue.indexOf('_');

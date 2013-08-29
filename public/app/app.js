@@ -6,8 +6,11 @@ define([
   'backbone',
   'router', // Request router.js
   'bootstrap',
-  'marionettes/user/init',
-], function($, _, mr_csrf, Backbone, Router, Bootstrap, GlobalUser){
+  'datatables',
+  'wysihtml',
+  'marionettes/user/init'
+
+], function($, _, mr_csrf, Backbone, Router, Bootstrap, DataTables, WysiHtml, GlobalUser){
   var initialize = function(){
     // Pass in our Router module and call it's initialize function
     Router.initialize();

@@ -10,10 +10,34 @@
         <td>
           <input type="button" value="Додати" class="btn btn-success">
         </td>
+        <td>
+          <!-- Button for remove student if bad group -->
+          <input type="button" value="Відхилити" class="btn btn-danger" data-target="#dialogRejectStudentFromGroup" data-toggle="modal">
+        </td>
       </tr>
     <% } %>
   <tbody>
 </table>
+
+
+
+<!-- Modal dialog for remove student if bad group-->
+<div id="dialogRejectStudentFromGroup" class="modal hide fade">
+  <div class="modal-header">
+    <button class="close" data-dismiss="modal">×</button>
+    <h3>Відхилення авторизації студента</h3>
+  </div>
+
+  <div class="modal-body">
+    <p>Відхилити авторизацію студента <strong><%= students_for_confirm[0]['full_name'] %></strong>?</p>
+  </div>
+
+  <div class="modal-footer">
+    <a class="btn" href="#" data-dismiss="modal" aria-hidden="true" >Відміна</a>
+    <a class="btn btn-danger" href="#" onclick="alert('Студента видалено з групи.')" data-dismiss="modal" aria-hidden="true">Відхилити</a>
+  </div>
+</div>
+
 <br>
 
 <table class="table table-hover .table-condensed">
@@ -26,28 +50,26 @@
         <td>
           <!-- Button for add student to group -->
           <input type="button" value="Вилучити" class="btn btn-danger" data-target="#dialogDeleteStudentFromGroup" data-toggle="modal">
-
-          <!-- Modal dialog for button Delete student form teacher group-->
-          <div id="dialogDeleteStudentFromGroup" class="modal hide fade">
-
-            <div class="modal-header">
-              <button class="close" data-dismiss="modal">×</button>
-              <h3>Вилучення студента з групи</h3>
-            </div>
-
-            <div class="modal-body">
-              <p>Вилучити студента <strong><%= students_of_teach_group[i]['full_name'] %></strong> з групи <strong><%= students_of_teach_group[i].group_name %></strong>?</p>
-            </div>
-
-            <div class="modal-footer">
-              <a class="btn" href="#" data-dismiss="modal" aria-hidden="true" >Відміна</a>
-              <a class="btn btn-danger" href="#" onclick="alert('Студента видалено з групи.')" data-dismiss="modal" aria-hidden="true">Вилучити</a>
-            </div>
-
-          </div>
-
         </td> <!-- End of modal window -->
       </tr>
     <% } %>
   </tbody>
 </table>
+
+<!-- Modal dialog for button Delete student form teacher group-->
+<div id="dialogDeleteStudentFromGroup" class="modal hide fade">
+
+  <div class="modal-header">
+    <button class="close" data-dismiss="modal">×</button>
+    <h3>Вилучення студента з групи</h3>
+  </div>
+
+  <div class="modal-body">
+    <p>Вилучити студента <strong><%= students_of_teach_group[0]['full_name'] %></strong> з групи <strong><%= students_of_teach_group[0].group_name %></strong>?</p>
+  </div>
+
+  <div class="modal-footer">
+    <a class="btn" href="#" data-dismiss="modal" aria-hidden="true" >Відміна</a>
+    <a class="btn btn-danger" href="#" onclick="alert('Студента видалено з групи.')" data-dismiss="modal" aria-hidden="true">Вилучити</a>
+  </div>
+</div>
