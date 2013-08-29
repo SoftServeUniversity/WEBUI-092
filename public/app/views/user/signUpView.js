@@ -27,6 +27,7 @@ define([
     template: signUpTemplate,
 
     el: $('#content'),
+    capcha: '',
 
     initialize: function() {
       this.model = new UserRegistration();
@@ -39,6 +40,15 @@ define([
       $(this.el).find(".roleStudent").hide();
       $(this.el).find(".roleTeacher").hide();
       this.populate_roles_select();
+      this.generate_capcha();
+    },
+
+    generate_capcha: function(){
+      var text = "";
+      var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+      for( var i=0; i < 5; i++ )
+          text += possible.charAt(Math.floor(Math.random() * possible.length));
+      return text;
     },
 
     events: {

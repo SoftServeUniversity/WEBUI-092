@@ -42,3 +42,7 @@ if Group.all.empty?
     puts 'created '<< d.name
   end
 end
+
+
+Work.create! name: "name",progress: "progress", student_id: 9
+
