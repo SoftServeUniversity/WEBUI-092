@@ -3,7 +3,7 @@ development:
   encoding: utf8
   database: webui_dev
   username: root
-  password: futngkvjbmhoy70yo
+  password:
 
 test:
   adapter: mysql2
