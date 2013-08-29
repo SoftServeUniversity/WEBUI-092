@@ -22,6 +22,6 @@ define([
             return this;
         }
     });
-    return ElementView;
 
+    return ElementView;
 });

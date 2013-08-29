@@ -10,7 +10,7 @@ class InfoController < ApplicationController
       @file_path = "public/infopage.html"
       @content = File.read (@file_path)
 
-      format.json { render json: @content }
+      format.json { render json: { content: @content } }
     end 
   end
  

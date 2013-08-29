@@ -1,28 +1,24 @@
+
 define([
   'jquery',
   'underscore',
   'backbone',
   'views/admin/parentTabView',
   'text!templates/admin/removeDialogTemplate.html'
-], function($, _, Backbone, ParentTabView, removeDialogTemplate){   
+], function($, _, Backbone, ParentTabView, removeDialogTemplate){
 
 var RemoveDialogView = Backbone.View.extend(
 {
   el: '#content',
   el_modal: '#delete-modal',
 
-  appended : true,
+  initialize: function (model, data) {
+    this.data = data;
+    this.template = _.template(removeDialogTemplate);
 
-
-  initialize: function (model_id, collection) {
-    this.model_id = model_id;
-    this.collection = collection;
-    this.templ = _.template(removeDialogTemplate);
-    
     _.bindAll(this, 'cancelAction');
     _.bindAll(this, 'removeElement');
     _.bindAll(this, 'keyPressHandler');
-
 
     this.render();
     this.addEventHandlers();
@@ -43,26 +39,27 @@ var RemoveDialogView = Backbone.View.extend(
     $(document).on('keypress', this.keyPressHandler);
   },
 
-
   //to confirm removal with Enter
   keyPressHandler: function(e){
       if (e.keyCode == 13){
-          this.removeElement(); 
+          this.removeElement();
     }
   },
 
   hideModal: function () {
     $(this.el_modal).modal('hide');
   },
+
   showModal: function () {
     $(this.el_modal).modal('show');
   },
 
   render: function () {
     if($(this.el_modal).length==0){
-	    $(this.el).append(this.templ());
-	  } 
-    this.showModal();     
+
+      $(this.el).append(this.template(this.data));
+	  }
+    this.showModal();
 	  return this;
   },
 
@@ -70,11 +67,8 @@ var RemoveDialogView = Backbone.View.extend(
   cancelAction: function () {
     this.hideModal();
   },
-  
-  removeElement: function (e) {
-    console.log(this)
-    var model = this.collection.get(this.model_id);
 
+  removeElement: function (e) {
     var options = {
         success: function (model, response) {
             console.log('remove success');
@@ -84,12 +78,12 @@ var RemoveDialogView = Backbone.View.extend(
         }
     };
 
-    model.destroy(options);
-    this.collection.remove(model);
+    console.log(this.model)
+    this.model.destroy(options);
+    console.log(this.model)
 
     $('.nav-tabs .active').trigger('click')
     this.hideModal();
-
 
     this.removeZombieEvents()
   }

@@ -21,26 +21,48 @@
     <div class="sub-wrapper">
       <header>
         
-        <button id='main-header-button' class="btn">Головна</button>
+            <div class="navbar">
 
-        <div id="authBox" class="authBox"><button id="launch-btn" class="btn btn-primary pull-right">Увійти</button></div>  
-                
-        <div class="yearBox">
-          <form class="form-horizontal">
-            <div class="control-group">
-              <label class="control-label" for="sel-year">Навчальний рік: </label>
-              <div class="controls">
-                <select id="sel-year">
-                  <option>2011-2012</option>
-                  <option>2012-2013</option>
-                  <option>2013-2014</option>
-                </select>
+              <div class="navbar-inner">
+
+              <a class="brand" href="#">WebUI-092</a>
+              <ul id="main-top-menu" class="nav">
+
+                <li><a href="#/">На головну</a></li>
+                <li><a href="/#/info">Інформація про систему</a></li>
+
+              </ul>
+        
+                <div id="authBox" class="authBox"><button id="launch-btn" class="btn btn-primary pull-right">Увійти</button></div>
+                <div class="yearBox">
+                  <form class="form-horizontal">
+                    <div class="control-group">
+
+                      <label class="control-label" for="sel-year">Навчальний рік: </label>
+                      <div class="controls">
+
+                        <select id="sel-year">
+                          <option>2011-2012</option>
+                          <option>2012-2013</option>
+                          <option>2013-2014</option>
+                        </select>
+
+                      </div>
+                    </div>
+                  </form>
+                </div>
+
               </div>
+
             </div>
-          </form>
-        </div>
+
+
+
+
+
       </header>
-      <div class="wizard"></div>
+      <ul class="breadcrumb"></ul>
+
       <article class="text-center">
         <div id ="content" class="container">
           

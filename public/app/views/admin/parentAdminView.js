@@ -5,21 +5,22 @@ define([
   'bootstrapselect',
   'underscore',
   'backbone',
+  'bootstrap_datatables',
   'views/shared/MenuView',
   'text!templates/admin/parentAdminTemplate.html',
   'views/admin/newElementView',
-  'views/admin/removeDialogView'
+  'views/shared/RemoveDialogView'
 
 
-], function($, bootstrapselect, _,  Backbone, MenuView, parentAdminTemplate, NewElementView, RemoveDialogView){   
+], function($, bootstrapselect, _,  Backbone, Bootstrap_dataTables, MenuView, parentAdminTemplate, NewElementView, RemoveDialogView){
 
   var AdminParentView = Backbone.View.extend({
-    
+
     el             : '#content',
     el_headline    : '#headline',
     el_tab_menu    : '#tab-menu',
     el_tab_content : '#tab-content',
-    
+
     headline: 'Default Admin Headline',
 
     //when page loads - load default tab
@@ -31,19 +32,19 @@ define([
         }
       }
     },
-  
+
     //add active class to tab menu
     addActiveClass: function(id){
       $('.nav-tabs *').removeClass('active').find('#'+id).addClass('active');
     },
-    
+
     reloadTab: function () {
       $('.nav-tabs .active').trigger('click');
     },
 
     initialize: function(){
       var me = this;
- 
+
       //ADD COMMENT !!!!!
       this.events = JSON.parse(JSON.stringify(this.events));
 
@@ -55,32 +56,34 @@ define([
       this.on('onChildConfigLoaded', function(){
         $('.new-button').html(me.config.buttons['create']);
       })
-      
-      //Subview has rendered              
-      GlobalEventBus.on('tabChildSupViewLoaded', function(tabContent, config){      
-        me.config = config;        
+
+      //Subview has rendered
+      GlobalEventBus.on('tabChildSupViewLoaded', function(tabContent, config){
+        me.config = config;
         me.render(tabContent);
         me.trigger('onChildConfigLoaded');
-      }) 
+
+
+      })
 
       this.loadDefaultActiveTab(this.defaultActiveTab);
-      
-      /*this.checkVerification();*/    
+
+      /*this.checkVerification();*/
     },
 
     //remove all events, (to remove events bound in previous adminView.extend)
     events: {},
-    
+
     events: {
      //table events
      'dblclick .model .toggle-text'     : 'showInput',
      'blur .model .toggle-input'        : 'changed',
      'keypress .model .toggle-input'    : 'changed',
-     
+
      //modal windows
      'click .save'               : 'closeModal',
      'click .open-modal-import'  : 'openModalImport',
-     //'click #newElement'         : 'appendNewElementRow', 
+     //'click #newElement'         : 'appendNewElementRow',
      'click #create_button'      : 'saveElement',
      'click .delete-button'      : 'showRemoveDialog',
      'click .verify-button'      : 'verifyElement'
@@ -92,7 +95,7 @@ define([
       _.each(this.tabMenuConfig, function (item){
         me.events['click #'+ item['id']] = item['action'];
       })
-    },    
+    },
 
     appendNewElementRow: function(){
       var me = this;
@@ -100,16 +103,16 @@ define([
         var newElementView = new NewElementView();
         var content = newElementView.render(me.config);
         $(me.el_tab_content + ' table tbody').append(content.$el.html())
-        //$('#content select').selectpicker() 
-      
+        //$('#content select').selectpicker()
+
       } else {
         $('#new_entity').remove();
-      
-      }    
+
+      }
     },
-    
+
     showInput: function(e){
-      $(e.target).css('display', 'none').prev().css('display','block'); 
+      $(e.target).css('display', 'none').prev().css('display','block');
     },
     hideAdminButtons: function(){
       $('.admin-buttons').css('display', 'none')
@@ -117,35 +120,35 @@ define([
     showAdminButtons: function(){
       $('.admin-buttons').css('display', 'block')
     },
-    
+
 
     //some input in tab has been changed
     changed: function (e){
       var me = this;
       if ((e.type == 'keypress' && e.keyCode == 13) || e.type == 'focusout'){
-        var field_name = $(e.target).attr('name'); 
-        var model_id = $(e.target).closest('.model').attr('model_id'); 
+        var field_name = $(e.target).attr('name');
+        var model_id = $(e.target).closest('.model').attr('model_id');
         var toggle_text = $(e.target).closest('.model').find('.toggle-text')
-        
+
         var field_value = $(e.target).val();
-        
+
         me.modelSaveOnChange({
           id:model_id,
           field_name: field_name,
           field_value: field_value
         });
-         
+
         $('.toggle-list .toggle-input').css('display','none');
         $('.toggle-list .toggle-text').css('display', 'block');
         me.reloadTab();
-      }   
-    },      
-    
+      }
+    },
+
     modelSaveOnChange: function(data){
       var a =this.config.collection.get(data.id);
       var field_name = data.field_name;
       var field_value = data.field_value;
-      
+
       putData = {};
       putData[field_name]=field_value;
       a.set(putData)
@@ -168,9 +171,10 @@ define([
 
 
     showRemoveDialog: function(e){
-       var model_id = $(e.target).closest('.model').attr('model_id');
-       var collection = this.config.collection;
-       new RemoveDialogView(model_id, collection);
+      var model_id = $(e.target).closest('.model').attr('model_id');
+      var model = this.config.collection.get(model_id);
+
+      new RemoveDialogView({model: model}, {message: 'Будь ласка, підтвердіть видалення', header: 'Ви впевнені?'});
     },
 
     saveElement: function(){
@@ -204,7 +208,7 @@ define([
     verifyElement: function(e){
       var model_id = $(e.target).closest('.model').attr('model_id');
       var model = this.config.collection.get(model_id);
-      
+
       var options = {
         success: function (model, response) {
             console.log('remove success');
@@ -235,9 +239,11 @@ define([
       var me = this;
       $(me.el_tab_content).html(tabContent);
       me.addActiveClass(this.activeMenuId)
-      //$('#content select').selectpicker() 
+      $('.DataTable').dataTable();
+
+      //$('#content select').selectpicker()
     },
-    
+
     /*checkVerification: function (){
       for ( var i in this.tabMenuConfig ) {
         if (this.tabMenuConfig[i]['verification'] = true){
@@ -255,21 +261,20 @@ define([
 
     render: function (tabContent){
       var me = this;
-      
+
       //render basic template with containers
       var compiledTemplate = _.template(parentAdminTemplate);
       this.$el.html(compiledTemplate);
-      
+
       //render elements of page
       this.renderHeadline();
       this.renderMenu();
       this.renderTab(tabContent);
-      
       //hide all toggle-inputs when user clicks not on input
       $('body').on('click',function(e){
-        if ($(e.target).closest('.toggle-input').length <= 0){  
+        if ($(e.target).closest('.toggle-input').length <= 0){
           $('.toggle-list .toggle-input').css('display','none');
-          $('.toggle-list .toggle-text').css('display', 'block'); 
+          $('.toggle-list .toggle-text').css('display', 'block');
         }
       })
 
@@ -279,7 +284,7 @@ define([
         me.appendNewElementRow();
       });
 
-      // next time child view loads - only tab content will render and button text update 
+      // next time child view loads - only tab content will render and button text update
       GlobalEventBus.off('tabChildSupViewLoaded');
       GlobalEventBus.on('tabChildSupViewLoaded', function(tabContent, config){
         me.config = config;
@@ -287,9 +292,9 @@ define([
         me.trigger('onChildConfigLoaded');
       })
 
-      //$('#content select').selectpicker() 
+      //$('#content select').selectpicker()
     }
-  
+
   });
 
   return  AdminParentView;

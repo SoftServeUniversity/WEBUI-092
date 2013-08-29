@@ -40,7 +40,6 @@ define([
 
                                 breadcrumbsObj.push(arr); 
 
-
                                 if(a[i].department_id){
                                     current = new DepartmentsCollection();
                                     breadcrumbsFetch();
@@ -65,103 +64,104 @@ define([
             }
 
             function breadcrumbsFind(){
-                
-                switch(collType){
+    
+                if(collType){
+                    str = collType.toLowerCase().replace(/\b[a-z]/g, function(letter) {
+                        return letter.toUpperCase();
+                    });
+                    
+                    str = str.replace(/y$/, "ie");
+                    console.log(str);
+                    var collectionName = str+"sCollection";
+                        
+                    eval('current = new ' + collectionName + '()');
+                    
+                    breadcrumbsFetch();
 
-                    case 'faculty':
-                        current = new FacultiesCollection();
-                    break;
-
-                    case 'department':
-                        current = new DepartmentsCollection();
-                    break;
-
-                    case 'group':
-                        current = new GroupsCollection();
-                    break;
-
-                    default:
-                        return;
+                        breadcrumbsShow();
+                }else{
+                    return;
                 }
-
                 
-
-                /*------------------------------------------------------------------------
-                Замість блоку вище я б хотів реалізувати динамічне формування змінної.
-                Щось на зразок цього:
-
-                str = collType.toLowerCase().replace(/\b[a-z]/g, function(letter) {
-                    return letter.toUpperCase();
-                });
-                str.replace(/\/$y/, "ie");
-                var collectionName = str+"sCollection";
-                current = new collectionName();
-
-
-                TypeError: collectionName is not a constructor
-
-
-                Ще пробував робити голобальну змінну:
-
-                window.collectionName = str+"sCollection";
-                current = window[collectionName]();
-
-                також та сама помилка.
-                --------------------------------------------------------------------------*/
-                
-                
-                breadcrumbsFetch();
-
             }
+                console.log(collType);
 
-            breadcrumbsFind();
-
-            breadcrumbsShow();
-            
+                if( 
+                    collType == 'faculty' || 
+                    collType == 'department' || 
+                    collType == 'course' ||
+                    collType == 'group' ||
+                    collType == 'teacher' ||
+                    collType == 'student' ||
+                    collType == 'work' ||
+                    collType == 'task'
+                    ){
+                    breadcrumbsFind();
+                    }else{
+                        $('.breadcrumb li').remove();
+                    }
+                    
+                
+    
             function breadcrumbsShow(){
 
                 breadcrumbsObj.reverse();
 
                 for(var i in breadcrumbsObj){
                     var a = breadcrumbsObj[i][2]+"_"+breadcrumbsObj[i][1];
+                    var c = $('<li></li>');
                     var b = $('<a></a>').html(breadcrumbsObj[i][0])
                                         .attr('id', a)
-                                        .addClass(breadcrumbsObj[i][2])
-                                        .css('display', 'none');
+                                        .addClass(breadcrumbsObj[i][2]);
+                                        
 
-                        $('.wizard').find('.'+breadcrumbsObj[i][2])
+                        $('.breadcrumb').find('.'+breadcrumbsObj[i][2])
                                             .html(breadcrumbsObj[i][0]).attr('id', a);
-                        $('.wizard').append(b);
-                        $('.wizard a').fadeIn(1000);
-                        
+
+                        var divider = $('<span>/</span>').addClass('divider');
+                        c.append(b).css('display', 'none');
+                        c.append(divider)
+
+                        $('.breadcrumb').append(c);
+                        $('.breadcrumb li').fadeIn(1000);
+                        $('.breadcrumb li').last().addClass('active');
+                         
                 }
 
-                $('.wizard').find('.'+breadcrumbsObj[i][2]).nextAll().remove();
-                $('.wizard').append(b);
-                $('.wizard a').fadeIn(1000);
+                $('.breadcrumb').find('.'+breadcrumbsObj[i][2]).parent().nextAll().remove();
+                $('.breadcrumb').append(c);
+                $('.breadcrumb li').fadeIn(1000);
+
                 
                 checkBreadcrumbs();
                 
-                $('.wizard').find('.'+collType).nextAll().remove();
+
+                $('.breadcrumb li span').css('display', 'inline');
+                $('.breadcrumb li:last-child span').css('display', 'none');
+
+                $('.breadcrumb').find('.'+collType).parent().nextAll('li').remove();
 
                 $('header').find('button#main-header-button').on('click', function(){
-                    $('.wizard a').remove();
+                    $('.breadcrumb li').remove();
                     location.href = "#/";
                 });
-                $('.wizard a').on('click', function(){
+                    
+                
+                $('.breadcrumb a').on('click', function(){
                         var crumbClassValue = $(this).attr('id');
                         var underscorePosition = crumbClassValue.indexOf('_');
                         var locationPage = crumbClassValue.substr(0, underscorePosition);
                         var numberPage = crumbClassValue.substr(underscorePosition+1);
                         location.href = "/#/"+locationPage+"/"+numberPage;
-                        $(this).nextAll('a').remove();
+                        $(this).parent().nextAll('li').remove();
                 });
             }
             function checkBreadcrumbs(){
-                $('.wizard a').each(function() {
+                $('.breadcrumb a').each(function() {
                     var txt = $(this).attr('class');
                     if (seen[txt])
-                        $(this).remove();
+                        $(this).parent().remove();
+                        
                     else
                         seen[txt] = true;
                 });
