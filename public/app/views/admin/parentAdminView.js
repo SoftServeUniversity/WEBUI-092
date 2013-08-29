@@ -171,7 +171,7 @@ define([
       var model_id = $(e.target).closest('.model').attr('model_id');
       var model = this.config.collection.get(model_id);
 
-      new RemoveDialogView({model: model});
+      new RemoveDialogView({model: model}, {message: 'blah'});
     },
 
     saveElement: function(){

@@ -13,20 +13,27 @@ define([
         events: {
           'click .btn-danger': 'showRemoveDialog'
         },
+
         showRemoveDialog: function(){
           removeDialogView = new RemoveDialogView({model: this.model});
         },
+
         initialize:function(){
-            this.render();
+          var me = this;
+          this.render();
+          this.model.on('destroy', function(){
+            me.removeView();
+          });
         },
 
         render:function(counter){
             // counter -  is used for mark each element in a table
-            // linkTo - is used for creating <a> links if it is needed
             this.model.set('counter', counter);
-            this.model.set('linkTo', this.options.linkTo);
             this.$el.html(this.template(this.model.toJSON()));
             return this;
+        },
+        removeView: function(){
+
         }
     });
 

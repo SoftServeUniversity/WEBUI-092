@@ -12,7 +12,8 @@ var RemoveDialogView = Backbone.View.extend(
   el: '#content',
   el_modal: '#delete-modal',
 
-  initialize: function () {
+  initialize: function (model, data) {
+    this.data = data;
     this.template = _.template(removeDialogTemplate);
 
     _.bindAll(this, 'cancelAction');
@@ -55,7 +56,8 @@ var RemoveDialogView = Backbone.View.extend(
 
   render: function () {
     if($(this.el_modal).length==0){
-	    $(this.el).append(this.template());
+
+      $(this.el).append(this.template(this.data));
 	  }
     this.showModal();
 	  return this;
@@ -67,7 +69,6 @@ var RemoveDialogView = Backbone.View.extend(
   },
 
   removeElement: function (e) {
-
     var options = {
         success: function (model, response) {
             console.log('remove success');
@@ -77,7 +78,9 @@ var RemoveDialogView = Backbone.View.extend(
         }
     };
 
+    console.log(this.model)
     this.model.destroy(options);
+    console.log(this.model)
 
     $('.nav-tabs .active').trigger('click')
     this.hideModal();
