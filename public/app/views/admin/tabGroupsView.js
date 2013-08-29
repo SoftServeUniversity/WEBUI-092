@@ -27,6 +27,7 @@ define([
       
       var config = {
       	
+        table_class: 'DataTable',
         model     : GroupModel,
         collection: me.collections.groups,
         data      : [{

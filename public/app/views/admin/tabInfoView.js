@@ -1,15 +1,14 @@
 define([
   //put it on top (it has to be loaded before bootstrap-wysihtml5 starts loading)
-  'libs/bootstrap_wysihtml5/js/wysihtml5-0.3.0.min',
+  'libs/bootstrap_wysihtml5/js/bootstrap-wysihtml5',
   'jquery',
   'underscore',
   'backbone',
   'text!templates/admin/tabInfoTemplate.html',
   'models/info/InfoModel',
-  'libs/bootstrap_wysihtml5/js/bootstrap-wysihtml5',
   'libs/bootstrap_wysihtml5/locales/bootstrap-wysihtml5.ua-UA'
 
-], function(wysiwig, $, _, Backbone, tabInfoTemplate, InfoModel){
+], function(Wysihtml, $, _, Backbone, tabInfoTemplate, InfoModel){
 
   var TabInfoView = Backbone.View.extend({
     
@@ -19,9 +18,10 @@ define([
       var me = this;
       
       this.model = new InfoModel();
-      var ajaxData = this.model.fetch({async:false});
-      this.model.set({content: ajaxData.responseText});
-      this.render();
+
+      var ajaxData = me.model.fetch({async:false, success: function(response){
+        me.render(response.toJSON());
+      }});
     
       GlobalEventBus.on('infoChanged', function(content){
         me.updateInfo(content)

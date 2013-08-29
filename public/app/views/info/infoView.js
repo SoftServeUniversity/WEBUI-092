@@ -10,14 +10,12 @@ define([
     var InfoView = Backbone.View.extend({
 
         initialize:function(){
-            this.model = new InfoModel();
-            var ajaxData = this.model.fetch({async:false});
-
-            data = {
-                content: ajaxData.responseText
-            }
-
-            this.render(data)
+            var me = this;
+            me.model = new InfoModel();
+          
+            var ajaxData = me.model.fetch({async:false, success: function(response){
+                me.render(response.toJSON());
+            }});
         },
 
         render:function(data){
