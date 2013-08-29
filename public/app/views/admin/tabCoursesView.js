@@ -4,17 +4,14 @@ define([
   'backbone',
   'views/admin/parentTabView',
   'models/course/CourseModel',
-  'collections/courses/CoursesCollection',
-  'collections/faculties/FacultiesCollection'
+  'collections/courses/CoursesCollection'
 
-], function($, _, Backbone, ParentTabView, CourseModel, CoursesCollection,
-            FacultiesCollection){   
+], function($, _, Backbone, ParentTabView, CourseModel, CoursesCollection){   
    
   var TabChildCoursesView = ParentTabView.extend({
 
     collections_classes: {
-      courses: CoursesCollection,
-      faculties: FacultiesCollection
+      courses: CoursesCollection
     },
 
     //runs when all collections have loaded
@@ -29,17 +26,6 @@ define([
             _link: 'name',
             label:'Назва курсу',
             type:'text'
-          },
-          {
-            _link: 'year_of_start',
-            label:'Початок навчання',
-            type:'text'
-          },
-          {
-            _link: 'faculty_id',
-            label: 'Факультет',
-            type:'select',
-            src: me.collections.faculties
           }
         ],
 
