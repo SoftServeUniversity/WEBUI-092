@@ -2,7 +2,7 @@
  * Ukrainian translation for bootstrap-wysihtml5
  */
 (function($){
-    $.fn.wysihtml5.locale["ua-UA"] = {
+    window.onload = function(){ $.fn.wysihtml5.locale["ua-UA"] = {
         font_styles: {
             normal: "Звичайний текст",
             h1: "Заголовок 1",
@@ -44,6 +44,7 @@
             blue: "Синій",
             orange: "Помаранчевий"
         }
-    };
+      }
+    }
 }(jQuery));
 

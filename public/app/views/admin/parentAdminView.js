@@ -5,13 +5,14 @@ define([
   'bootstrapselect',
   'underscore',
   'backbone',
+  'bootstrap_datatables',
   'views/shared/MenuView',
   'text!templates/admin/parentAdminTemplate.html',
   'views/admin/newElementView',
   'views/shared/RemoveDialogView'
 
 
-], function($, bootstrapselect, _,  Backbone, MenuView, parentAdminTemplate, NewElementView, RemoveDialogView){
+], function($, bootstrapselect, _,  Backbone, Bootstrap_dataTables, MenuView, parentAdminTemplate, NewElementView, RemoveDialogView){
 
   var AdminParentView = Backbone.View.extend({
 
@@ -61,6 +62,8 @@ define([
         me.config = config;
         me.render(tabContent);
         me.trigger('onChildConfigLoaded');
+
+
       })
 
       this.loadDefaultActiveTab(this.defaultActiveTab);
@@ -236,6 +239,8 @@ define([
       var me = this;
       $(me.el_tab_content).html(tabContent);
       me.addActiveClass(this.activeMenuId)
+      $('.DataTable').dataTable();
+
       //$('#content select').selectpicker()
     },
 
@@ -265,7 +270,6 @@ define([
       this.renderHeadline();
       this.renderMenu();
       this.renderTab(tabContent);
-
       //hide all toggle-inputs when user clicks not on input
       $('body').on('click',function(e){
         if ($(e.target).closest('.toggle-input').length <= 0){
