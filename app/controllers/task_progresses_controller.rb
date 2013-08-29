@@ -1,14 +1,35 @@
 class TaskProgressesController < ApplicationController
-  # GET /tasks
-  # GET /tasks.json
+  # GET /task_progresses
+  # GET /task_progresses.json
   def index
     @task_progress = TaskProgress.all
     respond_to do |format|
-      format.html # show.html.erb
       format.json { render json: @task_progress }
     end
   end
-  
+  def progresses_by_month
+    @task_progresses = TaskProgress.where(task_id: params[:task_id])
+    counter = 0
+    data = []
+    @task_progresses.sort_by!{ |elem| elem['created_at'] }  
+    @task_progresses.each_with_index do |item, index|
+        newIndex = index + 1
+        month = item['created_at'].to_s.split('-')[1]
+        if newIndex == @task_progresses.length 
+          data[counter] = item["progress"]
+          break
+        end
+        prevmonth = @task_progresses[newIndex]["created_at"].to_s.split('-')[1]
+          unless month == prevmonth
+              data[counter] = item["progress"]
+              counter = counter + 1
+          end
+    end
+    respond_to do |format|
+      format.json { render json: data }
+    end
+
+  end
     # GET /tasks/:task_id/task_progresses.json
     def task_id_index
     @task_progresses = TaskProgress.where(task_id: params[:task_id])
@@ -26,8 +47,7 @@ class TaskProgressesController < ApplicationController
     end
   end
 
-  # GET /tasks/1
-  # GET /tasks/1.json
+  # GET /task_progresses/1.json
   def show
     @task_progress = TaskProgress.find(params[:id])
     # @task_progress["params"] = params
@@ -37,24 +57,18 @@ class TaskProgressesController < ApplicationController
     end
   end
 
-  # GET /tasks/new
-  # GET /tasks/new.json
-  def new
-    @task = TaskProgress.new
+  # # GET /task_progresses/new.json
+  # def new
+  #   @task_progress = TaskProgress.new
 
-    respond_to do |format|
-      format.html # new.html.erb
-      format.json { render json: @task }
-    end
-  end
-
-  # GET /tasks/1/edit
-  def edit
-    @task = TaskProgress.find(params[:id])
-  end
-
-  # POST /tasks
-  # POST /tasks.json
+  #   respond_to do |format|
+  #     format.html # new.html.erb
+  #     format.json { render json: @task_progress }
+  #   end
+  # end
+  
+  # POST /task_progresses
+  # POST /task_progresses.json
   def create
     @task_progress = TaskProgress.new(params[:task_progress])
 
@@ -69,8 +83,8 @@ class TaskProgressesController < ApplicationController
     end
   end
 
-  # PUT /tasks/1
-  # PUT /tasks/1.json
+  # PUT /task_progresses/1
+  # PUT /task_progresses/1.json
   def update
     @task_progress = TaskProgress.find(params[:id])
 
@@ -85,11 +99,11 @@ class TaskProgressesController < ApplicationController
     end
   end
 
-  # DELETE /tasks/1
-  # DELETE /tasks/1.json
+  # DELETE /task_progresses/1
+  # DELETE /task_progresses/1.json
   def destroy
-    @task = Task.find(params[:id])
-    @task.destroy
+    @task_progress = Task.find(params[:id])
+    @task_progress.destroy
 
     respond_to do |format|
       format.html { redirect_to tasks_url }

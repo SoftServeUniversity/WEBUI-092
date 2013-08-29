@@ -10,8 +10,8 @@ class TaskChangesController < ApplicationController
     end
   end
 
-  # GET /tasks/1
-  # GET /tasks/1.json
+  # GET /task_changes/1
+  # GET /task_changes/1.json
   def show
     @task_changes = TaskChange.where(task_id: params[:id]).order("created_at DESC")
     @task_changes.each do |change|
@@ -27,8 +27,8 @@ class TaskChangesController < ApplicationController
     end
   end
 
-  # GET /tasks/new
-  # GET /tasks/new.json
+  # GET /task_changes/new
+  # GET /task_changes/new.json
   def new
     @task_changes = TaskChange.new
 
@@ -38,13 +38,13 @@ class TaskChangesController < ApplicationController
     end
   end
 
-  # GET /tasks/1/edit
+  # GET /task_changes/1/edit
   def edit
     @task_changes = TaskChange.find(params[:id])
   end
 
-  # POST /tasks
-  # POST /tasks.json
+  # POST /task_changes
+  # POST /task_changes.json
   def create
     @task_changes = TaskChange.new(params[:task_change])
 
@@ -59,8 +59,8 @@ class TaskChangesController < ApplicationController
     end
   end
 
-  # PUT /tasks/1
-  # PUT /tasks/1.json
+  # PUT /task_changes/1
+  # PUT /task_changes/1.json
   def update
     @task_changes = TaskChange.find(params[:id])
 
@@ -75,8 +75,8 @@ class TaskChangesController < ApplicationController
     end
   end
 
-  # DELETE /tasks/1
-  # DELETE /tasks/1.json
+  # DELETE /task_changes/1
+  # DELETE /task_changes/1.json
   def destroy
     @task_changes = TaskChange.find(params[:id])
     @task_changes.destroy

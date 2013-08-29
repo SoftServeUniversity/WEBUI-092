@@ -13,7 +13,7 @@ define([
   ], 
   function($, _, Backbone, bootstrap, jqueryui, taskTemplate, taskCommentsView, 
           CommentsCollection, commentModel, TaskModel, ProgressModel){
-    var TaskView = Backbone.View.extend({
+      var TaskView = Backbone.View.extend({
       el: $("#content"),
       collection: new CommentsCollection(),
       events: {
@@ -42,11 +42,6 @@ define([
         e.preventDefault();
         var newCommentContent = $(e.currentTarget).find('textarea').val();
         var newTaskProcess = $(e.currentTarget).find('#number-range').val();
-        
-        //this.model.set("progress", newTaskProcess);
-        //this.model.save({"progress": newTaskProcess}, {success: function(){console.log('Saved')}});
-        console.log(this.model.url());
-        
         this.addNewProgress(newTaskProcess);
         this.addCommentToCollection(3, newCommentContent);
         this.closeModal();
@@ -55,11 +50,8 @@ define([
       addNewProgress: function (newProgress) {
         var progressModel = new ProgressModel({"progress": newProgress, "task_id": this.id});
         progressModel.save()
-
       },
       addCommentToCollection: function(author, content){
-        var currentDate = new Date();
-        var commentDate = currentDate.getDate() + " / " + currentDate.getMonth() + " / " +  currentDate.getFullYear();
         var newCommentModel = new commentModel({
           "user_id": author,
           "task_comment": content,

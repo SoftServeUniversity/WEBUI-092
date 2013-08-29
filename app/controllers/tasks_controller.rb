@@ -15,7 +15,6 @@ class TasksController < ApplicationController
   def show
     @task = Task.find(params[:id])
     respond_to do |format|
-      format.html # show.html.erb
       format.json { render json: @task.to_json(:include => :thesis_changes) }
     end
   end
@@ -26,7 +25,6 @@ class TasksController < ApplicationController
     @task = Task.new
 
     respond_to do |format|
-      format.html # new.html.erb
       format.json { render json: @task }
     end
   end
