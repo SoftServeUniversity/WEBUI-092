@@ -12,6 +12,6 @@ class Task < ActiveRecord::Base
   after_create :create_progress_and_change
   def create_progress_and_change
     @new_progress = TaskProgress.create(progress: 0, task_id: self.id)
-    TaskChange.create(task_id: self.id, task_progress_id: @new_progress.id, user_id: 1, task_comment: "Створено нове завдання")
+    TaskChange.create(task_id: self.id, task_progress_id: @new_progress.id, task_comment: "Створено нове завдання")
   end
 end

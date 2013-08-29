@@ -156,7 +156,6 @@ define([
             var pageNotFound = new NotFoundView();
             pageNotFound.render();
             return;
-<<<<<<< HEAD
           }*/
           var currentTask = new TaskView({"id": id});
           currentTask.render();
