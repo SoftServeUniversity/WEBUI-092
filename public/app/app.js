@@ -21,11 +21,20 @@ define([
     return function(method, model, options) {
       options.beforeSend = function(xhr) {
         xhr.setRequestHeader('X-CSRF-Token', $("meta[name='csrf-token']").attr('content'));
-        console.log('Backbone.sync X-CSRF-Token ' + $("meta[name='csrf-token']").attr('content'));
       };
       original(method, model, options);
     };
   })(Backbone.sync);
+
+  function checkPermition(type, id){
+    _.each(GlobalUser.currentUser.abilities, function(ability){
+      if ( ability.type == type && ability.id == id ){ 
+        return true;
+      }else{
+        false
+      }
+    });
+  }
 
   return { 
     initialize: initialize

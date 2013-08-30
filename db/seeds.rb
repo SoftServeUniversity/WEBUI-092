@@ -112,5 +112,3 @@ if Work.all.empty?
   end
 end
 
-
-

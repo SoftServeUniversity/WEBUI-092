@@ -55,6 +55,14 @@
           <input type="password" name="user[password_confirmation]" required id="inputPasswordReg" placeholder="Введіть свій пароль" name="password" data-validation-regex-regex="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$" data-validation-regex-message="Повинен містити великі та маленькі латинські букви і цифри. Мінімум 8 символів">
         </div>
       </div>
+      <canvas id="capcha-canvas" width="70" height="30"></canvas>
+      <div class="control-group" id='capcha'>
+        <label class="control-label" for="capcha">Ведіть символи з картинки</label>
+        <div class="controls">
+          <input id='capcha-field' name="capcha" required>
+          <button class='btn' id='capcha-reload'><img src="i/reload.png"></button>
+        </div>
+      </div>
       <div class="control-group">
         <input type='submit' id="sendFormReg" class="btn btn-primary" value='Відправити'></input>
       </div>
