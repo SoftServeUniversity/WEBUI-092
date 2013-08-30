@@ -4,10 +4,10 @@ define([
   'backbone',
   'models/work/WorkHistoryModel'
 ], function($, _, Backbone, WorkHistoryModel){
-	
+
   var WorkHistoryCollection = Backbone.Collection.extend({
-  	model: WorkHistoryModel,
-    url: '/thesis_changes/'
+    model: WorkHistoryModel,
+    url: 'app/mocks/work/historymodal.json'
 
   });
   

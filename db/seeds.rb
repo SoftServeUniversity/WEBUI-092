@@ -92,7 +92,7 @@ end
 if Task.all.empty?
   s = 'Task_ABC'
   10.times do |time| 
-    d = Task.create! name: (s.next! + time.to_s), work_id: Work.last.id
+    d = Task.create! name: (s.next! + time.to_s), work_id: rand(10)
     puts 'created '<< d.name
   end
 end

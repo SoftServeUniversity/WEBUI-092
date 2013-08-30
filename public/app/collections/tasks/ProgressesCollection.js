@@ -2,12 +2,11 @@ define([
 	'jquery',
 	'underscore',
 	'backbone',
-	'models/task/ProgressModel'
-	], function($, _, Backbone, ProgressModel){
-
-		var ProgressesCollection = Backbone.Collection.extend({
-			model: ProgressModel
+	'models/task/TaskModel'
+	], function($, _, Backbone, TaskModel){
+		var TasksCollection =  Backbone.Collection.extend({
+			'url': 'http://localhost:3000/tasks/1.json', // http://localhost:3000/tasks.json
+			model: TaskModel
 		});
-
-		return ProgressesCollection;
+		return TasksCollection;
 	});

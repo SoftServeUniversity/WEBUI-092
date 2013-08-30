@@ -2,15 +2,11 @@ define([
   'underscore',
   'backbone'
 ], function(_, Backbone) {
-      var WorkModel = Backbone.Model.extend({
-        url: '/works/',
-        defaults: {
-            id: 0,
-            name: "",
-            progress: 0,
-            student: 1
-        }
-    });
+  
+  var WorkModel = Backbone.Model.extend({
+  urlRoot: "http://localhost:3000/works"
+  });
 
-    return WorkModel;
+  return WorkModel;
+
 });
