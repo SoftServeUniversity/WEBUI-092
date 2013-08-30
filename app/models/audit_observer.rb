@@ -1,6 +1,6 @@
 class AuditObserver < ActiveRecord::Observer
   include UserInfo
-  observe :work, :task
+  #observe :work, :task
 
   def after_update(record)
     process_record(record, "UPDATE")
