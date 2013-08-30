@@ -13,22 +13,16 @@ YAML.load(ENV['ROLES']).each do |role|
   puts 'role: ' << role
 end
 
-puts 'DEFAULT USERS'
+puts 'DEFAULT USERS 1'
 user = User.find_or_create_by_email :name => ENV['ADMIN_NAME'].dup, :email => ENV['ADMIN_EMAIL'].dup, :password => ENV['ADMIN_PASSWORD'].dup, :password_confirmation => ENV['ADMIN_PASSWORD'].dup
 puts 'user: ' << user.name
 user.add_role :admin
 
-puts 'DEFAULT USERS'
-user = User.find_or_create_by_email :name => ENV['STUDENT_NAME'].dup, :email => ENV['STUDENT_EMAIL'].dup, :password => ENV['STUDENT_PASSWORD'].dup, :password_confirmation => ENV['STUDENT_PASSWORD'].dup
-puts 'user: ' << user.name
-user.add_role :student
+puts 'DEFAULT USERS 2'
+usr = User.find_or_create_by_email :name => ENV['ADMIN_NAME'].dup, :email => ENV['STUDENT_EMAIL'].dup, :password => ENV['ADMIN_PASSWORD'].dup, :password_confirmation => ENV['ADMIN_PASSWORD'].dup
+puts 'usr: ' << usr.name
+user.add_role :teacher
 
-
-#adding default role for old users records
-
-User.all.each do |user|
-  user.add_role :guest if user.roles.empty?
-end
 
 #Users table
 #if User.all.empty?
@@ -84,6 +78,16 @@ end
 #  end
 #end
 stud = Student.create user_id: User.last.id
+
+#Works Table
+if Work.all.empty?
+  s = 'Work_ABC'
+  10.times do |time| 
+    d = Work.create! name: (s.next! + time.to_s)
+    puts 'created '<< d.name
+  end
+end
+
 #Task Table
 if Task.all.empty?
   s = 'Task_ABC'
@@ -103,12 +107,4 @@ end
 #end
 tchr = Teacher.create user_id: User.first.id, department_id: Department.first.id, degree: 'PhD', title: 'Proffesor'
 
-#Works Table
-if Work.all.empty?
-  s = 'Work_ABC'
-  10.times do |time| 
-    d = Work.create! name: (s.next! + time.to_s)
-    puts 'created '<< d.name
-  end
-end
 
