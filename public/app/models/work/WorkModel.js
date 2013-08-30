@@ -3,11 +3,11 @@ define([
   'backbone'
 ], function(_, Backbone) {
       var WorkModel = Backbone.Model.extend({
-        url: 'app/mocks/work/work.json',
+        url: '/works/',
         defaults: {
             id: 0,
             name: "",
-            progress: "0",
+            progress: 0,
             student: 1
         }
     });

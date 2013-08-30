@@ -4,10 +4,10 @@ define([
 ], function(_, Backbone) {
   
   var TaskModel = Backbone.Model.extend({
+  	urlRoot: '/tasks/',
 	defaults: {
-	    id: Math.round(Math.random()*10e10),
 	    name: "Завдання №1",
-	    work: "Дипломна робота"
+	    work_id: 1
 	}
   });
 

@@ -7,7 +7,7 @@ define([
 	
   var WorkHistoryCollection = Backbone.Collection.extend({
   	model: WorkHistoryModel,
-    url: 'app/mocks/work/historymodal.json'
+    url: '/thesis_changes/'
 
   });
   

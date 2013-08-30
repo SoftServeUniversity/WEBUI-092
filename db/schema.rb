@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130828124205) do
+ActiveRecord::Schema.define(:version => 20130830090115) do
 
   create_table "courses", :force => true do |t|
     t.string   "name"
@@ -115,6 +115,7 @@ ActiveRecord::Schema.define(:version => 20130828124205) do
     t.integer  "work_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.integer  "priority"
   end
 
   add_index "tasks", ["work_id"], :name => "index_tasks_on_work_id"
