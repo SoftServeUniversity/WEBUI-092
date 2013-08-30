@@ -12,7 +12,8 @@ define([
             email: 'unknown',
             degree: 'unknown',
             department: 0,
-            title: 'unknown'
+            title: 'unknown', 
+            percentage: 25  //external
         }
     });
 

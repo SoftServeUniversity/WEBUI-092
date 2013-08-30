@@ -18,6 +18,12 @@ user = User.find_or_create_by_email :name => ENV['ADMIN_NAME'].dup, :email => EN
 puts 'user: ' << user.name
 user.add_role :admin
 
+puts 'DEFAULT USERS'
+user = User.find_or_create_by_email :name => ENV['STUDENT_NAME'].dup, :email => ENV['STUDENT_EMAIL'].dup, :password => ENV['STUDENT_PASSWORD'].dup, :password_confirmation => ENV['STUDENT_PASSWORD'].dup
+puts 'user: ' << user.name
+user.add_role :student
+
+
 #adding default role for old users records
 
 User.all.each do |user|
@@ -77,12 +83,12 @@ end
 #    puts 'created '<< fc.last_name
 #  end
 #end
-
+stud = Student.create user_id: User.last.id
 #Task Table
 if Task.all.empty?
   s = 'Task_ABC'
   10.times do |time| 
-    d = Task.create! name: (s.next! + time.to_s), work_id: 1
+    d = Task.create! name: (s.next! + time.to_s), work_id: Work.last.id
     puts 'created '<< d.name
   end
 end
@@ -95,6 +101,7 @@ end
 #    puts 'created '<< fc.name
 #  end
 #end
+tchr = Teacher.create user_id: User.first.id, department_id: Department.first.id, degree: 'PhD', title: 'Proffesor'
 
 #Works Table
 if Work.all.empty?
