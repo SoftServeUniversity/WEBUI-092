@@ -116,51 +116,62 @@ define([
 
     signup: function(e) {
       e.preventDefault();
-      var el = $(this.el);
-      el.find('.alert').remove();
-      el.find('.help-block').remove();
-      el.find('.control-group.error').removeClass('error');
-      el.find('.btn-primary').attr('value', 'Завантаження...');
-      if(
-        $('#inputLastNameReg[aria-invalid = true]').is('input') == false &&
-        $('#inputFirstNameReg[aria-invalid = true]').is('input') == false &&
-        $('#inputFatherNameReg[aria-invalid = true]').is('input') == false &&
-        $('#inputLoginReg[aria-invalid = true]').is('input') == false &&
-        $('#inputPasswordReg[aria-invalid = true]').is('input') == false ){
-        var self = this;
+      if($(this.el).find('#capcha-field').val() == this.capcha){
+        var el = $(this.el);
+        el.find('.alert').remove();
+        el.find('.help-block').remove();
+        el.find('.control-group.error').removeClass('error');
+        el.find('.btn-primary').attr('value', 'Завантаження...');
+        if(
+          $('#inputLastNameReg[aria-invalid = true]').is('input') == false &&
+          $('#inputFirstNameReg[aria-invalid = true]').is('input') == false &&
+          $('#inputFatherNameReg[aria-invalid = true]').is('input') == false &&
+          $('#inputLoginReg[aria-invalid = true]').is('input') == false &&
+          $('#inputPasswordReg[aria-invalid = true]').is('input') == false ){
+          var self = this;
 
-        GlobalUser.Models.User = new User();
+          GlobalUser.Models.User = new User();
 
-        // MytoJson transforms(serializes) forms input data into json. The definition can be found in libs/reg/reg.js
-        var frmData = $('#regForm').MytoJson();
-        frmData.authenticity_token = $("meta[name='csrf-token']").attr('content')
-        this.model.set(frmData);
-        this.model.save(this.model.attributes, {
-          success: function(userSession, response) {
-            GlobalUser.currentUser = GlobalUser.Models.User.set(response);
-            GlobalUser.vent.trigger("authentication:logged_in");
-          },
-          error: function(userSession, response) {
-            var result = $.parseJSON(response.responseText);
-            var data = {
-              'error' : 'Не вдалось зареєструватись! Спробуйте ще раз. ',
-              'alertType' : 'error'
-            };
-            el.find('form').prepend(_.template(errorNotificationTemplate, data));
-            _(result.errors).each(function(errors,field) {
-              $('#'+field+'_group').addClass('error');
-              _(errors).each(function(error, i) {
-                data = {
-                  'error' : error
-                };
-                $('#'+field+'_group .controls').append(_.template(fieldErrorNoticeTemplate, data));
+          // MytoJson transforms(serializes) forms input data into json. The definition can be found in libs/reg/reg.js
+          var frmData = $('#regForm').MytoJson();
+          frmData.authenticity_token = $("meta[name='csrf-token']").attr('content')
+          this.model.set(frmData);
+          this.model.save(this.model.attributes, {
+            success: function(userSession, response) {
+              GlobalUser.currentUser = GlobalUser.Models.User.set(response);
+              GlobalUser.vent.trigger("authentication:logged_in");
+            },
+            error: function(userSession, response) {
+              self.generate_capcha();
+              var result = $.parseJSON(response.responseText);
+              var data = {
+                'error' : 'Не вдалось зареєструватись! Спробуйте ще раз. ',
+                'alertType' : 'error'
+              };
+              el.find('form').prepend(_.template(errorNotificationTemplate, data));
+              _(result.errors).each(function(errors,field) {
+                $('#'+field+'_group').addClass('error');
+                _(errors).each(function(error, i) {
+                  data = {
+                    'error' : error
+                  };
+                  $('#'+field+'_group .controls').append(_.template(fieldErrorNoticeTemplate, data));
+                });
               });
-            });
-            el.find('.btn-primary').attr('value', 'Відправити');
-          }
-        });
-      }else{
-        //hende frontend validations
+              el.find('.btn-primary').attr('value', 'Відправити');
+            }
+          });
+        }else{
+          //hende frontend validations
+        }
+      }else{ // if chapcha is invalid
+        $(this.el).find('.alert').remove();
+        var data = {
+          'error' : 'Стрічка з малюнку введена невідно!. Спробуйде ще раз. ',
+          'alertType' : 'error'
+        };
+        $(this.el).find('form').prepend(_.template(errorNotificationTemplate, data));
+        this.generate_capcha();
       }
     }
   });
