@@ -17,7 +17,7 @@ class UserHelperController < ApplicationController
   end
 
   def populate_roles_select
-    render json: Role.all
+    render json: Role.find(:all, :conditions => ["name != ?", 'admin'])
   end
 
   def receive_user_abilities

@@ -2,19 +2,19 @@ development:
   adapter: mysql2
   encoding: utf8
   database: webui_dev
-  username: root
-  password: futngkvjbmhoy70yo
+  username: 
+  password: 
 
 test:
   adapter: mysql2
   encoding: utf8
   database: webui_test
-  username: root
+  username: 
   password:
 
 production:
   adapter: mysql2
   encoding: utf8
   database: webui_production
-  username: root
+  username: 
   password:

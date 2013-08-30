@@ -44,16 +44,22 @@ define([
     },
 
     generate_capcha: function(){
-      var text = "";
+      this.capcha = '';
       var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
       for( var i=0; i < 5; i++ )
-          text += possible.charAt(Math.floor(Math.random() * possible.length));
-      return text;
+        this.capcha +=  possible.charAt(Math.floor(Math.random() * possible.length));
+      var canvas = document.getElementById("capcha-canvas");
+      var context = canvas.getContext("2d");
+      context.clearRect(0, 0, canvas.width, canvas.height);
+      context.fillStyle = "blue";
+      context.font = "bold 16px Arial";
+      context.fillText(this.capcha, 10, 25);
     },
 
     events: {
-      'submit #regForm': 'signup',
-      'change #roles-select'   : 'loadDepartmets'
+      'submit #regForm'      : 'signup',
+      'change #roles-select' : 'loadDepartmets',
+      'click #capcha-reload' : 'generate_capcha'
     },
 
     populate_roles_select: function(){
