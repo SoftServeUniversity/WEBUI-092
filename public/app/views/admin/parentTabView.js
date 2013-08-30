@@ -2,8 +2,9 @@ define([
   'jquery',
   'underscore',
   'backbone',
-  'text!templates/admin/parentTabTemplate.html'
-], function($, _, Backbone, parentTabTemplate){   
+  'text!templates/admin/parentTabTemplate.html',
+  'views/admin/itemView'
+], function($, _, Backbone, parentTabTemplate, ItemView){   
    
   var ParentTabView = Backbone.View.extend({
     
@@ -44,7 +45,7 @@ define([
     * to items and their fields
     */
     buildJSON: function(config){
-
+      this.collection = config.collection;
       var me = this;
 
       var json_data=config.collection.toJSON();
@@ -108,13 +109,22 @@ define([
         data.entities = json_data;
         
         data['table_class'] = config.table_class
+        console.log(data)
         return data; 
+
     },
 
     render: function (data){
       var me = this;
       var compiledTemplate = _.template(parentTabTemplate, data);
-      me.$el.html(compiledTemplate);  
+      me.$el.html(compiledTemplate); 
+
+
+      this.collection.each(function(item) { // iterate through the collection
+        var itemView = new ItemView({model: item}); 
+        me.$el.append(itemView.el);
+      });
+
       return this;
     },
 

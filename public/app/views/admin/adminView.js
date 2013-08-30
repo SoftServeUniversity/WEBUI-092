@@ -1,5 +1,3 @@
-//admin page view
-
 define([
   'jquery',
   'underscore',
