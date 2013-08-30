@@ -31,13 +31,13 @@ User.all.each do |user|
 end
 
 #Users table
-if User.all.empty?
-  s = 'User_ABC'
-  9.times do |time| 
-    fc = User.create! name: (s.next! + time.to_s)
-    puts 'created '<< fc.name
-  end
-end
+#if User.all.empty?
+#  s = 'User_ABC'
+#  9.times do |time| 
+#    fc = User.create! name: (s.next! + time.to_s)
+#    puts 'created '<< fc.name
+#  end
+#end
 
 #Faculty Table
 if Faculty.all.empty?
@@ -114,41 +114,3 @@ end
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-=======
-if Task.all.empty?
-  n = 0
-  10.times do |time|
-    n = n + 1
-    d = Task.create!(name: "Завдання № #{n}", work_id: rand(12))
-    puts 'created '<< d.name
-  end
-end
->>>>>>> 3c1a6d85f0b0d4c17cd5fb29dfc2503a05f7ab64

@@ -6,7 +6,7 @@ define([
 ], function($, _, Backbone, TaskModel){
   
   var WorkCollection = Backbone.Collection.extend({
-  	model: WorkTasksModel,
+  	model: TaskModel,
   	//url: 'app/mocks/work/worktasks.json'
   	url: '/works/'
   });
