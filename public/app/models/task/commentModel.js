@@ -4,11 +4,10 @@ define([
 ], function(_, Backbone) {
   
   var commentModel = Backbone.Model.extend({
+  	url: "http://localhost:3000/task_changes",
 	defaults: {
-	    "id": Math.round(Math.random()*10e10),
-	    "author": "Student",
-	    "date": "7 / 12 / 2013",
-	    "content": "Enter comment"
+	    "user_id": 1,
+	    "task_comment": "Enter comment"
 	}
   });
 

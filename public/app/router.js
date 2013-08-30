@@ -27,8 +27,8 @@ define([
 
   ], function($, _, Backbone, GlobalUser, FacultiesListView, RegistrationView, GroupProgressView,
   	          StudentProgressView, CourseProgressView,  MainFacultyView, MainDepartmentView,
-  	          TeacherProgressView, MainWorkView, taskView, TasksCollection, NotFoundView,
-              AdminFacultyView, AdminView, MainTeacherView, TeacherGroupView, UserSingUpView,
+  	          TeacherProgressView, MainWorkView, TaskView, TasksCollection, NotFoundView,
+              AdminFacultyView, AdminView, MainTeacherView, TeacherGroupView, UserSingUpView, 
               InfoView, BreadcrumbsView
              ) {
 
@@ -50,7 +50,7 @@ define([
         'work/:id'               : 'workShowAction',
         'fa'                     : 'viewAdminFacultyPage',
         'admin'                  : 'viewAdminPage',
-        'work/:id/:taskid'       : 'taskShow',
+        'task/:id'               : 'taskShow',
         'sign_up'                : 'userSingUp',
         'info'                   : 'infoAction',
         // Default
@@ -70,7 +70,7 @@ define([
       });
 
       app_router.on('route:workShowAction', function (id){
-        var workView = new MainWorkView(id);
+        var workView = new MainWorkView({"id": id});
         var breadcrumbsView = new BreadcrumbsView();
       });
 
@@ -147,17 +147,17 @@ define([
       });
 
 
-      app_router.on('route:taskShow', function (taskid, id) {
+      app_router.on('route:taskShow', function (id) {
 
-          var tasks = new TasksCollection;
+          /*var tasks = new TasksCollection;
           tasks.fetch({async:false});
           var task = tasks.get(id);
           if(!tasks.get(id)){
             var pageNotFound = new NotFoundView();
             pageNotFound.render();
             return;
-          }
-          var currentTask = new TaskView({"model": task});
+          }*/
+          var currentTask = new TaskView({"id": id});
           currentTask.render();
           var breadcrumbsView = new BreadcrumbsView();
       });

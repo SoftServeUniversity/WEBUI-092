@@ -3,24 +3,22 @@ define([
   'underscore',
   'backbone',
   'views/admin/parentTabView',
-  'models/group/GroupModel',
+  'models/teacher/TeacherModel',
   'collections/teachers/TeachersCollection',
   'collections/faculties/FacultiesCollection',
-  'collections/groups/GroupsCollection'
+  'collections/departments/DepartmentsCollection'
 
 
 
-], function($, _, Backbone, ParentTabView, GroupModel,
-            TeachersCollection, FacultiesCollection, GroupsCollection){   
+], function($, _, Backbone, ParentTabView, TeacherModel,
+            TeachersCollection, FacultiesCollection, DepartmentsCollection){   
    
   var TabTeachersView = ParentTabView.extend({
 
     collections_classes: {
       teachers     : TeachersCollection,
       faculties    : FacultiesCollection,
-      groups       : GroupsCollection,
-
-
+      departments  : DepartmentsCollection
     },
 
     setConfig: function(){
@@ -35,7 +33,7 @@ define([
 
       var config = {
       	
-        model     : GroupModel,
+        model     : TeacherModel,
         collection: me.collections.teachers,
         data      : [{
             _link: 'name',
@@ -49,10 +47,10 @@ define([
             src:me.collections.faculties
           },
           {
-            _link: 'group_id',
-            label: 'Група',
+            _link: 'department_id',
+            label: 'Кафедра',
             type:'select',
-            src:me.collections.groups
+            src:me.collections.departments
           }
         ],
         buttons: {

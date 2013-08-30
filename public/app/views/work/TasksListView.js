@@ -6,18 +6,13 @@ define([
 ], function($, _, Backbone, ElementView){
 
   var ListView = Backbone.View.extend({
-    collection : null,
-    tagName: 'div',
-    initialize: function (){
-    },
-    render:function(){
-      // counter -  is used for mark each element in a table
-      // linkTo - is used for creating <a> links if it is needed
-        var counter = 1;
-        this.collection.each(function(element) {
-          var elementView = new ElementView({model: element, linkTo: this.options.linkTo});
-          this.$el.append(elementView.render(counter++).el);
-        }, this);
+    render: function () {
+          var me = this;
+        _.each(this.collection.models, function(currentTask) {
+          var progress = this.options.taskProgresses.where({"task_id": currentTask.get("id")});
+          var elementView = new ElementView({model: currentTask, progress: progress[0].get("progress")});
+          this.$el.append(elementView.render().$el);
+        }, this)
 
       return this;
     }

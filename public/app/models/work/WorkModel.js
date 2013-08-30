@@ -1,9 +1,8 @@
 define([
-    'underscore',
-    'backbone'
+  'underscore',
+  'backbone'
 ], function(_, Backbone) {
-
-    var WorkModel = Backbone.Model.extend({
+      var WorkModel = Backbone.Model.extend({
         url: 'app/mocks/work/work.json',
         defaults: {
             id: 0,
@@ -14,5 +13,4 @@ define([
     });
 
     return WorkModel;
-
 });
