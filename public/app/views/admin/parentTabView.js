@@ -48,26 +48,6 @@ define([
         if (!config.table_class){
           config.table_class = '';
         }
-        //console.log(rel)
-        /*  json_data[a]['selectbox_items'] = [];  
-           json_data[a]['item_buttons'] = {};
-
-          var counter = 0;
-          for (var e_obj in json_data[a]){
-
-            if (e_obj in rel){    
-              json_data[a]['selectbox_items'].push(e_obj);
-              json_data[a][e_obj+'_collection'] = rel[e_obj];
-            }
-            
-            json_data[a]['visible_fields'] = visible_fields;
-            json_data[a]['labels'] = labels;
-            json_data[a]['field_types'] = field_types;
-            json_data[a]['item_buttons'] = config.item_buttons
-            counter++;
-          }
-
-        }*/
         return config;
 
     },
