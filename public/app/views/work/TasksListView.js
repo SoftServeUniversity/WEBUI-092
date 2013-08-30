@@ -20,4 +20,3 @@ define([
   });
   return  ListView;
 });
-

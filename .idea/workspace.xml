@@ -2,32 +2,26 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c2309ff3-51c1-4e3c-9c69-fb4362b3924e" name="Default" comment="test">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/dataSources.ids" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/.generators" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/.name" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/.rakeTasks" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.rspec" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/db/migrate/20130813103555_dep_percentage.rb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/db/migrate/20130813110350_course_percentage.rb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/Project_backbone_ruby.iml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/views/thesis_changes/_form.html.erb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/dictionaries/alena.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/encodings.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/modules.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/scopes/scope_settings.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/backup/2013-15-08_15:46-full_backup" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/backup/2013-15-08_16:02-full_backup" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/backup/2013-15-08_16:57-full_backup" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/backup/2013-19-08_22:51-full_backup" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/backup/2013-21-08_18:11-full_backup" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/backup/2013-25-08_16:40-full_backup" afterPath="" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/db/migrate/20130830090115_add_priority_to_tasks.rb" afterPath="$PROJECT_DIR$/db/migrate/20130830091635_add_priority_to_tasks.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/database.yml" afterPath="$PROJECT_DIR$/config/database.yml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db/schema.rb" afterPath="$PROJECT_DIR$/db/schema.rb" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/db/schema.rb" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/app/collections/tasks/CommentsCollection.js" afterPath="$PROJECT_DIR$/public/app/collections/tasks/CommentsCollection.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/app/views/work/MainWorkView.js" afterPath="$PROJECT_DIR$/public/app/views/work/MainWorkView.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/app/models/task/ProgressModel.js" afterPath="$PROJECT_DIR$/public/app/models/task/ProgressModel.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/app/collections/tasks/ProgressesCollection.js" afterPath="$PROJECT_DIR$/public/app/collections/tasks/ProgressesCollection.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/app/models/task/TaskModel.js" afterPath="$PROJECT_DIR$/public/app/models/task/TaskModel.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/app/views/work/TasksListView.js" afterPath="$PROJECT_DIR$/public/app/views/work/TasksListView.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/app/collections/work/WorkCollection.js" afterPath="$PROJECT_DIR$/public/app/collections/work/WorkCollection.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/app/collections/work/WorkHistoryCollection.js" afterPath="$PROJECT_DIR$/public/app/collections/work/WorkHistoryCollection.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/app/models/work/WorkModel.js" afterPath="$PROJECT_DIR$/public/app/models/work/WorkModel.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/audit_observer.rb" afterPath="$PROJECT_DIR$/app/models/audit_observer.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/app/models/task/commentModel.js" afterPath="$PROJECT_DIR$/public/app/models/task/commentModel.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/templates/teacher/mainTeacherTemplate.html" afterPath="$PROJECT_DIR$/public/templates/teacher/mainTeacherTemplate.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/app/router.js" afterPath="$PROJECT_DIR$/public/app/router.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db/seeds.rb" afterPath="$PROJECT_DIR$/db/seeds.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/app/models/task/taskCommentModel.js" afterPath="$PROJECT_DIR$/public/app/models/task/taskCommentModel.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/app/views/task/taskCommentsView.js" afterPath="$PROJECT_DIR$/public/app/views/task/taskCommentsView.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/task_progresses_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/task_progresses_controller.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/teacher.rb" afterPath="$PROJECT_DIR$/app/models/teacher.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="Project_backbone_ruby.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -99,19 +93,19 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="audit_observer.rb" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="audit_observer.rb" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/models/audit_observer.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="12" column="46" selection-start="260" selection-end="260" vertical-scroll-proportion="0.29071805">
+            <state line="4" column="64" selection-start="115" selection-end="115" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="WorkModel.js" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="WorkModel.js" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/public/app/models/work/WorkModel.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="15" column="28" selection-start="288" selection-end="288" vertical-scroll-proportion="0.0">
+            <state line="12" column="0" selection-start="183" selection-end="183" vertical-scroll-proportion="0.31523642">
               <folding />
             </state>
           </provider>
@@ -156,16 +150,7 @@
       <file leaf-file-name="WorkHistoryCollection.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/public/app/collections/work/WorkHistoryCollection.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="15" column="44" selection-start="294" selection-end="294" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="task_progress.rb" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/models/task_progress.rb">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+            <state line="15" column="0" selection-start="310" selection-end="310" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -224,10 +209,10 @@
         <option value="$PROJECT_DIR$/public/app/views/admin/tabTeachersOfDepartmentView.js" />
         <option value="$PROJECT_DIR$/config/database.yml" />
         <option value="$PROJECT_DIR$/db/schema.rb" />
-        <option value="$PROJECT_DIR$/app/models/audit_observer.rb" />
         <option value="$PROJECT_DIR$/app/models/thesis_change.rb" />
         <option value="$PROJECT_DIR$/app/models/work.rb" />
         <option value="$PROJECT_DIR$/public/app/models/work/WorkModel.js" />
+        <option value="$PROJECT_DIR$/app/models/audit_observer.rb" />
       </list>
     </option>
   </component>
@@ -1084,13 +1069,6 @@
         <state line="13" column="16" selection-start="195" selection-end="195" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/db/schema.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="135" column="19" selection-start="4908" selection-end="4908" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/models/task_change.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
@@ -1126,30 +1104,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/app/collections/work/WorkCollection.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/app/collections/work/WorkHistoryCollection.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="15" column="44" selection-start="294" selection-end="294" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/public/app/mocks/work/work.json">
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/app/models/work/WorkModel.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="15" column="28" selection-start="288" selection-end="288" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
@@ -1168,9 +1125,30 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/public/app/collections/work/WorkHistoryCollection.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="15" column="0" selection-start="310" selection-end="310" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/app/collections/work/WorkCollection.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/models/audit_observer.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="12" column="46" selection-start="260" selection-end="260" vertical-scroll-proportion="0.29071805">
+        <state line="4" column="64" selection-start="115" selection-end="115" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/app/models/work/WorkModel.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="12" column="0" selection-start="183" selection-end="183" vertical-scroll-proportion="0.31523642">
           <folding />
         </state>
       </provider>
