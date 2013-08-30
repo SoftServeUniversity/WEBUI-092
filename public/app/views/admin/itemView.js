@@ -8,15 +8,20 @@ define([
 ], function ($, _, Backbone, ItemTemplate) {   
   
 var ItemView = Backbone.View.extend({ 
-  tagName: 'div', 
-  initialize: function(){
-    console.log(this.model);
-    //this.render();
+  
+  tagName: 'tr', 
+  
+  className: 'toggle-list model',
+  
+  initialize: function(data){
+    this.data = data;
+
   },
+  
   render: function(){
-  	data = {};
-  	var compiledTemplate = _.template(ItemTemplate, data);
-    me.$el.html(compiledTemplate); 
+  	var compiledTemplate = _.template(ItemTemplate, this.data);
+    this.$el.html(compiledTemplate); 
+    return this;
   }
 
 });

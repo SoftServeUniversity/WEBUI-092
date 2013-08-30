@@ -30,27 +30,24 @@ define([
       	
         model: FaAdminModel,
         collection: me.collections.fadmins,
-        data: [{
-            _link: 'name',
+        fields: {
+          name: {
             label:'Ім\'я',
-            type :'text'
+            type :'text' 
           },
-          {
-            _link: 'lastName',
+          lastName: {
             label:'Прізвище',
             type :'text'
           },
-          {
-            _link: 'middleName',
+          middleName: {
             label:'По-батькові',
             type :'text'
           },
-          {
-            _link: 'email',
+          email: {
             label: 'Email',
             type :'text'
           }
-        ],
+        },
         buttons: {
         	create: 'Додати адміністратора факультету'
         }

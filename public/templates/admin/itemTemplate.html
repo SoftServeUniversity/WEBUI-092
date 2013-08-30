@@ -1,100 +1,14 @@
-<% var visible_fields = entities[0].visible_fields %>
-    
-
-    <tr class="toggle-list model
-
-    <% if (entities[entity]['verified'] == 0){ %>
-      notverified
-    <% } %>" 
-    model_id="<%= entities[entity]['id'] %>">
-    
 
 
-    <% for (t=0; t<visible_fields.length; t++){ 
-      var field = visible_fields[t]; %>
-         
+        <% for(var f in config.fields){ %>
       <td>
-      <% var field_type = entities[entity]['field_types'][t] %>
-      <% //--------if it is a text field %>      
-      
-      <% if (field_type == 'text'){ %>
-        <input type="text" name="<%=field %>" class='toggle-input input-large' value="<%= entities[entity][field] %>"/>
-          <span class='toggle-text'>
-            <%=  entities[entity][field] %>
-          </span>
-            
-      <% //--------if it is a select field %>
-      <% } else if (field_type == 'select') { %>
-            
-        <select class='toggle-input input-large' name="<%= field %>">
-            
-        <% var options_array = entities[entity][field+'_collection'];
-                  
-        for (i=0; i<options_array.length; i++){ %>
-                  	
-<%        //add 'selected' to current option %>
-          
-          <%if(options_array[i]['id'] == entities[entity][field]){ 
-            var active_name = options_array[i]['name']; %>
-             <option value="<%= options_array[i]['id'] %>" selected>
-               <%= active_name %>
-             </option>
+          <% if (config.fields[f]['type'] == 'text'){ %>
+
+            <input type="text" name="<%=f %>" class='toggle-input input-large' value="<%= model[f] %>"/>
+            <span class='toggle-text'>
+              <%=  model[f] %>
+            </span>
+
           <% } %>
-                  	
-          <% //print options from loaded collection %>
-          <option value="<%= options_array[i]['id'] %>"><%= options_array[i]['name'] %></option>
-                  	
-        <% } %>
-        </select> 
-        <span class='toggle-text'>	
-          <%=  active_name %>
-        </span>
-
-      
-      <% //--------if it is a static field %>                 
-      <% } else if (field_type == 'static') {%>      
-
-        <span>  
-
-          <% var options_array = entities[entity][field+'_collection'];
-           if (options_array) {      
-            for (i=0; i<options_array.length; i++){          
-              if(options_array[i]['id'] == entities[entity][field]){ 
-                var active_name = options_array[i]['name'];%> 
-                   <%= active_name %>
-              <% }
-             } 
-           } else { %>
-          <%= entities[entity][field] %>
-          <% } %>  
-          
-        </span>          
-       
-        <% } %>
-
-      </td>
-          
-    <% } %>
-     
-
-      
-    <td class="text-right">
-      <% if (entities[entity]['verified'] == 0){ %>
-      <button class='btn btn-warning verify-button' type="button" data-toggle="modal" data-target=''>Підтвердити</button>
-     <% } %>
     </td>
-    <td>
-
-      <% var item_buttons = entities[entity]['item_buttons']; %>
-
-      <% if (!item_buttons || item_buttons['remove'] != false) { %>
-      <button class='btn open-modal delete-button btn-danger' type="button" data-toggle="modal" data-target='delete-modal'>Видалити</button>
-      <% } %>
-
-      <% if (item_buttons && item_buttons['edit'] != false) { %>
-          <button class='btn open-modal edit-button' type="button" data-toggle="modal" data-target='delete-modal'>Редагувати</button>
-      <% } %>
-
-    </td>
-
-  </tr>
+        <% } %>
