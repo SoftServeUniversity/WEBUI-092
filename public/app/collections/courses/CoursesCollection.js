@@ -7,9 +7,9 @@ define([
 
     var CoursesCollection = Backbone.Collection.extend({
         model:CourseModel,
-        url: "app/mocks/courses.json"
+        //url: "app/mocks/courses.json"
         //for datbase use this url
-        //url: "/courses.json"
+        url: "/courses/"
     });
 
 

@@ -812,3 +812,21 @@ div.DTFC_LeftBodyWrapper tbody tr:first-child td {
 div.DTFC_LeftFootWrapper table {
 	border-top: none;
 }
+
+/*auth*/
+#capcha-canvas{
+	margin-right: 20%;
+	border-bottom: 1px solid #ededed;
+	background: #fafdfd;
+}
+#capcha-field{
+	width: 120px;
+	margin-right: 5px;
+}
+#capcha img{
+	width: 20px;
+	height: 20px;
+	max-height: 20px;
+	max-width: 20px;
+}
+

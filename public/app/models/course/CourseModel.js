@@ -8,9 +8,10 @@ define([
             id: null,
             name: null,
             year_of_start: null,
-            faculty: null
+            faculty: null, 
+            percentage: 25 //external
         },
-        urlRoot: 'courses/'
+        //urlRoot: 'courses/'
 
     });
 

@@ -7,8 +7,8 @@ define([
   
   var WorkCollection = Backbone.Collection.extend({
   	model: TaskModel,
-  	url: 'http://localhost:3000/tasks.json'
-
+  	//url: 'app/mocks/work/worktasks.json'
+  	url: '/works/'
   });
   
   return WorkCollection;

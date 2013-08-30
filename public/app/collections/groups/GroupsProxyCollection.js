@@ -7,7 +7,8 @@ define([
   function($, _, Backbone, GroupProxyModel)
   {
     var GroupsCollection = Backbone.Collection.extend({
-      model:GroupProxyModel
+      model:GroupProxyModel,
+      url: '/groups/'
     });
     return GroupsCollection;
   });

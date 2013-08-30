@@ -43,6 +43,7 @@ function alertType(data){
   } 
   return res
 }
+
 //check if object is json
 function isJSON(data) {
     var isJson = false

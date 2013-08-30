@@ -6,6 +6,9 @@ define([
   return Backbone.Model.extend({
     getRole: function(){
       return $.ajax({type: "POST", url: 'user_helper/return_current_role', data: {id: this.id}, dataType: "json", async: false}).responseText; 
+    },
+    getAbilities: function(){
+      return $.ajax({type: "POST", url: 'user_helper/receive_user_abilities', data: null, dataType: "json", async: false}).responseText; 
     }
   });
 });

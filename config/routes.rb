@@ -2,9 +2,12 @@ Webui92::Application.routes.draw do
 
   resources :teachers
 
+  resources :students
+
 
   get "backup/full_backup"
   get "backup/restore_from_backup"
+
 
   resources :table_dictionaries
 
@@ -32,8 +35,8 @@ Webui92::Application.routes.draw do
 
   resources :departments
 
-  resources :faculties
 
+  resources :faculties
   
   resources :info
 
@@ -42,11 +45,17 @@ Webui92::Application.routes.draw do
   authenticated :user do
     root :to => 'home#index'
   end
+
+
   root :to => "home#index"
+
+  
   devise_for :users, controllers: { sessions: 'user_sessions/sessions', registrations: 'user_registrations/registrations' }
+
   
   post 'user_helper/receive_current_user'
   post 'user_helper/role_pending'
   post 'user_helper/return_current_role'
   post 'user_helper/populate_roles_select'
+  post 'user_helper/receive_user_abilities'
 end

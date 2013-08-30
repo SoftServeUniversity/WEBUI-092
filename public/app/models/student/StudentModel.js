@@ -5,13 +5,14 @@ define([
 
   var StudentModel = Backbone.Model.extend({
         defaults: {
-          id: 1,
+          id: 0,
           name: "Петро",
-          patronymic: "Петрович",
-          surname: "Петренко",
-          progress: 5
+          middle_name: "Петрович",
+          last_name: "Петренко",
+          email: "Unknown",
+          progress: 20,
+          group: 0
         },
-        url: '/app/mocks/student.json'
   });
 
   return StudentModel;

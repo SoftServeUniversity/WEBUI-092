@@ -35,9 +35,9 @@ define([
     $(document).trigger('csrfToken');
     GlobalUser.currentUser = GlobalUser.Models.User.set(GlobalUser.currentUser);
     GlobalUser.currentUser.role = GlobalUser.Models.User.getRole();
+    GlobalUser.currentUser.abilities = GlobalUser.Models.User.getAbilities();
     $('#launch-btn').replaceWith(GlobalUser.layouts.logged_in);
     $('#launch').slideUp(300);
-    $('#authBox').prepend('<a href="/#' + GlobalUser.currentUser.role + '">' + GlobalUser.currentUser.role + '</a>');
     window.location.hash = '/';
   });
 
