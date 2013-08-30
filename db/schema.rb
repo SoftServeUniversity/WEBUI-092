@@ -89,9 +89,31 @@ ActiveRecord::Schema.define(:version => 20130828124205) do
     t.datetime "updated_at", :null => false
   end
 
+  create_table "task_changes", :force => true do |t|
+    t.integer  "task_id"
+    t.integer  "user_id"
+    t.integer  "task_progress_id"
+    t.text     "task_comment"
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
+  end
+
+  add_index "task_changes", ["task_id"], :name => "index_task_changes_on_task_id"
+  add_index "task_changes", ["task_progress_id"], :name => "index_task_changes_on_task_progress_id"
+
+  create_table "task_progresses", :force => true do |t|
+    t.integer  "progress"
+    t.integer  "task_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "task_progresses", ["task_id"], :name => "index_task_progresses_on_task_id"
+
   create_table "tasks", :force => true do |t|
     t.string   "name"
     t.integer  "work_id"
+    t.integer  "priority"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end

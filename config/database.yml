@@ -5,6 +5,7 @@ development:
   username: 
   password: 
 
+
 test:
   adapter: mysql2
   encoding: utf8

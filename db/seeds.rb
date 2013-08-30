@@ -43,6 +43,20 @@ if Group.all.empty?
   end
 end
 
+if Work.all.empty?
+  n = 0
+  10.times do |time|
+    n = n + 1
+    d = Work.create!(name: "Дипломна робота № #{n}", progress: rand(100), student_id: 1)
+    puts 'created '<< d.name
+  end
+end
 
-Work.create! name: "name",progress: "progress", student_id: 9
-
+if Task.all.empty?
+  n = 0
+  10.times do |time|
+    n = n + 1
+    d = Task.create!(name: "Завдання № #{n}", work_id: rand(12))
+    puts 'created '<< d.name
+  end
+end

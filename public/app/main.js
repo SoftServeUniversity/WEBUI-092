@@ -19,8 +19,8 @@ require.config({
     marionette: 'libs/marionette/backbone.marionette',
     modelbinder: 'libs/modelbinder/backbone.modelbinder',
     manual_requests_csrf_hack: 'libs/csrf_hack/manual_requests_csrf_hack',
-    datatables: 'libs/datatable/jquery.dataTables',
-    bootstrap_datatables: 'libs/datatable/bootstrap_dataTables',
+    datatables: 'libs/datatables/jquery.dataTables',
+    bootstrap_datatables: 'libs/datatables/bootstrap_dataTables',
     wysihtml: 'libs/bootstrap_wysihtml5/js/wysihtml5-0.3.0.min'
   }
 });

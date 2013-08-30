@@ -16,7 +16,6 @@ define([
     
 
     render: function (data){
-      console.log(data)
       var that = this;
       
       var compiledTemplate = _.template(newElementTemplate, data);
