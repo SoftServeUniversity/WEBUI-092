@@ -22,6 +22,7 @@ class Teacher < ActiveRecord::Base
     hash_info[:last_name] = user.last_name
     hash_info[:middle_name] = user.middle_name
     hash_info[:email] = user.email
+    hash_info[:department_name] = department.name
     hash_info
   end
 
