@@ -28,32 +28,37 @@ define([
       var config = {
       	
         table_class: 'DataTable',
+        
         model     : GroupModel,
+        
         collection: me.collections.groups,
-        data      : [{
-            _link: 'name',
+       
+        fields      : {
+          
+          name: {
             label: 'Група',
             type : 'text'
-          },
-          {  
-            _link: 'course_id',
+          },  
+          
+          course_id: {
             label: 'Курс',
             type : 'select',
-            src  : me.collections.courses
+            collection  : me.collections.courses
           },
-          {
-            _link: 'teacher_id',
+          
+          teacher_id: {
             label: 'Куратор групи',
             type : 'select',
-            src  : me.collections.teachers
+            collection  : me.collections.teachers
           },
-          {
-            _link: 'department_id',
+          
+          department_id: {
             label: 'Кафедра',
             type : 'select',
-            src  : me.collections.departments
+            collection  : me.collections.departments
           }
-        ],
+        },
+        
         buttons: {
         	create : 'Додати групу'
         }

@@ -23,19 +23,24 @@ define([
       var config = {
       	
         model     : FacultyModel,
+        
         collection: me.collections.faculties,
-        data      : [{
-            _link: 'name',
-            label:'Факультет',
-            type:'text'
+        
+        fields     : {
+          
+          name: {
+            label: 'Факультет',
+            type: 'text'
           },
-          {
-            _link: 'teacher_id',
+          
+          teacher_id: {
             label: 'Адміністратор факультету',
-            type:'select',
-            src:me.collections.teachers
+            type: 'select',
+            collection: me.collections.teachers
           }
-        ],
+
+        },
+        
         buttons: {
         	create: 'Додати факультет'
         }

@@ -343,6 +343,7 @@ div.help-block ul li{
 
 
 /*----admin page----*/
+
 #tab-content th{
 	white-space: nowrap !Important;
 }
@@ -394,7 +395,9 @@ tr.notverified {
 #tab-content td.text-right .buttonContainer{
 	text-align:left;
     display:inline-block;
-
+}
+#tab-content .tab-input {
+	max-width:140px !important;
 }
 .admin-headline {
 	margin-top:25px !Important;
@@ -404,7 +407,12 @@ tr.notverified {
 	overflow:hidden;
 }
 
-
+td.newItem .toggle-text{
+  display:none !important;
+}
+.test {
+	width:auto !important;
+}
 
 /* oohurtc */
 

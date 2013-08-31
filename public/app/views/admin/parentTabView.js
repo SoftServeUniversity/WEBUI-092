@@ -4,8 +4,9 @@ define([
   'backbone',
   'text!templates/admin/parentTabTemplate.html',
   'views/admin/itemView',
-  'views/admin/tabHeadView'
-], function($, _, Backbone, parentTabTemplate, ItemView, TabHeadView){   
+  'views/admin/tableHeadView'
+
+], function($, _, Backbone, parentTabTemplate, ItemView, TableHeadView){   
    
   var ParentTabView = Backbone.View.extend({
     
@@ -15,35 +16,33 @@ define([
       
       var me = this; 
       
-      this.on('onDataLoaded', function(){
-           
-            var config = this.setConfig();
-
-            this.collection = config.collection;
-            config = this.buildJSON(config);
-            me.render(config)
-
-            //merge two configs (we'll need both fields and buttons config)
-            GlobalEventBus.trigger('tabChildSupViewLoaded', me.$el.html(), config);
-      
-            // verification HACK !!!
-            if (me.verification){
-              me.checkVerification();
-            }
-
-            //add event handlers from current tab
-            if (me.addCustomEvents) {me.addCustomEvents ()}
-
-      })
-
       this.loadData();
+
+      this.on('dataLoaded', function(){
+            
+        var config;
+        
+        config = this.setConfig();
+        this.collection = config.collection;
+        config = this.augmentConfig(config);
+        
+        me.render(config)
+
+        //all content has loaded, it's time for parent view to render tab
+        GlobalEventBus.trigger('tabChildSupViewLoaded', me.$el.html(), config);
+        
+        //display question mark on tab if some model needs verification
+        if (config.verification){
+          me.checkVerification(config.verification);
+        }
+
+        //this method is used only in works view
+        if (me.addCustomEvents) {me.addCustomEvents ()}
+      })
+      
     },
 
-    /* 
-    * bind all collections needed for select-boxes, labels, visible items
-    * to items and their fields
-    */
-    buildJSON: function(config){
+    augmentConfig: function(config){
 
         if (!config.table_class){
           config.table_class = '';
@@ -53,38 +52,41 @@ define([
     },
 
     render: function (config){
+      
       var me = this;    
 
       //render containing table
-      var compiledTemplate = _.template(parentTabTemplate, { config: config });
+      var compiledTemplate = _.template(parentTabTemplate, { conf: config });
       me.$el.html(compiledTemplate); 
     
       //render table head
-      var tabHeadView = new TabHeadView({ config: config });
-      this.$('#tab-head').append(tabHeadView.render().el); 
+      var tableHeadView = new TableHeadView({ conf: config });
+      me.$('#tab-head').append(tableHeadView.render().el); 
 
       //render rows
       this.collection.each(function(item) {
-        var jsonModel = item.toJSON();
-        var itemView = new ItemView({ model: jsonModel, config: config }); 
+        var itemView = new ItemView({ model: item, conf: config }); 
         me.$('#tab-body').append(itemView.render().el)
       });
-
+      
       return this;
     },
 
-    // verification HACK !!!
-    checkVerification: function(){
+    checkVerification: function(config){
+
       var me = this;
-      var collection = this.verification.collection.toJSON();
+
+      var collection = config.collection.toJSON();
+      
       $.each(collection, function(key, value){
         if (value['verified'] == 0){
-          $('#'+me.verification.tab_id).addClass('needs-verification')
+          $('#'+config.tab_id).addClass('needs-verification')
         }
       })
+
     },
 
-    //method to load all collections for tab 
+    //asynchronously load all collections what tab needs
     loadData: function(){
 
       var me = this;
@@ -101,12 +103,14 @@ define([
         me['collections'][c].fetch({ success: function(c) {
             loadCounter++;
             if (loadCounter == collections_length){
-              me.trigger('onDataLoaded');
+              me.trigger('dataLoaded');
             }
           }  
         })
       }
-    },
+    }
+
+  
 
   });
   

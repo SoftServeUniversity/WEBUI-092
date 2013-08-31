@@ -6,17 +6,15 @@ define([
   
   'models/admin/FaAdminModel',
   'collections/admin/FaAdminsCollection',
-  'collections/faculties/FacultiesCollection',
   'views/admin/parentTabView'
   
-], function($, _, Backbone, FaAdminModel, FaAdminsCollection, FacultiesCollection, ParentTabView){   
+], function($, _, Backbone, FaAdminModel, FaAdminsCollection, ParentTabView){   
 	 
   var tabChildAdminsView = ParentTabView.extend({
 
 
     collections_classes: {
-      fadmins: FaAdminsCollection,
-      faculties: FacultiesCollection
+      fadmins: FaAdminsCollection
     },
 
     setConfig: function(){
@@ -29,26 +27,25 @@ define([
         collection: me.collections.fadmins,
         
         fields: {
+          
           name: {
             label:'Ім\'я',
             type :'text' 
           },
+          
           lastName: {
             label:'Прізвище',
             type :'text'
           },
+          
           middleName: {
             label:'По-батькові',
             type :'text'
           },
-          /*email: {
+          
+          email: {
             label: 'Email',
             type :'text'
-          }*/
-          faculty_id: {
-            label: 'Тестовий факультет',
-            type: 'select',
-            collection: me.collections.faculties
           }
         },
 
@@ -60,6 +57,7 @@ define([
           collection:me.collections.fadmins,
           tab_id:'admins-tab'
         }
+        
       };
       
       return config;

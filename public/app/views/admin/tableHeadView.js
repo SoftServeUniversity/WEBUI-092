@@ -16,7 +16,7 @@ var TabHeadView = Backbone.View.extend({
     this.data = data;
 
   },
-  
+
   render: function(){
   	var compiledTemplate = _.template(TabHeadTemplate, this.data);
     this.$el.html(compiledTemplate); 

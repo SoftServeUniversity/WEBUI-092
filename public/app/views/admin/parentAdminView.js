@@ -8,11 +8,14 @@ define([
   'bootstrap_datatables',
   'views/shared/MenuView',
   'text!templates/admin/parentAdminTemplate.html',
-  'views/admin/newElementView',
-  'views/shared/RemoveDialogView'
+  'views/shared/RemoveDialogView',
+  'views/admin/itemView'
 
 
-], function($, bootstrapselect, _,  Backbone, Bootstrap_dataTables, MenuView, parentAdminTemplate, NewElementView, RemoveDialogView){
+
+], function( $, bootstrapselect, _,  Backbone, Bootstrap_dataTables,
+            MenuView, parentAdminTemplate, RemoveDialogView,
+            ItemView ) {
 
   var AdminParentView = Backbone.View.extend({
 
@@ -62,8 +65,6 @@ define([
         me.config = config;
         me.render(tabContent);
         me.trigger('onChildConfigLoaded');
-
-
       })
 
       this.loadDefaultActiveTab(this.defaultActiveTab);
@@ -76,16 +77,14 @@ define([
 
     events: {
      //table events
-     'dblclick .model .toggle-text'     : 'showInput',
-     'blur .model .toggle-input'        : 'changed',
-     'keypress .model .toggle-input'    : 'changed',
+     'dblclick .toggle-list .toggle-text'     : 'showInput',
+     'blur .toggle-list .toggle-input'        : 'changed',
+     'keypress .toggle-list .toggle-input'    : 'changed',
 
      //modal windows
      'click .save'               : 'closeModal',
      'click .open-modal-import'  : 'openModalImport',
-     //'click #newElement'         : 'appendNewElementRow',
      'click #create_button'      : 'saveElement',
-     'click .delete-button'      : 'showRemoveDialog',
      'click .verify-button'      : 'verifyElement'
     },
 
@@ -100,14 +99,16 @@ define([
     appendNewElementRow: function(){
       var me = this;
       if ($('#new_entity').length < 1){
-        var newElementView = new NewElementView();
-        var content = newElementView.render(me.config);
-        $(me.el_tab_content + ' table tbody').append(content.$el.html())
-        //$('#content select').selectpicker()
+        
+        var newModel = new me.config.model();
+
+        me.config.newModel = true
+        var newElementView = new ItemView({model: newModel, conf: me.config});
+        
+        $(me.el_tab_content + ' table tbody').append(newElementView.render().el)
 
       } else {
         $('#new_entity').remove();
-
       }
     },
 
@@ -167,14 +168,6 @@ define([
 
     openModalImport: function(){
       $('#manage-department-import').modal('show');
-    },
-
-
-    showRemoveDialog: function(e){
-      var model_id = $(e.target).closest('.model').attr('model_id');
-      var model = this.config.collection.get(model_id);
-
-      new RemoveDialogView({model: model}, {message: 'Будь ласка, підтвердіть видалення', header: 'Ви впевнені?'});
     },
 
     saveElement: function(){
@@ -240,24 +233,9 @@ define([
       $(me.el_tab_content).html(tabContent);
       me.addActiveClass(this.activeMenuId)
       $('.DataTable').dataTable();
-
-      //$('#content select').selectpicker()
     },
 
-    /*checkVerification: function (){
-      for ( var i in this.tabMenuConfig ) {
-        if (this.tabMenuConfig[i]['verification'] = true){
-          if (typeof this.tabMenuConfig[i]['collection'] == 'function'){
-            this.tabMenuConfig[i]['collection'].fetch({
-              success: function(){
 
-              }
-            })
-          }
-        }
-
-      }
-    },*/
 
     render: function (tabContent){
       var me = this;

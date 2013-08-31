@@ -1,16 +1,26 @@
-<% for(var f in config.fields){ %>
+<% for(var f in conf.fields){ %>
     
+  
+  <% var input_class;
+     var text_class; 
+    if (conf.newModel){ 
+      var input_class = 'tab-input' 
+      var text_class = 'tab-text'
+    } else { 
+        input_class = 'tab-input toggle-input'
+        text_class = 'tab-text toggle-text'
+    }; %>
+
+  
   <td>
     
-
-
     <% //-------- it is a text field %>
 
     
-    <% if (config.fields[f]['type'] == 'text'){ %>
+    <% if (conf.fields[f]['type'] == 'text'){ %>
 
-      <input type="text" name="<%=f %>" class='toggle-input input-large' value="<%= model[f] %>"/>
-      <span class='toggle-text'>
+      <input type="text" name="<%=f %>" class="<%= input_class %>" value="<%= model[f] %>"/>
+      <span class="<%= text_class %>">
         <%=  model[f] %>
       </span>
 
@@ -18,13 +28,13 @@
 
     <% //-------- it is a select field %>
 
-    <% } else if (config.fields[f]['type'] == 'select') { %>
+    <% } else if (conf.fields[f]['type'] == 'select') { %>
           
      
-      <select class='toggle-input input-large' name="<%=f %>">
+      <select class="<%= input_class %>" name="<%=f %>">
         
 
-        <% var options_array = config.fields[f]['collection'].toJSON(); %>
+        <% var options_array = conf.fields[f]['collection'].toJSON(); %>
 
         <% for (i=0; i<options_array.length; i++){ %>
 
@@ -53,7 +63,7 @@
       </select> 
 
 
-      <span class='toggle-text'>  
+      <span class="<%= text_class %>">  
         <%=  active_name %>
       </span>
 
@@ -61,11 +71,11 @@
 
     <% //-------- it is a static field %>     
 
-    <% } else if (config.fields[f]['type'] == 'static') {%>      
+    <% } else if (conf.fields[f]['type'] == 'static') {%>      
 
       <span>  
 
-            <% var options_array = config.fields[f]['collection'].toJSON(); %>
+            <% var options_array = conf.fields[f]['collection'].toJSON(); %>
  
             <% for (i=0; i<options_array.length; i++){ %>
  
@@ -85,22 +95,36 @@
 <% } %>
 
 
-<td class="text-right">
 
-  <% if (!model['verified']){ %>
-    <button class='btn btn-warning verify-button' type="button" data-toggle="modal" data-target=''>Підтвердити</button>
- <% } %>
 
-</td>
 
-<td>
+<% if (conf.newModel){ %>
+  
+  <td class="text-right">
+    <button class='btn btn-success' id='create_button'>Додати</button>
+  </td>
+  <td></td>
 
-  <% if (!config['buttons'] || config['buttons']['remove'] != false) { %>
-    <button class='btn open-modal delete-button btn-danger' type="button" data-toggle="modal" data-target='delete-modal'>Видалити</button>
-  <% } %>
+<% } else { %>
 
-  <% if (config['buttons'] && config['buttons']['edit']) { %>
-    <button class='btn open-modal edit-button' type="button" data-toggle="modal" data-target='delete-modal'>Редагувати</button>
-  <% } %>
+  <td class="text-right">
 
-</td>
+    <% if (model['verified']==0){ %>
+      <button class='btn btn-warning verify-button' type="button" data-toggle="modal" data-target=''>Підтвердити</button>
+   <% } %>
+
+  </td>
+
+  <td>
+
+    <% if (!conf['buttons'] || conf['buttons']['remove'] != false) { %>
+      <button class='btn open-modal delete-button btn-danger' type="button" data-toggle="modal" data-target='delete-modal'>Видалити</button>
+    <% } %>
+
+    <% if (conf['buttons'] && conf['buttons']['edit']) { %>
+      <button class='btn open-modal edit-button' type="button" data-toggle="modal" data-target='delete-modal'>Редагувати</button>
+    <% } %>
+
+  </td>
+
+<% } %>

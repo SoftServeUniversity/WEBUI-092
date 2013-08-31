@@ -7,38 +7,39 @@ define([
     
 ], function ($, _, Backbone, ItemTemplate) {   
   
-var ItemView = Backbone.View.extend({ 
-  
-  tagName: 'tr', 
-  
-  className: 'toggle-list model',
-  
-  initialize: function(data){
-    this.data = data;
+	var ItemView = Backbone.View.extend({ 
+	  
+	  tagName: 'tr', 
+	  
+	  className: 'toggle-list',
+	  
+	  initialize: function(data){
+	  	var me = this; 
+	    this.data = data;
+	    this.model.on("reset", this.updateView);
+	  },
 
-  },
-  
-  render: function(){
-  	var compiledTemplate = _.template(ItemTemplate, this.data);
-    this.$el.html(compiledTemplate); 
-    return this;
-  }
+	  events: {
+	    'click .delete-button' : 'test'
+	  },
+
+	  updateView: function(){
+	    this.remove();
+	  },
+
+	  test: function(){
+	  	alert('i never fire :(');
+	  },
+
+	  render: function(){
+	  	this.data.model = this.data.model.toJSON();
+	  	var compiledTemplate = _.template(ItemTemplate, this.data);
+	    this.$el.html(compiledTemplate); 
+	    return this;
+	  }
+
+	});
+
+	return  ItemView;
 
 });
-
-return  ItemView;
-
-});
-
-
-
-
-
-
-
-
-
-
-
-
-
