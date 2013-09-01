@@ -13,7 +13,7 @@ define([
             degree: 'unknown',
             department: 0,
             title: 'unknown', 
-            percentage: 25  //external
+            progress: 25  //external
         }
     });
 

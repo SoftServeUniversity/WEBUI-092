@@ -91,11 +91,12 @@ define([
         var breadcrumbsView = new BreadcrumbsView();
       });
 
-      app_router.on('route:studentProgressAction', function (actions) {
+      app_router.on('route:studentProgressAction', function (id) {
 
         var studentProgressView = new StudentProgressView();
-        studentProgressView.render();
-        var breadcrumbsView = new BreadcrumbsView();
+        studentProgressView.initialize();
+        studentProgressView.loadData(id);
+        //var breadcrumbsView = new BreadcrumbsView();
       });
 
        app_router.on('route:courseProgressAction', function (actions) {
