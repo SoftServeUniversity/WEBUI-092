@@ -52,6 +52,7 @@ define([
         'admin'                  : 'viewAdminPage',
         'task/:id'               : 'taskShow',
         'sign_up'                : 'userSingUp',
+        'edit_profile/:id'       : 'editProfile',
         'info'                   : 'infoAction',
         // Default
         '*actions': 'defaultAction'
@@ -140,6 +141,12 @@ define([
         userSignUp.render();
         var breadcrumbsView = new BreadcrumbsView();
       });
+
+      app_router.on('route:editProfile', function (id){
+        var userSignUp = new UserSingUpView();
+        userSignUp.edit(id); 
+        var breadcrumbsView = new BreadcrumbsView();
+      })
 
       app_router.on('route:infoAction', function(){
         var infoView = new InfoView();

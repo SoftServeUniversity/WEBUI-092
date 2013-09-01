@@ -5,12 +5,13 @@ class Ability
     user ||= User.new # guest user (not logged in)
     if user.has_role? :admin
       can :manage, Teacher
-      can :manage, User, teacher: !nil
-      can :menage, Faculty 
+      can :manage, User
+      can :manage, Faculty 
+      can :manage, Work
       #info and backup isn't an model
     elsif user.has_role? :faculty_admin
       can :manage, Teacher
-      can :manage, User, teacher: !nil
+      can :manage, User
       can :manage, Course, faculty: { head_id: user.id }
       can :manage, Department, faculty: { head_id: user.id }
       can :manage, Group, department: { faculty: { head_id: user.id } }

@@ -1,0 +1,63 @@
+<section id="sign-up-container">
+  <div class="page-header">
+    <h1 id="myModelLabel" class="text-center">Редагування Профілю</h3>
+  </div>
+  <div class="sign-in-body">
+    <form class="form-horizontal" id="editForm" name="editForm">
+      <div class="control-group" id='email_group'>
+        <label class="control-label" for="user[email]">Email</label>
+        <div class="controls">
+          <input type="text" name="user[email]" autofocus required id="inputLastNameReg" placeholder="Введіть Bаш email" data-validation-regex-regex="^[\w\.-_\+]+@[\w-]+(\.\w{2,4})+$" data-validation-regex-message="Будь-ласка введіть валідний email" value='<%=email%>'>  
+        </div>
+      </div>
+      <div class="control-group" id='last_name_group'>
+        <label class="control-label" for="user[last_name]">Прізвище</label>
+        <div class="controls">
+          <input type="text" name="user[last_name]" autofocus required id="inputLastNameReg" placeholder="Введіть свое прізвище" data-validation-regex-regex="[А-Яа-яїєі]{3,25}" data-validation-regex-message="Тільки українські та російські букви, від 3 до 25", value='<%= last_name %>'>  
+        </div>
+      </div>
+      <div class="control-group" id='name_group'>
+        <label class="control-label" for="user[name]">Ім'я</label>
+        <div class="controls">
+          <input type="text" name="user[name]" required id="inputFirstNameReg" placeholder="Введіть свое ім'я" data-validation-regex-regex="[А-Яа-яїєі]{3,25}" data-validation-regex-message="Тільки українські та російські букви, від 3 до 25" value='<%= name %>'>
+        </div>
+      </div>
+      <div class="control-group" id='migle_name_group'>
+        <label class="control-label" for="user[middle_name]">По-батькові</label>
+        <div class="controls">
+          <input type="text" name="user[middle_name]" required id="inputFatherNameReg" placeholder="Введіть свое ім'я по-батькові" data-validation-regex-regex="[А-Яа-яїєі]{3,25}" data-validation-regex-message="Тільки українські та російські букви, від 3 до 25" value='<%= middle_name %>'>
+        </div>
+      </div>
+      <div class='roleStudent'>
+        <!--template with student_attributes will go here-->
+      </div>
+      <div class='roleTeacher'>
+        <!--template with teacher_attributes will go here-->
+      </div>
+      <div class="control-group" id='password_group'>
+        <label class="control-label" for="user[password]">Новий пароль</label>
+        <div class="controls">
+          <input type="password" name="user[password]"  id="inputPasswordReg" placeholder="Введіть свій пароль" name="password" data-validation-regex-regex="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$" data-validation-regex-message="Повинен містити великі та маленькі латинські букви і цифри. Мінімум 8 символів">
+          <p class="help-block">залиште це поле порожнім, якщо ви не хочете змінювати його</p>
+        </div>
+      </div>
+      <div class="control-group" id='password_confirmation_group'>
+        <label class="control-label" for="user[password_confirmation]">Підтвердження нового паролю</label>
+        <div class="controls">
+          <input type="password" name="user[password_confirmation]" id="inputPasswordReg" placeholder="Введіть свій пароль" name="password" data-validation-regex-regex="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$" data-validation-regex-message="Повинен містити великі та маленькі латинські букви і цифри. Мінімум 8 символів">
+        </div>
+      </div>
+      <hr>
+      <div class="control-group" id='password_confirmation_group'>
+        <label class="control-label" for="user[current_password]">Поточний пароль</label>
+        <div class="controls">
+          <input type="password" name="user[current_password]" required id="inputPasswordReg" placeholder="Введіть свій пароль" name="password" data-validation-regex-regex="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$" data-validation-regex-message="Повинен містити великі та маленькі латинські букви і цифри. Мінімум 8 символів">
+          <p class="help-block">Нам потрібен ваш поточний пароль, щоб підтвердити зміни</p>
+        </div>
+      </div>
+      <div class="control-group">
+        <input type='submit' id="sendFormReg" class="btn btn-primary" value='Відправити'></input>
+      </div>
+    </form>
+  </div>
+</section>
