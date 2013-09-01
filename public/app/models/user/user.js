@@ -3,12 +3,13 @@ define([
     'underscore',
     'backbone'
 ], function($, _, Backbone) {
+  // TODO: WARNING: Can't verify CSRF token authenticity. $(document).trigger('csrfToken'); 
   return Backbone.Model.extend({
     getRole: function(){
-      return $.ajax({type: "POST", url: 'user_helper/return_current_role', data: {id: this.id}, dataType: "json", async: false}).responseText; 
+      return $.post('user_helper/return_current_role', {id: this.id}, null, "json").responseText; 
     },
     getAbilities: function(){
-      return $.ajax({type: "POST", url: 'user_helper/receive_user_abilities', data: null, dataType: "json", async: false}).responseText; 
+      return $.post('user_helper/receive_user_abilities', null, null, "json").responseText; 
     }
   });
 });
