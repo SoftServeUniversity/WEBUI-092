@@ -11,13 +11,11 @@ define([
   'views/shared/RemoveDialogView',
   'views/admin/itemView'
 
-
-
 ], function( $, bootstrapselect, _,  Backbone, Bootstrap_dataTables,
             MenuView, parentAdminTemplate, RemoveDialogView,
             ItemView ) {
 
-  var AdminParentView = Backbone.View.extend({
+  var ParentAdminView = Backbone.View.extend({
 
     el             : '#content',
     el_headline    : '#headline',
@@ -26,14 +24,58 @@ define([
 
     headline: 'Default Admin Headline',
 
+    initialize: function(){
+      
+      var me = this;
+
+      //extend events with events set in Child Admin Views
+      me.addTabHandlers();
+
+      me.render();
+
+      //display default active tab set in Child Admin Views
+      me.setActiveTab(me.defaultActiveTab);
+
+      //Render a tab when it's loaded
+      GlobalEventBus.on('tabSubViewLoaded', function(tabContent, config){
+        
+        me.config = config; 
+        me.renderTab(tabContent);
+        $('.new-button').html(me.config.buttons['create']);
+      
+      })
+
+    },
+
+    events: {
+     //table events Oneed to be moved to itemView)
+     'dblclick .toggle-list .toggle-text'     : 'showInput',
+     'blur .toggle-list .toggle-input'        : 'changed',
+     'keypress .toggle-list .toggle-input'    : 'changed',
+
+     //modal windows
+     'click .save'               : 'closeModal',
+     'click .open-modal-import'  : 'openModalImport',
+     'click .verify-button'      : 'verifyElement'
+    },
+
+
     //when page loads - load default tab
-    loadDefaultActiveTab: function(id){
+    setActiveTab: function(id){
       for(i=0; i<this.tabMenuConfig.length; i++){
         if(this.tabMenuConfig[i]['id'] == id){
           var action = this.tabMenuConfig[i]['action'];
           this[action]();
         }
       }
+    },
+
+    //add click handler for each tab
+    addTabHandlers: function(){
+      var me = this;
+      _.each(this.tabMenuConfig, function (item){
+        me.events['click #'+ item['id']] = item['action'];
+      })
     },
 
     //add active class to tab menu
@@ -45,56 +87,7 @@ define([
       $('.nav-tabs .active').trigger('click');
     },
 
-    initialize: function(){
-      var me = this;
 
-      //ADD COMMENT !!!!!
-      this.events = JSON.parse(JSON.stringify(this.events));
-
-
-      //extend events with events from child
-      this.addTabHandlers();
-
-      //when child config loads we can update buttons' titles in parent view
-      this.on('onChildConfigLoaded', function(){
-        $('.new-button').html(me.config.buttons['create']);
-      })
-
-      //Subview has rendered
-      GlobalEventBus.on('tabChildSupViewLoaded', function(tabContent, config){
-        me.config = config;
-        me.render(tabContent);
-        me.trigger('onChildConfigLoaded');
-      })
-
-      this.loadDefaultActiveTab(this.defaultActiveTab);
-
-      /*this.checkVerification();*/
-    },
-
-    //remove all events, (to remove events bound in previous adminView.extend)
-    events: {},
-
-    events: {
-     //table events
-     'dblclick .toggle-list .toggle-text'     : 'showInput',
-     'blur .toggle-list .toggle-input'        : 'changed',
-     'keypress .toggle-list .toggle-input'    : 'changed',
-
-     //modal windows
-     'click .save'               : 'closeModal',
-     'click .open-modal-import'  : 'openModalImport',
-     'click #create_button'      : 'saveElement',
-     'click .verify-button'      : 'verifyElement'
-    },
-
-    //add click handler for each tab
-    addTabHandlers: function(){
-      var me = this;
-      _.each(this.tabMenuConfig, function (item){
-        me.events['click #'+ item['id']] = item['action'];
-      })
-    },
 
     appendNewElementRow: function(){
       var me = this;
@@ -112,6 +105,8 @@ define([
       }
     },
 
+    
+
     showInput: function(e){
       $(e.target).css('display', 'none').prev().css('display','block');
     },
@@ -122,11 +117,13 @@ define([
       $('.admin-buttons').css('display', 'block')
     },
 
+    
 
     //some input in tab has been changed
     changed: function (e){
       var me = this;
       if ((e.type == 'keypress' && e.keyCode == 13) || e.type == 'focusout'){
+        
         var field_name = $(e.target).attr('name');
         var model_id = $(e.target).closest('.model').attr('model_id');
         var toggle_text = $(e.target).closest('.model').find('.toggle-text')
@@ -145,6 +142,7 @@ define([
       }
     },
 
+    
     modelSaveOnChange: function(data){
       var a =this.config.collection.get(data.id);
       var field_name = data.field_name;
@@ -155,6 +153,7 @@ define([
       a.set(putData)
       a.save();
     },
+
 
     openModal: function(e){
       modal_id = ($(e.target).attr('data-target'));
@@ -170,33 +169,6 @@ define([
       $('#manage-department-import').modal('show');
     },
 
-    saveElement: function(){
-      var me = this, name;
-      var model = new me.config.model;
-
-      $("input[data-field]").each(function(){
-          field = $(this).attr('name');
-          value =  $(this).val();
-          model.set(field, value);
-      });
-
-      //model.save() with responses
-      model.save({att1 : "value"}, {
-        success: function(model, response){
-          console.log('success');
-          $('#content').prepend("<div class='alert alert-success'><strong>Success!</strong>You have successfully created a new entity.</div>");
-        },
-        error: function(model, response){
-          console.log('error');
-        }
-      })
-      window.setTimeout(function () {
-        $('.alert-success').fadeOut();
-        $('.alert-error').fadeOut();
-      }, 3000);
-      me.reloadTab();
-
-    },
 
     verifyElement: function(e){
       var model_id = $(e.target).closest('.model').attr('model_id');
@@ -218,6 +190,7 @@ define([
     },
 
 
+
     renderHeadline: function(headline){
       $(this.el_headline).html(this.headline);
     },
@@ -225,7 +198,6 @@ define([
     renderMenu: function(){
       var menuView = new MenuView(this.tabMenuConfig);
       $(this.el_tab_menu).html(menuView.$el.html());
-      this.addActiveClass(this.activeMenuId)
     },
 
     renderTab: function(tabContent){
@@ -235,19 +207,16 @@ define([
       $('.DataTable').dataTable();
     },
 
-
-
     render: function (tabContent){
       var me = this;
 
-      //render basic template with containers
+      //render basic template with empty divs
       var compiledTemplate = _.template(parentAdminTemplate);
       this.$el.html(compiledTemplate);
 
-      //render elements of page
       this.renderHeadline();
       this.renderMenu();
-      this.renderTab(tabContent);
+
       //hide all toggle-inputs when user clicks not on input
       $('body').on('click',function(e){
         if ($(e.target).closest('.toggle-input').length <= 0){
@@ -262,18 +231,9 @@ define([
         me.appendNewElementRow();
       });
 
-      // next time child view loads - only tab content will render and button text update
-      GlobalEventBus.off('tabChildSupViewLoaded');
-      GlobalEventBus.on('tabChildSupViewLoaded', function(tabContent, config){
-        me.config = config;
-        me.renderTab(tabContent);
-        me.trigger('onChildConfigLoaded');
-      })
-
-      //$('#content select').selectpicker()
     }
 
   });
 
-  return  AdminParentView;
+  return ParentAdminView;
 });

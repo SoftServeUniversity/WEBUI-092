@@ -14,13 +14,12 @@ define([
     
     initialize: function(){
       
-      var me = this; 
+      var me = this;
+      var config; 
       
       this.loadData();
 
       this.on('dataLoaded', function(){
-            
-        var config;
         
         config = this.setConfig();
         this.collection = config.collection;
@@ -29,7 +28,7 @@ define([
         me.render(config)
 
         //all content has loaded, it's time for parent view to render tab
-        GlobalEventBus.trigger('tabChildSupViewLoaded', me.$el.html(), config);
+        GlobalEventBus.trigger('tabSubViewLoaded', me.$el.html(), config);
         
         //display question mark on tab if some model needs verification
         if (config.verification){
@@ -61,12 +60,12 @@ define([
     
       //render table head
       var tableHeadView = new TableHeadView({ conf: config });
-      me.$('#tab-head').append(tableHeadView.render().el); 
+      me.$('#tab-head').html(tableHeadView.render().$el); 
 
       //render rows
       this.collection.each(function(item) {
         var itemView = new ItemView({ model: item, conf: config }); 
-        me.$('#tab-body').append(itemView.render().el)
+        me.$('#tab-body').append(itemView.render().$el)
       });
       
       return this;
@@ -110,8 +109,7 @@ define([
       }
     }
 
-  
-
+ 
   });
   
   return  ParentTabView;

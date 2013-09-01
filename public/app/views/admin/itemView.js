@@ -3,43 +3,58 @@ define([
   'underscore',
   'backbone',
   'text!templates/admin/itemTemplate.html'
-
-    
+ 
 ], function ($, _, Backbone, ItemTemplate) {   
   
-	var ItemView = Backbone.View.extend({ 
-	  
-	  tagName: 'tr', 
-	  
-	  className: 'toggle-list',
-	  
-	  initialize: function(data){
-	  	var me = this; 
-	    this.data = data;
-	    this.model.on("reset", this.updateView);
-	  },
+    var ItemView = Backbone.View.extend({ 
+      
+      tagName: 'tr', 
+      
+      className: 'toggle-list',
+      
+      template: _.template(ItemTemplate),
 
-	  events: {
-	    'click .delete-button' : 'test'
-	  },
+      initialize: function(data){
+        var me = this; 
+        this.data = data;
+        //$(".delete-button").on("click", "document", function(event){
+        // alert('asdf');
+        //});
 
-	  updateView: function(){
-	    this.remove();
-	  },
+       //this.model.on("reset", this.updateView);
+       console.log(this)
+      },
 
-	  test: function(){
-	  	alert('i never fire :(');
-	  },
+      events: {
+        'click' : 'test',
+        'click .delete-button' : function(){ alert ('pancakes') }    
+      },
 
-	  render: function(){
-	  	this.data.model = this.data.model.toJSON();
-	  	var compiledTemplate = _.template(ItemTemplate, this.data);
-	    this.$el.html(compiledTemplate); 
-	    return this;
-	  }
+      updateView: function(){
+        this.remove();
+      },
 
-	});
+      test: function(){
+          console.log('i never fire ')
+          alert('i never fire ');
+      },
 
-	return  ItemView;
+      render: function(){
+        
+        var me = this;
+
+        me.data.model = me.data.model.toJSON();
+        
+        var compiledTemplate = me.template(me.data);
+
+        me.$el.html(compiledTemplate); 
+        
+        return me;
+
+      }
+
+    });
+
+    return  ItemView;
 
 });
