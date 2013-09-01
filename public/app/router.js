@@ -52,7 +52,8 @@ define([
         'admin'                  : 'viewAdminPage',
         'task/:id'               : 'taskShow',
         'sign_up'                : 'userSingUp',
-        'edit_profile/:id'       : 'editProfile',
+        'edit_profile'           : 'editProfile',
+        'cancel_account'         : 'cancelAccount',
         'info'                   : 'infoAction',
         // Default
         '*actions': 'defaultAction'
@@ -142,13 +143,20 @@ define([
         var breadcrumbsView = new BreadcrumbsView();
       });
 
-      app_router.on('route:editProfile', function (id){
+      app_router.on('route:editProfile', function (){
         var userSignUp = new UserSingUpView();
-        userSignUp.edit(id); 
+        userSignUp.edit(); 
         var breadcrumbsView = new BreadcrumbsView();
-      })
+      });
+
+      app_router.on('route:cancelAccount', function (){
+        var userSignUp = new UserSingUpView();
+        userSignUp.cancel(); 
+        var breadcrumbsView = new BreadcrumbsView();
+      });
 
       app_router.on('route:infoAction', function(){
+        var userSignUp = new UserSingUpView();
         var infoView = new InfoView();
         var breadcrumbsView = new BreadcrumbsView();
       });

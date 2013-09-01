@@ -117,9 +117,17 @@ define([
       }
     },
 
-    edit: function(id){
+    edit: function(){
       var el = $(this.el);
       $("#content").html(_.template(EditRegistrationsTemplate, GlobalUser.currentUser.attributes));
+    },
+
+    cancel: function(){
+      this.model.set(GlobalUser.currentUser)
+      this.model.destroy({success: function(model, response) {
+        GlobalUser.vent.trigger("authentication:logged_out");
+        window.location.hash = '/';
+      }});
     },
 
     update: function(e){

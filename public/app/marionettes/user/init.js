@@ -45,7 +45,7 @@ define([
     GlobalUser.currentUser = GlobalUser.Models.User.set(GlobalUser.currentUser);
     GlobalUser.currentUser.role = GlobalUser.Models.User.getRole();
     GlobalUser.currentUser.abilities = GlobalUser.Models.User.getAbilities();
-    $('#launch-btn').replaceWith(_.template(loggedInTemplate, {id: GlobalUser.currentUser.id}));
+    $('#launch-btn').replaceWith(_.template(loggedInTemplate));
     $('#launch').slideUp(300);
     window.location.hash = '/';
   });
