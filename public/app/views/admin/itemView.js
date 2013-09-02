@@ -58,7 +58,7 @@ define([
 
           var putRequestParams = {};
           putRequestParams[field_name]=field_value;
-          this.model.set(putRequest)
+          this.model.set(putRequestParams)
           this.model.save();
 
           $('.toggle-list .toggle-input').css('display','none');
