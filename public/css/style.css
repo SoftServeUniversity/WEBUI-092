@@ -181,16 +181,30 @@ progress::-webkit-progress-value { background: #69EB63; }
 
 /* --- Nazaruk Sergii CSS --- */
 /* Modal History */
-.history-modal          { display: block; margin-bottom: 20px; }
+/*.history-modal          { display: block; margin-bottom: 20px; }
+*/
 .modal-list				{ font-size: 12px; }
 #myModal				{ display: none; width: 600px; border-radius: 6px; margin: 0 auto; }
 #myModal.active			{ position: fixed; z-index: 1050; opacity: 1; background-color: white;
     					  left: 10%; right: 10%; top: 10%;
     					}
 /* Progress */
-#create-btn				{ display: block; margin: 0 auto;}
-#task-progress			{ margin-bottom: 20px; }
-
+/*#task-progress			{ margin-bottom: 20px; }*/
+.width80{
+	width: 80%;
+	margin-right: 10px;
+}
+@media (max-width: 520px) {
+	#create-btn{
+		width: 100%;
+	}
+	.width80{
+		width: 100%;
+	}
+}
+.add-task-line{
+	margin-bottom: 5px;
+}
 /*Yasinishyn start*/
 .red{
 	color: red;
@@ -549,8 +563,15 @@ tr.notverified {
   min-height: 20px !important; 
   margin-bottom: 0 !important;
 }
-.ui-icon-arrowthick-2-n-s {
+.icon-resize-vertical {
   cursor: pointer;
+}
+
+.task-icons {
+	float: right;
+}
+.task-icon{
+	cursor: pointer;
 }
 /*--------breadcrumbs navigation-----------*/
 .breadcrumb{
