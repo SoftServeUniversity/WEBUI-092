@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130828124205) do
+ActiveRecord::Schema.define(:version => 20130823180010) do
 
   create_table "courses", :force => true do |t|
     t.string   "name"
@@ -55,10 +55,10 @@ ActiveRecord::Schema.define(:version => 20130828124205) do
 
   create_table "progress_changes", :force => true do |t|
     t.integer  "progress"
-    t.integer  "entity_id"
-    t.integer  "table_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.integer  "progressable_id"
+    t.string   "progressable_type"
+    t.datetime "created_at",        :null => false
+    t.datetime "updated_at",        :null => false
   end
 
   create_table "roles", :force => true do |t|
@@ -82,12 +82,6 @@ ActiveRecord::Schema.define(:version => 20130828124205) do
 
   add_index "students", ["group_id"], :name => "index_students_on_group_id"
   add_index "students", ["user_id"], :name => "index_students_on_user_id"
-
-  create_table "table_dictionaries", :force => true do |t|
-    t.string   "name"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
 
   create_table "task_changes", :force => true do |t|
     t.integer  "task_id"
