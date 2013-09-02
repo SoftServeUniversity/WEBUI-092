@@ -67,7 +67,7 @@ define([
            },
 
            render:function(){
-               var student_name = students_col.get(studentId).toJSON().name;
+               var student_name = 'students_col.get(studentId).toJSON().name';
 
 
                var worksListView = new ListView({

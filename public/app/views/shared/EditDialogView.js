@@ -2,9 +2,9 @@ define([
   'jquery',
   'underscore',
   'backbone',
-  'views/admin/parentTabView',
-  'text!templates/admin/editDialogTemplate.html'
-], function($, _, Backbone, ParentTabView, editDialogTemplate){   
+  'text!templates/shared/editDialogTemplate.html'
+
+], function($, _, Backbone, editDialogTemplate){   
 
 var EditDialogView = Backbone.View.extend(
 {
@@ -14,11 +14,8 @@ var EditDialogView = Backbone.View.extend(
   appended : true,
 
 
-  initialize: function (model_id, collection) {
-    this.model_id = model_id;
-    this.collection = collection;
+  initialize: function () {
 
-    this.model = collection.get(model_id);
     this.work_name = this.model.toJSON().name;
     this.templ = _.template(editDialogTemplate, {model: this.model.toJSON()});
     
@@ -26,31 +23,22 @@ var EditDialogView = Backbone.View.extend(
     _.bindAll(this, 'editElement');
     _.bindAll(this, 'keyPressHandler');
 
-
+    
     this.render();
-    this.addEventHandlers();
   },
 
   //remove events what remain from earlier calls to 'new removeDialogView()'
-  removeZombieEvents: function () {
-      $('.confirm-yes').off('click');
-      $('.confirm-no').off('click');
-      $(document).off('keypress', this.keyPressHandler);
-  },
-
-  //when using event object there was no way to remove zombie events.
-  //assigning events manually works better, but it's bad :(
-  addEventHandlers: function () {
-    $('.confirm-yes').on('click', this.editElement);
-    $('.confirm-no').on('click', this.cancelAction);
-    $(document).on('keypress', this.keyPressHandler);
-  },
+  events: {
+    "click .confirm-yes" : "editElement",
+    "click .confirm-no"  : "cancelAction",
+    "keypress"  : "keyPressHandler"
+  },      
 
 
   //to confirm removal with Enter
   keyPressHandler: function(e){
       if (e.keyCode == 13){
-          this.removeElement(); 
+          this.editElement(); 
     }
   },
 
@@ -81,7 +69,6 @@ var EditDialogView = Backbone.View.extend(
   
   editElement: function (e) {
     var me=this;
-    var model = this.collection.get(this.model_id);
 
     var options = {
         success: function (model, response) {
@@ -94,9 +81,9 @@ var EditDialogView = Backbone.View.extend(
     var work_name = $('#work_name_input').val();
     var work_comment = $('#work_name_input').val();
 
-    model.set ({name: work_name});
-    model.save(options)
-    this.removeZombieEvents()
+    this.model.set ({name: work_name});
+    this.model.save(options);
+    this.hideModal();
   }
 
 
