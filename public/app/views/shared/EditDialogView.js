@@ -42,6 +42,17 @@ var EditDialogView = Backbone.View.extend(
     }
   },
 
+  validateComment: function(){
+    if ($("#work_comment_input").val().length < 5) {
+      return false;
+    } else {
+      return true
+    }
+  },
+  displayError: function(){
+    $(".control-group.comment").addClass('error');
+  },
+
   hideModal: function () {
     $(this.el_modal).modal('hide');
   },
@@ -80,10 +91,20 @@ var EditDialogView = Backbone.View.extend(
     };
     var work_name = $('#work_name_input').val();
     var work_comment = $('#work_name_input').val();
+    
+    if(this.validateComment()){
 
-    this.model.set ({name: work_name});
-    this.model.save(options);
-    this.hideModal();
+      this.model.set ({name: work_name});
+      this.model.save(options);
+      this.hideModal();  
+    
+    } else {
+
+      this.displayError();
+    
+    };
+    
+
   }
 
 

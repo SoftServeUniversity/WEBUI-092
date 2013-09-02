@@ -84,7 +84,7 @@ define([
 
     appendNewElementRow: function(){
       var me = this;
-      if ($('#new_entity').length < 1){
+      if (!this.newElementRow){
         
         var newModel = new me.config.model();
 
@@ -92,9 +92,8 @@ define([
         var newElementView = new ItemView({model: newModel, conf: me.config});
         
         $(me.el_tab_content + ' table tbody').append(newElementView.render().el)
-
-      } else {
-        $('#new_entity').remove();
+        
+        this.newElementRow = true;   
       }
     },
   
@@ -138,6 +137,8 @@ define([
       var me = this;
       $(me.el_tab_content).html(tabContent);
       me.addActiveClass(this.activeMenuId)
+
+
       $('.DataTable').dataTable({
         "oLanguage": {
           sUrl: "app/libs/datatables/dataTables.ukrainian.txt"
