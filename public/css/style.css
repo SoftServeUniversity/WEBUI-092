@@ -310,9 +310,7 @@ hr.task-comment-line{
 #regMod{
 	display: none;
 }
-#regForm .controls{
-	width: 35%;
-}
+
 
 .gradient {
 	background: #F5F5F5; /* Для старых браузров */
@@ -836,5 +834,12 @@ div.DTFC_LeftFootWrapper table {
 	height: 20px;
 	max-height: 20px;
 	max-width: 20px;
+}
+.help-block{
+	font-size: 10px;
+	color: grey;
+}
+#regForm .controls, #editForm .controls{
+	width: 35%;
 }
 

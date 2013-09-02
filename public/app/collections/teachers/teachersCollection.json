@@ -6,7 +6,7 @@
         "middle_name": "Петрович",
         "degree": "к.е.н., професор",
         "department": "Кафедра прикладної математики",
-        "percentage": 75,
+        "progress": 75,
         "verified": 0,
         "faculty_id": 1,
         "group_id":1
@@ -18,7 +18,7 @@
         "middle_name": "Петрович",
         "degree": "д.ф.-т.н., професор",
         "department": "Кафедра геодезії",
-        "percentage": 15,
+        "progress": 15,
         "verified": 0,
         "faculty_id": 2,
         "group_id":2
@@ -30,7 +30,7 @@
         "middle_name": "Петрович",
         "degree": "к.е.н., професор",
         "department": "Кафедра міжнародних відносин",
-        "percentage": 45,
+        "progress": 45,
         "verified": 0,
         "faculty_id": 3,
         "group_id":3
@@ -42,7 +42,7 @@
         "middle_name": "Петрович",
         "degree": "к.е.н., професор",
         "department": "Кафедра обліку і аудиту",
-        "percentage": 84,
+        "progress": 84,
         "verified": 1,
         "faculty_id": 4,
         "group_id":4        
@@ -54,7 +54,7 @@
         "middle_name": "Петрович",
         "degree": "к.е.н., доцент",
         "department": "Кафедра комп'ютерної інженерії (КІ)",
-        "percentage": 63,
+        "progress": 63,
         "verified": 1,
         "faculty_id": 5,
         "group_id":5        
@@ -66,7 +66,7 @@
         "middle_name": "Петрович",
         "degree": "к.е.н., доцент",
         "department": "Кафедра комп'ютерної інженерії (КІ)",
-        "percentage": 85,
+        "progress": 85,
         "verified": 1,
         "faculty_id": 6,
         "group_id":6         
@@ -78,7 +78,7 @@
         "middle_name": "Петрович",
         "degree": "к.е.н., доцент",
         "department": "Кафедра комп'ютерної інженерії (КІ)",
-        "percentage": 10,
+        "progress": 10,
         "verified": 1,
         "faculty_id": 7,
         "group_id":7        
@@ -90,7 +90,7 @@
         "middle_name": "Петрович",
         "degree": "к.е.н., доцент",
         "department": "Кафедра комп'ютерної інженерії (КІ)",
-        "percentage": 35,
+        "progress": 35,
         "verified": 1,
         "faculty_id": 8,
         "group_id":8         
@@ -102,7 +102,7 @@
         "middle_name": "Петрович",
         "degree": "к.е.н., доцент",
         "department": "Кафедра комп'ютерної інженерії (КІ)",
-        "percentage": 35,
+        "progress": 35,
         "verified": 1,
         "faculty_id": 9,
         "group_id":9        

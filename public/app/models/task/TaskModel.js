@@ -4,11 +4,12 @@ define([
 ], function(_, Backbone) {
   
   var TaskModel = Backbone.Model.extend({
-  	urlRoot: '/tasks/',
-	defaults: {
-	    name: "Завдання №1",
-	    work_id: 1
-	}
+  urlRoot: "http://localhost:3000/tasks",
+  defaults: {
+       "progress": 36
+
+  }
+
   });
 
   return TaskModel;

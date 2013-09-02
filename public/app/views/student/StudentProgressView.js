@@ -2,39 +2,96 @@ define([
   'jquery',
   'underscore',
   'backbone',
-  'text!templates/group/oneColumnTemplate.html',
-  'collections/tasks/TasksProxyCollection'],
-   function($, _, Backbone, oneColumnTemplate, TasksProxyCollection){
-
-    var StudentProgressView = Backbone.View.extend({
-      el: $("#content"),
-
-      render: function(){
-
-        var that = this;
-
-        var tasksCollection = new TasksProxyCollection();
-            tasksCollection.fetch({
-                url: "app/mocks/tasks.json",
-                async:false
-            });
+  'text!templates/shared/StTemplate.html',
+  'views/shared/ListView',
+  'views/shared/ChartView',
+  'collections/students/StudentsCollection',
+  'collections/students/StudentChangeCollection',
+  //'collections/tasks/TasksCollection'
+  'collections/work/WorkCollection'
 
 
-        var data = {
-          header: 'Тема роботи',
-          subheader_1: 'Група',
-          subheader_2: 'Керівник',
-          subheader_3: 'Студент',
-          entities: tasksCollection.models,
-          _: _
-        };
-        var compiledTemplate = _.template( oneColumnTemplate, data);
+],
+   function($, _, Backbone, StTemplate, ListView, ChartView, StudentsCollection, StudentChangeCollection, WorkCollection){
 
-        $("#content").html(compiledTemplate);
-      }
+       var StudentProgressView =  Backbone.View.extend({
+           loadData: function(id){
+               studentId = id;
+               var me = this;
 
-    });
+               students_col = new StudentsCollection();
+               students_col.fetch({
+                   success: function () {
+                       me.trigger('DataLoaded', 'Students');
+                   }
+               });
 
-    return StudentProgressView;
+               works_col = new WorkCollection();
+               works_col.fetch({
+                   success:function () {
+                       me.trigger('DataLoaded', 'Works');
+                   }
+               });
 
-  });
+               students_change_col = new StudentChangeCollection();
+               students_change_col.fetch({
+                   success:function () {
+                       me.trigger('DataLoaded', 'StudentsChange');
+                   }
+               });
+
+           },
+
+           initialize:function(){
+               var isStudentsLoaded = false;
+               var isWorksLoaded = false;
+               var isStudentsChangeLoaded = false;
+
+               var me = this;
+
+               this.on('DataLoaded', function (item) {
+                   if (item == 'Students') {
+                       isStudentsLoaded = true;
+                   }
+                   if (item == 'Works'){
+                       isWorksLoaded = true;
+                   }
+                   if (item == 'StudentsChange'){
+                       isStudentsChangeLoaded = true;
+                   }
+                   if (isStudentsLoaded && isWorksLoaded && isStudentsChangeLoaded){
+                       me.render();
+                   }
+               });
+
+           },
+
+           render:function(){
+               var student_name = students_col.get(studentId).toJSON().name;
+
+
+               var worksListView = new ListView({
+                   collection:works_col,
+                   linkTo:"work"
+               });
+
+               var chartView = new ChartView({
+                   collection:students_change_col
+               });
+               var data = {
+                   name: student_name,
+                   listTitle: "Назви курсових робіт",
+                   list : worksListView.render().$el.html()
+
+               }
+
+               var compiledTemplate = _.template( StTemplate, data);
+               $("#content").html(compiledTemplate);
+               chartView.render();
+               return this;
+           }
+       });
+       return StudentProgressView;
+   });
+
+

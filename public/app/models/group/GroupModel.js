@@ -10,7 +10,7 @@ define([
             course: null,
             department: null,
             teacher: null,
-            percentage: 20
+            progress: 20
         }
     });
 

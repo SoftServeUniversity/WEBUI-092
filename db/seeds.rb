@@ -83,7 +83,7 @@ stud = Student.create user_id: User.last.id
 if Work.all.empty?
   s = 'Work_ABC'
   10.times do |time| 
-    d = Work.create! name: (s.next! + time.to_s)
+    d = Work.create! name: (s.next! + time.to_s), student_id: 1
     puts 'created '<< d.name
   end
 end
@@ -92,7 +92,7 @@ end
 if Task.all.empty?
   s = 'Task_ABC'
   10.times do |time| 
-    d = Task.create! name: (s.next! + time.to_s), work_id: Work.last.id
+    d = Task.create! name: (s.next! + time.to_s), work_id: rand(10) + 1
     puts 'created '<< d.name
   end
 end
