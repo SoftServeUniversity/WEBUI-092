@@ -67,6 +67,7 @@ define([
       $(this.el_tab_content).html(tabDbView.$el.html())
       this.hideAdminButtons();
     },
+    
     manage_info: function(){
       var me = this; 
 

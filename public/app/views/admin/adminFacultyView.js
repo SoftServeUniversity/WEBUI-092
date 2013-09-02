@@ -35,11 +35,11 @@ var AdminFacultyView = ParentAdminView.extend({
       action: 'manage_teachers'
     },
 
-    {
+   /* {
        id:'teachers_of_dep-tab',
        label: 'Викладачі кафедри',
        action: 'manage_teachers_of_dep'
-    },
+    },*/
 
     {
       id:'courses-tab',
