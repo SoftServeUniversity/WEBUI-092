@@ -5,7 +5,7 @@ class DepartmentsController < ApplicationController
   # GET /departments
   # GET /departments.json
   def index
-    respond_with  Department.all
+    respond_with  Department.where(params['filter'])
   end
 
 

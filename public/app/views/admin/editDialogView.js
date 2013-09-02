@@ -39,7 +39,7 @@ var EditDialogView = Backbone.View.extend(
   },
 
   //when using event object there was no way to remove zombie events.
-  //assigning events manually works better
+  //assigning events manually works better, but it's bad :(
   addEventHandlers: function () {
     $('.confirm-yes').on('click', this.editElement);
     $('.confirm-no').on('click', this.cancelAction);

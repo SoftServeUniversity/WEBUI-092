@@ -2,8 +2,11 @@ define([
   'jquery',
   'underscore',
   'backbone',
-  'text!templates/admin/parentTabTemplate.html'
-], function($, _, Backbone, parentTabTemplate){   
+  'text!templates/admin/parentTabTemplate.html',
+  'views/admin/itemView',
+  'views/admin/tableHeadView'
+
+], function($, _, Backbone, parentTabTemplate, ItemView, TableHeadView){   
    
   var ParentTabView = Backbone.View.extend({
     
@@ -11,125 +14,79 @@ define([
     
     initialize: function(){
       
-      var me = this; 
+      var me = this;
+      var config; 
       
-      this.on('onDataLoaded', function(){
-           
-            me.config = this.setConfig();
-            var data = me.buildJSON(me.config)
-            me.render(data)
-            
+      this.loadData();
 
+      this.on('dataLoaded', function(){
+        
+        config = this.setConfig();
+        this.collection = config.collection;
+        config = this.augmentConfig(config);
+        
+        me.render(config)
 
-            //merge two configs (we'll need both fields and buttons config)
-            me.config.entities = data.entities;
-            GlobalEventBus.trigger('tabChildSupViewLoaded', me.$el.html(), me.config);
-      
-            // verification HACK !!!
-            if (me.verification){
-              me.checkVerification();
-            }
+        //all content has loaded, it's time for parent view to render tab
+        GlobalEventBus.trigger('tabSubViewLoaded', me.$el, config);
+        
+        //display question mark on tab if some model needs verification
+        if (config.verification){
+          me.checkVerification(config.verification);
+        }
 
-            //add event handlers from current tab
-            if (me.addCustomEvents) {me.addCustomEvents ()}
-           
-
+        //this method is used only in works view
+        if (me.addCustomEvents) {me.addCustomEvents ()}
       })
 
-      this.loadData();
+
     },
 
-    /* 
-    * bind all collections needed for select-boxes, labels, visible items
-    * to items and their fields
-    */
-    buildJSON: function(config){
+    augmentConfig: function(config){
 
-      var me = this;
+        if (!config.table_class){
+          config.table_class = '';
+        }
+        return config;
 
-      var json_data=config.collection.toJSON();
+    },
+
+    render: function (config){
       
-      //json_data['item_buttons'] = {};
-      //loop through all entities
-      var field_types = [];
-      var rel = {};
-      var visible_fields = [];
-      var labels = [];
-        
-      if (!config.table_class) {
-        config.table_class='';
-      }
-        //loop through data
-        for (i=0; i<config.data.length; i++) {
+      var me = this;    
 
-          var rel_link = config.data[i]['_link'];
-          var label = config.data[i]['label']; 
+      //render containing table
+      var compiledTemplate = _.template(parentTabTemplate, { conf: config });
+      me.$el.html(compiledTemplate); 
+    
+      //render table head
+      var tableHeadView = new TableHeadView({ conf: config });
+      me.$('#tab-head').html(tableHeadView.render().$el); 
 
-          //if select box
-          if (config.data[i]['src']){      
-             var rel_src = config.data[i]['src'].toJSON();
-               
-             //array of foreign keys, mapped to collections
-             rel[rel_link]=rel_src;
-          }
-          
-          //get field type to each field
-          if (config.data[i]['type']){
-            field_types.push(config.data[i]['type'])
-          }
-
-          labels.push(label);
-          visible_fields.push(config.data[i]['_link'])
-        }
-
-        //console.log(rel)
-        for (a=0; a<json_data.length; a++){
-           json_data[a]['selectbox_items'] = [];  
-           json_data[a]['item_buttons'] = {};
-
-          var counter = 0;
-          for (var e_obj in json_data[a]){
-
-            if (e_obj in rel){    
-              json_data[a]['selectbox_items'].push(e_obj);
-              json_data[a][e_obj+'_collection'] = rel[e_obj];
-            }
-            
-            json_data[a]['visible_fields'] = visible_fields;
-            json_data[a]['labels'] = labels;
-            json_data[a]['field_types'] = field_types;
-            json_data[a]['item_buttons'] = config.item_buttons
-            counter++;
-          }
-
-        }
-
-        var data = {};
-        data.entities = json_data;
-        
-        data['table_class'] = config.table_class
-        return data; 
-    },
-
-    render: function (data){
-      var me = this;
-      var compiledTemplate = _.template(parentTabTemplate, data);
-      me.$el.html(compiledTemplate);  
+      //render rows
+      this.collection.each(function(item) {
+        var itemView = new ItemView({ model: item, conf: config }); 
+        me.$('#tab-body').append(itemView.render().$el)
+      });
+      
       return this;
     },
 
-    // verification HACK !!!
-    checkVerification: function(){
+    checkVerification: function(config){
+
       var me = this;
-      var collection = this.verification.collection.toJSON();
+
+      var collection = config.collection.toJSON();
+      
       $.each(collection, function(key, value){
         if (value['verified'] == 0){
-          $('#'+me.verification.tab_id).addClass('needs-verification')
+          $('#'+config.tab_id).addClass('needs-verification')
         }
       })
+
     },
 
-    //method to load all collections for tab 
+    //asynchronously load all collections what tab needs
     loadData: function(){
 
       var me = this;
@@ -146,13 +103,14 @@ define([
         me['collections'][c].fetch({ success: function(c) {
             loadCounter++;
             if (loadCounter == collections_length){
-              me.trigger('onDataLoaded');
+              me.trigger('dataLoaded');
             }
           }  
         })
       }
-    },
+    }
 
+ 
   });
   
   return  ParentTabView;

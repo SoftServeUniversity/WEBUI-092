@@ -9,7 +9,7 @@ define([
             name: null,
             year_of_start: null,
             faculty: null, 
-            percentage: 25 //external
+            progress: 25   //external
         },
         //urlRoot: 'courses/'
 
