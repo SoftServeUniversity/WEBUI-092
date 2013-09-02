@@ -19,7 +19,6 @@ ActiveRecord::Schema.define(:version => 20130828124205) do
     t.integer  "faculty_id"
     t.datetime "created_at",    :null => false
     t.datetime "updated_at",    :null => false
-    t.integer  "progress"
   end
 
   create_table "departments", :force => true do |t|
@@ -28,7 +27,6 @@ ActiveRecord::Schema.define(:version => 20130828124205) do
     t.integer  "faculty_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
-    t.integer  "progress"
   end
 
   add_index "departments", ["faculty_id"], :name => "index_departments_on_faculty_id"
@@ -129,11 +127,9 @@ ActiveRecord::Schema.define(:version => 20130828124205) do
     t.string   "title"
     t.datetime "created_at",    :null => false
     t.datetime "updated_at",    :null => false
-    t.integer  "teacher_id"
   end
 
   add_index "teachers", ["department_id"], :name => "index_teachers_on_department_id"
-  add_index "teachers", ["teacher_id"], :name => "index_teachers_on_teacher_id"
   add_index "teachers", ["user_id"], :name => "index_teachers_on_user_id"
 
   create_table "thesis_changes", :force => true do |t|
