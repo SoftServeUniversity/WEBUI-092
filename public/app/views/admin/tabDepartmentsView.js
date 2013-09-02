@@ -25,25 +25,30 @@ define([
       var config = {
       	
         model     : DepartmentModel,
+        
         collection: me.collections.departments,
-        data      : [{
-            _link: 'name',
+        
+        fields    : {
+
+          name: {
             label:'Кафедра',
             type:'text'
           },
-          {
-            _link: 'teacher_id',
+
+          teacher_id: {
             label: 'Завідувач кафедри',
             type:'select',
-            src:me.collections.teachers
+            collection:me.collections.teachers
           },
-          {
-            _link: 'faculty_id',
+
+          faculty_id: {
             label: 'Факультет',
             type:'select',
-            src:me.collections.faculties
+            collection:me.collections.faculties
           }
-        ],
+          
+        },
+        
         buttons: {
         	create: 'Нова кафедра'
         }
