@@ -83,7 +83,7 @@ stud = Student.create user_id: User.last.id
 if Work.all.empty?
   s = 'Work_ABC'
   10.times do |time| 
-    d = Work.create! name: (s.next! + time.to_s), student_id: 1
+    d = Work.create! name: (s.next! + time.to_s), student_id: Student.last.id
     puts 'created '<< d.name
   end
 end
