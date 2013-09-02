@@ -4,7 +4,7 @@ define([
 ], function(_, Backbone) {
   
   var WorkModel = Backbone.Model.extend({
-  urlRoot: "http://localhost:3000/works"
+  urlRoot: "/works"
   });
 
   return WorkModel;

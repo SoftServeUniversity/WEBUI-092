@@ -1,0 +1,15 @@
+<%= simple_form_for(@thesis_change) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.input :type_of_entity %>
+    <%= f.input :user_id %>
+    <%= f.input :value %>
+    <%= f.input :type_of_change %>
+    <%= f.input :work_id %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

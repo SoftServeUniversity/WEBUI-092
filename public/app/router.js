@@ -52,6 +52,8 @@ define([
         'admin'                  : 'viewAdminPage',
         'task/:id'               : 'taskShow',
         'sign_up'                : 'userSingUp',
+        'edit_profile'           : 'editProfile',
+        'cancel_account'         : 'cancelAccount',
         'info'                   : 'infoAction',
         // Default
         '*actions': 'defaultAction'
@@ -91,11 +93,12 @@ define([
         var breadcrumbsView = new BreadcrumbsView();
       });
 
-      app_router.on('route:studentProgressAction', function (actions) {
+      app_router.on('route:studentProgressAction', function (id) {
 
         var studentProgressView = new StudentProgressView();
-        studentProgressView.render();
-        var breadcrumbsView = new BreadcrumbsView();
+        studentProgressView.initialize();
+        studentProgressView.loadData(id);
+        //var breadcrumbsView = new BreadcrumbsView();
       });
 
        app_router.on('route:courseProgressAction', function (actions) {
@@ -141,7 +144,20 @@ define([
         var breadcrumbsView = new BreadcrumbsView();
       });
 
+      app_router.on('route:editProfile', function (){
+        var userSignUp = new UserSingUpView();
+        userSignUp.edit(); 
+        var breadcrumbsView = new BreadcrumbsView();
+      });
+
+      app_router.on('route:cancelAccount', function (){
+        var userSignUp = new UserSingUpView();
+        userSignUp.cancel(); 
+        var breadcrumbsView = new BreadcrumbsView();
+      });
+
       app_router.on('route:infoAction', function(){
+        var userSignUp = new UserSingUpView();
         var infoView = new InfoView();
         var breadcrumbsView = new BreadcrumbsView();
       });

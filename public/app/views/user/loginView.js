@@ -53,6 +53,7 @@ define([
       });
     },
     logout: function(){
+      $('#inputLoginLog').val(""); $('#inputPasswordLog').val('');
       var userLogout = new UserLogout();
       userLogout.set({})
       userLogout.save(userLogout.attributes,{

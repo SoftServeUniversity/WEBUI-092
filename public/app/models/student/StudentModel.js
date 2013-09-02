@@ -12,7 +12,7 @@ define([
           email: "Unknown",
           progress: 20,
           group: 0
-        },
+        }
   });
 
   return StudentModel;
