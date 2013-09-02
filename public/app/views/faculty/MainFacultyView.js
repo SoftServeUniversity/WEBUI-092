@@ -26,9 +26,8 @@ define([
             departments_col = new DepartmentsCollection();
             departments_col.fetch({
                 data: {
-                    ourdata: {
-                        faculty_id:2,
-                        some_id:4
+                    filter: {
+                        faculty_id:2
                     }
                 },
                 success: function () {

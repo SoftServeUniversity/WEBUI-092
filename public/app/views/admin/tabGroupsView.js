@@ -57,6 +57,7 @@ define([
             type : 'select',
             collection  : me.collections.departments
           }
+        
         },
         
         buttons: {

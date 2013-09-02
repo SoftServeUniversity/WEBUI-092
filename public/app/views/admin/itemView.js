@@ -72,7 +72,7 @@ define([
       },
 
       hideInputs: function(){
-        
+        console.log('hidin')
         if ($(e.target).closest('.toggle-input').length <= 0){
           $('.toggle-list .toggle-input').css('display','none');
           $('.toggle-list .toggle-text').css('display', 'block');
