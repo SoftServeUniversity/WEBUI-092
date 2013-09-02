@@ -52,15 +52,6 @@ function($, evil, _, Backbone, bootstrap, WorkTasksTemplate,
     initialize:function(){
       var me = this;
       this.loadData();
-      $( "#sortable" ).sortable({ 
-        stop: function(event, ui) {
-          console.log(ui.item.index());
-          var new_position = $(this).sortable();
-          me.updatePriority( new_position.context.children)
-        }
-     });
-      $( "#sortable" ).disableSelection();
-
     },
 
     el: $("#content"),
@@ -84,11 +75,14 @@ function($, evil, _, Backbone, bootstrap, WorkTasksTemplate,
 
       $("#content").html(workTemplate);
       $("#content").append(historyTemplate); 
-
+      $(".editable").hide();
     },
 
     events: {
-      "click #create-btn" : "addTask"
+      "click #create-btn"             : "addTask",
+      "click #show-create-task-form"  : "showCreateTaskFrom",
+      "click #edit-tasks-on-work-page": "editTasksOnWorkPage",
+      "click #delete-task"            : "deleteTask"
     },
 
     addTask: function(e) {
@@ -97,7 +91,44 @@ function($, evil, _, Backbone, bootstrap, WorkTasksTemplate,
       var taskName = $("#task-name").val();
       var newTask = new TaskModel({name: taskName, priority: 0, work_id: this.id, user_id: 1});
       newTask.save();
+    },
+    showCreateTaskFrom: function () {
+      $("#add-new-task").fadeToggle("slow", "linear");
+      if($("#show-create-task-form").hasClass("active")){
+        $("#show-create-task-form").removeClass("active");
+      } else {
+        $("#show-create-task-form").addClass("active");
+      }
+    },
+    editTasksOnWorkPage: function () {
+      if($("#list-of-tasks").hasClass("sortable")) {
+        $(".sortable").sortable("destroy");
+        $("#list-of-tasks").removeClass("sortable");
+        $("#edit-tasks-on-work-page").removeClass("active");
+      } else {
+        $("#list-of-tasks").addClass("sortable");
+        this.sortable();
+        $("#edit-tasks-on-work-page").addClass("active");
+      }
+      $(".editable").fadeToggle("slow", "linear");
+
+    },
+    sortable: function () {
+      var me = this;
+      $(".sortable").sortable({ 
+        stop: function(event, ui) {
+          console.log(ui.item.index());
+          var new_position = $(this).sortable();
+          me.updatePriority( new_position.context.children)
+        }
+      });
+      $(".sortable").disableSelection();
+    },
+    deleteTask: function (e) {
+      var modelId = $(e.currentTarget).closest("li").attr("task-id") * 1;
+      var currentModel = this.work_col.get(modelId);
       
+      currentModel.destroy();
     }
 
   });

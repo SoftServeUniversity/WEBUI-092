@@ -202,8 +202,11 @@ progress::-webkit-progress-value { background: #69EB63; }
 		width: 100%;
 	}
 }
+.work-buttons {
+	margin-bottom: 10px;
+}
 .add-task-line{
-	margin-bottom: 5px;
+	margin: 0 0 5px 0;
 }
 /*Yasinishyn start*/
 .red{
@@ -535,7 +538,7 @@ tr.notverified {
 
 
 /****************/
-#sortable { 
+#list-of-tasks { 
   list-style-type: none; 
   margin: 0; 
   padding: 0; 
@@ -562,7 +565,7 @@ tr.notverified {
   margin-bottom: 0 !important;
 }
 .icon-resize-vertical {
-  cursor: pointer;
+  cursor: move;
 }
 
 .task-icons {
@@ -583,7 +586,6 @@ tr.notverified {
 	text-decoration: none;
 	cursor: default;
 }
-<<<<<<< HEAD
 #main-header-button{
 	
 	font-family: Arial, Helvetica, sans-serif;

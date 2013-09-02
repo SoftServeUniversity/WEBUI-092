@@ -37,6 +37,7 @@ define([
         var compiledTemplate = _.template(taskTemplate, data);
         $("#content").html(compiledTemplate);
         this.slider();
+        this.chart();
       },
       submit: function(e){
         e.preventDefault();
@@ -79,6 +80,46 @@ define([
             $("#number-range").spinner("value", $("#line-range").slider("value"));
           }
         });
+      },
+      chart: function () {
+        var chartData;
+        var xmlhttp = new XMLHttpRequest();
+        xmlhttp.open('GET', '/progresses_by_month/' + this.id + '.json', true);
+        xmlhttp.onreadystatechange = function() {
+          if (xmlhttp.readyState == 4) {
+            if(xmlhttp.status == 200) {
+              chartData = JSON.parse(xmlhttp.responseText);
+              console.log(chartData)
+              makeChart(chartData);
+            }
+          }
+        };
+        xmlhttp.send(null);
+        function makeChart(chartData){
+          $('#chart').highcharts({
+              
+              tooltip: {
+                  pointFormat: "Прогрес: {point.y:,.1f}%"
+              },
+              
+              xAxis: {
+                  type: 'datetime',
+                  labels: {
+                      format: '{value:%Y-%m-%d}',
+                      rotation: 45,
+                      align: 'left'
+                  }
+              },
+
+              series: [{
+                  data: chartData,
+                  pointStart: Date.UTC(2013, 10, 1),
+                  pointEnd: Date.UTC(2014, 6, 1),
+                  pointInterval: 30.375 * 24 * 36e5
+              }]
+
+          });
+        }
       },
       initialize: function(){
         var me = this;
