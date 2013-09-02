@@ -11,6 +11,7 @@ define([
             department: null,
             teacher: null,
             progress: 20
+            //percentage: 20
         }
     });
 
