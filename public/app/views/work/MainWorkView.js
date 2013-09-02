@@ -25,14 +25,18 @@ function($, evil, _, Backbone, bootstrap, WorkTasksTemplate,
     loadData: function(){
       var me = this;
       this.model = new WorkModel({"id": me.id});
-      this.model.fetch({async:false});
+      this.history_col = new WorkHistoryCollection();
       this.work_col = new WorkCollection();
-      history_col = new WorkHistoryCollection();
+      this.model.fetch({async:false});
+      this.history_col.add(this.model.get('thesis_changes'));
+      this.work_col.add(this.model.get('tasks'));
+      _.each(this.work_col.models, function(task){
+          me.history_col.add(task.get('thesis_changes'));
+      });
       this.progresses = new ProgressesCollection()
       this.progresses.fetch({url: 'http://localhost:3000/work/' + me.id + '/tasks/progresses.json', async:false})
-      $.when(this.work_col.fetch({url: "http://localhost:3000/work/" + me.id + "/tasks.json", async:false}) && history_col.fetch({async:false})).then(function(){
-        me.render();
-      })
+      me.render();
+
       console.log(this.work_col)
     },
     updatePriority: function (items) {
@@ -72,7 +76,7 @@ function($, evil, _, Backbone, bootstrap, WorkTasksTemplate,
         tasksList: tasksListView.render().$el.html()
       }
       var historydata = {
-        historymodal: history_col.models
+        historymodal: this.history_col.models
       }
 
       var workTemplate = _.template(WorkTasksTemplate, data);

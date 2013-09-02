@@ -17,10 +17,20 @@ define([
   GlobalUser.Collections = {};
   GlobalUser.Routers = {};
   GlobalUser.Helpers = {};
+  GlobalUser.currentUserReload = function(){
+    $.post('user_helper/receive_current_user', null, function(user){
+      if (user != false){
+        GlobalUser.currentUser = GlobalUser.Models.User.set(user);
+        GlobalUser.vent.trigger("authentication:logged_in");
+      }else{
+        GlobalUser.currentUser = null;
+        GlobalUser.vent.trigger("authentication:logged_out");
+      }
+    }, 'json');
+  }
 
   // Instantiated global layouts
   GlobalUser.layouts = {};
-  GlobalUser.layouts.logged_in = _.template(loggedInTemplate);
   GlobalUser.layouts.logged_out = _.template(loggedOutTemplate);
 
   //Initiate global views
@@ -32,30 +42,21 @@ define([
   //callbacks
 
   GlobalUser.vent.on("authentication:logged_in", function() {
-    $(document).trigger('csrfToken');
     GlobalUser.currentUser = GlobalUser.Models.User.set(GlobalUser.currentUser);
     GlobalUser.currentUser.role = GlobalUser.Models.User.getRole();
     GlobalUser.currentUser.abilities = GlobalUser.Models.User.getAbilities();
-    $('#launch-btn').replaceWith(GlobalUser.layouts.logged_in);
+    $('#launch-btn').replaceWith(_.template(loggedInTemplate));
     $('#launch').slideUp(300);
     window.location.hash = '/';
   });
 
   GlobalUser.vent.on("authentication:logged_out", function() {
-    $('#logout').replaceWith(GlobalUser.layouts.logged_out);
+    $('#logout-container').replaceWith(GlobalUser.layouts.logged_out);
   });
 
   //receive current user
   $(document).trigger('csrfToken');
-  $.post('user_helper/receive_current_user', null, function(user){
-    if (user != false){
-      GlobalUser.currentUser = GlobalUser.Models.User.set(user);
-      GlobalUser.vent.trigger("authentication:logged_in");
-    }else{
-      GlobalUser.currentUser = null;
-      GlobalUser.vent.trigger("authentication:logged_out");
-    }
-  }, 'json');
+  GlobalUser.currentUserReload();
 
 
   // TODO: Routers and history start

@@ -17,9 +17,11 @@ define([
   'collections/groups/TemporaryGroupsCollection',
   'text!templates/registration/StudentAttributesTemplate.html',
   'text!templates/registration/GroupOptionTemplate.html',
-  'text!templates/registration/RoleOptionTemplate.html'
+  'text!templates/registration/RoleOptionTemplate.html',
+  'text!templates/registration/EditRegistrationsTemplate.html'
 ], function($, _, Backbone, bootstrap, jqBootstrapValidation, reg, signUpTemplate, GlobalUser, UserRegistration, User, errorNotificationTemplate, fieldErrorNoticeTemplate, 
-  TemporaryDepartmentCollection, TeacherAttributesTemplate, DepartmentOptionTemplate, TemporaryGroupsCollection, StudentAttributesTemplate, GroupOptionTemplate, RoleOptionTemplate){ 
+  TemporaryDepartmentCollection, TeacherAttributesTemplate, DepartmentOptionTemplate, TemporaryGroupsCollection, StudentAttributesTemplate, GroupOptionTemplate, RoleOptionTemplate,
+  EditRegistrationsTemplate){ 
 
   GlobalUser.Views.Unauthenticated = GlobalUser.Views.Unauthenticated || {};
 
@@ -59,7 +61,8 @@ define([
     events: {
       'submit #regForm'      : 'signup',
       'change #roles-select' : 'loadDepartmets',
-      'click #capcha-reload' : 'generate_capcha'
+      'click #capcha-reload' : 'generate_capcha',
+      'submit #editForm'     : 'update'
     },
 
     populate_roles_select: function(){
@@ -112,6 +115,54 @@ define([
         el.find('.roleTeacher').html('');
         el.find('.roleStudent').html('');
       }
+    },
+
+    edit: function(){
+      var el = $(this.el);
+      $("#content").html(_.template(EditRegistrationsTemplate, GlobalUser.currentUser.attributes));
+    },
+
+    cancel: function(){
+      this.model.set(GlobalUser.currentUser)
+      this.model.destroy({success: function(model, response) {
+        GlobalUser.vent.trigger("authentication:logged_out");
+        window.location.hash = '/';
+      }});
+    },
+
+    update: function(e){
+      var el = $(this.el);
+      el.find('.btn-primary').attr('value', 'Завантаження...');
+      e.preventDefault();
+
+      var frmData = el.find('#editForm').MytoJson();
+      frmData['id'] = GlobalUser.currentUser.id;
+
+      this.model.set(frmData);
+      this.model.save(this.model.attributes, {
+        success: function(userSession, response) {
+          GlobalUser.currentUserReload();
+          GlobalUser.vent.trigger("authentication:logged_in");
+        },
+        error: function(userSession, response) {
+          var result = $.parseJSON(response.responseText);
+          var data = {
+            'error' : 'Не вдалось оновити профіль! Спробуйте ще раз. ',
+            'alertType' : 'error'
+          };
+          el.find('form').prepend(_.template(errorNotificationTemplate, data));
+          _(result.errors).each(function(errors,field) {
+            $('#'+field+'_group').addClass('error');
+            _(errors).each(function(error, i) {
+              data = {
+                'error' : error
+              };
+              $('#'+field+'_group .controls').append(_.template(fieldErrorNoticeTemplate, data));
+            });
+          });
+          el.find('.btn-primary').attr('value', 'Відправити');
+        }
+      });
     },
 
     signup: function(e) {

@@ -2,12 +2,13 @@ define([
   'jquery',
   'underscore',
   'backbone',
-  'models/task/TaskModel'
-], function($, _, Backbone, TaskModel){
+  'models/work/WorkModel'
+], function($, _, Backbone, WorkModel){
   
   var WorkCollection = Backbone.Collection.extend({
-    model: TaskModel,
-    url: 'http://localhost:3000/tasks.json'
+    model: WorkModel,
+    //url: 'http://localhost:3000/works.json'
+      url: "/works/"
 
   });
   
