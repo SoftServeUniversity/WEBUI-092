@@ -12,13 +12,14 @@ define([
   'views/work/TasksListView',
   'models/work/WorkModel',
   'models/task/TaskModel',
-  'collections/tasks/ProgressesCollection'
-
+  'collections/tasks/ProgressesCollection',
+  'views/shared/EditDialogView'
 
 ], 
 function($, evil, _, Backbone, bootstrap, WorkTasksTemplate, 
         WorkHistoryTemplate, elementTemplate, WorkCollection, 
-        WorkHistoryCollection, TasksListView, WorkModel, TaskModel, ProgressesCollection){
+        WorkHistoryCollection, TasksListView, WorkModel, TaskModel,
+         ProgressesCollection, EditDialogView){
   
   var WorkTasksView = Backbone.View.extend({ 
 
@@ -39,6 +40,8 @@ function($, evil, _, Backbone, bootstrap, WorkTasksTemplate,
 
       console.log(this.work_col)
     },
+
+
     updatePriority: function (items) {
       var me = this;
       _.each(items, function (item) {
@@ -49,9 +52,16 @@ function($, evil, _, Backbone, bootstrap, WorkTasksTemplate,
         currentTask.save()
       });
     },
+    
     initialize:function(){
       var me = this;
+
       this.loadData();
+      
+      this.model.on('change', function(){
+        me.renderWorkName();
+      })
+
       $( "#sortable" ).sortable({ 
         stop: function(event, ui) {
           console.log(ui.item.index());
@@ -87,7 +97,12 @@ function($, evil, _, Backbone, bootstrap, WorkTasksTemplate,
 
     },
 
+    renderWorkName: function(){
+      this.$('#work_name').html(this.model.get('name'))
+    },
+
     events: {
+      "click #edit_name"  : "editName",
       "click #create-btn" : "addTask"
     },
 
@@ -98,6 +113,10 @@ function($, evil, _, Backbone, bootstrap, WorkTasksTemplate,
       var newTask = new TaskModel({name: taskName, priority: 0, work_id: this.id, user_id: 1});
       newTask.save();
       
+    },
+
+    editName: function(){
+      var editDialogView = new EditDialogView({model: this.model})
     }
 
   });

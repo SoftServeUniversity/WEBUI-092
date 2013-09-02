@@ -90,11 +90,11 @@ define([
                     collType == 'faculty' || 
                     collType == 'department' || 
                     collType == 'course' ||
-                    collType == 'group' ||
-                    collType == 'teacher' ||
-                    collType == 'student' ||
-                    collType == 'work' ||
-                    collType == 'task'
+                    collType == 'group' //||
+                    //collType == 'teacher' ||
+                    //collType == 'student' ||
+                    //collType == 'work' ||
+                    //collType == 'task'
                     ){
                     breadcrumbsFind();
                     }else{
