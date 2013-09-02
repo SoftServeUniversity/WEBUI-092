@@ -24,6 +24,33 @@ define([
             
         },
         render:function(){
+            Highcharts.setOptions({
+
+              lang: {
+                    loading: 'Aguarde...',
+                    months: ['Січень', 'Лютий', 'Березень', 'Квітень', 'Травень', 'Червень', 'Липень', 'Серпень', 'Вересень', 'Жовтень', 'Листопад', 'Грудень'],
+                    weekdays: ['Понеділок', 'Вівторок', 'Середа', 'Четвер', 'П\'ятниця', 'Cубота', 'Неділя'],
+                    shortMonths: ['Січ', 'Лют', 'Бер', 'Квіт', 'Тра', 'Чер', 'Лип', 'Сер', 'Вер', 'Жов', 'Лис', 'Гру'],
+                    exportButtonTitle: "Exportar",
+                    printButtonTitle: "Imprimir",
+                    rangeSelectorFrom: "De",
+                    rangeSelectorTo: "Até",
+                    rangeSelectorZoom: "Periodo",
+                    downloadPNG: 'Download imagem PNG',
+                    downloadJPEG: 'Download imagem JPEG',
+                    downloadPDF: 'Download documento PDF',
+                    downloadSVG: 'Download imagem SVG'
+                    // resetZoom: "Reset",
+                    // resetZoomTitle: "Reset,
+                    // thousandsSep: ".",
+                    // decimalPoint: ','
+                }
+            });
+
+
+
+
+
             $('#chart').highcharts({
             	
             	plotOptions: {
@@ -39,14 +66,14 @@ define([
                 },
                 xAxis: {
                     title: {
-                        text: 'Date'
+                        text: ''
                     },
                     type: 'datetime'
 
                 },
                 yAxis: {
                     title: {
-                        text: 'Percentage (%)'
+                        text: 'Оцінка виконаної роботи, %'
                     },
                     min: 0,
                     max: 100
@@ -55,11 +82,29 @@ define([
                 legend: {
                     enabled: false
                 },
+                tooltip: {
+                    dateTimeLabelFormats: {
+                        week:"%A, %B %e, %Y"
+                    }
+                    
+                },
+
                 series: [{
-                    name:'Percentage',
+                    name:'Відсоток виконання',
                     data: chartArray
                 }]
             })
+
+
+
+
+
+
+
+
+
+
+
 
             return this;
         }

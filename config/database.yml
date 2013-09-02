@@ -2,7 +2,7 @@ development:
   adapter: mysql2
   encoding: utf8
   database: webui_dev
-  username: 
+  username: root
   password: 
 
 
@@ -10,12 +10,12 @@ test:
   adapter: mysql2
   encoding: utf8
   database: webui_test
-  username: 
+  username: root
   password: 
 
 production:
   adapter: mysql2
   encoding: utf8
   database: webui_production
-  username: 
+  username: root
   password:
