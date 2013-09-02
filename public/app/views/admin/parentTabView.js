@@ -28,7 +28,7 @@ define([
         me.render(config)
 
         //all content has loaded, it's time for parent view to render tab
-        GlobalEventBus.trigger('tabSubViewLoaded', me.$el.html(), config);
+        GlobalEventBus.trigger('tabSubViewLoaded', me.$el, config);
         
         //display question mark on tab if some model needs verification
         if (config.verification){
@@ -38,7 +38,8 @@ define([
         //this method is used only in works view
         if (me.addCustomEvents) {me.addCustomEvents ()}
       })
-      
+
+
     },
 
     augmentConfig: function(config){

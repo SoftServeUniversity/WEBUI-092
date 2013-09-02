@@ -39,11 +39,13 @@ define([
       //Render a tab when it's loaded
       GlobalEventBus.on('tabSubViewLoaded', function(tabContent, config){
         
-        me.config = config; 
+        me.config = config;
+        console.log(tabContent) 
         me.renderTab(tabContent);
         $('.new-button').html(me.config.buttons['create']);
       
       })
+
 
     },
 
@@ -192,17 +194,17 @@ define([
 
 
     renderHeadline: function(headline){
-      $(this.el_headline).html(this.headline);
+      $(this.el_headline).append(this.headline);
     },
 
     renderMenu: function(){
       var menuView = new MenuView(this.tabMenuConfig);
-      $(this.el_tab_menu).html(menuView.$el.html());
+      $(this.el_tab_menu).append(menuView.el);
     },
 
     renderTab: function(tabContent){
       var me = this;
-      $(me.el_tab_content).html(tabContent);
+      $(me.el_tab_content).append(tabContent);
       me.addActiveClass(this.activeMenuId)
       $('.DataTable').dataTable();
     },
@@ -212,7 +214,7 @@ define([
 
       //render basic template with empty divs
       var compiledTemplate = _.template(parentAdminTemplate);
-      this.$el.html(compiledTemplate);
+      this.$el.append(compiledTemplate);
 
       this.renderHeadline();
       this.renderMenu();

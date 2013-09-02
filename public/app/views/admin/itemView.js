@@ -47,7 +47,7 @@ define([
         
         var compiledTemplate = me.template(me.data);
 
-        me.$el.html(compiledTemplate); 
+        me.$el.append(compiledTemplate); 
         
         return me;
 
