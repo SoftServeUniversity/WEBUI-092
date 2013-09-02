@@ -35,7 +35,7 @@ user.add_role :teacher
 
 #Faculty Table
 if Faculty.all.empty?
-  s = 'Faculty_ABC'
+  s = 'Faculty of Science ABC'
   9.times do |time| 
     fc = Faculty.create! name: (s.next! + time.to_s)
     puts 'created '<< fc.name
