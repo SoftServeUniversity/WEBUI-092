@@ -117,6 +117,10 @@
 
   <td>
 
+    <% if (!conf['buttons'] || conf['buttons']['employee'] == true) { %>
+      <button class='btn open-modal employee-button' type="button" data-toggle="modal" data-target='employee-modal'>Викладачі кафедри</button>
+    <% } %>
+
     <% if (!conf['buttons'] || conf['buttons']['remove'] != false) { %>
       <button class='btn open-modal delete-button btn-danger' type="button" data-toggle="modal" data-target='delete-modal'>Видалити</button>
     <% } %>
