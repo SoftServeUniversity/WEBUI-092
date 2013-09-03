@@ -17,7 +17,6 @@ var EditTaskDialogView = Backbone.View.extend(
   initialize: function () {
 
     this.work_name = this.model.toJSON().name;
-    console.log(this.work_name)
     this.templ = _.template(EditTaskDialogue, {model: this.model.toJSON()});
     
     _.bindAll(this, 'cancelAction');
@@ -75,7 +74,6 @@ var EditTaskDialogView = Backbone.View.extend(
   renderNamePlaceholder: function(){
   	var me = this;
     $('#task_name_input').attr("placeholder",me.work_name);
-    console.log("Placeholder changed");
   },
 
   cancelAction: function () {
@@ -86,11 +84,11 @@ var EditTaskDialogView = Backbone.View.extend(
     var me = this;
 
     var options = {
-        success: function (model, response) {
-          console.log('remove success');
+        success: function () {
+         $(me.options.taskElement[0]).find(".taskname>a").html(me.model.get("name"));
         },
-        error: function (model, response) {
-          console.log('remove error');
+        error: function () {
+          console.log('Update task error. RTFM');
         }
     };
     var work_name = $('#task_name_input').val();
@@ -99,7 +97,7 @@ var EditTaskDialogView = Backbone.View.extend(
     if(this.validateComment()){
 
       this.model.set ({name: work_name});
-      this.model.save(options);
+      this.model.save({}, options);
       this.hideModal();  
     
     } else {

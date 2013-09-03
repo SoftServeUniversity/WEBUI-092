@@ -47,8 +47,6 @@ function($, evil, _, Backbone, bootstrap, WorkTasksTemplate,
       this.progresses = new ProgressesCollection()
       this.progresses.fetch({url: '/work/' + me.id + '/tasks/progresses.json', async:false})
       me.render();
-
-      console.log(this.work_col.models)
     },
     updatePriority: function (items) {
       var me = this;
@@ -61,12 +59,12 @@ function($, evil, _, Backbone, bootstrap, WorkTasksTemplate,
       });
     },
     
-    initialize:function(){
+    initialize: function(){
       var me = this;
       this.loadData();
       this.model.on('change', function(){
         me.renderWorkName();
-      })
+      });
       $( "#sortable" ).sortable({ 
         stop: function(event, ui) {
           console.log(ui.item.index());
@@ -74,7 +72,7 @@ function($, evil, _, Backbone, bootstrap, WorkTasksTemplate,
           me.updatePriority( new_position.context.children)
         }
      });
-      $( "#sortable" ).disableSelection();
+      $("#sortable").disableSelection();
     },
     el: $("#content"),
     render: function(){
@@ -154,9 +152,10 @@ function($, evil, _, Backbone, bootstrap, WorkTasksTemplate,
       var editDialogView = new EditDialogView({model: this.model});
     },
     editTask: function (e) {
-      var modelId = $(e.currentTarget).closest("li").attr("task-id") * 1;
+      var currentLi = $(e.currentTarget).closest("li");
+      var modelId = currentLi.attr("task-id") * 1;
       var currentModel = this.work_col.get(modelId);  
-      var editTaskDialogView = new EditTaskDialogView({model: currentModel});
+      var editTaskDialogView = new EditTaskDialogView({model: currentModel, taskElement: currentLi});
     }
 
   });
