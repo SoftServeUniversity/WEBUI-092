@@ -27,7 +27,7 @@ define([
             departments_col.fetch({
                 data: {
                     filter: {
-                        faculty_id:2
+                        faculty_id:1
                     }
                 },
                 success: function () {
