@@ -181,16 +181,33 @@ progress::-webkit-progress-value { background: #69EB63; }
 
 /* --- Nazaruk Sergii CSS --- */
 /* Modal History */
-.history-modal          { display: block; margin-bottom: 20px; }
+/*.history-modal          { display: block; margin-bottom: 20px; }
+*/
 .modal-list				{ font-size: 12px; }
 #myModal				{ display: none; width: 600px; border-radius: 6px; margin: 0 auto; }
 #myModal.active			{ position: fixed; z-index: 1050; opacity: 1; background-color: white;
     					  left: 10%; right: 10%; top: 10%;
     					}
 /* Progress */
-#create-btn				{ display: block; margin: 0 auto;}
-#task-progress			{ margin-bottom: 20px; }
-
+/*#task-progress			{ margin-bottom: 20px; }*/
+.width80{
+	width: 80%;
+	margin-right: 10px;
+}
+@media (max-width: 520px) {
+	#create-btn{
+		width: 100%;
+	}
+	.width80{
+		width: 100%;
+	}
+}
+.work-buttons {
+	margin-bottom: 10px;
+}
+.add-task-line{
+	margin: 0 0 5px 0;
+}
 /*Yasinishyn start*/
 .red{
 	color: red;
@@ -530,7 +547,7 @@ td.newItem .toggle-text{
 
 
 /****************/
-#sortable { 
+#list-of-tasks { 
   list-style-type: none; 
   margin: 0; 
   padding: 0; 
@@ -556,8 +573,15 @@ td.newItem .toggle-text{
   min-height: 20px !important; 
   margin-bottom: 0 !important;
 }
-.ui-icon-arrowthick-2-n-s {
-  cursor: pointer;
+.icon-resize-vertical {
+  cursor: move;
+}
+
+.task-icons {
+	float: right;
+}
+.task-icon{
+	cursor: pointer;
 }
 /*--------breadcrumbs navigation-----------*/
 .breadcrumb{
@@ -571,7 +595,6 @@ td.newItem .toggle-text{
 	text-decoration: none;
 	cursor: default;
 }
-<<<<<<< HEAD
 #main-header-button{
 	
 	font-family: Arial, Helvetica, sans-serif;

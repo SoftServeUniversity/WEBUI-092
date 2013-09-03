@@ -1,0 +1,22 @@
+   <div class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" id='task-edit-modal'>
+    <button type="button" class="close a-little-margin-right" data-dismiss="modal" aria-hidden="true">&times;</button> 
+    <div class="modal-body">
+      <h2>Редагування завдання</h2>
+    <div class="control-group">
+      <div class="controls">
+          <input id="task_name_input" class="span5" type="text" 
+          placeholder="<%=model.name %>">
+      </div>
+    </div>
+    <div class="control-group comment">
+      <div class="controls">
+          <textarea id="task_comment_input" rows="4" class="span5" placeholder="Коментар"></textarea>
+      </div>
+      </div>
+    </div>
+      <p>Натисніть "Так" або "Enter" для підтвердження</p>
+    <div class="modal-footer">
+      <button id="remove_button" class="btn  confirm-no">Ні</button>
+      <button class="btn close-m btn-danger confirm-yes">Так</button>
+    </div>
+  </div>

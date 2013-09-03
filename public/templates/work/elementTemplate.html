@@ -1,5 +1,9 @@
-<span class="ui-icon ui-icon-arrowthick-2-n-s pull-left"></span>
-<span class="span5  text-left taskname"><a href="#/task/<%= task.get('id') %>"><%= task.get('name') %></a></span>
+<span class="icon-resize-vertical pull-left editable"></span>
+<div class="task-icons editable">
+	<span id="edit-task" class="icon-pencil task-icon"></span>
+	<span id="delete-task" class="icon-remove task-icon"></span>
+</div>
+<span class="span5 text-left taskname"><a href="#/task/<%= task.get('id') %>"><%= task.get('name') %></a></span>
 <span class="span6 progress progress-striped task-item-progress">
-  <span class="bar" style="width:<%= progress %>%;"></span>
+	<span class="bar" style="width:<%= progress %>%;"></span>
 </span>
