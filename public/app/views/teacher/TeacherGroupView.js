@@ -9,7 +9,7 @@ define([
     'collections/faculties/FacultiesCollection',
     'collections/faculties/FacultyChangeCollection',
     'collections/teachers/TeachersCollection',
-    'collections/work/WorksCollectionOfTeacherGroup',
+    'collections/students/StudentsProxyCollectionForTeacherPage',
 ], function($, _, Backbone,
             DepartmentsCollection,
             CoursesCollection,
@@ -18,7 +18,7 @@ define([
             FacultiesCollection,
             FacultyChangeCollection,
             TeachersCollection,
-            WorksCollectionOfTeacherGroup){
+            StudentsProxyCollectionForTeacherPage){
 
     var TeacherView = Backbone.View.extend({
         initialize:function(id){
@@ -31,8 +31,8 @@ define([
                 }
             });
 
-            this.worksColOfTeachGroup = new WorksCollectionOfTeacherGroup();
-            this.worksColOfTeachGroup.fetch({
+            this.studentsColOfTeachGroup = new StudentsProxyCollectionForTeacherPage();
+            this.studentsColOfTeachGroup.fetch({
                 success: function() {
                     that.trigger('DataLoaded', 'StudentsOfTeacherGroup');
                 }
@@ -46,10 +46,8 @@ define([
             });
 
             var isTeachLoaded = false;
-            //var isStudentsForConfirmLoaded = false;
             var isStudentsOfTeacherGroupLoaded = false;
             var isFacChangeLoaded = false;
-
 
             this.on('DataLoaded', function (item) {
                 if (item == 'Teachs') {
@@ -81,7 +79,7 @@ define([
           var compiledTemplate = _.template(mainTeacherTemplate, dataForMainTeacherTemplate);
           $("#content").html(compiledTemplate);
 
-          var tableStudInGroupView = new TableView({collection: this.worksColOfTeachGroup});
+          var tableStudInGroupView = new TableView({collection: this.studentsColOfTeachGroup});
           $("#teacherPageContent").html(tableStudInGroupView.el);
 
           return this;

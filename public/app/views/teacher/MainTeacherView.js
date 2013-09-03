@@ -7,20 +7,20 @@ define([
     'views/shared/ListView',
     'views/shared/ChartView',
     'text!templates/teacher/mainTeacherTemplate.html',
-    'text!templates/teacher/teacherThesisTemplate.html',
+    'text!templates/teacher/teacherWorksTemplate.html',
     'collections/teachers/TeacherChangeCollection',
     'collections/teachers/TeachersCollection',
-    'collections/works/WorkCollectionOfTeacher'
+    'collections/work/WorksCollectionOfTeacher'
 ], function($, _, Backbone,
             DepartmentsCollection,
             CoursesCollection,
             ListView,
             ChartView,
             mainTeacherTemplate,
-            teacherThesisTemplate,
+            teacherWorksTemplate,
             TeacherChangeCollection,
             TeachersCollection,
-            WorkCollectionOfTeacher){
+            WorksCollectionOfTeacher){
 
     var TeacherView = Backbone.View.extend({
         initialize:function(id){
@@ -33,7 +33,7 @@ define([
                 }
             });
 
-            var worksCollection = new WorkCollectionOfTeacher();
+            var worksCollection = new WorksCollectionOfTeacher();
             worksCollection.fetch({
                 success: function() {
                     that.trigger('DataLoaded', 'Works');
@@ -50,7 +50,6 @@ define([
             var isTeachLoaded = false;
             var isWorkssLoaded = false;
             var isFacChangeLoaded = false;
-
 
             this.on('DataLoaded', function (item) {
                 if (item == 'Teachs') {
@@ -78,11 +77,11 @@ define([
 
           var works = {};
           for (var i = 0; i < worksJSON.length; i++) {
-            var course_number = worksJSON[i].course;
-            if (!(course_number in works)){
-              works[course_number] = [];
+            var course_name = worksJSON[i].course_name;
+            if (!(course_name in works)){
+              works[course_name] = [];
             }
-            works[course_number].push(worksJSON[i]);
+            works[course_name].push(worksJSON[i]);
           };
 
           var dataForMainTeacherTemplate = {
@@ -94,7 +93,7 @@ define([
           var dataForTeacherThesisTemplate = {
             works: works
           }
-          var teacherThesisCompiledTemplate = _.template(teacherThesisTemplate, dataForTeacherThesisTemplate);
+          var teacherThesisCompiledTemplate = _.template(teacherWorksTemplate, dataForTeacherThesisTemplate);
           $("#teacherPageContent").html(teacherThesisCompiledTemplate);
 
           var chartView = new ChartView({
@@ -105,5 +104,6 @@ define([
           return this;
         }
     });
+
     return TeacherView;
 });

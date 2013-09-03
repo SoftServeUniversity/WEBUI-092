@@ -12,12 +12,12 @@ define([
         linkTo: null,
         events: {
           'click .btn-danger': 'showRemoveDialog',
-          'click .btn-success': 'addStudentToGroup',
+          'click .btn-success': 'addStudentToGroup'
         },
 
         showRemoveDialog: function(){
           var message = 'Ви дійсно бажаєте видалити студента\n' +
-                        '<strong>' + this.model.get('full_name') + '</strong>';
+                        '<strong>' + this.model.get('student_full_name') + '</strong>';
           var header = 'Видалення студента';
           removeDialogView = new RemoveDialogView({model: this.model}, {message: message, header: header});
         },
@@ -25,13 +25,16 @@ define([
         initialize:function(){
           var me = this;
           this.render();
+          this.model.on('destroy', function(){
+            console.log('Remove view');
+            me.remove();
+          });
         },
 
         render:function(counter){
             // counter -  is used for mark each element in a table
             this.model.set('counter', counter);
             this.$el.html(this.template(this.model.toJSON()));
-            console.info(this.model);
             return this;
         },
 

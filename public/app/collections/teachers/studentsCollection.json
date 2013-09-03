@@ -1,6 +1,6 @@
 [
     {
-        "id_student": "15",
+        "id": 15,
         "last_name": "Іваненко",
         "first_name": "Іван",
         "middle_name": "Іванович",
@@ -12,7 +12,7 @@
         "group_pending": 0
     },
     {
-        "id_student": "18",
+        "id": 18,
         "last_name": "Петренко",
         "first_name": "Петро",
         "middle_name": "Петрович",
@@ -24,7 +24,7 @@
         "group_pending": 1
     },
         {
-        "id_student": "19",
+        "id": 19,
         "last_name": "Василенко",
         "first_name": "Василь",
         "middle_name": "Вікторович",
@@ -36,7 +36,7 @@
         "group_pending": 0
     },
         {
-        "id_student": "4",
+        "id": 4,
         "last_name": "Губенко",
         "first_name": "Марія",
         "middle_name": "Теодорівна",
@@ -48,7 +48,7 @@
         "group_pending": 0
     },
     {
-        "id_student": "5",
+        "id": 5,
         "last_name": "Рубенс",
         "first_name": "Фернандо",
         "middle_name": "Амінійович",
@@ -60,7 +60,7 @@
         "group_pending": 1
     },
     {
-        "id_student": "6",
+        "id": 6,
         "last_name": "Каськів",
         "first_name": "Ігор",
         "middle_name": "Григорович",
@@ -72,7 +72,7 @@
         "group_pending": 1
     },
         {
-        "id_student": "7",
+        "id": 7,
         "last_name": "Роздовбай",
         "first_name": "Микола",
         "middle_name": "Юрійович",
@@ -84,7 +84,7 @@
         "group_pending": 0
     },
         {
-        "id_student": "8",
+        "id": 8,
         "last_name": "Сокіл",
         "first_name": "Тарас",
         "middle_name": "Матвійович",
@@ -96,7 +96,7 @@
         "group_pending": 1
     },
         {
-        "id_student": "9",
+        "id": 9,
         "last_name": "Вовк",
         "first_name": "Ігор",
         "middle_name": "Степанович",

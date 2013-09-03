@@ -15,7 +15,6 @@ define([
     initialize: function (model, data) {
       this.data = data;
       this.template = _.template(removeDialogTemplate);
-
       _.bindAll(this, 'cancelAction');
       _.bindAll(this, 'removeElement');
       _.bindAll(this, 'keyPressHandler');
@@ -65,9 +64,12 @@ define([
     },
 
     removeElement: function (e) {
-      this.model.destroy();
-
-      $('.nav-tabs .active').trigger('click')
+      console.log(this.model);
+      this.model.destroy({
+        success: function() {
+          console.log(that.parent.collection);
+        }
+      });
       this.hideModal();
     }
 

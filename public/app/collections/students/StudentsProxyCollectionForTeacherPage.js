@@ -2,13 +2,17 @@ define([
   'jquery',
   'underscore',
   'backbone',
-  'models/student/StudentProxyModelForTeacherPage'
+  'models/student/StudentProxyModelForTeacherGroupPage'
   ],
-  function($, _, Backbone, StudentProxyModelForTeacherPage)
+  function($, _, Backbone, StudentProxyModelForTeacherGroupPage)
   {
     var StudentsProxyCollectionForTeacherPage = Backbone.Collection.extend({
-      model:StudentProxyModelForTeacherPage,
-      url: "app/collections/teachers/studentsCollection.json"
+      model:StudentProxyModelForTeacherGroupPage,
+      url: "app/collections/teachers/studentsOfTeacherGroup.json",
+      comparator: function(item) {
+        return [item.get('group_pending'), item.get('student_full_name')];
+      }
     });
+
     return StudentsProxyCollectionForTeacherPage;
   });
