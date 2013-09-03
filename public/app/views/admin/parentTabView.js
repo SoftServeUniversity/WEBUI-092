@@ -18,12 +18,15 @@ define([
       var config; 
       
       this.loadData();
-
       this.on('dataLoaded', function(){
         
         config = this.setConfig();
         this.collection = config.collection;
         config = this.augmentConfig(config);
+        
+        this.collection.on('add', function(){
+          alert('addddddddddddddddddd')
+        })
         
         me.render(config)
 
