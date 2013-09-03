@@ -72,7 +72,8 @@ define([
       });
 
       app_router.on('route:workShowAction', function (id){
-        var workView = new MainWorkView({"id": id});
+        
+        this.workView = new MainWorkView({"id": id});
         var breadcrumbsView = new BreadcrumbsView();
       });
 

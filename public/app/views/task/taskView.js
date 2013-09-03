@@ -50,7 +50,7 @@ define([
       },
       addNewProgress: function (newProgress) {
         var progressModel = new ProgressModel({"progress": newProgress, "task_id": this.id});
-        progressModel.save()
+        progressModel.save({patch: true});
       },
       addCommentToCollection: function(author, content){
         var newCommentModel = new commentModel({
@@ -122,6 +122,8 @@ define([
         }
       },
       initialize: function(){
+        this.undelegateEvents();
+        this.delegateEvents(this.events);
         var me = this;
         this.model = new TaskModel({"id": me.id});
         this.model.fetch({async:false})

@@ -13,15 +13,24 @@ define([
   'models/work/WorkModel',
   'models/task/TaskModel',
   'collections/tasks/ProgressesCollection',
-  'views/shared/EditDialogView'
+  'views/shared/EditDialogView',
+  'views/shared/EditTaskDialogueView'
 
 ], 
 function($, evil, _, Backbone, bootstrap, WorkTasksTemplate, 
         WorkHistoryTemplate, elementTemplate, TasksCollection, 
         WorkHistoryCollection, TasksListView, WorkModel, TaskModel,
-         ProgressesCollection, EditDialogView){
+         ProgressesCollection, EditDialogView, EditTaskDialogView){
   
   var WorkTasksView = Backbone.View.extend({ 
+    events: {
+      "click #create-btn"             : "addTask",
+      "click #show-create-task-form"  : "showCreateTaskFrom",
+      "click #edit-tasks-on-work-page": "editTasksOnWorkPage",
+      "click #delete-task"            : "deleteTask",
+      "click #edit_name"              : "editName",
+      "click #edit-task"              : "editTask"
+    },
 
     loadData: function(){
       var me = this;
@@ -41,8 +50,6 @@ function($, evil, _, Backbone, bootstrap, WorkTasksTemplate,
 
       console.log(this.work_col.models)
     },
-
-
     updatePriority: function (items) {
       var me = this;
       _.each(items, function (item) {
@@ -50,19 +57,16 @@ function($, evil, _, Backbone, bootstrap, WorkTasksTemplate,
         var newPriority = ($(item).index()) + 1;
         var currentTask = me.work_col.get(taskId);
         currentTask.set("priority", newPriority);
-        currentTask.save()
+        currentTask.save({patch: true})
       });
     },
     
     initialize:function(){
       var me = this;
-
       this.loadData();
-      
       this.model.on('change', function(){
         me.renderWorkName();
       })
-
       $( "#sortable" ).sortable({ 
         stop: function(event, ui) {
           console.log(ui.item.index());
@@ -72,15 +76,12 @@ function($, evil, _, Backbone, bootstrap, WorkTasksTemplate,
      });
       $( "#sortable" ).disableSelection();
     },
-
     el: $("#content"),
-
     render: function(){
       var tasksListView = new TasksListView({
         collection: this.work_col,
         taskProgresses: this.progresses
       });
-
       var data = {
         work: this.model,
         tasksList: tasksListView.render().$el.html()
@@ -88,32 +89,28 @@ function($, evil, _, Backbone, bootstrap, WorkTasksTemplate,
       var historydata = {
         historymodal: this.history_col.models
       }
-
       var workTemplate = _.template(WorkTasksTemplate, data);
       var historyTemplate = _.template(WorkHistoryTemplate, historydata);
-
       $("#content").html(workTemplate);
       $("#content").append(historyTemplate); 
       $(".editable").hide();
     },
-
     renderWorkName: function(){
-      this.$('#work_name').html(this.model.get('name'))
+      this.$('#work_name').html(this.model.get('name'));
     },
-
-    events: {
-      "click #create-btn"             : "addTask",
-      "click #show-create-task-form"  : "showCreateTaskFrom",
-      "click #edit-tasks-on-work-page": "editTasksOnWorkPage",
-      "click #delete-task"            : "deleteTask"
-    },
-
     addTask: function(e) {
       e.preventDefault();
       var me = this;
       var taskName = $("#task-name").val();
       var newTask = new TaskModel({name: taskName, priority: 0, work_id: this.id, user_id: 1});
-      newTask.save();
+      this.work_col.add(newTask);
+      newTask.save({}, {
+        success: function () {
+          me.loadData();
+          $("#add-new-task").show();
+          $("#show-create-task-form").addClass("active");
+        }
+      });
     },
     showCreateTaskFrom: function () {
       $("#add-new-task").fadeToggle("slow", "linear");
@@ -134,7 +131,6 @@ function($, evil, _, Backbone, bootstrap, WorkTasksTemplate,
         $("#edit-tasks-on-work-page").addClass("active");
       }
       $(".editable").fadeToggle("slow", "linear");
-
     },
     sortable: function () {
       var me = this;
@@ -142,7 +138,7 @@ function($, evil, _, Backbone, bootstrap, WorkTasksTemplate,
         stop: function(event, ui) {
           console.log(ui.item.index());
           var new_position = $(this).sortable();
-          me.updatePriority( new_position.context.children)
+          me.updatePriority( new_position.context.children);
         }
       });
       $(".sortable").disableSelection();
@@ -150,16 +146,20 @@ function($, evil, _, Backbone, bootstrap, WorkTasksTemplate,
     deleteTask: function (e) {
       var modelId = $(e.currentTarget).closest("li").attr("task-id") * 1;
       var currentModel = this.work_col.get(modelId);
-      console.log(currentModel)
-      currentModel.destroy(); 
+      currentModel.destroy({success: function () {
+        $("li[task-id=" + modelId + "]").fadeOut()
+      }});
     },
-
     editName: function(){
-      var editDialogView = new EditDialogView({model: this.model})
+      var editDialogView = new EditDialogView({model: this.model});
+    },
+    editTask: function (e) {
+      var modelId = $(e.currentTarget).closest("li").attr("task-id") * 1;
+      var currentModel = this.work_col.get(modelId);  
+      var editTaskDialogView = new EditTaskDialogView({model: currentModel});
     }
 
   });
 
   return WorkTasksView;
-
 });
