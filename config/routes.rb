@@ -9,9 +9,6 @@ Webui92::Application.routes.draw do
   get "backup/restore_from_backup"
 
 
-  resources :table_dictionaries
-
-
   resources :progress_changes
   get 'progresses_by_month/:task_id', to: 'task_progresses#progresses_by_month'
   get '/tasks/:task_id/task_progresses', to: 'task_progresses#task_id_index'

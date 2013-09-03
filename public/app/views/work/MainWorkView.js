@@ -12,13 +12,14 @@ define([
   'views/work/TasksListView',
   'models/work/WorkModel',
   'models/task/TaskModel',
-  'collections/tasks/ProgressesCollection'
-
+  'collections/tasks/ProgressesCollection',
+  'views/shared/EditDialogView'
 
 ], 
 function($, evil, _, Backbone, bootstrap, WorkTasksTemplate, 
         WorkHistoryTemplate, elementTemplate, TasksCollection, 
-        WorkHistoryCollection, TasksListView, WorkModel, TaskModel, ProgressesCollection){
+        WorkHistoryCollection, TasksListView, WorkModel, TaskModel,
+         ProgressesCollection, EditDialogView){
   
   var WorkTasksView = Backbone.View.extend({ 
 
@@ -40,6 +41,8 @@ function($, evil, _, Backbone, bootstrap, WorkTasksTemplate,
 
       console.log(this.work_col.models)
     },
+
+
     updatePriority: function (items) {
       var me = this;
       _.each(items, function (item) {
@@ -50,9 +53,24 @@ function($, evil, _, Backbone, bootstrap, WorkTasksTemplate,
         currentTask.save()
       });
     },
+    
     initialize:function(){
       var me = this;
+
       this.loadData();
+      
+      this.model.on('change', function(){
+        me.renderWorkName();
+      })
+
+      $( "#sortable" ).sortable({ 
+        stop: function(event, ui) {
+          console.log(ui.item.index());
+          var new_position = $(this).sortable();
+          me.updatePriority( new_position.context.children)
+        }
+     });
+      $( "#sortable" ).disableSelection();
     },
 
     el: $("#content"),
@@ -77,6 +95,10 @@ function($, evil, _, Backbone, bootstrap, WorkTasksTemplate,
       $("#content").html(workTemplate);
       $("#content").append(historyTemplate); 
       $(".editable").hide();
+    },
+
+    renderWorkName: function(){
+      this.$('#work_name').html(this.model.get('name'))
     },
 
     events: {
@@ -129,7 +151,11 @@ function($, evil, _, Backbone, bootstrap, WorkTasksTemplate,
       var modelId = $(e.currentTarget).closest("li").attr("task-id") * 1;
       var currentModel = this.work_col.get(modelId);
       console.log(currentModel)
-      currentModel.destroy();
+      currentModel.destroy(); 
+    },
+
+    editName: function(){
+      var editDialogView = new EditDialogView({model: this.model})
     }
 
   });

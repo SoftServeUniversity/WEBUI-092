@@ -484,7 +484,8 @@ td.newItem .toggle-text{
 }
 
 #chart {
-	border-style: ridge;
+	border: 1px solid #D4D4D4;
+	box-shadow: 0 1px 4px rgba(0, 0, 0, 0.17);
 	margin: 0 auto;
 	padding-top: 25px;
 	height: 300px;
