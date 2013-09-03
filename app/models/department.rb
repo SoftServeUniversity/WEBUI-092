@@ -7,6 +7,14 @@ class Department < ActiveRecord::Base
   #validates :name, format: { whith: /[\w\s'",.а-яіїґ-—]{1,256}/i, message: 'some message' }
 
   belongs_to :faculty
+  has_one :progress_change, :as => :progressable
+
+  def serializable_hash(options={}) 
+    hash_info = super(options) 
+    hash_info[:progress] = 0
+    hash_info[:progress] = progress_change.progress if progress_change
+    hash_info
+  end
 
   def self.search(faculty)
     where(faculty_id: faculty)
