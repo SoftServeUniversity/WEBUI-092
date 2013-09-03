@@ -7,7 +7,7 @@ define([
   'text!templates/work/WorkTasksTemplate.html',
   'text!templates/work/WorkHistoryTemplate.html',
   'text!templates/work/elementTemplate.html',
-  'collections/work/WorkCollection',
+  'collections/tasks/TasksCollection',
   'collections/work/WorkHistoryCollection',
   'views/work/TasksListView',
   'models/work/WorkModel',
@@ -17,7 +17,7 @@ define([
 
 ], 
 function($, evil, _, Backbone, bootstrap, WorkTasksTemplate, 
-        WorkHistoryTemplate, elementTemplate, WorkCollection, 
+        WorkHistoryTemplate, elementTemplate, TasksCollection, 
         WorkHistoryCollection, TasksListView, WorkModel, TaskModel, ProgressesCollection){
   
   var WorkTasksView = Backbone.View.extend({ 
@@ -26,18 +26,19 @@ function($, evil, _, Backbone, bootstrap, WorkTasksTemplate,
       var me = this;
       this.model = new WorkModel({"id": me.id});
       this.history_col = new WorkHistoryCollection();
-      this.work_col = new WorkCollection();
+      this.work_col = new TasksCollection();
       this.model.fetch({async:false});
       this.history_col.add(this.model.get('thesis_changes'));
-      this.work_col.add(this.model.get('tasks'));
+      this.work_col.fetch({url: "work/" + me.id + "/tasks.json", async: false});
       _.each(this.work_col.models, function(task){
           me.history_col.add(task.get('thesis_changes'));
+          task.unset('thesis_changes');
       });
       this.progresses = new ProgressesCollection()
-      this.progresses.fetch({url: 'http://localhost:3000/work/' + me.id + '/tasks/progresses.json', async:false})
+      this.progresses.fetch({url: '/work/' + me.id + '/tasks/progresses.json', async:false})
       me.render();
 
-      console.log(this.work_col)
+      console.log(this.work_col.models)
     },
     updatePriority: function (items) {
       var me = this;
@@ -127,7 +128,7 @@ function($, evil, _, Backbone, bootstrap, WorkTasksTemplate,
     deleteTask: function (e) {
       var modelId = $(e.currentTarget).closest("li").attr("task-id") * 1;
       var currentModel = this.work_col.get(modelId);
-      
+      console.log(currentModel)
       currentModel.destroy();
     }
 
