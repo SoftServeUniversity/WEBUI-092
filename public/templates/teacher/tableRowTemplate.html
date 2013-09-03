@@ -1,7 +1,11 @@
 <td><%= counter %>.&nbsp;<%= full_name %></td>
 <td><%= email %></td>
 <td>
-  <input type="button" value="Підтвердити" class="btn btn-success">
+  <% if (group_pending == 0) %>
+    <input type="button" value="Підтвердити" class="btn btn-success">
+  <% else { %>
+    <div>Підтверджений</div>
+  <% } %>
 </td>
 <td>
   <!-- Button for remove student if bad group -->

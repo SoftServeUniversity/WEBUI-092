@@ -6,23 +6,19 @@ define([
     'collections/courses/CoursesCollection',
     'views/teacher/TableView',
     'text!templates/teacher/mainTeacherTemplate.html',
-    'text!templates/teacher/teacherStudentsGroupTemplate.html',
     'collections/faculties/FacultiesCollection',
     'collections/faculties/FacultyChangeCollection',
     'collections/teachers/TeachersCollection',
-    'collections/students/StudentsCollectionForTeacherConfirmations',
-    'collections/students/StudentsCollectionOfTeacherGroup',
+    'collections/work/WorksCollectionOfTeacherGroup',
 ], function($, _, Backbone,
             DepartmentsCollection,
             CoursesCollection,
             TableView,
             mainTeacherTemplate,
-            teacherStudentsGroupTemplate,
             FacultiesCollection,
             FacultyChangeCollection,
             TeachersCollection,
-            StudentsCollectionForTeacherConfirmations,
-            StudentsCollectionOfTeacherGroup){
+            WorksCollectionOfTeacherGroup){
 
     var TeacherView = Backbone.View.extend({
         initialize:function(id){
@@ -35,15 +31,8 @@ define([
                 }
             });
 
-            this.studentsCollForConfirm = new StudentsCollectionForTeacherConfirmations();
-            this.studentsCollForConfirm.fetch({
-                success: function() {
-                    that.trigger('DataLoaded', 'StudentsForConfirm');
-                }
-            });
-
-            this.studentsColOfTeachGroup = new StudentsCollectionOfTeacherGroup();
-            this.studentsColOfTeachGroup.fetch({
+            this.worksColOfTeachGroup = new WorksCollectionOfTeacherGroup();
+            this.worksColOfTeachGroup.fetch({
                 success: function() {
                     that.trigger('DataLoaded', 'StudentsOfTeacherGroup');
                 }
@@ -57,7 +46,7 @@ define([
             });
 
             var isTeachLoaded = false;
-            var isStudentsForConfirmLoaded = false;
+            //var isStudentsForConfirmLoaded = false;
             var isStudentsOfTeacherGroupLoaded = false;
             var isFacChangeLoaded = false;
 
@@ -65,10 +54,6 @@ define([
             this.on('DataLoaded', function (item) {
                 if (item == 'Teachs') {
                     isTeachLoaded = true;
-                }
-
-                if (item == 'StudentsForConfirm'){
-                    isStudentsForConfirmLoaded = true;
                 }
 
                 if (item == 'StudentsOfTeacherGroup'){
@@ -79,9 +64,10 @@ define([
                     isFacChangeLoaded = true;
                 }
 
-                if ((isTeachLoaded && isFacChangeLoaded &&
-                     isStudentsForConfirmLoaded && isStudentsOfTeacherGroupLoaded) == true){
-                    that.render(id);
+                if ((isTeachLoaded &&
+                     isFacChangeLoaded &&
+                     isStudentsOfTeacherGroupLoaded) == true){
+                  that.render(id);
                 }
             });
         },
@@ -94,19 +80,8 @@ define([
           }
           var compiledTemplate = _.template(mainTeacherTemplate, dataForMainTeacherTemplate);
           $("#content").html(compiledTemplate);
-/*
-          var dataForTeacherThesisTemplate = {
-            students_for_confirm: students_col_for_confirm_json,
-            students_of_teach_group: students_col_of_teach_group
-          }
 
-          var teacherStudentsGroupCompiledTemplate = _.template(teacherStudentsGroupTemplate, dataForTeacherThesisTemplate);
-          $("#teacherPageContent").html(teacherStudentsGroupCompiledTemplate);
-*/
-          var tableStudForConfirmView = new TableView({collection: this.studentsCollForConfirm});
-          $("#teacherPageContent").html(tableStudForConfirmView.el);
-
-          var tableStudInGroupView = new TableView({collection: this.studentsColOfTeachGroup});
+          var tableStudInGroupView = new TableView({collection: this.worksColOfTeachGroup});
           $("#teacherPageContent").html(tableStudInGroupView.el);
 
           return this;

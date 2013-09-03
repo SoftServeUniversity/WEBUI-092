@@ -8,7 +8,7 @@ define([
 ], function($, _, Backbone, ParentTabView, removeDialogTemplate){
 
   var RemoveDialogView = Backbone.View.extend({
-    
+
     el: '#content',
     el_modal: '#delete-modal',
 
@@ -48,11 +48,12 @@ define([
 
     render: function () {
       if($(this.el_modal).length==0){
-
         $(this.el).append(this.template(this.data));
-  	  }
+      }
+      $('#delete-modal_header').html(this.data.header);
+      $('#delete-modal_message').html(this.data.message);
       this.showModal();
-  	  return this;
+      return this;
     },
 
     unLink: function(){
@@ -71,6 +72,7 @@ define([
     }
 
   })
-return RemoveDialogView;
+
+  return RemoveDialogView;
 
 });

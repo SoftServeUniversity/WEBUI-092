@@ -4,62 +4,71 @@
         "last_name": "Йоріс",
         "first_name": "Капм",
         "middle_name": "Грокав",
-        "email": "Йоріс@uif.com"
+        "email": "Йоріс@uif.com",
+        "group_pending": 1
     },
     {
         "id_student": "57",
         "last_name": "Дубвас",
         "first_name": "Григорій",
         "middle_name": "Кукійович",
-        "email": "Дубвас@uif.com"
+        "email": "Дубвас@uif.com",
+        "group_pending": 1
     },
         {
         "id_student": "60",
         "last_name": "Ромул",
         "first_name": "Степан",
         "middle_name": "Матвійович",
-        "email": "Ромул@uif.com"
+        "email": "Ромул@uif.com",
+        "group_pending": 0
     },
         {
         "id_student": "64",
         "last_name": "Нормі",
         "first_name": "Нордус",
         "middle_name": "Горійович",
-        "email": "Нормі@uif.com"
+        "email": "Нормі@uif.com",
+        "group_pending": 1
     },
     {
         "id_student": "65",
         "last_name": "Вибийзуб",
         "first_name": "Іван",
         "middle_name": "Романович",
-        "email": "Вибийзуб@uif.com"
+        "email": "Вибийзуб@uif.com",
+        "group_pending": 0
     },
     {
         "id_student": "66",
         "last_name": "Матвійків",
         "first_name": "Степан",
         "middle_name": "Трохимович",
-        "email": "Матвійків@uif.com"
+        "email": "Матвійків@uif.com",
+        "group_pending": 1
     },
         {
         "id_student": "67",
         "last_name": "Марущак",
         "first_name": "Микола",
         "middle_name": "Андрійович",
-        "email": "Марущак@uif.com"
+        "email": "Марущак@uif.com",
+        "group_pending": 1
     },
         {
         "id_student": "68",
         "last_name": "Супов",
         "first_name": "Петросян",
         "middle_name": "Мерфійович",
-        "email": "Супов@uif.com"
+        "email": "Супов@uif.com",
+        "group_pending": 0
     },
         {
         "id_student": "69",
         "last_name": "Задорний",
         "first_name": "Макар",
         "middle_name": "Степанович",
-        "email": "Задорний@uif.com"
+        "email": "Задорний@uif.com",
+        "group_pending": 0
     }
 ]

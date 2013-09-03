@@ -11,29 +11,39 @@ define([
         template: _.template(tableRowTemplate),
         linkTo: null,
         events: {
-          'click .btn-danger': 'showRemoveDialog'
+          'click .btn-danger': 'showRemoveDialog',
+          'click .btn-success': 'addStudentToGroup',
         },
 
         showRemoveDialog: function(){
-          removeDialogView = new RemoveDialogView({model: this.model});
+          var message = 'Ви дійсно бажаєте видалити студента\n' +
+                        '<strong>' + this.model.get('full_name') + '</strong>';
+          var header = 'Видалення студента';
+          removeDialogView = new RemoveDialogView({model: this.model}, {message: message, header: header});
         },
 
         initialize:function(){
           var me = this;
           this.render();
-          this.model.on('destroy', function(){
-            me.removeView();
-          });
         },
 
         render:function(counter){
             // counter -  is used for mark each element in a table
             this.model.set('counter', counter);
             this.$el.html(this.template(this.model.toJSON()));
+            console.info(this.model);
             return this;
         },
-        removeView: function(){
 
+        removeView: function(){
+          this.remove();
+          alert('Remove view');
+        },
+
+        addStudentToGroup: function(){
+          attrs = {'group_pending': 1}
+          this.model.set(attrs);
+          this.model.save(attrs, {patch: true});
         }
     });
 

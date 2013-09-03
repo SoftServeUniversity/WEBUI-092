@@ -10,7 +10,6 @@ define([
   'views/course/CourseProgressView',
   'views/faculty/MainFacultyView',
   'views/department/MainDepartmentView',
-  'views/teacher/TeacherProgressView',
   'views/work/MainWorkView',
   'views/task/taskView',
   'collections/tasks/TasksCollection',
@@ -26,14 +25,13 @@ define([
 
 
   ], function($, _, Backbone, GlobalUser, FacultiesListView, RegistrationView, GroupProgressView,
-  	          StudentProgressView, CourseProgressView,  MainFacultyView, MainDepartmentView,
-  	          TeacherProgressView, MainWorkView, TaskView, TasksCollection, NotFoundView,
-              AdminFacultyView, AdminView, MainTeacherView, TeacherGroupView, UserSingUpView, 
-              InfoView, BreadcrumbsView
+              StudentProgressView, CourseProgressView,  MainFacultyView, MainDepartmentView,
+              MainWorkView, TaskView, TasksCollection, NotFoundView, AdminFacultyView, AdminView,
+              MainTeacherView, TeacherGroupView, UserSingUpView, InfoView, BreadcrumbsView
              ) {
 
 
-  	GlobalEventBus = _.extend({}, Backbone.Events);
+    GlobalEventBus = _.extend({}, Backbone.Events);
 
 
     var AppRouter = Backbone.Router.extend({
@@ -43,7 +41,6 @@ define([
         'student/:id'            : 'studentProgressAction',
         'course/:id'             : 'courseProgressAction',
         'faculty/:id'            : 'facultyAction',
-        'teacher/p:id'           : 'teacherProgressAction',
         'teacher/:id'            : 'teacherAction',
         'teacher/:id/group'      : 'teacherGroupAction',
         'department/:id'         : 'departmentAction',
@@ -116,12 +113,6 @@ define([
         var mainDepartmentView = new MainDepartmentView();
         mainDepartmentView.initialize();
         mainDepartmentView.loadData(id);
-        var breadcrumbsView = new BreadcrumbsView();
-      });
-
-      app_router.on('route:teacherProgressAction', function (actions) {
-        var teacherProgressView = new TeacherProgressView();
-        teacherProgressView.render();
         var breadcrumbsView = new BreadcrumbsView();
       });
 
