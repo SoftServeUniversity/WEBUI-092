@@ -13,6 +13,14 @@ class Course < ActiveRecord::Base
   end
 
   def aggregate()
-    self.groups.aggregate
+    arr = self.groups.to_a
+    res = 0
+    if (arr.empty? == false)
+      arr.each { |a| res += a.aggregate.to_i }
+      res = res/arr.length
+      puts res
+      p = ProgressChange.create! progressable_id: self.id, progressable_type: self.class.name, progress: res
+    end
+      return res
   end
 end

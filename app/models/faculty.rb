@@ -16,7 +16,16 @@ class Faculty < ActiveRecord::Base
   end
 
   def aggregate()
-    self.find(params[:id]).courses.aggregate
+    arr = self.departments.to_a
+    res = 0
+    if (arr.empty? == false)
+      arr.each { |a| res += a.aggregate.to_i }
+      puts arr.length
+      res = res/arr.length
+      puts res
+      p = ProgressChange.create! progressable_id: self.id, progressable_type: self.class.name, progress: res
+    end
+      return res
   end
 
 end

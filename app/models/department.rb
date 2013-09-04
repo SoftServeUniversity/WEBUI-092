@@ -22,6 +22,14 @@ class Department < ActiveRecord::Base
   end
 
   def aggregate
-    self.teachers.aggregate
+    arr = self.teachers.to_a
+    res = 0
+    if (arr.empty? == false)
+      arr.each { |a| res += a.aggregate.to_i }
+      res = res/arr.length
+      puts res
+      p = ProgressChange.create! progressable_id: self.id, progressable_type: self.class.name, progress: res
+    end
+      return res
   end
 end

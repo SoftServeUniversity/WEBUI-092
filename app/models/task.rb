@@ -18,6 +18,7 @@ class Task < ActiveRecord::Base
   def aggregate
     #puts task_progresses.average('progress')
     avg = task_progresses.average('progress')
+    puts avg
     avg.to_i
   end
 end
