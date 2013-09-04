@@ -7,6 +7,7 @@ class Teacher < ActiveRecord::Base
   belongs_to :department
 
   after_create :add_panding_role
+  has_many :progress_changes, :as => :progressable
 
   #all new users with 'teacher' assoction present, will automaticly have role_panding => true
   def add_panding_role
@@ -23,6 +24,8 @@ class Teacher < ActiveRecord::Base
     hash_info[:middle_name] = user.middle_name
     hash_info[:email] = user.email
     hash_info[:department_name] = department.name
+    hash_info[:progress] = 0
+    hash_info[:progress] = progress_changes.last.progress if progress_changes.last
     hash_info
   end
 

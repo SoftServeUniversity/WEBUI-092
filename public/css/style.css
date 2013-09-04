@@ -250,8 +250,8 @@ progress::-webkit-progress-value { background: #69EB63; }
 .btn-navbar{
 	margin-bottom: 5px;
 }
-#chart{
-	margin-bottom: 15px;
+.task-chart{
+	margin-bottom: 20px !important;
 }
 hr.task-comment-line{
 	margin: 5px 0 !important;
@@ -275,7 +275,6 @@ hr.task-comment-line{
 .left-side{
 	text-align: left;
 }
-
 /*****end task page*****/
 
 /*-----enter form---------*/
@@ -283,7 +282,7 @@ hr.task-comment-line{
 
 }
 #launch{
-	top:46px;
+	top:41px;
 	position: absolute;
 	right:0;
 	overflow: hidden;
@@ -428,7 +427,12 @@ td.newItem .toggle-text{
 .test {
 	width:auto !important;
 }
-
+.tab-text {
+	display:none;
+}
+.tab-text.toggle-text {
+	display:block;
+}
 /* oohurtc */
 
 .heading {

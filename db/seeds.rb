@@ -90,6 +90,8 @@ end
 #  end
 #end
 stud = Student.create user_id: User.last.id, group_id: Group.first.id
+stud1 = Student.create user_id: User.first.id, group_id: Group.last.id
+
 
 #Works Table
 if Work.all.empty?

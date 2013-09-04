@@ -74,11 +74,15 @@ define([
       app_router.on('route:workShowAction', function (id){
         
         this.workView = new MainWorkView({"id": id});
+        var registrationView = new RegistrationView();
+        registrationView.render();
         var breadcrumbsView = new BreadcrumbsView();
       });
 
       app_router.on('route:viewAdminFacultyPage', function (){
         var adminFacultyView = new AdminFacultyView();
+        var registrationView = new RegistrationView();
+        registrationView.render();
         var breadcrumbsView = new BreadcrumbsView();
       });
 
@@ -91,6 +95,8 @@ define([
 
         var groupProgressView = new GroupProgressView();
         groupProgressView.render();
+        var registrationView = new RegistrationView();
+        registrationView.render();
         var breadcrumbsView = new BreadcrumbsView();
       });
 
@@ -99,13 +105,17 @@ define([
         var studentProgressView = new StudentProgressView();
         studentProgressView.initialize();
         studentProgressView.loadData(id);
-        //var breadcrumbsView = new BreadcrumbsView();
+        var registrationView = new RegistrationView();
+        registrationView.render();
+        var breadcrumbsView = new BreadcrumbsView();
       });
 
        app_router.on('route:courseProgressAction', function (actions) {
 
         var courseProgressView = new CourseProgressView();
         courseProgressView.render();
+        var registrationView = new RegistrationView();
+        registrationView.render();
         var breadcrumbsView = new BreadcrumbsView();
       });
 
@@ -113,6 +123,8 @@ define([
         var mainFacultyView = new MainFacultyView();
         mainFacultyView.initialize();
         mainFacultyView.loadData(id);
+        var registrationView = new RegistrationView();
+        registrationView.render();
         var breadcrumbsView = new BreadcrumbsView();
       });
 
@@ -120,23 +132,31 @@ define([
         var mainDepartmentView = new MainDepartmentView();
         mainDepartmentView.initialize();
         mainDepartmentView.loadData(id);
+        var registrationView = new RegistrationView();
+        registrationView.render();
         var breadcrumbsView = new BreadcrumbsView();
       });
 
       app_router.on('route:teacherProgressAction', function (actions) {
         var teacherProgressView = new TeacherProgressView();
         teacherProgressView.render();
+        var registrationView = new RegistrationView();
+        registrationView.render();
         var breadcrumbsView = new BreadcrumbsView();
       });
 
       app_router.on('route:teacherAction', function (id) {
         var mainTeacherView = new MainTeacherView(id);
         var breadcrumbsView = new BreadcrumbsView();
+        var registrationView = new RegistrationView();
+        registrationView.render();
       });
 
       app_router.on('route:teacherGroupAction', function (id) {
         var teacherGroupView = new TeacherGroupView(id);
         var breadcrumbsView = new BreadcrumbsView();
+        var registrationView = new RegistrationView();
+        registrationView.render();
       });
 
       app_router.on('route:userSingUp', function(){
@@ -149,18 +169,24 @@ define([
         var userSignUp = new UserSingUpView();
         userSignUp.edit(); 
         var breadcrumbsView = new BreadcrumbsView();
+        var registrationView = new RegistrationView();
+        registrationView.render();
       });
 
       app_router.on('route:cancelAccount', function (){
         var userSignUp = new UserSingUpView();
         userSignUp.cancel(); 
         var breadcrumbsView = new BreadcrumbsView();
+        var registrationView = new RegistrationView();
+        registrationView.render();
       });
 
       app_router.on('route:infoAction', function(){
         var userSignUp = new UserSingUpView();
         var infoView = new InfoView();
         var breadcrumbsView = new BreadcrumbsView();
+        var registrationView = new RegistrationView();
+        registrationView.render();
       });
 
 
@@ -176,14 +202,17 @@ define([
 <<<<<<< HEAD
           }*/
           var currentTask = new TaskView({"id": id});
-          currentTask.render();
           var breadcrumbsView = new BreadcrumbsView();
+          var registrationView = new RegistrationView();
+        registrationView.render();
       });
 
       app_router.on('route:defaultAction', function (actions) {
         // We have no matching route, lets display the home page
         var facultiesListView = new FacultiesListView();
         facultiesListView.loadData();
+        var registrationView = new RegistrationView();
+        registrationView.render();
       });
       Backbone.history.start();
     };
