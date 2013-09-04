@@ -176,7 +176,6 @@ define([
 <<<<<<< HEAD
           }*/
           var currentTask = new TaskView({"id": id});
-          currentTask.render();
           var breadcrumbsView = new BreadcrumbsView();
       });
 

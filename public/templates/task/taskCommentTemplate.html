@@ -1,6 +1,11 @@
+<% 
+	var oldDate = created_at.split("T");  
+	var currTime = oldDate[1].substring(0, 5),
+		currDate = oldDate[0];
+%>
 <div class="muted">
-	<span class="italicText"><%= created_at %></span> користувачем під № <span class="boldText"><%= user_id %></span> 
-		<span class="italicText"><span class="boldText">Прогрес: </span> <%= progress %>% </span>
+	<span class="italicText"><%=currDate%> <%=currTime%></span> автор: <span class="boldText"><%= user_id %></span> 
+		<span class="italicText">Прогрес: </span> <span class="boldText"><%= progress %>% </span>
 </div>	
 <hr class="task-comment-line" style="margin: 5px 0;">				
 <p><%= task_comment %></p> 

@@ -15,13 +15,11 @@ define([
   'collections/tasks/ProgressesCollection',
   'views/shared/EditDialogView',
   'views/shared/EditTaskDialogueView'
-
 ], 
 function($, evil, _, Backbone, bootstrap, WorkTasksTemplate, 
         WorkHistoryTemplate, elementTemplate, TasksCollection, 
         WorkHistoryCollection, TasksListView, WorkModel, TaskModel,
          ProgressesCollection, EditDialogView, EditTaskDialogView){
-  
   var WorkTasksView = Backbone.View.extend({ 
     events: {
       "click #create-btn"             : "addTask",
@@ -31,7 +29,6 @@ function($, evil, _, Backbone, bootstrap, WorkTasksTemplate,
       "click #edit_name"              : "editName",
       "click #edit-task"              : "editTask"
     },
-
     loadData: function(){
       var me = this;
       this.model = new WorkModel({"id": me.id});
@@ -58,7 +55,6 @@ function($, evil, _, Backbone, bootstrap, WorkTasksTemplate,
         currentTask.save({patch: true})
       });
     },
-    
     initialize: function(){
       var me = this;
       this.loadData();
@@ -112,19 +108,21 @@ function($, evil, _, Backbone, bootstrap, WorkTasksTemplate,
     },
     showCreateTaskFrom: function () {
       $("#add-new-task").fadeToggle("slow", "linear");
-      if($("#show-create-task-form").hasClass("active")){
-        $("#show-create-task-form").removeClass("active");
+      var createTaskForm = $("#show-create-task-form");
+      if(createTaskForm.hasClass("active")){
+        createTaskForm.removeClass("active");
       } else {
-        $("#show-create-task-form").addClass("active");
+        createTaskForm.addClass("active");
       }
     },
     editTasksOnWorkPage: function () {
-      if($("#list-of-tasks").hasClass("sortable")) {
+      var listofTasks = $("#list-of-tasks");
+      if(listofTasks.hasClass("sortable")) {
         $(".sortable").sortable("destroy");
-        $("#list-of-tasks").removeClass("sortable");
+        listofTasks.removeClass("sortable");
         $("#edit-tasks-on-work-page").removeClass("active");
       } else {
-        $("#list-of-tasks").addClass("sortable");
+        listofTasks.addClass("sortable");
         this.sortable();
         $("#edit-tasks-on-work-page").addClass("active");
       }
@@ -132,14 +130,15 @@ function($, evil, _, Backbone, bootstrap, WorkTasksTemplate,
     },
     sortable: function () {
       var me = this;
-      $(".sortable").sortable({ 
+      var sortable = $(".sortable");
+      sortable.sortable({ 
         stop: function(event, ui) {
           console.log(ui.item.index());
           var new_position = $(this).sortable();
           me.updatePriority( new_position.context.children);
         }
       });
-      $(".sortable").disableSelection();
+      sortable.disableSelection();
     },
     deleteTask: function (e) {
       var modelId = $(e.currentTarget).closest("li").attr("task-id") * 1;
@@ -157,7 +156,6 @@ function($, evil, _, Backbone, bootstrap, WorkTasksTemplate,
       var currentModel = this.work_col.get(modelId);  
       var editTaskDialogView = new EditTaskDialogView({model: currentModel, taskElement: currentLi});
     }
-
   });
 
   return WorkTasksView;
