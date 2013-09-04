@@ -10,7 +10,7 @@ class Faculty < ActiveRecord::Base
   def serializable_hash(options={}) 
     hash_info = super(options) 
     hash_info[:progress] = 0
-    hash_info[:progress] = progress_change.progress if progress_change
+    hash_info[:progress] = ProgressChange.where("progress_changes.progressable_type = 'faculty'").last.progress if progress_change
     hash_info
   end
 

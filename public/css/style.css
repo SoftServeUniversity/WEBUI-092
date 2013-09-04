@@ -282,7 +282,7 @@ hr.task-comment-line{
 
 }
 #launch{
-	top:46px;
+	top:41px;
 	position: absolute;
 	right:0;
 	overflow: hidden;
@@ -427,7 +427,12 @@ td.newItem .toggle-text{
 .test {
 	width:auto !important;
 }
-
+.tab-text {
+	display:none;
+}
+.tab-text.toggle-text {
+	display:block;
+}
 /* oohurtc */
 
 .heading {
