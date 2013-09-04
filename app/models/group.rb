@@ -4,13 +4,13 @@ class Group < ActiveRecord::Base
   belongs_to :course
   belongs_to :teacher
   belongs_to :department
-  has_one :progress_change, :as => :progressable
+  has_many :progress_changes, :as => :progressable
   #has_many :progress_changes
 
   def serializable_hash(options={}) 
     hash_info = super(options) 
     hash_info[:progress] = 0
-    hash_info[:progress] = ProgressChange.where("progress_changes.progressable_type = 'group'").last.progress if progress_change
+    hash_info[:progress] = progress_changes.last.progress if progress_changes.last
     hash_info
   end
 end
