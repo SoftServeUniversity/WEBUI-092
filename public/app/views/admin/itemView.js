@@ -3,9 +3,11 @@ define([
   'underscore',
   'backbone',
   'text!templates/admin/itemTemplate.html',
-  'views/shared/RemoveDialogView'
+  'views/shared/RemoveDialogView',
+  'views/admin/EmployeeDialogView'
 
-], function ($, _, Backbone, ItemTemplate, RemoveDialogView) {   
+
+], function ($, _, Backbone, ItemTemplate, RemoveDialogView, EmployeeDialogView) {
   
     var ItemView = Backbone.View.extend({ 
       
@@ -27,6 +29,7 @@ define([
 
       events: {
         'dblclick .toggle-text'      : 'showInput',
+        'click .employee-button'     : 'showEmployee',
         'click .delete-button'       : 'removeItem',
         'click .verify-button'       : 'verifyItem',
         'blur  .toggle-input'        : 'updateItem',
@@ -40,6 +43,13 @@ define([
 
       showInput: function(e){
         $(e.target).css('display', 'none').prev().css('display','block');
+      },
+
+      showEmployee: function(){
+
+         var employeeTabView = new EmployeeDialogView(this.model.get('id'));
+         $('#content').append(employeeTabView.$el);
+         $('#employee-modal').modal('show');
       },
 
       removeItem: function(){

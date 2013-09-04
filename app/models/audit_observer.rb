@@ -1,31 +1,40 @@
 class AuditObserver < ActiveRecord::Observer
   include UserInfo
-  observe :work, :task
+  observe :work, :task, :task_progress
 
   def after_update(record)
-    value = ""
+    value = "";
     record.changes.each_key { |key|
-      if !key.include? "_id" and !key.include? "_at" and key != 'id' and key != 'priority'
-        value = value + "#{key} was changed from  #{record.changes[key][0]} to #{record.changes[key][1]} "
+      if key == "name"
+        value = value + "ім'я \"#{record.changes[key][0]}\" на \"#{record.changes[key][1]}\" "
+      end
+      if key == "progress"
+        if record.changes[key][0] != ""
+          value = value + "прогрес з \"#{record.changes[key][0]}\" на \"#{record.changes[key][1]}\" "
+        end
       end
     }
-    if value != ""
-      process_record(record, "UPDATE", value)
+    if record.class.to_s == 'TaskProgress'
+       record = record.task
+    end
+    prefix = (record.class.to_s == 'Work' ? "В роботі" : "В завданні") + "#{record.name} #{current_user} змінив: "
+    if value == ""
+      process_record(record, "UPDATE", prefix + value)
     end
   end
 
   def after_create(record)
-    value = "";
-    record.attributes.each_pair do |att_name, att_value|
-      if !att_name.include? "_id" and !att_name.include? "_at" and att_name != 'id' and att_name != 'priority'
-        value = value + "#{att_name} - #{att_value}; "
-      end
+    if record.class.to_s == 'TaskProgress'
+      after_update(record)
+    else
+      process_record(record, "CREATE", current_user + " створив " + (record.class.to_s == 'Task' ? "завдання " : "роботу ") + record.name)
     end
-    process_record(record, "CREATE", value)
-    end
+  end
 
   def after_destroy(record)
-    process_record(record, "DELETE", 'ITEM DELETED')
+    if record.class.to_s != 'TaskProgress'
+      process_record(record, "DELETE", current_user + " видалив " + (record.class.to_s == 'Task' ? "завдання" : "роботу") + record.name)
+    end
   end
 
   def process_record(record, action, value)

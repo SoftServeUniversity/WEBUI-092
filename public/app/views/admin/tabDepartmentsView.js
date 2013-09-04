@@ -50,7 +50,8 @@ define([
         },
         
         buttons: {
-        	create: 'Нова кафедра'
+        	create: 'Нова кафедра',
+            employee: true
         }
 
       };

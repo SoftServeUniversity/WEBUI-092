@@ -15,8 +15,8 @@ define([
     initialize: function(){
       
       var me = this;
-      var config; 
-      
+      var config;
+
       this.loadData();
 
       this.on('dataLoaded', function(){

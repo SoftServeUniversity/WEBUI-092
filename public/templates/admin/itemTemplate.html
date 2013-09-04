@@ -73,20 +73,9 @@
 
     <% } else if (conf.fields[f]['type'] == 'static') {%>      
 
-      <span>  
-
-            <% var options_array = conf.fields[f]['collection'].toJSON(); %>
- 
-            <% for (i=0; i<options_array.length; i++){ %>
- 
-              <%if(options_array[i]['id'] == model['id']){  
-                var active_name = options_array[i]['name']; %>
-                <%= active_name %>
-              <% } %>      
-                        
-            <% } %>
-        
-      </span>          
+      <span class="<%= text_class %>">
+        <%=  model[f] %>
+      </span>
      
     <% } %>
 
