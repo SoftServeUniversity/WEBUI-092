@@ -13,12 +13,11 @@ define([
   
   'views/admin/tabGroupsView',
   'views/admin/tabDepartmentsView',
-  'views/admin/tabTeachersView',
-  'views/admin/tabTeachersOfDepartmentView'
+  'views/admin/tabTeachersView'
 
 ], function ($, bootstrapselect, _,  Backbone,
             ParentAdminView, TabAdminsView, TabCoursesView,
-             TabGroupsView, TabDepartmentsView, TabTeachersView, TabTeachersOfDepartmentView) {
+             TabGroupsView, TabDepartmentsView, TabTeachersView) {
   
 var AdminFacultyView = ParentAdminView.extend({  
   
@@ -95,11 +94,6 @@ var AdminFacultyView = ParentAdminView.extend({
     this.activeMenuId = 'teachers-tab';
     this.tabView = new TabTeachersView();
     this.showAdminButtons();
-  },
-  manage_teachers_of_dep: function(){
-    this.activeMenuId = 'teachers_of_dep-tab';
-    this.tabView = new TabTeachersOfDepartmentView();
-    this.hideAdminButtons();
   }
 
 });

@@ -15,8 +15,8 @@ define([
     initialize: function(){
       
       var me = this;
-      var config; 
-      
+      var config;
+
       this.loadData();
       this.on('dataLoaded', function(){
         
@@ -25,7 +25,6 @@ define([
         config = this.augmentConfig(config);
         
         this.collection.on('add', function(){
-          alert('addddddddddddddddddd')
         })
         
         me.render(config)

@@ -36,10 +36,13 @@ function($, evil, _, Backbone, bootstrap, WorkTasksTemplate,
       this.work_col = new TasksCollection();
       this.model.fetch({async:false});
       this.history_col.add(this.model.get('thesis_changes'));
+      tempColl = new TasksCollection(this.model.get('tasks'));
       this.work_col.fetch({url: "work/" + me.id + "/tasks.json", async: false});
-      _.each(this.work_col.models, function(task){
+      _.each(tempColl.models, function(task){
           me.history_col.add(task.get('thesis_changes'));
-          task.unset('thesis_changes');
+      });
+      _.each(this.history_col.models, function(element){
+         element.set('date', new Date(element.get('created_at')).toLocaleString());
       });
       this.progresses = new ProgressesCollection()
       this.progresses.fetch({url: '/work/' + me.id + '/tasks/progresses.json', async:false})

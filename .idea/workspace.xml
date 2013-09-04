@@ -2,40 +2,44 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c2309ff3-51c1-4e3c-9c69-fb4362b3924e" name="Default" comment="test">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/db/schema.rb" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/app/collections/tasks/CommentsCollection.js" afterPath="$PROJECT_DIR$/public/app/collections/tasks/CommentsCollection.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/app/views/work/MainWorkView.js" afterPath="$PROJECT_DIR$/public/app/views/work/MainWorkView.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/app/models/task/ProgressModel.js" afterPath="$PROJECT_DIR$/public/app/models/task/ProgressModel.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/app/collections/tasks/ProgressesCollection.js" afterPath="$PROJECT_DIR$/public/app/collections/tasks/ProgressesCollection.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/app/models/task/TaskModel.js" afterPath="$PROJECT_DIR$/public/app/models/task/TaskModel.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/app/views/work/TasksListView.js" afterPath="$PROJECT_DIR$/public/app/views/work/TasksListView.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/app/views/admin/EmployeeDialogView.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/app/views/admin/dialogItemView.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/templates/admin/employeeDialogTemplate.html" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/db/migrate/20130807053642_create_table_dictionaries.rb" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/db/migrate/20130813103555_dep_percentage.rb" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/db/migrate/20130813110350_course_percentage.rb" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/db/migrate/20130828124205_add_teacher_id_field_to_teachers.rb" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/app/models/faculty/FacultyModel.js" afterPath="$PROJECT_DIR$/public/app/models/faculty/FacultyModel.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/app/views/student/StudentProgressView.js" afterPath="$PROJECT_DIR$/public/app/views/student/StudentProgressView.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/app/collections/students/StudentsCollection.js" afterPath="$PROJECT_DIR$/public/app/collections/students/StudentsCollection.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/app/collections/work/WorkCollection.js" afterPath="$PROJECT_DIR$/public/app/collections/work/WorkCollection.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/app/collections/work/WorkHistoryCollection.js" afterPath="$PROJECT_DIR$/public/app/collections/work/WorkHistoryCollection.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/app/models/work/WorkModel.js" afterPath="$PROJECT_DIR$/public/app/models/work/WorkModel.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/application.yml" afterPath="$PROJECT_DIR$/config/application.yml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/audit_observer.rb" afterPath="$PROJECT_DIR$/app/models/audit_observer.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/app/models/task/commentModel.js" afterPath="$PROJECT_DIR$/public/app/models/task/commentModel.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/templates/teacher/mainTeacherTemplate.html" afterPath="$PROJECT_DIR$/public/templates/teacher/mainTeacherTemplate.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/app/router.js" afterPath="$PROJECT_DIR$/public/app/router.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/database.yml" afterPath="$PROJECT_DIR$/config/database.yml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/infopage.html" afterPath="$PROJECT_DIR$/public/infopage.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/templates/admin/itemTemplate.html" afterPath="$PROJECT_DIR$/public/templates/admin/itemTemplate.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/app/views/admin/itemView.js" afterPath="$PROJECT_DIR$/public/app/views/admin/itemView.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/app/views/admin/parentAdminView.js" afterPath="$PROJECT_DIR$/public/app/views/admin/parentAdminView.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/app/views/admin/parentTabView.js" afterPath="$PROJECT_DIR$/public/app/views/admin/parentTabView.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db/schema.rb" afterPath="$PROJECT_DIR$/db/schema.rb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db/seeds.rb" afterPath="$PROJECT_DIR$/db/seeds.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/app/models/task/taskCommentModel.js" afterPath="$PROJECT_DIR$/public/app/models/task/taskCommentModel.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/app/views/task/taskCommentsView.js" afterPath="$PROJECT_DIR$/public/app/views/task/taskCommentsView.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/task_progresses_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/task_progresses_controller.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/teacher.rb" afterPath="$PROJECT_DIR$/app/models/teacher.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/css/style.css" afterPath="$PROJECT_DIR$/public/css/style.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/app/views/admin/tabDepartmentsView.js" afterPath="$PROJECT_DIR$/public/app/views/admin/tabDepartmentsView.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="Project_backbone_ruby.iws" />
     <ignored path=".idea/workspace.xml" />
     <ignored path=".idea/" />
-    <file path="/Dummy.txt" changelist="c2309ff3-51c1-4e3c-9c69-fb4362b3924e" time="1377876494911" ignored="false" />
+    <file path="/Dummy.txt" changelist="c2309ff3-51c1-4e3c-9c69-fb4362b3924e" time="1378327537046" ignored="false" />
     <file path="/SpecRunner.html" changelist="c2309ff3-51c1-4e3c-9c69-fb4362b3924e" time="1376427997924" ignored="false" />
     <file path="/main.js" changelist="c2309ff3-51c1-4e3c-9c69-fb4362b3924e" time="1376250169361" ignored="false" />
     <file path="/faculty.rb" changelist="c2309ff3-51c1-4e3c-9c69-fb4362b3924e" time="1376251523307" ignored="false" />
     <file path="/faculty_spec.rb" changelist="c2309ff3-51c1-4e3c-9c69-fb4362b3924e" time="1376251756507" ignored="false" />
-    <file path="/seeds.rb" changelist="c2309ff3-51c1-4e3c-9c69-fb4362b3924e" time="1376403998425" ignored="false" />
+    <file path="/seeds.rb" changelist="c2309ff3-51c1-4e3c-9c69-fb4362b3924e" time="1378199588273" ignored="false" />
     <file path="/department.rb" changelist="c2309ff3-51c1-4e3c-9c69-fb4362b3924e" time="1376389808326" ignored="false" />
-    <file path="/20130813103555_dep_percentage.rb" changelist="c2309ff3-51c1-4e3c-9c69-fb4362b3924e" time="1376390560118" ignored="false" />
+    <file path="/20130813103555_dep_percentage.rb" changelist="c2309ff3-51c1-4e3c-9c69-fb4362b3924e" time="1377983385155" ignored="false" />
     <file path="/course.rb" changelist="c2309ff3-51c1-4e3c-9c69-fb4362b3924e" time="1376391800898" ignored="false" />
-    <file path="/20130813110350_course_percentage.rb" changelist="c2309ff3-51c1-4e3c-9c69-fb4362b3924e" time="1376391999830" ignored="false" />
+    <file path="/20130813110350_course_percentage.rb" changelist="c2309ff3-51c1-4e3c-9c69-fb4362b3924e" time="1377983478243" ignored="false" />
     <file path="/20130813111740_group_percentage.rb" changelist="c2309ff3-51c1-4e3c-9c69-fb4362b3924e" time="1376392759700" ignored="false" />
     <file path="/20130813140157_group_percentage.rb" changelist="c2309ff3-51c1-4e3c-9c69-fb4362b3924e" time="1376402556976" ignored="false" />
     <file path="/task.rb" changelist="c2309ff3-51c1-4e3c-9c69-fb4362b3924e" time="1377199287503" ignored="false" />
@@ -43,32 +47,58 @@
     <file path="/20130813142705_group_percentage.rb" changelist="c2309ff3-51c1-4e3c-9c69-fb4362b3924e" time="1376404060450" ignored="false" />
     <file path="/DepartmentsCollectionSpec.js" changelist="c2309ff3-51c1-4e3c-9c69-fb4362b3924e" time="1376427952113" ignored="false" />
     <file path="/SpecHelper.js" changelist="c2309ff3-51c1-4e3c-9c69-fb4362b3924e" time="1376428455889" ignored="false" />
-    <file path="/database.yml" changelist="c2309ff3-51c1-4e3c-9c69-fb4362b3924e" time="1377856405247" ignored="false" />
-    <file path="/a.dummy" changelist="c2309ff3-51c1-4e3c-9c69-fb4362b3924e" time="1377812269477" ignored="false" />
+    <file path="/database.yml" changelist="c2309ff3-51c1-4e3c-9c69-fb4362b3924e" time="1378237152633" ignored="false" />
+    <file path="/a.dummy" changelist="c2309ff3-51c1-4e3c-9c69-fb4362b3924e" time="1378322896220" ignored="false" />
     <file path="/progress_controller.rb" changelist="c2309ff3-51c1-4e3c-9c69-fb4362b3924e" time="1377117921200" ignored="false" />
     <file path="/progress_changes_helper.rb" changelist="c2309ff3-51c1-4e3c-9c69-fb4362b3924e" time="1377118072033" ignored="false" />
     <file path="/schema.rb" changelist="c2309ff3-51c1-4e3c-9c69-fb4362b3924e" time="1377200698391" ignored="false" />
     <file path="/thesis_change.rb" changelist="c2309ff3-51c1-4e3c-9c69-fb4362b3924e" time="1377857195824" ignored="false" />
     <file path="/loginView.js" changelist="c2309ff3-51c1-4e3c-9c69-fb4362b3924e" time="1377512839515" ignored="false" />
-    <file path="/audit_observer.rb" changelist="c2309ff3-51c1-4e3c-9c69-fb4362b3924e" time="1377857146289" ignored="false" />
+    <file path="/audit_observer.rb" changelist="c2309ff3-51c1-4e3c-9c69-fb4362b3924e" time="1378326309050" ignored="false" />
     <file path="/application.rb" changelist="c2309ff3-51c1-4e3c-9c69-fb4362b3924e" time="1377516369840" ignored="false" />
-    <file path="/fragment.rb" changelist="c2309ff3-51c1-4e3c-9c69-fb4362b3924e" time="1377530017397" ignored="false" />
+    <file path="/fragment.rb" changelist="c2309ff3-51c1-4e3c-9c69-fb4362b3924e" time="1378325730467" ignored="false" />
     <file path="/sessions_controller.rb" changelist="c2309ff3-51c1-4e3c-9c69-fb4362b3924e" time="1377528844375" ignored="false" />
     <file path="/20130817110350_create_thesis_changes.rb" changelist="c2309ff3-51c1-4e3c-9c69-fb4362b3924e" time="1377532579891" ignored="false" />
     <file path="/user_info.rb" changelist="c2309ff3-51c1-4e3c-9c69-fb4362b3924e" time="1377719239997" ignored="false" />
     <file path="/works_controller.rb" changelist="c2309ff3-51c1-4e3c-9c69-fb4362b3924e" time="1377710691074" ignored="false" />
     <file path="/work.json" changelist="c2309ff3-51c1-4e3c-9c69-fb4362b3924e" time="1377542068442" ignored="false" />
-    <file path="/MainWorkView.js" changelist="c2309ff3-51c1-4e3c-9c69-fb4362b3924e" time="1377545266388" ignored="false" />
-    <file path="/WorkModel.js" changelist="c2309ff3-51c1-4e3c-9c69-fb4362b3924e" time="1377543951893" ignored="false" />
-    <file path="/WorkHistoryTemplate.html" changelist="c2309ff3-51c1-4e3c-9c69-fb4362b3924e" time="1377545899813" ignored="false" />
+    <file path="/MainWorkView.js" changelist="c2309ff3-51c1-4e3c-9c69-fb4362b3924e" time="1378241111859" ignored="false" />
+    <file path="/WorkModel.js" changelist="c2309ff3-51c1-4e3c-9c69-fb4362b3924e" time="1377987761436" ignored="false" />
+    <file path="/WorkHistoryTemplate.html" changelist="c2309ff3-51c1-4e3c-9c69-fb4362b3924e" time="1378239746720" ignored="false" />
     <file path="/WorkHistoryModel.js" changelist="c2309ff3-51c1-4e3c-9c69-fb4362b3924e" time="1377545543048" ignored="false" />
-    <file path="/thesis_change_mailer.rb" changelist="c2309ff3-51c1-4e3c-9c69-fb4362b3924e" time="1377716210472" ignored="false" />
+    <file path="/thesis_change_mailer.rb" changelist="c2309ff3-51c1-4e3c-9c69-fb4362b3924e" time="1378234987923" ignored="false" />
     <file path="/departments_controller.rb" changelist="c2309ff3-51c1-4e3c-9c69-fb4362b3924e" time="1377709653665" ignored="false" />
     <file path="/development.rb" changelist="c2309ff3-51c1-4e3c-9c69-fb4362b3924e" time="1377712985602" ignored="false" />
     <file path="/adminFacultyView.js" changelist="c2309ff3-51c1-4e3c-9c69-fb4362b3924e" time="1377810421524" ignored="false" />
-    <file path="/tabTeachersOfDepartmentView.js" changelist="c2309ff3-51c1-4e3c-9c69-fb4362b3924e" time="1377812120307" ignored="false" />
+    <file path="/tabTeachersOfDepartmentView.js" changelist="c2309ff3-51c1-4e3c-9c69-fb4362b3924e" time="1378208097416" ignored="false" />
     <file path="/tabGroupsView.js" changelist="c2309ff3-51c1-4e3c-9c69-fb4362b3924e" time="1377804621649" ignored="false" />
     <file path="/info_controller.rb" changelist="c2309ff3-51c1-4e3c-9c69-fb4362b3924e" time="1377805372967" ignored="false" />
+    <file path="/StudentProgressView.js" changelist="c2309ff3-51c1-4e3c-9c69-fb4362b3924e" time="1378293789954" ignored="false" />
+    <file path="/StudentChangeModel.js" changelist="c2309ff3-51c1-4e3c-9c69-fb4362b3924e" time="1377961366411" ignored="false" />
+    <file path="/StudentChangeCollection.js" changelist="c2309ff3-51c1-4e3c-9c69-fb4362b3924e" time="1377961437738" ignored="false" />
+    <file path="/router.js" changelist="c2309ff3-51c1-4e3c-9c69-fb4362b3924e" time="1377971017625" ignored="false" />
+    <file path="/elementTemplate.html" changelist="c2309ff3-51c1-4e3c-9c69-fb4362b3924e" time="1377971463958" ignored="false" />
+    <file path="/TaskModel.js" changelist="c2309ff3-51c1-4e3c-9c69-fb4362b3924e" time="1377973525870" ignored="false" />
+    <file path="/notification.html.erb" changelist="c2309ff3-51c1-4e3c-9c69-fb4362b3924e" time="1378235196900" ignored="false" />
+    <file path="/StTemplate.html" changelist="c2309ff3-51c1-4e3c-9c69-fb4362b3924e" time="1377982800734" ignored="false" />
+    <file path="/GroupProxyModel.js" changelist="c2309ff3-51c1-4e3c-9c69-fb4362b3924e" time="1377985872645" ignored="false" />
+    <file path="/GroupModel.js" changelist="c2309ff3-51c1-4e3c-9c69-fb4362b3924e" time="1377985254115" ignored="false" />
+    <file path="/TeacherModel.js" changelist="c2309ff3-51c1-4e3c-9c69-fb4362b3924e" time="1377985446545" ignored="false" />
+    <file path="/WorkCollection.js" changelist="c2309ff3-51c1-4e3c-9c69-fb4362b3924e" time="1378313439825" ignored="false" />
+    <file path="/StudentProxyModel.js" changelist="c2309ff3-51c1-4e3c-9c69-fb4362b3924e" time="1378025617106" ignored="false" />
+    <file path="/itemTemplate.html" changelist="c2309ff3-51c1-4e3c-9c69-fb4362b3924e" time="1378321454222" ignored="false" />
+    <file path="/itemView.js" changelist="c2309ff3-51c1-4e3c-9c69-fb4362b3924e" time="1378322066786" ignored="false" />
+    <file path="/tabDepartmentsView.js" changelist="c2309ff3-51c1-4e3c-9c69-fb4362b3924e" time="1378151740465" ignored="false" />
+    <file path="/parentTabTemplate.html" changelist="c2309ff3-51c1-4e3c-9c69-fb4362b3924e" time="1378153429404" ignored="false" />
+    <file path="/employeeDialog.html" changelist="c2309ff3-51c1-4e3c-9c69-fb4362b3924e" time="1378156593877" ignored="false" />
+    <file path="/employeeDialogTemplate.html" changelist="c2309ff3-51c1-4e3c-9c69-fb4362b3924e" time="1378298653518" ignored="false" />
+    <file path="/EmployeeDialogView.js" changelist="c2309ff3-51c1-4e3c-9c69-fb4362b3924e" time="1378276723125" ignored="false" />
+    <file path="/parentTabView.js" changelist="c2309ff3-51c1-4e3c-9c69-fb4362b3924e" time="1378207483350" ignored="false" />
+    <file path="/teachers_controller.rb" changelist="c2309ff3-51c1-4e3c-9c69-fb4362b3924e" time="1378205941399" ignored="false" />
+    <file path="/dialogItemView.js" changelist="c2309ff3-51c1-4e3c-9c69-fb4362b3924e" time="1378282507304" ignored="false" />
+    <file path="/style.css" changelist="c2309ff3-51c1-4e3c-9c69-fb4362b3924e" time="1378321563358" ignored="false" />
+    <file path="/1.html" changelist="c2309ff3-51c1-4e3c-9c69-fb4362b3924e" time="1378319203006" ignored="false" />
+    <file path="/application.yml" changelist="c2309ff3-51c1-4e3c-9c69-fb4362b3924e" time="1378322929796" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -96,23 +126,14 @@
       <file leaf-file-name="audit_observer.rb" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/models/audit_observer.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="4" column="64" selection-start="115" selection-end="115" vertical-scroll-proportion="0.0">
+            <state line="33" column="46" selection-start="1113" selection-end="1113" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="WorkModel.js" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/public/app/models/work/WorkModel.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="12" column="0" selection-start="183" selection-end="183" vertical-scroll-proportion="0.31523642">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="environment.rb" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/config/environment.rb">
+      <file leaf-file-name="StudentsCollection.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/public/app/collections/students/StudentsCollection.js">
           <provider selected="true" editor-type-id="text-editor">
             <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
               <folding />
@@ -120,55 +141,73 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="development.rb" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/config/environments/development.rb">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="work.json" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/public/app/mocks/work/work.json">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="WorkCollection.js" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="WorkCollection.js" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/public/app/collections/work/WorkCollection.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+            <state line="9" column="10" selection-start="204" selection-end="204" vertical-scroll-proportion="0.39473686">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="WorkHistoryCollection.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/public/app/collections/work/WorkHistoryCollection.js">
+      <file leaf-file-name="base.rb" pinned="false" current="false" current-in-tab="false">
+        <entry file="file:///usr/local/lib/ruby/gems/2.0.0/gems/actionmailer-3.2.13/lib/action_mailer/base.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="15" column="0" selection-start="310" selection-end="310" vertical-scroll-proportion="0.0">
+            <state line="438" column="0" selection-start="20377" selection-end="20377" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="thesis_change.rb" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/models/thesis_change.rb">
+      <file leaf-file-name="thesis_change_mailer.rb" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/mailers/thesis_change_mailer.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="3" column="3" selection-start="90" selection-end="90" vertical-scroll-proportion="0.0">
+            <state line="4" column="0" selection-start="127" selection-end="127" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="work.rb" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/models/work.rb">
+      <file leaf-file-name="association.rb" pinned="false" current="false" current-in-tab="false">
+        <entry file="file:///usr/local/lib/ruby/gems/2.0.0/gems/activerecord-3.2.13/lib/active_record/associations/association.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="6" column="2" selection-start="167" selection-end="167" vertical-scroll-proportion="0.0">
+            <state line="25" column="0" selection-start="829" selection-end="829" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="rendering.rb" pinned="false" current="false" current-in-tab="false">
+        <entry file="file:///usr/local/lib/ruby/gems/2.0.0/gems/actionpack-3.2.13/lib/abstract_controller/rendering.rb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="44" column="0" selection-start="1649" selection-end="1649" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="callbacks.rb" pinned="false" current="false" current-in-tab="false">
+        <entry file="file:///usr/local/lib/ruby/gems/2.0.0/gems/activesupport-3.2.13/lib/active_support/callbacks.rb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="415" column="0" selection-start="13686" selection-end="13686" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="works_controller.rb" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/controllers/works_controller.rb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="81" column="0" selection-start="1827" selection-end="1827" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="mime_responds.rb" pinned="false" current="false" current-in-tab="false">
+        <entry file="file:///usr/local/lib/ruby/gems/2.0.0/gems/actionpack-3.2.13/lib/action_controller/metal/mime_responds.rb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="193" column="0" selection-start="6916" selection-end="6916" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -197,22 +236,22 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/app/controllers/departments_controller.rb" />
-        <option value="$PROJECT_DIR$/app/controllers/works_controller.rb" />
-        <option value="$PROJECT_DIR$/app/mailers/thesis_change_mailer.rb" />
-        <option value="$PROJECT_DIR$/config/environments/development.rb" />
-        <option value="$PROJECT_DIR$/app/helpers/user_info.rb" />
-        <option value="$PROJECT_DIR$/public/app/views/admin/tabManageTeachersView.js" />
-        <option value="$PROJECT_DIR$/app/controllers/info_controller.rb" />
-        <option value="$PROJECT_DIR$/public/app/views/admin/tabGroupsView.js" />
-        <option value="$PROJECT_DIR$/public/app/views/admin/adminFacultyView.js" />
-        <option value="$PROJECT_DIR$/public/app/views/admin/tabTeachersOfDepartmentView.js" />
-        <option value="$PROJECT_DIR$/config/database.yml" />
-        <option value="$PROJECT_DIR$/db/schema.rb" />
-        <option value="$PROJECT_DIR$/app/models/thesis_change.rb" />
-        <option value="$PROJECT_DIR$/app/models/work.rb" />
-        <option value="$PROJECT_DIR$/public/app/models/work/WorkModel.js" />
+        <option value="$PROJECT_DIR$/public/app/views/work/MainWorkView.js" />
+        <option value="$PROJECT_DIR$/public/app/views/admin/dialogItemView.js" />
+        <option value="$PROJECT_DIR$/public/app/views/student/StudentProgressView.js" />
+        <option value="$PROJECT_DIR$/public/app/collections/students/StudentsCollection.js" />
+        <option value="$PROJECT_DIR$/public/app/views/admin/EmployeeDialogView.js" />
+        <option value="$PROJECT_DIR$/public/app/views/admin/parentTabView.js" />
+        <option value="$PROJECT_DIR$/public/app/views/admin/tabDepartmentsView.js" />
+        <option value="$PROJECT_DIR$/public/templates/admin/employeeDialogTemplate.html" />
+        <option value="$PROJECT_DIR$/app/1.html" />
+        <option value="$PROJECT_DIR$/public/templates/admin/itemTemplate.html" />
+        <option value="$PROJECT_DIR$/public/css/style.css" />
+        <option value="$PROJECT_DIR$/public/app/views/admin/itemView.js" />
+        <option value="$PROJECT_DIR$/db/seeds.rb" />
+        <option value="$PROJECT_DIR$/config/application.yml" />
         <option value="$PROJECT_DIR$/app/models/audit_observer.rb" />
+        <option value="$PROJECT_DIR$/public/app/collections/work/WorkCollection.js" />
       </list>
     </option>
   </component>
@@ -224,9 +263,10 @@
     <option name="CUSTOM_FILTER" />
   </component>
   <component name="ProjectFrameBounds">
-    <option name="y" value="52" />
-    <option name="width" value="1280" />
-    <option name="height" value="724" />
+    <option name="x" value="-1" />
+    <option name="y" value="24" />
+    <option name="width" value="1282" />
+    <option name="height" value="753" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
     <entry key="Project Default">
@@ -268,6 +308,7 @@
       <sortByType />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -336,7 +377,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="models" />
+              <option name="myItemId" value="collections" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
@@ -362,7 +403,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="models" />
+              <option name="myItemId" value="collections" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -384,140 +425,51 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="mocks" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Project_backbone_ruby" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Project_backbone_ruby" />
+              <option name="myItemId" value="collections" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="db" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Project_backbone_ruby" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Project_backbone_ruby" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="db" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="migrate" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Project_backbone_ruby" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Project_backbone_ruby" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="config" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Project_backbone_ruby" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Project_backbone_ruby" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="config" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="environments" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Project_backbone_ruby" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Project_backbone_ruby" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Project_backbone_ruby" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Project_backbone_ruby" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="models" />
+              <option name="myItemId" value="students" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
       <pane id="RailsProjectView" />
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder0" value="0" />
-    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth0" value="76" />
-    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth1" value="91" />
-    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder3" value="3" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth0" value="75" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth1" value="90" />
     <property name="options.splitter.main.proportions" value="0.3" />
-    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder1" value="1" />
-    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder2" value="2" />
-    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth0" value="71" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth0" value="72" />
     <property name="recentsLimit" value="5" />
-    <property name="options.lastSelected" value="org.jetbrains.plugins.ruby.settings.RubyIdeSdkConfigurable" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder1" value="1" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder0" value="0" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth2" value="98" />
-    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth3" value="939" />
-    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth3" value="935" />
-    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth2" value="99" />
-    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth1" value="91" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth2" value="97" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth3" value="925" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth3" value="922" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth2" value="101" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth1" value="92" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder2" value="2" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder3" value="3" />
     <property name="RailsGeneratorsPopup.hiddenIncluded" value="false" />
     <property name="options.splitter.details.proportions" value="0.2" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder0" value="0" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder3" value="3" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder1" value="1" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder2" value="2" />
+    <property name="options.lastSelected" value="org.jetbrains.plugins.ruby.settings.RubyIdeSdkConfigurable" />
+    <property name="DefaultHtmlFileTemplate" value="Html5" />
+    <property name="restartRequiresConfirmation" value="true" />
     <property name="options.searchVisible" value="true" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/public/app/views/admin" />
+      <recent name="$PROJECT_DIR$/public/templates/admin" />
       <recent name="$PROJECT_DIR$/db/migrate" />
       <recent name="$PROJECT_DIR$/features" />
       <recent name="$PROJECT_DIR$" />
@@ -739,6 +691,67 @@
       <RUBY_RUN_CONFIG NAME="SCRIPT_ARGS" VALUE="" />
       <method />
     </configuration>
+    <configuration default="true" type="TestUnitRunConfigurationType" factoryName="Test::Unit/Shoulda/Minitest">
+      <predefined_log_file id="RUBY_TESTUNIT" enabled="true" />
+      <module name="" />
+      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="RUBY_ARGS" VALUE="-e $stdout.sync=true;$stderr.sync=true;load($0=ARGV.shift)" />
+      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="WORK DIR" VALUE="" />
+      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="SHOULD_USE_SDK" VALUE="false" />
+      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="ALTERN_SDK_NAME" VALUE="" />
+      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="myPassParentEnvs" VALUE="true" />
+      <envs />
+      <EXTENSION ID="BundlerRunConfigurationExtension" bundleExecEnabled="false" />
+      <EXTENSION ID="JRubyRunConfigurationExtension" />
+      <EXTENSION ID="RubyCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" track_test_folders="true" runner="rcov">
+        <COVERAGE_PATTERN ENABLED="true">
+          <PATTERN REGEXPS="/.rvm/" INCLUDED="false" />
+        </COVERAGE_PATTERN>
+      </EXTENSION>
+      <EXTENSION ID="org.jetbrains.plugins.ruby.motion.run.MotionSimulatorRunExtension" />
+      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="TESTS_FOLDER_PATH" VALUE="" />
+      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="TEST_SCRIPT_PATH" VALUE="" />
+      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="TEST_FILE_MASK" VALUE="" />
+      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="TEST_METHOD_NAME" VALUE="" />
+      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="TEST_TEST_TYPE" VALUE="TEST_SCRIPT" />
+      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="DRB" VALUE="false" />
+      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="RUNNER_OPTIONS" VALUE="" />
+      <method />
+    </configuration>
+    <configuration default="true" type="CucumberRunConfigurationType" factoryName="Cucumber">
+      <predefined_log_file id="RUBY_CUCUMBER" enabled="true" />
+      <module name="" />
+      <CUCUMBER_RUN_CONFIG_SETTINGS_ID NAME="RUBY_ARGS" VALUE="-e $stdout.sync=true;$stderr.sync=true;load($0=ARGV.shift)" />
+      <CUCUMBER_RUN_CONFIG_SETTINGS_ID NAME="WORK DIR" VALUE="" />
+      <CUCUMBER_RUN_CONFIG_SETTINGS_ID NAME="SHOULD_USE_SDK" VALUE="false" />
+      <CUCUMBER_RUN_CONFIG_SETTINGS_ID NAME="ALTERN_SDK_NAME" VALUE="" />
+      <CUCUMBER_RUN_CONFIG_SETTINGS_ID NAME="myPassParentEnvs" VALUE="true" />
+      <envs>
+        <env name="ANSICON" value="" />
+      </envs>
+      <EXTENSION ID="BundlerRunConfigurationExtension" bundleExecEnabled="false" />
+      <EXTENSION ID="JRubyRunConfigurationExtension" />
+      <EXTENSION ID="RubyCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" track_test_folders="true" runner="rcov">
+        <COVERAGE_PATTERN ENABLED="true">
+          <PATTERN REGEXPS="/.rvm/" INCLUDED="false" />
+        </COVERAGE_PATTERN>
+      </EXTENSION>
+      <EXTENSION ID="org.jetbrains.plugins.ruby.motion.run.MotionSimulatorRunExtension" />
+      <CUCUMBER_RUN_CONFIG_SETTINGS_ID NAME="TEST_FILE_MASK" VALUE="**/*.feature" />
+      <CUCUMBER_RUN_CONFIG_SETTINGS_ID NAME="TEST_TEST_TYPE" VALUE="TEST_SCRIPT" />
+      <CUCUMBER_RUN_CONFIG_SETTINGS_ID NAME="TESTS_FOLDER_PATH" VALUE="" />
+      <CUCUMBER_RUN_CONFIG_SETTINGS_ID NAME="TEST_SCRIPT_PATH" VALUE="" />
+      <CUCUMBER_RUN_CONFIG_SETTINGS_ID NAME="TEST_TAGS_FILTER" VALUE="" />
+      <CUCUMBER_RUN_CONFIG_SETTINGS_ID NAME="TEST_NAME_FILTER" VALUE="" />
+      <CUCUMBER_RUN_CONFIG_SETTINGS_ID NAME="CUCUMBER_ARGS" VALUE="--color -r features" />
+      <CUCUMBER_RUN_CONFIG_SETTINGS_ID NAME="RUNNER_VERSION" VALUE="" />
+      <CUCUMBER_RUN_CONFIG_SETTINGS_ID NAME="FULL_BACKTRACE" VALUE="false" />
+      <CUCUMBER_RUN_CONFIG_SETTINGS_ID NAME="VERBOSE_OPTION" VALUE="false" />
+      <CUCUMBER_RUN_CONFIG_SETTINGS_ID NAME="DRB" VALUE="false" />
+      <CUCUMBER_RUN_CONFIG_SETTINGS_ID NAME="CUCUMBER_RUNNER_PATH" VALUE="" />
+      <CUCUMBER_RUN_CONFIG_SETTINGS_ID NAME="USE_CUSTOM_RUNNER" VALUE="false" />
+      <CUCUMBER_RUN_CONFIG_SETTINGS_ID NAME="SETTINGS_VERSION" VALUE="2" />
+      <method />
+    </configuration>
     <configuration default="true" type="JavascriptDebugSession" factoryName="Local" singleton="true">
       <JSDebuggerConfigurationSettings>
         <option name="engineId" value="embedded" />
@@ -767,7 +780,7 @@
       <RAILS_SERVER_CONFIG_SETTINGS_ID NAME="PORT" VALUE="3000" />
       <RAILS_SERVER_CONFIG_SETTINGS_ID NAME="IP" VALUE="0.0.0.0" />
       <RAILS_SERVER_CONFIG_SETTINGS_ID NAME="DUMMY_APP" VALUE="test/dummy" />
-      <RAILS_SERVER_CONFIG_SETTINGS_ID NAME="RAILS_SERVER_TYPE" VALUE="Default" />
+      <RAILS_SERVER_CONFIG_SETTINGS_ID NAME="RAILS_SERVER_TYPE" VALUE="default" />
       <RAILS_SERVER_CONFIG_SETTINGS_ID NAME="ENVIRONMENT_TYPE" VALUE="development" />
       <RAILS_SERVER_CONFIG_SETTINGS_ID NAME="LAUNCH_JS" VALUE="false" />
       <RunnerSettings RunnerId="RubyDebugRunner" />
@@ -802,7 +815,7 @@
       <RAILS_SERVER_CONFIG_SETTINGS_ID NAME="LAUNCH_JS" VALUE="false" />
       <method />
     </configuration>
-    <configuration default="false" name="spec" type="RakeRunConfigurationType" factoryName="Rake">
+    <configuration default="false" name="db:seed" type="RakeRunConfigurationType" factoryName="Rake">
       <module name="Project_backbone_ruby" />
       <RAKE_RUN_CONFIG_SETTINGS_ID NAME="RUBY_ARGS" VALUE="-e $stdout.sync=true;$stderr.sync=true;load($0=ARGV.shift)" />
       <RAKE_RUN_CONFIG_SETTINGS_ID NAME="WORK DIR" VALUE="$PROJECT_DIR$" />
@@ -818,12 +831,16 @@
         </COVERAGE_PATTERN>
       </EXTENSION>
       <EXTENSION ID="org.jetbrains.plugins.ruby.motion.run.MotionSimulatorRunExtension" />
-      <RAKE_RUN_CONFIG_SETTINGS_ID NAME="RAKE_TASK_NAME" VALUE="spec" />
+      <RAKE_RUN_CONFIG_SETTINGS_ID NAME="RAKE_TASK_NAME" VALUE="db:seed" />
       <RAKE_RUN_CONFIG_SETTINGS_ID NAME="RAKE_TASK_ARGS" VALUE="" />
-      <RAKE_RUN_CONFIG_SETTINGS_ID NAME="RAKE_TASK_ATTACHED_TEST_FRAMEWORKS" VALUE=":rspec " />
+      <RAKE_RUN_CONFIG_SETTINGS_ID NAME="RAKE_TASK_ATTACHED_TEST_FRAMEWORKS" VALUE="" />
       <RAKE_RUN_CONFIG_SETTINGS_ID NAME="RAKE_TASK_OPTION_TRACE" VALUE="false" />
       <RAKE_RUN_CONFIG_SETTINGS_ID NAME="RAKE_TASK_OPTION_DRYRUN" VALUE="false" />
       <RAKE_RUN_CONFIG_SETTINGS_ID NAME="RAKE_TASK_OPTION_PREREQS" VALUE="false" />
+      <RunnerSettings RunnerId="RubyDebugRunner" />
+      <RunnerSettings RunnerId="RubyRunner" />
+      <ConfigurationWrapper RunnerId="RubyDebugRunner" />
+      <ConfigurationWrapper RunnerId="RubyRunner" />
       <method />
     </configuration>
     <configuration default="false" name="test" type="RakeRunConfigurationType" factoryName="Rake">
@@ -852,14 +869,39 @@
       <RAKE_RUN_CONFIG_SETTINGS_ID NAME="RAKE_TASK_OPTION_PREREQS" VALUE="false" />
       <method />
     </configuration>
-    <list size="7">
+    <configuration default="false" name="Unnamed" type="RakeRunConfigurationType" factoryName="Rake">
+      <module name="Project_backbone_ruby" />
+      <RAKE_RUN_CONFIG_SETTINGS_ID NAME="RUBY_ARGS" VALUE="-e $stdout.sync=true;$stderr.sync=true;load($0=ARGV.shift)" />
+      <RAKE_RUN_CONFIG_SETTINGS_ID NAME="WORK DIR" VALUE="$PROJECT_DIR$" />
+      <RAKE_RUN_CONFIG_SETTINGS_ID NAME="SHOULD_USE_SDK" VALUE="false" />
+      <RAKE_RUN_CONFIG_SETTINGS_ID NAME="ALTERN_SDK_NAME" VALUE="" />
+      <RAKE_RUN_CONFIG_SETTINGS_ID NAME="myPassParentEnvs" VALUE="true" />
+      <envs />
+      <EXTENSION ID="BundlerRunConfigurationExtension" bundleExecEnabled="false" />
+      <EXTENSION ID="JRubyRunConfigurationExtension" />
+      <EXTENSION ID="RubyCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" track_test_folders="true" runner="rcov">
+        <COVERAGE_PATTERN ENABLED="true">
+          <PATTERN REGEXPS="/.rvm/" INCLUDED="false" />
+        </COVERAGE_PATTERN>
+      </EXTENSION>
+      <EXTENSION ID="org.jetbrains.plugins.ruby.motion.run.MotionSimulatorRunExtension" />
+      <RAKE_RUN_CONFIG_SETTINGS_ID NAME="RAKE_TASK_NAME" VALUE="" />
+      <RAKE_RUN_CONFIG_SETTINGS_ID NAME="RAKE_TASK_ARGS" VALUE="" />
+      <RAKE_RUN_CONFIG_SETTINGS_ID NAME="RAKE_TASK_ATTACHED_TEST_FRAMEWORKS" VALUE="" />
+      <RAKE_RUN_CONFIG_SETTINGS_ID NAME="RAKE_TASK_OPTION_TRACE" VALUE="false" />
+      <RAKE_RUN_CONFIG_SETTINGS_ID NAME="RAKE_TASK_OPTION_DRYRUN" VALUE="false" />
+      <RAKE_RUN_CONFIG_SETTINGS_ID NAME="RAKE_TASK_OPTION_PREREQS" VALUE="false" />
+      <method />
+    </configuration>
+    <list size="8">
       <item index="0" class="java.lang.String" itemvalue="Rails.Development: Project_backbone_ruby" />
       <item index="1" class="java.lang.String" itemvalue="Rails.Production: Project_backbone_ruby" />
-      <item index="2" class="java.lang.String" itemvalue="Rake.spec" />
+      <item index="2" class="java.lang.String" itemvalue="Rake.db:seed" />
       <item index="3" class="java.lang.String" itemvalue="Rake.test" />
-      <item index="4" class="java.lang.String" itemvalue="RSpec.courses_controller_spec" />
-      <item index="5" class="java.lang.String" itemvalue="RSpec.department_spec" />
-      <item index="6" class="java.lang.String" itemvalue="RSpec.faculty_spec" />
+      <item index="4" class="java.lang.String" itemvalue="Rake.Unnamed" />
+      <item index="5" class="java.lang.String" itemvalue="RSpec.courses_controller_spec" />
+      <item index="6" class="java.lang.String" itemvalue="RSpec.department_spec" />
+      <item index="7" class="java.lang.String" itemvalue="RSpec.faculty_spec" />
     </list>
   </component>
   <component name="ShelveChangesManager" show_recycled="false" />
@@ -930,7 +972,23 @@
       <created>1377876523968</created>
       <updated>1377876523968</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="small change">
+      <created>1378121147752</created>
+      <updated>1378121147753</updated>
+    </task>
+    <task id="LOCAL-00013" summary="update seed file">
+      <created>1378122826030</created>
+      <updated>1378122826030</updated>
+    </task>
+    <task id="LOCAL-00014" summary="do modal window of employees">
+      <created>1378198827728</created>
+      <updated>1378198827728</updated>
+    </task>
+    <task id="LOCAL-00015" summary="made teacherOfDepartment modal dialog">
+      <created>1378282224870</created>
+      <updated>1378282224870</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TodoView" selected-index="0">
@@ -954,24 +1012,24 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="52" width="1280" height="724" extended-state="6" />
-    <editor active="true" />
+    <frame x="-1" y="24" width="1282" height="753" extended-state="6" />
+    <editor active="false" />
     <layout>
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.31730768" sideWeight="0.24308944" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32852563" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.29166666" sideWeight="0.24308944" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32852563" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32954547" sideWeight="0.6093089" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2495935" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2601626" sideWeight="0.6698718" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.38942307" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.30325204" sideWeight="0.67147434" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.38621795" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3301282" sideWeight="0.500813" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32692307" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32941177" sideWeight="0.499187" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33333334" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32852563" sideWeight="0.499187" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32692307" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.19551282" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="REST Client" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.5032051" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
@@ -1020,7 +1078,7 @@
     <option name="WRAP_WHEN_TYPING_REACHES_RIGHT_MARGIN" value="false" />
     <option name="FORCE_NON_EMPTY_COMMENT" value="false" />
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="false" />
-    <option name="LAST_COMMIT_MESSAGE" value="test" />
+    <option name="LAST_COMMIT_MESSAGE" value="change audit_observer" />
     <option name="MAKE_NEW_CHANGELIST_ACTIVE" value="false" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_FILES_UP_TO_DATE_BEFORE_COMMIT" value="false" />
@@ -1044,111 +1102,130 @@
     <MESSAGE value="add and configure mailer" />
     <MESSAGE value="tabTeachersOfDepartmentView" />
     <MESSAGE value="test" />
+    <MESSAGE value="small change" />
+    <MESSAGE value="update seed file" />
+    <MESSAGE value="do modal window of employees" />
+    <MESSAGE value="made teacherOfDepartment modal dialog" />
+    <MESSAGE value="some small changes to modal window of teachersOfDepartment" />
+    <MESSAGE value="change audit_observer" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints-dialog>
         <breakpoints-dialog />
       </breakpoints-dialog>
-      <option name="time" value="51" />
+      <option name="time" value="78" />
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/public/app/models/group/GroupModel.js">
+    <entry file="file://$PROJECT_DIR$/config/application.yml">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="20" column="51" selection-start="338" selection-end="338" vertical-scroll-proportion="0.0" />
+        <state line="15" column="28" selection-start="659" selection-end="664" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///usr/local/lib/ruby/gems/2.0.0/gems/activerecord-3.2.13/lib/active_record/persistence.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="348" column="0" selection-start="13792" selection-end="13792" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///usr/local/lib/ruby/gems/2.0.0/gems/activerecord-3.2.13/lib/active_record/attribute_methods/dirty.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="22" column="0" selection-start="627" selection-end="627" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/db/seeds.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="21" column="95" selection-start="1023" selection-end="1036" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///usr/local/lib/ruby/gems/2.0.0/gems/activerecord-3.2.13/lib/active_record/associations/singular_association.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="2" column="0" selection-start="42" selection-end="42" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///usr/local/lib/ruby/gems/2.0.0/gems/activerecord-3.2.13/lib/active_record/associations.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="159" column="0" selection-start="9165" selection-end="9165" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///usr/local/lib/ruby/gems/2.0.0/gems/actionpack-3.2.13/lib/abstract_controller/rendering.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="44" column="0" selection-start="1649" selection-end="1649" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///usr/local/lib/ruby/gems/2.0.0/gems/activerecord-3.2.13/lib/active_record/associations/association.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="25" column="0" selection-start="829" selection-end="829" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///usr/local/lib/ruby/gems/2.0.0/gems/actionmailer-3.2.13/lib/action_mailer/base.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="438" column="0" selection-start="20377" selection-end="20377" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/controllers/works_controller.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="28" column="98" selection-start="645" selection-end="645" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/config/database.yml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="13" column="16" selection-start="195" selection-end="195" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/models/task_change.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+        <state line="81" column="0" selection-start="1827" selection-end="1827" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/models/task_process.rb">
+    <entry file="file:///usr/local/lib/ruby/gems/2.0.0/gems/actionpack-3.2.13/lib/action_controller/metal/mime_responds.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+        <state line="193" column="0" selection-start="6916" selection-end="6916" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/models/task_progress.rb">
+    <entry file="file:///usr/local/lib/ruby/gems/2.0.0/gems/activesupport-3.2.13/lib/active_support/callbacks.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+        <state line="415" column="0" selection-start="13686" selection-end="13686" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/models/work.rb">
+    <entry file="file://$PROJECT_DIR$/app/mailers/thesis_change_mailer.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="6" column="2" selection-start="167" selection-end="167" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/models/thesis_change.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="3" column="3" selection-start="90" selection-end="90" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/app/mocks/work/work.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/config/environment.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/config/environments/development.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/app/collections/work/WorkHistoryCollection.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="15" column="0" selection-start="310" selection-end="310" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/app/collections/work/WorkCollection.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+        <state line="4" column="0" selection-start="127" selection-end="127" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/models/audit_observer.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="4" column="64" selection-start="115" selection-end="115" vertical-scroll-proportion="0.0">
+        <state line="33" column="46" selection-start="1113" selection-end="1113" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/app/models/work/WorkModel.js">
+    <entry file="file://$PROJECT_DIR$/public/app/collections/students/StudentsCollection.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="12" column="0" selection-start="183" selection-end="183" vertical-scroll-proportion="0.31523642">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/app/collections/work/WorkCollection.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="9" column="10" selection-start="204" selection-end="204" vertical-scroll-proportion="0.39473686">
           <folding />
         </state>
       </provider>
