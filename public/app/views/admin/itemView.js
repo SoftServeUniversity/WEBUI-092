@@ -34,6 +34,7 @@ define([
         'click .verify-button'       : 'verifyItem',
         'blur  .toggle-input'        : 'updateItem',
         'keypress .toggle-input'     : 'updateItem',
+        'click #create_button'       : 'saveItem',
         'click body'                 : 'hideInputs'
       },
 
@@ -51,6 +52,7 @@ define([
          $('#content').append(employeeTabView.$el);
          $('#employee-modal').modal('show');
       },
+
 
       removeItem: function(){
         var message = 'Ви дійсно бажаєте видалити '+ this.model.attributes.name + ' ?</strong>';
@@ -80,6 +82,15 @@ define([
         this.model.set('verified', 1);
         this.model.save();
       },
+
+      saveItem: function(e){
+         var saveData = {};
+         $(e.target).closest('tr').find('input').each(function(i, input){
+            saveData [$(input).attr('name')] = $(input).val();
+         })
+         this.model.save(saveData)
+      },
+
 
       hideInputs: function(){
         console.log('hidin')

@@ -12,7 +12,7 @@
     }; %>
 
   
-  <td>
+  <td <% if (conf.newModel) {%> id="newElementRow" <% }%>>
     
     <% //-------- it is a text field %>
 
@@ -41,7 +41,7 @@
 
           <%//-----add 'selected' to current option %>
           
-          <%if(options_array[i]['id'] == model['id']){ 
+          <%if((options_array[i]['id'] == model['id']) && !(conf.newModel)){ 
             
             var active_name = options_array[i]['name']; %>
 

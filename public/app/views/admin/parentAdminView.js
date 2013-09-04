@@ -41,6 +41,14 @@ define([
       //Render a tab when it's loaded
       GlobalEventBus.on('tabSubViewLoaded', function(tabContent, config){
         me.config = config;
+        
+        me.collection = config.collection;
+        me.collection.on('add', function(){
+          alert('addddddddddddddddddd')
+        })
+
+
+
         me.renderTab(tabContent);
         $('.new-button').html(me.config.buttons['create']);
       })
@@ -83,8 +91,10 @@ define([
 
 
     appendNewElementRow: function(){
+
       var me = this;
-      if (!this.newElementRow){
+      
+      if (this.$('#newElementRow').length < 1){
         
         var newModel = new me.config.model();
 
@@ -94,6 +104,11 @@ define([
         $(me.el_tab_content + ' table tbody').append(newElementView.render().el)
         
         this.newElementRow = true;   
+      
+      } else {
+
+        $('#newElementRow').closest('tr').remove();
+      
       }
     },
   
@@ -134,16 +149,19 @@ define([
     },
 
     renderTab: function(tabContent){
+     
       var me = this;
       $(me.el_tab_content).html(tabContent);
       me.addActiveClass(this.activeMenuId)
 
-
+      
       $('.DataTable').dataTable({
+        bDestroy: true,
         "oLanguage": {
           sUrl: "app/libs/datatables/dataTables.ukrainian.txt"
         }
       })
+    
     },
 
     render: function (tabContent){
