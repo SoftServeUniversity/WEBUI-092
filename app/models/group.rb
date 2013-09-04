@@ -4,6 +4,7 @@ class Group < ActiveRecord::Base
   belongs_to :course
   belongs_to :teacher
   belongs_to :department
+  has_many :students
   has_many :progress_changes, :as => :progressable
   #has_many :progress_changes
 
@@ -12,5 +13,9 @@ class Group < ActiveRecord::Base
     hash_info[:progress] = 0
     hash_info[:progress] = progress_changes.last.progress if progress_changes.last
     hash_info
+  end
+
+  def aggregate
+    self.students.aggregate
   end
 end

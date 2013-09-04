@@ -14,4 +14,10 @@ class Task < ActiveRecord::Base
     @new_progress = TaskProgress.create(progress: 0, task_id: self.id)
     TaskChange.create(task_id: self.id, task_progress_id: @new_progress.id, task_comment: "Створено нове завдання")
   end
+
+  def aggregate
+    #puts task_progresses.average('progress')
+    avg = task_progresses.average('progress')
+    avg.to_i
+  end
 end

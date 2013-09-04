@@ -11,4 +11,8 @@ class Course < ActiveRecord::Base
     hash_info[:progress] = progress_changes.last.progress if progress_changes.last
     hash_info
   end
+
+  def aggregate()
+    self.groups.aggregate
+  end
 end

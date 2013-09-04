@@ -7,6 +7,7 @@ class Department < ActiveRecord::Base
   #validates :name, format: { whith: /[\w\s'",.а-яіїґ-—]{1,256}/i, message: 'some message' }
 
   belongs_to :faculty
+  has_many :teachers
   has_many :progress_changes, :as => :progressable
 
   def serializable_hash(options={}) 
@@ -20,5 +21,7 @@ class Department < ActiveRecord::Base
     where(faculty_id: faculty)
   end
 
-  has_many :teachers
+  def aggregate
+    self.teachers.aggregate
+  end
 end
