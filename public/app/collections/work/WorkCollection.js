@@ -7,7 +7,7 @@ define([
   
   var WorkCollection = Backbone.Collection.extend({
     model: WorkModel,
-    urlRoot: "/tasks"
+    url: "/tasks/"
 
   });
   
