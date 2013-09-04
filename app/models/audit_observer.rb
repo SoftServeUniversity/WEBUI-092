@@ -3,23 +3,25 @@ class AuditObserver < ActiveRecord::Observer
   observe :work, :task, :task_progress
 
   def after_update(record)
-    value = "";
+    value = (record.class.to_s == 'Work' ? "В роботі" : "В завданні") + " #{record.class.to_s == 'TaskProgress' ? record.task.name : record.name} #{current_user} змінив: "
+    process = false
     record.changes.each_key { |key|
       if key == "name"
+        process = true
         value = value + "ім'я \"#{record.changes[key][0]}\" на \"#{record.changes[key][1]}\" "
       end
       if key == "progress"
         if record.changes[key][0] != ""
-          value = value + "прогрес з \"#{record.changes[key][0]}\" на \"#{record.changes[key][1]}\" "
+          process = true
+          value = value + "прогрес на \"#{record.changes[key][1]}\" "
         end
       end
     }
     if record.class.to_s == 'TaskProgress'
        record = record.task
     end
-    prefix = (record.class.to_s == 'Work' ? "В роботі" : "В завданні") + "#{record.name} #{current_user} змінив: "
-    if value == ""
-      process_record(record, "UPDATE", prefix + value)
+    if process
+      process_record(record, "UPDATE", value)
     end
   end
 

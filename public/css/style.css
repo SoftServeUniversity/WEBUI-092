@@ -359,7 +359,7 @@ div.help-block ul li{
 /*----admin page----*/
 
 #tab-content th{
-	white-space: nowrap !Important;
+	white-space: nowrap !important;
 }
 #tab-menu .nav-tabs .active:hover,
 #tab-menu .nav-tabs .active {
@@ -367,12 +367,12 @@ div.help-block ul li{
     color: #fff;
 }
 #tab-menu .nav-tabs a{
-    border:none !Important;
+    border:none !important;
     border-bottom:1px solid #0088cc !important;
 }	
 
 #tab-menu .nav-tabs a:hover {
-	background-color:#CFE4FC !Important;
+	background-color:#CFE4FC !important;
 }
 #tab-menu .nav-tabs {
 	border-bottom: 1px solid #0088CC;
@@ -414,7 +414,7 @@ tr.notverified {
 	max-width:140px !important;
 }
 .admin-headline {
-	margin-top:25px !Important;
+	margin-top:25px !important;
 }
 
 .wysiwyg {

@@ -10,8 +10,8 @@ define([
 ], function ($, _, Backbone, ItemTemplate, RemoveDialogView, EmployeeDialogView) {
   
     var ItemView = Backbone.View.extend({ 
-      
-      tagName: 'tr', 
+
+      tagName: 'tr',
       
       className: 'toggle-list',
       

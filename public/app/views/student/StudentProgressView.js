@@ -44,7 +44,7 @@ define([
 
            initialize:function(){
                var isStudentsLoaded = false;
-               var isWorksLoaded = false;
+               var isWorksLoaded = true;
                var isStudentsChangeLoaded = false;
 
                var me = this;

@@ -25,7 +25,6 @@ define([
         config = this.augmentConfig(config);
         
         this.collection.on('add', function(){
-          alert('addddddddddddddddddd')
         })
         
         me.render(config)
