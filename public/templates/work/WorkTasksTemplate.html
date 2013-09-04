@@ -1,21 +1,20 @@
 <h3 id="work_name"><%= work.get("name") %></h3>
-<button class="btn" id="edit_name">Змінити назву роботи</button>
+<button class="btn editable" id="edit_name" style="display: none;">Змінити назву роботи</button>
 <h4>Тут вставити ім’я студента з id: <%= work.get("student_id") %></h4>
 <h5>Бобало Юрій</h5>
 
-<div>
-  <a href="#myModal" role="button" class="span1 offset11 history-modal" data-toggle="modal">історія</a>
-</div>
+<div class="container work-buttons">
+  <a id="edit-tasks-on-work-page" class="btn span2 pull-left">Редагувати</a>
+  <a href="#myModal" class="btn span2 pull-left" data-toggle="modal">Історія</a>
+  <a id="show-create-task-form" class="btn span2 pull-left">Додати</a>
 
-<ul id="sortable">
+</div>
+<form id="add-new-task" class="span12" style="display: none;">
+	<hr class="add-task-line">
+    <input id="task-name" class="input-xxlarge pull-left width80" type="text" placeholder="Назва завдання">
+    <button type="submit" id="create-btn" class="btn pull-left">Створити</button>
+</form>
+
+<ul id="list-of-tasks">
   <%= tasksList %>
 </ul>
-
-<form>
-  <fieldset>
-    <legend>Створити завдання</legend>
-    <label>Назва завдання</label>
-    <input id="task-name" class="input-xxlarge" type="text">
-    <button type="submit" id="create-btn">Створити</button>
-  </fieldset>
-</form>

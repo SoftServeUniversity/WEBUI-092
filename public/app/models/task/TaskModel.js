@@ -4,7 +4,7 @@ define([
 ], function(_, Backbone) {
   
   var TaskModel = Backbone.Model.extend({
-  urlRoot: "http://localhost:3000/tasks",
+  urlRoot: "/tasks",
   defaults: {
        "progress": 36
 
