@@ -82,10 +82,8 @@ define([
 
 
         if(this.workView){
-          this.workView.$el.undelegateEvents();
+          this.workView.$el.undelegate();
         }
-        this.workView = new MainWorkView({"id": id});
-
 
         var breadcrumbsView = new BreadcrumbsView();
         this.workView = new MainWorkView({"id": id});
@@ -176,20 +174,10 @@ define([
 
         var breadcrumbsView = new BreadcrumbsView();
 
-          /*var tasks = new TasksCollection;
-          tasks.fetch({async:false});
-          var task = tasks.get(id);
-          if(!tasks.get(id)){
-            var pageNotFound = new NotFoundView();
-            pageNotFound.render();
-            return;
-
-          }*/
-          var currentTask = new TaskView({"id": id});
 
 
           if(this.currentTask){
-            this.currentTask.$el.undelegateEvents();
+            this.currentTask.$el.undelegate();
           }
           this.currentTask = new TaskView({"id": id});
 
