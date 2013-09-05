@@ -43,7 +43,7 @@ define([
                   return v;
           });
 
-
+          console.log(parsed);
           $( "#search-field" ).autocomplete({
             minLength: 2,
             source: parsed,

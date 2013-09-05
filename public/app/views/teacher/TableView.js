@@ -15,18 +15,19 @@ define([
         },
 
         renderTableRow: function(model, counter){
-
           var tableRowView = new TableRowView({model: model});
           $(this.el).append(tableRowView.render(counter).el);
         },
 
         render:function(){
           var me = this;
+          // Add header to the table
+          $(this.el).append('<caption><h4>Студенти для підтвердження</h4></caption>');
 
-          // counter -  is used for mark each element in a table
+          // counter - is used for mark each element in a table
           this.counter = 1;
           this.collection.each(function(model){
-            me.renderTableRow(model, me.counter++)
+            me.renderTableRow(model, me.counter++);
           });
         }
 
@@ -34,29 +35,3 @@ define([
 
     return  TableView;
 });
-/*
-    var TableView = Backbone.View.extend({
-        collection : null,
-        tagName: 'table',
-        className: 'table table-hover .table-condensed',
-
-        initialize: function (){
-        },
-
-        render:function(){
-            // counter -  is used for mark each element in a table
-            // linkTo - is used for creating <a> links if it is needed
-            var counter = 1;
-            this.collection.each(function(element) {
-                var tableElementView = new TableElementView({model: element, linkTo: this.options.linkTo});
-                this.$el.append(tableElementView.render(counter++).el);
-              }
-            );
-            return this;
-        }
-
-    });
-
-    return  TableView;
-});
-*/

@@ -1,7 +1,7 @@
 <h3 id="work_name"><%= work.get("name") %></h3>
 <button class="btn editable" id="edit_name" style="display: none;">Змінити назву роботи</button>
-<h4>Тут вставити ім’я студента з id: <%= work.get("student_id") %></h4>
-<h5>Бобало Юрій</h5>
+<h4>Анакін Скайуокер <%= work.get("student_id") %></h4>
+<h5>Обі Ван Кенобі</h5>
 
 <div class="container work-buttons">
   <a id="edit-tasks-on-work-page" class="btn span2 pull-left">Редагувати</a>
@@ -15,6 +15,7 @@
     <button type="submit" id="create-btn" class="btn pull-left">Створити</button>
 </form>
 
+<div id="edit-task-dialogue"></div>
 <ul id="list-of-tasks">
   <%= tasksList %>
 </ul>
