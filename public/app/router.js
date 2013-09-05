@@ -82,7 +82,7 @@ define([
 
 
         if(this.workView){
-          this.workView.$el.undelegate();
+          this.workView.$el.undelegateEvents();
         }
         this.workView = new MainWorkView({"id": id});
 
@@ -189,7 +189,7 @@ define([
 
 
           if(this.currentTask){
-            this.currentTask.$el.undelegate();
+            this.currentTask.$el.undelegateEvents();
           }
           this.currentTask = new TaskView({"id": id});
 
