@@ -75,6 +75,15 @@ define([
       });
 
       app_router.on('route:workShowAction', function (id){
+<<<<<<< HEAD
+=======
+
+        if(this.workView){
+          this.workView.$el.undelegate();
+        }
+        this.workView = new MainWorkView({"id": id});
+
+>>>>>>> b1a301bb77118792fff788fce90606e02ee1288a
         var breadcrumbsView = new BreadcrumbsView();
         this.workView = new MainWorkView({"id": id});
       });
@@ -161,6 +170,10 @@ define([
 
 
       app_router.on('route:taskShow', function (id) {
+<<<<<<< HEAD
+=======
+
+>>>>>>> b1a301bb77118792fff788fce90606e02ee1288a
         var breadcrumbsView = new BreadcrumbsView();
 
           /*var tasks = new TasksCollection;
@@ -170,9 +183,18 @@ define([
             var pageNotFound = new NotFoundView();
             pageNotFound.render();
             return;
-<<<<<<< HEAD
+
           }*/
           var currentTask = new TaskView({"id": id});
+<<<<<<< HEAD
+=======
+
+          if(this.currentTask){
+            this.currentTask.$el.undelegate();
+          }
+          this.currentTask = new TaskView({"id": id});
+
+>>>>>>> b1a301bb77118792fff788fce90606e02ee1288a
       });
 
       app_router.on('route:defaultAction', function (actions) {
