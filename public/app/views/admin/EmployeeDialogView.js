@@ -90,7 +90,7 @@ var EmployeeDialogView = Backbone.View.extend(
 
       //render rows
       this.collection.each(function(item) {
-          var itemView = new DialogItemView({ model: item, conf: me.config });
+          var itemView = new DialogItemView({ model: item, conf: me.config, newModel: false });
           me.$('#modal-table-container #tab-body').html(itemView.render().$el)
       });
 

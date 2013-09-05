@@ -167,7 +167,6 @@ ActiveRecord::Schema.define(:version => 20130823180010) do
 
   create_table "works", :force => true do |t|
     t.string   "name"
-    t.integer  "progress"
     t.integer  "student_id"
     t.integer  "teacher_id"
     t.datetime "created_at", :null => false
