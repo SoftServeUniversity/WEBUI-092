@@ -42,6 +42,10 @@ define([
         var searchView = new SearchView();
         var registrationView = new RegistrationView();
         registrationView.render();
+        $('.brand').click(function() {
+            location.href = '/#';
+            location.reload();
+        });
       },
       routes: {
         ''                       : 'homeAction',
