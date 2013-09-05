@@ -7,8 +7,9 @@ define([
   function($, _, Backbone, StudentProxyModelForTeacherGroupPage)
   {
     var StudentsProxyCollectionForTeacherPage = Backbone.Collection.extend({
-      model:StudentProxyModelForTeacherGroupPage,
+      model: StudentProxyModelForTeacherGroupPage,
       url: "app/collections/teachers/studentsOfTeacherGroup.json",
+      //url: /students/,
       comparator: function(item) {
         return [item.get('group_pending'), item.get('student_full_name')];
       }

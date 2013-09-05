@@ -43,7 +43,7 @@ header .navbar .yearBox .control-group, header .navbar .yearBox .form-horizontal
 	margin:0 !important;
 }
 header .control-group .control-label{
-	margin-top: 5px; 
+	margin-top: 5px;
 }
 .menuBox{
 	float:left;
@@ -354,7 +354,7 @@ div.help-block ul li{
 #tab-menu .nav-tabs a{
     border:none !Important;
     border-bottom:1px solid #0088cc !important;
-}	
+}
 
 #tab-menu .nav-tabs a:hover {
 	background-color:#CFE4FC !Important;
@@ -378,7 +378,7 @@ div.help-block ul li{
 tr.notverified {
 	background:#FAFAA5;
 	outline:2px solid yellow;
-}    
+}
 .needs-verification {
 	padding-left:30px !important;
 	background-image: url('../i/questionmark_yellow.png') !important;
@@ -523,10 +523,10 @@ tr.notverified {
 
 
 /****************/
-#sortable { 
-  list-style-type: none; 
-  margin: 0; 
-  padding: 0; 
+#sortable {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
   clear: both;
 }
 .draggable-item {
@@ -546,7 +546,7 @@ tr.notverified {
   min-height: 20px !important;
 }
 .task-item-progress{
-  min-height: 20px !important; 
+  min-height: 20px !important;
   margin-bottom: 0 !important;
 }
 .ui-icon-arrowthick-2-n-s {
@@ -566,7 +566,7 @@ tr.notverified {
 }
 <<<<<<< HEAD
 #main-header-button{
-	
+
 	font-family: Arial, Helvetica, sans-serif;
 	font-size: 14px;
 	color: #050505;
@@ -577,7 +577,7 @@ tr.notverified {
 		#dbdbdb 50%,
 		#b5b5b5);
 	background: -webkit-gradient(
-		linear, left top, left bottom, 
+		linear, left top, left bottom,
 		from(#ffffff),
 		color-stop(0.50, #ebebeb),
 		color-stop(0.50, #dbdbdb),
@@ -601,14 +601,14 @@ tr.notverified {
 
 
 }#main-header-button:hover{
-	
+
 	background: -moz-linear-gradient(
 		top,
 		#ffffff 0%,
 		#dbdbdb 50%,
 		#b5b5b5);
 	background: -webkit-gradient(
-		linear, left top, left bottom, 
+		linear, left top, left bottom,
 		from(#ffffff),
 		color-stop(0.50, #ebebeb),
 		to(#b5b5b5));
@@ -830,3 +830,11 @@ div.DTFC_LeftFootWrapper table {
 	max-width: 20px;
 }
 
+/* Modal window for add work in teacher page*/
+#dialogAddStudentWork {
+  width: 500px;
+}
+#txtAreaNameTheme {
+  width: 96%;
+}
+/* end modal window */

@@ -64,8 +64,8 @@ define([
     },
 
     removeElement: function (e) {
-      console.log(this.model);
       this.model.destroy({
+        wait: true,
         success: function() {
           console.log(that.parent.collection);
         }

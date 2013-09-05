@@ -28,45 +28,47 @@ define([
 
             var teachersCollection = new TeachersCollection();
             teachersCollection.fetch({
-                success: function() {
-                    that.trigger('DataLoaded', 'Teachs');
-                }
+              data: {teacher_id: id},
+              success: function() {
+                that.trigger('DataLoaded', 'Teachs');
+              }
             });
+            console.log(teachersCollection);
 
             var worksCollection = new WorksCollectionOfTeacher();
             worksCollection.fetch({
-                success: function() {
-                    that.trigger('DataLoaded', 'Works');
-                }
+              success: function() {
+                that.trigger('DataLoaded', 'Works');
+              }
             });
 
             var teacherChangeCollection = new TeacherChangeCollection();
             teacherChangeCollection.fetch({
-                success:function () {
-                    that.trigger('DataLoaded', 'FacultyChange');
-                }
+              success:function () {
+                that.trigger('DataLoaded', 'TeacherChange');
+              }
             });
 
             var isTeachLoaded = false;
             var isWorkssLoaded = false;
-            var isFacChangeLoaded = false;
+            var isTeachChangeLoaded = false;
 
             this.on('DataLoaded', function (item) {
-                if (item == 'Teachs') {
-                    isTeachLoaded = true;
-                }
+              if (item == 'Teachs') {
+                isTeachLoaded = true;
+              }
 
-                if (item == 'Works'){
-                    isWorkssLoaded = true;
-                }
+              if (item == 'Works'){
+                isWorkssLoaded = true;
+              }
 
-                if (item == 'FacultyChange'){
-                    isFacChangeLoaded = true;
-                }
+              if (item == 'TeacherChange'){
+                isTeachChangeLoaded = true;
+              }
 
-                if ((isTeachLoaded && isFacChangeLoaded && isWorkssLoaded) == true){
-                    that.render(id, teachersCollection, worksCollection, teacherChangeCollection);
-                }
+              if ((isTeachLoaded && isTeachChangeLoaded && isWorkssLoaded) == true){
+                that.render(id, teachersCollection, worksCollection, teacherChangeCollection);
+              }
             });
         },
 
