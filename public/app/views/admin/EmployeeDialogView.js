@@ -31,7 +31,7 @@ var EmployeeDialogView = Backbone.View.extend(
         });
     this.config = this.setConfig();
     this.render();
-  },      
+  },
 
   setConfig: function(){
       var me = this;

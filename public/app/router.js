@@ -10,7 +10,6 @@ define([
   'views/course/CourseProgressView',
   'views/faculty/MainFacultyView',
   'views/department/MainDepartmentView',
-  'views/teacher/TeacherProgressView',
   'views/work/MainWorkView',
   'views/task/taskView',
   'collections/tasks/TasksCollection',
@@ -28,13 +27,14 @@ define([
 
   ], function($, _, Backbone, GlobalUser, FacultiesListView, RegistrationView, GroupProgressView,
   	          StudentProgressView, CourseProgressView,  MainFacultyView, MainDepartmentView,
-  	          TeacherProgressView, MainWorkView, TaskView, TasksCollection, NotFoundView,
-              AdminFacultyView, AdminView, MainTeacherView, TeacherGroupView, UserSingUpView, 
+  	          MainWorkView, TaskView, TasksCollection, NotFoundView,
+              AdminFacultyView, AdminView, MainTeacherView, TeacherGroupView, UserSingUpView,
               InfoView, BreadcrumbsView, SearchView
+
              ) {
 
 
-  	GlobalEventBus = _.extend({}, Backbone.Events);
+    GlobalEventBus = _.extend({}, Backbone.Events);
 
 
     var AppRouter = Backbone.Router.extend({
@@ -47,7 +47,6 @@ define([
         'student/:id'            : 'studentProgressAction',
         'course/:id'             : 'courseProgressAction',
         'faculty/:id'            : 'facultyAction',
-        'teacher/p:id'           : 'teacherProgressAction',
         'teacher/:id'            : 'teacherAction',
         'teacher/:id/group'      : 'teacherGroupAction',
         'department/:id'         : 'departmentAction',
@@ -76,9 +75,13 @@ define([
       });
 
       app_router.on('route:workShowAction', function (id){
+<<<<<<< HEAD
         if(this.workView){
           this.workView.$el.undelegate();
         }
+=======
+
+>>>>>>> e425263f31a1136fec26dde856c9c9666f74fc31
         this.workView = new MainWorkView({"id": id});
         var registrationView = new RegistrationView();
         registrationView.render();
@@ -143,14 +146,6 @@ define([
         var breadcrumbsView = new BreadcrumbsView();
       });
 
-      app_router.on('route:teacherProgressAction', function (actions) {
-        var teacherProgressView = new TeacherProgressView();
-        teacherProgressView.render();
-        var registrationView = new RegistrationView();
-        registrationView.render();
-        var breadcrumbsView = new BreadcrumbsView();
-      });
-
       app_router.on('route:teacherAction', function (id) {
         var mainTeacherView = new MainTeacherView(id);
         var breadcrumbsView = new BreadcrumbsView();
@@ -173,7 +168,7 @@ define([
 
       app_router.on('route:editProfile', function (){
         var userSignUp = new UserSingUpView();
-        userSignUp.edit(); 
+        userSignUp.edit();
         var breadcrumbsView = new BreadcrumbsView();
         var registrationView = new RegistrationView();
         registrationView.render();
@@ -181,7 +176,7 @@ define([
 
       app_router.on('route:cancelAccount', function (){
         var userSignUp = new UserSingUpView();
-        userSignUp.cancel(); 
+        userSignUp.cancel();
         var breadcrumbsView = new BreadcrumbsView();
         var registrationView = new RegistrationView();
         registrationView.render();
