@@ -314,9 +314,7 @@ hr.task-comment-line{
 #launch #close-btn:hover{
 	box-shadow: -1px 1px 2px #000;
 }
-#launch input{
-	background-color:transparent;
-}
+
 #launch #form-checkbox{
 	font-size: .8em;
 }

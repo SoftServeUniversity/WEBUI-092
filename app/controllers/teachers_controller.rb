@@ -1,6 +1,7 @@
 class TeachersController < ApplicationController
   # GET /teachers
   # GET /teachers.json
+  include TeachersHelper
   def index
     @teachers = Teacher.all
 
@@ -56,10 +57,17 @@ class TeachersController < ApplicationController
   # PUT /teachers/1
   # PUT /teachers/1.json
   def update
+    #params = parse_parametrs(params)
     @teacher = Teacher.find(params[:id])
 
     respond_to do |format|
-      if @teacher.update_attributes(params[:teacher])
+      if @teacher.update_attributes(params[:teacher]) &&
+         @teacher.user.update_attributes({:name => params[:name], 
+                                          :last_name => params[:last_name],
+                                          :middle_name => params[:middle_name],
+                                          :role_pending => params[:role_pending]
+                                          })
+
         format.html { redirect_to @teacher, notice: 'Teacher was successfully updated.' }
         format.json { head :no_content }
       else
