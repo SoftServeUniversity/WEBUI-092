@@ -19,12 +19,24 @@ define([
         var me = this; 
         
         this.data = data;
-        this.model.on("destroy update", me.updateView, me);
-        
+
+        if (me.data.newModel == true){
+          this.model.on("sync", function(){
+            GlobalEventBus.trigger('NewItemAdded', me.model);
+            me.model.off("sync");
+            me.remove();
+
+          })
+        } else {
+
+          this.model.on("remove", me.removeView, me)
+          this.model.on("change", me.updateView, me);
+          
+        }
+
         _.bindAll(this, 'verifyItem');
       
       },
-
       events: {
         'dblclick .toggle-text'      : 'showInput',
         'click .delete-button'       : 'removeItem',
@@ -36,16 +48,21 @@ define([
       },
 
       updateView: function(){
+        this.render();
+      },
+
+      removeView: function(){
         this.remove();
       },
 
       showInput: function(e){
-        $(e.target).css('display', 'none').prev().css('display','block');
+        $(e.target).closest('td').find('.toggle-input').css('display','block');
+        $(e.target).closest('td').find('.toggle-text').css('display','none');
       },
 
 
       removeItem: function(){
-        var message = 'Ви дійсно бажаєте видалити '+ this.model.attributes.name + ' ?</strong>';
+        var message = '';
         var header = 'Підтвердіть видалення';
         var removeDialogView = new RemoveDialogView({model: this.model}, {message: message, header: header});
       },
@@ -55,13 +72,19 @@ define([
         var me = this;
         if ((e.type == 'keypress' && e.keyCode == 13) || e.type == 'focusout'){
           
-          var field_name = $(e.target).attr('name');
-          var field_value = $(e.target).val();
+          
+          if ($(e.target).prop("tagName") == 'SELECT'){
+            var field_name = $(e.target).attr('name');
+            var field_value = parseInt($(e.target).find(":selected").val(), 10);
+          } else {
+            var field_name = $(e.target).attr('name');
+            var field_value = $(e.target).val();
+          }
+          
 
           var putRequestParams = {};
           putRequestParams[field_name]=field_value;
-          this.model.set(putRequestParams)
-          this.model.save();
+          this.model.save(putRequestParams, {wait: true});
 
           $('.toggle-list .toggle-input').css('display','none');
           $('.toggle-list .toggle-text').css('display', 'block');
@@ -74,11 +97,13 @@ define([
       },
 
       saveItem: function(e){
+
          var saveData = {};
-         $(e.target).closest('tr').find('input').each(function(i, input){
+         $(e.target).closest('tr').find('.tab-input').each(function(i, input){
             saveData [$(input).attr('name')] = $(input).val();
          })
-         this.model.save(saveData)
+         this.model.set(saveData);
+         this.model.save();
       },
 
 
@@ -93,12 +118,10 @@ define([
       render: function(){
         
         var me = this;
-
-        me.data.model = me.data.model.toJSON();
-        
+        me.data.model = me.model.toJSON();
         var compiledTemplate = me.template(me.data);
 
-        me.$el.append(compiledTemplate); 
+        me.$el.html(compiledTemplate); 
         
         return me;
 

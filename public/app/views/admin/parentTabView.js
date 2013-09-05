@@ -12,6 +12,7 @@ define([
     
     tagName: 'div',
     
+
     initialize: function(){
       
       var me = this;
@@ -20,22 +21,23 @@ define([
       this.loadData();
       this.on('dataLoaded', function(){
         
-        config = this.setConfig();
-        this.collection = config.collection;
-        config = this.augmentConfig(config);
+        this.config = me.setConfig();
+
+        me.collection = this.config.collection;
         
-        this.collection.on('add', function(){
-          alert('addddddddddddddddddd')
-        })
+        this.config = me.augmentConfig();
         
-        me.render(config)
+        me.render(this.config)
 
         //all content has loaded, it's time for parent view to render tab
-        GlobalEventBus.trigger('tabSubViewLoaded', me.$el, config);
+        GlobalEventBus.trigger('tabSubViewLoaded', me.$el, me.config);
         
+        GlobalEventBus.on('NewItemAdded', function(model){
+          me.renderSingleItem(model);
+        })
         //display question mark on tab if some model needs verification
-        if (config.verification){
-          me.checkVerification(config.verification);
+        if (this.config.verification){
+          me.checkVerification(this.config.verification);
         }
 
         //this method is used only in works view
@@ -45,45 +47,50 @@ define([
 
     },
 
-    augmentConfig: function(config){
+    augmentConfig: function(){
 
-        if (!config.table_class){
-          config.table_class = '';
+        if (!this.config.table_class){
+          this.config.table_class = '';
         }
-        return config;
+        return this.config;
 
     },
 
-    render: function (config){
+    render: function (){
       
       var me = this;    
 
       //render containing table
-      var compiledTemplate = _.template(parentTabTemplate, { conf: config });
+      var compiledTemplate = _.template(parentTabTemplate, { conf: me.config });
       me.$el.html(compiledTemplate); 
     
       //render table head
-      var tableHeadView = new TableHeadView({ conf: config });
+      var tableHeadView = new TableHeadView({ conf: me.config });
       me.$('#tab-head').html(tableHeadView.render().$el); 
 
       //render rows
       this.collection.each(function(item) {
-        var itemView = new ItemView({ model: item, conf: config }); 
-        me.$('#tab-body').append(itemView.render().$el)
+        me.renderSingleItem(item)
       });
       
       return this;
+    },
+    
+    renderSingleItem: function(item){
+      this.config.newModel = false;
+      var itemView = new ItemView({ model: item, conf: this.config, newModel: false }); 
+      this.$('#tab-body').append(itemView.render().$el)
     },
 
     checkVerification: function(config){
 
       var me = this;
 
-      var collection = config.collection.toJSON();
+      var collection = me.config.collection.toJSON();
       
       $.each(collection, function(key, value){
         if (value['verified'] == 0){
-          $('#'+config.tab_id).addClass('needs-verification')
+          $('#'+me.config.tab_id).addClass('needs-verification')
         }
       })
 

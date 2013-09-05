@@ -21,7 +21,8 @@ define([
   'views/teacher/TeacherGroupView',
   'views/user/signUpView',
   'views/info/infoView',
-  'views/breadcrumbs/BreadcrumbsView'
+  'views/breadcrumbs/BreadcrumbsView',
+  'views/search/SearchView'
 
 
 
@@ -29,7 +30,7 @@ define([
   	          StudentProgressView, CourseProgressView,  MainFacultyView, MainDepartmentView,
   	          TeacherProgressView, MainWorkView, TaskView, TasksCollection, NotFoundView,
               AdminFacultyView, AdminView, MainTeacherView, TeacherGroupView, UserSingUpView, 
-              InfoView, BreadcrumbsView
+              InfoView, BreadcrumbsView, SearchView
              ) {
 
 
@@ -37,6 +38,9 @@ define([
 
 
     var AppRouter = Backbone.Router.extend({
+      initialize: function(){
+        var searchView = new SearchView();
+      },
       routes: {
         ''                       : 'homeAction',
         'group/:id'              : 'groupProgressAction',

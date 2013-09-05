@@ -8,10 +8,11 @@ define([
   'bootstrap_datatables',
   'views/shared/MenuView',
   'text!templates/admin/parentAdminTemplate.html',
+  'text!templates/admin/buttonsTemplate.html',
   'views/admin/itemView'
 
 ], function( $, bootstrapselect, _,  Backbone, Bootstrap_dataTables,
-            MenuView, parentAdminTemplate, ItemView ) {
+            MenuView, parentAdminTemplate, buttonsTemplate, ItemView ) {
 
   var ParentAdminView = Backbone.View.extend({
 
@@ -19,6 +20,8 @@ define([
     el_headline    : '#headline',
     el_tab_menu    : '#tab-menu',
     el_tab_content : '#tab-content',
+    el_tab_buttons : '#tab-buttons',
+
 
     headline: 'Default Admin Headline',
 
@@ -43,13 +46,10 @@ define([
         me.config = config;
         
         me.collection = config.collection;
-        me.collection.on('add', function(){
-          alert('addddddddddddddddddd')
-        })
-
-
 
         me.renderTab(tabContent);
+        me.renderButtons(config);
+
         $('.new-button').html(me.config.buttons['create']);
       })
 
@@ -96,10 +96,9 @@ define([
       
       if (this.$('#newElementRow').length < 1){
         
-        var newModel = new me.config.model();
-
-        me.config.newModel = true
-        var newElementView = new ItemView({model: newModel, conf: me.config});
+        var model = new me.config.model();
+   
+        var newElementView = new ItemView({model: model, conf: me.config, newModel: true});
         
         $(me.el_tab_content + ' table tbody').append(newElementView.render().el)
         
@@ -164,7 +163,14 @@ define([
     
     },
 
-    render: function (tabContent){
+    renderButtons: function(config){
+      var compiledTemplate = _.template(buttonsTemplate, config);
+      this.$(this.el_tab_buttons).html(compiledTemplate);
+      this.showAdminButtons()
+    },
+
+    render: function (){
+      
       var me = this;
 
       //render basic template with empty divs

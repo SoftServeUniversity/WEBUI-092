@@ -417,11 +417,24 @@ tr.notverified {
 .admin-headline {
 	margin-top:25px !Important;
 }
+.admin-buttons {
+	margin-top:20px;
+}
+.empty {
+	color: gray;
+	font-style:italic;
+}
 
 .wysiwyg {
 	overflow:hidden;
 }
-
+.datatables-pagination {
+	margin-top:10px;
+	padding-top:20px;
+}
+.dataTable {
+	margin-bottom:10px !important;
+}
 td.newItem .toggle-text{
   display:none !important;
 }

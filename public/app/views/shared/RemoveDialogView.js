@@ -18,9 +18,6 @@ define([
 
       _.bindAll(this, 'cancelAction');
       _.bindAll(this, 'removeElement');
-      _.bindAll(this, 'keyPressHandler');
-
-      $(document).on('keypress', this.keyPressHandler);
 
       this.render();
     },
@@ -28,13 +25,6 @@ define([
     events : {
       'click .confirm-yes' : 'removeElement',
       'click .confirm-no' : 'cancelAction'
-    },
-
-    //to confirm removal with Enter
-    keyPressHandler: function(e){
-        if (e.keyCode == 13){
-            this.removeElement();
-      }
     },
 
     hideModal: function () {

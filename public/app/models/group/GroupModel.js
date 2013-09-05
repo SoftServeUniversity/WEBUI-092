@@ -12,7 +12,8 @@ define([
             teacher: null,
             progress: 20
             //percentage: 20
-        }
+        },
+        urlRoot: '/groups/'
     });
 
     return GroupModel;
