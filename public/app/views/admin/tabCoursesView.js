@@ -21,26 +21,25 @@ define([
       config = {
 
         model: CourseModel,
+        
         collection: me.collections.courses,
-        data: [{
-            _link: 'name',
+        
+        fields: {
+          
+          name: {
             label:'Назва курсу',
             type:'text'
           }
-        ],
+        },
 
         buttons: {
           create: 'Додати курс'
         }
+
       };
 
       return config;
-    },
-
-    initialize: function(){ 
-      //call parent's initialize method
-      this.constructor.__super__.initialize.apply(this);
-    },
+    }
 
   });
   

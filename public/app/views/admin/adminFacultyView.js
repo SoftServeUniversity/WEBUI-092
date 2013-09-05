@@ -13,19 +13,17 @@ define([
   
   'views/admin/tabGroupsView',
   'views/admin/tabDepartmentsView',
-  'views/admin/tabTeachersView',
-  'views/admin/tabTeachersOfDepartmentView',
-  'views/admin/tabWorksView'
+  'views/admin/tabTeachersView'
 
 ], function ($, bootstrapselect, _,  Backbone,
             ParentAdminView, TabAdminsView, TabCoursesView,
-             TabGroupsView, TabDepartmentsView, TabTeachersView, TabTeachersOfDepartmentView, TabWorksView) {
+             TabGroupsView, TabDepartmentsView, TabTeachersView) {
   
 var AdminFacultyView = ParentAdminView.extend({  
   
   headline: 'Адміністратор факультету',
   
-  defaultActiveTab: 'works-tab',
+  defaultActiveTab: 'teachers-tab',
 
   //tab menu buttons (you can add your buttons here)
   tabMenuConfig: [
@@ -35,36 +33,34 @@ var AdminFacultyView = ParentAdminView.extend({
       label: 'Викладачі',
       action: 'manage_teachers'
     },
-    {
+
+   /* {
        id:'teachers_of_dep-tab',
        label: 'Викладачі кафедри',
        action: 'manage_teachers_of_dep'
-    },
+    },*/
+
     {
       id:'courses-tab',
       label: 'Курси',
       action: 'manage_courses'
     },
+
     {
       id:'departments-tab',
       label: 'Кафедри',
       action: 'manage_departments'
     },
+    
     {
       id:'groups-tab',
       label: 'Групи',
       action: 'manage_groups'
-    },
-    {
-      id:'works-tab',
-      label: 'Роботи',
-      action: 'manage_works'
     }
   ],
   
 
   initialize: function(){
-    //call parent's initialize method
     this.constructor.__super__.initialize.apply(this);
   },
 
@@ -97,16 +93,6 @@ var AdminFacultyView = ParentAdminView.extend({
   manage_teachers: function(){
     this.activeMenuId = 'teachers-tab';
     this.tabView = new TabTeachersView();
-    this.showAdminButtons();
-  },
-  manage_teachers_of_dep: function(){
-    this.activeMenuId = 'teachers_of_dep-tab';
-    this.tabView = new TabTeachersOfDepartmentView();
-    this.hideAdminButtons();
-  },
-  manage_works: function(){
-    this.activeMenuId = 'works-tab';
-    this.tabView = new TabWorksView();
     this.showAdminButtons();
   }
 

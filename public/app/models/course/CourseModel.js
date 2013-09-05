@@ -1,20 +1,15 @@
 define([
-    'underscore',
-    'backbone'
+  'underscore',
+  'backbone'
 ], function(_, Backbone) {
 
-    var CourseModel = Backbone.Model.extend({
-        defaults:{
-            id: null,
-            name: null,
-            year_of_start: null,
-            faculty: null, 
-            percentage: 25 //external
-        },
-        //urlRoot: 'courses/'
+  var CourseModel = Backbone.Model.extend({
+    defaults:{
+    },
+     
+    urlRoot: '/courses/'
+  });
 
-    });
-
-    return CourseModel;
+  return CourseModel;
 
 });

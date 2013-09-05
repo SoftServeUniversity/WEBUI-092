@@ -1,6 +1,7 @@
 class UserHelperController < ApplicationController
 
   before_filter :authenticate_user!, :except => [:receive_current_user, :role_pending, :return_current_role, :populate_roles_select, :receive_user_abilities]
+  skip_before_filter :verify_authenticity_token, if: :json_request?
 
   include AbilitiesHelper
 
@@ -21,7 +22,13 @@ class UserHelperController < ApplicationController
   end
 
   def receive_user_abilities
-    render json: receive_abilities_for(:work, :task) # returs merged hash. Definition may be found in AbilitiesHelper
+    render json: receive_abilities_for(:work, :task, :user) # returs merged hash. Definition may be found in AbilitiesHelper
+  end
+
+  protected
+
+  def json_request?
+    request.format.json?
   end
 
 end

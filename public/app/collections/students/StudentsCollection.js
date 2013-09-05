@@ -8,7 +8,7 @@ define([
   {
     var StudentsCollection = Backbone.Collection.extend({
       model:StudentModel,
-      url: '/students.json/'
+      url: '/students/'
     });
     return StudentsCollection;
   });

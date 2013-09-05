@@ -8,11 +8,8 @@
             <% _.each(historymodal, function(item) {%>
             <div class="row-fluid">
             <ul style="list-style-type: none;">
-                <span class="span1"><%= item.get("auditable_type") %></span>
-                <span class="span2"><%= item.get("action") %></span>
-                <span class="span3"><%= item.get("value") %> </span>
-                <span class="span2"><%= item.get("user_name") %></span>
-                <span class="span4"><%= item.get("created_at") %></span>
+                <span class="span7"><%= item.get("value") %> </span>
+                <span class="span5"><%= item.get("date") %></span>
             </ul>
             </div>
             <% }); %> 

@@ -35,9 +35,9 @@ user.add_role :teacher
 
 #Faculty Table
 if Faculty.all.empty?
-  s = 'Faculty_ABC'
+  s = 'Faculty of Science ABC'
   9.times do |time| 
-    fc = Faculty.create! name: (s.next! + time.to_s)
+    fc = Faculty.create! name: (s.next! + time.to_s), user_id: User.first.id
     puts 'created '<< fc.name
   end
 end
@@ -46,17 +46,8 @@ end
 if Department.all.empty?
   s = 'Department_ABC'
   10.times do |time| 
-    dp = Department.create! name: (s.next! + time.to_s), faculty_id: 1
+    dp = Department.create! name: (s.next! + time.to_s), faculty_id: Faculty.first.id, user_id: User.first.id
     puts 'created '<< dp.name
-  end
-end
-
-#Group Table
-if Group.all.empty?
-  s = 'Group_ABC'
-  10.times do |time| 
-    d = Group.create! name: (s.next! + time.to_s)
-    puts 'created '<< d.name
   end
 end
 
@@ -64,35 +55,7 @@ end
 if Course.all.empty?
   s = 'Course_ABC'
   10.times do |time| 
-    d = Course.create! name: (s.next! + time.to_s), year_of_start: "2012-02-01"
-    puts 'created '<< d.name
-  end
-end
-
-#Student Table
-#if Student.all.empty?
-#  s = 'Student_ABC'
-#  9.times do |time| 
-#    fc = Student.create! last_name: (s.next! + time.to_s)
-#    puts 'created '<< fc.last_name
-#  end
-#end
-stud = Student.create user_id: User.last.id
-
-#Works Table
-if Work.all.empty?
-  s = 'Work_ABC'
-  10.times do |time| 
-    d = Work.create! name: (s.next! + time.to_s)
-    puts 'created '<< d.name
-  end
-end
-
-#Task Table
-if Task.all.empty?
-  s = 'Task_ABC'
-  10.times do |time| 
-    d = Task.create! name: (s.next! + time.to_s), work_id: rand(10)
+    d = Course.create! name: (s.next! + time.to_s), year_of_start: "2012-02-01", faculty_id: Faculty.first.id
     puts 'created '<< d.name
   end
 end
@@ -106,5 +69,47 @@ end
 #  end
 #end
 tchr = Teacher.create user_id: User.first.id, department_id: Department.first.id, degree: 'PhD', title: 'Proffesor'
+
+
+#Group Table
+if Group.all.empty?
+  s = 'Group_ABC'
+  10.times do |time| 
+    d = Group.create! name: (s.next! + time.to_s), course_id: Course.first.id, department_id: Department.first.id, teacher_id: Teacher.first.id
+    puts 'created '<< d.name
+  end
+end
+
+
+#Student Table
+#if Student.all.empty?
+#  s = 'Student_ABC'
+#  9.times do |time| 
+#    fc = Student.create! last_name: (s.next! + time.to_s)
+#    puts 'created '<< fc.last_name
+#  end
+#end
+stud = Student.create user_id: User.last.id, group_id: Group.first.id
+stud1 = Student.create user_id: User.first.id, group_id: Group.last.id
+
+
+#Works Table
+if Work.all.empty?
+  s = 'Work_ABC'
+  10.times do |time| 
+    d = Work.create! name: (s.next! + time.to_s), student_id: Student.last.id, teacher_id: Teacher.last.id
+    puts 'created '<< d.name
+  end
+end
+
+#Task Table
+if Task.all.empty?
+  s = 'Task_ABC'
+  10.times do |time| 
+    d = Task.create! name: (s.next! + time.to_s), work_id: rand(10) + 1
+    puts 'created '<< d.name
+  end
+end
+
 
 

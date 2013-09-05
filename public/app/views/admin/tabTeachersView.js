@@ -25,36 +25,41 @@ define([
 
       var me = this;
       
-      // verification HACK
-      me.verification = {
-        collection:me.collections.teachers,
-        tab_id:'teachers-tab'
-      };
 
       var config = {
       	
         model     : TeacherModel,
+        
         collection: me.collections.teachers,
-        data      : [{
-            _link: 'name',
+        
+        fields    : {
+          
+          name: {
             label: 'Ім\'я викладача',
-            type : 'text'
+            collection : 'text'
           },
-          {
-            _link: 'faculty_id',
+
+          faculty_id: {
             label: 'Факультет',
             type:'select',
-            src:me.collections.faculties
+            collection:me.collections.faculties
           },
-          {
-            _link: 'department_id',
+
+          department_id: {
             label: 'Кафедра',
             type:'select',
-            src:me.collections.departments
+            collection:me.collections.departments
           }
-        ],
-        buttons: {
-        	create : 'Додати викладача'
+
+        },
+
+        buttons: { 
+          create:false          
+        },
+
+        verification: {
+          collection:me.collections.teachers,
+          tab_id:'teachers-tab'
         }
       
       };

@@ -3,9 +3,9 @@ define([
   'jquery',
   'underscore',
   'backbone',
-  'views/admin/parentTabView',
-  'text!templates/admin/removeDialogTemplate.html'
-], function($, _, Backbone, ParentTabView, removeDialogTemplate){
+  'text!templates/shared/removeDialogTemplate.html'
+
+], function($, _, Backbone, removeDialogTemplate){
 
   var RemoveDialogView = Backbone.View.extend({
 
@@ -17,9 +17,6 @@ define([
       this.template = _.template(removeDialogTemplate);
       _.bindAll(this, 'cancelAction');
       _.bindAll(this, 'removeElement');
-      _.bindAll(this, 'keyPressHandler');
-
-      $(document).on('keypress', this.keyPressHandler);
 
       this.render();
     },
@@ -27,13 +24,6 @@ define([
     events : {
       'click .confirm-yes' : 'removeElement',
       'click .confirm-no' : 'cancelAction'
-    },
-
-    //to confirm removal with Enter
-    keyPressHandler: function(e){
-        if (e.keyCode == 13){
-            this.removeElement();
-      }
     },
 
     hideModal: function () {

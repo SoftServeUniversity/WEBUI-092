@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130830090115) do
+ActiveRecord::Schema.define(:version => 20130823180010) do
 
   create_table "courses", :force => true do |t|
     t.string   "name"
@@ -55,10 +55,10 @@ ActiveRecord::Schema.define(:version => 20130830090115) do
 
   create_table "progress_changes", :force => true do |t|
     t.integer  "progress"
-    t.integer  "entity_id"
-    t.integer  "table_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.integer  "progressable_id"
+    t.string   "progressable_type"
+    t.datetime "created_at",        :null => false
+    t.datetime "updated_at",        :null => false
   end
 
   create_table "roles", :force => true do |t|
@@ -82,12 +82,6 @@ ActiveRecord::Schema.define(:version => 20130830090115) do
 
   add_index "students", ["group_id"], :name => "index_students_on_group_id"
   add_index "students", ["user_id"], :name => "index_students_on_user_id"
-
-  create_table "table_dictionaries", :force => true do |t|
-    t.string   "name"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
 
   create_table "task_changes", :force => true do |t|
     t.integer  "task_id"
@@ -127,11 +121,9 @@ ActiveRecord::Schema.define(:version => 20130830090115) do
     t.string   "title"
     t.datetime "created_at",    :null => false
     t.datetime "updated_at",    :null => false
-    t.integer  "teacher_id"
   end
 
   add_index "teachers", ["department_id"], :name => "index_teachers_on_department_id"
-  add_index "teachers", ["teacher_id"], :name => "index_teachers_on_teacher_id"
   add_index "teachers", ["user_id"], :name => "index_teachers_on_user_id"
 
   create_table "thesis_changes", :force => true do |t|
@@ -175,12 +167,13 @@ ActiveRecord::Schema.define(:version => 20130830090115) do
 
   create_table "works", :force => true do |t|
     t.string   "name"
-    t.integer  "progress"
     t.integer  "student_id"
+    t.integer  "teacher_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
 
   add_index "works", ["student_id"], :name => "index_works_on_student_id"
+  add_index "works", ["teacher_id"], :name => "index_works_on_teacher_id"
 
 end

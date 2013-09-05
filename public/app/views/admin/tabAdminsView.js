@@ -4,56 +4,60 @@ define([
   'underscore',
   'backbone',
   
-  'models/admin/FaAdminModel',
-  'collections/admin/FaAdminsCollection',
+  'models/teacher/TeacherModel',
+  'collections/teachers/TeachersCollection',
   'views/admin/parentTabView'
   
-], function($, _, Backbone, FaAdminModel, FaAdminsCollection, ParentTabView){   
+], function($, _, Backbone, TeacherModel, TeachersCollection, ParentTabView){   
 	 
   var tabChildAdminsView = ParentTabView.extend({
 
 
     collections_classes: {
-      fadmins: FaAdminsCollection
+      fadmins: TeachersCollection
     },
 
     setConfig: function(){
     	var me = this;
 
-      // verification HACK
-      me.verification = {
-        collection:me.collections.fadmins,
-        tab_id:'admins-tab'
-      }
-
       var config = {
       	
-        model: FaAdminModel,
+        model: TeacherModel,
+        
         collection: me.collections.fadmins,
-        data: [{
-            _link: 'name',
+        
+        fields: {
+          
+          name: {
             label:'Ім\'я',
-            type :'text'
+            type :'text' 
           },
-          {
-            _link: 'lastName',
+          
+          last_name: {
             label:'Прізвище',
             type :'text'
           },
-          {
-            _link: 'middleName',
+          
+          middle_name: {
             label:'По-батькові',
             type :'text'
           },
-          {
-            _link: 'email',
+          
+          email: {
             label: 'Email',
             type :'text'
           }
-        ],
+        },
+
         buttons: {
-        	create: 'Додати адміністратора факультету'
+          create: false
+        },
+
+        verification: {
+          collection:me.collections.fadmins,
+          tab_id:'admins-tab'
         }
+        
       };
       
       return config;

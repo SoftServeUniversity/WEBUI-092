@@ -5,7 +5,7 @@ class DepartmentsController < ApplicationController
   # GET /departments
   # GET /departments.json
   def index
-    respond_with  Department.all
+    respond_with  Department.where(params['filter'])
   end
 
 
@@ -32,11 +32,13 @@ class DepartmentsController < ApplicationController
   # PUT /departments/1.json
   def update
     @department = Department.find(params[:id])
-
-    if @department.update_attributes(params[:department])
-      respond_with head :no_content 
-    else
-      respond_with @department.errors, status: :unprocessable_entity 
+    
+    respond_to do |format|
+      if @department.update_attributes(params[:department])
+          format.json { head :no_content }
+      else
+        respond_with @department.errors, status: :unprocessable_entity 
+      end
     end
   end
 
@@ -44,8 +46,11 @@ class DepartmentsController < ApplicationController
   # DELETE /departments/1.json
   def destroy
     @department = Department.find(params[:id])
-    @department.destroy
-
-    respond_with head :no_content 
+    
+    respond_to do |format| 
+      @department.destroy
+      format.json { head :no_content } 
+    end
   end
+
 end

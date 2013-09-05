@@ -13,15 +13,22 @@ define([
   ], 
   function($, _, Backbone, bootstrap, jqueryui, taskTemplate, taskCommentsView, 
           CommentsCollection, commentModel, TaskModel, ProgressModel){
-      var TaskView = Backbone.View.extend({
+
+    var TaskView = Backbone.View.extend({
       el: $("#content"),
       collection: new CommentsCollection(),
       events: {
-        'click #changebtn': 'showModal',
-        'submit #input-log': 'submit'
+        'click #changebtn'        : 'showModal',
+        'submit #input-log'       : 'submit',
+        'keypress #task-comment'  : 'validateComment'
       },
       showModal: function(){
         $('#change').modal('show');
+        var commentTextArea = $('#task-comment');
+        if(commentTextArea.val().length < 10) {
+          commentTextArea.parent().addClass('control-group error');
+          $(".modal-footer>input[type=submit]").hide();
+        }
       },
       closeModal: function(){
         $('#change').modal('hide');
@@ -37,6 +44,7 @@ define([
         var compiledTemplate = _.template(taskTemplate, data);
         $("#content").html(compiledTemplate);
         this.slider();
+        this.chart();
       },
       submit: function(e){
         e.preventDefault();
@@ -49,7 +57,7 @@ define([
       },
       addNewProgress: function (newProgress) {
         var progressModel = new ProgressModel({"progress": newProgress, "task_id": this.id});
-        progressModel.save()
+        progressModel.save({patch: true});
       },
       addCommentToCollection: function(author, content){
         var newCommentModel = new commentModel({
@@ -61,36 +69,98 @@ define([
         console.log(newCommentModel.get("id"))
       },
       slider: function(){
-        $("#number-range").spinner({min: 0, max: 100});
-        $("#number-range").spinner("value", this.progress.get('progress'));
-        $("#number-range").spinner({
+        var numberRange = $("#number-range");
+        numberRange.spinner({min: 0, max: 100});
+        numberRange.spinner("value", this.progress.get('progress'));
+        numberRange.spinner({
           spin: function(){
-            $("#line-range").slider({value: $("#number-range").spinner("value")})
+            $("#line-range").slider({value: numberRange.spinner("value")})
           },
           change: function(){
-            $("#line-range").slider({value: $("#number-range").spinner("value")})
+            $("#line-range").slider({value: numberRange.spinner("value")})
           }
         })
         $("#line-range").slider({ min: 0, max: 100, range: 100, value: this.progress.get('progress'),
           slide: function(){
-            $("#number-range").spinner("value", $("#line-range").slider("value"));
+            numberRange.spinner("value", $("#line-range").slider("value"));
           },
           change: function(){
-            $("#number-range").spinner("value", $("#line-range").slider("value"));
+            numberRange.spinner("value", $("#line-range").slider("value"));
           }
         });
       },
+      chart: function () {
+        var chartData;
+        var xmlhttp = new XMLHttpRequest();
+        xmlhttp.open('GET', '/progresses_by_month/' + this.id + '.json', true);
+        xmlhttp.onreadystatechange = function() {
+          if (xmlhttp.readyState == 4) {
+            if(xmlhttp.status == 200) {
+              chartData = JSON.parse(xmlhttp.responseText);
+              makeChart(chartData);
+            }
+          }
+        }
+        xmlhttp.send(null);
+        function makeChart(chartData){
+          $('#chart').highcharts({
+            title: {
+              text: 'Графік виконання завдання'
+            },
+            tooltip: {
+              formatter: function() {
+                return  'Прогрес: '+ this.y + '%';
+              }
+            },        
+            legend: {
+              enabled: false
+            },
+            yAxis: {
+              title: {
+                text: 'Прогрес, %'
+              },
+              tickInterval: 10,
+              max: 100,
+              min: 0
+            },
+            xAxis: {
+              categories: ['Жовтень', 'Листопад', 'Грудень', 'Січень', 'Лютий', 'Березень', 'Квітень', 'Травень']
+            },
+            series: [{
+              data: chartData
+            }]
+          });
+        }
+      },
+      validateComment: function () {
+        var commentArea = $('#task-comment'), submitButton = $(".modal-footer>input[type=submit]");
+        if (commentArea.val().length < 10){
+          commentArea.parent().addClass('control-group error');
+          submitButton.hide();
+        } else {
+          commentArea.parent().removeClass('control-group error');
+          submitButton.fadeIn();
+        }
+      },
       initialize: function(){
         var me = this;
+        this.undelegateEvents();
+        this.delegateEvents(this.events);
+        this.loadData();
+      },
+      loadData: function () {
+        var me = this;
+        var progressUrl = "http://localhost:3000/tasks/" + this.id + "/task_progress.json", 
+            changesUrl = "http://localhost:3000/task_changes/" + this.id + ".json";
         this.model = new TaskModel({"id": me.id});
-        this.model.fetch({async:false})
-        this.progress = new ProgressModel()
-        this.progress.fetch({url: "http://localhost:3000/tasks/" + me.id + "/task_progress.json", async: false})
-        this.collection.fetch({url: "http://localhost:3000/task_changes/" + me.id + ".json", async:false, success: function () { return true }});
-        this.render()
+        this.progress = new ProgressModel();
+        this.model.fetch({async:false});
+        this.progress.fetch({url: progressUrl, async: false})
+        this.collection.fetch({url: changesUrl, async:false});
+        this.render();
       }
-      });
+    });
 
-      return TaskView;
+return TaskView;
 
-      });
+});

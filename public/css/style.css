@@ -181,16 +181,33 @@ progress::-webkit-progress-value { background: #69EB63; }
 
 /* --- Nazaruk Sergii CSS --- */
 /* Modal History */
-.history-modal          { display: block; margin-bottom: 20px; }
+/*.history-modal          { display: block; margin-bottom: 20px; }
+*/
 .modal-list				{ font-size: 12px; }
 #myModal				{ display: none; width: 600px; border-radius: 6px; margin: 0 auto; }
 #myModal.active			{ position: fixed; z-index: 1050; opacity: 1; background-color: white;
     					  left: 10%; right: 10%; top: 10%;
     					}
 /* Progress */
-#create-btn				{ display: block; margin: 0 auto;}
-#task-progress			{ margin-bottom: 20px; }
-
+/*#task-progress			{ margin-bottom: 20px; }*/
+.width80{
+	width: 80%;
+	margin-right: 10px;
+}
+@media (max-width: 520px) {
+	#create-btn{
+		width: 100%;
+	}
+	.width80{
+		width: 100%;
+	}
+}
+.work-buttons {
+	margin-bottom: 10px;
+}
+.add-task-line{
+	margin: 0 0 5px 0;
+}
 /*Yasinishyn start*/
 .red{
 	color: red;
@@ -233,8 +250,8 @@ progress::-webkit-progress-value { background: #69EB63; }
 .btn-navbar{
 	margin-bottom: 5px;
 }
-#chart{
-	margin-bottom: 15px;
+.task-chart{
+	margin-bottom: 20px !important;
 }
 hr.task-comment-line{
 	margin: 5px 0 !important;
@@ -258,7 +275,6 @@ hr.task-comment-line{
 .left-side{
 	text-align: left;
 }
-
 /*****end task page*****/
 
 /*-----enter form---------*/
@@ -266,7 +282,7 @@ hr.task-comment-line{
 
 }
 #launch{
-	top:46px;
+	top:41px;
 	position: absolute;
 	right:0;
 	overflow: hidden;
@@ -310,9 +326,7 @@ hr.task-comment-line{
 #regMod{
 	display: none;
 }
-#regForm .controls{
-	width: 35%;
-}
+
 
 .gradient {
 	background: #F5F5F5; /* Для старых браузров */
@@ -343,8 +357,9 @@ div.help-block ul li{
 
 
 /*----admin page----*/
+
 #tab-content th{
-	white-space: nowrap !Important;
+	white-space: nowrap !important;
 }
 #tab-menu .nav-tabs .active:hover,
 #tab-menu .nav-tabs .active {
@@ -352,12 +367,12 @@ div.help-block ul li{
     color: #fff;
 }
 #tab-menu .nav-tabs a{
-    border:none !Important;
+    border:none !important;
     border-bottom:1px solid #0088cc !important;
 }
 
 #tab-menu .nav-tabs a:hover {
-	background-color:#CFE4FC !Important;
+	background-color:#CFE4FC !important;
 }
 #tab-menu .nav-tabs {
 	border-bottom: 1px solid #0088CC;
@@ -394,18 +409,43 @@ tr.notverified {
 #tab-content td.text-right .buttonContainer{
 	text-align:left;
     display:inline-block;
-
+}
+#tab-content .tab-input {
+	max-width:140px !important;
 }
 .admin-headline {
-	margin-top:25px !Important;
+	margin-top:25px !important;
+}
+.admin-buttons {
+	margin-top:20px;
+}
+.empty {
+	color: gray;
+	font-style:italic;
 }
 
 .wysiwyg {
 	overflow:hidden;
 }
-
-
-
+.datatables-pagination {
+	margin-top:10px;
+	padding-top:20px;
+}
+.dataTable {
+	margin-bottom:10px !important;
+}
+td.newItem .toggle-text{
+  display:none !important;
+}
+.test {
+	width:auto !important;
+}
+.tab-text {
+	display:none;
+}
+.tab-text.toggle-text {
+	display:block;
+}
 /* oohurtc */
 
 .heading {
@@ -461,7 +501,8 @@ tr.notverified {
 }
 
 #chart {
-	border-style: ridge;
+	border: 1px solid #D4D4D4;
+	box-shadow: 0 1px 4px rgba(0, 0, 0, 0.17);
 	margin: 0 auto;
 	padding-top: 25px;
 	height: 300px;
@@ -523,7 +564,7 @@ tr.notverified {
 
 
 /****************/
-#sortable {
+#list-of-tasks {
   list-style-type: none;
   margin: 0;
   padding: 0;
@@ -549,8 +590,15 @@ tr.notverified {
   min-height: 20px !important;
   margin-bottom: 0 !important;
 }
-.ui-icon-arrowthick-2-n-s {
-  cursor: pointer;
+.icon-resize-vertical {
+  cursor: move;
+}
+
+.task-icons {
+	float: right;
+}
+.task-icon{
+	cursor: pointer;
 }
 /*--------breadcrumbs navigation-----------*/
 .breadcrumb{
@@ -564,7 +612,6 @@ tr.notverified {
 	text-decoration: none;
 	cursor: default;
 }
-<<<<<<< HEAD
 #main-header-button{
 
 	font-family: Arial, Helvetica, sans-serif;
@@ -829,7 +876,15 @@ div.DTFC_LeftFootWrapper table {
 	max-height: 20px;
 	max-width: 20px;
 }
+.help-block{
+	font-size: 10px;
+	color: grey;
+}
+#regForm .controls, #editForm .controls{
+	width: 35%;
+}
 
+<<<<<<< HEAD
 /* Modal window for add work in teacher page*/
 #dialogAddStudentWork {
   width: 500px;
@@ -838,3 +893,17 @@ div.DTFC_LeftFootWrapper table {
   width: 96%;
 }
 /* end modal window */
+=======
+/*-----search form---start---*/
+#search-form{
+ position:relative;
+ margin: 0;
+ top:5px;
+ background: transparent;
+}
+
+#search-form span.dark{
+ color:grey;
+}
+/*-----search form----end--*/
+>>>>>>> 6cca73b62b273891a10328fe17e8b6ec1acfb0b0

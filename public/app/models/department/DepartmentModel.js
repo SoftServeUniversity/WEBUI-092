@@ -5,12 +5,8 @@ define([
 
     var DepartmentModel = Backbone.Model.extend({
         defaults:{
-            id: null,
-            name: null,
-            head_of_department: null,
-            faculty: null,
-            percentage: 15
-        }
+        },
+        urlRoot: '/departments/'
     });
 
     return DepartmentModel;

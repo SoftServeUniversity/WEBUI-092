@@ -5,17 +5,15 @@ define([
   'views/admin/parentTabView',
   'models/department/DepartmentModel',
   'collections/departments/DepartmentsCollection',
-  'collections/faculties/FacultiesCollection',
   'collections/teachers/TeachersCollection'
 
 ], function($, _, Backbone, ParentTabView, DepartmentModel, DepartmentsCollection,
-            FacultiesCollection, TeachersCollection){   
+             TeachersCollection){
    
   var TabDepartmentsView = ParentTabView.extend({
 
     collections_classes: {
       departments : DepartmentsCollection,
-      faculties   : FacultiesCollection,
       teachers    : TeachersCollection
     },
 
@@ -25,27 +23,27 @@ define([
       var config = {
       	
         model     : DepartmentModel,
+        
         collection: me.collections.departments,
-        data      : [{
-            _link: 'name',
+        
+        fields    : {
+
+          name: {
             label:'Кафедра',
             type:'text'
           },
-          {
-            _link: 'teacher_id',
+
+          teacher_id: {
             label: 'Завідувач кафедри',
             type:'select',
-            src:me.collections.teachers
-          },
-          {
-            _link: 'faculty_id',
-            label: 'Факультет',
-            type:'select',
-            src:me.collections.faculties
+            collection:me.collections.teachers
           }
-        ],
+
+        },
+        
         buttons: {
-        	create: 'Нова кафедра'
+        	create: 'Нова кафедра',
+            employee: true
         }
 
       };

@@ -13,6 +13,6 @@ ADMIN_NAME: First User
 ADMIN_EMAIL: user@example.com
 ADMIN_PASSWORD: changeme
 STUDENT_NAME: Student User
-STUDENT_EMAIL: stud@example.com
+STUDENT_EMAIL: lena.og@inbox.ru
 STUDENT_PASSWORD: chanqwer
 ROLES: [admin, faculty_admin, student, teacher, guest]
