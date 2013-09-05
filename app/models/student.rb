@@ -13,6 +13,7 @@ class Student < ActiveRecord::Base
     hash_info[:last_name] = user.last_name
     hash_info[:middle_name] = user.middle_name
     hash_info[:email] = user.email
+    hash_info[:role_pending] = user.role_pending
     hash_info[:progress] = 0
     hash_info[:progress] = progress_changes.last.progress if progress_changes.last
     hash_info

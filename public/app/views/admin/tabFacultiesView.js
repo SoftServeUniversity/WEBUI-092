@@ -5,16 +5,16 @@ define([
   'views/admin/parentTabView',
   'models/faculty/FacultyModel',
   'collections/faculties/FacultiesCollection',
-  'collections/teachers/TeachersCollection'
+  'collections/teachers/teachersProxyCollection'
 
 ], function($, _, Backbone, ParentTabView, FacultyModel,
-            FacultiesCollection, TeachersCollection){   
+            FacultiesCollection, TeachersProxyCollection){   
    
   var TabFacultiesView = ParentTabView.extend({
 
     collections_classes: {
       faculties   : FacultiesCollection,
-      teachers    : TeachersCollection
+      teachers    : TeachersProxyCollection
     },
 
     setConfig: function(){
@@ -33,7 +33,7 @@ define([
             type: 'text'
           },
           
-          teacher_id: {
+          user_id: {
             label: 'Адміністратор факультету',
             type: 'select',
             collection: me.collections.teachers

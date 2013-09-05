@@ -40,6 +40,7 @@ function($, evil, _, Backbone, bootstrap, WorkTasksTemplate,
       this.work_col.fetch({url: "work/" + me.id + "/tasks.json", async: false});
       _.each(tempColl.models, function(task){
           me.history_col.add(task.get('thesis_changes'));
+          task.unset('thesis_changes');
       });
       _.each(this.history_col.models, function(element){
          element.set('date', new Date(element.get('created_at')).toLocaleString());
@@ -54,6 +55,7 @@ function($, evil, _, Backbone, bootstrap, WorkTasksTemplate,
         var taskId = $(item).attr("task-id");
         var newPriority = ($(item).index()) + 1;
         var currentTask = me.work_col.get(taskId);
+        console.log(taskId)
         currentTask.set("priority", newPriority);
         currentTask.save({patch: true})
       });

@@ -103,7 +103,7 @@ define([
       },
 
       verifyItem: function(e){
-        this.model.set('verified', 1);
+        this.model.set('role_pending', false);
         this.model.save();
       },
 
