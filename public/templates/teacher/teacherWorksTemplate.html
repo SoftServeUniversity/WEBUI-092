@@ -1,0 +1,47 @@
+<!-- ГРАФІК -->
+<div id="chart"></div>
+
+<br />
+
+<!-- List of thesis of works current teacher-->
+<% for (var work in works){ %>
+  <div class="row-fluid">
+    <div class="span12"><h4 class="text-center"><%= work %> курс</h4></div>
+  </div>
+  <% for ( var i=0; i<works[work].length; i++ ) {%>
+  <div class="row-fluid text-left">
+    <div class="span4"><%= i + 1 %>. <%= works[work][i]['name_with_url'] %></div>
+    <div class="span1"><%= works[work][i]['group_name'] %></div>
+    <div class="span5"><%= works[work][i]['name'] %></div>
+    <div class="span2">
+      <div class="progress">
+        <div class="bar" style="width:<%= works[work][i]['progress'] %>%"></div>
+      </div>
+    </div>
+  </div>
+  <% } %>
+<% } %>
+
+
+<!-- View list of works as a table -->
+<!-- List of thesis of works current teacher
+<% for (var work in works){ %>
+  <table class="table table-hover .table-condensed">
+    <caption><h4 class="text-center"><%= work %> курс</h4></caption>
+    <tbody>
+      <% for ( var i=0; i<works[work].length; i++ ) {%>
+        <tr>
+          <td><%= i + 1 %>. <%= works[work][i]['name_with_url'] %></td>
+          <td><%= works[work][i]['group_name'] %></td>
+          <td><%= works[work][i]['name'] %></td>
+          <td>
+            <div class="progress">
+              <div class="bar" style="width:<%= works[work][i]['progress'] %>%"></div>
+            </div>
+          </td>
+        </tr>
+      <% } %>
+    </tbody>
+  </table>
+<% } %>
+-->

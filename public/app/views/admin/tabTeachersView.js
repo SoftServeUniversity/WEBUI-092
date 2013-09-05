@@ -53,8 +53,8 @@ define([
 
         },
 
-        buttons: {
-        	create : 'Додати викладача'
+        buttons: { 
+          create:false          
         },
 
         verification: {

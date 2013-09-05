@@ -7,20 +7,20 @@ define([
     'views/shared/ListView',
     'views/shared/ChartView',
     'text!templates/teacher/mainTeacherTemplate.html',
-    'text!templates/teacher/teacherThesisTemplate.html',
+    'text!templates/teacher/teacherWorksTemplate.html',
     'collections/teachers/TeacherChangeCollection',
     'collections/teachers/TeachersCollection',
-    'collections/students/StudentsProxyCollectionForTeacherPage'
+    'collections/work/WorksCollectionOfTeacher'
 ], function($, _, Backbone,
             DepartmentsCollection,
             CoursesCollection,
             ListView,
             ChartView,
             mainTeacherTemplate,
-            teacherThesisTemplate,
+            teacherWorksTemplate,
             TeacherChangeCollection,
             TeachersCollection,
-            StudentsProxyCollectionForTeacherPage){
+            WorksCollectionOfTeacher){
 
     var TeacherView = Backbone.View.extend({
         initialize:function(id){
@@ -28,61 +28,62 @@ define([
 
             var teachersCollection = new TeachersCollection();
             teachersCollection.fetch({
-                success: function() {
-                    that.trigger('DataLoaded', 'Teachs');
-                }
+              data: {teacher_id: id},
+              success: function() {
+                that.trigger('DataLoaded', 'Teachs');
+              }
             });
+            console.log(teachersCollection);
 
-            var studentsCollection = new StudentsProxyCollectionForTeacherPage();
-            studentsCollection.fetch({
-                success: function() {
-                    that.trigger('DataLoaded', 'Students');
-                }
+            var worksCollection = new WorksCollectionOfTeacher();
+            worksCollection.fetch({
+              success: function() {
+                that.trigger('DataLoaded', 'Works');
+              }
             });
 
             var teacherChangeCollection = new TeacherChangeCollection();
             teacherChangeCollection.fetch({
-                success:function () {
-                    that.trigger('DataLoaded', 'FacultyChange');
-                }
+              success:function () {
+                that.trigger('DataLoaded', 'TeacherChange');
+              }
             });
 
             var isTeachLoaded = false;
-            var isStudentsLoaded = false;
-            var isFacChangeLoaded = false;
-
+            var isWorkssLoaded = false;
+            var isTeachChangeLoaded = false;
 
             this.on('DataLoaded', function (item) {
-                if (item == 'Teachs') {
-                    isTeachLoaded = true;
-                }
+              if (item == 'Teachs') {
+                isTeachLoaded = true;
+              }
 
-                if (item == 'Students'){
-                    isStudentsLoaded = true;
-                }
+              if (item == 'Works'){
+                isWorkssLoaded = true;
+              }
 
-                if (item == 'FacultyChange'){
-                    isFacChangeLoaded = true;
-                }
+              if (item == 'TeacherChange'){
+                isTeachChangeLoaded = true;
+              }
 
-                if ((isTeachLoaded && isFacChangeLoaded && isStudentsLoaded) == true){
-                    that.render(id, teachersCollection, studentsCollection, teacherChangeCollection);
-                }
+              if ((isTeachLoaded && isTeachChangeLoaded && isWorkssLoaded) == true){
+                that.render(id, teachersCollection, worksCollection, teacherChangeCollection);
+              }
             });
         },
 
-        render:function(id, teachersCollection, studentsCollection, teacherChangeCollection){
+        render:function(id, teachersCollection, worksCollection, teacherChangeCollection){
           var teacher = teachersCollection.get(id).toJSON();
 
-          var studentsJSON = studentsCollection.toJSON();
+          var worksJSON = worksCollection.toJSON();
 
-          var students = {};
-          for (var i = 0; i < studentsJSON.length; i++) {
-            var course_number = studentsJSON[i].course;
-            if (!(course_number in students)){
-              students[course_number] = [];
+          var works = {};
+          for (var i = 0; i < worksJSON.length; i++) {
+            var course_name = worksJSON[i].course_name;
+            if (!(course_name in works)){
+              works[course_name] = [];
             }
-            students[course_number].push(studentsJSON[i]);
+            works[course_name].push(worksJSON[i]);
           };
 
           var dataForMainTeacherTemplate = {
@@ -92,9 +93,9 @@ define([
           $("#content").html(compiledTemplate);
 
           var dataForTeacherThesisTemplate = {
-            students: students
+            works: works
           }
-          var teacherThesisCompiledTemplate = _.template(teacherThesisTemplate, dataForTeacherThesisTemplate);
+          var teacherThesisCompiledTemplate = _.template(teacherWorksTemplate, dataForTeacherThesisTemplate);
           $("#teacherPageContent").html(teacherThesisCompiledTemplate);
 
           var chartView = new ChartView({
@@ -105,5 +106,6 @@ define([
           return this;
         }
     });
+
     return TeacherView;
 });

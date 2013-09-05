@@ -43,7 +43,7 @@ header .navbar .yearBox .control-group, header .navbar .yearBox .form-horizontal
 	margin:0 !important;
 }
 header .control-group .control-label{
-	margin-top: 5px; 
+	margin-top: 5px;
 }
 .menuBox{
 	float:left;
@@ -369,7 +369,7 @@ div.help-block ul li{
 #tab-menu .nav-tabs a{
     border:none !important;
     border-bottom:1px solid #0088cc !important;
-}	
+}
 
 #tab-menu .nav-tabs a:hover {
 	background-color:#CFE4FC !important;
@@ -393,7 +393,7 @@ div.help-block ul li{
 tr.notverified {
 	background:#FAFAA5;
 	outline:2px solid yellow;
-}    
+}
 .needs-verification {
 	padding-left:30px !important;
 	background-image: url('../i/questionmark_yellow.png') !important;
@@ -416,11 +416,24 @@ tr.notverified {
 .admin-headline {
 	margin-top:25px !important;
 }
+.admin-buttons {
+	margin-top:20px;
+}
+.empty {
+	color: gray;
+	font-style:italic;
+}
 
 .wysiwyg {
 	overflow:hidden;
 }
-
+.datatables-pagination {
+	margin-top:10px;
+	padding-top:20px;
+}
+.dataTable {
+	margin-bottom:10px !important;
+}
 td.newItem .toggle-text{
   display:none !important;
 }
@@ -551,10 +564,10 @@ td.newItem .toggle-text{
 
 
 /****************/
-#list-of-tasks { 
-  list-style-type: none; 
-  margin: 0; 
-  padding: 0; 
+#list-of-tasks {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
   clear: both;
 }
 .draggable-item {
@@ -574,7 +587,7 @@ td.newItem .toggle-text{
   min-height: 20px !important;
 }
 .task-item-progress{
-  min-height: 20px !important; 
+  min-height: 20px !important;
   margin-bottom: 0 !important;
 }
 .icon-resize-vertical {
@@ -600,7 +613,7 @@ td.newItem .toggle-text{
 	cursor: default;
 }
 #main-header-button{
-	
+
 	font-family: Arial, Helvetica, sans-serif;
 	font-size: 14px;
 	color: #050505;
@@ -611,7 +624,7 @@ td.newItem .toggle-text{
 		#dbdbdb 50%,
 		#b5b5b5);
 	background: -webkit-gradient(
-		linear, left top, left bottom, 
+		linear, left top, left bottom,
 		from(#ffffff),
 		color-stop(0.50, #ebebeb),
 		color-stop(0.50, #dbdbdb),
@@ -635,14 +648,14 @@ td.newItem .toggle-text{
 
 
 }#main-header-button:hover{
-	
+
 	background: -moz-linear-gradient(
 		top,
 		#ffffff 0%,
 		#dbdbdb 50%,
 		#b5b5b5);
 	background: -webkit-gradient(
-		linear, left top, left bottom, 
+		linear, left top, left bottom,
 		from(#ffffff),
 		color-stop(0.50, #ebebeb),
 		to(#b5b5b5));
@@ -871,3 +884,20 @@ div.DTFC_LeftFootWrapper table {
 	width: 35%;
 }
 
+/* Modal window for add work in teacher page*/
+#dialogAddStudentWork {
+  width: 500px;
+}
+#txtAreaNameTheme {
+  width: 96%;
+}
+/* end modal window */
+
+/*-----search form---start---*/
+#search-form{
+ position:relative;
+ margin: 0;
+ top:5px;
+ background: transparent;
+}
+/*-----search form----end--*/

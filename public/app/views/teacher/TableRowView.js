@@ -11,18 +11,23 @@ define([
         template: _.template(tableRowTemplate),
         linkTo: null,
         events: {
-          'click .btn-danger': 'showRemoveDialog'
+          'click .btn-danger': 'showRemoveDialog',
+          'click .btn-success': 'addStudentToGroup'
         },
 
         showRemoveDialog: function(){
-          removeDialogView = new RemoveDialogView({model: this.model});
+          var message = 'Ви дійсно бажаєте видалити студента\n' +
+                        '<strong>' + this.model.get('student_full_name') + '</strong>';
+          var header = 'Видалення студента';
+          removeDialogView = new RemoveDialogView({model: this.model}, {message: message, header: header});
         },
 
         initialize:function(){
           var me = this;
           this.render();
           this.model.on('destroy', function(){
-            me.removeView();
+            console.log('Remove view');
+            me.remove();
           });
         },
 
@@ -32,8 +37,16 @@ define([
             this.$el.html(this.template(this.model.toJSON()));
             return this;
         },
-        removeView: function(){
 
+        removeView: function(){
+          this.remove();
+          alert('Remove view');
+        },
+
+        addStudentToGroup: function(){
+          attrs = {'group_pending': 1}
+          this.model.set(attrs);
+          this.model.save(attrs, {patch: true});
         }
     });
 

@@ -1,9 +1,6 @@
-<% for(var f in conf.fields){ %>
-    
-  
   <% var input_class;
      var text_class; 
-    if (conf.newModel){ 
+    if (newModel){ 
       var input_class = 'tab-input' 
       var text_class = 'tab-text'
     } else { 
@@ -11,8 +8,11 @@
         text_class = 'tab-text toggle-text'
     }; %>
 
-  
-  <td <% if (conf.newModel) {%> id="newElementRow" <% }%>>
+
+<% for(var f in conf.fields){ %>
+    
+
+  <td <% if (newModel) {%> id="newElementRow" <% }%>>
     
     <% //-------- it is a text field %>
 
@@ -21,7 +21,7 @@
 
       <input type="text" name="<%=f %>" class="<%= input_class %>" value="<%= model[f] %>"/>
       <span class="<%= text_class %>">
-        <%=  model[f] %>
+        <%=  model[f] || 'blah' %>
       </span>
 
 
@@ -30,21 +30,18 @@
 
     <% } else if (conf.fields[f]['type'] == 'select') { %>
           
-     
-      <select class="<%= input_class %>" name="<%=f %>">
+      <select class="select <%= input_class %>" name="<%=f %>">
         
 
         <% var options_array = conf.fields[f]['collection'].toJSON(); %>
 
         <% for (i=0; i<options_array.length; i++){ %>
-
-
-          <%//-----add 'selected' to current option %>
+         
+         <%//-----add 'selected' to current option %>
           
-          <%if((options_array[i]['id'] == model['id']) && !(conf.newModel)){ 
+          <%if((options_array[i]['id'] == model[f])){ %>
             
-            var active_name = options_array[i]['name']; %>
-
+            <% var active_name = options_array[i]['name']; %>
              <option value="<%= options_array[i]['id'] %>" selected>
                <%= active_name %>
              </option>
@@ -62,9 +59,8 @@
 
       </select> 
 
-
       <span class="<%= text_class %>">  
-        <%=  active_name %>
+        <%=  active_name || '<i class="empty">Пусте поле</i>'%>
       </span>
 
 
@@ -87,7 +83,7 @@
 
 
 
-<% if (conf.newModel){ %>
+<% if (newModel){ %>
   <td></td>
   <td class="text-left">
     <button class='btn btn-success' id='create_button'>Додати</button>

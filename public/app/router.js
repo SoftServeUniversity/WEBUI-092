@@ -10,7 +10,6 @@ define([
   'views/course/CourseProgressView',
   'views/faculty/MainFacultyView',
   'views/department/MainDepartmentView',
-  'views/teacher/TeacherProgressView',
   'views/work/MainWorkView',
   'views/task/taskView',
   'collections/tasks/TasksCollection',
@@ -21,29 +20,33 @@ define([
   'views/teacher/TeacherGroupView',
   'views/user/signUpView',
   'views/info/infoView',
-  'views/breadcrumbs/BreadcrumbsView'
+  'views/breadcrumbs/BreadcrumbsView',
+  'views/search/SearchView'
 
 
 
   ], function($, _, Backbone, GlobalUser, FacultiesListView, RegistrationView, GroupProgressView,
   	          StudentProgressView, CourseProgressView,  MainFacultyView, MainDepartmentView,
-  	          TeacherProgressView, MainWorkView, TaskView, TasksCollection, NotFoundView,
-              AdminFacultyView, AdminView, MainTeacherView, TeacherGroupView, UserSingUpView, 
-              InfoView, BreadcrumbsView
+  	          MainWorkView, TaskView, TasksCollection, NotFoundView,
+              AdminFacultyView, AdminView, MainTeacherView, TeacherGroupView, UserSingUpView,
+              InfoView, BreadcrumbsView, SearchView
+
              ) {
 
 
-  	GlobalEventBus = _.extend({}, Backbone.Events);
+    GlobalEventBus = _.extend({}, Backbone.Events);
 
 
     var AppRouter = Backbone.Router.extend({
+      initialize: function(){
+        var searchView = new SearchView();
+      },
       routes: {
         ''                       : 'homeAction',
         'group/:id'              : 'groupProgressAction',
         'student/:id'            : 'studentProgressAction',
         'course/:id'             : 'courseProgressAction',
         'faculty/:id'            : 'facultyAction',
-        'teacher/p:id'           : 'teacherProgressAction',
         'teacher/:id'            : 'teacherAction',
         'teacher/:id/group'      : 'teacherGroupAction',
         'department/:id'         : 'departmentAction',
@@ -72,7 +75,7 @@ define([
       });
 
       app_router.on('route:workShowAction', function (id){
-        
+
         this.workView = new MainWorkView({"id": id});
         var registrationView = new RegistrationView();
         registrationView.render();
@@ -137,14 +140,6 @@ define([
         var breadcrumbsView = new BreadcrumbsView();
       });
 
-      app_router.on('route:teacherProgressAction', function (actions) {
-        var teacherProgressView = new TeacherProgressView();
-        teacherProgressView.render();
-        var registrationView = new RegistrationView();
-        registrationView.render();
-        var breadcrumbsView = new BreadcrumbsView();
-      });
-
       app_router.on('route:teacherAction', function (id) {
         var mainTeacherView = new MainTeacherView(id);
         var breadcrumbsView = new BreadcrumbsView();
@@ -167,7 +162,7 @@ define([
 
       app_router.on('route:editProfile', function (){
         var userSignUp = new UserSingUpView();
-        userSignUp.edit(); 
+        userSignUp.edit();
         var breadcrumbsView = new BreadcrumbsView();
         var registrationView = new RegistrationView();
         registrationView.render();
@@ -175,7 +170,7 @@ define([
 
       app_router.on('route:cancelAccount', function (){
         var userSignUp = new UserSingUpView();
-        userSignUp.cancel(); 
+        userSignUp.cancel();
         var breadcrumbsView = new BreadcrumbsView();
         var registrationView = new RegistrationView();
         registrationView.render();

@@ -8,19 +8,15 @@ define([
 ], function($, _, Backbone, removeDialogTemplate){
 
   var RemoveDialogView = Backbone.View.extend({
-    
+
     el: '#content',
     el_modal: '#delete-modal',
 
     initialize: function (model, data) {
       this.data = data;
       this.template = _.template(removeDialogTemplate);
-
       _.bindAll(this, 'cancelAction');
       _.bindAll(this, 'removeElement');
-      _.bindAll(this, 'keyPressHandler');
-
-      $(document).on('keypress', this.keyPressHandler);
 
       this.render();
     },
@@ -28,13 +24,6 @@ define([
     events : {
       'click .confirm-yes' : 'removeElement',
       'click .confirm-no' : 'cancelAction'
-    },
-
-    //to confirm removal with Enter
-    keyPressHandler: function(e){
-        if (e.keyCode == 13){
-            this.removeElement();
-      }
     },
 
     hideModal: function () {
@@ -48,11 +37,12 @@ define([
 
     render: function () {
       if($(this.el_modal).length==0){
-
         $(this.el).append(this.template(this.data));
-  	  }
+      }
+      $('#delete-modal_header').html(this.data.header);
+      $('#delete-modal_message').html(this.data.message);
       this.showModal();
-  	  return this;
+      return this;
     },
 
     unLink: function(){
@@ -64,13 +54,17 @@ define([
     },
 
     removeElement: function (e) {
-      this.model.destroy();
-
-      $('.nav-tabs .active').trigger('click')
+      this.model.destroy({
+        wait: true,
+        success: function() {
+          console.log(that.parent.collection);
+        }
+      });
       this.hideModal();
     }
 
   })
-return RemoveDialogView;
+
+  return RemoveDialogView;
 
 });
