@@ -1,5 +1,5 @@
 class Teacher < ActiveRecord::Base
-  attr_accessible :degree, :department_id, :title, :user_id
+  attr_accessible :degree, :department_id, :title, :user_id, :user_attributes
 
   validates :degree, :department_id, :title, presence: true
 
@@ -9,6 +9,8 @@ class Teacher < ActiveRecord::Base
 
   after_create :add_panding_role
   has_many :progress_changes, :as => :progressable
+
+  accepts_nested_attributes_for :user
 
   #all new users with 'teacher' assoction present, will automaticly have role_panding => true
   def add_panding_role

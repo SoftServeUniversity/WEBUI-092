@@ -57,7 +57,6 @@ define([
       this.model.destroy({
         wait: true,
         success: function() {
-          console.log(that.parent.collection);
         }
       });
       this.hideModal();
