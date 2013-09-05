@@ -94,26 +94,34 @@
 
   <td class="text-right">
 
-    <% if (model['verified']==0){ %>
+    <% if (model['role_pending'] == true){ %>
       <button class='btn btn-warning verify-button' type="button" data-toggle="modal" data-target=''>Підтвердити</button>
+   <% } else { %>
+      <span class="text-left empty">Підтверджений &nbsp;&nbsp;</span>
    <% } %>
 
   </td>
 
-  <td>
+  
 
     <% if (!conf['buttons'] || conf['buttons']['employee'] == true) { %>
-      <a href="#" class='employee-button  open-modal'><button class='btn' type="button" data-toggle="modal" data-target='employee-modal'>Викладачі кафедри</button></a>
+      <td>
+          <a href="#" class='employee-button  open-modal'><button class='btn' type="button" data-toggle="modal" data-target='employee-modal'>Викладачі кафедри</button></a>
+      </td>
     <% } %>
 
     <% if (!conf['buttons'] || conf['buttons']['remove'] != false) { %>
-      <button class='btn open-modal delete-button btn-danger' type="button" data-toggle="modal" data-target='delete-modal'>Видалити</button>
+      <td>
+        <button class='btn open-modal delete-button btn-danger' type="button" data-toggle="modal" data-target='delete-modal'>Видалити</button>
+      </td>
     <% } %>
 
     <% if (conf['buttons'] && conf['buttons']['edit']) { %>
-      <button class='btn open-modal edit-button' type="button" data-toggle="modal" data-target='delete-modal'>Редагувати</button>
+      <td>
+        <button class='btn open-modal edit-button' type="button" data-toggle="modal"  data-target='delete-modal'>Редагувати</button>
+      </td>
     <% } %>
 
-  </td>
+ 
 
 <% } %>

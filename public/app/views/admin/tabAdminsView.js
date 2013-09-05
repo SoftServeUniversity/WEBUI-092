@@ -28,16 +28,16 @@ define([
         
         fields: {
           
-          name: {
-            label:'Ім\'я',
-            type :'text' 
-          },
-          
           last_name: {
             label:'Прізвище',
             type :'text'
           },
-          
+
+          name: {
+            label:'Ім\'я',
+            type :'text' 
+          }, 
+                   
           middle_name: {
             label:'По-батькові',
             type :'text'

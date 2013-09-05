@@ -34,15 +34,19 @@ define([
         
         fields    : {
           
-          name: {
-            label: 'Ім\'я викладача',
-            collection : 'text'
+          last_name: {
+            label: 'Прізвище',
+            type : 'text'
           },
 
-          faculty_id: {
-            label: 'Факультет',
-            type:'select',
-            collection:me.collections.faculties
+          name: {
+            label: 'Ім\'я',
+            type : 'text'
+          },
+
+          middle_name: {
+            label: 'По-батькові',
+            type : 'text'
           },
 
           department_id: {
