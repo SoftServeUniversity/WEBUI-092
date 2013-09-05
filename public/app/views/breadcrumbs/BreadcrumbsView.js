@@ -29,15 +29,13 @@ define([
       var seen = {};
 
       function breadcrumbsFetch(){
-        console.log('step')
         current.fetch({
           async:false,
           success:function () {
             var a = current.toJSON();
 
-            
             for(var i = 0; i < a.length; i++){
-              //console.log(a);
+
               if(a[i].id == index_page){
                 
               var arr = [];
@@ -45,7 +43,6 @@ define([
 
                 breadcrumbsObj.push(arr); 
                   
-
                 if (a[i].work_id){
                   
                   current = new WorksCollection();
@@ -57,7 +54,6 @@ define([
                   current = new StudentsCollection();
                   breadcrumbsFetch();
                   cssClass = "work";
-
                 } else if(a[i].group_id){
 
                   current = new GroupsCollection();
@@ -65,10 +61,13 @@ define([
                   cssClass = "student";
 
                 } else if(a[i].degree){
-                  current = new DepartmentsCollection();
-                  breadcrumbsFetch();
+                
+                current = new DepartmentsCollection();
+                breadcrumbsFetch();
+
+                $('.breadcrumb a').find('.department').parent().nextAll().remove();
+
                   cssClass = "teacher";
-                  $('.breadcrumb a').find('.department').parent().nextAll().remove();
                 } else if(a[i].department_id){
                   current = new DepartmentsCollection();
                   breadcrumbsFetch();
@@ -111,7 +110,7 @@ define([
           str = str.replace(/y$/, "ie");
           
 
-          console.log(str);
+          
           var collectionName = str+"sCollection";
           
               
@@ -125,7 +124,7 @@ define([
         }
         
       }
-        console.log(collType);
+       
 
         if( 
             collType == 'faculty' || 
