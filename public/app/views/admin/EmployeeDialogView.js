@@ -20,10 +20,9 @@ var EmployeeDialogView = Backbone.View.extend(
 
     this.collection = new TeachersCollection();
     this.collection.fetch({async: false, data: { filter: { department_id: department_id }}});
-    var i = 0;
     _.each(this.collection.models,
-        function(teacher){
-        teacher.set('order', ++i);
+        function(teacher, index){
+        teacher.set('order', index + 1);
         teacher.set('pib',
             teacher.get('last_name') + ' ' +
                 teacher.get('name') + ' ' +
@@ -89,7 +88,7 @@ var EmployeeDialogView = Backbone.View.extend(
       //render rows
       this.collection.each(function(item) {
           var itemView = new DialogItemView({ model: item, conf: me.config, newModel: false });
-          me.$('#modal-table-container #tab-body').html(itemView.render().$el)
+          me.$('#modal-table-container #tab-body').append(itemView.render().$el)
       });
 
       this.showModal();
