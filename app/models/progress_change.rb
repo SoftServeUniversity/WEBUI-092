@@ -12,7 +12,7 @@ class ProgressChange < ActiveRecord::Base
       puts res
       p = ProgressChange.create! progressable_id: self.id, progressable_type: self.class.name, progress: res
     end
-      return res
+    return res
   end
 
 end
