@@ -69,20 +69,9 @@
 
     <% } else if (conf.fields[f]['type'] == 'static') {%>      
 
-      <span>  
-
-            <% var options_array = conf.fields[f]['collection'].toJSON(); %>
- 
-            <% for (i=0; i<options_array.length; i++){ %>
- 
-              <%if(options_array[i]['id'] == model[f]){  
-                var active_name = options_array[i]['name']; %>
-                <%= active_name  %>
-              <% } %>      
-                        
-            <% } %>
-        
-      </span>          
+      <span class="<%= text_class %>">
+        <%=  model[f] %>
+      </span>
      
     <% } %>
 
@@ -112,6 +101,10 @@
   </td>
 
   <td>
+
+    <% if (!conf['buttons'] || conf['buttons']['employee'] == true) { %>
+      <a href="#" class='employee-button  open-modal'><button class='btn' type="button" data-toggle="modal" data-target='employee-modal'>Викладачі кафедри</button></a>
+    <% } %>
 
     <% if (!conf['buttons'] || conf['buttons']['remove'] != false) { %>
       <button class='btn open-modal delete-button btn-danger' type="button" data-toggle="modal" data-target='delete-modal'>Видалити</button>

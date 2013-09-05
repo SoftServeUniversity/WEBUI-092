@@ -16,8 +16,8 @@ define([
     initialize: function(){
       
       var me = this;
-      var config; 
-      
+      var config;
+
       this.loadData();
       this.on('dataLoaded', function(){
         
@@ -26,7 +26,7 @@ define([
         me.collection = this.config.collection;
         
         this.config = me.augmentConfig();
-        
+
         me.render(this.config)
 
         //all content has loaded, it's time for parent view to render tab
