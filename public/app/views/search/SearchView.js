@@ -37,24 +37,24 @@ define([
           people = teachObj[0].concat(studObj[0]);
           var str = JSON.stringify(people);
           var parsed = JSON.parse(str, function(k, v) {
-              if (k === "last_name") 
+              if (k === "name") 
                   this.label = v;
               else
                   return v;
           });
-          projects = parsed;
-          console.log(parsed);
+
+
           $( "#search-field" ).autocomplete({
             minLength: 2,
-            source: projects,
+            source: parsed,
             focus: function( event, ui ) {
-              $( "#search-field" ).val( ui.item.label +' '+ui.item.name);
+              $( "#search-field" ).val( ui.item.label);
 
               return false;
             },
             select: function( event, ui ) {
               
-              $( "#search-field" ).val( ui.item.label +' '+ui.item.name);
+              $( "#search-field" ).val( ui.item.label);
         
               
               return false;
@@ -70,7 +70,7 @@ define([
         
 
             console.log(href);
-            var a = $('<a>' + item.label + " <span class='dark'>" + item.name + '</span></a>').attr('href', href)
+            var a = $('<a>' + item.label +'</a>').attr('href', href)
             return $( "<li>" )
             .append(a)
             .appendTo( ul );

@@ -885,3 +885,15 @@ div.DTFC_LeftFootWrapper table {
 	width: 35%;
 }
 
+/*-----search form---start---*/
+#search-form{
+ position:relative;
+ margin: 0;
+ top:5px;
+ background: transparent;
+}
+
+#search-form span.dark{
+ color:grey;
+}
+/*-----search form----end--*/
