@@ -76,7 +76,9 @@ define([
       });
 
       app_router.on('route:workShowAction', function (id){
-        
+        if(this.workView){
+          this.workView.$el.undelegate();
+        }
         this.workView = new MainWorkView({"id": id});
         var registrationView = new RegistrationView();
         registrationView.render();
@@ -195,17 +197,10 @@ define([
 
 
       app_router.on('route:taskShow', function (id) {
-
-          /*var tasks = new TasksCollection;
-          tasks.fetch({async:false});
-          var task = tasks.get(id);
-          if(!tasks.get(id)){
-            var pageNotFound = new NotFoundView();
-            pageNotFound.render();
-            return;
-<<<<<<< HEAD
-          }*/
-          var currentTask = new TaskView({"id": id});
+          if(this.currentTask){
+            this.currentTask.$el.undelegate();
+          }
+          this.currentTask = new TaskView({"id": id});
           var breadcrumbsView = new BreadcrumbsView();
           var registrationView = new RegistrationView();
         registrationView.render();
