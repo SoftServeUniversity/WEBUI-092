@@ -109,7 +109,6 @@ ActiveRecord::Schema.define(:version => 20130823180010) do
     t.integer  "work_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
-    t.integer  "priority"
   end
 
   add_index "tasks", ["work_id"], :name => "index_tasks_on_work_id"

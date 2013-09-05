@@ -23,7 +23,7 @@ var EmployeeDialogView = Backbone.View.extend(
     var i = 0;
     _.each(this.collection.models,
         function(teacher){
-        teacher.set('order', i++);
+        teacher.set('order', ++i);
         teacher.set('pib',
             teacher.get('last_name') + ' ' +
                 teacher.get('name') + ' ' +
@@ -31,7 +31,7 @@ var EmployeeDialogView = Backbone.View.extend(
         });
     this.config = this.setConfig();
     this.render();
-  },      
+  },
 
   setConfig: function(){
       var me = this;
