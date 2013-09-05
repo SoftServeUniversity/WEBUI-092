@@ -43,12 +43,12 @@ define([
                   return v;
           });
 
-          console.log(parsed);
           $( "#search-field" ).autocomplete({
             minLength: 2,
             source: parsed,
             focus: function( event, ui ) {
-              $( "#search-field" ).val( ui.item.label);
+
+              $( "#search-field" ).val( ui.item.label + "_№ "+ui.item.id);
 
               return false;
             },
@@ -63,17 +63,18 @@ define([
           .data( "ui-autocomplete" )._renderItem = function( ul, item ) {
            
               if(item.group_id){
+                var status = 'cтуд.';
                 var href = '#/student/'+item.id;
               }else{
                 var href = '#/teacher/'+item.id;
+                var status = 'викл.';
               }
-        
 
-            console.log(href);
-            var a = $('<a>' + item.label +'</a>').attr('href', href)
+            var a = $('<a>' + item.label +" "+"User №"+item.id+" "+status+'</a>').attr('href', href);
             return $( "<li>" )
             .append(a)
             .appendTo( ul );
+
           };
 
      }

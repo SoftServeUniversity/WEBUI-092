@@ -5,7 +5,7 @@
         "first_name": "Іван",
         "middle_name": "Іванович",
         "group_name": "ІПП-34",
-        "email": "Матвійчук@uif.com",
+        "email": "Matviy@gmail.com",
         "group_pending": 1
     },
     {
@@ -14,7 +14,7 @@
         "first_name": "Петро",
         "middle_name": "Петрович",
         "group_name": "ІПП-34",
-        "email": "Гарасименко@uif.com",
+        "email": "Garas@gmail.com",
         "group_pending": 1
     },
         {
@@ -23,7 +23,7 @@
         "first_name": "Василь",
         "middle_name": "Вікторович",
         "group_name": "ІПП-34",
-        "email": "Тиміш@uif.com",
+        "email": "Tymish@gmail.com",
         "group_pending": 0
     },
         {
@@ -32,16 +32,16 @@
         "first_name": "Марія",
         "middle_name": "Теодорівна",
         "group_name": "ІПП-34",
-        "email": "Головач@uif.com",
+        "email": "Golovach@gmail.com",
         "group_pending": 0
     },
     {
         "id": "105",
-        "last_name": "Дзіжзьо",
+        "last_name": "Дзідзьо",
         "first_name": "Фернандо",
         "middle_name": "Амінійович",
         "group_name": "ІПП-34",
-        "email": "Дзіжзьо@uif.com",
+        "email": "Dzid@gmail.com",
         "group_pending": 1
     },
     {
@@ -50,7 +50,7 @@
         "first_name": "Ігор",
         "middle_name": "Григорович",
         "group_name": "ІПП-34",
-        "email": "Каструба@uif.com",
+        "email": "Kastruba@gmail.com",
         "group_pending": 0
     },
         {
@@ -59,7 +59,7 @@
         "first_name": "Микола",
         "middle_name": "Юрійович",
         "group_name": "ІПП-34",
-        "email": "Крутивус@uif.com",
+        "email": "Krutyvus@gmail.com",
         "group_pending": 1
     },
         {
@@ -68,7 +68,7 @@
         "first_name": "Тарас",
         "middle_name": "Матвійович",
         "group_name": "ІПП-34",
-        "email": "Макогін@uif.com",
+        "email": "Makogin@gmail.com",
         "group_pending": 0
     },
         {
@@ -77,7 +77,7 @@
         "first_name": "Ігор",
         "middle_name": "Степанович",
         "group_name": "ІПП-34",
-        "email": "Крук@uif.com",
+        "email": "Kruk@gmail.com",
         "group_pending": 0
     }
 ]

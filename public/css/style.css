@@ -318,14 +318,22 @@ hr.task-comment-line{
 #launch #form-checkbox{
 	font-size: .8em;
 }
+#launch-btn{
+	display:none;
+}
 #launch select{
 	background:transparent;
 }
 #regMod{
 	display: none;
 }
-
-
+#sign-up-container{
+	width:600px;
+	margin:auto;
+}
+#sendFormReg{
+	margin-right:-115px;
+}
 .gradient {
 	background: #F5F5F5; /* Для старых браузров */
 	background: -moz-linear-gradient(top, #F5F5F5, #F5F5F5, #fff); /* Firefox 3.6+ */

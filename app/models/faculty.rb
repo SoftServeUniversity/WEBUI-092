@@ -19,16 +19,21 @@ class Faculty < ActiveRecord::Base
     arr0 = self.courses.to_a
     arr1 = self.departments.to_a
     res = 0
-    if (arr0.empty? == false or arr1.empty? == false)
-      arr0.each { |a| res += a.aggregate.to_i }
-      puts arr0.length
+    res1 = 0
+    if (arr0.empty? == false)
+      arr0.each { |a| res += a.aggregate }
+      #puts arr0.length
       puts res
-      #second array
-      arr1.each { |a| res += a.aggregate.to_i }
-      puts arr1.length
-      puts res
-      res = res/(arr1.length+arr0.length)
+      res = res/arr0.length
     end
+    if(arr1.empty? == false)
+      #second array
+      arr1.each { |a| res1 += a.aggregate }
+      #puts arr1.length
+      puts res1
+      res1 = res1/arr1.length
+    end
+      res = (res + res1)/2
     p = ProgressChange.create! progressable_id: self.id, progressable_type: self.class.name, progress: res
     return res
   end

@@ -9,10 +9,15 @@
 #
 GMAIL_USERNAME: Your_Username
 GMAIL_PASSWORD: Your_Password
-ADMIN_NAME: First User
+ADMIN_NAME: Ivan
+ADMIN_LAST_NAME: Chyr
+ADMIN_MIDDLE_NAME: Andriy
 ADMIN_EMAIL: user@example.com
 ADMIN_PASSWORD: changeme
-STUDENT_NAME: Student User
+#Student
+STUDENT_NAME: Oleg
+STUDENT_LAST_NAME: Zaremba
+STUDENT_MIDDLE_NAME: Petro
 STUDENT_EMAIL: lena.og@inbox.ru
 STUDENT_PASSWORD: chanqwer
 ROLES: [admin, faculty_admin, student, teacher, guest]

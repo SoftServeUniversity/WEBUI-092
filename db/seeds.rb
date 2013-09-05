@@ -14,12 +14,12 @@ YAML.load(ENV['ROLES']).each do |role|
 end
 
 puts 'DEFAULT USERS 1'
-user = User.find_or_create_by_email :name => ENV['ADMIN_NAME'].dup, :email => ENV['ADMIN_EMAIL'].dup, :password => ENV['ADMIN_PASSWORD'].dup, :password_confirmation => ENV['ADMIN_PASSWORD'].dup
+user = User.find_or_create_by_email :name => ENV['ADMIN_NAME'].dup, :last_name => ENV['ADMIN_LAST_NAME'].dup, :middle_name => ENV['ADMIN_MIDDLE_NAME'].dup, :email => ENV['ADMIN_EMAIL'].dup, :password => ENV['ADMIN_PASSWORD'].dup, :password_confirmation => ENV['ADMIN_PASSWORD'].dup
 puts 'user: ' << user.name
 user.add_role :admin
 
 puts 'DEFAULT USERS 2'
-usr = User.find_or_create_by_email :name => ENV['ADMIN_NAME'].dup, :email => ENV['STUDENT_EMAIL'].dup, :password => ENV['ADMIN_PASSWORD'].dup, :password_confirmation => ENV['ADMIN_PASSWORD'].dup
+usr = User.find_or_create_by_email :name => ENV['STUDENT_NAME'].dup, :last_name => ENV['STUDENT_LAST_NAME'].dup, :middle_name => ENV['STUDENT_MIDDLE_NAME'].dup, :email => ENV['STUDENT_EMAIL'].dup, :password => ENV['ADMIN_PASSWORD'].dup, :password_confirmation => ENV['ADMIN_PASSWORD'].dup
 puts 'usr: ' << usr.name
 user.add_role :teacher
 
@@ -106,10 +106,34 @@ end
 if Task.all.empty?
   s = 'Task_ABC'
   10.times do |time| 
-    d = Task.create! name: (s.next! + time.to_s), work_id: rand(10) + 1
+    d = Task.create! name: (s.next! + time.to_s), priority: 0, work_id: Work.all[rand(10)].id
     puts 'created '<< d.name
   end
 end
 
+#Populate Progress Groups
+  10.times do |time| 
+    d = ProgressChange.create! progressable_id: time+1, progressable_type: "Group", progress: rand(79)
+  end
+#Populate Progress Course
+  10.times do |time| 
+    d = ProgressChange.create! progressable_id: time+1, progressable_type: "Course", progress: rand(69)
+  end
+#Populate Progress Department
+  10.times do |time| 
+    d = ProgressChange.create! progressable_id: time+1, progressable_type: "Department", progress: rand(79)
+  end
+#Populate Progress Faculty
+  10.times do |time| 
+    d = ProgressChange.create! progressable_id: time+1, progressable_type: "Faculty", progress: rand(59)
+  end
+#Populate Progress Works
+ 10.times do |time| 
+    d = ProgressChange.create! progressable_id: time+1, progressable_type: "Work", progress: rand(89)
+  end
+#Populate Progress
+# p = ProgressChange.new
+# p.save
+# p.aggregate
 
 
