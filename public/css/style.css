@@ -884,7 +884,6 @@ div.DTFC_LeftFootWrapper table {
 	width: 35%;
 }
 
-<<<<<<< HEAD
 /* Modal window for add work in teacher page*/
 #dialogAddStudentWork {
   width: 500px;
@@ -893,7 +892,7 @@ div.DTFC_LeftFootWrapper table {
   width: 96%;
 }
 /* end modal window */
-=======
+
 /*-----search form---start---*/
 #search-form{
  position:relative;
@@ -901,9 +900,4 @@ div.DTFC_LeftFootWrapper table {
  top:5px;
  background: transparent;
 }
-
-#search-form span.dark{
- color:grey;
-}
 /*-----search form----end--*/
->>>>>>> 6cca73b62b273891a10328fe17e8b6ec1acfb0b0
