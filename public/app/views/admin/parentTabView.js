@@ -89,7 +89,7 @@ define([
       var collection = me.config.collection.toJSON();
       
       $.each(collection, function(key, value){
-        if (value['verified'] == 0){
+        if (value['role_pending'] == true){
           $('#'+me.config.tab_id).addClass('needs-verification')
         }
       })

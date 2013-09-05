@@ -40,6 +40,8 @@ define([
     var AppRouter = Backbone.Router.extend({
       initialize: function(){
         var searchView = new SearchView();
+        var registrationView = new RegistrationView();
+        registrationView.render();
       },
       routes: {
         ''                       : 'homeAction',
@@ -69,23 +71,24 @@ define([
       app_router.on('route:homeAction', function (actions) {
        // display the home page
        var facultiesListView = new FacultiesListView();
-       var registrationView = new RegistrationView();
-       registrationView.render();
        var breadcrumbsView = new BreadcrumbsView();
       });
 
       app_router.on('route:workShowAction', function (id){
 
+
+        if(this.workView){
+          this.workView.$el.undelegate();
+        }
         this.workView = new MainWorkView({"id": id});
-        var registrationView = new RegistrationView();
-        registrationView.render();
+
+
         var breadcrumbsView = new BreadcrumbsView();
+        this.workView = new MainWorkView({"id": id});
       });
 
       app_router.on('route:viewAdminFacultyPage', function (){
         var adminFacultyView = new AdminFacultyView();
-        var registrationView = new RegistrationView();
-        registrationView.render();
         var breadcrumbsView = new BreadcrumbsView();
       });
 
@@ -98,8 +101,6 @@ define([
 
         var groupProgressView = new GroupProgressView();
         groupProgressView.render();
-        var registrationView = new RegistrationView();
-        registrationView.render();
         var breadcrumbsView = new BreadcrumbsView();
       });
 
@@ -108,8 +109,6 @@ define([
         var studentProgressView = new StudentProgressView();
         studentProgressView.initialize();
         studentProgressView.loadData(id);
-        var registrationView = new RegistrationView();
-        registrationView.render();
         var breadcrumbsView = new BreadcrumbsView();
       });
 
@@ -117,8 +116,6 @@ define([
 
         var courseProgressView = new CourseProgressView();
         courseProgressView.render();
-        var registrationView = new RegistrationView();
-        registrationView.render();
         var breadcrumbsView = new BreadcrumbsView();
       });
 
@@ -126,8 +123,6 @@ define([
         var mainFacultyView = new MainFacultyView();
         mainFacultyView.initialize();
         mainFacultyView.loadData(id);
-        var registrationView = new RegistrationView();
-        registrationView.render();
         var breadcrumbsView = new BreadcrumbsView();
       });
 
@@ -135,57 +130,47 @@ define([
         var mainDepartmentView = new MainDepartmentView();
         mainDepartmentView.initialize();
         mainDepartmentView.loadData(id);
-        var registrationView = new RegistrationView();
-        registrationView.render();
         var breadcrumbsView = new BreadcrumbsView();
       });
 
       app_router.on('route:teacherAction', function (id) {
         var mainTeacherView = new MainTeacherView(id);
         var breadcrumbsView = new BreadcrumbsView();
-        var registrationView = new RegistrationView();
-        registrationView.render();
       });
 
       app_router.on('route:teacherGroupAction', function (id) {
         var teacherGroupView = new TeacherGroupView(id);
         var breadcrumbsView = new BreadcrumbsView();
-        var registrationView = new RegistrationView();
-        registrationView.render();
       });
 
       app_router.on('route:userSingUp', function(){
         var userSignUp = new UserSingUpView();
-        userSignUp.render();
         var breadcrumbsView = new BreadcrumbsView();
+        userSignUp.render();
       });
 
       app_router.on('route:editProfile', function (){
         var userSignUp = new UserSingUpView();
-        userSignUp.edit();
         var breadcrumbsView = new BreadcrumbsView();
-        var registrationView = new RegistrationView();
-        registrationView.render();
+        userSignUp.edit();
       });
 
       app_router.on('route:cancelAccount', function (){
         var userSignUp = new UserSingUpView();
-        userSignUp.cancel();
         var breadcrumbsView = new BreadcrumbsView();
-        var registrationView = new RegistrationView();
-        registrationView.render();
+        userSignUp.cancel();
       });
 
       app_router.on('route:infoAction', function(){
         var userSignUp = new UserSingUpView();
         var infoView = new InfoView();
         var breadcrumbsView = new BreadcrumbsView();
-        var registrationView = new RegistrationView();
-        registrationView.render();
       });
 
 
       app_router.on('route:taskShow', function (id) {
+
+        var breadcrumbsView = new BreadcrumbsView();
 
           /*var tasks = new TasksCollection;
           tasks.fetch({async:false});
@@ -194,20 +179,23 @@ define([
             var pageNotFound = new NotFoundView();
             pageNotFound.render();
             return;
-<<<<<<< HEAD
+
           }*/
           var currentTask = new TaskView({"id": id});
-          var breadcrumbsView = new BreadcrumbsView();
-          var registrationView = new RegistrationView();
-        registrationView.render();
+
+
+          if(this.currentTask){
+            this.currentTask.$el.undelegate();
+          }
+          this.currentTask = new TaskView({"id": id});
+
       });
 
       app_router.on('route:defaultAction', function (actions) {
+        var breadcrumbsView = new BreadcrumbsView();
         // We have no matching route, lets display the home page
         var facultiesListView = new FacultiesListView();
         facultiesListView.loadData();
-        var registrationView = new RegistrationView();
-        registrationView.render();
       });
       Backbone.history.start();
     };

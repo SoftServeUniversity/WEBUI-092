@@ -2,6 +2,7 @@
 
 $(function () { 
   //session
+  $('#launch-btn').show();
   $(".tip").tooltip();
   $("input[type=text], input[type=password]").jqBootstrapValidation(); 
   // #launch-btn is a dinamic element, that because we need to delegate it functionality

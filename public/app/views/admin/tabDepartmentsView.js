@@ -5,16 +5,16 @@ define([
   'views/admin/parentTabView',
   'models/department/DepartmentModel',
   'collections/departments/DepartmentsCollection',
-  'collections/teachers/TeachersCollection'
+  'collections/teachers/teachersProxyCollection'
 
 ], function($, _, Backbone, ParentTabView, DepartmentModel, DepartmentsCollection,
-             TeachersCollection){
+             TeachersProxyCollection){
    
   var TabDepartmentsView = ParentTabView.extend({
 
     collections_classes: {
       departments : DepartmentsCollection,
-      teachers    : TeachersCollection
+      teachers    : TeachersProxyCollection
     },
 
     setConfig: function(){
@@ -33,7 +33,7 @@ define([
             type:'text'
           },
 
-          teacher_id: {
+          user_id: {
             label: 'Завідувач кафедри',
             type:'select',
             collection:me.collections.teachers
