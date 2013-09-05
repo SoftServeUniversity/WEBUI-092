@@ -111,5 +111,11 @@ if Task.all.empty?
   end
 end
 
+#Populate Progress
+p = ProgressChange.new
+p.save
+p.aggregate
+p.delete
+
 
 
