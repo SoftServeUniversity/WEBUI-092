@@ -20,18 +20,16 @@ var EmployeeDialogView = Backbone.View.extend(
 
     this.collection = new TeachersCollection();
     this.collection.fetch({async: false, data: { filter: { department_id: department_id }}});
-      i = 0;
+    var i = 0;
     _.each(this.collection.models,
         function(teacher){
-        teacher.set('order', ++i);
+        teacher.set('order', i++);
         teacher.set('pib',
             teacher.get('last_name') + ' ' +
                 teacher.get('name') + ' ' +
                 teacher.get('middle_name'));
         });
-
     this.config = this.setConfig();
-
     this.render();
   },      
 
