@@ -12,12 +12,12 @@ GMAIL_PASSWORD: Your_Password
 ADMIN_NAME: Ivan
 ADMIN_LAST_NAME: Chyr
 ADMIN_MIDDLE_NAME: Andriy
-ADMIN_EMAIL: lena.og@inbox.ru
+ADMIN_EMAIL: user1@inbox.ru
 ADMIN_PASSWORD: changeme
 #Student
 STUDENT_NAME: Oleg
 STUDENT_LAST_NAME: Zaremba
 STUDENT_MIDDLE_NAME: Petro
-STUDENT_EMAIL: jaroslav101@mail.ru
+STUDENT_EMAIL: user@inbox.ru
 STUDENT_PASSWORD: chanqwer
 ROLES: [admin, faculty_admin, student, teacher, guest]
