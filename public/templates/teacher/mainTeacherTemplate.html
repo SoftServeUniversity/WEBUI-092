@@ -13,8 +13,8 @@
   <div class="span12 centeredContent">
     <p>
       <a data-target="#dialogAddStudentWork" data-toggle="modal">Додати роботу</a> |
-      <a href="<%= '#teacher/' + teacher.id%>">Управління тезами</a> |
-      <a href="<%= '#teacher/' + teacher.id + '/group' %>">Підтвердити студентів</a>
+      <a href="<%= '#teacher/' + teacher.id%>" class="selectTeacherMenu">Управління тезами</a> |
+      <a href="<%= '#teacher/' + teacher.id + '/group' %>" class="selectTeacherMenu">Підтвердити студентів</a>
     </p>
 
 
@@ -23,7 +23,7 @@
 
 <div id="teacherPageContent"></div>
 
-<div id="dialogAddStudentWork" class="modal hide fade">
+<div id="dialogAddStudentWork" name="dialogAddStudentWork" class="modal hide fade">
 
   <div class="modal-header">
     <button class="close" data-dismiss="modal">×</button>
@@ -35,7 +35,7 @@
     <form id="taskCreateForm">
 
       <p>Введіть назву роботи:<br>
-        <textarea id="txtAreaNameTheme" name="txtAreaNameTheme"></textarea>
+        <textarea class="bootStrapFullRowElement" id="txtAreaNameTheme" name="txtAreaNameTheme"></textarea>
       </p>
 
       <div class="row-fluid">
@@ -94,14 +94,16 @@
       </div>
 
       <p>
-        <label>Виберіть етапи виконання роботи:</label>
-        <input type="checkbox" id="check0"> Вивчення літератури за темою роботи<br>
-        <input type="checkbox" id="check1"> Параграф 1</br>
-        <input type="checkbox" id="check2"> Параграф 2</br>
-        <input type="checkbox" id="check3"> Параграф 3</br>
-        <input type="checkbox" id="check4"> Параграф 4</br>
-        <input type="checkbox" id="check5"> Вступ та Висновки</br>
-        <input type="checkbox" id="check6"> Попередній захист роботи</br>
+        <label for="selDefaultTasks">Виберіть етапи виконання роботи:</label>
+        <select id="selDefaultTasks" class="bootStrapFullRowElement" name="selDefaultTasks" multiple size="7">
+          <option>Вивчення літератури за темою роботи</option>
+          <option>Параграф 1</option>
+          <option>Параграф 2</option>
+          <option>Параграф 3</option>
+          <option>Параграф 4</option>
+          <option>Вступ та Висновки</option>
+          <option>Попередній захист роботи</option>
+        </select>
       </p>
 
     </form> <!-- End tas -->

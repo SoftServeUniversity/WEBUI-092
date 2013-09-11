@@ -2,7 +2,12 @@ class WorksController < ApplicationController
   # GET /works
   # GET /works.json
   def index
-    @works = Work.all
+
+    if params['filter']
+      @works = Work.where(params['filter'])
+    else
+      @works = Work.all
+    end
 
     respond_to do |format|
       format.json { render json: @works }
@@ -22,14 +27,18 @@ class WorksController < ApplicationController
       })}
     end
   end
- #get /work/:id/tasks
-  def show_tasks
-    @tasks = Task.where(work_id: params[:id]).order("priority ASC")
+
+  #get /work/teacher_id:id/
+  def show_works_of_teacher
+    @works = Works.where(teacher_id: params[:id])
+
+    puts @works
 
     respond_to do |format|
-      format.json { render json: @tasks }
+      format.json { render json: @works }
     end
   end
+
   # get work/:id/tasks/progresses
   def show_tasks_with_progresses
     @tasks = Task.where(work_id: params[:id]).order("priority ASC")
