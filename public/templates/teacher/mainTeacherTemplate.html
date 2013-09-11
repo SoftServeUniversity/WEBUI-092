@@ -13,10 +13,9 @@
   <div class="span12 centeredContent">
     <p>
       <a data-target="#dialogAddStudentWork" data-toggle="modal">Додати роботу</a> |
-      <a href="<%= '#teacher/' + teacher.id%>" class="selectTeacherMenu">Управління тезами</a> |
-      <a href="<%= '#teacher/' + teacher.id + '/group' %>" class="selectTeacherMenu">Підтвердити студентів</a>
+      <a href="<%= '#teacher/' + teacher.id%>" <% if (activeLink == "teacherWorksPage") {%>class="active"<%}%> >Управління тезами</a> |
+      <a href="<%= '#teacher/' + teacher.id + '/group' %>" <% if (activeLink == "teacherGroupPage") {%>class="active"<%}%> >Підтвердити студентів</a>
     </p>
-
 
   </div>
 </div>

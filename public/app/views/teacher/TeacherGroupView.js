@@ -86,7 +86,8 @@ define([
           var teacher = this.teacherModel.toJSON()[0];
 
           var dataForMainTeacherTemplate = {
-            teacher: teacher
+            teacher: teacher,
+            activeLink: "teacherGroupPage"
           }
           var compiledTemplate = _.template(mainTeacherTemplate, dataForMainTeacherTemplate);
           $("#content").html(compiledTemplate);

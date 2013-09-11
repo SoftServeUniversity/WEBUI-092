@@ -38,8 +38,8 @@ define([
         initialize: function(id){
           var that = this;
 
-          var teacherModel = new TeacherModel();
-          teacherModel.fetch({
+          this.teacherModel = new TeacherModel();
+          this.teacherModel.fetch({
             data: {
               filter: {
                 id: id
@@ -50,8 +50,8 @@ define([
             }
           });
 
-          var worksCollection = new WorksCollectionOfTeacher();
-          worksCollection.fetch({
+          this.worksCollection = new WorksCollectionOfTeacher();
+          this.worksCollection.fetch({
             data: {
               filter: {
                 teacher_id: id
@@ -62,8 +62,8 @@ define([
             }
           });
 
-          var teacherChangeCollection = new TeacherChangeCollection();
-          teacherChangeCollection.fetch({
+          this.teacherChangeCollection = new TeacherChangeCollection();
+          this.teacherChangeCollection.fetch({
             success:function () {
               that.trigger('DataLoaded', 'TeacherChange');
             }
@@ -87,7 +87,7 @@ define([
             }
 
             if ((isTeachLoaded && isTeachChangeLoaded && isWorkssLoaded) == true){
-              that.render(id, teacherModel, worksCollection, teacherChangeCollection);
+              that.render(id);
             }
           });
 
@@ -97,10 +97,10 @@ define([
           });
         },
 
-        render: function(id, teacherModel, worksCollection, teacherChangeCollection){
-          var teacher = teacherModel.toJSON()[0];
+        render: function(id){
+          var teacher = this.teacherModel.toJSON()[0];
 
-          var worksJSON = worksCollection.toJSON();
+          var worksJSON = this.worksCollection.toJSON();
 
           var works = {};
           for (var i = 0; i < worksJSON.length; i++) {
@@ -112,7 +112,8 @@ define([
           };
 
           var dataForMainTeacherTemplate = {
-            teacher: teacher
+            teacher: teacher,
+            activeLink: "teacherWorksPage"
           }
           var compiledTemplate = _.template(mainTeacherTemplate, dataForMainTeacherTemplate);
           $("#content").html(compiledTemplate);
@@ -124,7 +125,7 @@ define([
           $("#teacherPageContent").html(teacherThesisCompiledTemplate);
 
           var chartView = new ChartView({
-            collection: teacherChangeCollection
+            collection: this.teacherChangeCollection
           });
           chartView.render();
 
