@@ -3,10 +3,10 @@ class WorksController < ApplicationController
   # GET /works.json
   def index
 
-    if params['filter']
-      @works = Work.where(params['filter'])
-    else
+    if params['filter'] === nil
       @works = Work.all
+    else
+      @works = Work.where(params['filter'])
     end
 
     respond_to do |format|

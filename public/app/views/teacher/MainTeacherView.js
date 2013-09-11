@@ -98,7 +98,7 @@ define([
         },
 
         render: function(id, teacherModel, worksCollection, teacherChangeCollection){
-          var teacher = (teacherModel.toJSON())[0];
+          var teacher = teacherModel.toJSON()[0];
 
           var worksJSON = worksCollection.toJSON();
 

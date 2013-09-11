@@ -2,12 +2,13 @@ class TeachersController < ApplicationController
   # GET /teachers
   # GET /teachers.json
   include TeachersHelper
+
   def index
 
-    if params['filter']
-      @teachers = Teacher.where(params['filter'])
-    else
+    if params['filter'] === nil
       @teachers = Teacher.all
+    else
+      @teachers = Teacher.where(params['filter'])
     end
 
     respond_to do |format|

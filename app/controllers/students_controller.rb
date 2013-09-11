@@ -2,10 +2,17 @@ class StudentsController < ApplicationController
   # GET /students
   # GET /students.json
   def index
-    @students = Student.all
-    respond_to do |format|
-      format.json {render json: @students}
+
+    if params['filter'] === nil
+      @students = Student.all
+    else
+      @students = Student.where(params['filter'])
     end
+
+    respond_to do |format|
+      format.json { render json: @students }
+    end
+
   end
 
   # GET /students/1
