@@ -47,23 +47,29 @@ define([
     ],
 
     initialize: function(){
+
       //call parent's initialize method
       this.constructor.__super__.initialize.apply(this);
       
       //extend inherited events with own events
-      _.extend(this.events, this.events_own)
-    },
+      _.extend(this.events, this.events_own);
 
+    },
+     
     //tab menu buttons handlers
     manage_admins: function(){
       this.activeMenuId = 'admins-tab';
       this.tabView = new TabAdminsView();
+      
+      this.childViews[this.tabView.cid] = this.tabView;
     },  
     manage_database: function(){
       this.addActiveClass('database-tab');
       var tabDbView = new TabDbView();
       $(this.el_tab_content).html(tabDbView.$el.html());
       this.hideAdminButtons();
+
+      this.childViews[tabDbView.cid] = tabDbView;
     },
     
     manage_info: function(){
@@ -91,11 +97,18 @@ define([
       })
 
     this.hideAdminButtons();
+
+    this.childViews[tabInfoView.cid] = tabInfoView;
     },
     
     manage_faculties: function(){   
       this.tabView = new TabFacultiesView();
       this.activeMenuId = 'faculties-tab';
+
+      this.tabView = new TabFacultiesView();
+
+      this.childViews[this.tabView.cid] = this.tabView;
+
     },
 
     events_own : {
@@ -118,7 +131,9 @@ define([
         fileTitle = fileTitle.replace(reUnix, "$1");
         $('#name').html(fileTitle);
       });
-    }
+    },
+
+
 
   });
 

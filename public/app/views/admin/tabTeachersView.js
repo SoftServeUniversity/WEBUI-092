@@ -69,11 +69,6 @@ define([
       };
       
       return config;
-    },
-    
-    initialize: function(){ 
-      //call parent's initialize method
-      this.constructor.__super__.initialize.apply(this);
     }
 
   });
