@@ -8,8 +8,9 @@ define([
     'text!templates/teacher/mainTeacherTemplate.html',
     'collections/faculties/FacultiesCollection',
     'collections/faculties/FacultyChangeCollection',
-    'collections/teachers/TeachersCollection',
+    'models/teacher/TeacherModel',
     'collections/students/StudentsProxyCollectionForTeacherPage',
+    'collections/teachers/TeachersCollection',
 ], function($, _, Backbone,
             DepartmentsCollection,
             CoursesCollection,
@@ -17,32 +18,43 @@ define([
             mainTeacherTemplate,
             FacultiesCollection,
             FacultyChangeCollection,
-            TeachersCollection,
-            StudentsProxyCollectionForTeacherPage){
+            TeacherModel,
+            StudentsProxyCollectionForTeacherPage,
+            TeachersCollection){
 
     var TeacherView = Backbone.View.extend({
         initialize:function(id){
             var that = this;
 
-            this.teachersCollection = new TeachersCollection();
-            this.teachersCollection.fetch({
-                success: function() {
-                    that.trigger('DataLoaded', 'Teachs');
+            this.teacherModel = new TeacherModel();
+            this.teacherModel.fetch({
+              data: {
+                filter: {
+                  id: id
                 }
+              },
+              success: function() {
+                that.trigger('DataLoaded', 'Teacher');
+              }
             });
 
             this.studentsColOfTeachGroup = new StudentsProxyCollectionForTeacherPage();
             this.studentsColOfTeachGroup.fetch({
-                success: function() {
-                    that.trigger('DataLoaded', 'StudentsOfTeacherGroup');
+              data: {
+                filter: {
+                  teacher_id: id
                 }
+              },
+              success: function() {
+                that.trigger('DataLoaded', 'StudentsOfTeacherGroup');
+              }
             });
 
             this.faculty_change_col = new FacultyChangeCollection();
             this.faculty_change_col.fetch({
-                success:function () {
-                    that.trigger('DataLoaded', 'FacultyChange');
-                }
+              success:function () {
+                  that.trigger('DataLoaded', 'FacultyChange');
+              }
             });
 
             var isTeachLoaded = false;
@@ -50,7 +62,7 @@ define([
             var isFacChangeLoaded = false;
 
             this.on('DataLoaded', function (item) {
-                if (item == 'Teachs') {
+                if (item == 'Teacher') {
                     isTeachLoaded = true;
                 }
 
@@ -71,7 +83,7 @@ define([
         },
 
         render:function(id){
-          var teacher = this.teachersCollection.get(id).toJSON();
+          var teacher = this.teacherModel.toJSON()[0];
 
           var dataForMainTeacherTemplate = {
             teacher: teacher

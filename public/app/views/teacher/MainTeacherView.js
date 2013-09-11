@@ -2,7 +2,6 @@ define([
     'jquery',
     'underscore',
     'backbone',
-    'collections/departments/DepartmentsCollection',
     'collections/courses/CoursesCollection',
     'views/shared/ListView',
     'views/shared/ChartView',
@@ -10,9 +9,9 @@ define([
     'text!templates/teacher/teacherWorksTemplate.html',
     'collections/teachers/TeacherChangeCollection',
     'collections/teachers/TeachersCollection',
+    'models/teacher/TeacherModel',
     'collections/work/WorksCollectionOfTeacher'
 ], function($, _, Backbone,
-            DepartmentsCollection,
             CoursesCollection,
             ListView,
             ChartView,
@@ -20,60 +19,86 @@ define([
             teacherWorksTemplate,
             TeacherChangeCollection,
             TeachersCollection,
+            TeacherModel,
             WorksCollectionOfTeacher){
 
     var TeacherView = Backbone.View.extend({
-        initialize:function(id){
-            var that = this;
 
-            var teachersCollection = new TeachersCollection();
-            teachersCollection.fetch({
-              data: {teacher_id: id},
-              success: function() {
-                that.trigger('DataLoaded', 'Teachs');
-              }
-            });
-            console.log(teachersCollection);
-
-            var worksCollection = new WorksCollectionOfTeacher();
-            worksCollection.fetch({
-              success: function() {
-                that.trigger('DataLoaded', 'Works');
-              }
-            });
-
-            var teacherChangeCollection = new TeacherChangeCollection();
-            teacherChangeCollection.fetch({
-              success:function () {
-                that.trigger('DataLoaded', 'TeacherChange');
-              }
-            });
-
-            var isTeachLoaded = false;
-            var isWorkssLoaded = false;
-            var isTeachChangeLoaded = false;
-
-            this.on('DataLoaded', function (item) {
-              if (item == 'Teachs') {
-                isTeachLoaded = true;
-              }
-
-              if (item == 'Works'){
-                isWorkssLoaded = true;
-              }
-
-              if (item == 'TeacherChange'){
-                isTeachChangeLoaded = true;
-              }
-
-              if ((isTeachLoaded && isTeachChangeLoaded && isWorkssLoaded) == true){
-                that.render(id, teachersCollection, worksCollection, teacherChangeCollection);
-              }
-            });
+        events: {
+          'click .selectTeacherMenu': 'selectTeacherMenuActivate'
         },
 
-        render:function(id, teachersCollection, worksCollection, teacherChangeCollection){
-          var teacher = teachersCollection.get(id).toJSON();
+        selectTeacherMenuActivate: function(){
+          $(document).ready(function(){
+            $(".selectTeacherMenu").css("background-color", "black" );
+            console.info("this");
+          });
+        },
+
+        initialize: function(id){
+          var that = this;
+
+          var teacherModel = new TeacherModel();
+          teacherModel.fetch({
+            data: {
+              filter: {
+                id: id
+              }
+            },
+            success: function() {
+              that.trigger('DataLoaded', 'Teacher');
+            }
+          });
+
+          var worksCollection = new WorksCollectionOfTeacher();
+          worksCollection.fetch({
+            data: {
+              filter: {
+                teacher_id: id
+              }
+            },
+            success: function() {
+              that.trigger('DataLoaded', 'Works');
+            }
+          });
+
+          var teacherChangeCollection = new TeacherChangeCollection();
+          teacherChangeCollection.fetch({
+            success:function () {
+              that.trigger('DataLoaded', 'TeacherChange');
+            }
+          });
+
+          var isTeachLoaded = false;
+          var isWorkssLoaded = false;
+          var isTeachChangeLoaded = false;
+
+          this.on('DataLoaded', function (item) {
+            if (item == 'Teacher') {
+              isTeachLoaded = true;
+            }
+
+            if (item == 'Works'){
+              isWorkssLoaded = true;
+            }
+
+            if (item == 'TeacherChange'){
+              isTeachChangeLoaded = true;
+            }
+
+            if ((isTeachLoaded && isTeachChangeLoaded && isWorkssLoaded) == true){
+              that.render(id, teacherModel, worksCollection, teacherChangeCollection);
+            }
+          });
+
+          this.on('destroy', function(){
+            me.off();
+            me.remove();
+          });
+        },
+
+        render: function(id, teacherModel, worksCollection, teacherChangeCollection){
+          var teacher = teacherModel.toJSON()[0];
 
           var worksJSON = worksCollection.toJSON();
 

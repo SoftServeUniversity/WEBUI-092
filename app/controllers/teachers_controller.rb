@@ -2,13 +2,19 @@ class TeachersController < ApplicationController
   # GET /teachers
   # GET /teachers.json
   include TeachersHelper
+
   def index
-    @teachers = Teacher.all
+
+    if params['filter'] === nil
+      @teachers = Teacher.all
+    else
+      @teachers = Teacher.where(params['filter'])
+    end
 
     respond_to do |format|
-      format.html # index.html.erb
       format.json { render json: @teachers }
     end
+
   end
 
   # GET /teachers/1
@@ -16,8 +22,10 @@ class TeachersController < ApplicationController
   def show
     @teacher = Teacher.find(params[:id])
 
+    puts @teacher
+
     respond_to do |format|
-      format.html # show.html.erb
+      #format.html # show.html.erb
       format.json { render json: @teacher }
     end
   end
@@ -62,7 +70,7 @@ class TeachersController < ApplicationController
 
     respond_to do |format|
       if @teacher.update_attributes(params[:teacher]) &&
-         @teacher.user.update_attributes({:name => params[:name], 
+         @teacher.user.update_attributes({:name => params[:name],
                                           :last_name => params[:last_name],
                                           :middle_name => params[:middle_name],
                                           :role_pending => params[:role_pending]

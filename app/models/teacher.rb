@@ -6,6 +6,7 @@ class Teacher < ActiveRecord::Base
   belongs_to :user
   belongs_to :department
   has_many :works
+  has_many :groups
 
   after_create :add_panding_role
   has_many :progress_changes, :as => :progressable
@@ -19,9 +20,9 @@ class Teacher < ActiveRecord::Base
     self.user.save
   end
 
-  def serializable_hash(options={}) 
+  def serializable_hash(options={})
     options.merge(:include => [:user])
-    hash_info = super(options) 
+    hash_info = super(options)
     hash_info[:name] = user.name
     hash_info[:last_name] = user.last_name
     hash_info[:middle_name] = user.middle_name
@@ -42,6 +43,6 @@ class Teacher < ActiveRecord::Base
       puts res
       p = ProgressChange.create! progressable_id: self.id, progressable_type: self.class.name, progress: res
     end
-      return res 
+      return res
   end
 end

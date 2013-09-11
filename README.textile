@@ -32,6 +32,7 @@ h2. Getting Started
    ** 2.1) Install MySQL. If you need a password for Oracle website just visit bugmenot.com and find the password.
    ** 2) run 'rake db:create && rake db:migrate && rake db:seed'
    ** 3) run "rails server" or 'rails s'
+   ** 4) if you want to make mailer working run "rake jobs:work".
 
 h2. testing
 

@@ -22,32 +22,27 @@ define([
           removeDialogView = new RemoveDialogView({model: this.model}, {message: message, header: header});
         },
 
+        addStudentToGroup: function(){
+          attrs = {'group_pending': 1}
+          this.model.set(attrs);
+          this.model.save(attrs, {patch: true});
+        },
+
         initialize:function(){
           var me = this;
           this.render();
           this.model.on('destroy', function(){
-            console.log('Remove view');
             me.remove();
           });
         },
 
         render:function(counter){
-            // counter -  is used for mark each element in a table
+            // counter - use for mark each element in a table
             this.model.set('counter', counter);
             this.$el.html(this.template(this.model.toJSON()));
             return this;
-        },
-
-        removeView: function(){
-          this.remove();
-          alert('Remove view');
-        },
-
-        addStudentToGroup: function(){
-          attrs = {'group_pending': 1}
-          this.model.set(attrs);
-          this.model.save(attrs, {patch: true});
         }
+
     });
 
     return TableRowView;

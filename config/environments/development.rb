@@ -46,8 +46,8 @@ Webui92::Application.configure do
       address:              'smtp.gmail.com',
       port:                  587,
       domain:               'localhost',
-      user_name:            'webui092@gmail.com',
-      password:             'sswebUI92',
+      user_name:            'demowebui@gmail.com',
+      password:             'ssswebui',
       authentication:       'plain',
       enable_starttls_auto: true
   }

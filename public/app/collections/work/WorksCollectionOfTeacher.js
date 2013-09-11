@@ -8,7 +8,8 @@ define([
   {
     var WorksCollectionOfTeacherGroup = Backbone.Collection.extend({
       model:WorkProxyModelForTeacherPage,
-      url: "app/collections/teachers/worksOfTeacher.json",
+      //url: "app/collections/teachers/WorksCollectionOfTeacher.json",
+      url: '/works/',
       comparator: function(item) {
         return item.get('full_name');
       }
