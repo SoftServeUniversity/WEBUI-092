@@ -37,7 +37,7 @@ class WorksController < ApplicationController
       format.json { render json: @tasks }
     end
   end
-  
+
   #get /work/teacher_id:id/
   def show_works_of_teacher
     @works = Works.where(teacher_id: params[:id])

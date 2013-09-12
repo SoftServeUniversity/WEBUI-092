@@ -1,10 +1,10 @@
 //registration form script
 
-$(function () { 
+$(function () {
   //session
   $('#launch-btn').show();
   $(".tip").tooltip();
-  $("input[type=text], input[type=password]").jqBootstrapValidation(); 
+  $("input[type=text], textarea, input[type=password]").jqBootstrapValidation();
   // #launch-btn is a dinamic element, that because we need to delegate it functionality
   $("#authBox").delegate('#launch-btn','click', function(e){
     e.preventDefault();
@@ -17,7 +17,7 @@ $(function () {
     $('#launch').slideUp(100);
     $('#launch-btn').show();
   });
-  
+
   //registration
   $('#openModal').click(function(){
     $('#regMod').slideDown(300);
@@ -32,16 +32,16 @@ $(function () {
     $('#regMod').slideUp(300);
     $('#example').tooltip('hide');
   });
-  
+
 });
 
 // error type for error monice bootstrap view
 function alertType(data){
   var res;
-  for (first in data){ 
+  for (first in data){
     res = first;
     break;
-  } 
+  }
   return res
 }
 
