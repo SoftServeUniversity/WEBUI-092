@@ -150,8 +150,8 @@ define([
       },
       loadData: function () {
         var me = this;
-        var progressUrl = "http://localhost:3000/tasks/" + this.id + "/task_progress.json", 
-            changesUrl = "http://localhost:3000/task_changes/" + this.id + ".json";
+        var progressUrl = "/tasks/" + this.id + "/task_progress/", 
+            changesUrl = "/task_changes/" + this.id + "/";
         this.model = new TaskModel({"id": me.id});
         this.progress = new ProgressModel();
         this.model.fetch({async:false});
