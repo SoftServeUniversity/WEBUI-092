@@ -28,6 +28,11 @@ define([
 
             groups_col = new GroupsCollection();
             groups_col.fetch({
+                data: {
+                    filter: {
+                        department_id:id
+                    }
+                },
                 success:function () {
                     me.trigger('DataLoaded', 'Groups');
                 }
@@ -42,6 +47,12 @@ define([
 
             dep_change_col = new DepartmentChangeCollection();
             dep_change_col.fetch({
+                    data: {
+                        filter: {
+                            progressable_id:id,
+                            progressable_type:'Department'
+                        }
+                    },
                 success:function () {
                     me.trigger('DataLoaded', 'DepChange');
                 }
