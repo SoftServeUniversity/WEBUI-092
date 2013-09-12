@@ -10,6 +10,7 @@ class WorksController < ApplicationController
     end
 
     respond_to do |format|
+      format.html # show.html.erb
       format.json { render json: @works }
     end
   end
@@ -25,6 +26,15 @@ class WorksController < ApplicationController
         :thesis_changes => {},
         :tasks => {:include => :thesis_changes}
       })}
+    end
+  end
+
+  #get /work/:id/tasks
+  def show_tasks
+    @tasks = Task.where(work_id: params[:id]).order("priority ASC")
+
+    respond_to do |format|
+      format.json { render json: @tasks }
     end
   end
 
