@@ -31,7 +31,8 @@ define([
     var TeacherView = Backbone.View.extend({
 
         events: {
-          "click #btnAddWork": "sendForm"
+          "click #btnAddWork": "sendForm",
+          "click #btnAddWorkAndContinue": "sendForm"
         },
 
         initialize:function(id){
@@ -108,8 +109,6 @@ define([
         },
 
         sendForm: function(e){
-          alert("EVENT IS WORK");
-
           if ($("#inputWorkName").val().length > 0 &&
               $("#selFaculty").val().length > 0 &&
               $("#selDepartment").val().length > 0 &&
@@ -117,7 +116,6 @@ define([
               $("#selStudent").val().length > 0)
           {
             e.preventDefault();
-            alert("preventDefault");
 
             if ($("#inputWorkName[aria-invalid = true]").is('textarea') == false &&
                 $("#selFaculty[aria-invalid = true]").is('select') == false &&
@@ -125,19 +123,13 @@ define([
                 $("#selGroup[aria-invalid = true]").is('select') == false &&
                 $("#selStudent[aria-invalid = true]").is('select') == false)
             {
-              // create model and save it for add to database
-              alert("Yeeeeeeeeeeeeeeeeeeeeees");
+              // create model and save it for add into database
               this.workModel = new WorkModel();
               this.workModel.set('name', $("#inputWorkName").val());
-              this.workModel.set('student_id', 1)//parseInt($("#selStudent").attr("student_id"));
+              this.workModel.set('student_id', $("#selStudent").find(":selected").val());
               this.workModel.set('teacher_id', this.currentTeacherId);
               this.workModel.save();
-              alert("Successsssssssssssssssss");
-            } else {
-              alert("Nooooooooooooooooooooooo");
             }
-          } else {
-            alert("false sendForm ");
           }
 
           return this;

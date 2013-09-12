@@ -67,13 +67,11 @@
           </div>
           <div class="span6">
             <label for="selStudent">Виберіть студента:</label>
-            <select id="selStudent" name="selStudent" requiredb5>
-              <option student_id="1">Петро Петрович (ніколи його не знадуйте при людях)</option>
-              <option></option>
-
-              <option student_id="2">Міфічний студент, якого ніхто ніколи не бачив</option>
-              <option student_id="3">Відмінник</option>
-              <option student_id="4">Студент, який всім надоїв, тому йому автоматом ставлять "задовільно"</option>
+            <select id="selStudent" name="selStudent" required>
+              <option value="1">Петро Петрович (ніколи його не знадуйте при людях)</option>
+              <option value="2">Міфічний студент, якого ніхто ніколи не бачив</option>
+              <option value="3">Відмінник</option>
+              <option value="4">Студент, який всім надоїв, тому йому автоматом ставлять "задовільно"</option>
             </select>
           </div>
         </div>
@@ -94,9 +92,9 @@
     </div>
 
     <div class="modal-footer">
-      <a class="btn" href="#" data-dismiss="modal" aria-hidden="true" >Закрити</a>
-      <a class="btn" href="#" onclick="alert('Дані збережено.\nДодавайте ще.')" data-dismiss="modal" aria-hidden="true">Зберегти і додати ще</a>
-      <button type="submit" class="btn btn-primary" id="btnAddWork">Зберегти</button>
+      <button type="button" class="btn" data-dismiss="modal" aria-hidden="true">Закрити</button>
+      <button type="submit" class="btn" id="btnAddWorkAndContinue">Зберегти і додати ще</button>
+      <button type="submit" class="btn btn-primary" id="btnAddWork" data-dismiss="modal" aria-hidden="true">Зберегти</button>
 
     </div>
     </form> <!-- End taskCreateForm -->
