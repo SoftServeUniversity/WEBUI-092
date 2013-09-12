@@ -17,6 +17,8 @@ define([
       teachers    : TeachersProxyCollection
     },
 
+    childViews: [],
+
     setConfig: function(){
       var me = this;
 

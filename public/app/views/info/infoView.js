@@ -21,6 +21,7 @@ define([
         render:function(data){
             var compiledTemplate = _.template( infoTemplate, data);
             $("#content").html(compiledTemplate);
+            
         }
     });
     return InfoView;

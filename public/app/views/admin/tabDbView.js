@@ -9,6 +9,8 @@ define([
 
     tagName: 'div',
 
+    childViews: [],
+
     initialize: function(){
       this.render();
     },

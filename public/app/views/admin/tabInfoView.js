@@ -14,6 +14,8 @@ define([
     
     tagName: 'div',
     
+    childViews: [],
+ 
     initialize: function(){
       var me = this;
       

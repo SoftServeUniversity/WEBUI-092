@@ -105,6 +105,7 @@ define([
             }
             var compiledTemplate = _.template( MainTemplate, data);
             $("#content").html(compiledTemplate);
+ 
             chartView.render();
             return this;
         }

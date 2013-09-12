@@ -21,14 +21,14 @@ class Faculty < ActiveRecord::Base
     res = 0
     res1 = 0
     if (arr0.empty? == false)
-      arr0.each { |a| res += a.aggregate }
+      arr0.each { |a| res += a.aggregate.to_i }
       #puts arr0.length
       puts res
       res = res/arr0.length
     end
     if(arr1.empty? == false)
       #second array
-      arr1.each { |a| res1 += a.aggregate }
+      arr1.each { |a| res1 += a.aggregate.to_i }
       #puts arr1.length
       puts res1
       res1 = res1/arr1.length

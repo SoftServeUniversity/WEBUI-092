@@ -34,11 +34,16 @@ define([
              ) {
 
 
+
+
     GlobalEventBus = _.extend({}, Backbone.Events);
 
 
     var AppRouter = Backbone.Router.extend({
       initialize: function(){
+        //update menu when needed
+        this.bind( "all", this.updateMenu )
+
         var searchView = new SearchView();
         var registrationView = new RegistrationView();
         registrationView.render();
@@ -66,16 +71,36 @@ define([
         'info'                   : 'infoAction',
         // Default
         '*actions': 'defaultAction'
+      },
+
+      //add and remove active class from menu items
+      
+      updateMenu: function(){
+        $(".page-link").removeClass('active');
+        
+        var path = Backbone.history.fragment;
+        
+        if(path == 'info'){
+          $("#info-page-link").addClass('active');
+        };
+        if(path == ''){
+          $("#main-page-link").addClass('active');
+        };
       }
+    
     });
+
     var initialize = function(){
 
       var app_router = new AppRouter;
 
       app_router.on('route:homeAction', function (actions) {
        // display the home page
-       var facultiesListView = new FacultiesListView();
-       var breadcrumbsView = new BreadcrumbsView();
+        var facultiesListView = new FacultiesListView();
+        var breadcrumbsView = new BreadcrumbsView();
+        
+        $("#main-page-link").addClass('active');
+
       });
 
       app_router.on('route:workShowAction', function (id){
@@ -89,15 +114,57 @@ define([
         this.workView = new MainWorkView({"id": id});
       });
 
+
+
+//----------------------------- zombie views experiment------------------------------//
+      
+      //close method for all views  
+      Backbone.View.prototype.close = function(){
+
+        this.remove();
+        this.unbind();
+
+        console.log('child closin...')
+        console.log(this)
+
+          if(this.childViews != undefined){
+          for (i=0; i<this.childViews.length; i++){         
+                  Backbone.View.prototype.close.call(this.childViews[i]);
+                }  
+          }
+      };
+
+      //remove main view if it already exists
+      function manageViews(view){
+        if ('currentView' in this){
+          //console.log(this.currentView.el);
+          this.currentView.close();
+        } else {
+          //console.log('no current view yet')
+        }
+        this.currentView = view;
+      };
+
+
+
       app_router.on('route:viewAdminFacultyPage', function (){
         var adminFacultyView = new AdminFacultyView();
+        
+        //manageViews(adminFacultyView);
         var breadcrumbsView = new BreadcrumbsView();
       });
 
       app_router.on('route:viewAdminPage', function (){
         var adminView = new AdminView();
+
+        //manageViews(adminView);
         var breadcrumbsView = new BreadcrumbsView();
       });
+
+//----------------------------- end zombies experiment -------------------------//
+
+
+
 
       app_router.on('route:groupProgressAction', function (actions) {
 
@@ -167,14 +234,13 @@ define([
         var userSignUp = new UserSingUpView();
         var infoView = new InfoView();
         var breadcrumbsView = new BreadcrumbsView();
+    
       });
 
 
       app_router.on('route:taskShow', function (id) {
 
         var breadcrumbsView = new BreadcrumbsView();
-
-
 
           if(this.currentTask){
             this.currentTask.$el.undelegate();
@@ -188,7 +254,10 @@ define([
         // We have no matching route, lets display the home page
         var facultiesListView = new FacultiesListView();
         facultiesListView.loadData();
+
+        $("#main-page-link").addClass('active');
       });
+
       Backbone.history.start();
     };
     return {
