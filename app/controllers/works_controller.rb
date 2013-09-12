@@ -10,6 +10,7 @@ class WorksController < ApplicationController
     end
 
     respond_to do |format|
+      format.html # index.html.erb
       format.json { render json: @works }
     end
   end
