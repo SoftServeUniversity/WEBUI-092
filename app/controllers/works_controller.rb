@@ -29,6 +29,15 @@ class WorksController < ApplicationController
     end
   end
 
+  #get /work/:id/tasks
+  def show_tasks
+    @tasks = Task.where(work_id: params[:id]).order("priority ASC")
+
+    respond_to do |format|
+      format.json { render json: @tasks }
+    end
+  end
+  
   #get /work/teacher_id:id/
   def show_works_of_teacher
     @works = Works.where(teacher_id: params[:id])
