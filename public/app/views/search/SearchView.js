@@ -14,16 +14,16 @@ define([
               $('#ui-id-1 a').on('click', function(){
                 $(this).fadeIn('fast');
               });
-    
+
       var templ = _.template(searchTemplate);
       $('li#search').html(templ);
 
-       var studCollection = new StudentsCollection();
-       var teachCollection = new TeachersCollection();
-       var teachObj = [];
-       var studObj = [];
+      var studCollection = new StudentsCollection();
+      var teachCollection = new TeachersCollection();
+      var teachObj = [];
+      var studObj = [];
 
-       function getJSON(collection, obj){
+      function getJSON(collection, obj){
         collection.fetch({
           async:false,
           success:function () {
@@ -31,16 +31,17 @@ define([
             return obj;
           }
 
-          });
-          return obj;
-          }
+        });
+        return obj;
+      }
+
             getJSON(studCollection, studObj);
             getJSON(teachCollection, teachObj);
           var people = [];
-            people = teachObj[0].concat(studObj[0]);
+            people = teachObj.concat(studObj[0]);
           var str = JSON.stringify(people);
           var parsed = JSON.parse(str, function(k, v) {
-              if (k === "last_name") 
+              if (k === "last_name")
                   this.label = v;
               else
                   return v;
@@ -56,18 +57,18 @@ define([
             },
             select: function( event, ui ) {
               $( "#search-field" ).val( ui.item.label + " "+ ui.item.name);
-              
+
               if(ui.item.group_id){
                 location.href = '#/student/'+ui.item.id;
               }else{
                 location.href = '#/teacher/'+ui.item.id;
-   
+
               }
               return false;
             }
           })
           .data( "ui-autocomplete" )._renderItem = function( ul, item ) {
-           
+
               if(item.group_id){
                 var status = 'cтуд.';
                 var href = '#/student/'+item.id;

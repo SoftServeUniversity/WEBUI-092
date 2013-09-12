@@ -12,9 +12,11 @@ define([
     
     tagName: 'div',
     
-
+    
     initialize: function(){
-      
+    
+      this.childViews = [];  
+
       var me = this;
       var config;
 
@@ -30,7 +32,7 @@ define([
         me.render(this.config)
 
         //all content has loaded, it's time for parent view to render tab
-        GlobalEventBus.trigger('tabSubViewLoaded', me.$el, me.config);
+        GlobalEventBus.trigger('tabSubViewLoaded', me.$el, me.config, me);
         
         GlobalEventBus.on('NewItemAdded', function(model){
           me.renderSingleItem(model);
@@ -67,19 +69,24 @@ define([
       //render table head
       var tableHeadView = new TableHeadView({ conf: me.config });
       me.$('#tab-head').html(tableHeadView.render().$el); 
+      me.childViews[tableHeadView.cid] = tableHeadView;    
 
       //render rows
       this.collection.each(function(item) {
         me.renderSingleItem(item)
+
       });
       
       return this;
     },
     
     renderSingleItem: function(item){
+      var me = this;
       this.config.newModel = false;
-      var itemView = new ItemView({ model: item, conf: this.config, newModel: false }); 
-      this.$('#tab-body').append(itemView.render().$el)
+      var itemView = new ItemView({ model: item, conf: this.config, newModel: false });
+
+      me.childViews[itemView.cid] = itemView;    
+      me.$('#tab-body').append(itemView.render().$el)
     },
 
     checkVerification: function(config){
@@ -119,6 +126,7 @@ define([
         })
       }
     }
+
 
  
   });

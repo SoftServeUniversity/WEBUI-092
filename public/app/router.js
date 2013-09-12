@@ -34,6 +34,8 @@ define([
              ) {
 
 
+
+
     GlobalEventBus = _.extend({}, Backbone.Events);
 
 
@@ -89,15 +91,57 @@ define([
         this.workView = new MainWorkView({"id": id});
       });
 
+
+
+//----------------------------- zombie views experiment------------------------------//
+      
+      //close method for all views  
+      Backbone.View.prototype.close = function(){
+
+        this.remove();
+        this.unbind();
+
+        console.log('child closin...')
+        console.log(this)
+
+          if(this.childViews != undefined){
+          for (i=0; i<this.childViews.length; i++){         
+                  Backbone.View.prototype.close.call(this.childViews[i]);
+                }  
+          }
+      };
+
+      //remove main view if it already exists
+      function manageViews(view){
+        if ('currentView' in this){
+          //console.log(this.currentView.el);
+          this.currentView.close();
+        } else {
+          //console.log('no current view yet')
+        }
+        this.currentView = view;
+      };
+
+
+
       app_router.on('route:viewAdminFacultyPage', function (){
         var adminFacultyView = new AdminFacultyView();
+        
+        //manageViews(adminFacultyView);
         var breadcrumbsView = new BreadcrumbsView();
       });
 
       app_router.on('route:viewAdminPage', function (){
         var adminView = new AdminView();
+
+        //manageViews(adminView);
         var breadcrumbsView = new BreadcrumbsView();
       });
+
+//----------------------------- end zombies experiment -------------------------//
+
+
+
 
       app_router.on('route:groupProgressAction', function (actions) {
 

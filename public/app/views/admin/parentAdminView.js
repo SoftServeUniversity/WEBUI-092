@@ -16,7 +16,6 @@ define([
 
   var ParentAdminView = Backbone.View.extend({
 
-    el             : '#content',
     el_headline    : '#headline',
     el_tab_menu    : '#tab-menu',
     el_tab_content : '#tab-content',
@@ -27,6 +26,9 @@ define([
 
     initialize: function(){
       
+      //do this to prevent duplicate childviews on initialization
+      this.childViews = [];
+
       var me = this;
       
       //because we extend events with events from children
@@ -42,17 +44,21 @@ define([
       me.setActiveTab(me.defaultActiveTab);
 
       //Render a tab when it's loaded
-      GlobalEventBus.on('tabSubViewLoaded', function(tabContent, config){
-        me.config = config;
+      GlobalEventBus.off('tabSubViewLoaded');
+      GlobalEventBus.on('tabSubViewLoaded', function(tabContent, config, view){
+
+        me.childViews.push(view);
         
+        me.config = config;
         me.collection = config.collection;
 
         me.renderTab(tabContent);
         me.renderButtons(config);
 
         $('.new-button').html(me.config.buttons['create']);
-      })
 
+      })
+      
     },
 
     events: {
@@ -97,7 +103,9 @@ define([
       if (this.$('#newElementRow').length < 1){
         
         var model = new me.config.model();
-   
+        
+        me.collection.add(model);
+        
         var newElementView = new ItemView({model: model, conf: me.config, newModel: true});
         
         $(me.el_tab_content + ' table tbody').append(newElementView.render().el)
@@ -176,6 +184,7 @@ define([
       //render basic template with empty divs
       var compiledTemplate = _.template(parentAdminTemplate);
       this.$el.html(compiledTemplate);
+      $('#content').html(this.$el)
 
       this.renderHeadline();
       this.renderMenu();
