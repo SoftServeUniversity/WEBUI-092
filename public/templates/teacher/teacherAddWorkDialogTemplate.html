@@ -1,0 +1,105 @@
+<section>
+
+  <div id="dialogAddStudentWork" name="dialogAddStudentWork" class="modal hide fade">
+
+    <div class="modal-header">
+      <button class="close" data-dismiss="modal">×</button>
+      <h3>Створення завдання</h3>
+    </div>
+
+<form id="taskCreateForm">
+    <div class="modal-body">
+
+
+
+        <div class="control-group">
+          <label class="control-label" for="inputWorkName">Введіть назву роботи:</label>
+          <div class="controls">
+            <textarea class="logForm bootStrapFullRowElement" id="inputWorkName" name="inputWorkName" placeholder="Назва роботи..." data-validation-regex-regex=".{3,}" data-validation-regex-message="Мінімальна довжина назви роботи - 3 символи" required></textarea>
+          </div>
+        </div>
+
+        <div class="row-fluid">
+          <div class="span6">
+            <label for="selFaculty">Виберіть факультет:</label>
+            <select id="selFaculty" name="selFaculty" required>
+              <option>Факультет прикладної математики</option>
+              <option></option>
+
+              <option>Факультет арифметичних обчислень</option>
+              <option>Факультет тригонометричних рівнянь</option>
+              <option>Факультет економіки</option>
+              <option>Факультет обліку і аудиту</option>
+            </select>
+          </div>
+          <div class="span6">
+            <label for="selDepartment">Виберіть кафедру:</label>
+            <select id="selDepartment" name="selDepartment" required>
+              <option>Кафедра ОСП</option>
+              <option></option>
+
+              <option>Кафедра КПП</option>
+              <option>Кафедра МКСІВП</option>
+              <option>Кафедра ОАІС</option>
+              <option>Кафедра АПП</option>
+              <option>Кафедра ІДМ</option>
+              <option>Кафедра СМП</option>
+              <option>Кафедра НПП</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="row-fluid">
+          <div class="span6">
+            <label for="selGroup">Виберіть групу:</label>
+            <select id="selGroup" name="selGroup" required>
+              <option>ПМІ-31</option>
+              <option></option>
+              <option>ПМІ-31</option>
+              <option>ПМІ-32</option>
+              <option>ПМІ-41</option>
+              <option>ПМІ-42</option>
+              <option>ПМІ-51</option>
+              <option>ПМІ-52</option>
+              <option>ПМІ-53</option>
+              <option>ПМІ-54</option>
+            </select>
+          </div>
+          <div class="span6">
+            <label for="selStudent">Виберіть студента:</label>
+            <select id="selStudent" name="selStudent" requiredb5>
+              <option student_id="1">Петро Петрович (ніколи його не знадуйте при людях)</option>
+              <option></option>
+
+              <option student_id="2">Міфічний студент, якого ніхто ніколи не бачив</option>
+              <option student_id="3">Відмінник</option>
+              <option student_id="4">Студент, який всім надоїв, тому йому автоматом ставлять "задовільно"</option>
+            </select>
+          </div>
+        </div>
+
+        <p>
+          <label for="selDefaultTasks">Виберіть етапи виконання роботи:</label>
+          <select id="selDefaultTasks" class="bootStrapFullRowElement" name="selDefaultTasks" multiple size="7">
+            <option>Вивчення літератури за темою роботи</option>
+            <option>Параграф 1</option>
+            <option>Параграф 2</option>
+            <option>Параграф 3</option>
+            <option>Параграф 4</option>
+            <option>Вступ та Висновки</option>
+            <option>Попередній захист роботи</option>
+          </select>
+        </p>
+
+    </div>
+
+    <div class="modal-footer">
+      <a class="btn" href="#" data-dismiss="modal" aria-hidden="true" >Закрити</a>
+      <a class="btn" href="#" onclick="alert('Дані збережено.\nДодавайте ще.')" data-dismiss="modal" aria-hidden="true">Зберегти і додати ще</a>
+      <button type="submit" class="btn btn-primary" id="btnAddWork">Зберегти</button>
+
+    </div>
+    </form> <!-- End taskCreateForm -->
+
+  </div>
+</section>

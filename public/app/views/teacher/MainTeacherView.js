@@ -5,6 +5,7 @@ define([
     'collections/courses/CoursesCollection',
     'views/shared/ListView',
     'views/shared/ChartView',
+    'views/teacher/TeacherAddWorkDialogView',
     'text!templates/teacher/mainTeacherTemplate.html',
     'text!templates/teacher/teacherWorksTemplate.html',
     'collections/teachers/TeacherChangeCollection',
@@ -15,6 +16,7 @@ define([
             CoursesCollection,
             ListView,
             ChartView,
+            TeacherAddWorkDialogView,
             mainTeacherTemplate,
             teacherWorksTemplate,
             TeacherChangeCollection,
@@ -24,19 +26,9 @@ define([
 
     var TeacherView = Backbone.View.extend({
 
-        events: {
-          'click .selectTeacherMenu': 'selectTeacherMenuActivate'
-        },
-
-        selectTeacherMenuActivate: function(){
-          $(document).ready(function(){
-            $(".selectTeacherMenu").css("background-color", "black" );
-            console.info("this");
-          });
-        },
-
         initialize: function(id){
           var that = this;
+          this.id = id;
 
           this.teacherModel = new TeacherModel();
           this.teacherModel.fetch({
@@ -97,7 +89,7 @@ define([
           });
         },
 
-        render: function(id){
+        render: function(){
           var teacher = this.teacherModel.toJSON()[0];
 
           var worksJSON = this.worksCollection.toJSON();
@@ -123,6 +115,9 @@ define([
           }
           var teacherThesisCompiledTemplate = _.template(teacherWorksTemplate, dataForTeacherThesisTemplate);
           $("#teacherPageContent").html(teacherThesisCompiledTemplate);
+
+          var teacherAddWorkDialogView = new TeacherAddWorkDialogView(this.id);
+          $("#teacherAddWorkDialogContent").html(teacherAddWorkDialogView.$el)
 
           var chartView = new ChartView({
             collection: this.teacherChangeCollection
