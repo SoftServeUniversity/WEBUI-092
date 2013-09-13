@@ -133,32 +133,35 @@ define([
               this.workModel.set('name', $("#inputWorkName").val());
               this.workModel.set('student_id', $("#selStudent").find(":selected").val());
               this.workModel.set('teacher_id', this.currentTeacherId);
-              this.workModel.save({
-                wait: true,
-                success: function(model, response) {
-                  console.info(response.responseText);
-                },
-                error: function(model, response) {
-                  alert(response);
+              this.workModel.save(
+                // wait, while response coming
+                {wait: true},
+                // get response
+                {
+                  success: function(model, response) {
+                    // Create TaskModel of each option in default tasks list
+                    // and save it for add into database
+                    var selectedTasks = $("#selDefaultTasks").find(":selected");
+                    if (selectedTasks.length > 0)
+                    {
+                      for (var i = 0; i < selectedTasks.length; i++)
+                      {
+                        this.taskModel = new TaskModel();
+                        this.taskModel.set('name', selectedTasks[i].text);
+                        this.taskModel.set('work_id', model.get('id'));
+                        this.taskModel.set('priority', i);
+                        this.taskModel.save();
+                      }
+                    } else {
+                      console.log("No selectedTasks");
+                    }
+
+                  },
+                  // add hendler error
+                  error: function(model, response) {
+                    alert(response);
                 }
               });
-
-              // Create TaskModel of each option in default tasks list
-              // and save it for add into database
-              var selectedTasks = $("#selDefaultTasks").find(":selected");
-              if (selectedTasks.length > 0)
-              {
-                for (var i = 0; i < selectedTasks.length; i++)
-                {
-                  this.taskModel = new TaskModel();
-                  this.taskModel.set('name', selectedTasks[i].text);
-                  this.taskModel.set('work_id', 30);
-                  this.taskModel.set('priority', i);
-                  this.taskModel.save();
-                }
-              } else {
-                console.log("No selectedTasks");
-              }
 
             }
           }
