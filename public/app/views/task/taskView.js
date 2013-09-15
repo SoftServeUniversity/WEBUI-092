@@ -10,8 +10,8 @@ define([
   'models/task/commentModel',
   'models/task/TaskModel',
   'models/task/ProgressModel'
-  ], 
-  function($, _, Backbone, bootstrap, jqueryui, taskTemplate, taskCommentsView, 
+  ],
+  function($, _, Backbone, bootstrap, jqueryui, taskTemplate, taskCommentsView,
           CommentsCollection, commentModel, TaskModel, ProgressModel){
 
     var TaskView = Backbone.View.extend({
@@ -39,7 +39,7 @@ define([
           comments: compiledComments.$el.html(),
           task: this.model,
           progress: this.progress,
-          _: _         
+          _: _
         }
         var compiledTemplate = _.template(taskTemplate, data);
         $("#content").html(compiledTemplate);
@@ -111,7 +111,7 @@ define([
               formatter: function() {
                 return  'Прогрес: '+ this.y + '%';
               }
-            },        
+            },
             legend: {
               enabled: false
             },
@@ -148,10 +148,10 @@ define([
         this.delegateEvents(this.events);
         this.loadData();
       },
-      loadData: function () {
+       loadData: function () {
         var me = this;
-        var progressUrl = "http://localhost:3000/tasks/" + this.id + "/task_progress.json", 
-            changesUrl = "http://localhost:3000/task_changes/" + this.id + ".json";
+        var progressUrl = "/tasks/" + this.id + "/task_progress/",
+            changesUrl = "/task_changes/" + this.id + "/";
         this.model = new TaskModel({"id": me.id});
         this.progress = new ProgressModel();
         this.model.fetch({async:false});

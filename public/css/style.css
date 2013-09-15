@@ -16,13 +16,17 @@ footer {
 	padding:10px 10px;
 	background:#F5F5F5;
 }
+
+a {
+   outline: 0 !important;
+}
 a:hover {
 	cursor:pointer;
 }
 h1 {
 	margin-bottom:20px;
 }
-.menuBox .active a {
+.active {
 	text-decoration:underline;
 }
 a:hover{
@@ -34,6 +38,9 @@ a:hover{
 	display:none;
 	margin-bottom:0px;
 
+}
+.nav .active {
+    text-decoration:underline !important;
 }
 /* --- end general --- */
 

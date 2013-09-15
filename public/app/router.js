@@ -41,6 +41,9 @@ define([
 
     var AppRouter = Backbone.Router.extend({
       initialize: function(){
+        //update menu when needed
+        this.bind( "all", this.updateMenu )
+
         var searchView = new SearchView();
         var registrationView = new RegistrationView();
         registrationView.render();
@@ -68,16 +71,36 @@ define([
         'info'                   : 'infoAction',
         // Default
         '*actions': 'defaultAction'
+      },
+
+      //add and remove active class from menu items
+      
+      updateMenu: function(){
+        $(".page-link").removeClass('active');
+        
+        var path = Backbone.history.fragment;
+        
+        if(path == 'info'){
+          $("#info-page-link").addClass('active');
+        };
+        if(path == ''){
+          $("#main-page-link").addClass('active');
+        };
       }
+    
     });
+
     var initialize = function(){
 
       var app_router = new AppRouter;
 
       app_router.on('route:homeAction', function (actions) {
        // display the home page
-       var facultiesListView = new FacultiesListView();
-       var breadcrumbsView = new BreadcrumbsView();
+        var facultiesListView = new FacultiesListView();
+        var breadcrumbsView = new BreadcrumbsView();
+        
+        $("#main-page-link").addClass('active');
+
       });
 
       app_router.on('route:workShowAction', function (id){
@@ -213,14 +236,13 @@ define([
         var userSignUp = new UserSingUpView();
         var infoView = new InfoView();
         var breadcrumbsView = new BreadcrumbsView();
+    
       });
 
 
       app_router.on('route:taskShow', function (id) {
 
         var breadcrumbsView = new BreadcrumbsView();
-
-
 
           if(this.currentTask){
             this.currentTask.$el.undelegate();
@@ -234,7 +256,10 @@ define([
         // We have no matching route, lets display the home page
         var facultiesListView = new FacultiesListView();
         facultiesListView.loadData();
+
+        $("#main-page-link").addClass('active');
       });
+
       Backbone.history.start();
     };
     return {
