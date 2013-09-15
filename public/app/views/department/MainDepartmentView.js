@@ -40,6 +40,11 @@ define([
 
             teachers_col = new TeachersCollection();
             teachers_col.fetch({
+                data: {
+                    filter: {
+                        department_id:id
+                    }
+                },
                success:function () {
                     me.trigger('DataLoaded', 'Teachers');
                 }

@@ -10,7 +10,11 @@ class GroupsController < ApplicationController
     end
 
     respond_to do |format|
-      format.json { render json: @group }
+      format.json { render json: @group.to_json(:include => {
+          :department => {:only => [:name ]} ,
+          :course => {:only => [:name ]} ,
+          :teacher => {:only => [:name ]}
+      })}
     end
 
   end
@@ -24,6 +28,7 @@ class GroupsController < ApplicationController
       format.html # show.html.erb
       format.json { render json: @group }
     end
+
   end
 
   # GET /groups/new

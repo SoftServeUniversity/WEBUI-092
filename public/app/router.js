@@ -143,10 +143,11 @@ define([
 
 
 
-      app_router.on('route:groupProgressAction', function (actions) {
+      app_router.on('route:groupProgressAction', function (id) {
 
         var groupProgressView = new GroupProgressView();
-        groupProgressView.render();
+        groupProgressView.initialize();
+        groupProgressView.loadData(id);
         var breadcrumbsView = new BreadcrumbsView();
       });
 
@@ -158,10 +159,11 @@ define([
         var breadcrumbsView = new BreadcrumbsView();
       });
 
-       app_router.on('route:courseProgressAction', function (actions) {
+       app_router.on('route:courseProgressAction', function (id) {
 
         var courseProgressView = new CourseProgressView();
-        courseProgressView.render();
+        courseProgressView.initialize();
+        courseProgressView.loadData(id);
         var breadcrumbsView = new BreadcrumbsView();
       });
 
