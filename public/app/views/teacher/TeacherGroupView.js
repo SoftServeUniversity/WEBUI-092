@@ -5,6 +5,7 @@ define([
     'collections/departments/DepartmentsCollection',
     'collections/courses/CoursesCollection',
     'views/teacher/TableView',
+    'views/teacher/TeacherAddWorkDialogView',
     'text!templates/teacher/mainTeacherTemplate.html',
     'collections/faculties/FacultiesCollection',
     'collections/faculties/FacultyChangeCollection',
@@ -15,6 +16,7 @@ define([
             DepartmentsCollection,
             CoursesCollection,
             TableView,
+            TeacherAddWorkDialogView,
             mainTeacherTemplate,
             FacultiesCollection,
             FacultyChangeCollection,
@@ -86,13 +88,16 @@ define([
           var teacher = this.teacherModel.toJSON()[0];
 
           var dataForMainTeacherTemplate = {
-            teacher: teacher
+            teacher: teacher,
+            activeLink: "teacherGroupPage"
           }
           var compiledTemplate = _.template(mainTeacherTemplate, dataForMainTeacherTemplate);
           $("#content").html(compiledTemplate);
 
           var tableStudInGroupView = new TableView({collection: this.studentsColOfTeachGroup});
           $("#teacherPageContent").html(tableStudInGroupView.el);
+
+          var teacherAddWorkDialogView = new TeacherAddWorkDialogView();
 
           return this;
         }

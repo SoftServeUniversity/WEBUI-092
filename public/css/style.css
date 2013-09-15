@@ -26,7 +26,7 @@ a:hover {
 h1 {
 	margin-bottom:20px;
 }
-.menuBox .active a {
+.active {
 	text-decoration:underline;
 }
 a:hover{
