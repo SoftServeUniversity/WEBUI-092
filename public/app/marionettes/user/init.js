@@ -11,12 +11,9 @@ define([
   GlobalUser = new Backbone.Marionette.Application();
 
   GlobalUser.Views = {};
-  GlobalUser.Views.Layouts = {};
   GlobalUser.Models = {};
+  GlobalUser.layouts = {};
   GlobalUser.Models.User = new User();
-  GlobalUser.Collections = {};
-  GlobalUser.Routers = {};
-  GlobalUser.Helpers = {};
 
   GlobalUser.currentUserReload = function(){
     $.post('user_helper/receive_current_user', null, function(user){
@@ -30,16 +27,12 @@ define([
     }, 'json');
   }
 
-  // Instantiated global layouts
-  GlobalUser.layouts = {};
   GlobalUser.layouts.logged_out = _.template(loggedOutTemplate);
 
-  //Initiate global views
   GlobalUser.addRegions({
     main: '#main'
   });
 
-  //callbacks
   GlobalUser.vent.on("authentication:logged_in", function() {
     GlobalUser.currentUser = GlobalUser.Models.User.set(GlobalUser.currentUser);
     GlobalUser.getRole(GlobalUser.currentUser.id);
@@ -53,7 +46,6 @@ define([
     $('#logout-container').replaceWith(GlobalUser.layouts.logged_out);
   });
 
-  //receive current user
   GlobalUser.vent.on("role_loaded", function(data){ GlobalUser.currentUser.role = data });
   GlobalUser.vent.on("abilities_loaded", function(data){ GlobalUser.currentUser.abilities = data });
 
@@ -66,12 +58,8 @@ define([
   }
 
 
-  // TODO: Routers and history start
-  // BD.vent.on("layout:rendered", function() {
-  //   Backbone.history.start({pushState: true});
-  // });
-  //receive current user
   $(document).trigger('csrfToken');
   GlobalUser.currentUserReload();
+
   return GlobalUser;
 });

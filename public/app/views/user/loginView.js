@@ -62,9 +62,6 @@ define([
             $("meta[name='csrf-token']").attr('content', response.csrfToken);
           }
           GlobalUser.vent.trigger("authentication:logged_out");
-        },
-        error: function(userSession, response){
-          //handle an error
         }
       });
     }
