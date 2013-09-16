@@ -42,12 +42,16 @@
 
       var currentWindowOnload = window.onload;
 
-      window.onload = function() {
-        if (currentWindowOnload) {
-          currentWindowOnload();
+  
+
+        window.addEventListener('load', run );
+        
+        function run(){
+          if (currentWindowOnload) {
+            currentWindowOnload();
+          }
+          execJasmine();
         }
-        execJasmine();
-      };
 
       function execJasmine() {
         jasmineEnv.execute();
