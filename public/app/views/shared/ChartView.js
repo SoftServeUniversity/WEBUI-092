@@ -15,7 +15,7 @@ define([
             
             // here we convert json to format we need for highcharts  
             for (i=0; i<changes.length; i++){
-                t = changes[i].change_time.split(/[- :]/);
+                t = changes[i].created_at.split(/[- T]/);
                 d = Date.UTC(t[0], t[1]-1, t[2]);
                 chartArray[i]=[];
                 chartArray[i][0]=d;

@@ -28,6 +28,11 @@ define([
 
                works_col = new WorkCollection();
                works_col.fetch({
+                   data: {
+                       filter: {
+                           student_id:id
+                       }
+                   },
                    success:function () {
                        me.trigger('DataLoaded', 'Works');
                    }
@@ -35,6 +40,12 @@ define([
 
                students_change_col = new StudentChangeCollection();
                students_change_col.fetch({
+                   data: {
+                       filter: {
+                           progressable_id:id,
+                           progressable_type:'Student'
+                       }
+                   },
                    success:function () {
                        me.trigger('DataLoaded', 'StudentsChange');
                    }
