@@ -17,6 +17,7 @@ define([
   GlobalUser.Collections = {};
   GlobalUser.Routers = {};
   GlobalUser.Helpers = {};
+
   GlobalUser.currentUserReload = function(){
     $.post('user_helper/receive_current_user', null, function(user){
       if (user != false){
@@ -34,17 +35,15 @@ define([
   GlobalUser.layouts.logged_out = _.template(loggedOutTemplate);
 
   //Initiate global views
-
   GlobalUser.addRegions({
     main: '#main'
   });
 
   //callbacks
-
   GlobalUser.vent.on("authentication:logged_in", function() {
     GlobalUser.currentUser = GlobalUser.Models.User.set(GlobalUser.currentUser);
-    GlobalUser.currentUser.role = GlobalUser.Models.User.getRole();
-    GlobalUser.currentUser.abilities = GlobalUser.Models.User.getAbilities();
+    GlobalUser.getRole(GlobalUser.currentUser.id);
+    GlobalUser.getAbilities();
     $('#launch-btn').replaceWith(_.template(loggedInTemplate));
     $('#launch').slideUp(300);
     window.location.hash = '/';
@@ -55,13 +54,24 @@ define([
   });
 
   //receive current user
-  $(document).trigger('csrfToken');
-  GlobalUser.currentUserReload();
+  GlobalUser.vent.on("role_loaded", function(data){ GlobalUser.currentUser.role = data });
+  GlobalUser.vent.on("abilities_loaded", function(data){ GlobalUser.currentUser.abilities = data });
+
+  GlobalUser.getRole = function(id){
+    $.post('user_helper/return_current_role', {id: id}, null, 'text' ).done(function(res){ GlobalUser.vent.trigger("role_loaded", res) }); 
+  }
+
+  GlobalUser.getAbilities = function(){
+    $.post('user_helper/receive_user_abilities', null, null, "json").done(function(res){ GlobalUser.vent.trigger("abilities_loaded", res) }); 
+  }
 
 
   // TODO: Routers and history start
   // BD.vent.on("layout:rendered", function() {
   //   Backbone.history.start({pushState: true});
   // });
+  //receive current user
+  $(document).trigger('csrfToken');
+  GlobalUser.currentUserReload();
   return GlobalUser;
 });
