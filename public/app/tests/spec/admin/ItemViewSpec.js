@@ -4,7 +4,7 @@ describe('ItemView', function() {
   
   require(['models/course/CourseModel', 'views/admin/itemView'], function(CourseModel, ItemView) {
      
-     me.model = new CourseModel({
+    me.model = new CourseModel({
       id: 1,
       name: "Course_ABD0",
       year_of_start: "2012-02-01",
