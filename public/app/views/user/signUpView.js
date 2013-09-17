@@ -60,7 +60,7 @@ define([
 
     events: {
       'submit #regForm'      : 'signup',
-      'change #roles-select' : 'loadDepartmets',
+      'change #roles-select' : 'generateTeacherStudentFields',
       'click #capcha-reload' : 'generate_capcha',
       'submit #editForm'     : 'update'
     },
@@ -74,9 +74,13 @@ define([
       }, 'json');
     },
 
-    loadDepartmets: function(e){
-      var el = $(this.el);
+    generateTeacherStudentFields: function(e){
       var value = e.currentTarget.value;
+      this.swapFields(value);
+    },
+
+    swapFields: function(value){
+      var el = $(this.el);
       if(value == 'student'){
         var groups = new TemporaryGroupsCollection();
         // adds theacher fields
@@ -84,29 +88,27 @@ define([
         groups.fetch({
           success: function(collection, response) {
             _.each(collection.models, function(model) {
-              //populate department select with all curent departments. Pleace create atleast one department to test this.
+              // populate department select with all curent departments. Pleace create atleast one department to test this.
               el.find('#group-id-select').prepend(_.template(GroupOptionTemplate, model.toJSON()));
             });
-          },
-          error: function(userSession, response) {
-            //error hendler goes here
+            // Studen current group will be selected
+            el.find('.group-opt[value='+ GlobalUser.currentUser.attributes.student_attributes.group_id + ']').attr('selected', 'true');
           }
         });
         el.find('.roleStudent').show();
         el.find('.roleTeacher').html('');
-      }else if(value == 'teacher'){
+      }else if(value == 'admin' || value == 'teacher' || value == 'faculty_admin'){
         var departments = new TemporaryDepartmentCollection();
         // adds theacher fields
-        el.find('.roleTeacher').html(_.template(TeacherAttributesTemplate));
+        el.find('.roleTeacher').html(_.template(TeacherAttributesTemplate, GlobalUser.currentUser.attributes.teacher_attributes));
         departments.fetch({
           success: function(collection, response) {
             _.each(collection.models, function(model) {
               //populate department select with all curent departments. Pleace create atleast one department to test this.
               el.find('#depertent-id-select').prepend(_.template(DepartmentOptionTemplate, model.toJSON()));
             });
-          },
-          error: function(userSession, response) {
-            //error hendler goes here
+            // Teacher current department will be selected
+            el.find('.departments-opt[value=' + GlobalUser.currentUser.attributes.teacher_attributes.department_id + ']').attr('selected', 'true');
           }
         });
         el.find('.roleTeacher').show();
@@ -118,8 +120,8 @@ define([
     },
 
     edit: function(){
-      var el = $(this.el);
-      $("#content").html(_.template(EditRegistrationsTemplate, GlobalUser.currentUser.attributes));
+      $(this.el).html(_.template(EditRegistrationsTemplate, GlobalUser.currentUser.attributes));
+      this.swapFields( GlobalUser.currentUser.role );
     },
 
     cancel: function(){
