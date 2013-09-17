@@ -9,7 +9,7 @@ define([
 
   var RemoveDialogView = Backbone.View.extend({
 
-    el: '#content',
+    el: 'body',
     el_modal: '#delete-modal',
 
     initialize: function (model, data) {
@@ -36,7 +36,7 @@ define([
     },
 
     render: function () {
-      if($(this.el_modal).length==0){
+      if(this.$el.find('#delete-modal').length==0){
         $(this.el).append(this.template(this.data));
       }
       $('#delete-modal_header').html(this.data.header);
