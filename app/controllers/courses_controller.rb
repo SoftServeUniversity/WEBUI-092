@@ -2,12 +2,17 @@ class CoursesController < ApplicationController
   # GET /courses
   # GET /courses.json
   def index
-    @courses = Course.all
+
+    if params['filter'] === nil
+      @course = Course.all
+    else
+      @course = Course.where(params['filter'])
+    end
 
     respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @courses }
+      format.json { render json: @course }
     end
+
   end
 
   # GET /courses/1

@@ -20,7 +20,7 @@ class UserSessions::SessionsController < Devise::SessionsController
     self.resource = warden.authenticate!(auth_options)
     set_flash_message(:notice, :signed_in) if is_navigational_format?
     sign_in(resource_name, resource)
-    respond_with resource, :location => after_sign_in_path_for(resource)
+    @resource = resource
     if !session['warden.user.user.key'].nil?
       user = User.find(session['warden.user.user.key'][0][0])
       UserInfo.current_user = user.name + " " + user.last_name;

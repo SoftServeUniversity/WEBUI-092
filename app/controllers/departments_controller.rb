@@ -5,14 +5,26 @@ class DepartmentsController < ApplicationController
   # GET /departments
   # GET /departments.json
   def index
-    respond_with  Department.where(params['filter'])
+    if params['filter'] === nil
+      @department = Department.all
+    else
+      @department = Department.where(params['filter'])
+    end
+
+    respond_to do |format|
+      format.json { render json: @department }
+    end
   end
 
 
   # GET /departments/1
   # GET /departments/1.json
   def show
-    respond_with  Department.find(params[:id])
+    @department = Department.find(params[:id])
+
+    respond_to do |format|
+      format.json { render json: @department }
+    end
   end
 
 

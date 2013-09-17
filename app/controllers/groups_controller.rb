@@ -2,12 +2,21 @@ class GroupsController < ApplicationController
   # GET /groups
   # GET /groups.json
   def index
-    @groups = Group.all
+
+    if params['filter'] === nil
+      @group = Group.all
+    else
+      @group = Group.where(params['filter'])
+    end
 
     respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @groups }
+      format.json { render json: @group.to_json(:include => {
+          :department => {:only => [:name ]} ,
+          :course => {:only => [:name ]} ,
+          :teacher => {:only => [:name ]}
+      })}
     end
+
   end
 
   # GET /groups/1
@@ -19,6 +28,7 @@ class GroupsController < ApplicationController
       format.html # show.html.erb
       format.json { render json: @group }
     end
+
   end
 
   # GET /groups/new

@@ -31,6 +31,7 @@ define([
           })
         } else {
 
+          me.data.newModel = "";
           this.model.on("remove", me.removeView, me)
           this.model.on("change", me.updateView, me);
           

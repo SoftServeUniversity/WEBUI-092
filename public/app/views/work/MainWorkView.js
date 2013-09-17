@@ -33,12 +33,10 @@ function($, evil, _, Backbone, bootstrap, WorkTasksTemplate,
       var me = this;
       this.model = new WorkModel({"id": me.id});
       this.history_col = new WorkHistoryCollection();
-      this.work_col = new TasksCollection();
       this.model.fetch({async:false});
       this.history_col.add(this.model.get('thesis_changes'));
-      tempColl = new TasksCollection(this.model.get('tasks'));
-      this.work_col.fetch({url: "work/" + me.id + "/tasks.json", async: false});
-      _.each(tempColl.models, function(task){
+      this.work_col = new TasksCollection(this.model.get('tasks'));
+      _.each(this.work_col.models, function(task){
           me.history_col.add(task.get('thesis_changes'));
           task.unset('thesis_changes');
       });
