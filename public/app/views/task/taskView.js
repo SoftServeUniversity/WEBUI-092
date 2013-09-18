@@ -51,7 +51,7 @@ define([
         var newCommentContent = $(e.currentTarget).find('textarea').val();
         var newTaskProcess = $(e.currentTarget).find('#number-range').val();
         this.addNewProgress(newTaskProcess);
-        this.addCommentToCollection(3, newCommentContent);
+        this.addCommentToCollection(this.user.get("id"), newCommentContent);
         this.closeModal();
         this.initialize();
       },
@@ -124,7 +124,7 @@ define([
               min: 0
             },
             xAxis: {
-              categories: ['Жовтень', 'Листопад', 'Грудень', 'Січень', 'Лютий', 'Березень', 'Квітень', 'Травень']
+              categories: ['Січень', 'Лютий', 'Березень', 'Квітень', 'Травень', 'Червень', 'Липень', 'Серпень', 'Вересень','Жовтень', 'Листопад', 'Грудень',]
             },
             series: [{
               data: chartData
@@ -144,6 +144,7 @@ define([
       },
       initialize: function(){
         var me = this;
+        this.user = window.GlobalUser.Models.User;
         this.undelegateEvents();
         this.delegateEvents(this.events);
         this.loadData();

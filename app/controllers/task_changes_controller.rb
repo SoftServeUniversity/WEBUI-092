@@ -14,12 +14,8 @@ class TaskChangesController < ApplicationController
   # GET /task_changes/1.json
   def show
     @task_changes = TaskChange.where(task_id: params[:id]).order("created_at DESC")
-    @task_changes.each do |change|
-      if change.task_progress_id?
-        change["progress"] = TaskProgress.find(change.task_progress_id).progress
-      else
-        change["progress"] = 0
-      end
+    @task_changes.each do |task|
+      task['progress'] = task.progress
     end
     respond_to do |format|
       format.html # show.html.erb
