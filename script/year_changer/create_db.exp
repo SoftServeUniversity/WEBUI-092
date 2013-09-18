@@ -1,0 +1,21 @@
+#!/usr/bin/expect
+
+# mysql credentials and connection data
+db_host='localhost'
+db_name='webui_dev'
+db_user='root'
+db_pass=''
+new_db_name='db_2011'
+
+# using a here-document to pass commands to expect. 
+# (the commands could be stored in a file as well)
+expect <<EOF
+  log_user 0
+  spawn mysql -h "$db_host" -u "$db_user" -p
+  expect "password:"
+  send "$db_pass\r"
+  expect "mysql>"
+  send "create database $new_db_name; exit; \r"
+  log_user 1
+  expect eof
+EOF

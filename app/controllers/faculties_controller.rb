@@ -1,13 +1,18 @@
 class FacultiesController < ApplicationController
   # GET /faculties
   # GET /faculties.json
-  def index
-    @faculties = Faculty.all
+ def index
+
+    if params['filter'] === nil
+      @faculties = Faculty.all
+    else
+      @faculties = Faculty.where(params['filter'])
+    end
 
     respond_to do |format|
-      format.html # index.html.erb
       format.json { render json: @faculties }
     end
+
   end
 
   # GET /faculties/1

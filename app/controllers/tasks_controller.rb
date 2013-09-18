@@ -2,12 +2,17 @@ class TasksController < ApplicationController
   # GET /tasks
   # GET /tasks.json
   def index
-    @tasks = Task.all
+
+    if params['filter'] === nil
+      @tasks = Task.all
+    else
+      @tasks = Task.where(params['filter'])
+    end
 
     respond_to do |format|
-      format.html # index.html.erb
       format.json { render json: @tasks }
     end
+
   end
 
   # GET /tasks/1

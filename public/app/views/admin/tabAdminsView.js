@@ -5,16 +5,16 @@ define([
   'backbone',
   
   'models/teacher/TeacherModel',
-  'collections/teachers/TeachersCollection',
+  'collections/faculties/FacultyAdminsCollection',
   'views/admin/parentTabView'
   
-], function($, _, Backbone, TeacherModel, TeachersCollection, ParentTabView){   
+], function($, _, Backbone, TeacherModel, FacultyAdminsCollection, ParentTabView){   
 	 
   var tabChildAdminsView = ParentTabView.extend({
 
 
     collections_classes: {
-      fadmins: TeachersCollection
+      fadmins: FacultyAdminsCollection
     },
 
     setConfig: function(){

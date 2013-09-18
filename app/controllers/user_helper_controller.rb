@@ -1,12 +1,17 @@
 class UserHelperController < ApplicationController
 
+
   before_filter :authenticate_user!, :except => [:receive_current_user, :role_pending, :return_current_role, :populate_roles_select, :receive_user_abilities]
-  skip_before_filter :verify_authenticity_token, if: :json_request?
+  skip_before_filter :verify_authenticity_token if :json_request?
 
   include AbilitiesHelper
 
   def receive_current_user
-    render json: user_signed_in? ? current_user : false
+    if user_signed_in?
+      @user = current_user # builds custom json with jbuilder
+    else
+      render json: false
+    end
   end
 
   def role_pending
@@ -26,9 +31,8 @@ class UserHelperController < ApplicationController
   end
 
   protected
-
-  def json_request?
-    request.format.json?
-  end
+    def json_request?
+      request.format.json?
+    end
 
 end

@@ -23,6 +23,8 @@ class Teacher < ActiveRecord::Base
   def serializable_hash(options={})
     options.merge(:include => [:user])
     hash_info = super(options)
+    hash_info[:faculty_id] = self.department.faculty.id
+    hash_info[:faculty_name] = self.department.faculty.name
     hash_info[:name] = user.name
     hash_info[:last_name] = user.last_name
     hash_info[:middle_name] = user.middle_name
