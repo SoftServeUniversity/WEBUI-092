@@ -31,9 +31,11 @@ group :development, :test do
   gem 'factory_girl_rails'
   gem 'rspec-rails'
 end
-group :production do
-  gem 'unicorn'
-end
+# Use unicorn as the app server
+gem 'unicorn'
+# Deploy with Capistrano
+gem 'capistrano'
+
 group :test do
   gem 'simplecov', :require => false
   gem 'capybara'
