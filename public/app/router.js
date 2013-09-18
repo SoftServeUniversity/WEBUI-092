@@ -44,7 +44,6 @@ define([
         //update menu when needed
         this.bind( "all", this.updateMenu )
 
-        var searchView = new SearchView();
         var registrationView = new RegistrationView();
         registrationView.render();
         $('.brand').click(function() {
@@ -69,6 +68,7 @@ define([
         'edit_profile'           : 'editProfile',
         'cancel_account'         : 'cancelAccount',
         'info'                   : 'infoAction',
+        'search'                 : 'searchAction',
         // Default
         '*actions': 'defaultAction'
       },
@@ -225,6 +225,13 @@ define([
         var userSignUp = new UserSingUpView();
         var breadcrumbsView = new BreadcrumbsView();
         userSignUp.edit();
+      });
+      
+      app_router.on('route:searchAction', function (id) {
+
+        var breadcrumbsView = new BreadcrumbsView();
+        var searchView = new SearchView();
+        
       });
 
       app_router.on('route:cancelAccount', function (){
