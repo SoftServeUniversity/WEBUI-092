@@ -11,7 +11,9 @@ define([
   'views/user/loginView',
 ], function($, _, Backbone, bootstrap, jqBootstrapValidation, reg, StudentModel, registrationTemplate, LoginView){
 
+  
   return Backbone.View.extend({
+
 
     el: $("#authBox"),
     model: StudentModel,

@@ -54,7 +54,4 @@ describe('Faculty collection', function() {
 
   });
   
-
-
-
 });

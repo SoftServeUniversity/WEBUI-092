@@ -218,6 +218,7 @@ define([
         var userSignUp = new UserSingUpView();
         var breadcrumbsView = new BreadcrumbsView();
         userSignUp.render();
+        $.getScript('/app/libs/reg/reg.js')
       });
 
       app_router.on('route:editProfile', function (){
