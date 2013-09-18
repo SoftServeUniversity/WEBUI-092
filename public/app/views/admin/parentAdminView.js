@@ -25,7 +25,7 @@ define([
     headline: 'Default Admin Headline',
 
     initialize: function(){
-      
+          
       //do this to prevent duplicate childviews on initialization
       this.childViews = [];
 
