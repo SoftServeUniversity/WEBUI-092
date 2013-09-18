@@ -63,9 +63,6 @@ define([
       }
 
       function breadcrumbsFetch(id, val){ 
-        console.log('id and val');
-        console.log(id +": "+ val);
-        console.log(current.toJSON());
         current.fetch({
           async:false,
           data: {
@@ -75,12 +72,7 @@ define([
           },
           success:function (result) {
             var a = result.toJSON();
-            console.log('step success');
-
-            console.log('aJSON');
-            console.log(a);
             for(var i = 0; i < a.length; i++){
-             console.log('step array');
               //if(a.id == index_page){
               var cssClass = '';
 
@@ -102,7 +94,6 @@ define([
        
 
                 } else if(a[i].group_id){
-                  console.log('step student');
                   parent_id = 'group_id';
                   parent_id_val = a[i].group_id;
                   current = new GroupsCollection();
@@ -205,8 +196,6 @@ define([
       function breadcrumbsShow(){
         breadcrumbsObj[breadcrumbsObj.length-1] = breadcrumbsObj[0];
         breadcrumbsObj.shift();
-        console.log('inside brshow brarray');
-        console.log(breadcrumbsObj);
 
         for(var i in breadcrumbsObj){
           var a = breadcrumbsObj[i][2]+"_"+breadcrumbsObj[i][1];
