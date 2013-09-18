@@ -50,13 +50,19 @@ define([
 
           this.teacherChangeCollection = new TeacherChangeCollection();
           this.teacherChangeCollection.fetch({
+            data: {
+              filter: {
+                progressable_id: this.id,
+                progressable_type:'Teacher'
+              }
+            },
             success:function () {
               that.trigger('DataLoaded', 'TeacherChange');
             }
           });
 
           var isTeachLoaded = false;
-          var isWorkssLoaded = false;
+          var isWorksLoaded = false;
           var isTeachChangeLoaded = false;
 
           this.on('DataLoaded', function (item) {
@@ -65,14 +71,14 @@ define([
             }
 
             if (item == 'Works'){
-              isWorkssLoaded = true;
+              isWorksLoaded = true;
             }
 
             if (item == 'TeacherChange'){
               isTeachChangeLoaded = true;
             }
 
-            if ((isTeachLoaded && isTeachChangeLoaded && isWorkssLoaded) == true){
+            if ((isTeachLoaded && isTeachChangeLoaded && isWorksLoaded) == true){
               that.render();
             }
           });
