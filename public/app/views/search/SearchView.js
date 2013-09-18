@@ -3,12 +3,14 @@ define([
   'jquery',
   'underscore',
   'backbone',
+  'collections/faculties/FacultiesCollection',
+  'collections/courses/CoursesCollection',
   'collections/teachers/TeachersCollection',
   'collections/students/StudentsCollection',
   'text!templates/search/searchTemplate.html',
   'bootpag'
 
-], function ($, _, Backbone, TeachersCollection, StudentsCollection, searchTemplate, bootpag){
+], function ($, _, Backbone, FacultiesCollection, CoursesCollection, TeachersCollection, StudentsCollection, searchTemplate, bootpag){
 
   var SearchView =  Backbone.View.extend({
 
@@ -37,6 +39,37 @@ define([
         });
         return obj;
       }
+      function getFacultyJSON(){
+        var facultiesCollection = new FacultiesCollection();
+        facultiesCollection.fetch({
+          async:false,
+          success:function (result) {
+            var facul = result.toJSON();
+            for(var i in facul){
+              var option = $('<option></option>').attr('value', facul[i].id).html(facul[i].name);
+                console.log(option);
+              $('#faculty_select').append($(option));
+            }
+          }
+        });
+      }
+      function getCourseJSON(){
+        var coursesCollection = new CoursesCollection();
+        coursesCollection.fetch({
+          async:false,
+          success:function (result) {
+            var course = result.toJSON();
+            console.log(course);
+            for(var i in course){
+              var option = $('<option></option>').attr('value', course[i].id).html(course[i].name);
+                console.log(option);
+              $('#course_select').append($(option));
+            }
+          }
+        });
+      }
+      getFacultyJSON();
+      getCourseJSON();
             getJSON(studCollection, studObj);
             getJSON(teachCollection, teachObj);
 
@@ -79,10 +112,8 @@ define([
                 var href = '#/teacher/'+item.id;
                 var status = '<span class="status">викладач</span>';
               }
-            var a = $('<a>' + item.label +" "+item.name+" "+status+'</a>').attr('href', href);
-            return $( "<li>" )
-            .append(a)
-            .appendTo( ul );
+            var a = $('<a>' + item.label +" "+item.name+" "+status+'<br>Факультет: Faculty of Science ABD0  -\> Курс: 1 </a>').attr('href', href);
+            return $( "<li>" ).append(a).appendTo( ul );
           };
      }
   });
