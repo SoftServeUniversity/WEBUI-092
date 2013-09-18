@@ -143,17 +143,14 @@ define([
         this.on('DataLoaded', function (item) {
           if (item == 'Faculties'){
             isFacultiesLoaded = true;
-            console.log('Faculties Loaded');
           }
 
           if (item == 'Departments'){
             isDepartmentsLoaded = true;
-            console.log('Departments Loaded');
           }
 
           if (item == 'Groups'){
             isGroupsLoaded = true;
-            console.log('Groups Loaded');
           }
 
           if ((isFacultiesLoaded &&
@@ -165,19 +162,22 @@ define([
       },
 
       render: function(id){
-        var teacher = this.teacherModel.toJSON()[0];
-        console.log(this.facultiesCollection);
-        console.log(this.departmentsCollection);
+        //console.log(this.teacherModel.toJSON()[0]);
+
+        //console.log(this.departmentsCollection);
         console.log(this.groupsCollection);
 
         var dataForTeacherAddWorkDialogTemplate = {
-          teacher: teacher,
-          faculties: this.facultiesCollection,
-          departments: this.departmentsCollection,
-          groups: this.groupsCollection
+          teacher: this.teacherModel.toJSON()[0],
+          faculties: this.facultiesCollection.toJSON(),
+          departments: this.departmentsCollection.toJSON(),
+          groups: this.groupsCollection.toJSON()
         }
         var compiledTemplate = _.template(teacherAddWorkDialogTemplate, dataForTeacherAddWorkDialogTemplate);
         this.$el.html(compiledTemplate);
+
+        $("#selFaculty option[value='" + this.teacherFacultyId + "']").attr("selected", "selected");
+        $("#selDepartment option[value='" + this.teacherDepartmentId + "']").attr("selected", "selected");
 
         return this;
       },

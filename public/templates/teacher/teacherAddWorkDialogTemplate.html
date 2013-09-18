@@ -22,25 +22,17 @@
           <div class="span6">
             <label for="selFaculty">Виберіть факультет:</label>
             <select id="selFaculty" name="selFaculty" required>
-              <option></option>
-              <option>Факультет прикладної математики</option>
-              <option>Факультет арифметичних обчислень</option>
-              <option>Факультет тригонометричних рівнянь</option>
-              <option>Факультет економіки</option>
-              <option>Факультет обліку і аудиту</option>
+              <% for (var i = 0; i < faculties.length; i++) { %>
+                <option value="<%= faculties[i]['id'] %>"><%= faculties[i]['name'] %></option>
+              <% } %>
             </select>
           </div>
           <div class="span6">
             <label for="selDepartment">Виберіть кафедру:</label>
             <select id="selDepartment" name="selDepartment" required>
-              <option></option>
-              <option>Кафедра КПП</option>
-              <option>Кафедра МКСІВП</option>
-              <option>Кафедра ОАІС</option>
-              <option>Кафедра АПП</option>
-              <option>Кафедра ІДМ</option>
-              <option>Кафедра СМП</option>
-              <option>Кафедра НПП</option>
+              <% for (var i = 0; i < departments.length; i++) { %>
+                <option value="<%= departments[i]['id'] %>"><%= departments[i]['name'] %></option>
+              <% } %>
             </select>
           </div>
         </div>
@@ -50,14 +42,9 @@
             <label for="selGroup">Виберіть групу:</label>
             <select id="selGroup" name="selGroup" required>
               <option></option>
-              <option>ПМІ-31</option>
-              <option>ПМІ-32</option>
-              <option>ПМІ-41</option>
-              <option>ПМІ-42</option>
-              <option>ПМІ-51</option>
-              <option>ПМІ-52</option>
-              <option>ПМІ-53</option>
-              <option>ПМІ-54</option>
+              <% for (var i = 0; i < groups.length; i++) { %>
+                <option value="<%= groups[i]['id'] %>"><%= groups[i]['name'] %></option>
+              <% } %>
             </select>
           </div>
           <div class="span6">
