@@ -5,15 +5,17 @@ class DepartmentsController < ApplicationController
   # GET /departments
   # GET /departments.json
   def index
+
     if params['filter'] === nil
-      @department = Department.all
+      @departments = Department.all
     else
-      @department = Department.where(params['filter'])
+      @departments = Department.where(params['filter'])
     end
 
     respond_to do |format|
-      format.json { render json: @department }
+      format.json { render json: @departments }
     end
+
   end
 
 
