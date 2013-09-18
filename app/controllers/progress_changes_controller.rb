@@ -2,7 +2,8 @@ class ProgressChangesController < ApplicationController
   # GET /progress_changes
   # GET /progress_changes.json
   def index
-    @progress_changes = ProgressChange.all
+    @progress_changes = ProgressChange.where(params['filter'])
+    @progress_changes.sort_by!{|e| e[:created_at]}
 
     respond_to do |format|
       format.html # index.html.erb
@@ -81,4 +82,4 @@ class ProgressChangesController < ApplicationController
     end
   end
 
-  private
+end

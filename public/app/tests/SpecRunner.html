@@ -11,22 +11,26 @@
 
   <script data-main="../../app/main" src="../../app/libs/require/require.js"></script>
 
-
-
   <script type="text/javascript" src="spec/SpecHelper.js"></script>
 
+
   <!-- include spec files here... -->
+
   <script type="text/javascript" src='spec/TaskModelSpec.js'></script>
   <script type="text/javascript" src='spec/TaskCollectionSpec.js'></script>
   <script type="text/javascript" src='spec/TaskViewSpec.js'></script>
   <script type="text/javascript" src="spec/WorkModelSpec.js"></script>
   <script type="text/javascript" src='spec/FacultyModelSpec.js'></script>
-  <script type="text/javascript" src='spec/admin/ParentAdminViewSpec.js'></script>
+  <script type="text/javascript" src='spec/FacultiesCollectionSpec.js'></script>
+
+  <script type="text/javascript" src='spec/admin/AdminViewSpec.js'></script>
+  
   <script type="text/javascript" src="spec/StudentProxyModelSpec.js"></script>
   <script type="text/javascript" src="spec/StudentModelSpec.js"></script>
   <script type="text/javascript" src='spec/DepartmentsCollectionSpec.js'></script>
   <script type="text/javascript" src="spec/TeacherModelSpec.js"></script>
   <script type="text/javascript" src="spec/admin/ItemViewSpec.js"></script>
+  <script type="text/javascript" src="spec/RemoveDialogViewSpec.js"></script>
 
   <script type="text/javascript">
     (function() {
@@ -41,14 +45,16 @@
         return htmlReporter.specFilter(spec);
       };
 
-      var currentWindowOnload = window.onload;
+      var currentWindowOnload = window.onload;  
 
-      window.onload = function() {
-        if (currentWindowOnload) {
-          currentWindowOnload();
+        window.addEventListener('load', run );
+        
+        function run(){
+          if (currentWindowOnload) {
+            currentWindowOnload();
+          }
+          execJasmine();
         }
-        execJasmine();
-      };
 
       function execJasmine() {
         jasmineEnv.execute();

@@ -1,0 +1,16 @@
+<div class="heading"> <%= group.name %></div>
+<div class="template_header">
+    <a href ='#/department/<%= group.department_id %>'><%= group.department.name %> </a> |
+    <a href ='#/course/<%= group.course_id %>'><%= group.course.name %> </a>|
+    <a href ='#/teacher/<%= group.teacher_id %>'><%= group.teacher.name %> </a>
+</div>
+<div id="chart"></div>
+<div class="content">
+    <div class="title">
+        <%= listTitle %>
+    </div>
+
+    <div id="first_list">
+        <%= list %>
+    </div>
+</div>

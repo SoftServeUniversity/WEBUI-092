@@ -86,6 +86,7 @@ var EmployeeDialogView = Backbone.View.extend(
       me.$('#modal-table-container #tab-head').html(tableHeadView.render().$el);
 
       //render rows
+      me.$('#modal-table-container #tab-body').empty();
       this.collection.each(function(item) {
           var itemView = new DialogItemView({ model: item, conf: me.config, newModel: false });
           me.$('#modal-table-container #tab-body').append(itemView.render().$el)

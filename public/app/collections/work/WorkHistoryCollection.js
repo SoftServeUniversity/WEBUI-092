@@ -7,7 +7,10 @@ define([
 
   var WorkHistoryCollection = Backbone.Collection.extend({
     model: WorkHistoryModel,
-    url: 'app/mocks/work/historymodal.json'
+    url: 'app/mocks/work/historymodal.json',
+      comparator: function(m) {
+          return  new Date(m.get('created_at')).getTime();
+      }
 
   });
   

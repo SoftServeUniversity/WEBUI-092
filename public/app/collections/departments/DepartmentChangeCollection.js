@@ -7,7 +7,7 @@ define([
     
     var DepartmentChangeCollection = Backbone.Collection.extend({
         model : DepartmentChangeModel,
-        url: "app/mocks/departmentChange.json"
+        url: "/progress_changes.json"
     });
 
     return DepartmentChangeCollection;

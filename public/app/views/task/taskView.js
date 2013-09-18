@@ -150,7 +150,7 @@ define([
       },
        loadData: function () {
         var me = this;
-        var progressUrl = "/tasks/" + this.id + "/task_progress/",
+        var progressUrl = "/tasks/" + this.id + "/task_progress/", 
             changesUrl = "/task_changes/" + this.id + "/";
         this.model = new TaskModel({"id": me.id});
         this.progress = new ProgressModel();

@@ -26,7 +26,7 @@ a:hover {
 h1 {
 	margin-bottom:20px;
 }
-.active {
+#main-top-menu .active {
 	text-decoration:underline;
 }
 a:hover{
@@ -39,7 +39,7 @@ a:hover{
 	margin-bottom:0px;
 
 }
-.nav .active {
+#main-top-menu .active {
     text-decoration:underline !important;
 }
 /* --- end general --- */

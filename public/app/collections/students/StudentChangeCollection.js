@@ -7,7 +7,7 @@ define([
 
     var StudentChangeCollection = Backbone.Collection.extend({
         model : StudentChangeModel,
-        url: "app/mocks/studentChange.json"
+        url: "/progress_changes.json"
     });
 
     return StudentChangeCollection;

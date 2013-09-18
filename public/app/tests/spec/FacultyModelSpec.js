@@ -1,5 +1,5 @@
 
-describe('Faculty model :: testing ajax mostly', function() {
+describe('Faculty model', function() {
 
 
   var me = this;
