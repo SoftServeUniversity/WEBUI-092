@@ -27,6 +27,9 @@ define([
       var teachCollection = new TeachersCollection();
       var teachObj = [];
       var studObj = [];
+      var f_id = "";
+      var c_id = "";
+
 
       function getJSON(collection, obj){
         collection.fetch({
@@ -53,6 +56,21 @@ define([
           }
         });
       }
+      $('#course_select').on('change', function(){
+        console.log(f_id+"    "+c_id);
+        if($(this).find('option:selected').attr('value')){
+          f_id = $(this).find('option:selected').attr('value');
+        }else{
+          f_id = "";
+        }
+      });
+      $('#faculty_select').on('change', function(){
+        if($(this).find('option:selected').attr('value')){
+          c_id = $(this).find('option:selected').attr('value');
+        }else{
+          c_id = "";
+        }
+      });
       function getCourseJSON(){
         var coursesCollection = new CoursesCollection();
         coursesCollection.fetch({
