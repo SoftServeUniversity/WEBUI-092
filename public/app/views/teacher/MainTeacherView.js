@@ -2,25 +2,19 @@ define([
     'jquery',
     'underscore',
     'backbone',
-    'collections/courses/CoursesCollection',
-    'views/shared/ListView',
     'views/shared/ChartView',
     'views/teacher/TeacherAddWorkDialogView',
     'text!templates/teacher/mainTeacherTemplate.html',
     'text!templates/teacher/teacherWorksTemplate.html',
     'collections/teachers/TeacherChangeCollection',
-    'collections/teachers/TeachersCollection',
     'models/teacher/TeacherModel',
     'collections/work/WorksCollectionOfTeacher'
 ], function($, _, Backbone,
-            CoursesCollection,
-            ListView,
             ChartView,
             TeacherAddWorkDialogView,
             mainTeacherTemplate,
             teacherWorksTemplate,
             TeacherChangeCollection,
-            TeachersCollection,
             TeacherModel,
             WorksCollectionOfTeacher){
 
@@ -34,7 +28,7 @@ define([
           this.teacherModel.fetch({
             data: {
               filter: {
-                id: id
+                id: this.id
               }
             },
             success: function() {
@@ -46,7 +40,7 @@ define([
           this.worksCollection.fetch({
             data: {
               filter: {
-                teacher_id: id
+                teacher_id: this.id
               }
             },
             success: function() {
@@ -79,7 +73,7 @@ define([
             }
 
             if ((isTeachLoaded && isTeachChangeLoaded && isWorkssLoaded) == true){
-              that.render(id);
+              that.render();
             }
           });
 
@@ -105,19 +99,20 @@ define([
 
           var dataForMainTeacherTemplate = {
             teacher: teacher,
+            // Mark active link in teacher menu
             activeLink: "teacherWorksPage"
           }
           var compiledTemplate = _.template(mainTeacherTemplate, dataForMainTeacherTemplate);
           $("#content").html(compiledTemplate);
 
-          var dataForTeacherThesisTemplate = {
+          var dataForTeacherWorksTemplate = {
             works: works
           }
-          var teacherThesisCompiledTemplate = _.template(teacherWorksTemplate, dataForTeacherThesisTemplate);
-          $("#teacherPageContent").html(teacherThesisCompiledTemplate);
+          var teacherWorksCompiledTemplate = _.template(teacherWorksTemplate, dataForTeacherWorksTemplate);
+          $("#teacherPageContent").html(teacherWorksCompiledTemplate);
 
           var teacherAddWorkDialogView = new TeacherAddWorkDialogView(this.id);
-          $("#teacherAddWorkDialogContent").html(teacherAddWorkDialogView.$el)
+          $("#teacherAddWorkDialogContent").html(teacherAddWorkDialogView.$el);
 
           var chartView = new ChartView({
             collection: this.teacherChangeCollection

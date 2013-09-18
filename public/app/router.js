@@ -74,12 +74,12 @@ define([
       },
 
       //add and remove active class from menu items
-      
+
       updateMenu: function(){
         $(".page-link").removeClass('active');
-        
+
         var path = Backbone.history.fragment;
-        
+
         if(path == 'info'){
           $("#info-page-link").addClass('active');
         };
@@ -87,7 +87,7 @@ define([
           $("#main-page-link").addClass('active');
         };
       }
-    
+
     });
 
     var initialize = function(){
@@ -98,7 +98,7 @@ define([
        // display the home page
         var facultiesListView = new FacultiesListView();
         var breadcrumbsView = new BreadcrumbsView();
-        
+
         $("#main-page-link").addClass('active');
 
       });
@@ -117,21 +117,21 @@ define([
 
 
 //----------------------------- zombie views experiment------------------------------//
-      
-      //close method for all views  
+
+      //close method for all views
       Backbone.View.prototype.close = function(){
 
         this.remove();
         this.unbind();
 
-        console.log('child closin...')
-        console.log(this)
+        console.log('child closin...');
+        console.log(this);
 
           if(this.childViews != undefined){
-          for (i=0; i<this.childViews.length; i++){         
+          for (i=0; i<this.childViews.length; i++){
                   Backbone.View.prototype.close.call(this.childViews[i]);
-                }  
-          }
+                }
+          };
       };
 
       //remove main view if it already exists
@@ -149,7 +149,7 @@ define([
 
       app_router.on('route:viewAdminFacultyPage', function (){
         var adminFacultyView = new AdminFacultyView();
-        
+
         //manageViews(adminFacultyView);
         var breadcrumbsView = new BreadcrumbsView();
       });
@@ -234,7 +234,7 @@ define([
         var userSignUp = new UserSingUpView();
         var infoView = new InfoView();
         var breadcrumbsView = new BreadcrumbsView();
-    
+
       });
 
 
