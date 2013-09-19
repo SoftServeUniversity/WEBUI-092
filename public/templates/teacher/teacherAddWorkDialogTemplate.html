@@ -20,16 +20,16 @@
 
         <div class="row-fluid">
           <div class="span6">
-            <label for="selFaculty">Виберіть факультет:</label>
-            <select id="selFaculty" name="selFaculty" required>
+            <label for="ChainOfChoice1">Виберіть факультет:</label>
+            <select id="ChainOfChoice1" name="ChainOfChoice1" required>
               <% for (var i = 0; i < faculties.length; i++) { %>
                 <option value="<%= faculties[i]['id'] %>"><%= faculties[i]['name'] %></option>
               <% } %>
             </select>
           </div>
           <div class="span6">
-            <label for="selDepartment">Виберіть кафедру:</label>
-            <select id="selDepartment" name="selDepartment" required>
+            <label for="ChainOfChoice2">Виберіть кафедру:</label>
+            <select id="ChainOfChoice2" name="ChainOfChoice2" required>
               <% for (var i = 0; i < departments.length; i++) { %>
                 <option value="<%= departments[i]['id'] %>"><%= departments[i]['name'] %></option>
               <% } %>
@@ -39,8 +39,8 @@
 
         <div class="row-fluid">
           <div class="span6">
-            <label for="selGroup">Виберіть групу:</label>
-            <select id="selGroup" name="selGroup" required>
+            <label for="ChainOfChoice3">Виберіть групу:</label>
+            <select id="ChainOfChoice3" name="ChainOfChoice3" required>
               <option></option>
               <% for (var i = 0; i < groups.length; i++) { %>
                 <option value="<%= groups[i]['id'] %>"><%= groups[i]['name'] %></option>
@@ -48,8 +48,8 @@
             </select>
           </div>
           <div class="span6">
-            <label for="selStudent">Виберіть студента:</label>
-            <select id="selStudent" name="selStudent" required>
+            <label for="ChainOfChoice4">Виберіть студента:</label>
+            <select id="ChainOfChoice4" name="ChainOfChoice4" required>
               <option><option>
               <option value="1">Петро Петрович (ніколи його не знадуйте при людях)</option>
               <option value="2">Міфічний студент, якого ніхто ніколи не бачив</option>
@@ -75,10 +75,8 @@
     </div>
 
     <div class="modal-footer">
-      <button type="button" class="btn" data-dismiss="modal" aria-hidden="true">Закрити</button>
-      <!--
+      <button type="button" class="btn" id="btnCloseModalWindow" data-dismiss="modal" aria-hidden="true">Закрити</button>
       <button type="submit" class="btn" id="btnAddWorkAndContinue">Зберегти і додати ще</button>
-      -->
       <button type="submit" class="btn btn-primary" id="btnAddWork">Зберегти</button>
     </div>
     </form> <!-- End taskCreateForm -->

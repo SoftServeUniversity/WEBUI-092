@@ -38,6 +38,29 @@ define([
 
     GlobalEventBus = _.extend({}, Backbone.Events);
 
+    // Extend Backbone.Collection for fetch data
+    // fron any collection with filter
+    Backbone.Collection.prototype.FetchCollection =
+    function(filterData = {}) {
+      // Create filter from filterData for fetch collection
+      var filterForCollection = {};
+      for(item in filterData) {
+        var filter = {};
+        filter [item] = filterData[item];
+        filterForCollection.filter = filter;
+      }
+      // Fetch collection with filter
+      this.fetch({
+        data: filterForCollection,
+        async: false, //for wait, when load data
+        success: function(model, response) {
+          return model;
+        },
+        error: function(model, response) {
+          console.log('Fetch collection error');
+        }
+      });
+    };
 
     var AppRouter = Backbone.Router.extend({
       initialize: function(){

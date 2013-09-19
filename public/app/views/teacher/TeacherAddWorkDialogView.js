@@ -11,7 +11,7 @@ define([
     'collections/faculties/FacultiesCollection',
     'collections/faculties/FacultyChangeCollection',
     'collections/groups/GroupsCollection',
-    'models/teacher/TeacherModel',
+    'collections/teachers/TeachersCollection',
     'models/work/WorkModel',
     'models/task/TaskModel',
     'collections/students/StudentsProxyCollectionForTeacherPage'
@@ -25,7 +25,7 @@ define([
             FacultiesCollection,
             FacultyChangeCollection,
             GroupsCollection,
-            TeacherModel,
+            TeachersCollection,
             WorkModel,
             TaskModel,
             StudentsProxyCollectionForTeacherPage){
@@ -34,31 +34,20 @@ define([
 
       events: {
         "click #btnAddWork": "sendForm",
-        "click #btnAddWorkAndContinue": "sendForm"
+        "click #btnAddWorkAndContinue": "sendForm",
+        "click #btnCloseModalWindow": "resetDataOfModalWindow",
       },
 /*
       function ObserveChain(chain) {
         for(key in chain) {
           $('#ChainOfChoice' + key).onChange({
-            var colection  = key[nextColl].fetch({
-              data: {
-                filter: {
-                  teacher_id: id
-                }
-              },
-              success: function() {
-                me.trigger('DataLoaded', 'StudentsOfTeacherGroup');
-              }
-            });
-
-
-
-
-            if fetch succes
-              $('#' + key).enable();
+          $('#ChainOfChoice' + key[nextColl]).prop('disabled', false );
           })
         };
       },
+*/
+
+
 
 /*
       function DisableChain (chain) {
@@ -83,19 +72,27 @@ define([
         // Id form in modal window for add works
         this.modal_form = 'taskCreateForm';
 
-
         this.chainOfResp = {
           1: {nextKey: 2, nextColl: DepartmentsCollection},
           2: {nextKey: 3, nextColl: GroupsCollection},
           3: {nextKey: 4, nextColl: StudentsProxyCollectionForTeacherPage}
         };
 
+
         //ObserveChain(this.chainOfResp);
+
+
+/*
+        var collectionGr = new GroupsCollection();
+        collectionGr.FetchCollection();
+        console.log(collectionGr);
+*/
+
 
         //For get info about
         //teacher faculty and department
-        this.teacherModel = new TeacherModel();
-        this.teacherModel.fetch({
+        this.teachersCollection = new TeachersCollection();
+        this.teachersCollection.fetch({
           async: false, //for wait, when load data
           data: {
             filter: {
@@ -166,7 +163,7 @@ define([
 
       render: function(id){
         var dataForTeacherAddWorkDialogTemplate = {
-          teacher: this.teacherModel.toJSON()[0],
+          teacher: this.teachersCollection.toJSON()[0],
           faculties: this.facultiesCollection.toJSON(),
           departments: this.departmentsCollection.toJSON(),
           groups: this.groupsCollection.toJSON()
@@ -174,8 +171,13 @@ define([
         var compiledTemplate = _.template(teacherAddWorkDialogTemplate, dataForTeacherAddWorkDialogTemplate);
         this.$el.html(compiledTemplate);
 
-        $("#selFaculty option[value='" + this.teacherFacultyId + "']").attr("selected", "selected");
-        $("#selDepartment option[value='" + this.teacherDepartmentId + "']").attr("selected", "selected");
+        // Default select faculty and department of teacher
+        $("#ChainOfChoice1 option[value='" + this.teacherFacultyId + "']").attr("selected", "selected");
+        $("#ChainOfChoice2 option[value='" + this.teacherDepartmentId + "']").attr("selected", "selected");
+
+// !!!! Uncomment after add students
+        // Set select of students as inactive
+        //$("#ChainOfChoice4").prop('disabled', 'disabled');
 
         return this;
       },
@@ -183,26 +185,31 @@ define([
       sendForm: function(e){
         var me = this;
 
+        // Inspect form for add works
         if ($("#inputWorkName").val().length > 0 &&
-            $("#selFaculty").val().length > 0 &&
-            $("#selDepartment").val().length > 0 &&
-            $("#selGroup").val().length > 0 &&
-            $("#selStudent").val().length > 0)
+            // Inspect Faculty select
+            $("#ChainOfChoice1").val().length > 0 &&
+            // Inspect Department select
+            $("#ChainOfChoice2").val().length > 0 &&
+            // Inspect Group select
+            $("#ChainOfChoice3").val().length > 0 &&
+            // Inspect Student select
+            $("#ChainOfChoice4").val().length > 0)
         {
           //
           e.preventDefault();
 
           //
           if ($("#inputWorkName[aria-invalid = true]").is('textarea') == false &&
-              $("#selFaculty[aria-invalid = true]").is('select') == false &&
-              $("#selDepartment[aria-invalid = true]").is('select') == false &&
-              $("#selGroup[aria-invalid = true]").is('select') == false &&
-              $("#selStudent[aria-invalid = true]").is('select') == false)
+              $("#ChainOfChoice1[aria-invalid = true]").is('select') == false &&
+              $("#ChainOfChoice2[aria-invalid = true]").is('select') == false &&
+              $("#ChainOfChoice3[aria-invalid = true]").is('select') == false &&
+              $("#ChainOfChoice4[aria-invalid = true]").is('select') == false)
           {
             // Create WorkModel and save it for add into database
             this.workModel = new WorkModel();
             this.workModel.set('name', $("#inputWorkName").val());
-            this.workModel.set('student_id', $("#selStudent").find(":selected").val());
+            this.workModel.set('student_id', $("#ChainOfChoice4").find(":selected").val());
             this.workModel.set('teacher_id', this.currentTeacherId);
             this.workModel.save(
               // wait, while response coming
@@ -210,6 +217,9 @@ define([
               // get response
               {
                 success: function(model, response) {
+                  console.log(response);
+                  console.log(model);
+
                   // Create TaskModel of each option in default tasks list
                   // and save it for add into database
                   var selectedTasks = $("#selDefaultTasks").find(":selected");
@@ -227,8 +237,12 @@ define([
                     console.log("No selectedTasks");
                   };
 
-                  // Hide modal dialog after save model to database
-                  me.hideModalWindow();
+                  // Reset data of modal dialog after save model to database
+                  me.resetDataOfModalWindow();
+                  // If click on button "Записати" - hide modal dialog
+                  if (e.target.id == 'btnAddWork') {
+                    me.hideModalWindow();
+                  }
 
                 },
                 // add hendler error
@@ -245,13 +259,11 @@ define([
 
       hideModalWindow: function(){
         $(this.el_modal).modal('hide');
-        document.getElementById(this.modal_form).reset();
-        this.unLink();
       },
 
-      unLink: function(){
-        this.undelegateEvents();
-      }
+      resetDataOfModalWindow: function(){
+        document.getElementById(this.modal_form).reset();
+      },
 
     });
 
