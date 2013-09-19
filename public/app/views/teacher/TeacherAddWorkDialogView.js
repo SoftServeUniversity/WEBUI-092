@@ -217,24 +217,21 @@ define([
               // get response
               {
                 success: function(model, response) {
-                  console.log(response);
-                  console.log(model);
-
                   // Create TaskModel of each option in default tasks list
                   // and save it for add into database
-                  var selectedTasks = $("#selDefaultTasks").find(":selected");
-                  if (selectedTasks.length > 0)
+                  var checkedTasks = $(".chbDefaultTasks").find(":checked");
+                  if (checkedTasks.length > 0)
                   {
-                    for (var i = 0; i < selectedTasks.length; i++)
+                    for (var i = 0; i < checkedTasks.length; i++)
                     {
                       this.taskModel = new TaskModel();
-                      this.taskModel.set('name', selectedTasks[i].text);
+                      this.taskModel.set('name', checkedTasks[i].value);
                       this.taskModel.set('work_id', model.get('id'));
                       this.taskModel.set('priority', i);
                       this.taskModel.save();
                     }
                   } else {
-                    console.log("No selectedTasks");
+                    console.log("No checked Tasks");
                   };
 
                   // Reset data of modal dialog after save model to database
