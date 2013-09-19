@@ -32,8 +32,6 @@ define([
 
     var TeacherView = Backbone.View.extend({
 
-      el_modal: '#dialogAddStudentWork',
-
       events: {
         "click #btnAddWork": "sendForm",
         "click #btnAddWorkAndContinue": "sendForm"
@@ -79,7 +77,12 @@ define([
       initialize:function(id){
         var me = this;
 
-        //me.currentTeacherId = id;
+        this.currentTeacherId = id;
+        // Id of modal window for add works
+        this.el_modal = '#dialogAddStudentWork';
+        // Id form in modal window for add works
+        this.modal_form = 'taskCreateForm';
+
 
         this.chainOfResp = {
           1: {nextKey: 2, nextColl: DepartmentsCollection},
@@ -162,11 +165,6 @@ define([
       },
 
       render: function(id){
-        //console.log(this.teacherModel.toJSON()[0]);
-
-        //console.log(this.departmentsCollection);
-        console.log(this.groupsCollection);
-
         var dataForTeacherAddWorkDialogTemplate = {
           teacher: this.teacherModel.toJSON()[0],
           faculties: this.facultiesCollection.toJSON(),
@@ -183,7 +181,6 @@ define([
       },
 
       sendForm: function(e){
-        //
         var me = this;
 
         if ($("#inputWorkName").val().length > 0 &&
@@ -248,7 +245,7 @@ define([
 
       hideModalWindow: function(){
         $(this.el_modal).modal('hide');
-        $(this.el_modal).removeData('modal');
+        document.getElementById(this.modal_form).reset();
         this.unLink();
       },
 
