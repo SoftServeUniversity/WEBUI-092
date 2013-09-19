@@ -13,7 +13,13 @@ class TaskChangesController < ApplicationController
   # GET /task_changes/1
   # GET /task_changes/1.json
   def show
-    @task_changes = TaskChange.where(task_id: params[:id]).order("created_at DESC")
+    if params[:page]
+      set_limit = 10
+      set_offset = params[:page].to_i * set_limit
+      @task_changes = TaskChange.where(task_id: params[:id]).offset(set_offset).limit(set_limit).order("created_at DESC")
+    else
+      @task_changes = TaskChange.where(task_id: params[:id]).order("created_at DESC")
+    end
     @task_changes.each do |task|
       task['progress'] = task.progress
     end
