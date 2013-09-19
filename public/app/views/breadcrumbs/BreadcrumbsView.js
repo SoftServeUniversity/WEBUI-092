@@ -51,7 +51,6 @@ define([
             }
           },
           success:function (arg) {
-
             var a = arg.toJSON();            
             for(var i = 0; i < a.length; i++){
               var cssClass = collType;
@@ -61,7 +60,6 @@ define([
           }
         });
       }
-
       function breadcrumbsFetch(id, val){ 
         current.fetch({
           async:false,
@@ -138,9 +136,7 @@ define([
 
                   $('.breadcrumb a').find('.department').parent().prevAll().remove();
                 }
-                //breadcrumbsShow();
-              
-              //}
+
             }
           }
         });
@@ -198,6 +194,11 @@ define([
         breadcrumbsObj.shift();
 
         for(var i in breadcrumbsObj){
+          if(breadcrumbsObj[i][2] == "teacher"){
+            $('.breadcrumb').find('li a.department').parent().nextAll().remove();
+          }else if(breadcrumbsObj[i][2] == "task"){
+            $('.breadcrumb').find('li a.teacher').parent().remove();
+          }
           var a = breadcrumbsObj[i][2]+"_"+breadcrumbsObj[i][1];
           var c = $('<li></li>');
           var b = $('<a></a>').html(breadcrumbsObj[i][0])
@@ -218,7 +219,6 @@ define([
 
         }
 
-        //$('.breadcrumb').find('.'+breadcrumbsObj[i][2]).parent().nextAll().remove();
         $('.breadcrumb').append(c);
         $('.breadcrumb li').fadeIn(1000);
 
