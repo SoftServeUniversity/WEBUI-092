@@ -40,11 +40,16 @@ define([
 
 
     var AppRouter = Backbone.Router.extend({
+      
       initialize: function(){
+        this.history = [];
+
         //update menu when needed
         this.bind( "all", this.updateMenu )
+        
+        //store history, so it's possible to navigate back
+        this.bind( "all", this.storeRoute )
 
-        var searchView = new SearchView();
         var registrationView = new RegistrationView();
         registrationView.render();
         $('.brand').click(function() {
@@ -52,6 +57,38 @@ define([
             location.reload();
         });
       },
+
+      //Used to restore history to previous state
+      //(WITHOUT triggering router) in case
+      //of unsuccessful attempt to get to some url
+      storeRoute: function(){
+        this.history.push(Backbone.history.fragment)
+      },
+      previousRoute: function(){
+        if (this.history.length > 1) {
+          this.navigate(this.history[this.history.length-1], true)
+        } 
+      },
+
+
+      //add active class to menu items
+      updateMenu: function(){
+        $(".page-link").removeClass('active');
+        
+        var path = Backbone.history.fragment;
+        
+        if(path == 'info'){
+          $("#info-page-link").addClass('active');
+        };
+        if(path == 'search'){
+          $("#search-page-link").addClass('active');
+        };
+        if(path == ''){
+          $("#main-page-link").addClass('active');
+        };
+      },
+
+
       routes: {
         ''                       : 'homeAction',
         'group/:id'              : 'groupProgressAction',
@@ -69,28 +106,33 @@ define([
         'edit_profile'           : 'editProfile',
         'cancel_account'         : 'cancelAccount',
         'info'                   : 'infoAction',
+        'search'                 : 'searchAction',
         // Default
         '*actions': 'defaultAction'
-      },
-
-      //add and remove active class from menu items
-      
-      updateMenu: function(){
-        $(".page-link").removeClass('active');
-        
-        var path = Backbone.history.fragment;
-        
-        if(path == 'info'){
-          $("#info-page-link").addClass('active');
-        };
-        if(path == ''){
-          $("#main-page-link").addClass('active');
-        };
       }
     
     });
 
     var initialize = function(){
+
+      function checkRole(role){
+        if(GlobalUser.currentUser != undefined){
+          if(GlobalUser.currentUser.role == role){
+            return true;
+          } 
+        }
+      }
+
+      function showWarning(){
+
+        app_router.previousRoute();
+        $('#content #top-warning').remove
+        $('#content').prepend($('<div id="top-warning" class="alert alert-error"><a class="close" data-dismiss="alert" href="#">×</a><span class="message">Ви намагались зайти на сторінку, до якої у вас немає прав доступу</span></div>'))
+        $('#top-warning').delay(3000).fadeOut('slow');
+      
+      }
+
+
 
       var app_router = new AppRouter;
 
@@ -103,20 +145,8 @@ define([
 
       });
 
-      app_router.on('route:workShowAction', function (id){
 
-
-        if(this.workView){
-          this.workView.$el.undelegate();
-        }
-
-        var breadcrumbsView = new BreadcrumbsView();
-        this.workView = new MainWorkView({"id": id});
-      });
-
-
-
-//----------------------------- zombie views experiment------------------------------//
+//----------------------------- zombie views ------------------------------//
       
       //close method for all views  
       Backbone.View.prototype.close = function(){
@@ -146,25 +176,41 @@ define([
       };
 
 
-
       app_router.on('route:viewAdminFacultyPage', function (){
-        var adminFacultyView = new AdminFacultyView();
-        
-        //manageViews(adminFacultyView);
-        var breadcrumbsView = new BreadcrumbsView();
+        if(checkRole('faculty_admin')){
+          var adminFacultyView = new AdminFacultyView();        
+          //manageViews(adminFacultyView);
+          var breadcrumbsView = new BreadcrumbsView();
+        } else {
+          showWarning();
+        }
       });
 
       app_router.on('route:viewAdminPage', function (){
-        var adminView = new AdminView();
+        if(checkRole('admin')){
+          var adminView = new AdminView();
+          //manageViews(adminView);
+          var breadcrumbsView = new BreadcrumbsView();
+        } else {
+          showWarning();
+        }
 
-        //manageViews(adminView);
-        var breadcrumbsView = new BreadcrumbsView();
       });
 
-//----------------------------- end zombies experiment -------------------------//
+//----------------------------- end zombies -------------------------//
 
 
 
+
+      app_router.on('route:workShowAction', function (id){
+
+        if(this.workView){
+          this.workView.$el.undelegate();
+        }
+
+        var breadcrumbsView = new BreadcrumbsView();
+        this.workView = new MainWorkView({"id": id});
+      });
 
       app_router.on('route:groupProgressAction', function (id) {
 
@@ -218,12 +264,20 @@ define([
         var userSignUp = new UserSingUpView();
         var breadcrumbsView = new BreadcrumbsView();
         userSignUp.render();
+        $.getScript('/app/libs/reg/reg.js')
       });
 
       app_router.on('route:editProfile', function (){
         var userSignUp = new UserSingUpView();
         var breadcrumbsView = new BreadcrumbsView();
         userSignUp.edit();
+      });
+      
+      app_router.on('route:searchAction', function (id) {
+
+        var breadcrumbsView = new BreadcrumbsView();
+        var searchView = new SearchView();
+        
       });
 
       app_router.on('route:cancelAccount', function (){
@@ -262,7 +316,11 @@ define([
 
       Backbone.history.start();
     };
+    
+
     return {
       initialize: initialize
     };
+  
+
   });

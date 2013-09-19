@@ -30,4 +30,15 @@ class UsersController < ApplicationController
       redirect_to users_path, :notice => "Can't delete yourself."
     end
   end
+
+  def get_faculty_admins 
+    @faculty_admins = User.all.select{ |u| u.role_ids.include? 2 }
+    respond_to do |format|
+      format.html # index.html.erb
+      format.json { render json: @faculty_admins }
+    end
+  end
+
+
+
 end

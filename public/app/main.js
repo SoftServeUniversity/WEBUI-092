@@ -21,7 +21,8 @@ require.config({
     manual_requests_csrf_hack: 'libs/csrf_hack/manual_requests_csrf_hack',
     datatables: 'libs/datatables/jquery.dataTables',
     bootstrap_datatables: 'libs/datatables/bootstrap_dataTables',
-    wysihtml: 'libs/bootstrap_wysihtml5/js/wysihtml5-0.3.0.min'
+    wysihtml: 'libs/bootstrap_wysihtml5/js/wysihtml5-0.3.0.min',
+    bootpag: 'libs/bootstrap/bootpag'
   }
 });
 

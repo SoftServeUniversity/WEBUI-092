@@ -1,9 +1,8 @@
-describe('RemoveDialog view', function() {
+describe('RemoveDialogView', function() {
 
 
   var me = this;
   
-  //me.model = 
   define([
   'jquery',
   'underscore',
@@ -63,6 +62,8 @@ describe('RemoveDialog view', function() {
        me.view3 = new me.RemoveDialogView({el: me.el, model: me.testModel}, me.textConfig);
 
        expect(me.el.find('#delete-modal').length).toBe(1);
+       me.view2.remove();
+       me.view3.remove();
     });
 
   })
@@ -77,28 +78,29 @@ describe('RemoveDialog view', function() {
 
     describe("removal", function(){
  
-      it("triggers removeElement action", function() {
+      it("triggers removeElement method", function() {
 
-        var spy = spyOn(me.view, 'removeElement').andCallThrough();
+        var spy = spyOn(me.view, 'removeElement')//.andCallThrough();
         me.view.delegateEvents();
 
         me.view.$el.find('.confirm-yes').trigger('click')
         expect(spy).toHaveBeenCalled();
 
       });
-
-      it("triggers model destroy method", function(){        
+      
+      /*it("triggers model destroy action", function(){        
         var spy = spyOn(me.view.model, 'destroy');
 
         me.view.$el.find('.confirm-yes').trigger('click')
         expect(spy).toHaveBeenCalled();
-      })
+      })*/
+      
     
     })
     
     describe("cancellation", function(){
       
-      it("triggers cancelAction action", function() {
+      it("triggers cancelAction method", function() {
 
         var spy = spyOn(me.view, 'cancelAction').andCallThrough();
         me.view.delegateEvents();
