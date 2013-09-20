@@ -52,7 +52,6 @@ define([
 
         var registrationView = new RegistrationView();
         registrationView.render();
-        var searchView = new SearchView();
         $('.brand').click(function() {
             location.href = '/#';
             location.reload();
@@ -107,6 +106,7 @@ define([
         'edit_profile'           : 'editProfile',
         'cancel_account'         : 'cancelAccount',
         'info'                   : 'infoAction',
+        'search'                 : 'searchAction',
         // Default
         '*actions': 'defaultAction'
       }
@@ -285,8 +285,11 @@ define([
         var breadcrumbsView = new BreadcrumbsView();
     
       });
-
-
+      app_router.on('route:searchAction', function(){
+        
+        var breadcrumbsView = new BreadcrumbsView();
+        var searchView = new SearchView();
+      });
       app_router.on('route:taskShow', function (id) {
 
         var breadcrumbsView = new BreadcrumbsView();

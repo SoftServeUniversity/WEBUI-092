@@ -2,11 +2,10 @@
 
 define([
   'jquery',
-  'bootstrapselect',
   'underscore',
   'backbone',
   'views/admin/parentAdminView',
-
+  'bootstrapselect',
   //subViews for handlers
   'views/admin/tabAdminsView',
   'views/admin/tabCoursesView',
@@ -15,8 +14,8 @@ define([
   'views/admin/tabDepartmentsView',
   'views/admin/tabTeachersView'
 
-], function ($, bootstrapselect, _,  Backbone,
-            ParentAdminView, TabAdminsView, TabCoursesView,
+], function ($,  _,  Backbone,
+            ParentAdminView, bootstrapselect, TabAdminsView, TabCoursesView,
              TabGroupsView, TabDepartmentsView, TabTeachersView) {
   
 var AdminFacultyView = ParentAdminView.extend({  

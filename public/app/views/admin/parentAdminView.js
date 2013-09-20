@@ -2,16 +2,16 @@
 
 define([
   'jquery',
-  'bootstrapselect',
   'underscore',
   'backbone',
   'bootstrap_datatables',
+  'bootstrapselect',
   'views/shared/MenuView',
   'text!templates/admin/parentAdminTemplate.html',
   'text!templates/admin/buttonsTemplate.html',
   'views/admin/itemView'
 
-], function( $, bootstrapselect, _,  Backbone, Bootstrap_dataTables,
+], function( $,  _,  Backbone, Bootstrap_dataTables, bootstrapselect,
             MenuView, parentAdminTemplate, buttonsTemplate, ItemView ) {
 
   var ParentAdminView = Backbone.View.extend({

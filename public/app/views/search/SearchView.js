@@ -6,10 +6,13 @@ define([
   'collections/faculties/FacultiesCollection',
   'collections/courses/CoursesCollection',
   'collections/teachers/teachersProxyCollection',
-  'collections/students/StudentsProxyCollection'
+  'collections/students/StudentsProxyCollection',
+  'text!templates/search/SearchTemplate.html',
+  'bootstrapselect',
+  'bootstrap_datatables'
 
 
-], function ($, _, Backbone, FacultiesCollection, CoursesCollection, TeachersCollection, StudentsCollection){
+], function ($, _, Backbone, FacultiesCollection, CoursesCollection, TeachersCollection, StudentsCollection, SearchTemplate, bootstrapselect, datatables){
 
   var SearchView =  Backbone.View.extend({
 
@@ -18,7 +21,9 @@ define([
                 $(this).fadeIn('fast');
               });
 
-
+      var compiledTemplate = _.template( SearchTemplate );
+      $("#content").html(compiledTemplate);
+      $('select').selectpicker();
       var studCollection = new StudentsCollection();
       var teachCollection = new TeachersCollection();
       var teachObj = [];
@@ -26,19 +31,47 @@ define([
       var f_id = "";
       var c_id = "";
 
+      $('button[data-id = faculty_select]').removeClass('btn-default').addClass('btn-info btn-mini');
+      $('button[data-id = course_select]').removeClass('btn-default').addClass('btn-success btn-mini');
       $('html').click(function() {
-        $('#select-box').hide();
-        $('#search-field').css('width', '50px').val("");
+        $('#select-box div.dropdown-menu').hide();
       });
 
+      $('button[data-id = faculty_select], button[data-id = course_select]').on('click', function(){
+        $(this).siblings('div.dropdown-menu').fadeToggle();
+      });
+      
+      $('#select-box div.dropdown-menu').click(function(){
+        if($(this).siblings('button[data-id = faculty_select]')){
+          if($(this).find('li').first().attr('selected')){
+            f_id = null;
+          }else{
+            f_id = $(this).find('li[class = selected] a').attr('data-val');
+          }
+
+        }else if($(this).siblings('button[data-id = course_select]')){
+          if($(this).find('li').first().attr('selected')){
+            c_id = null;
+          }else{
+            c_id = $(this).find('li[class = selected]').find('a').attr('data-val');
+          }
+        }
+
+      });
+      $('.searchDataTable').dataTable({
+        bDestroy: true,
+        "oLanguage": {
+          sUrl: "app/libs/datatables/searchDataTables.ukrainian.txt"
+        }
+      })
       $('#search-block').click(function(event){
           event.stopPropagation();
           $('#select-box').show();
-          $('#search-field').css('width', 'auto');
+          
       });
       $(window).on('hashchange', function() {
         $('#select-box').hide();
-          $('#search-field').css('width', '50px').val("");
+          $('#search-field').val("");
       });
       function getJSON(collection, obj){
         collection.fetch({
@@ -51,6 +84,8 @@ define([
         });
         return obj;
       }
+
+
       function getFacultyJSON(){
         var facultiesCollection = new FacultiesCollection();
         facultiesCollection.fetch({
@@ -58,26 +93,14 @@ define([
           success:function (result) {
             var facul = result.toJSON();
             for(var i in facul){
-              var option = $('<option></option>').attr('value', facul[i].id).html(facul[i].name);
-              $('#faculty_select').append($(option));
+              var option = $('<a></a>').attr('data-val', facul[i].id).html(facul[i].name);
+              var li = $("<li></li>").html($(option));
+              $('button[data-id = faculty_select] + div.dropdown-menu').find('ul').append(li);
             }
           }
         });
       }
-      $('#course_select').on('change', function(){
-        if($(this).find('option:selected').attr('value')){
-          f_id = $(this).find('option:selected').attr('value');
-        }else{
-          f_id = "";
-        }
-      });
-      $('#faculty_select').on('change', function(){
-        if($(this).find('option:selected').attr('value')){
-          c_id = $(this).find('option:selected').attr('value');
-        }else{
-          c_id = "";
-        }
-      });
+
       function getCourseJSON(){
         var coursesCollection = new CoursesCollection();
         coursesCollection.fetch({
@@ -85,14 +108,35 @@ define([
           success:function (result) {
             var course = result.toJSON();
             for(var i in course){
-              var option = $('<option></option>').attr('value', course[i].id).html(course[i].name);
-              $('#course_select').append($(option));
+              var option = $('<a></a>').attr('data-val', course[i].id).html(course[i].name);
+              var li = $("<li></li>").html($(option));
+              $('button[data-id = course_select] + div.dropdown-menu').find('ul').append(li);
             }
           }
         });
       }
+      
       getFacultyJSON();
       getCourseJSON();
+     
+     $("#dropList").change(function() {
+        var value = $("#dropList").val();
+        $.get("getValues.php", {a: value}, function(data) {
+            $("#showMY").append('<li><a href="#">' + data + '</a></li>');
+            if($("#showMY li").length > 10) {
+                $("#showMY li:first:visible").hide();
+            }
+        });
+    });
+
+      $('button[data-id = faculty_select] + div.dropdown-menu').find('ul li').on('click', function(){
+        $('button[data-id = faculty_select] + div.dropdown-menu').find('ul li').removeClass('selected');
+        $(this).addClass('selected');
+      });
+      $('button[data-id = course_select] + div.dropdown-menu').find('ul li').on('click', function(){
+        $('button[data-id = course_select] + div.dropdown-menu').find('ul li').removeClass('selected');
+        $(this).addClass('selected');
+      });
             getJSON(studCollection, studObj);
             getJSON(teachCollection, teachObj);
 
@@ -105,6 +149,7 @@ define([
               else
                   return v;
           });
+          
           $( "#search-field" ).autocomplete({
             minLength: 2,
             source: parsed,
@@ -115,7 +160,6 @@ define([
             },
             select: function( event, ui ) {
               $( "#search-field" ).val( ui.item.label );
-
               if(ui.item.epartment_id){
                 location.href = '#/teacher/'+ui.item.id;
               }else{
@@ -128,11 +172,14 @@ define([
 
               if(item.department_id){
                 var href = '#/teacher/'+item.id;
-                var status = '<span class="searchInfo"><span class="status">викладач</span><br> Факультет: Faculty of Science ABD0  -\> Кафедра: Назва кафедри</span>';
+                var status = '<span class="status">викладач</span>';
               }else{
-                var status = '<span class="searchInfo"><span class="status">cтудент</span><br> Факультет: Faculty of Science ABD0  -\> Курс: 1</span>';
+                var status = '<span class="status">cтудент</span>';
                 var href = '#/student/'+item.id;
               }
+            if(("#ui-id-1 li").length > 1){
+                $("#ui-id-1 li").eq(3).nextAll().remove();
+            }
             var searchInfo = $('<span></span>').addClass('searchInfo').html('');
             var a = $('<a>' + item.label +" "+status);
             return $( "<li>" ).append(a).appendTo( ul );
