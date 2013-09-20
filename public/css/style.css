@@ -34,6 +34,10 @@ a:hover{
 }
 #tab-content td{
 }
+#sel-year {
+	width:120px;
+	margin-top:5px;
+}
 .toggle-list .toggle-input {
 	display:none;
 	margin-bottom:0px;
@@ -87,7 +91,7 @@ header .control-group .control-label{
 .row-tile-list {
 	margin-bottom:0px !important;
 }
-.row-tile-list .name {
+.row-tile-list .fname {
 	margin-bottom:5px;
 	font-size:16px;
 	font-weight:bold;
@@ -109,15 +113,10 @@ header .control-group .control-label{
 	padding-bottom:10px;
 }
 .row-tile-list .item .inner {
-	padding-left:90px;
+	padding:20px 10px 10px 10px;
 	min-height:90px;
-	padding-bottom:20px;
-	padding-top:10px;
-
 }
 .row-tile-list img{
-	position:absolute;
-	left:0px;
 }
 .row-tile-list .data {
 	display:block;

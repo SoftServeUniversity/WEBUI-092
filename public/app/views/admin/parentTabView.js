@@ -74,7 +74,6 @@ define([
       //render rows
       this.collection.each(function(item) {
         me.renderSingleItem(item)
-
       });
       
       return this;
@@ -91,13 +90,14 @@ define([
 
     checkVerification: function(config){
 
+      console.log('checkin verification')
       var me = this;
 
       var collection = me.config.collection.toJSON();
       
       $.each(collection, function(key, value){
-        if (value['role_pending'] == true){
-          $('#'+me.config.tab_id).addClass('needs-verification')
+        if (value['role_pending'] == 1){         
+          $('#'+me.config.verification.tab_id).addClass('needs-verification')
         }
       })
 

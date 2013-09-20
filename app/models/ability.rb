@@ -16,7 +16,6 @@ class Ability
       can :manage, Course, faculty: { head_id: user.id }
       can :manage, Department, faculty: { head_id: user.id }
       can :manage, Group, department: { faculty: { head_id: user.id } }
-      can :manage, Work, student: { group: { department: { faculty: { head_id: user.id } }}}
     
     elsif user.has_role? :student
       can :manage, Work, student_id: user.id

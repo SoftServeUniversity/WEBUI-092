@@ -42,7 +42,6 @@ define([
       
       initialize: function(){
         this.history = [];
-
         //update menu when needed
         this.bind( "all", this.updateMenu )
         
@@ -175,22 +174,22 @@ define([
 
       app_router.on('route:viewAdminFacultyPage', function (){
 
-        //if(checkRole('faculty_admin')){
+        if(checkRole('faculty_admin')){
           var adminFacultyView = new AdminFacultyView();        
           var breadcrumbsView = new BreadcrumbsView();
-        //} else {
-         // showWarning();
-        //}
+        } else {
+          showWarning();
+        }
       });
 
       app_router.on('route:viewAdminPage', function (){
 
-        //if(checkRole('admin')){
+        if(checkRole('admin')){
           var adminView = new AdminView();
           var breadcrumbsView = new BreadcrumbsView();
-        //} else {
-        //  showWarning();
-        //}
+        } else {
+          showWarning();
+        }
 
       });
 

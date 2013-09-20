@@ -1,7 +1,7 @@
 Webui92::Application.routes.draw do
 
   resources :teachers
-
+  resources :faculty_admins
   resources :students
 
 
