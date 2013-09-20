@@ -907,38 +907,26 @@ div.DTFC_LeftFootWrapper table {
 /* end modal window */
 
 /*-----search form---start---*/
-#input-box {
-    background-color: #0097CF;
-    background-image: linear-gradient(to bottom, #04A2DD, #03739C);
-    background-repeat: repeat-x;
-    border: 1px solid #024E6A;
-    border-radius: 10px 10px 10px 10px;
-    box-shadow: 0 0 2px #111111;
-    margin: 0 auto 10px;
-    padding: 15px;
-    position: relative;
-    text-align: left;
-    width: 600px;
+.searchInfo{
+	font-size: 10px;
+	color:blue;
 }
-#search-field{
-	margin-bottom: 0;
-    border: 1px solid #024E6A;
-    border-radius: 8px 8px 8px 8px;
-    font-size: 24px;
-    height: 25px;
-    line-height: 30px;
-    outline: medium none;
-    padding: 8px 12px;
-    width: 574px;
-    background-color: #FFFFFF;
-}
-span.status{
-	position:absolute;
-	right:10px;
+.status{
+	font-size: 15px;
 	color:maroon;
 }
-#search-main-block{
-	width:635px;
-	margin:auto;
+#search-block{
+	position:relative;
+	width:100px;
+	margin-top:5px;
+}
+#search-field{
+	width:50px;
+}
+#select-box{
+	position: absolute;
+	width:450px;
+	left:-100px;
+	display:none;
 }
 /*-----search form----end--*/
