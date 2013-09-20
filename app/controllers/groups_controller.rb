@@ -5,6 +5,8 @@ class GroupsController < ApplicationController
 
     if params['filter'] === nil
       @group = Group.all
+    elsif params['filter']['faculty_id']
+      @group = Faculty.find(params['filter']['faculty_id']).groups
     else
       @group = Group.where(params['filter'])
     end

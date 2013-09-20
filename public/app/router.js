@@ -35,7 +35,6 @@ define([
 
 
 
-
     GlobalEventBus = _.extend({}, Backbone.Events);
 
 
@@ -58,7 +57,7 @@ define([
         });
       },
 
-      //Used to restore history to previous state
+      //restore history to previous state
       //(WITHOUT triggering router) in case
       //of unsuccessful attempt to get to some url
       storeRoute: function(){
@@ -66,10 +65,9 @@ define([
       },
       previousRoute: function(){
         if (this.history.length > 1) {
-          this.navigate(this.history[this.history.length-1], true)
+          this.navigate(this.history[this.history.length-1], false)
         } 
       },
-
 
       //add active class to menu items
       updateMenu: function(){
@@ -87,7 +85,6 @@ define([
           $("#main-page-link").addClass('active');
         };
       },
-
 
       routes: {
         ''                       : 'homeAction',
@@ -177,23 +174,23 @@ define([
 
 
       app_router.on('route:viewAdminFacultyPage', function (){
-        if(checkRole('faculty_admin')){
+
+        //if(checkRole('faculty_admin')){
           var adminFacultyView = new AdminFacultyView();        
-          //manageViews(adminFacultyView);
           var breadcrumbsView = new BreadcrumbsView();
-        } else {
-          showWarning();
-        }
+        //} else {
+         // showWarning();
+        //}
       });
 
       app_router.on('route:viewAdminPage', function (){
-        if(checkRole('admin')){
+
+        //if(checkRole('admin')){
           var adminView = new AdminView();
-          //manageViews(adminView);
           var breadcrumbsView = new BreadcrumbsView();
-        } else {
-          showWarning();
-        }
+        //} else {
+        //  showWarning();
+        //}
 
       });
 

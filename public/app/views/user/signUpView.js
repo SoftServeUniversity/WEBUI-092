@@ -15,13 +15,18 @@ define([
   'text!templates/registration/TeacherAttributesTemplate.html',
   'text!templates/registration/DepartmentOptionTemplate.html',
   'collections/groups/TemporaryGroupsCollection',
+  'collections/faculties/FacultiesCollection',
+  'text!templates/registration/FaAttributesTemplate.html',
   'text!templates/registration/StudentAttributesTemplate.html',
   'text!templates/registration/GroupOptionTemplate.html',
   'text!templates/registration/RoleOptionTemplate.html',
+  'text!templates/registration/FaOptionTemplate.html',
   'text!templates/registration/EditRegistrationsTemplate.html'
-], function($, _, Backbone, bootstrap, jqBootstrapValidation, reg, signUpTemplate, GlobalUser, UserRegistration, User, errorNotificationTemplate, fieldErrorNoticeTemplate, 
-  TemporaryDepartmentCollection, TeacherAttributesTemplate, DepartmentOptionTemplate, TemporaryGroupsCollection, StudentAttributesTemplate, GroupOptionTemplate, RoleOptionTemplate,
-  EditRegistrationsTemplate){ 
+], function($, _, Backbone, bootstrap, jqBootstrapValidation, reg, signUpTemplate,
+            GlobalUser, UserRegistration, User, errorNotificationTemplate, fieldErrorNoticeTemplate, 
+            TemporaryDepartmentCollection, TeacherAttributesTemplate, DepartmentOptionTemplate,
+            TemporaryGroupsCollection, FacultiesCollection, FaAttributesTemplate, StudentAttributesTemplate,
+            GroupOptionTemplate, RoleOptionTemplate, FaOptionTemplate, EditRegistrationsTemplate ){ 
 
   GlobalUser.Views.Unauthenticated = GlobalUser.Views.Unauthenticated || {};
 
@@ -35,15 +40,17 @@ define([
       this.model = new UserRegistration();
     },
 
+
     onRender: function() {
       $("#content").html(_.template(signUpTemplate));
       $('#launch').slideUp(100);
       $('#launch-btn').show();
-      $(this.el).find(".roleStudent").hide();
-      $(this.el).find(".roleTeacher").hide();
+      //$(this.el).find(".roleStudent").hide();
+      //$(this.el).find(".roleTeacher").hide();
       this.populate_roles_select();
       this.generate_capcha();
-    },
+     },
+
 
     generate_capcha: function(){
       this.capcha = '';
@@ -66,12 +73,20 @@ define([
     },
 
     populate_roles_select: function(){
+      var me = this;
+
       var el = $(this.el);
       $.post('user_helper/populate_roles_select', null, function(roles){
         _.each(roles, function(role) {
           el.find('#roles-select').prepend( _.template( RoleOptionTemplate, role ) );
         });
+
+        me.selectDefaultRole('student');   
       }, 'json');
+    },
+    
+    selectDefaultRole: function(role){
+      $('#roles-select option[value="'+role+'"]').attr('selected', 'selected').trigger('change');
     },
 
     generateTeacherStudentFields: function(e){
@@ -84,7 +99,7 @@ define([
       if(value == 'student'){
         var groups = new TemporaryGroupsCollection();
         // adds theacher fields
-        el.find('.roleStudent').html(_.template(StudentAttributesTemplate));
+        el.find('#roleFields').html(_.template(StudentAttributesTemplate));
         groups.fetch({
           success: function(collection, response) {
             _.each(collection.models, function(model) {
@@ -92,30 +107,59 @@ define([
               el.find('#group-id-select').prepend(_.template(GroupOptionTemplate, model.toJSON()));
             });
             // Studen current group will be selected
-            el.find('.group-opt[value='+ GlobalUser.currentUser.attributes.student_attributes.group_id + ']').attr('selected', 'true');
+            //el.find('.group-opt[value='+ GlobalUser.currentUser.attributes.student_attributes.group_id + ']').attr('selected', 'true');
           }
         });
-        el.find('.roleStudent').show();
-        el.find('.roleTeacher').html('');
-      }else if(value == 'admin' || value == 'teacher' || value == 'faculty_admin'){
+        
+        //el.find('.roleStudent').show();
+        //el.find('.roleTeacher').html('');
+
+      }else if(value == 'teacher'){
+        u = new User();
+        console.log(u)
         var departments = new TemporaryDepartmentCollection();
         // adds theacher fields
-        el.find('.roleTeacher').html(_.template(TeacherAttributesTemplate, GlobalUser.currentUser.attributes.teacher_attributes));
+        el.find('#roleFields').html(_.template(TeacherAttributesTemplate/*, GlobalUser.currentUser.attributes.teacher_attributes*/));
         departments.fetch({
           success: function(collection, response) {
             _.each(collection.models, function(model) {
               //populate department select with all curent departments. Pleace create atleast one department to test this.
-              el.find('#depertent-id-select').prepend(_.template(DepartmentOptionTemplate, model.toJSON()));
+              el.find('#department-id-select').prepend(_.template(DepartmentOptionTemplate, model.toJSON()));
             });
             // Teacher current department will be selected
-            el.find('.departments-opt[value=' + GlobalUser.currentUser.attributes.teacher_attributes.department_id + ']').attr('selected', 'true');
+            //el.find('.departments-opt[value=' + GlobalUser.currentUser.attributes.teacher_attributes.department_id + ']').attr('selected', 'true');
           }
         });
-        el.find('.roleTeacher').show();
-        el.find('.roleStudent').html('');
-      }else if(value == 'User'){
-        el.find('.roleTeacher').html('');
-        el.find('.roleStudent').html('');
+        
+        //el.find('.roleTeacher').show();
+        //el.find('.roleStudent').html('');
+
+      } else if(value == 'faculty_admin'){
+        var faculties = new FacultiesCollection();
+        // adds faculty admin fields 
+
+        el.find('#roleFields').html(_.template(FaAttributesTemplate/*, GlobalUser.currentUser.attributes.teacher_attributes*/));
+        faculties.fetch({
+          success: function(collection, response) {
+            _.each(collection.models, function(model) {
+              //populate department select with all curent departments. Pleace create atleast one department to test this.
+              el.find('#faculty-id-select').prepend(_.template(FaOptionTemplate, model.toJSON()));
+            });
+            // Teacher current department will be selected
+            //el.find('.faculty-opt[value=' + GlobalUser.currentUser.attributes.teacher_attributes.department_id + ']').attr('selected', 'true');
+          }
+        });
+        
+        //el.find('.roleTeacher').show();
+        //el.find('.roleStudent').html('');
+        //el.find('#roleFields')
+
+      } else if(value == 'guest'){
+
+        el.find('#roleFields').empty()
+        //el.find('.roleTeacher').html('');
+        //el.find('.roleStudent').html('');
+
       }
     },
 

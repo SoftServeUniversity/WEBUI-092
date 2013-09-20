@@ -37,7 +37,7 @@ define([
           
           user_id: {
             label: 'Адміністратор факультету',
-            type: 'select',
+            type: 'static',
             collection: me.collections.teachers
           }
 

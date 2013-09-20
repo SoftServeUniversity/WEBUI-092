@@ -13,6 +13,8 @@ define([
     collections_classes: {
       courses: CoursesCollection
     },
+    
+    dataFilter: { faculty_id: 1 },
 
     //runs when all collections have loaded
     setConfig: function(){

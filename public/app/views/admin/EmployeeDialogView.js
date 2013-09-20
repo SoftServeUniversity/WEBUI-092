@@ -44,15 +44,15 @@ var EmployeeDialogView = Backbone.View.extend(
           fields: {
               order:{
                   label: '№',
-                  type:  'static'
+                  type:  'simple'
               },
               pib: {
                   label: 'П.І.Б.',
-                  type:  'static'
+                  type:  'simple'
               },
               degree: {
                   label: 'Наукове звання',
-                  type:  'static'
+                  type:  'simple'
               }
 
           },

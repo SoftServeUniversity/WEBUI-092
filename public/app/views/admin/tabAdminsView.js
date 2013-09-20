@@ -5,17 +5,19 @@ define([
   'backbone',
   
   'models/teacher/TeacherModel',
-  'collections/faculties/FacultyAdminsCollection',
+  'collections/faculties/UsersCollection',
   'views/admin/parentTabView'
   
-], function($, _, Backbone, TeacherModel, FacultyAdminsCollection, ParentTabView){   
+], function($, _, Backbone, TeacherModel, UsersCollection, ParentTabView){   
 	 
   var tabChildAdminsView = ParentTabView.extend({
 
 
     collections_classes: {
-      fadmins: FacultyAdminsCollection
+      users: UsersCollection
     },
+
+    dataFilter: { role_ids: 2 },
 
     setConfig: function(){
     	var me = this;
@@ -24,7 +26,7 @@ define([
       	
         model: TeacherModel,
         
-        collection: me.collections.fadmins,
+        collection: me.collections.users,
         
         fields: {
           
