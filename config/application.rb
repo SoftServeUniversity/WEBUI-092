@@ -80,5 +80,9 @@ module Webui92
 
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
+
+    config.assets.precompile += ['stickyfooter.css.scss']
+    config.assets.precompile += ['header.css.scss']
+    config.assets.precompile += ['content.css.scss']
   end
 end
