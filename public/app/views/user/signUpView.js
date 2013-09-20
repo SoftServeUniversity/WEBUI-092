@@ -100,9 +100,9 @@ define([
         var groups = new TemporaryGroupsCollection();
         // adds theacher fields
         el.find('#roleFields').html(_.template(StudentAttributesTemplate));
-        el.find('#group-id-select').empty();
         groups.fetch({
           success: function(collection, response) {
+            el.find('#group-id-select').empty();
             _.each(collection.models, function(model) {
               // populate department select with all curent departments. Pleace create atleast one department to test this.
               el.find('#group-id-select').prepend(_.template(GroupOptionTemplate, model.toJSON()));
@@ -121,9 +121,9 @@ define([
         var departments = new TemporaryDepartmentCollection();
         // adds theacher fields
         el.find('#roleFields').html(_.template(TeacherAttributesTemplate/*, GlobalUser.currentUser.attributes.teacher_attributes*/));
-        el.find('#department-id-select').empty();
         departments.fetch({
           success: function(collection, response) {
+            el.find('#department-id-select').empty();
             _.each(collection.models, function(model) {
               //populate department select with all curent departments. Pleace create atleast one department to test this.
               el.find('#department-id-select').prepend(_.template(DepartmentOptionTemplate, model.toJSON()));

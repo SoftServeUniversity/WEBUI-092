@@ -3,7 +3,7 @@ define([
   'underscore',
   'backbone',
   'views/admin/parentAdminView',
-
+  'bootstrapselect',
   //subViews for handlers
   'views/admin/tabAdminsView',
   'views/admin/tabFacultiesView',
@@ -13,7 +13,7 @@ define([
 
 ], function ($, _,  Backbone,
 
-            ParentAdminView, TabAdminsView, TabFacultiesView, TabDbView, TabInfoView) {   
+            ParentAdminView, bootstrapselect, TabAdminsView, TabFacultiesView, TabDbView, TabInfoView) {   
   
   var AdminView = ParentAdminView.extend({  
     
