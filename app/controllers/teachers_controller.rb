@@ -7,6 +7,8 @@ class TeachersController < ApplicationController
 
     if params['filter'] === nil
       @teachers = Teacher.all
+    elsif params['filter']['faculty_id']
+      @teachers = Faculty.find(params['filter']['faculty_id']).teachers
     else
       @teachers = Teacher.where(params['filter'])
     end

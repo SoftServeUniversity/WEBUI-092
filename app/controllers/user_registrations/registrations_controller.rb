@@ -13,6 +13,7 @@ class UserRegistrations::RegistrationsController < Devise::RegistrationsControll
 
   # POST /resource
   def create
+    puts (sign_up_params)
     build_resource(sign_up_params)
 
     if resource.save

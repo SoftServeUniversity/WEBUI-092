@@ -4,8 +4,8 @@ define([
   'jquery',
   'underscore',
   'backbone',
+  'collections/faculties/FacultiesCollection',
   'views/admin/parentAdminView',
-  'bootstrapselect',
   //subViews for handlers
   'views/admin/tabAdminsView',
   'views/admin/tabCoursesView',
@@ -14,12 +14,14 @@ define([
   'views/admin/tabDepartmentsView',
   'views/admin/tabTeachersView'
 
-], function ($,  _,  Backbone,
-            ParentAdminView, bootstrapselect, TabAdminsView, TabCoursesView,
+], function ($, _,  Backbone, FacultiesCollection,
+            ParentAdminView, TabAdminsView, TabCoursesView,
              TabGroupsView, TabDepartmentsView, TabTeachersView) {
   
 var AdminFacultyView = ParentAdminView.extend({  
   
+  facultyName: 'Default Faculty Name',
+
   headline: 'Адміністратор факультету',
 
   defaultActiveTab: 'teachers-tab',
@@ -60,9 +62,14 @@ var AdminFacultyView = ParentAdminView.extend({
   
 
   initialize: function(){
-
+    this.getFacultyName(1);
     this.constructor.__super__.initialize.apply(this);
+  },
 
+  getFacultyName: function(id){
+    var faculties = new FacultiesCollection();
+    faculties.fetch({ data:{ filter:{ id: id }, }, async:false} );
+    this.facultyName = faculties.toJSON()[0].name;
   },
 
   //tab menu buttons handlers  

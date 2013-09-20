@@ -5,21 +5,21 @@ define([
   'underscore',
   'backbone',
   'bootstrap_datatables',
-  'bootstrapselect',
   'views/shared/MenuView',
   'text!templates/admin/parentAdminTemplate.html',
   'text!templates/admin/buttonsTemplate.html',
   'views/admin/itemView'
 
-], function( $,  _,  Backbone, Bootstrap_dataTables, bootstrapselect,
+], function( $, _,  Backbone, Bootstrap_dataTables,
             MenuView, parentAdminTemplate, buttonsTemplate, ItemView ) {
 
   var ParentAdminView = Backbone.View.extend({
 
-    el_headline    : '#headline',
-    el_tab_menu    : '#tab-menu',
-    el_tab_content : '#tab-content',
-    el_tab_buttons : '#tab-buttons',
+    el_headline       : '#headline',
+    el_sub_headline   : '#sub-headline',
+    el_tab_menu       : '#tab-menu',
+    el_tab_content    : '#tab-content',
+    el_tab_buttons    : '#tab-buttons',
 
 
     headline: 'Default Admin Headline',
@@ -146,8 +146,9 @@ define([
 
 
 
-    renderHeadline: function(headline){
+    renderHeadline: function(){
       $(this.el_headline).append(this.headline);
+      $(this.el_sub_headline).append(this.facultyName);
     },
 
     renderMenu: function(){
