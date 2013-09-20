@@ -46,7 +46,7 @@ define([
       var filterForCollection = {};
       for(item in filterData) {
         var filter = {};
-        filter [item] = filterData[item];
+        filter[item] = filterData[item];
         filterForCollection.filter = filter;
       }
       // Fetch collection with filter
