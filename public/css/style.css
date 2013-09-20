@@ -328,6 +328,9 @@ hr.task-comment-line{
 #launch-btn{
 	display:none;
 }
+#launch input[type="text"], #launch input[type="password"]{
+	background: transparent;
+}
 #launch select{
 	background:transparent;
 }
@@ -929,8 +932,8 @@ div.DTFC_LeftFootWrapper table {
 }
 #select-box{
 	position: absolute;
-	width:500px;
-	left:0;
+	width:300px;
+	left:50px;
 	top:35px;
 }
 button[data-id = faculty_select], 
@@ -939,23 +942,36 @@ button[data-id = faculty_select]:hover,
 button[data-id = course_select]:hover, 
 button[data-id = faculty_select]:focus, 
 button[data-id = course_select]:focus{
-	width:100px !important;
+	/*width:100px !important;*/
 	background: transparent !important;
 	border:none;
 	outline: none;
 	box-shadow: none;
 	text-shadow:none;
 	color:grey;
+	padding-right: 10px;
 }
 button[data-id = course_select], 
 button[data-id = course_select]:hover, 
 button[data-id = course_select]:focus{
-	width:70px !important;
+	/*width:70px !important;*/
 	color:maroon;
+}
+#select-box div.caret{
+	display:none;
 }
 #select-box .btn-group.bootstrap-select{
 	width:100px !important;
 }
+#select-box .bootstrap-select{
+	float:left !important;
+	min-width: 155px !important;
+}
+#select-box .bootstrap-select:last-child{
+	float:right !important;
+	min-width: 130px !important;
+}
+
 #search-container .row-fluid:first-child{
 	display:none;
 }

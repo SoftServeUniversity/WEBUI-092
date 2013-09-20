@@ -132,10 +132,20 @@ define([
       $('button[data-id = faculty_select] + div.dropdown-menu').find('ul li').on('click', function(){
         $('button[data-id = faculty_select] + div.dropdown-menu').find('ul li').removeClass('selected');
         $(this).addClass('selected');
+        $('#search-container div.dropdown-menu').hide();
       });
       $('button[data-id = course_select] + div.dropdown-menu').find('ul li').on('click', function(){
         $('button[data-id = course_select] + div.dropdown-menu').find('ul li').removeClass('selected');
         $(this).addClass('selected');
+        $('#search-container div.dropdown-menu').hide();
+      });
+      $("button[data-id = course_select] + div.dropdown-menu li a").click(function(){
+        var selText = $(this).text();
+        $(this).parents('.btn-group').find('button[data-id = course_select]').html(selText);
+      });
+      $("button[data-id = faculty_select] + div.dropdown-menu li a").click(function(){
+        var selText = $(this).text();
+        $(this).parents('.btn-group').find('button[data-id = faculty_select]').html(selText);
       });
             getJSON(studCollection, studObj);
             getJSON(teachCollection, teachObj);
@@ -169,7 +179,7 @@ define([
             }
           })
           .data( "ui-autocomplete" )._renderItem = function( ul, item ) {
-
+            console.log(item);
               if(item.department_id){
                 var href = '#/teacher/'+item.id;
                 var status = '<span class="status">викладач</span>';
