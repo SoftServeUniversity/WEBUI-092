@@ -77,6 +77,12 @@ namespace :deploy do
   task :seed, :only => {:primary => true}, :except => { :no_release => true } do
     run "cd #{current_path}; RAILS_ENV=#{rails_env} bundle exec rake db:seed"
   end
+
+  desc "Create production db"
+  task :create, :only => {:primary => true}, :except => { :no_release => true } do
+    run "cd #{current_path}; RAILS_ENV=#{rails_env} bundle exec rake db:create"
+  end
+
   desc "Seed the database on already deployed code"
   task :drop, :only => {:primary => true}, :except => { :no_release => true } do
     run "cd #{current_path}; RAILS_ENV=#{rails_env} bundle exec rake db:drop:all"

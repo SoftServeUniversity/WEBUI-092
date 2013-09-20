@@ -51,6 +51,7 @@ define([
             }
           },
           success:function (arg) {
+
             var a = arg.toJSON();            
             for(var i = 0; i < a.length; i++){
               var cssClass = collType;
@@ -60,6 +61,7 @@ define([
           }
         });
       }
+
       function breadcrumbsFetch(id, val){ 
         current.fetch({
           async:false,

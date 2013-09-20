@@ -29,7 +29,20 @@
 
                 <li><a id="main-page-link" class="page-link" href="#/">На головну</a></li>
                 <li><a id="info-page-link" class="page-link" href="/#/info">Інформація про систему</a></li>
-                <li id="search"><a id="search-page-link" class="page-link" href="/#/search">Пошук</a></li>
+                <li id="search">
+                  <div id="search-block">
+                    <input id="search-field" class="search-query" type='text' placeholder="Пошук">
+                  <div id="select-box">
+                    <select id="faculty_select">
+                      <option>факультет</option>
+                    </select>
+                    
+                    <select id="course_select">
+                      <option>курс (тільки для студента)</option>
+                    </select>
+                  </div>
+                </div>
+                </li>
               </ul>
               
                 <div id="authBox" class="authBox"><button id="launch-btn" class="btn btn-primary pull-right">Увійти</button></div>
