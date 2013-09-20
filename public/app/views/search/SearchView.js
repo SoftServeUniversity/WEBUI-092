@@ -109,12 +109,12 @@ define([
             minLength: 2,
             source: parsed,
             focus: function( event, ui ) {
-              $( "#search-field" ).val( ui.item.label + " "+ui.item.name );
+              $( "#search-field" ).val( ui.item.label );
 
               return false;
             },
             select: function( event, ui ) {
-              $( "#search-field" ).val( ui.item.label + " "+ ui.item.name);
+              $( "#search-field" ).val( ui.item.label );
 
               if(ui.item.epartment_id){
                 location.href = '#/teacher/'+ui.item.id;
