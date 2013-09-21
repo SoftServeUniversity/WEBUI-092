@@ -17,11 +17,12 @@ puts 'DEFAULT USERS 1'
 user = User.find_or_create_by_email :name => ENV['ADMIN_NAME'].dup, :last_name => ENV['ADMIN_LAST_NAME'].dup, :middle_name => ENV['ADMIN_MIDDLE_NAME'].dup, :email => ENV['ADMIN_EMAIL'].dup, :password => ENV['ADMIN_PASSWORD'].dup, :password_confirmation => ENV['ADMIN_PASSWORD'].dup
 puts 'user: ' << user.name
 user.add_role :admin
-
+=begin
 puts 'DEFAULT USERS 2'
 usr = User.find_or_create_by_email :name => ENV['STUDENT_NAME'].dup, :last_name => ENV['STUDENT_LAST_NAME'].dup, :middle_name => ENV['STUDENT_MIDDLE_NAME'].dup, :email => ENV['STUDENT_EMAIL'].dup, :password => ENV['ADMIN_PASSWORD'].dup, :password_confirmation => ENV['ADMIN_PASSWORD'].dup
 puts 'usr: ' << usr.name
 user.add_role :teacher
+=end
 
 
 #Users table
