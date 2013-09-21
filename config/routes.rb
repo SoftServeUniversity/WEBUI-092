@@ -4,6 +4,8 @@ Webui92::Application.routes.draw do
 
   resources :students
 
+  get "students/search"
+
 
   get "backup/full_backup"
   get "backup/restore_from_backup"
