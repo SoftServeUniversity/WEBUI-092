@@ -24,14 +24,16 @@ define([
       var compiledTemplate = _.template( SearchTemplate );
       $("#content").html(compiledTemplate);
       $('select').selectpicker();
-      //$('.searchDataTable tbody tr').remove();
-      //$('#DataTables_Table_0 tbody tr').remove();
       var studCollection = new StudentsCollection();
       var teachCollection = new TeachersCollection();
       var teachObj = [];
       var studObj = [];
       var f_id = "";
       var c_id = "";
+
+      $('tbody').find('tr').click(function(){
+        location.href = $(this).attr('data-href');
+      }); 
 
       $('button[data-id = faculty_select]').removeClass('btn-default').addClass('btn-info btn-mini');
       $('button[data-id = course_select]').removeClass('btn-default').addClass('btn-success btn-mini');
@@ -155,9 +157,9 @@ define([
           console.log(parsed);
 
           $('#searchFormButton').on('click', function(){
-          
+          $('.searchDataTable tbody tr').remove();
           if($('#search-field').val().length > 1){
-            //$('#DataTables_Table_0 tbody tr').remove();
+            $('tr').not('thead tr').remove();
               for(var l in parsed){
                 if(parsed[l].degree){
                   var st = 'викладач';
@@ -169,8 +171,7 @@ define([
                   var course = parsed[l].course_name;
                 }
                 var names = parsed[l].label.split(/[ ]+/);
-                console.log(names);
-                var tr = $('<tr></tr>').attr('data-id', '#/'+statusClass+"/"+parsed[l].id)
+                var tr = $('<tr></tr>').attr('data-href', '#/'+statusClass+"/"+parsed[l].id)
                                         .append($('<td>'+(parseInt(l)+1)+'</td>'))
                                         .append($('<td>'+parsed[l].last_name+'</td>'))
                                         .append($('<td>'+names[0]+'</td>'))
@@ -189,10 +190,8 @@ define([
               }
             });
           }
-          });         
-          $('#DataTables_Table_0 tbody tr').on('click', function(){
-            location.href = $(this).attr('data-id');
-          });
+          });    
+              
           $( "#search-field" ).autocomplete({
             minLength: 2,
             source: parsed,

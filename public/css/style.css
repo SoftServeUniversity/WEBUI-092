@@ -992,7 +992,12 @@ button[data-id = course_select]:focus{
 	text-align: center;
 	font-size: 13px;
 }
-#DataTables_Table_0 tbody tr:hover{
+#search-container #DataTables_Table_0 tbody tr:hover{
 	cursor:pointer;
+}
+#search-container .searchDataTable{
+	margin:50px auto;
+	width:100%;
+	border-bottom: 1px solid black;
 }
 /*-----search form----end--*/
