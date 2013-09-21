@@ -4,19 +4,27 @@ class TeachersController < ApplicationController
   include TeachersHelper
 
   def index
-
-    if params['filter'] === nil
-      @teachers = Teacher.all
-    elsif params['filter']['faculty_id']
-      @teachers = Faculty.find(params['filter']['faculty_id']).teachers
+    if params[:search] == "true"
+      puts '---------------------------------------------------SEARCH----------------------------------------------------------'
+      search_string = "
+        SELECT * 
+        FROM teachers INNER JOIN users ON teachers.user_id = users.id
+        WHERE last_name LIKE '" + params[:two_last_name] + "%'"
+      puts search_string
+      @teachers = Teacher.find_by_sql(search_string)
     else
-      @teachers = Teacher.where(params['filter'])
+      if params['filter'] === nil
+        @teachers = Teacher.all
+      elsif params['filter']['faculty_id']
+        @teachers = Faculty.find(params['filter']['faculty_id']).teachers
+      else
+        @teachers = Teacher.where(params['filter'])
+      end
     end
 
     respond_to do |format|
       format.json { render json: @teachers }
     end
-
   end
 
   # GET /teachers/1

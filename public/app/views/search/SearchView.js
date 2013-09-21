@@ -75,6 +75,7 @@ define([
       });
       function getJSON(collection, obj){
         collection.fetch({
+          data: {search: 'true', two_last_name: 'Chyr'},
           async:false,
           success:function () {
             obj.push(collection.toJSON());
