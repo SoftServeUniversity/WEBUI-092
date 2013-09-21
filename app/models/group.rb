@@ -10,6 +10,7 @@ class Group < ActiveRecord::Base
 
   def serializable_hash(options={})
     hash_info = super(options)
+    hash_info[:faculty_id] = self.department.faculty.id
     hash_info[:progress] = 0
     hash_info[:progress] = progress_changes.last.progress if progress_changes.last
     hash_info

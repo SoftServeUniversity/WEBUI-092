@@ -2,10 +2,10 @@ define([
   'jquery',
   'underscore',
   'backbone'
-], function($, _, Backbone, FacultyModel){
+], function($, _, Backbone){
 
   var FacultyAdminsCollection = Backbone.Collection.extend({
-    url: "/users/get_faculty_admins"
+    url: "/faculty_admins/"
   });
 
   return FacultyAdminsCollection;

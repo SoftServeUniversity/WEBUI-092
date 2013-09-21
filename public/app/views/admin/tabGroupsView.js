@@ -6,20 +6,23 @@ define([
   'models/group/GroupModel',
   'collections/groups/GroupsCollection',
   'collections/courses/CoursesCollection',
-  'collections/teachers/TeachersCollection',
+  'collections/teachers/teachersProxyCollection',
   'collections/departments/DepartmentsCollection'
 
 ], function($, _, Backbone, ParentTabView, GroupModel, GroupsCollection, CoursesCollection,
-            TeachersCollection, DepartmentsCollection){   
+            TeachersProxyCollection, DepartmentsCollection){   
    
   var TabChildGroupsView = ParentTabView.extend({
 
     collections_classes: {
       groups      : GroupsCollection,
       courses     : CoursesCollection,
-      teachers    : TeachersCollection,
+      teachers    : TeachersProxyCollection,
       departments : DepartmentsCollection
     },
+
+
+    dataFilter: { faculty_id: 1 },
 
     setConfig: function(){
       

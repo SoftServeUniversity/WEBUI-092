@@ -35,7 +35,6 @@ if !(User.all.empty?)
 end
 
 
-
 #Users table
 #if User.all.empty?
 #  s = 'User_ABC'

@@ -5,21 +5,21 @@ define([
   'views/admin/parentTabView',
   'models/teacher/TeacherModel',
   'collections/teachers/TeachersCollection',
-  'collections/faculties/FacultiesCollection',
   'collections/departments/DepartmentsCollection'
 
 
 
 ], function($, _, Backbone, ParentTabView, TeacherModel,
-            TeachersCollection, FacultiesCollection, DepartmentsCollection){   
+            TeachersCollection, DepartmentsCollection){   
    
   var TabTeachersView = ParentTabView.extend({
 
     collections_classes: {
       teachers     : TeachersCollection,
-      faculties    : FacultiesCollection,
       departments  : DepartmentsCollection
     },
+
+    dataFilter: { faculty_id: 1 },
 
     setConfig: function(){
 

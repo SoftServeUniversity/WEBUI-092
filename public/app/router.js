@@ -35,7 +35,6 @@ define([
 
 
 
-
     GlobalEventBus = _.extend({}, Backbone.Events);
 
 
@@ -43,7 +42,6 @@ define([
       
       initialize: function(){
         this.history = [];
-
         //update menu when needed
         this.bind( "all", this.updateMenu )
         
@@ -52,14 +50,13 @@ define([
 
         var registrationView = new RegistrationView();
         registrationView.render();
-        var searchView = new SearchView();
         $('.brand').click(function() {
             location.href = '/#';
             location.reload();
         });
       },
 
-      //Used to restore history to previous state
+      //restore history to previous state
       //(WITHOUT triggering router) in case
       //of unsuccessful attempt to get to some url
       storeRoute: function(){
@@ -67,10 +64,9 @@ define([
       },
       previousRoute: function(){
         if (this.history.length > 1) {
-          this.navigate(this.history[this.history.length-1], true)
+          this.navigate(this.history[this.history.length-1], false)
         } 
       },
-
 
       //add active class to menu items
       updateMenu: function(){
@@ -89,7 +85,6 @@ define([
         };
       },
 
-
       routes: {
         ''                       : 'homeAction',
         'group/:id'              : 'groupProgressAction',
@@ -107,6 +102,7 @@ define([
         'edit_profile'           : 'editProfile',
         'cancel_account'         : 'cancelAccount',
         'info'                   : 'infoAction',
+        'search'                 : 'searchAction',
         // Default
         '*actions': 'defaultAction'
       }
@@ -177,9 +173,9 @@ define([
 
 
       app_router.on('route:viewAdminFacultyPage', function (){
+
         if(checkRole('faculty_admin')){
           var adminFacultyView = new AdminFacultyView();        
-          //manageViews(adminFacultyView);
           var breadcrumbsView = new BreadcrumbsView();
         } else {
           showWarning();
@@ -187,9 +183,9 @@ define([
       });
 
       app_router.on('route:viewAdminPage', function (){
+
         if(checkRole('admin')){
           var adminView = new AdminView();
-          //manageViews(adminView);
           var breadcrumbsView = new BreadcrumbsView();
         } else {
           showWarning();
@@ -285,8 +281,11 @@ define([
         var breadcrumbsView = new BreadcrumbsView();
     
       });
-
-
+      app_router.on('route:searchAction', function(){
+        
+        var breadcrumbsView = new BreadcrumbsView();
+        var searchView = new SearchView();
+      });
       app_router.on('route:taskShow', function (id) {
 
         var breadcrumbsView = new BreadcrumbsView();

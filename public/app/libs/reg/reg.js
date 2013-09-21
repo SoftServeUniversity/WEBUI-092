@@ -21,7 +21,6 @@ $(function () {
   //registration
   $('#openModal').click(function(){
     $('#regMod').slideDown(300);
-    $('#example').tooltip('show');
   });
 
   $('#sign-up-louncher').click(function(){
@@ -30,7 +29,6 @@ $(function () {
 
   $('#closeRegForm').click(function(){
     $('#regMod').slideUp(300);
-    $('#example').tooltip('hide');
   });
 
 });

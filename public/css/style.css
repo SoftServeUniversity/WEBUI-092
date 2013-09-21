@@ -34,10 +34,17 @@ a:hover{
 }
 #tab-content td{
 }
+#sel-year {
+	width:120px;
+	margin-top:5px;
+}
 .toggle-list .toggle-input {
 	display:none;
 	margin-bottom:0px;
 
+}
+.toggle-list:hover {
+  background:#f5f5f5;
 }
 #main-top-menu .active {
     text-decoration:underline !important;
@@ -84,7 +91,7 @@ header .control-group .control-label{
 .row-tile-list {
 	margin-bottom:0px !important;
 }
-.row-tile-list .name {
+.row-tile-list .fname {
 	margin-bottom:5px;
 	font-size:16px;
 	font-weight:bold;
@@ -106,15 +113,10 @@ header .control-group .control-label{
 	padding-bottom:10px;
 }
 .row-tile-list .item .inner {
-	padding-left:90px;
+	padding:20px 10px 10px 10px;
 	min-height:90px;
-	padding-bottom:20px;
-	padding-top:10px;
-
 }
 .row-tile-list img{
-	position:absolute;
-	left:0px;
 }
 .row-tile-list .data {
 	display:block;
@@ -362,7 +364,11 @@ div.help-block ul li{
 	list-style-type: none;
 	margin-left:-20px;
 }
-
+/*
+#launch input[type = 'text'], #launch input[type = 'password']{
+	background: transparent;
+}
+*/
 /*--end enter form---------*/
 
 
@@ -917,16 +923,58 @@ div.DTFC_LeftFootWrapper table {
 }
 #search-block{
 	position:relative;
-	width:100px;
-	margin-top:5px;
+	width:500px;
+	margin:5px auto 0;
 }
 #search-field{
-	width:50px;
+	width:310px;
 }
 #select-box{
 	position: absolute;
-	width:450px;
-	left:-100px;
+	width:500px;
+	left:0;
+	top:35px;
+}
+button[data-id = faculty_select], 
+button[data-id = course_select], 
+button[data-id = faculty_select]:hover, 
+button[data-id = course_select]:hover, 
+button[data-id = faculty_select]:focus, 
+button[data-id = course_select]:focus{
+	width:100px !important;
+	background: transparent !important;
+	border:none;
+	outline: none;
+	box-shadow: none;
+	text-shadow:none;
+	color:grey;
+}
+button[data-id = course_select], 
+button[data-id = course_select]:hover, 
+button[data-id = course_select]:focus{
+	width:70px !important;
+	color:maroon;
+}
+#select-box .btn-group.bootstrap-select{
+	width:100px !important;
+}
+#search-container .row-fluid:first-child{
 	display:none;
 }
+#search-container .row-fluid:last-child{
+	margin-top: 10px;
+}
+#search-container #DataTables_Table_0{
+	margin:50px auto;
+	width:100%;
+	border-bottom: 1px solid black;
+}
+#search-container .row-fluid div{
+	width:100%;
+}
+#search-container #DataTables_Table_0_info{
+	text-align: center;
+	font-size: 13px;
+}
+
 /*-----search form----end--*/
