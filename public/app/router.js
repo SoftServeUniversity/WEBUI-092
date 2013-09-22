@@ -3,6 +3,7 @@ define([
   'underscore',
   'backbone',
   'marionettes/user/init',
+  'reg',
   'views/faculty/FacultiesListView',
   'views/registration/RegistrationView',
   'views/group/GroupProgressView',
@@ -25,7 +26,7 @@ define([
 
 
 
-  ], function($, _, Backbone, GlobalUser, FacultiesListView, RegistrationView, GroupProgressView,
+  ], function($, _, Backbone, GlobalUser, reg, FacultiesListView, RegistrationView, GroupProgressView,
   	          StudentProgressView, CourseProgressView,  MainFacultyView, MainDepartmentView,
   	          MainWorkView, TaskView, TasksCollection, NotFoundView,
               AdminFacultyView, AdminView, MainTeacherView, TeacherGroupView, UserSingUpView,
@@ -41,6 +42,7 @@ define([
     var AppRouter = Backbone.Router.extend({
       
       initialize: function(){
+        
         this.history = [];
         //update menu when needed
         this.bind( "all", this.updateMenu )
@@ -113,63 +115,21 @@ define([
 
     var initialize = function(){
       
-       
+      // this function is defined in libs/reg
+      appUtils.Users.adminRoleCheck();
 
-      function checkRole(role){
-        
-        var notRegistered = 'Для доступу до цієї сторінки необхідно бути зареєстрованим і мати роль ';
-        var textRolePending = 'Ваш акаунт ще не підтверджений адміністратором';
-        var textBadRole = 'Роль вашого користувача не надає доступу до цієї сторінки. Зареєструйте користувача з роллю '
-
-        if(GlobalUser.currentUser != undefined){
-
-          if(GlobalUser.currentUser.role == role){
-            if(GlobalUser.currentUser.attributes.role_pending){
-              return { status: true, verified: false,  text: textRolePending };
-            } else {
-              return { status : true, verified: true }
-            }
-          } else { 
-            return { status: false, text: textBadRole + role }
-          }
-
-        } else {
-          return { status: false, text: notRegistered + role }
-        }
-
-      }
-
-      function showWarning(warning, role){
-
-        app_router.previousRoute();
-        $('#content #top-warning').remove();
-        $('#content').prepend($('<div id="top-warning" class="alert alert-error"><a class="close" data-dismiss="alert" href="#">×</a><span class="message">'+warning+'</span></div>'))
-        $('#top-warning').delay(3000).fadeOut('slow');
-      
-      }
-
-      function showAdminButton(tagid, link, text){
-        var el = '<li><a class="page-link" id="'+tagid+'page-link" href="'+link+'">'+text+'</a></li>';
-        $('#main-top-menu').append($(el));
-      }
-
-      function adminRoleCheck(){
-        var adminCheck = checkRole('admin');
-        if (adminCheck.status && adminCheck.verified){
-          showAdminButton('admin', '#/admin', 'Сторінка адміністратора')
-        } 
-        var faCheck = checkRole('faculty_admin')
-        if(faCheck.status && faCheck.verified){
-          showAdminButton('fa','#/fa', 'Адміністрування факультетом')
-        }
-      };
-
-      $(function(){adminRoleCheck()});
-
-      
+      GlobalUser.vent.on("authentication:logged_out", function(){
+        appUtils.Users.hideAdminButton();
+        GlobalUser.currentUser = null;
+        $('#launch-btn').show();
+      });
+      GlobalUser.vent.on("role_loaded", function(){
+        appUtils.Users.adminRoleCheck();
+      });
 
 
-      var app_router = new AppRouter;
+
+      app_router = new AppRouter;
 
       app_router.on('route:homeAction', function (actions) {
        // display the home page
@@ -183,25 +143,27 @@ define([
 
       app_router.on('route:viewAdminFacultyPage', function (){
         
-        var checkInfo = checkRole('faculty_admin');
+        var checkInfo = appUtils.Users.checkRole('faculty_admin');
 
         if(checkInfo.status == true){
           var adminFacultyView = new AdminFacultyView();        
           var breadcrumbsView = new BreadcrumbsView();
         } else {
-          showWarning(checkInfo.text);
+          //defined in libs/reg
+          appUtils.Users.showWarning(checkInfo.text);
         }
       });
 
       app_router.on('route:viewAdminPage', function (){
         
-        var checkInfo = checkRole('admin');
+        var checkInfo = appUtils.Users.checkRole('admin');
 
         if(checkInfo.status == true){
           var adminView = new AdminView();
           var breadcrumbsView = new BreadcrumbsView();
         } else {
-          showWarning(checkInfo.text);
+          //defined in libs/reg
+          appUtils.Users.showWarning(checkInfo.text);
         }
 
       });
