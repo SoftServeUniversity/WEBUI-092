@@ -3,12 +3,24 @@ class StudentsController < ApplicationController
   # GET /students.json
   def index
 
-    if params['filter'] === nil
-      @students = Student.all
+    
+    if params[:search] == "true"
+      puts '---------------------------------------------------SEARCH----------------------------------------------------------'
+      search_string = "
+        SELECT * 
+        FROM students INNER JOIN users ON students.user_id = users.id
+        WHERE last_name LIKE '" + params[:two_last_name] + "%'"
+      puts search_string
+      @students = Student.find_by_sql(search_string)
     else
-      @students = Student.where(params['filter'])
+      if params[:filter] == nil
+        @students = Student.all
+      else
+        @students = Student.where(params[:filter])
+      end
     end
 
+    puts @students
     respond_to do |format|
       format.json { render json: @students }
     end
@@ -85,4 +97,5 @@ class StudentsController < ApplicationController
       format.json { head :no_content }
     end
   end
+
 end

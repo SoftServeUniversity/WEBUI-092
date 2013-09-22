@@ -71,11 +71,24 @@
 
     <% } else if (conf.fields[f]['type'] == 'static') {%>      
 
-      <span class="<%= text_class %>">
-        <%=  model[f] %>
-      </span>
+        <% var options_array = conf.fields[f]['collection'].toJSON(); %>
+
+        <% for (i=0; i<options_array.length; i++){ %>
+                   
+          <%if((options_array[i]['id'] == model[f])){ %>
+            
+            <% var active_name = options_array[i]['name']; %>
+            <%= active_name %>
+             
+          <% } %>
+                    
+        <% } %>
      
-    <% } %>
+    <% } else if (conf.fields[f]['type'] == 'simple') {%> 
+      <span><%= model[f] %></span>
+    <% } else if (conf.fields[f]['type'] == 'hidden') {%> 
+       <input class="tab-input" type="hidden" name="<%=f %>" value="<%= conf.fields[f]['value'] %>"/>
+    <% } %>     
 
   </td>
 

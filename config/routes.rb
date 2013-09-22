@@ -1,9 +1,8 @@
 Webui92::Application.routes.draw do
 
   resources :teachers
-
+  resources :faculty_admins
   resources :students
-
 
   get "backup/full_backup"
   get "backup/restore_from_backup"
@@ -54,8 +53,6 @@ Webui92::Application.routes.draw do
   post 'user_helper/return_current_role'
   post 'user_helper/populate_roles_select'
   post 'user_helper/receive_user_abilities'
-
-  get '/users/get_faculty_admins' => "users#get_faculty_admins"
 
   get '/test', to: redirect('/app/tests/SpecRunner.html')
 end

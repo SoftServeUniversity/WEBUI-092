@@ -23,8 +23,8 @@ define([
       'click #logout'      : 'logout'
     },
     render: function(){
-      var compiledTemplate = _.template( registrationTemplate );
-      $("#authBox").append(compiledTemplate);
+      var compiledTemplate = _.template(registrationTemplate);
+      $("#authBox").append(compiledTemplate());
     },
 
     log: function(e){

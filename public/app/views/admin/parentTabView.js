@@ -19,17 +19,17 @@ define([
 
       var me = this;
       var config;
-
+      
       this.loadData();
       this.on('dataLoaded', function(){
         
-        this.config = me.setConfig();
+        me.config = me.setConfig();
+        me.config = me.augmentConfig();
 
-        me.collection = this.config.collection;
+        me.collection = me.config.collection;
         
-        this.config = me.augmentConfig();
 
-        me.render(this.config)
+        me.render(me.config)
 
         //all content has loaded, it's time for parent view to render tab
         GlobalEventBus.trigger('tabSubViewLoaded', me.$el, me.config, me);
@@ -38,8 +38,8 @@ define([
           me.renderSingleItem(model);
         })
         //display question mark on tab if some model needs verification
-        if (this.config.verification){
-          me.checkVerification(this.config.verification);
+        if (me.config.verification){
+          me.checkVerification(me.config.verification);
         }
 
         //this method is used only in works view
@@ -74,7 +74,6 @@ define([
       //render rows
       this.collection.each(function(item) {
         me.renderSingleItem(item)
-
       });
       
       return this;
@@ -91,13 +90,14 @@ define([
 
     checkVerification: function(config){
 
+      console.log('checkin verification')
       var me = this;
 
       var collection = me.config.collection.toJSON();
       
       $.each(collection, function(key, value){
-        if (value['role_pending'] == true){
-          $('#'+me.config.tab_id).addClass('needs-verification')
+        if (value['role_pending'] == 1){         
+          $('#'+me.config.verification.tab_id).addClass('needs-verification')
         }
       })
 
@@ -105,19 +105,22 @@ define([
 
     //asynchronously load all collections what tab needs
     loadData: function(){
-
+      var filter; 
       var me = this;
       var collections_length = 0;
       var loadCounter = 0;
       me['collections'] = {};
 
+      if (this.dataFilter != undefined){
+        filter = { filter: this.dataFilter };
+      } 
+      
       for (var c in me.collections_classes){
         collections_length++;
       }
-
       for (var c in me.collections_classes){
         me['collections'][c] = new me.collections_classes[c]();
-        me['collections'][c].fetch({ success: function(c) {
+        me['collections'][c].fetch({ data: filter, success: function(c) {
             loadCounter++;
             if (loadCounter == collections_length){
               me.trigger('dataLoaded');

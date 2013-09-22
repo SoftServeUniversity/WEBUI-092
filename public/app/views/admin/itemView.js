@@ -23,12 +23,13 @@ define([
         this.data = data;
 
         if (me.data.newModel == true){
+          
           this.model.on("sync", function(){
             GlobalEventBus.trigger('NewItemAdded', me.model);
             me.model.off("sync");
             me.remove();
-
           })
+
         } else {
 
           me.data.newModel = "";

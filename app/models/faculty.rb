@@ -6,6 +6,10 @@ class Faculty < ActiveRecord::Base
   belongs_to :user
   has_many :departments
   has_many :courses
+
+  has_many :groups, :through => :departments
+  has_many :teachers, :through => :departments
+
   has_many :progress_changes, :as => :progressable
 
   def serializable_hash(options={}) 
