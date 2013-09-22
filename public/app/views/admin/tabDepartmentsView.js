@@ -18,7 +18,6 @@ define([
       teachers    : TeachersProxyCollection,
     },
     
-    dataFilter: { faculty_id: 1 },
 
     setConfig: function(){
       var me = this;
@@ -60,8 +59,10 @@ define([
       return config;
     },
     
-    initialize: function(){ 
-      //call parent's initialize method
+    initialize: function(){
+      if (GlobalUser.currentUser != undefined) {
+        this.dataFilter = { faculty_id: GlobalUser.currentUser.attributes.faculty_admin_attributes.faculty_id }
+      }
       this.constructor.__super__.initialize.apply(this);
     }
   
