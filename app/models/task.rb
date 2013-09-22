@@ -10,6 +10,25 @@ class Task < ActiveRecord::Base
   has_many :thesis_changes, :as => :auditable
   
   after_create :create_progress_and_change
+  def abilities
+    allowed = []
+    allowed << self.work.teacher.user.id if self.work.teacher
+    if self.work.student
+      # allowed << self.work.student.user.id
+      teachers_from_faculty = self.work.student.group.department.faculty.teachers 
+      teachers_from_faculty.each do |teacher|
+        allowed << teacher.user.id.to_i
+      end
+    end
+    allowed
+  end
+  def serializable_hash(options={}) 
+    hash_info = super(options) 
+    hash_info[:progress] = 0
+    hash_info[:ability_to_change] = self.abilities
+    hash_info
+  end
+
   def create_progress_and_change
     @new_progress = TaskProgress.create(progress: rand(99), task_id: self.id)
     TaskChange.create(task_id: self.id, task_progress_id: @new_progress.id, task_comment: "Створено нове завдання")

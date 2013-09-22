@@ -14,12 +14,15 @@ define([
   'models/task/TaskModel',
   'collections/tasks/ProgressesCollection',
   'views/shared/EditDialogView',
-  'views/shared/EditTaskDialogueView'
+  'views/shared/EditTaskDialogueView',
+  'text!templates/work/ControlsTemplate.html',
+  'text!templates/work/AddTaskFormTemplate.html',
 ], 
 function($, evil, _, Backbone, bootstrap, WorkTasksTemplate, 
         WorkHistoryTemplate, elementTemplate, TasksCollection, 
         WorkHistoryCollection, TasksListView, WorkModel, TaskModel,
-         ProgressesCollection, EditDialogView, EditTaskDialogView){
+         ProgressesCollection, EditDialogView, EditTaskDialogView,
+         ControlsTemplate, AddTaskFormTemplate){
   var WorkTasksView = Backbone.View.extend({ 
     events: {
       "click #create-btn"             : "addTask",
@@ -46,6 +49,17 @@ function($, evil, _, Backbone, bootstrap, WorkTasksTemplate,
       this.progresses = new ProgressesCollection()
       this.progresses.fetch({url: '/work/' + me.id + '/tasks/progresses.json', async:false})
       me.render();
+      if (GlobalUser.currentUser){
+        if (GlobalUser.currentUser.id == this.model.get('ability_to_change')) {
+          this.addControls()
+        }
+      } else {
+        $("#controls").remove();
+      }
+    },
+    addControls: function () {
+      $("#controls").html(ControlsTemplate);
+      $("#add-new-task").html(AddTaskFormTemplate);
     },
     updatePriority: function (items) {
       var me = this;
