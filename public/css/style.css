@@ -932,11 +932,13 @@ div.DTFC_LeftFootWrapper table {
 #search-field{
 	width:310px;
 }
+
 #select-box{
 	position: absolute;
 	width:300px;
 	left:50px;
 	top:35px;
+	display: block !important;
 }
 button[data-id = faculty_select], 
 button[data-id = course_select], 

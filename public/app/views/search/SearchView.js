@@ -16,23 +16,25 @@ define([
 
   var SearchView =  Backbone.View.extend({
     initialize:function(){
+      
       $('#ui-id-1 a').on('click', function(){
         $(this).fadeIn('fast');
       });
       var compiledTemplate = _.template( SearchTemplate );
       $("#content").html(compiledTemplate);
-
+  
       $('select').selectpicker();
-
       var studCollection = new StudentsCollection();
       var teachCollection = new TeachersCollection();
       var f_id = "";
       var c_id = "";
       window.parsed = [];
+
       $('#search-field').on('keyup', function(){
 
         letters = $(this).val();
         if(letters.length == 2){
+          $('#search-field').css('background', 'white url("http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.2/themes/smoothness/images/ui-anim_basic_16x16.gif") 310px center no-repeat');
           (function(){
             var teachObj = [];
             var studObj = [];
@@ -54,6 +56,7 @@ define([
             return window.parsed = parsed;
           }());
           auto();
+          $('#search-field').css('background', '#fff');
         }
       });
 
@@ -250,9 +253,13 @@ define([
 
 
       function HandleDOM_Change () {
-              $('.searchDataTable tr').on('click', function(){
-                location.href = $(this).attr('data-href');   
-             });
+
+            $('.searchDataTable tr').on('click', function(){
+              if($(this).attr('data-href')){
+                location.href = $(this).attr('data-href');
+              }
+            });
+
       }
           
           fireOnDomChange ('.searchDataTable tr', HandleDOM_Change, 100);
