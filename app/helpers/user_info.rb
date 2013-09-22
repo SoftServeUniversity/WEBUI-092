@@ -5,6 +5,10 @@ module UserInfo
   end
   # store current user name
   def self.current_user=(user)
-    Thread.current[:user] = user
+    unless user.nil?
+      Thread.current[:user] = user.name + " " + user.last_name;
+    else
+      Thread.current[:user] = nil;
+    end
   end
 end
