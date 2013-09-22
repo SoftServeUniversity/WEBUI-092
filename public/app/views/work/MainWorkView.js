@@ -105,29 +105,33 @@ function($, evil, _, Backbone, bootstrap, WorkTasksTemplate,
         success: function () {
           me.loadData();
           $("#add-new-task").show();
-          $("#show-create-task-form").addClass("active");
+          $("#show-create-task-form").addClass("btn-warning");
         }
       });
     },
     showCreateTaskFrom: function () {
       $("#add-new-task").fadeToggle("slow", "linear");
       var createTaskForm = $("#show-create-task-form");
-      if(createTaskForm.hasClass("active")){
-        createTaskForm.removeClass("active");
+      if(createTaskForm.hasClass("btn-warning")){
+        createTaskForm.removeClass("btn-warning");
+        createTaskForm.addClass("btn-info");
       } else {
-        createTaskForm.addClass("active");
-      }
+        createTaskForm.addClass("btn-warning");
+        createTaskForm.removeClass("btn-info");
+     }
     },
     editTasksOnWorkPage: function () {
       var listofTasks = $("#list-of-tasks");
       if(listofTasks.hasClass("sortable")) {
         $(".sortable").sortable("destroy");
         listofTasks.removeClass("sortable");
-        $("#edit-tasks-on-work-page").removeClass("active");
+        $("#edit-tasks-on-work-page").removeClass("btn-warning");
+        $("#edit-tasks-on-work-page").addClass("btn-info");
       } else {
         listofTasks.addClass("sortable");
         this.sortable();
-        $("#edit-tasks-on-work-page").addClass("active");
+      $("#edit-tasks-on-work-page").removeClass("btn-info");
+      $("#edit-tasks-on-work-page").addClass("btn-warning");
       }
       $(".editable").fadeToggle("slow", "linear");
     },

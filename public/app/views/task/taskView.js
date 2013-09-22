@@ -52,7 +52,7 @@ define([
         var newCommentContent = $(e.currentTarget).find('textarea').val();
         var newTaskProcess = $(e.currentTarget).find('#number-range').val();
         this.addNewProgress(newTaskProcess);
-        this.addCommentToCollection(this.user.get("id"), newCommentContent);
+        this.addCommentToCollection(this.user, newCommentContent);
         this.closeModal();
         this.initialize();
       },
@@ -176,7 +176,8 @@ define([
       initialize: function(){
         this.page = 0;
         var me = this;
-        this.user = window.GlobalUser.Models.User;
+        GlobalUser.currentUser? console.log('Works'):console.log('sucks');
+        this.user = 1;
         this.undelegateEvents();
         this.delegateEvents(this.events);
         $(document).on("scroll", function () {

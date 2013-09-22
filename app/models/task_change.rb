@@ -1,8 +1,8 @@
 class TaskChange < ActiveRecord::Base
   attr_accessible :task_comment, :user_id, :task_id, :task_progress_id
   belongs_to :task, dependent: :destroy
-  belongs_to :task_progress
-  belongs_to :user
+  belongs_to :task_progress, dependent: :destroy
+  belongs_to :user, dependent: :destroy
 
   before_create :set_last_progress
 
