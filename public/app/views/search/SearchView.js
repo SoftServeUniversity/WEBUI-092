@@ -51,8 +51,6 @@ define([
                else
                     return v;
             });
-            console.log(letters);
-            console.log(parsed);
             return window.parsed = parsed;
           }());
           auto();
@@ -61,7 +59,6 @@ define([
       });
 
       $('#search-field').on('blur', function(){
-        console.log(parsed);
       });
 
       $('button[data-id = faculty_select]').removeClass('btn-default').addClass('btn-info btn-mini');
@@ -76,17 +73,18 @@ define([
       $('#select-box div.dropdown-menu').click(function(){
         if($(this).siblings('button[data-id = faculty_select]')){
           if($(this).find('li').first().attr('selected')){
-            f_id = null;
+            f_id = '';
           }else{
             f_id = $(this).find('li[class = selected] a').attr('data-val');
           }
-
+        console.log(f_id);
         }else if($(this).siblings('button[data-id = course_select]')){
           if($(this).find('li').first().attr('selected')){
-            c_id = null;
+            c_id = '';
           }else{
             c_id = $(this).find('li[class = selected]').find('a').attr('data-val');
           }
+          console.log(c_id);
         }
       });
 
@@ -132,7 +130,7 @@ define([
 
       function getJSON(collection, obj, letter){
         collection.fetch({
-          data: {search: 'true', two_last_name: letter},
+          data: {search: 'true', two_last_name: letter, s_faculty_id: "", s_course_id: ""},
           async:false,
           success:function () {
             obj.push(collection.toJSON());
@@ -243,7 +241,7 @@ define([
                 var status = '<span class="status">викладач</span>';
               }
             if(("#ui-id-1 li").length > 1){
-                $("#ui-id-1 li").eq(3).nextAll().remove();
+                $("#ui-id-1 li").eq(8).nextAll().remove();
             }
             var searchInfo = $('<span></span>').addClass('searchInfo').html('');
             var a = $('<a>' + item.label +" "+status);
