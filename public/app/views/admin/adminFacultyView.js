@@ -62,7 +62,7 @@ var AdminFacultyView = ParentAdminView.extend({
   
 
   initialize: function(){
-    this.getFacultyName(1);
+    this.getFacultyName(GlobalUser.currentUser.attributes.faculty_admin_attributes.faculty_id);
     this.constructor.__super__.initialize.apply(this);
   },
 

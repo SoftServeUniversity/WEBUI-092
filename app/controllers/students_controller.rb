@@ -7,9 +7,15 @@ class StudentsController < ApplicationController
     if params[:search] == "true"
       puts '---------------------------------------------------SEARCH----------------------------------------------------------'
       search_string = "
-        SELECT * 
-        FROM students INNER JOIN users ON students.user_id = users.id
+        SELECT students.*, users.name, users.last_name, users.middle_name, groups.course_id, departments.faculty_id
+        FROM students INNER JOIN users ON students.user_id = users.id INNER JOIN groups ON group_id = groups.id INNER JOIN departments ON department_id = departments.id
         WHERE last_name LIKE '" + params[:two_last_name] + "%'"
+      if params[:s_faculty_id]!= ""
+        search_string += " AND faculty_id = " + params[:s_faculty_id]
+      end
+      if params[:s_course_id]!= ""
+        search_string += " AND course_id = " + params[:s_course_id]
+      end
       puts search_string
       @students = Student.find_by_sql(search_string)
     else
