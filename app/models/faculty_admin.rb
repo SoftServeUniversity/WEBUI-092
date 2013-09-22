@@ -1,5 +1,5 @@
 class FacultyAdmin < ActiveRecord::Base
-  attr_accessible :user_id, :user_attributes, :faculty_id
+  attr_accessible :user_id, :faculty_id, :user_attributes
 
   validates :faculty_id, presence: true
 
@@ -14,7 +14,6 @@ class FacultyAdmin < ActiveRecord::Base
   def serializable_hash(options={}) 
     options.merge(:include => [:user])
     hash_info = super(options) 
-    hash_info[:faculty] = faculty.name
     hash_info[:name] = user.name
     hash_info[:last_name] = user.last_name
     hash_info[:middle_name] = user.middle_name
@@ -22,13 +21,6 @@ class FacultyAdmin < ActiveRecord::Base
     hash_info[:role_pending] = user.role_pending
     hash_info
   end
-
-
-
-
-
-
-
 
 
   #all new users with 'faculty_admin' association present, will automaticly have role_panding => true

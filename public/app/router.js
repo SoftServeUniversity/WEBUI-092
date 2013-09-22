@@ -70,19 +70,21 @@ define([
 
       //add active class to menu items
       updateMenu: function(){
+        var link;
+        
         $(".page-link").removeClass('active');
         
         var path = Backbone.history.fragment;
+
+        var paths = ['info', 'search', '', 'admin', 'fa'];
         
-        if(path == 'info'){
-          $("#info-page-link").addClass('active');
-        };
-        if(path == 'search'){
-          $("#search-page-link").addClass('active');
-        };
-        if(path == ''){
-          $("#main-page-link").addClass('active');
-        };
+        _.each(paths, function(p){
+          if(p==path){
+            link = '#'+path+'page-link';
+            $(link).addClass('active');
+          }
+        })
+
       },
 
       routes: {
@@ -110,24 +112,61 @@ define([
     });
 
     var initialize = function(){
+      
+       
 
       function checkRole(role){
+        
+        var notRegistered = 'Для доступу до цієї сторінки необхідно бути зареєстрованим і мати роль ';
+        var textRolePending = 'Ваш акаунт ще не підтверджений адміністратором';
+        var textBadRole = 'Роль вашого користувача не надає доступу до цієї сторінки. Зареєструйте користувача з роллю '
+
         if(GlobalUser.currentUser != undefined){
+
           if(GlobalUser.currentUser.role == role){
-            return true;
-          } 
+            if(GlobalUser.currentUser.attributes.role_pending){
+              return { status: true, verified: false,  text: textRolePending };
+            } else {
+              return { status : true, verified: true }
+            }
+          } else { 
+            return { status: false, text: textBadRole + role }
+          }
+
+        } else {
+          return { status: false, text: notRegistered + role }
         }
+
       }
 
-      function showWarning(){
+      function showWarning(warning, role){
 
         app_router.previousRoute();
-        $('#content #top-warning').remove
-        $('#content').prepend($('<div id="top-warning" class="alert alert-error"><a class="close" data-dismiss="alert" href="#">×</a><span class="message">Ви намагались зайти на сторінку, до якої у вас немає прав доступу</span></div>'))
+        $('#content #top-warning').remove();
+        $('#content').prepend($('<div id="top-warning" class="alert alert-error"><a class="close" data-dismiss="alert" href="#">×</a><span class="message">'+warning+'</span></div>'))
         $('#top-warning').delay(3000).fadeOut('slow');
       
       }
 
+      function showAdminButton(tagid, link, text){
+        var el = '<li><a class="page-link" id="'+tagid+'page-link" href="'+link+'">'+text+'</a></li>';
+        $('#main-top-menu').append($(el));
+      }
+
+      function adminRoleCheck(){
+        var adminCheck = checkRole('admin');
+        if (adminCheck.status && adminCheck.verified){
+          showAdminButton('admin', '#/admin', 'Сторінка адміністратора')
+        } 
+        var faCheck = checkRole('faculty_admin')
+        if(faCheck.status && faCheck.verified){
+          showAdminButton('fa','#/fa', 'Адміністрування факультетом')
+        }
+      };
+
+      $(function(){adminRoleCheck()});
+
+      
 
 
       var app_router = new AppRouter;
@@ -142,60 +181,30 @@ define([
       });
 
 
-//----------------------------- zombie views ------------------------------//
-      
-      //close method for all views  
-      Backbone.View.prototype.close = function(){
-
-        this.remove();
-        this.unbind();
-
-        console.log('child closin...')
-        console.log(this)
-
-          if(this.childViews != undefined){
-          for (i=0; i<this.childViews.length; i++){         
-                  Backbone.View.prototype.close.call(this.childViews[i]);
-                }  
-          }
-      };
-
-      //remove main view if it already exists
-      function manageViews(view){
-        if ('currentView' in this){
-          //console.log(this.currentView.el);
-          this.currentView.close();
-        } else {
-          //console.log('no current view yet')
-        }
-        this.currentView = view;
-      };
-
-
       app_router.on('route:viewAdminFacultyPage', function (){
+        
+        var checkInfo = checkRole('faculty_admin');
 
-        if(checkRole('faculty_admin')){
+        if(checkInfo.status == true){
           var adminFacultyView = new AdminFacultyView();        
           var breadcrumbsView = new BreadcrumbsView();
         } else {
-          showWarning();
+          showWarning(checkInfo.text);
         }
       });
 
       app_router.on('route:viewAdminPage', function (){
+        
+        var checkInfo = checkRole('admin');
 
-        if(checkRole('admin')){
+        if(checkInfo.status == true){
           var adminView = new AdminView();
           var breadcrumbsView = new BreadcrumbsView();
         } else {
-          showWarning();
+          showWarning(checkInfo.text);
         }
 
       });
-
-//----------------------------- end zombies -------------------------//
-
-
 
 
       app_router.on('route:workShowAction', function (id){

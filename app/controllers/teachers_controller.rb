@@ -24,8 +24,6 @@ class TeachersController < ApplicationController
   def show
     @teacher = Teacher.find(params[:id])
 
-    puts @teacher
-
     respond_to do |format|
       #format.html # show.html.erb
       format.json { render json: @teacher }

@@ -96,10 +96,16 @@ define([
 
     swapFields: function(value){
       var el = $(this.el);
-      if(value == 'student'){
+      var params = { user: '' };
+      if (value == 'student'){
         var groups = new TemporaryGroupsCollection();
-        // adds theacher fields
-        el.find('#roleFields').html(_.template(StudentAttributesTemplate));
+        
+        // adds student fields
+        if (GlobalUser.currentUser){
+          params = { user: GlobalUser.currentUser.attributes.student_attributes }
+        }
+
+        el.find('#roleFields').html(_.template(StudentAttributesTemplate, params ));
         groups.fetch({
           success: function(collection, response) {
             el.find('#group-id-select').empty();
@@ -107,20 +113,24 @@ define([
               // populate department select with all curent departments. Pleace create atleast one department to test this.
               el.find('#group-id-select').prepend(_.template(GroupOptionTemplate, model.toJSON()));
             });
-            // Studen current group will be selected
-            //el.find('.group-opt[value='+ GlobalUser.currentUser.attributes.student_attributes.group_id + ']').attr('selected', 'true');
+
+            // Student's current group will be selected
+            if (GlobalUser.currentUser) {
+              el.find('.group-opt[value='+ GlobalUser.currentUser.attributes.student_attributes.group_id + ']').attr('selected', 'true');
+            }
           }
         });
-        
-        //el.find('.roleStudent').show();
-        //el.find('.roleTeacher').html('');
 
-      }else if(value == 'teacher'){
-        u = new User();
-        console.log(u)
+      } else if(value == 'teacher'){
+        
         var departments = new TemporaryDepartmentCollection();
-        // adds theacher fields
-        el.find('#roleFields').html(_.template(TeacherAttributesTemplate/*, GlobalUser.currentUser.attributes.teacher_attributes*/));
+        
+        // adds teacher fields
+        if (GlobalUser.currentUser){
+          params = { user: GlobalUser.currentUser.attributes.teacher_attributes }
+        }
+
+        el.find('#roleFields').html(_.template(TeacherAttributesTemplate, params));
         departments.fetch({
           success: function(collection, response) {
             el.find('#department-id-select').empty();
@@ -128,19 +138,24 @@ define([
               //populate department select with all curent departments. Pleace create atleast one department to test this.
               el.find('#department-id-select').prepend(_.template(DepartmentOptionTemplate, model.toJSON()));
             });
-            // Teacher current department will be selected
-            //el.find('.departments-opt[value=' + GlobalUser.currentUser.attributes.teacher_attributes.department_id + ']').attr('selected', 'true');
+
+            // Teacher's current department will be selected
+            if (GlobalUser.currentUser) {
+              el.find('.departments-opt[value=' + GlobalUser.currentUser.attributes.teacher_attributes.department_id + ']').attr('selected', 'true');
+            }
           }
         });
-        
-        //el.find('.roleTeacher').show();
-        //el.find('.roleStudent').html('');
 
       } else if(value == 'faculty_admin'){
+        var params;
         var faculties = new FacultiesCollection();
+        
         // adds faculty admin fields 
+        if (GlobalUser.currentUser){
+          params = { user: GlobalUser.currentUser.attributes.faculty_admin_attributes }
+        }
 
-        el.find('#roleFields').html(_.template(FaAttributesTemplate/*, GlobalUser.currentUser.attributes.teacher_attributes*/));
+        el.find('#roleFields').html(_.template(FaAttributesTemplate, params));
         faculties.fetch({
           success: function(collection, response) {
             el.find('#faculty-id-select').empty();
@@ -148,21 +163,16 @@ define([
               //populate department select with all curent departments. Pleace create atleast one department to test this.
               el.find('#faculty-id-select').prepend(_.template(FaOptionTemplate, model.toJSON()));
             });
-            // Teacher current department will be selected
-            //el.find('.faculty-opt[value=' + GlobalUser.currentUser.attributes.teacher_attributes.department_id + ']').attr('selected', 'true');
+           
+            // FA's current faculty will be selected
+            if (GlobalUser.currentUser){
+              el.find('.faculty-opt[value=' + GlobalUser.currentUser.attributes.faculty_admin_attributes.faculty_id + ']').attr('selected', 'true');
+            }
           }
         });
-        
-        //el.find('.roleTeacher').show();
-        //el.find('.roleStudent').html('');
-        //el.find('#roleFields')
 
       } else if(value == 'guest'){
-
         el.find('#roleFields').empty()
-        //el.find('.roleTeacher').html('');
-        //el.find('.roleStudent').html('');
-
       }
     },
 
