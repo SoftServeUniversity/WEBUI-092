@@ -32,7 +32,7 @@ define([
 
       $('#search-field').on('keyup', function(){
 
-        letters = $(this).val();
+        var letters = $(this).val();
         if(letters.length == 2){
           $('#search-field').css('background', 'white url("http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.2/themes/smoothness/images/ui-anim_basic_16x16.gif") 310px center no-repeat');
           (function(){
@@ -76,14 +76,14 @@ define([
       $('#select-box div.dropdown-menu').click(function(){
         if($(this).siblings('button[data-id = faculty_select]')){
           if($(this).find('li').first().attr('selected')){
-            f_id = null;
+            f_id = "";
           }else{
             f_id = $(this).find('li[class = selected] a').attr('data-val');
           }
 
         }else if($(this).siblings('button[data-id = course_select]')){
           if($(this).find('li').first().attr('selected')){
-            c_id = null;
+            c_id = "";
           }else{
             c_id = $(this).find('li[class = selected]').find('a').attr('data-val');
           }
@@ -132,7 +132,7 @@ define([
 
       function getJSON(collection, obj, letter){
         collection.fetch({
-          data: {search: 'true', two_last_name: letter},
+          data: {search: 'true', two_last_name: letter, s_faculty_id: f_id, s_course_id: c_id},
           async:false,
           success:function () {
             obj.push(collection.toJSON());
