@@ -932,11 +932,13 @@ div.DTFC_LeftFootWrapper table {
 #search-field{
 	width:310px;
 }
+
 #select-box{
 	position: absolute;
 	width:300px;
 	left:50px;
 	top:35px;
+	display: block !important;
 }
 button[data-id = faculty_select], 
 button[data-id = course_select], 
@@ -980,7 +982,7 @@ button[data-id = course_select]:focus{
 #search-container .row-fluid:last-child{
 	margin-top: 10px;
 }
-#search-container #DataTables_Table_0{
+#search-container .searchDataTable{
 	margin:50px auto;
 	width:100%;
 	border-bottom: 1px solid black;
@@ -992,7 +994,12 @@ button[data-id = course_select]:focus{
 	text-align: center;
 	font-size: 13px;
 }
-#DataTables_Table_0 tbody tr:hover{
+#search-container .searchDataTable tbody tr:hover{
 	cursor:pointer;
+}
+#search-container .searchDataTable{
+	margin:50px auto;
+	width:100%;
+	border-bottom: 1px solid black;
 }
 /*-----search form----end--*/

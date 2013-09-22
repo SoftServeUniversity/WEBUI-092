@@ -62,13 +62,13 @@ Webui92::Application.configure do
   config.active_support.deprecation = :notify
 
   config.action_mailer.smtp_settings = {
-    address: "smtp.gmail.com",
-    port: 587,
-    domain: ENV["DOMAIN_NAME"],
-    authentication: "plain",
-    enable_starttls_auto: true,
-    user_name: ENV["GMAIL_USERNAME"],
-    password: ENV["GMAIL_PASSWORD"]
+      address:              'smtp.mandrillapp.com',
+      port:                  587,
+      domain:               'localhost',
+      user_name:            'webUI092@ua.com',
+      password:             'BwuXCnSyNFDIFW9bpHxPSg',
+      authentication:       'plain',
+      enable_starttls_auto: true
   }
 
 

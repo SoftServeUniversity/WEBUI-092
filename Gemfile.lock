@@ -245,6 +245,9 @@ GEM
       kgio (~> 2.6)
       rack
       raindrops (~> 0.7)
+    unicorn-rails (1.1.0)
+      rack
+      unicorn
     warden (1.2.3)
       rack (>= 1.0)
     whenever (0.8.4)
@@ -295,4 +298,5 @@ DEPENDENCIES
   therubyracer
   uglifier (>= 1.0.3)
   unicorn
+  unicorn-rails
   whenever

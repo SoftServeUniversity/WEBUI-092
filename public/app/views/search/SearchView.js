@@ -15,23 +15,54 @@ define([
 ], function ($, _, Backbone, FacultiesCollection, CoursesCollection, TeachersCollection, StudentsCollection, SearchTemplate, bootstrapselect, datatables){
 
   var SearchView =  Backbone.View.extend({
-
     initialize:function(){
-              $('#ui-id-1 a').on('click', function(){
-                $(this).fadeIn('fast');
-              });
-
+      
+      $('#ui-id-1 a').on('click', function(){
+        $(this).fadeIn('fast');
+      });
       var compiledTemplate = _.template( SearchTemplate );
       $("#content").html(compiledTemplate);
+  
       $('select').selectpicker();
-      //$('.searchDataTable tbody tr').remove();
-      //$('#DataTables_Table_0 tbody tr').remove();
       var studCollection = new StudentsCollection();
       var teachCollection = new TeachersCollection();
-      var teachObj = [];
-      var studObj = [];
       var f_id = "";
       var c_id = "";
+      window.parsed = [];
+
+      $('#search-field').on('keyup', function(){
+
+        letters = $(this).val();
+        if(letters.length == 2){
+          $('#search-field').css('background', 'white url("http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.2/themes/smoothness/images/ui-anim_basic_16x16.gif") 310px center no-repeat');
+          (function(){
+            var teachObj = [];
+            var studObj = [];
+            var parsed = "";
+
+            getJSON(studCollection, studObj, letters);
+            getJSON(teachCollection, teachObj, letters);
+            var people = [];
+              people = teachObj[0].concat(studObj[0]);
+            var str = JSON.stringify(people);
+            var parsed = JSON.parse(str, function(k, v) {
+                if (k === "name")
+                    this.label = v;
+               else
+                    return v;
+            });
+            console.log(letters);
+            console.log(parsed);
+            return window.parsed = parsed;
+          }());
+          auto();
+          $('#search-field').css('background', '#fff');
+        }
+      });
+
+      $('#search-field').on('blur', function(){
+        console.log(parsed);
+      });
 
       $('button[data-id = faculty_select]').removeClass('btn-default').addClass('btn-info btn-mini');
       $('button[data-id = course_select]').removeClass('btn-default').addClass('btn-success btn-mini');
@@ -42,7 +73,6 @@ define([
       $('button[data-id = faculty_select], button[data-id = course_select]').on('click', function(){
         $(this).siblings('div.dropdown-menu').fadeToggle();
       });
-      
       $('#select-box div.dropdown-menu').click(function(){
         if($(this).siblings('button[data-id = faculty_select]')){
           if($(this).find('li').first().attr('selected')){
@@ -58,10 +88,8 @@ define([
             c_id = $(this).find('li[class = selected]').find('a').attr('data-val');
           }
         }
-
       });
 
-      
       $('#search-block').click(function(event){
           event.stopPropagation();
           $('#select-box').show();
@@ -71,19 +99,6 @@ define([
         $('#select-box').hide();
           $('#search-field').val("");
       });
-      function getJSON(collection, obj){
-        collection.fetch({
-          data: {search: 'true', two_last_name: 'Chyr'},
-          async:false,
-          success:function () {
-            obj.push(collection.toJSON());
-            return obj;
-          }
-
-        });
-        return obj;
-      }
-
 
       function getFacultyJSON(){
         var facultiesCollection = new FacultiesCollection();
@@ -114,7 +129,18 @@ define([
           }
         });
       }
-      
+
+      function getJSON(collection, obj, letter){
+        collection.fetch({
+          data: {search: 'true', two_last_name: letter},
+          async:false,
+          success:function () {
+            obj.push(collection.toJSON());
+            return obj;
+          }
+        });
+        return obj;
+      }
       getFacultyJSON();
       getCourseJSON();
      
@@ -140,63 +166,58 @@ define([
         var selText = $(this).text();
         $(this).parents('.btn-group').find('button[data-id = faculty_select]').html(selText);
       });
-
-            getJSON(studCollection, studObj);
-            getJSON(teachCollection, teachObj);
-
-          var people = [];
-            people = teachObj[0].concat(studObj[0]);
-          var str = JSON.stringify(people);
-          var parsed = JSON.parse(str, function(k, v) {
-              if (k === "name")
-                  this.label = v;
-             else
-                  return v;
-          });
-          console.log(parsed);
-
-          $('#searchFormButton').on('click', function(){
-          
-          if($('#search-field').val().length > 1){
-            //$('#DataTables_Table_0 tbody tr').remove();
-              for(var l in parsed){
-                if(parsed[l].degree){
-                  var st = 'викладач';
-                  var statusClass = 'teacher';
-                  var course = "-";
-                }else{
-                  var st = 'студент';
-                  var statusClass = 'student';
-                  var course = parsed[l].course_name;
-                }
-                var names = parsed[l].label.split(/[ ]+/);
-                console.log(names);
-                var tr = $('<tr></tr>').attr('data-id', '#/'+statusClass+"/"+parsed[l].id)
-                                        .append($('<td>'+(parseInt(l)+1)+'</td>'))
-                                        .append($('<td>'+parsed[l].last_name+'</td>'))
-                                        .append($('<td>'+names[0]+'</td>'))
-                                        .append($('<td>'+parsed[l].middle_name+'</td>'))
-                                        .append($('<td>'+parsed[l].faculty_name+'</td>'))
-                                        .append($('<td>'+parsed[l].department_name+'</td>'))
-                                        .append($('<td>'+course+'</td>'))
-                                        .append($('<td>'+st+'</td>'));
-                                        
-                $('.searchDataTable tbody').append(tr);
-              }
-              $('.searchDataTable').dataTable({
+          $('.searchDataTable').dataTable({
               bDestroy: true,
               "oLanguage": {
                 sUrl: "app/libs/datatables/searchDataTables.ukrainian.txt"
               }
-            });
+            });         
+      
+          $('#searchFormButton').click(drawTable); 
+
+          function drawTable(){
+            $('.searchDataTable tbody').remove();
+              if($('#search-field').val().length > 1){
+                var tbody = $("<tbody></tbody>");
+                  for(var l in parsed){
+                    if(parsed[l].degree){
+                      var st = 'викладач';
+                      var statusClass = 'teacher';
+                      var course = "-";
+                    }else{
+                      var st = 'студент';
+                      var statusClass = 'student';
+                      var course = parsed[l].course_name;
+                    }
+                    var names = parsed[l].label.split(/[ ]+/);
+                    var tr = $('<tr></tr>').attr('data-href', '#/'+statusClass+"/"+parsed[l].id)
+                                            .append($('<td>'+(parseInt(l)+1)+'</td>'))
+                                            .append($('<td>'+parsed[l].last_name+'</td>'))
+                                            .append($('<td>'+names[0]+'</td>'))
+                                            .append($('<td>'+parsed[l].middle_name+'</td>'))
+                                            .append($('<td>'+parsed[l].faculty_name+'</td>'))
+                                            .append($('<td>'+parsed[l].department_name+'</td>'))
+                                            .append($('<td>'+course+'</td>'))
+                                            .append($('<td>'+st+'</td>'));
+                      $(tbody).append(tr);                      
+        
+                    
+                  }
+                  $('.searchDataTable').append(tbody);
+              }
+              $('.searchDataTable').dataTable({
+                bDestroy: true,
+                "oLanguage": {
+                  sUrl: "app/libs/datatables/searchDataTables.ukrainian.txt"
+                }
+              });
           }
-          });         
-          $('#DataTables_Table_0 tbody tr').on('click', function(){
-            location.href = $(this).attr('data-id');
-          });
-          $( "#search-field" ).autocomplete({
-            minLength: 2,
-            source: parsed,
+            
+           
+      function auto(){
+        $( "#search-field" ).autocomplete({
+            minLength: 1,
+            source: window.parsed,
             focus: function( event, ui ) {
               $( "#search-field" ).val( ui.item.label );
 
@@ -204,21 +225,22 @@ define([
             },
             select: function( event, ui ) {
               $( "#search-field" ).val( ui.item.label );
-              if(ui.item.epartment_id){
-                location.href = '#/teacher/'+ui.item.id;
-              }else{
+              if(ui.item.course_id){
                 location.href = '#/student/'+ui.item.id;
+                
+              }else{
+                location.href = '#/teacher/'+ui.item.id;
               }
               return false;
             }
           })
           .data( "ui-autocomplete" )._renderItem = function( ul, item ) {
-              if(item.department_id){
-                var href = '#/teacher/'+item.id;
-                var status = '<span class="status">викладач</span>';
-              }else{
+              if(item.course_id){
                 var status = '<span class="status">cтудент</span>';
                 var href = '#/student/'+item.id;
+              }else{
+                var href = '#/teacher/'+item.id;
+                var status = '<span class="status">викладач</span>';
               }
             if(("#ui-id-1 li").length > 1){
                 $("#ui-id-1 li").eq(3).nextAll().remove();
@@ -227,7 +249,41 @@ define([
             var a = $('<a>' + item.label +" "+status);
             return $( "<li>" ).append(a).appendTo( ul );
           };
-     }
+      } 
+
+
+      function HandleDOM_Change () {
+
+            $('.searchDataTable tr').on('click', function(){
+              if($(this).attr('data-href')){
+                location.href = $(this).attr('data-href');
+              }
+            });
+
+      }
+          
+          fireOnDomChange ('.searchDataTable tr', HandleDOM_Change, 100);
+
+      function fireOnDomChange (selector, actionFunction, delay){
+          $(selector).bind ('DOMSubtreeModified', fireOnDelay);
+
+          function fireOnDelay () {
+              if (typeof this.Timer == "number") {
+                  clearTimeout (this.Timer);
+              }
+              this.Timer  = setTimeout (  function() { fireActionFunction (); },
+                                          delay ? delay : 333
+                                       );
+          }
+
+          function fireActionFunction () {
+              $(selector).unbind ('DOMSubtreeModified', fireOnDelay);
+              actionFunction ();
+              $(selector).bind ('DOMSubtreeModified', fireOnDelay);
+          }
+      }
+
+    }
   });
   return SearchView;
 });

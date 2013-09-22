@@ -43,11 +43,11 @@ Webui92::Application.configure do
   config.assets.debug = true
 
   config.action_mailer.smtp_settings = {
-      address:              'smtp.gmail.com',
+      address:              'smtp.mandrillapp.com',
       port:                  587,
       domain:               'localhost',
-      user_name:            'demowebui@gmail.com',
-      password:             'ssswebui',
+      user_name:            'webUI092@ua.com',
+      password:             'BwuXCnSyNFDIFW9bpHxPSg',
       authentication:       'plain',
       enable_starttls_auto: true
   }
