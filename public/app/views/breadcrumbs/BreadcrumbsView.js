@@ -216,7 +216,7 @@ define([
         for(var i in breadcrumbsObj){
           if(breadcrumbsObj[i][2] == "teacher"){
             $('.breadcrumb').find('li a.department').parent().nextAll().remove();
-          }else if(breadcrumbsObj[i][2] == "task"){
+          }else if(breadcrumbsObj[i][2] == "group"){
             $('.breadcrumb').find('li a.teacher').parent().remove();
           }else if(breadcrumbsObj[i][2] == "course"){
             $('.breadcrumb').find('li a.faculty').parent().nextAll().remove();
