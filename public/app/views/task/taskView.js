@@ -9,10 +9,11 @@ define([
   'collections/tasks/CommentsCollection',
   'models/task/commentModel',
   'models/task/TaskModel',
-  'models/task/ProgressModel'
-  ],
+  'models/task/ProgressModel',
+  'text!templates/task/ChangeButtonTemplate.html'
+ ],
   function($, _, Backbone, bootstrap, jqueryui, taskTemplate, taskCommentsView,
-          CommentsCollection, commentModel, TaskModel, ProgressModel){
+          CommentsCollection, commentModel, TaskModel, ProgressModel, ChangeButtonTemplate){
 
     var TaskView = Backbone.View.extend({
       el: $("#content"),
@@ -21,6 +22,25 @@ define([
         'click #changebtn'        : 'showModal',
         'submit #input-log'       : 'submit',
         'keypress #task-comment'  : 'validateComment',
+      },
+      setAbility: function() {
+        var me = this;
+        var allowedUsers = this.model.get("ability_to_change");
+        if (GlobalUser.currentUser){
+          GlobalUser.currentUser.ability_to_change = false;
+          _.each(allowedUsers, function (user){
+            if (user == GlobalUser.currentUser.id){
+              GlobalUser.currentUser.ability_to_change = true;
+              me.addControls();
+            } else {
+              console.log("Access denied! You are logged")
+            }
+          })
+        }
+      },
+      addControls: function() {
+        $("#change-button-container").html(ChangeButtonTemplate);
+        console.log("Allowed!");
       },
       showModal: function(){
         $('#change').modal('show');
@@ -40,7 +60,7 @@ define([
           task: this.model,
           progress: this.progress,
           _: _
-        }
+        };
         var compiledTemplate = _.template(taskTemplate, data);
         $("#content").html(compiledTemplate);
         this.slider();
@@ -52,7 +72,7 @@ define([
         var newCommentContent = $(e.currentTarget).find('textarea').val();
         var newTaskProcess = $(e.currentTarget).find('#number-range').val();
         this.addNewProgress(newTaskProcess);
-        this.addCommentToCollection(this.user.get("id"), newCommentContent);
+        this.addCommentToCollection(this.user, newCommentContent);
         this.closeModal();
         this.initialize();
       },
@@ -176,7 +196,8 @@ define([
       initialize: function(){
         this.page = 0;
         var me = this;
-        this.user = window.GlobalUser.Models.User;
+        GlobalUser.currentUser? console.log('Works'):console.log('sucks');
+        this.user = 1;
         this.undelegateEvents();
         this.delegateEvents(this.events);
         $(document).on("scroll", function () {
@@ -196,6 +217,7 @@ define([
         this.progress.fetch({url: progressUrl, async: false})
         this.collection.fetch({url: changesUrl, async:false});
         this.render();
+        this.setAbility();
       }
     });
 

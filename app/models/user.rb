@@ -19,6 +19,9 @@ class User < ActiveRecord::Base
   accepts_nested_attributes_for :student
   accepts_nested_attributes_for :faculty_admin
 
+  #validations
+  validates :email,     uniqueness: true
+
 
   before_create :add_default_role
 

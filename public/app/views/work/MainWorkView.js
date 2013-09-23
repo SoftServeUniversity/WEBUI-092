@@ -14,12 +14,15 @@ define([
   'models/task/TaskModel',
   'collections/tasks/ProgressesCollection',
   'views/shared/EditDialogView',
-  'views/shared/EditTaskDialogueView'
+  'views/shared/EditTaskDialogueView',
+  'text!templates/work/ControlsTemplate.html',
+  'text!templates/work/AddTaskFormTemplate.html',
 ], 
 function($, evil, _, Backbone, bootstrap, WorkTasksTemplate, 
         WorkHistoryTemplate, elementTemplate, TasksCollection, 
         WorkHistoryCollection, TasksListView, WorkModel, TaskModel,
-         ProgressesCollection, EditDialogView, EditTaskDialogView){
+         ProgressesCollection, EditDialogView, EditTaskDialogView,
+         ControlsTemplate, AddTaskFormTemplate){
   var WorkTasksView = Backbone.View.extend({ 
     events: {
       "click #create-btn"             : "addTask",
@@ -46,6 +49,18 @@ function($, evil, _, Backbone, bootstrap, WorkTasksTemplate,
       this.progresses = new ProgressesCollection()
       this.progresses.fetch({url: '/work/' + me.id + '/tasks/progresses.json', async:false})
       me.render();
+      if (GlobalUser.currentUser){
+        if (GlobalUser.currentUser.id == this.model.get('ability_to_change')) {
+          this.addControls()
+        }
+      } else {
+        $("#edit-tasks-on-work-page").remove();
+        $("#show-create-task-form").remove();
+      }
+    },
+    addControls: function () {
+      $("#controls").html(ControlsTemplate);
+      $("#add-new-task").html(AddTaskFormTemplate);
     },
     updatePriority: function (items) {
       var me = this;
@@ -98,36 +113,48 @@ function($, evil, _, Backbone, bootstrap, WorkTasksTemplate,
     addTask: function(e) {
       e.preventDefault();
       var me = this;
-      var taskName = $("#task-name").val();
-      var newTask = new TaskModel({name: taskName, priority: 0, work_id: this.id, user_id: 1});
-      this.work_col.add(newTask);
-      newTask.save({}, {
-        success: function () {
-          me.loadData();
-          $("#add-new-task").show();
-          $("#show-create-task-form").addClass("active");
+      if (GlobalUser.currentUser){
+        if (GlobalUser.currentUser.id == this.model.get('ability_to_change')) {
+          var taskName = $("#task-name").val();
+          var newTask = new TaskModel({name: taskName, priority: 0, work_id: this.id});
+          this.work_col.add(newTask);
+          newTask.save({}, {
+            success: function () {
+              me.loadData();
+              $("#add-new-task").show();
+              $("#show-create-task-form").addClass("btn-warning");
+            }
+          });        
         }
-      });
+      } else {
+        $("#edit-tasks-on-work-page").remove();
+        $("#show-create-task-form").remove();
+      }
+
     },
     showCreateTaskFrom: function () {
       $("#add-new-task").fadeToggle("slow", "linear");
       var createTaskForm = $("#show-create-task-form");
-      if(createTaskForm.hasClass("active")){
-        createTaskForm.removeClass("active");
+      if(createTaskForm.hasClass("btn-warning")){
+        createTaskForm.removeClass("btn-warning");
+        createTaskForm.addClass("btn-info");
       } else {
-        createTaskForm.addClass("active");
-      }
+        createTaskForm.addClass("btn-warning");
+        createTaskForm.removeClass("btn-info");
+     }
     },
     editTasksOnWorkPage: function () {
       var listofTasks = $("#list-of-tasks");
       if(listofTasks.hasClass("sortable")) {
         $(".sortable").sortable("destroy");
         listofTasks.removeClass("sortable");
-        $("#edit-tasks-on-work-page").removeClass("active");
+        $("#edit-tasks-on-work-page").removeClass("btn-warning");
+        $("#edit-tasks-on-work-page").addClass("btn-info");
       } else {
         listofTasks.addClass("sortable");
         this.sortable();
-        $("#edit-tasks-on-work-page").addClass("active");
+      $("#edit-tasks-on-work-page").removeClass("btn-info");
+      $("#edit-tasks-on-work-page").addClass("btn-warning");
       }
       $(".editable").fadeToggle("slow", "linear");
     },

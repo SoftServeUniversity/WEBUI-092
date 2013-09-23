@@ -27,8 +27,8 @@ define([
 
 
   ], function($, _, Backbone, GlobalUser, reg, FacultiesListView, RegistrationView, GroupProgressView,
-  	          StudentProgressView, CourseProgressView,  MainFacultyView, MainDepartmentView,
-  	          MainWorkView, TaskView, TasksCollection, NotFoundView,
+              StudentProgressView, CourseProgressView,  MainFacultyView, MainDepartmentView,
+              MainWorkView, TaskView, TasksCollection, NotFoundView,
               AdminFacultyView, AdminView, MainTeacherView, TeacherGroupView, UserSingUpView,
               InfoView, BreadcrumbsView, SearchView
 
@@ -38,15 +38,40 @@ define([
 
     GlobalEventBus = _.extend({}, Backbone.Events);
 
+    // Extend Backbone.Collection for fetch data
+    // fron any collection with filter
+    Backbone.Collection.prototype.FetchCollection =
+    function(filterData) {
+      // Set filterData = {} if filterData is undefined
+      filterData = typeof filterData !== 'undefined' ? filterData : {};
+      // Create filter from filterData for fetch collection
+      var filterForCollection = {};
+      for(item in filterData) {
+        var filter = {};
+        filter[item] = filterData[item];
+        filterForCollection.filter = filter;
+      }
+      // Fetch collection with filter
+      this.fetch({
+        data: filterForCollection,
+        async: false, //for wait, when load data
+        success: function(model, response) {
+          return model;
+        },
+        error: function(model, response) {
+          console.log('Fetch collection error');
+        }
+      });
+    };
 
     var AppRouter = Backbone.Router.extend({
-      
+
       initialize: function(){
-        
+
         this.history = [];
         //update menu when needed
         this.bind( "all", this.updateMenu )
-        
+
         //store history, so it's possible to navigate back
         this.bind( "all", this.storeRoute )
 
@@ -67,19 +92,19 @@ define([
       previousRoute: function(){
         if (this.history.length > 1) {
           this.navigate(this.history[this.history.length-1], false)
-        } 
+        }
       },
 
       //add active class to menu items
       updateMenu: function(){
         var link;
-        
+
         $(".page-link").removeClass('active');
-        
+
         var path = Backbone.history.fragment;
 
         var paths = ['info', 'search', '', 'admin', 'fa'];
-        
+
         _.each(paths, function(p){
           if(p==path){
             link = '#'+path+'page-link';
@@ -110,14 +135,14 @@ define([
         // Default
         '*actions': 'defaultAction'
       }
-    
+
     });
 
     var initialize = function(){
-      
+
       // this function is defined in libs/reg
       GlobalUser.adminRoleCheck();
-
+    
       GlobalUser.vent.on("authentication:logged_out", function(){
         GlobalUser.hideAdminButton();
         GlobalUser.currentUser = null;
@@ -135,17 +160,17 @@ define([
        // display the home page
         var facultiesListView = new FacultiesListView();
         var breadcrumbsView = new BreadcrumbsView();
-        
+
         $("#main-page-link").addClass('active');
 
       });
 
 
       app_router.on('route:viewAdminFacultyPage', function (){
-        
+
         var checkInfo = GlobalUser.checkRole('faculty_admin');
 
-        if(checkInfo.status == true){
+        if(checkInfo.status == true && checkInfo.verified){
           var adminFacultyView = new AdminFacultyView();        
           var breadcrumbsView = new BreadcrumbsView();
         } else {
@@ -155,10 +180,10 @@ define([
       });
 
       app_router.on('route:viewAdminPage', function (){
-        
+
         var checkInfo = GlobalUser.checkRole('admin');
 
-        if(checkInfo.status == true){
+        if(checkInfo.status == true && checkInfo.verified){
           var adminView = new AdminView();
           var breadcrumbsView = new BreadcrumbsView();
         } else {
@@ -223,8 +248,20 @@ define([
       });
 
       app_router.on('route:teacherGroupAction', function (id) {
-        var teacherGroupView = new TeacherGroupView(id);
-        var breadcrumbsView = new BreadcrumbsView();
+        var checkInfo = GlobalUser.checkRole('teacher');
+        if ((checkInfo.status == true) &&
+            (GlobalUser.currentUser.attributes.role_pending == false)){
+          if (GlobalUser.currentUser.attributes.teacher_attributes.teacher_id == id) {
+            var teacherGroupView = new TeacherGroupView(id);
+            var breadcrumbsView = new BreadcrumbsView();
+          }
+          else{
+            GlobalUser.showWarning('У Вас немає доступу до цієї сторінки.');
+          }
+        } else {
+          //defined in libs/reg
+          GlobalUser.showWarning(checkInfo.text);
+        }
       });
 
       app_router.on('route:userSingUp', function(){
@@ -250,10 +287,10 @@ define([
         var userSignUp = new UserSingUpView();
         var infoView = new InfoView();
         var breadcrumbsView = new BreadcrumbsView();
-    
+
       });
       app_router.on('route:searchAction', function(){
-        
+
         var breadcrumbsView = new BreadcrumbsView();
         var searchView = new SearchView();
       });
@@ -279,11 +316,11 @@ define([
 
       Backbone.history.start();
     };
-    
+
 
     return {
       initialize: initialize
     };
-  
+
 
   });

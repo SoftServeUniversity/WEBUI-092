@@ -20,10 +20,11 @@ class WorksController < ApplicationController
   # GET /works/1.json
   def show
     @work = Work.find(params[:id])
-
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @work.to_json(:include => {
+        :teacher => {},
+        :student => {},
         :thesis_changes => {},
         :tasks => {:include => :thesis_changes}
       })}

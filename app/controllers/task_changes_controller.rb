@@ -20,12 +20,12 @@ class TaskChangesController < ApplicationController
     else
       @task_changes = TaskChange.where(task_id: params[:id]).order("created_at DESC")
     end
-    @task_changes.each do |task|
-      task['progress'] = task.progress
-    end
     respond_to do |format|
       format.html # show.html.erb
-      format.json { render json: @task_changes }
+      format.json { render json: @task_changes.to_json(:include => {
+        :user => {:only => [:name, :last_name, :middle_name]}
+      })}
+
     end
   end
 
