@@ -2,37 +2,29 @@ define([
     'jquery',
     'underscore',
     'backbone',
-    'collections/departments/DepartmentsCollection',
-    'collections/courses/CoursesCollection',
     'views/teacher/TableView',
     'views/teacher/TeacherAddWorkDialogView',
     'text!templates/teacher/mainTeacherTemplate.html',
-    'collections/faculties/FacultiesCollection',
-    'collections/faculties/FacultyChangeCollection',
     'models/teacher/TeacherModel',
-    'collections/students/StudentsProxyCollectionForTeacherPage',
-    'collections/teachers/TeachersCollection',
+    'collections/students/StudentsProxyCollectionForTeacherPage'
 ], function($, _, Backbone,
-            DepartmentsCollection,
-            CoursesCollection,
             TableView,
             TeacherAddWorkDialogView,
             mainTeacherTemplate,
-            FacultiesCollection,
-            FacultyChangeCollection,
             TeacherModel,
-            StudentsProxyCollectionForTeacherPage,
-            TeachersCollection){
+            StudentsProxyCollectionForTeacherPage){
 
     var TeacherView = Backbone.View.extend({
         initialize:function(id){
             var that = this;
 
+            this.id = id;
+
             this.teacherModel = new TeacherModel();
             this.teacherModel.fetch({
               data: {
                 filter: {
-                  id: id
+                  id: this.id
                 }
               },
               success: function() {
@@ -44,7 +36,7 @@ define([
             this.studentsColOfTeachGroup.fetch({
               data: {
                 filter: {
-                  teacher_id: id
+                  teacher_id: this.id
                 }
               },
               success: function() {
@@ -52,16 +44,8 @@ define([
               }
             });
 
-            this.faculty_change_col = new FacultyChangeCollection();
-            this.faculty_change_col.fetch({
-              success:function () {
-                  that.trigger('DataLoaded', 'FacultyChange');
-              }
-            });
-
             var isTeachLoaded = false;
             var isStudentsOfTeacherGroupLoaded = false;
-            var isFacChangeLoaded = false;
 
             this.on('DataLoaded', function (item) {
                 if (item == 'Teacher') {
@@ -72,23 +56,24 @@ define([
                     isStudentsOfTeacherGroupLoaded = true;
                 }
 
-                if (item == 'FacultyChange'){
-                    isFacChangeLoaded = true;
-                }
-
                 if ((isTeachLoaded &&
-                     isFacChangeLoaded &&
                      isStudentsOfTeacherGroupLoaded) == true){
-                  that.render(id);
+                  that.render();
                 }
             });
+
+            this.on('destroy', function(){
+            me.off();
+            me.remove();
+          });
         },
 
-        render:function(id){
+        render:function(){
           var teacher = this.teacherModel.toJSON()[0];
 
           var dataForMainTeacherTemplate = {
             teacher: teacher,
+            // Mark active link in teacher menu
             activeLink: "teacherGroupPage"
           }
           var compiledTemplate = _.template(mainTeacherTemplate, dataForMainTeacherTemplate);
@@ -97,10 +82,12 @@ define([
           var tableStudInGroupView = new TableView({collection: this.studentsColOfTeachGroup});
           $("#teacherPageContent").html(tableStudInGroupView.el);
 
-          var teacherAddWorkDialogView = new TeacherAddWorkDialogView();
+          var teacherAddWorkDialogView = new TeacherAddWorkDialogView(this.id);
+          $("#teacherAddWorkDialogContent").html(teacherAddWorkDialogView.$el);
 
           return this;
         }
     });
+
     return TeacherView;
 });

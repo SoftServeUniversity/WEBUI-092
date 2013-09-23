@@ -7,7 +7,7 @@ define([
 
     var TeacherChangeCollection = Backbone.Collection.extend({
         model : TeacherChangeModel,
-        url: "app/collections/teachers/teacherChangesCollection.json"
+        url: "/progress_changes.json"
     });
 
     return TeacherChangeCollection;
