@@ -114,10 +114,9 @@ define([
     });
 
     var initialize = function(){
-      
       // this function is defined in libs/reg
       GlobalUser.adminRoleCheck();
-
+    
       GlobalUser.vent.on("authentication:logged_out", function(){
         GlobalUser.hideAdminButton();
         GlobalUser.currentUser = null;
@@ -145,7 +144,7 @@ define([
         
         var checkInfo = GlobalUser.checkRole('faculty_admin');
 
-        if(checkInfo.status == true){
+        if(checkInfo.status == true && checkInfo.verified){
           var adminFacultyView = new AdminFacultyView();        
           var breadcrumbsView = new BreadcrumbsView();
         } else {
@@ -158,7 +157,7 @@ define([
         
         var checkInfo = GlobalUser.checkRole('admin');
 
-        if(checkInfo.status == true){
+        if(checkInfo.status == true && checkInfo.verified){
           var adminView = new AdminView();
           var breadcrumbsView = new BreadcrumbsView();
         } else {

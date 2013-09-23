@@ -30,7 +30,6 @@ define([
   initialize : function(){
     this.heightEqualizer = HeightEqualizer;
 
-    console.log(window)
     this.loadData();
     var facultiesLoaded = false;
     var facultiesChangesLoaded = false; 
