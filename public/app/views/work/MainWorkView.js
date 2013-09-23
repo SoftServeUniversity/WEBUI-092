@@ -54,7 +54,8 @@ function($, evil, _, Backbone, bootstrap, WorkTasksTemplate,
           this.addControls()
         }
       } else {
-        $("#controls").remove();
+        $("#edit-tasks-on-work-page").remove();
+        $("#show-create-task-form").remove();
       }
     },
     addControls: function () {
@@ -112,16 +113,24 @@ function($, evil, _, Backbone, bootstrap, WorkTasksTemplate,
     addTask: function(e) {
       e.preventDefault();
       var me = this;
-      var taskName = $("#task-name").val();
-      var newTask = new TaskModel({name: taskName, priority: 0, work_id: this.id, user_id: 1});
-      this.work_col.add(newTask);
-      newTask.save({}, {
-        success: function () {
-          me.loadData();
-          $("#add-new-task").show();
-          $("#show-create-task-form").addClass("btn-warning");
+      if (GlobalUser.currentUser){
+        if (GlobalUser.currentUser.id == this.model.get('ability_to_change')) {
+          var taskName = $("#task-name").val();
+          var newTask = new TaskModel({name: taskName, priority: 0, work_id: this.id});
+          this.work_col.add(newTask);
+          newTask.save({}, {
+            success: function () {
+              me.loadData();
+              $("#add-new-task").show();
+              $("#show-create-task-form").addClass("btn-warning");
+            }
+          });        
         }
-      });
+      } else {
+        $("#edit-tasks-on-work-page").remove();
+        $("#show-create-task-form").remove();
+      }
+
     },
     showCreateTaskFrom: function () {
       $("#add-new-task").fadeToggle("slow", "linear");

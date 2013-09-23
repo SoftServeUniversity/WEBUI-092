@@ -14,7 +14,7 @@ class Task < ActiveRecord::Base
     allowed = []
     allowed << self.work.teacher.user.id if self.work.teacher
     if self.work.student
-      # allowed << self.work.student.user.id
+      allowed << self.work.student.user.id
       teachers_from_faculty = self.work.student.group.department.faculty.teachers 
       teachers_from_faculty.each do |teacher|
         allowed << teacher.user.id.to_i

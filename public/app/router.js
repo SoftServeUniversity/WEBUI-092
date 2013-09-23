@@ -27,8 +27,8 @@ define([
 
 
   ], function($, _, Backbone, GlobalUser, reg, FacultiesListView, RegistrationView, GroupProgressView,
-  	          StudentProgressView, CourseProgressView,  MainFacultyView, MainDepartmentView,
-  	          MainWorkView, TaskView, TasksCollection, NotFoundView,
+              StudentProgressView, CourseProgressView,  MainFacultyView, MainDepartmentView,
+              MainWorkView, TaskView, TasksCollection, NotFoundView,
               AdminFacultyView, AdminView, MainTeacherView, TeacherGroupView, UserSingUpView,
               InfoView, BreadcrumbsView, SearchView
 

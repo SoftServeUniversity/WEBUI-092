@@ -5,6 +5,11 @@ class TaskChange < ActiveRecord::Base
   belongs_to :user, dependent: :destroy
 
   before_create :set_last_progress
+  def serializable_hash(options={}) 
+    hash_info = super(options) 
+    hash_info[:progress] = self.progress
+    hash_info
+  end
 
   def set_last_progress
   	self.task_progress_id = TaskProgress.where(task_id: self.task_id).last.id

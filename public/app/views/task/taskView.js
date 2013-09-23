@@ -60,7 +60,7 @@ define([
           task: this.model,
           progress: this.progress,
           _: _
-        }
+        };
         var compiledTemplate = _.template(taskTemplate, data);
         $("#content").html(compiledTemplate);
         this.slider();
