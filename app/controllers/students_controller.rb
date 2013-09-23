@@ -3,7 +3,7 @@ class StudentsController < ApplicationController
   # GET /students.json
   def index
 
-    
+
     if params[:search] == "true"
       puts '---------------------------------------------------SEARCH----------------------------------------------------------'
       search_string = "

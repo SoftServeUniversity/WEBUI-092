@@ -1,5 +1,5 @@
 class Student < ActiveRecord::Base
-  attr_accessible :group_id, :user_id
+  attr_accessible :group_id, :user_id, :group_pending
 
   belongs_to :group
   belongs_to :user

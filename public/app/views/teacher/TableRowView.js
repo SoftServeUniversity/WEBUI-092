@@ -9,7 +9,6 @@ define([
     var TableRowView = Backbone.View.extend({
         tagName:'tr' ,
         template: _.template(tableRowTemplate),
-        linkTo: null,
         events: {
           'click .btn-danger': 'showRemoveDialog',
           'click .btn-success': 'addStudentToGroup'
@@ -23,7 +22,7 @@ define([
         },
 
         addStudentToGroup: function(){
-          attrs = {'group_pending': 0}
+          attrs = {'group_pending': false};
           this.model.set(attrs);
           this.model.save(attrs, {patch: true});
         },
