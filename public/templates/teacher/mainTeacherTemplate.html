@@ -9,7 +9,7 @@
 </h3>
 <h4><%= teacher.department_name %></h4>
 
-<% if ((appUtils.Users.checkRole('teacher').status == true) && (GlobalUser.currentUser.id == teacher.id)) { %>
+<% if ((GlobalUser.checkRole('teacher').status == true) && (GlobalUser.currentUser.id == teacher.id)) { %>
   <div class="row-fluid">
     <div class="span12 centeredContent">
       <p>

@@ -1,6 +1,6 @@
 <td><%= counter %>.&nbsp;<%= student_full_name %></td>
 <td><%= email %></td>
-<% if ((appUtils.Users.checkRole('teacher').status == true) && (GlobalUser.currentUser.id == teacher.id)) { %>
+<% if ((GlobalUser.checkRole.checkRole('teacher').status == true) && (GlobalUser.currentUser.id == teacher.id)) { %>
   <td>
     <% if (group_pending === 0) %>
       <input type="button" value="Підтвердити" class="btn btn-success">

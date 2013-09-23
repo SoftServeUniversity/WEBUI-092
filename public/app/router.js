@@ -247,12 +247,12 @@ define([
 
       app_router.on('route:teacherGroupAction', function (id) {
         var checkInfo = GlobalUser.checkRole('teacher');
-        if ((checkInfo == true) && (GlobalUser.currentUser.id == teacher.id)) {
+        if ((checkInfo == true) && (GlobalUser.currentUser.id == id)) {
           var teacherGroupView = new TeacherGroupView(id);
           var breadcrumbsView = new BreadcrumbsView();
         } else {
           //defined in libs/reg
-          appUtils.Users.showWarning(checkInfo.text);
+          GlobalUser.showWarning(checkInfo.text);
         }
       });
 
