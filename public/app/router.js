@@ -27,8 +27,8 @@ define([
 
 
   ], function($, _, Backbone, GlobalUser, reg, FacultiesListView, RegistrationView, GroupProgressView,
-  	          StudentProgressView, CourseProgressView,  MainFacultyView, MainDepartmentView,
-  	          MainWorkView, TaskView, TasksCollection, NotFoundView,
+              StudentProgressView, CourseProgressView,  MainFacultyView, MainDepartmentView,
+              MainWorkView, TaskView, TasksCollection, NotFoundView,
               AdminFacultyView, AdminView, MainTeacherView, TeacherGroupView, UserSingUpView,
               InfoView, BreadcrumbsView, SearchView
 
@@ -42,6 +42,9 @@ define([
     // fron any collection with filter
 
     Backbone.Collection.prototype.FetchCollection = function(filterData) {
+      
+      // Set filterData = {} if filterData is undefined
+      filterData = typeof filterData !== 'undefined' ? filterData : {};
 
       // Create filter from filterData for fetch collection
       var filterForCollection = {};
@@ -248,9 +251,15 @@ define([
 
       app_router.on('route:teacherGroupAction', function (id) {
         var checkInfo = GlobalUser.checkRole('teacher');
-        if ((checkInfo == true) && (GlobalUser.currentUser.id == id)) {
-          var teacherGroupView = new TeacherGroupView(id);
-          var breadcrumbsView = new BreadcrumbsView();
+        if ((checkInfo.status == true) &&
+            (GlobalUser.currentUser.attributes.role_pending == false)){
+          if (GlobalUser.currentUser.attributes.teacher_attributes.teacher_id == id) {
+            var teacherGroupView = new TeacherGroupView(id);
+            var breadcrumbsView = new BreadcrumbsView();
+          }
+          else{
+            GlobalUser.showWarning('У Вас немає доступу до цієї сторінки.');
+          }
         } else {
           //defined in libs/reg
           GlobalUser.showWarning(checkInfo.text);
