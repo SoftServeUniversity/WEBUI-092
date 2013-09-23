@@ -1,13 +1,15 @@
 <td><%= counter %>.&nbsp;<%= student_full_name %></td>
 <td><%= email %></td>
-<td>
-  <% if (group_pending === 0) %>
-    <input type="button" value="Підтвердити" class="btn btn-success">
-  <% else { %>
-    <div>Підтверджений</div>
-  <% } %>
-</td>
-<td>
-  <!-- Button for remove student if bad group -->
-  <input type="button" value="Відхилити" class="btn btn-danger" data-target="#dialogRejectStudentFromGroup" data-toggle="modal">
-</td>
+<% if ((appUtils.Users.checkRole('teacher').status == true) && (GlobalUser.currentUser.id == teacher.id)) { %>
+  <td>
+    <% if (group_pending === 0) %>
+      <input type="button" value="Підтвердити" class="btn btn-success">
+    <% else { %>
+      <div>Підтверджений</div>
+    <% } %>
+  </td>
+  <td>
+    <!-- Button for remove student if bad group -->
+    <input type="button" value="Відхилити" class="btn btn-danger" data-target="#dialogRejectStudentFromGroup" data-toggle="modal">
+  </td>
+<% } %>

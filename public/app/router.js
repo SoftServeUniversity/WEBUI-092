@@ -246,8 +246,14 @@ define([
       });
 
       app_router.on('route:teacherGroupAction', function (id) {
-        var teacherGroupView = new TeacherGroupView(id);
-        var breadcrumbsView = new BreadcrumbsView();
+        var checkInfo = appUtils.Users.checkRole('teacher');
+        if ((checkInfo == true) && (GlobalUser.currentUser.id == teacher.id)) {
+          var teacherGroupView = new TeacherGroupView(id);
+          var breadcrumbsView = new BreadcrumbsView();
+        } else {
+          //defined in libs/reg
+          appUtils.Users.showWarning(checkInfo.text);
+        }
       });
 
       app_router.on('route:userSingUp', function(){
