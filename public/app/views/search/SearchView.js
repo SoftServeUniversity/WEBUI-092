@@ -251,12 +251,7 @@ define([
             return $( "<li>" ).append(a).appendTo( ul );
           };
       } 
-      function loadSign(){
-        if($('#search-field').val().length != 2){
-          $('#search-field').css('background', '#fff');
-        }
-      }
-      setInterval(loadSign, 1000);
+
       function HandleDOM_Change () {
 
             $('.searchDataTable tr').on('click', function(){
