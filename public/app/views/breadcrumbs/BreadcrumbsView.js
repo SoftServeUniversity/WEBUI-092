@@ -56,6 +56,7 @@ define([
             for(var i = 0; i < a.length; i++){
               var cssClass = collType;
               getInfo(a[i].name, a[i].last_name, a[i].id, cssClass);
+              parent_id_val = a[i][parent_id];
               breadcrumbsFetch(parent_id, a[i][parent_id]);
             }
           }
@@ -77,16 +78,18 @@ define([
               var cssClass = '';
 
                 if (a[i].work_id){
-                  parent_id = 'work_id';
-                  parent_id_val = a[i].work_id;
+                  //parent_id_val = a[i][parent_id];
                   current = new WorksCollection();
                   breadcrumbsFetch(parent_id, parent_id_val);
                   cssClass = "task";
                   getInfo(a[i].name, null, a[i].id, cssClass);
                 
                 } else if(a[i].student_id){
-                  parent_id = 'student_id';
-                  parent_id_val = a[i].student_id;
+                  
+                  if(parent_id != 'student_id'){
+                    parent_id = 'student_id';
+                    parent_id_val = a[i].student_id;
+                  }
                   current = new StudentsCollection();
                   breadcrumbsFetch(parent_id, parent_id_val);
                   cssClass = "work";
@@ -94,8 +97,11 @@ define([
        
 
                 } else if(a[i].group_id){
-                  parent_id = 'group_id';
-                  parent_id_val = a[i].group_id;
+                  
+                  if(parent_id != 'group_id'){
+                    parent_id = 'group_id';
+                    parent_id_val = a[i].group_id;
+                  }
                   current = new GroupsCollection();
                   breadcrumbsFetch(parent_id, parent_id_val);
                   cssClass = "student";
@@ -103,9 +109,11 @@ define([
 
 
                 } else if(a[i].degree){
-                  parent_id = 'teacher_id';
-                  parent_id_val = a[i].teacher_id;
-                
+               
+                  if(parent_id != 'teacher_id'){
+                    parent_id = 'teacher_id';
+                    parent_id_val = a[i].teacher_id;
+                  }
                   current = new DepartmentsCollection();
                   breadcrumbsFetch(parent_id, parent_id_val);
 
@@ -115,16 +123,22 @@ define([
                   getInfo(a[i].name, null, a[i].id, cssClass);
                 
                 } else if(a[i].department_id){
-                  parent_id = 'department_id';
-                  parent_id_val = a[i].department_id;
+                  
+                  if(parent_id != 'department_id'){
+                    parent_id = 'department_id';
+                    parent_id_val = a[i].department_id;
+                  }
                   current = new DepartmentsCollection();
                   breadcrumbsFetch(parent_id, parent_id_val);
                   cssClass = "group";
                   getInfo(a[i].name, null, a[i].id, cssClass);
 
                 } else if(a[i].faculty_id){
-                  parent_id = 'faculty_id';
-                  parent_id_val = a[i].faculty_id;
+                  
+                  if(parent_id != 'faculty_id'){
+                    parent_id = 'faculty_id';
+                    parent_id_val = a[i].faculty_id;
+                  }
                   current = new FacultiesCollection();
                   breadcrumbsFetch(parent_id, parent_id_val);
                   cssClass = "department";
