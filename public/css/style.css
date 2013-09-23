@@ -638,6 +638,7 @@ td.newItem .toggle-text{
 }
 .breadcrumb li:last-child a{
 	color:inherit;
+	text-decoration: none !important;
 }
 .breadcrumb li:last-child a:hover, .breadcrumb li:last-child{
 	text-decoration: none;
@@ -1011,4 +1012,4 @@ button[data-id = course_select]:focus{
 	width:100%;
 	border-bottom: 1px solid black;
 }
-/*-----search form----end--*/
+/*-----search form----end-------*/

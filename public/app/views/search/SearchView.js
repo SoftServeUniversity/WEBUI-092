@@ -28,16 +28,15 @@ define([
       var teachCollection = new TeachersCollection();
       var f_id = "";
       var c_id = "";
-      window.parsed = [];
+      parsed = [];
 
       $('#search-field').on('keyup', function(){
         var letters = $(this).val();
         if(letters.length == 2){
           
-          (function(){
             var teachObj = [];
             var studObj = [];
-            var parsed = "";
+            parsed = [];
 
             getJSON(studCollection, studObj, letters);
             getJSON(teachCollection, teachObj, letters);
@@ -46,17 +45,18 @@ define([
               people = teachObj[0].concat(studObj[0]);
 
             var str = JSON.stringify(people);
-            var parsed = JSON.parse(str, function(k, v) {
+            parsed = JSON.parse(str, function(k, v) {
                 if (k === "name")
                     this.label = v;
                else
                     return v;
             });
-            return window.parsed = parsed;
-          }());
-          auto(window.parsed);
+            console.log(parsed);
+
+          auto(parsed);
           
         }
+        console.log(parsed);
       });
 
       $('button[data-id = faculty_select]').removeClass('btn-default').addClass('btn-info btn-mini');
@@ -136,11 +136,9 @@ define([
           async:false,
           success:function () {
             obj.push(collection.toJSON());
-            return obj;
           }
         });
         $('#search-field').css('background', '#fff');
-        return obj;
       }
       getFacultyJSON();
       getCourseJSON();
@@ -254,7 +252,7 @@ define([
 
       function HandleDOM_Change () {
 
-            $('.searchDataTable tr').on('click', function(){
+            $('.searchDataTable tbody tr').on('click', function(){
               if($(this).attr('data-href')){
                 location.href = $(this).attr('data-href');
               }

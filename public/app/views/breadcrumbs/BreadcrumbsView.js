@@ -18,6 +18,7 @@ define([
 
   var BreadcrumbsView =  Backbone.View.extend({
     initialize:function(){
+      //first info from URI
       var that = this;
       var place = location.hash;
       var page = place.slice(2);
@@ -30,7 +31,7 @@ define([
       var parent_id = "";
       var parent_id_val = "";
      
-
+      //first parent_id
       switch(collType){
         case "task": parent_id = "work_id";break;
         case "work": parent_id = "student_id";break;
@@ -74,11 +75,9 @@ define([
           success:function (result) {
             var a = result.toJSON();
             for(var i = 0; i < a.length; i++){
-              //if(a.id == index_page){
               var cssClass = '';
 
                 if (a[i].work_id){
-                  //parent_id_val = a[i][parent_id];
                   current = new WorksCollection();
                   breadcrumbsFetch(parent_id, parent_id_val);
                   cssClass = "task";
@@ -152,11 +151,11 @@ define([
 
                   $('.breadcrumb a').find('.department').parent().prevAll().remove();
                 }
-
             }
           }
         });
       }
+      //push information in array to render  
       function getInfo(name, last_name, id, cssClass){
         var arr = [];
         if(last_name){
@@ -172,16 +171,18 @@ define([
         breadcrumbsObj.push(arr);
         return breadcrumbsObj;
       }
-
+      //we need to find first collection to fetch
       function breadcrumbsFind(){
-  
+        
         if(collType){
+          //make first letter uppercase
           str = collType.toLowerCase().replace(/\b[a-z]/g, function(letter) {
             return letter.toUpperCase();
           });
-          
+          //if collType is Faculties it replace 'ie' for 'y' - Faculty
           str = str.replace(/y$/, "ie");
-          var collectionName = str+"sCollection";   
+          var collectionName = str+"sCollection";  
+          //dinamicaly make instanse of collection 
           eval('current = new ' + collectionName + '()');
 
           firstBreadcrumbsFetch();
@@ -190,6 +191,7 @@ define([
           return;
         }
       }
+        //if router is not present in list bellow we have to remove breadcrubs 
         if( 
             collType == 'faculty' || 
             collType == 'department' || 
@@ -205,7 +207,9 @@ define([
           } else{
             $('.breadcrumb li').remove();
           }
+      //breadcrumb's factory
       function breadcrumbsShow(){
+        //replace first and last array element and remove the last
         breadcrumbsObj[breadcrumbsObj.length-1] = breadcrumbsObj[0];
         breadcrumbsObj.shift();
 
@@ -215,10 +219,10 @@ define([
           }else if(breadcrumbsObj[i][2] == "task"){
             $('.breadcrumb').find('li a.teacher').parent().remove();
           }
-          var a = breadcrumbsObj[i][2]+"_"+breadcrumbsObj[i][1];
+          var a = '#/'+breadcrumbsObj[i][2]+"/"+breadcrumbsObj[i][1];
           var c = $('<li></li>');
           var b = $('<a></a>').html(breadcrumbsObj[i][0])
-                    .attr('id', a)
+                    .attr('href', a)
                     .addClass(breadcrumbsObj[i][2]);
                     
 
@@ -238,7 +242,7 @@ define([
         $('.breadcrumb').append(c);
         $('.breadcrumb li').fadeIn(1000);
 
-        checkBreadcrumbs();
+          checkBreadcrumbs();
 
         $('.breadcrumb li span').css('display', 'inline');
         $('.breadcrumb li:last-child span').css('display', 'none');
@@ -250,14 +254,10 @@ define([
           location.href = "#/";
         });
         $('.breadcrumb a').on('click', function(){
-            var crumbClassValue = $(this).attr('id');
-            var underscorePosition = crumbClassValue.indexOf('_');
-            var locationPage = crumbClassValue.substr(0, underscorePosition);
-            var numberPage = crumbClassValue.substr(underscorePosition+1);
-            location.href = "/#/"+locationPage+"/"+numberPage;
             $(this).parent().nextAll('li').remove();
         });
       }
+      //if there is breadcrumb's element with the same class it will remove new element
       function checkBreadcrumbs(){
         $('.breadcrumb a').each(function() {
           var txt = $(this).attr('class');
