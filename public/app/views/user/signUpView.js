@@ -48,6 +48,8 @@ define([
       //$(this.el).find(".roleTeacher").hide();
       this.populate_roles_select();
       this.generate_capcha();
+      $("input[type=text], textarea, input[type=password]").jqBootstrapValidation();
+
     },
 
 

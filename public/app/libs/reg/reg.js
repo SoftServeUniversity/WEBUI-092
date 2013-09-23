@@ -1,8 +1,3 @@
-$(function(){
-  $("input[type=text], textarea, input[type=password]").jqBootstrapValidation();
-  // #launch-btn is a dinamic element, that because we need to delegate it functionality
-}) 
-
 
 
 // error type for error monice bootstrap view
