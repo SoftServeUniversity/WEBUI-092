@@ -1,37 +1,9 @@
-//registration form script
-
-$(function () {
-  //session
-  $('#launch-btn').show();
-  $(".tip").tooltip();
+$(function(){
   $("input[type=text], textarea, input[type=password]").jqBootstrapValidation();
   // #launch-btn is a dinamic element, that because we need to delegate it functionality
-  $("#authBox").delegate('#launch-btn','click', function(e){
-    e.preventDefault();
-    console.log('Log In');
-    $(this).hide();
-    $('#launch').slideDown(300);
+}) 
 
-  });
-  $('#close-btn, #exit-btn').click(function(){
-    $('#launch').slideUp(100);
-    $('#launch-btn').show();
-  });
 
-  //registration
-  $('#openModal').click(function(){
-    $('#regMod').slideDown(300);
-  });
-
-  $('#sign-up-louncher').click(function(){
-    $('#launch').slideUp(100);
-  });
-
-  $('#closeRegForm').click(function(){
-    $('#regMod').slideUp(300);
-  });
-
-});
 
 // error type for error monice bootstrap view
 function alertType(data){
@@ -122,14 +94,3 @@ jQuery.fn.MytoJson = function(options) {
   });
   return json;
 }
-
-//registration form script end
-
-
-
-
-// Zdyrko registration stuff
-      
-
-
-// Zdyrko registration stuff end

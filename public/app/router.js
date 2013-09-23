@@ -27,8 +27,8 @@ define([
 
 
   ], function($, _, Backbone, GlobalUser, reg, FacultiesListView, RegistrationView, GroupProgressView,
-  	          StudentProgressView, CourseProgressView,  MainFacultyView, MainDepartmentView,
-  	          MainWorkView, TaskView, TasksCollection, NotFoundView,
+              StudentProgressView, CourseProgressView,  MainFacultyView, MainDepartmentView,
+              MainWorkView, TaskView, TasksCollection, NotFoundView,
               AdminFacultyView, AdminView, MainTeacherView, TeacherGroupView, UserSingUpView,
               InfoView, BreadcrumbsView, SearchView
 
@@ -40,10 +40,12 @@ define([
 
     // Extend Backbone.Collection for fetch data
     // fron any collection with filter
-    Backbone.Collection.prototype.FetchCollection =
-    function(filterData) {
+
+    Backbone.Collection.prototype.FetchCollection = function(filterData) {
+      
       // Set filterData = {} if filterData is undefined
       filterData = typeof filterData !== 'undefined' ? filterData : {};
+
       // Create filter from filterData for fetch collection
       var filterForCollection = {};
       for(item in filterData) {

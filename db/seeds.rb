@@ -169,4 +169,3 @@ p = ProgressChange.new
 p.save
 p.aggregate
 
-

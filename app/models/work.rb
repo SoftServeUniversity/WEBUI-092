@@ -8,10 +8,11 @@ class Work < ActiveRecord::Base
   has_many :progress_changes, :as => :progressable
 
   #after_create :aggregate
-
- def serializable_hash(options={})
+  def serializable_hash(options={})
     hash_info = super(options)
     hash_info[:progress] = 0
+    hash_info[:ability_to_change] = false
+    hash_info[:ability_to_change] = self.teacher.user.id if self.teacher
     hash_info[:progress] = progress_changes.last.progress if progress_changes.last
     hash_info
   end
