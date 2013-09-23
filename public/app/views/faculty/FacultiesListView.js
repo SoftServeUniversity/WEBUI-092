@@ -6,7 +6,7 @@ define([
   'collections/faculties/FacultiesCollection',
   'collections/faculties/FacultiesChangeCollection',
   'libs/jquery/equal-height-blocks'
-], function($, _, Backbone, facultiesListTemplate, FacultiesCollection, FacultiesChangeCollection , equalizeHeight){
+], function($, _, Backbone, facultiesListTemplate, FacultiesCollection, FacultiesChangeCollection , HeightEqualizer){
 
   var FacultiesListView = Backbone.View.extend({
 
@@ -28,6 +28,9 @@ define([
   el: $("#content"),
   
   initialize : function(){
+    this.heightEqualizer = HeightEqualizer;
+
+    console.log(window)
     this.loadData();
     var facultiesLoaded = false;
     var facultiesChangesLoaded = false; 
@@ -73,7 +76,7 @@ define([
     $("#content").html(compiledTemplate);
     
     //this script is making all boxes in a row equal hight
-    resizeEqual(); 
+    this.heightEqualizer.resizeEqual(); 
   }
 
   });
