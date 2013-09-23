@@ -9,10 +9,11 @@ define([
   'collections/tasks/CommentsCollection',
   'models/task/commentModel',
   'models/task/TaskModel',
-  'models/task/ProgressModel'
-  ],
+  'models/task/ProgressModel',
+  'text!templates/task/ChangeButtonTemplate.html'
+ ],
   function($, _, Backbone, bootstrap, jqueryui, taskTemplate, taskCommentsView,
-          CommentsCollection, commentModel, TaskModel, ProgressModel){
+          CommentsCollection, commentModel, TaskModel, ProgressModel, ChangeButtonTemplate){
 
     var TaskView = Backbone.View.extend({
       el: $("#content"),
@@ -21,6 +22,25 @@ define([
         'click #changebtn'        : 'showModal',
         'submit #input-log'       : 'submit',
         'keypress #task-comment'  : 'validateComment',
+      },
+      setAbility: function() {
+        var me = this;
+        var allowedUsers = this.model.get("ability_to_change");
+        if (GlobalUser.currentUser){
+          GlobalUser.currentUser.ability_to_change = false;
+          _.each(allowedUsers, function (user){
+            if (user == GlobalUser.currentUser.id){
+              GlobalUser.currentUser.ability_to_change = true;
+              me.addControls();
+            } else {
+              console.log("Access denied! You are logged")
+            }
+          })
+        }
+      },
+      addControls: function() {
+        $("#change-button-container").html(ChangeButtonTemplate);
+        console.log("Allowed!");
       },
       showModal: function(){
         $('#change').modal('show');
@@ -40,19 +60,19 @@ define([
           task: this.model,
           progress: this.progress,
           _: _
-        }
+        };
         var compiledTemplate = _.template(taskTemplate, data);
         $("#content").html(compiledTemplate);
         this.slider();
         this.chart();
-        console.log(this.collection)
+        $("title").html(this.model.get('name'));
       },
       submit: function(e){
         e.preventDefault();
         var newCommentContent = $(e.currentTarget).find('textarea').val();
         var newTaskProcess = $(e.currentTarget).find('#number-range').val();
         this.addNewProgress(newTaskProcess);
-        this.addCommentToCollection(this.user.get("id"), newCommentContent);
+        this.addCommentToCollection(this.user, newCommentContent);
         this.closeModal();
         this.initialize();
       },
@@ -66,7 +86,6 @@ define([
           "task_comment": content,
           "task_id": this.model.get("id")
         });
-        console.log(newCommentModel)
         newCommentModel.save();
       },
       slider: function(){
@@ -98,7 +117,18 @@ define([
           if (xmlhttp.readyState == 4) {
             if(xmlhttp.status == 200) {
               chartData = JSON.parse(xmlhttp.responseText);
-              makeChart(chartData);
+              var trueData = [];
+              trueData[0] = chartData[8];
+              trueData[1] = chartData[9];
+              trueData[2] = chartData[10];
+              trueData[3] = chartData[11];
+              trueData[4] = chartData[0];
+              trueData[5] = chartData[1];
+              trueData[6] = chartData[2];
+              trueData[7] = chartData[3];
+              trueData[8] = chartData[4];
+              trueData[9] = chartData[5];
+              makeChart(trueData);
             }
           }
         }
@@ -125,8 +155,12 @@ define([
               min: 0
             },
             xAxis: {
-              categories: ['Січень', 'Лютий', 'Березень', 'Квітень', 'Травень', 'Червень', 'Липень', 'Серпень', 'Вересень','Жовтень', 'Листопад', 'Грудень',]
-            },
+              categories: ['Вересень','Жовтень', 'Листопад', 'Грудень','Січень', 'Лютий', 'Березень', 'Квітень', 'Травень', 'Червень'],
+            labels: {
+                staggerLines: 2
+            }
+            },            
+
             series: [{
               data: chartData
             }]
@@ -176,7 +210,7 @@ define([
       initialize: function(){
         this.page = 0;
         var me = this;
-        this.user = window.GlobalUser.Models.User;
+        this.user = 1;
         this.undelegateEvents();
         this.delegateEvents(this.events);
         $(document).on("scroll", function () {
@@ -196,6 +230,7 @@ define([
         this.progress.fetch({url: progressUrl, async: false})
         this.collection.fetch({url: changesUrl, async:false});
         this.render();
+        this.setAbility();
       }
     });
 
