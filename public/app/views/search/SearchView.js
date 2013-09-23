@@ -31,13 +31,9 @@ define([
       window.parsed = [];
 
       $('#search-field').on('keyup', function(){
-        console.log("f_id");
-        console.log(f_id);
-        console.log("c_id");
-        console.log(c_id);
         var letters = $(this).val();
         if(letters.length == 2){
-          $('#search-field').css('background', 'white url("http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.2/themes/smoothness/images/ui-anim_basic_16x16.gif") 310px center no-repeat');
+          
           (function(){
             var teachObj = [];
             var studObj = [];
@@ -56,15 +52,12 @@ define([
                else
                     return v;
             });
-            console.log('parsed');
-            console.log(parsed);
             return window.parsed = parsed;
           }());
           auto(window.parsed);
-          $('#search-field').css('background', '#fff');
+          
         }
       });
-
 
       $('button[data-id = faculty_select]').removeClass('btn-default').addClass('btn-info btn-mini');
       $('button[data-id = course_select]').removeClass('btn-default').addClass('btn-success btn-mini');
@@ -76,24 +69,23 @@ define([
         $(this).siblings('div.dropdown-menu').fadeToggle();
       });
       $('#select-box div.dropdown-menu').click(function(){
-        window.parsed = [];
+        
         $('#search-field').val('');
         if($(this).siblings('button[data-id = faculty_select]').length){
-          window.parsed = [];
-          if($(this).find('li').first().attr('selected')){
+          if($(this).find('li:first-child').hasClass('selected')){
             f_id = "";
           }else{
             f_id = $(this).find('li[class = selected] a').attr('data-val');
           }
-        console.log(f_id);
+
         }else if($(this).siblings('button[data-id = course_select]').length){
-          if($(this).find('li').first().attr('selected')){
+          if($(this).find('li:first-child').hasClass('selected')){
             c_id = "";
 
           }else{
             c_id = $(this).find('li[class = selected]').find('a').attr('data-val');
           }
-          console.log(c_id);
+
         }
       });
 
@@ -138,6 +130,7 @@ define([
       }
 
       function getJSON(collection, obj, letter){
+        $('#search-field').css('background', 'white url("http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.2/themes/smoothness/images/ui-anim_basic_16x16.gif") 310px center no-repeat');
         collection.fetch({
           data: {search: 'true', two_last_name: letter, s_faculty_id: f_id, s_course_id: c_id},
           async:false,
@@ -146,6 +139,7 @@ define([
             return obj;
           }
         });
+        $('#search-field').css('background', '#fff');
         return obj;
       }
       getFacultyJSON();
