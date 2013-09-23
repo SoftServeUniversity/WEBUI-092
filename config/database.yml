@@ -6,13 +6,6 @@ development:
   password: bmwthebest
 
 
-test:
-  adapter: mysql2
-  encoding: utf8
-  database: webui_test
-  username: root
-  password: bmwthebest
-
 production:
   adapter: mysql2
   encoding: utf8
