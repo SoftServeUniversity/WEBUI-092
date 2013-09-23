@@ -28,7 +28,7 @@ if !(User.all.empty?)
   name = 'NameABC'
   last_name = "LastNameABC"
   middle_name = "MiddleNameABC"
-  100.times do |time| 
+  420.times do |time| 
     usr = User.create! name: (name + time.to_s), middle_name: (middle_name + time.to_s), last_name: (last_name + time.to_s), email: (name.next! + "@example.com"), password: (name + last_name + middle_name + '0'), password_confirmation: (name + last_name + middle_name + '0')
     puts 'Created'<< usr.name
   end
@@ -46,7 +46,7 @@ end
 
 #Faculty Table
 if Faculty.all.empty?
-  s = 'Faculty of Applied Mathematics and Informatics'
+  s = 'Faculty of Appl. Math and Informatics'
   1.times do |time| 
     fc = Faculty.create! name: (s.next! + time.to_s), user_id: User.first.id
     puts 'created '<< fc.name
@@ -57,7 +57,7 @@ end
 if Department.all.empty?
   s = 'Department of ScienceABC'
   4.times do |time| 
-    dp = Department.create! name: (s.next! + time.to_s), faculty_id: Faculty.first.id, user_id: User.first.id
+    dp = Department.create! name: (s.next! + time.to_s), faculty_id: Faculty.first.id, user_id: time+1
     puts 'created '<< dp.name
   end
 end
@@ -74,19 +74,19 @@ end
 #Teachers Table
 if Teacher.all.empty?
  5.times do |time| 
-   tchr = Teacher.create! degree: 'PhD', title: 'Proffesor', user_id: time, department_id: 1
+   tchr = Teacher.create! user_id: time+1, degree: 'PhD', title: 'Proffesor', department_id: 1
    puts 'created teacher'
  end
  5.times do |time| 
-   tchr = Teacher.create! degree: 'PhD', title: 'Proffesor', user_id: time+5, department_id: 2
+   tchr = Teacher.create! user_id: time+6, degree: 'PhD', title: 'Proffesor', department_id: 2
    puts 'created teacher'
  end
  5.times do |time| 
-   tchr = Teacher.create! degree: 'PhD', title: 'Proffesor', user_id: time+10, department_id: 3
+   tchr = Teacher.create! user_id: time+11, degree: 'PhD', title: 'Proffesor', department_id: 3
    puts 'created teacher'
  end
  5.times do |time| 
-   tchr = Teacher.create! degree: 'PhD', title: 'Proffesor', user_id: time+15, department_id: 4
+   tchr = Teacher.create! user_id: time+16, degree: 'PhD', title: 'Proffesor', department_id: 4
    puts 'created teacher'
  end
 end
@@ -97,19 +97,19 @@ end
 if Group.all.empty?
   s = 'Group PMI-'
   5.times do |time| 
-    d = Group.create! name: (s.next! + time.to_s), course_id: time, department_id: 1, teacher_id: time
+    d = Group.create! name: (s.next! + time.to_s), course_id: time+1, department_id: 1, teacher_id: time+1
   end
   s = 'Group PMI-'
   5.times do |time| 
-    d = Group.create! name: (s.next! + time.to_s), course_id: time, department_id: 2, teacher_id: time+5
+    d = Group.create! name: (s.next! + time.to_s), course_id: time+1, department_id: 2, teacher_id: time+6
   end
   s = 'Group PMI-'
   5.times do |time| 
-    d = Group.create! name: (s.next! + time.to_s), course_id: time, department_id: 3, teacher_id: time+10
+    d = Group.create! name: (s.next! + time.to_s), course_id: time+1, department_id: 3, teacher_id: time+11
   end
   s = 'Group PMI-'
   5.times do |time| 
-    d = Group.create! name: (s.next! + time.to_s), course_id: time, department_id: 4, teacher_id: time+20
+    d = Group.create! name: (s.next! + time.to_s), course_id: time+1, department_id: 4, teacher_id: time+16
   end
 end
 
@@ -118,7 +118,7 @@ end
 if Student.all.empty?
  s = 'Student_ABC'
  400.times do |time| 
-   st = Student.create! user_id: (time + 20), group_id: rand(20) 
+   st = Student.create! user_id: (time + 1 + 20), group_id: (rand(20)+1) 
    puts 'created Student'
  end
 end
@@ -130,7 +130,7 @@ end
 if Work.all.empty?
   s = 'Work Number '
   4000.times do |time| 
-    d = Work.create! name: (s + time.to_s), student_id: rand(400), teacher_id: rand(20)
+    d = Work.create! name: (s + time.to_s), student_id: (rand(399)+1), teacher_id: (rand(20)+1)
     puts 'created '<< d.name
   end
 end

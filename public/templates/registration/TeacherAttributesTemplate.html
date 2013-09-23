@@ -1,13 +1,27 @@
 <div class="control-group">
   <label class="control-label" for="user[teacher_attributes][degree]">Вчений ступінь</label>
   <div class="controls">
-    <input type="text" name="user[teacher_attributes][degree]" id="inputScienceStageReg" placeholder="Введіть свій вчений ступінь" data-validation-regex-regex="[А-Яа-яїєі]{3,25}" data-validation-regex-message="Тільки українські букви, від 3 до 25">
+    
+    <input type="text"
+    <% if (user["degree"] != undefined){ %>
+      value="<%= user["degree"] %>"
+    <% } %>
+
+     name="user[teacher_attributes][degree]" id="inputScienceStageReg" placeholder="Введіть свій вчений ступінь" data-validation-regex-regex="[А-Яа-яїєі]{3,25}" data-validation-regex-message="Тільки українські та російські букви, від 3 до 25">
+
   </div>
 </div>
 <div class="control-group">
   <label class="control-label" for="user[teacher_attributes][title]">Вчене звання</label>
   <div class="controls">
-    <input type="text" name="user[teacher_attributes][title]" id="inputPositionReg" placeholder="Введіть свое вчене звання" data-validation-regex-regex="[А-Яа-яїєі]{3,25}" data-validation-regex-message="Тільки українські букви, від 3 до 25">
+    
+    <input type="text" 
+    <% if (user["title"] != undefined){ %>
+      value="<%= user["title"] %>"
+    <% } %>
+
+    name="user[teacher_attributes][title]" id="inputPositionReg" placeholder="Введіть свое вчене звання" data-validation-regex-regex="[А-Яа-яїєі]{3,25}" data-validation-regex-message="Тільки українські та російські букви, від 3 до 25">
+
   </div>
 </div>
 <div class="control-group">

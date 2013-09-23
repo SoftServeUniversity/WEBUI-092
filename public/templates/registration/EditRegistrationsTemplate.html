@@ -28,12 +28,11 @@
           <input type="text" name="user[middle_name]" required id="inputFatherNameReg" placeholder="Введіть свое ім'я по-батькові" data-validation-regex-regex="[А-Яа-яїєі]{3,25}" data-validation-regex-message="Тільки українські букви, від 3 до 25" value='<%= middle_name %>'>
         </div>
       </div>
-      <div class='roleStudent'>
-        <!--template with student_attributes will go here-->
+
+      <div id='roleFields'>
+        <!--templates with custom fields go here -->
       </div>
-      <div class='roleTeacher'>
-        <!--template with teacher_attributes will go here-->
-      </div>
+      
       <div class="control-group" id='password_group'>
         <label class="control-label" for="user[password]">Новий пароль</label>
         <div class="controls">

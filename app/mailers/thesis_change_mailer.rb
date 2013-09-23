@@ -1,5 +1,5 @@
 class ThesisChangeMailer < ActionMailer::Base
-  default from: 'webui092@gmail.com'
+  default from: 'webUI092@ua.com'
 
   def notification (thesis_change, record)
     @thesis_change = thesis_change

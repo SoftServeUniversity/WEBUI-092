@@ -17,3 +17,8 @@ if resource.student
     json.group_pending resource.student.group_pending
   end
 end
+if resource.faculty_admin
+  json.faculty_admin_attributes do 
+    json.faculty_id resource.faculty_admin.faculty_id
+  end
+end

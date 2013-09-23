@@ -1,4 +1,5 @@
 class WorksController < ApplicationController
+  before_filter :set_current_user
   # GET /works
   # GET /works.json
   def index
@@ -97,9 +98,10 @@ class WorksController < ApplicationController
   # PUT /works/1.json
   def update
     @work = Work.find(params[:id])
-
+    work_params = params[:work]
+    work_params.delete('progress')
     respond_to do |format|
-      if @work.update_attributes(params[:work])
+      if @work.update_attributes(work_params)
         format.html { redirect_to @work, notice: 'Work was successfully updated.' }
         format.json { head :no_content }
       else
@@ -119,5 +121,9 @@ class WorksController < ApplicationController
       format.html { redirect_to works_url }
       format.json { head :no_content }
     end
+  end
+
+  def set_current_user
+    UserInfo.current_user = current_user
   end
 end

@@ -31,10 +31,9 @@ define([
       window.parsed = [];
 
       $('#search-field').on('keyup', function(){
-
-        letters = $(this).val();
+        var letters = $(this).val();
         if(letters.length == 2){
-          $('#search-field').css('background', 'white url("http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.2/themes/smoothness/images/ui-anim_basic_16x16.gif") 310px center no-repeat');
+          
           (function(){
             var teachObj = [];
             var studObj = [];
@@ -43,7 +42,9 @@ define([
             getJSON(studCollection, studObj, letters);
             getJSON(teachCollection, teachObj, letters);
             var people = [];
+           
               people = teachObj[0].concat(studObj[0]);
+
             var str = JSON.stringify(people);
             var parsed = JSON.parse(str, function(k, v) {
                 if (k === "name")
@@ -51,17 +52,11 @@ define([
                else
                     return v;
             });
-            console.log(letters);
-            console.log(parsed);
             return window.parsed = parsed;
           }());
-          auto();
-          $('#search-field').css('background', '#fff');
+          auto(window.parsed);
+          
         }
-      });
-
-      $('#search-field').on('blur', function(){
-        console.log(parsed);
       });
 
       $('button[data-id = faculty_select]').removeClass('btn-default').addClass('btn-info btn-mini');
@@ -74,19 +69,23 @@ define([
         $(this).siblings('div.dropdown-menu').fadeToggle();
       });
       $('#select-box div.dropdown-menu').click(function(){
-        if($(this).siblings('button[data-id = faculty_select]')){
-          if($(this).find('li').first().attr('selected')){
-            f_id = null;
+        
+        $('#search-field').val('');
+        if($(this).siblings('button[data-id = faculty_select]').length){
+          if($(this).find('li:first-child').hasClass('selected')){
+            f_id = "";
           }else{
             f_id = $(this).find('li[class = selected] a').attr('data-val');
           }
 
-        }else if($(this).siblings('button[data-id = course_select]')){
-          if($(this).find('li').first().attr('selected')){
-            c_id = null;
+        }else if($(this).siblings('button[data-id = course_select]').length){
+          if($(this).find('li:first-child').hasClass('selected')){
+            c_id = "";
+
           }else{
             c_id = $(this).find('li[class = selected]').find('a').attr('data-val');
           }
+
         }
       });
 
@@ -131,14 +130,16 @@ define([
       }
 
       function getJSON(collection, obj, letter){
+        $('#search-field').css('background', 'white url("http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.2/themes/smoothness/images/ui-anim_basic_16x16.gif") 310px center no-repeat');
         collection.fetch({
-          data: {search: 'true', two_last_name: letter},
+          data: {search: 'true', two_last_name: letter, s_faculty_id: f_id, s_course_id: c_id},
           async:false,
           success:function () {
             obj.push(collection.toJSON());
             return obj;
           }
         });
+        $('#search-field').css('background', '#fff');
         return obj;
       }
       getFacultyJSON();
@@ -214,10 +215,10 @@ define([
           }
             
            
-      function auto(){
+      function auto(source){
         $( "#search-field" ).autocomplete({
-            minLength: 1,
-            source: window.parsed,
+            minLength: 2,
+            source: source,
             focus: function( event, ui ) {
               $( "#search-field" ).val( ui.item.label );
 
@@ -243,14 +244,13 @@ define([
                 var status = '<span class="status">викладач</span>';
               }
             if(("#ui-id-1 li").length > 1){
-                $("#ui-id-1 li").eq(3).nextAll().remove();
+                $("#ui-id-1 li").eq(8).nextAll().remove();
             }
             var searchInfo = $('<span></span>').addClass('searchInfo').html('');
             var a = $('<a>' + item.label +" "+status);
             return $( "<li>" ).append(a).appendTo( ul );
           };
       } 
-
 
       function HandleDOM_Change () {
 
