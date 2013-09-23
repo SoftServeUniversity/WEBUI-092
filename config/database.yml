@@ -3,7 +3,7 @@ development:
   encoding: utf8
   database: webui_dev
   username: root
-  password: 
+  password: bmwthebest
 
 
 test:
@@ -11,11 +11,11 @@ test:
   encoding: utf8
   database: webui_test
   username: root
-  password: 
+  password: bmwthebest
 
 production:
   adapter: mysql2
   encoding: utf8
   database: webui_production
   username: root
-  password:
+  password: bmwthebest
