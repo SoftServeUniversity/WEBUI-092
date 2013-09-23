@@ -52,9 +52,7 @@ define([
                     return v;
             });
             console.log(parsed);
-
-          auto(parsed);
-          
+          auto(parsed); 
         }
         console.log(parsed);
       });
@@ -85,7 +83,6 @@ define([
           }else{
             c_id = $(this).find('li[class = selected]').find('a').attr('data-val');
           }
-
         }
       });
 
@@ -94,6 +91,7 @@ define([
           $('#select-box').show();
           
       });
+
       $(window).on('hashchange', function() {
         $('#select-box').hide();
           $('#search-field').val("");
@@ -140,6 +138,7 @@ define([
         });
         $('#search-field').css('background', '#fff');
       }
+      
       getFacultyJSON();
       getCourseJSON();
      
@@ -210,76 +209,73 @@ define([
                   sUrl: "app/libs/datatables/searchDataTables.ukrainian.txt"
                 }
               });
+          }    
+          function auto(source){
+            $( "#search-field" ).autocomplete({
+                minLength: 2,
+                source: source,
+                focus: function( event, ui ) {
+                  $( "#search-field" ).val( ui.item.label );
+                  return false;
+                },
+                select: function( event, ui ) {
+                  $( "#search-field" ).val( ui.item.label );
+                  if(ui.item.course_id){
+                    location.href = '#/student/'+ui.item.id;
+                    
+                  }else{
+                    location.href = '#/teacher/'+ui.item.id;
+                  }
+                  return false;
+                }
+              })
+              .data( "ui-autocomplete" )._renderItem = function( ul, item ) {
+                  if(item.course_id){
+                    var status = '<span class="status">cтудент</span>';
+                    var href = '#/student/'+item.id;
+                  }else{
+                    var href = '#/teacher/'+item.id;
+                    var status = '<span class="status">викладач</span>';
+                  }
+                if(("#ui-id-1 li").length > 1){
+                    $("#ui-id-1 li").eq(8).nextAll().remove();
+                }
+                var searchInfo = $('<span></span>').addClass('searchInfo').html('');
+                var a = $('<a>' + item.label +" "+status);
+                return $( "<li>" ).append(a).appendTo( ul );
+              };
+          } 
+
+          function HandleDOM_Change () {
+
+                $('.searchDataTable tbody tr').on('click', function(){
+                  if($(this).attr('data-href')){
+                    location.href = $(this).attr('data-href');
+                  }
+                });
+
           }
-            
-           
-      function auto(source){
-        $( "#search-field" ).autocomplete({
-            minLength: 2,
-            source: source,
-            focus: function( event, ui ) {
-              $( "#search-field" ).val( ui.item.label );
+              
+              fireOnDomChange ('.searchDataTable tr', HandleDOM_Change, 100);
 
-              return false;
-            },
-            select: function( event, ui ) {
-              $( "#search-field" ).val( ui.item.label );
-              if(ui.item.course_id){
-                location.href = '#/student/'+ui.item.id;
-                
-              }else{
-                location.href = '#/teacher/'+ui.item.id;
-              }
-              return false;
-            }
-          })
-          .data( "ui-autocomplete" )._renderItem = function( ul, item ) {
-              if(item.course_id){
-                var status = '<span class="status">cтудент</span>';
-                var href = '#/student/'+item.id;
-              }else{
-                var href = '#/teacher/'+item.id;
-                var status = '<span class="status">викладач</span>';
-              }
-            if(("#ui-id-1 li").length > 1){
-                $("#ui-id-1 li").eq(8).nextAll().remove();
-            }
-            var searchInfo = $('<span></span>').addClass('searchInfo').html('');
-            var a = $('<a>' + item.label +" "+status);
-            return $( "<li>" ).append(a).appendTo( ul );
-          };
-      } 
-
-      function HandleDOM_Change () {
-
-            $('.searchDataTable tbody tr').on('click', function(){
-              if($(this).attr('data-href')){
-                location.href = $(this).attr('data-href');
-              }
-            });
-
-      }
-          
-          fireOnDomChange ('.searchDataTable tr', HandleDOM_Change, 100);
-
-      function fireOnDomChange (selector, actionFunction, delay){
-          $(selector).bind ('DOMSubtreeModified', fireOnDelay);
-
-          function fireOnDelay () {
-              if (typeof this.Timer == "number") {
-                  clearTimeout (this.Timer);
-              }
-              this.Timer  = setTimeout (  function() { fireActionFunction (); },
-                                          delay ? delay : 333
-                                       );
-          }
-
-          function fireActionFunction () {
-              $(selector).unbind ('DOMSubtreeModified', fireOnDelay);
-              actionFunction ();
+          function fireOnDomChange (selector, actionFunction, delay){
               $(selector).bind ('DOMSubtreeModified', fireOnDelay);
+
+              function fireOnDelay () {
+                  if (typeof this.Timer == "number") {
+                      clearTimeout (this.Timer);
+                  }
+                  this.Timer  = setTimeout (  function() { fireActionFunction (); },
+                                              delay ? delay : 333
+                                           );
+              }
+
+              function fireActionFunction () {
+                  $(selector).unbind ('DOMSubtreeModified', fireOnDelay);
+                  actionFunction ();
+                  $(selector).bind ('DOMSubtreeModified', fireOnDelay);
+              }
           }
-      }
 
     }
   });
