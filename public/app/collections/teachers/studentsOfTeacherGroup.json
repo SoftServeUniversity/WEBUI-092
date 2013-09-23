@@ -5,6 +5,7 @@
         "first_name": "Іван",
         "middle_name": "Іванович",
         "group_name": "ІПП-34",
+        "group_id": 1,
         "email": "Matviy@gmail.com",
         "group_pending": 1
     },
@@ -13,7 +14,8 @@
         "last_name": "Гарасименко",
         "first_name": "Петро",
         "middle_name": "Петрович",
-        "group_name": "ІПП-34",
+        "group_name": "КТ-31",
+        "group_id": 2,
         "email": "Garas@gmail.com",
         "group_pending": 1
     },
@@ -23,6 +25,7 @@
         "first_name": "Василь",
         "middle_name": "Вікторович",
         "group_name": "ІПП-34",
+        "group_id": 1,
         "email": "Tymish@gmail.com",
         "group_pending": 0
     },
@@ -31,7 +34,8 @@
         "last_name": "Головач",
         "first_name": "Марія",
         "middle_name": "Теодорівна",
-        "group_name": "ІПП-34",
+        "group_name": "КТ-31",
+        "group_id": 2,
         "email": "Golovach@gmail.com",
         "group_pending": 0
     },
@@ -40,7 +44,8 @@
         "last_name": "Дзідзьо",
         "first_name": "Фернандо",
         "middle_name": "Амінійович",
-        "group_name": "ІПП-34",
+        "group_name": "КТ-31",
+        "group_id": 2,
         "email": "Dzid@gmail.com",
         "group_pending": 1
     },
@@ -49,7 +54,8 @@
         "last_name": "Каструба",
         "first_name": "Ігор",
         "middle_name": "Григорович",
-        "group_name": "ІПП-34",
+        "group_name": "ІПП-41",
+        "group_id": 3,
         "email": "Kastruba@gmail.com",
         "group_pending": 0
     },
@@ -58,7 +64,8 @@
         "last_name": "Крутивус",
         "first_name": "Микола",
         "middle_name": "Юрійович",
-        "group_name": "ІПП-34",
+        "group_name": "КН-52",
+        "group_id": 4,
         "email": "Krutyvus@gmail.com",
         "group_pending": 1
     },
@@ -67,7 +74,8 @@
         "last_name": "Макогін",
         "first_name": "Тарас",
         "middle_name": "Матвійович",
-        "group_name": "ІПП-34",
+        "group_name": "ІПП-41",
+        "group_id": 3,
         "email": "Makogin@gmail.com",
         "group_pending": 0
     },
@@ -76,7 +84,8 @@
         "last_name": "Крук",
         "first_name": "Ігор",
         "middle_name": "Степанович",
-        "group_name": "ІПП-34",
+        "group_name": "КН-52",
+        "group_id": 4,
         "email": "Kruk@gmail.com",
         "group_pending": 0
     }

@@ -4,15 +4,15 @@
 
     <form id="taskCreateForm">
 
-     <div class="modal-header">
-       <button class="close" data-dismiss="modal">×</button>
-       <h3>Створення завдання</h3>
+      <div class="modal-header">
+        <button class="close" data-dismiss="modal">×</button>
+        <h3>Створення завдання</h3>
       </div>
 
-      <div class="modal-body">
+      <div id="modalBody" class="modal-body">
 
         <div class="control-group">
-          <label class="control-label" for="inputWorkName">Введіть назву роботи:</label>
+          <label class="control-label boldText" for="inputWorkName">1. Введіть назву роботи:</label>
           <div class="controls">
             <textarea class="logForm bootStrapFullRowElement" id="inputWorkName" name="inputWorkName" placeholder="Назва роботи..." data-validation-regex-regex=".{3,}" data-validation-regex-message="Мінімальна довжина назви роботи - 3 символи" required></textarea>
           </div>
@@ -20,49 +20,36 @@
 
         <div class="row-fluid">
           <div class="span6">
-            <label for="selFaculty">Виберіть факультет:</label>
-            <select id="selFaculty" name="selFaculty" required>
-              <option></option>
-              <option>Факультет прикладної математики</option>
-              <option>Факультет арифметичних обчислень</option>
-              <option>Факультет тригонометричних рівнянь</option>
-              <option>Факультет економіки</option>
-              <option>Факультет обліку і аудиту</option>
+            <label for="ChainOfChoice1" class="boldText">2. Виберіть факультет:</label>
+            <select id="ChainOfChoice1" name="ChainOfChoice1" required>
+              <% for (var i = 0; i < faculties.length; i++) { %>
+                <option value="<%= faculties[i]['id'] %>"><%= faculties[i]['name'] %></option>
+              <% } %>
             </select>
           </div>
           <div class="span6">
-            <label for="selDepartment">Виберіть кафедру:</label>
-            <select id="selDepartment" name="selDepartment" required>
-              <option></option>
-              <option>Кафедра КПП</option>
-              <option>Кафедра МКСІВП</option>
-              <option>Кафедра ОАІС</option>
-              <option>Кафедра АПП</option>
-              <option>Кафедра ІДМ</option>
-              <option>Кафедра СМП</option>
-              <option>Кафедра НПП</option>
+            <label for="ChainOfChoice2" class="boldText">3. Виберіть кафедру:</label>
+            <select id="ChainOfChoice2" name="ChainOfChoice2" required>
+              <% for (var i = 0; i < departments.length; i++) { %>
+                <option value="<%= departments[i]['id'] %>"><%= departments[i]['name'] %></option>
+              <% } %>
             </select>
           </div>
         </div>
 
         <div class="row-fluid">
           <div class="span6">
-            <label for="selGroup">Виберіть групу:</label>
-            <select id="selGroup" name="selGroup" required>
+            <label for="ChainOfChoice3" class="boldText">4. Виберіть групу:</label>
+            <select id="ChainOfChoice3" name="ChainOfChoice3" required>
               <option></option>
-              <option>ПМІ-31</option>
-              <option>ПМІ-32</option>
-              <option>ПМІ-41</option>
-              <option>ПМІ-42</option>
-              <option>ПМІ-51</option>
-              <option>ПМІ-52</option>
-              <option>ПМІ-53</option>
-              <option>ПМІ-54</option>
+              <% for (var i = 0; i < groups.length; i++) { %>
+                <option value="<%= groups[i]['id'] %>"><%= groups[i]['name'] %></option>
+              <% } %>
             </select>
           </div>
           <div class="span6">
-            <label for="selStudent">Виберіть студента:</label>
-            <select id="selStudent" name="selStudent" required>
+            <label for="ChainOfChoice4" class="boldText">5. Виберіть студента:</label>
+            <select id="ChainOfChoice4" name="ChainOfChoice4" required>
               <option><option>
               <option value="1">Петро Петрович (ніколи його не знадуйте при людях)</option>
               <option value="2">Міфічний студент, якого ніхто ніколи не бачив</option>
@@ -72,29 +59,36 @@
           </div>
         </div>
 
-        <p>
-          <label for="selDefaultTasks">Виберіть етапи виконання роботи:</label>
-          <select id="selDefaultTasks" class="bootStrapFullRowElement" name="selDefaultTasks" multiple size="7">
-            <option>Вивчення літератури за темою роботи</option>
-            <option>Параграф 1</option>
-            <option>Параграф 2</option>
-            <option>Параграф 3</option>
-            <option>Параграф 4</option>
-            <option>Вступ та Висновки</option>
-            <option>Попередній захист роботи</option>
-          </select>
-        </p>
+        <label class="boldText">6. Виберіть етапи виконання роботи (не обов'язково):</label>
+        <label class="checkbox chbDefaultTasks">
+          <input type="checkbox" value="Вивчення літератури за темою роботи" checked> Вивчення літератури за темою роботи
+        </label>
+        <label class="checkbox chbDefaultTasks">
+          <input type="checkbox" value="Параграф 1" checked> Параграф 1
+        </label>
+        <label class="checkbox chbDefaultTasks">
+          <input type="checkbox" value="Параграф 2" checked> Параграф 2
+        </label>
+        <label class="checkbox chbDefaultTasks">
+          <input type="checkbox" value="Параграф 3" checked> Параграф 3
+        </label>
+        <label class="checkbox chbDefaultTasks">
+          <input type="checkbox" value="Параграф 4" checked> Параграф 4
+        </label>
+        <label class="checkbox chbDefaultTasks">
+          <input type="checkbox" value="Вступ та Висновки" checked> Вступ та Висновки
+        </label>
+        <label class="checkbox chbDefaultTasks">
+          <input type="checkbox" value="Попередній захист роботи" checked> Попередній захист роботи
+        </label>
 
-    </div>
+      </div>
 
-    <div class="modal-footer">
-      <button type="button" class="btn" data-dismiss="modal" aria-hidden="true">Закрити</button>
-      <button type="submit" class="btn btn-primary" id="btnAddWorkAndContinue">Зберегти</button>
-      <!--
-      <button type="submit" class="btn" id="btnAddWorkAndContinue">Зберегти і додати ще</button>
-      <button type="submit" class="btn btn-primary" id="btnAddWork" data-dismiss="modal" aria-hidden="true">Зберегти</button>
-      -->
-    </div>
+      <div class="modal-footer">
+        <button type="button" class="btn" id="btnCloseModalWindow" data-dismiss="modal" aria-hidden="true">Закрити</button>
+        <button type="submit" class="btn" id="btnAddWorkAndContinue">Зберегти і додати ще</button>
+        <button type="submit" class="btn btn-primary" id="btnAddWork">Зберегти</button>
+      </div>
     </form> <!-- End taskCreateForm -->
 
   </div>

@@ -584,6 +584,14 @@ td.newItem .toggle-text{
   text-align: left;
 }
 
+#modalBody {
+  max-height: 500px;
+}
+
+#taskCreateForm {
+  margin: 0;
+}
+
 
 /****************/
 #list-of-tasks {
