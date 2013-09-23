@@ -4,7 +4,6 @@ define([
   'backbone',
   'bootstrap',
   'jqBootstrapValidation',
-  'reg',
   'text!templates/registration/signUpTemplate.html',
   'marionettes/user/init',
   'models/user/user_registration',
@@ -22,7 +21,7 @@ define([
   'text!templates/registration/RoleOptionTemplate.html',
   'text!templates/registration/FaOptionTemplate.html',
   'text!templates/registration/EditRegistrationsTemplate.html'
-], function($, _, Backbone, bootstrap, jqBootstrapValidation, reg, signUpTemplate,
+], function($, _, Backbone, bootstrap, jqBootstrapValidation, signUpTemplate,
             GlobalUser, UserRegistration, User, errorNotificationTemplate, fieldErrorNoticeTemplate, 
             TemporaryDepartmentCollection, TeacherAttributesTemplate, DepartmentOptionTemplate,
             TemporaryGroupsCollection, FacultiesCollection, FaAttributesTemplate, StudentAttributesTemplate,
@@ -49,7 +48,7 @@ define([
       //$(this.el).find(".roleTeacher").hide();
       this.populate_roles_select();
       this.generate_capcha();
-     },
+    },
 
 
     generate_capcha: function(){
