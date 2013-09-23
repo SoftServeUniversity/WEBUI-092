@@ -139,15 +139,15 @@ define([
     var initialize = function(){
 
       // this function is defined in libs/reg
-      appUtils.Users.adminRoleCheck();
+      GlobalUser.adminRoleCheck();
 
       GlobalUser.vent.on("authentication:logged_out", function(){
-        appUtils.Users.hideAdminButton();
+        GlobalUser.hideAdminButton();
         GlobalUser.currentUser = null;
         $('#launch-btn').show();
       });
       GlobalUser.vent.on("role_loaded", function(){
-        appUtils.Users.adminRoleCheck();
+        GlobalUser.adminRoleCheck();
       });
 
 
@@ -166,27 +166,27 @@ define([
 
       app_router.on('route:viewAdminFacultyPage', function (){
 
-        var checkInfo = appUtils.Users.checkRole('faculty_admin');
+        var checkInfo = GlobalUser.checkRole('faculty_admin');
 
         if(checkInfo.status == true){
           var adminFacultyView = new AdminFacultyView();
           var breadcrumbsView = new BreadcrumbsView();
         } else {
           //defined in libs/reg
-          appUtils.Users.showWarning(checkInfo.text);
+          GlobalUser.showWarning(checkInfo.text);
         }
       });
 
       app_router.on('route:viewAdminPage', function (){
 
-        var checkInfo = appUtils.Users.checkRole('admin');
+        var checkInfo = GlobalUser.checkRole('admin');
 
         if(checkInfo.status == true){
           var adminView = new AdminView();
           var breadcrumbsView = new BreadcrumbsView();
         } else {
           //defined in libs/reg
-          appUtils.Users.showWarning(checkInfo.text);
+          GlobalUser.showWarning(checkInfo.text);
         }
 
       });
@@ -246,7 +246,7 @@ define([
       });
 
       app_router.on('route:teacherGroupAction', function (id) {
-        var checkInfo = appUtils.Users.checkRole('teacher');
+        var checkInfo = GlobalUser.checkRole('teacher');
         if ((checkInfo == true) && (GlobalUser.currentUser.id == teacher.id)) {
           var teacherGroupView = new TeacherGroupView(id);
           var breadcrumbsView = new BreadcrumbsView();
