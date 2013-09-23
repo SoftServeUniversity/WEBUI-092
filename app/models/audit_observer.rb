@@ -47,7 +47,7 @@ class AuditObserver < ActiveRecord::Observer
     @thesisChange.auditable_type=record.class.name
     @thesisChange.user_name = current_user
     @thesisChange.save
-    ThesisChangeMailer.delay.notification(@thesisChange, record)
+    #ThesisChangeMailer.delay.notification(@thesisChange, record)
   end
 
 end

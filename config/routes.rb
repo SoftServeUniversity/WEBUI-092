@@ -1,9 +1,8 @@
 Webui92::Application.routes.draw do
 
   resources :teachers
-
+  resources :faculty_admins
   resources :students
-
 
   get "backup/full_backup"
   get "backup/restore_from_backup"

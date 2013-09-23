@@ -20,7 +20,7 @@ define([
       events: {
         'click #changebtn'        : 'showModal',
         'submit #input-log'       : 'submit',
-        'keypress #task-comment'  : 'validateComment'
+        'keypress #task-comment'  : 'validateComment',
       },
       showModal: function(){
         $('#change').modal('show');
@@ -45,13 +45,14 @@ define([
         $("#content").html(compiledTemplate);
         this.slider();
         this.chart();
+        console.log(this.collection)
       },
       submit: function(e){
         e.preventDefault();
         var newCommentContent = $(e.currentTarget).find('textarea').val();
         var newTaskProcess = $(e.currentTarget).find('#number-range').val();
         this.addNewProgress(newTaskProcess);
-        this.addCommentToCollection(3, newCommentContent);
+        this.addCommentToCollection(this.user.get("id"), newCommentContent);
         this.closeModal();
         this.initialize();
       },
@@ -65,8 +66,8 @@ define([
           "task_comment": content,
           "task_id": this.model.get("id")
         });
+        console.log(newCommentModel)
         newCommentModel.save();
-        console.log(newCommentModel.get("id"))
       },
       slider: function(){
         var numberRange = $("#number-range");
@@ -124,7 +125,7 @@ define([
               min: 0
             },
             xAxis: {
-              categories: ['Жовтень', 'Листопад', 'Грудень', 'Січень', 'Лютий', 'Березень', 'Квітень', 'Травень']
+              categories: ['Січень', 'Лютий', 'Березень', 'Квітень', 'Травень', 'Червень', 'Липень', 'Серпень', 'Вересень','Жовтень', 'Листопад', 'Грудень',]
             },
             series: [{
               data: chartData
@@ -142,16 +143,53 @@ define([
           submitButton.fadeIn();
         }
       },
+      checkScroll: function () {
+        // is it low enough to add elements to bottom?
+        var pageHeight = Math.max(document.body.scrollHeight ||
+          document.body.offsetHeight);
+        var viewportHeight = window.innerHeight  ||
+          document.documentElement.clientHeight  ||
+          document.body.clientHeight || 0;
+        var scrollHeight = window.pageYOffset ||
+          document.documentElement.scrollTop  ||
+          document.body.scrollTop || 0;
+        // Trigger for scrolls within 20 pixels from page bottom
+        return pageHeight - viewportHeight - scrollHeight < 40;
+      },
+      getPage: function () {
+        this.page++;
+        return this.page
+      },
+      loadNewPage: function () {
+        var newData = new CommentsCollection();
+        this.getPage()
+        var newPageUrl = "/task_changes/" + this.id + "?page=" + this.page
+        newData.fetch({url: newPageUrl, async:false});
+        if (newData.length < 10) {
+          $(document).off( "scroll" );
+        }
+        if (newData.length > 0) {
+          var compiledComments = new taskCommentsView({"collection": newData});
+          $("#comments").append(compiledComments.$el.html());
+        }
+      },
       initialize: function(){
+        this.page = 0;
         var me = this;
+        this.user = window.GlobalUser.Models.User;
         this.undelegateEvents();
         this.delegateEvents(this.events);
+        $(document).on("scroll", function () {
+          if(me.checkScroll()){
+            me.loadNewPage();
+          }
+        });
         this.loadData();
       },
        loadData: function () {
         var me = this;
         var progressUrl = "/tasks/" + this.id + "/task_progress/", 
-            changesUrl = "/task_changes/" + this.id + "/";
+            changesUrl = "/task_changes/" + this.id + "?page=" + me.page;
         this.model = new TaskModel({"id": me.id});
         this.progress = new ProgressModel();
         this.model.fetch({async:false});

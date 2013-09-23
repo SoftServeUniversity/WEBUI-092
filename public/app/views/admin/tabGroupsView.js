@@ -6,20 +6,21 @@ define([
   'models/group/GroupModel',
   'collections/groups/GroupsCollection',
   'collections/courses/CoursesCollection',
-  'collections/teachers/TeachersCollection',
+  'collections/teachers/teachersProxyCollection',
   'collections/departments/DepartmentsCollection'
 
 ], function($, _, Backbone, ParentTabView, GroupModel, GroupsCollection, CoursesCollection,
-            TeachersCollection, DepartmentsCollection){   
+            TeachersProxyCollection, DepartmentsCollection){   
    
   var TabChildGroupsView = ParentTabView.extend({
 
     collections_classes: {
       groups      : GroupsCollection,
       courses     : CoursesCollection,
-      teachers    : TeachersCollection,
+      teachers    : TeachersProxyCollection,
       departments : DepartmentsCollection
     },
+
 
     setConfig: function(){
       
@@ -68,6 +69,14 @@ define([
       
       return config;
     },
+
+
+    initialize: function(){
+      if (GlobalUser.currentUser != undefined) {
+        this.dataFilter = { faculty_id: GlobalUser.currentUser.attributes.faculty_admin_attributes.faculty_id }
+      }
+      this.constructor.__super__.initialize.apply(this);
+    }
 
   });
   

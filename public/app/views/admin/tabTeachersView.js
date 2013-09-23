@@ -5,19 +5,17 @@ define([
   'views/admin/parentTabView',
   'models/teacher/TeacherModel',
   'collections/teachers/TeachersCollection',
-  'collections/faculties/FacultiesCollection',
   'collections/departments/DepartmentsCollection'
 
 
 
 ], function($, _, Backbone, ParentTabView, TeacherModel,
-            TeachersCollection, FacultiesCollection, DepartmentsCollection){   
+            TeachersCollection, DepartmentsCollection){   
    
   var TabTeachersView = ParentTabView.extend({
 
     collections_classes: {
       teachers     : TeachersCollection,
-      faculties    : FacultiesCollection,
       departments  : DepartmentsCollection
     },
 
@@ -69,6 +67,11 @@ define([
       };
       
       return config;
+    },
+
+    initialize: function(){
+      this.dataFilter = { faculty_id: GlobalUser.currentUser.attributes.faculty_admin_attributes.faculty_id }
+      this.constructor.__super__.initialize.apply(this);
     }
 
   });

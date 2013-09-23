@@ -4,6 +4,7 @@ gem 'rails',            '3.2.13'
 gem 'mysql2'
 gem 'backup'
 gem 'delayed_job_active_record'
+gem 'unicorn-rails'
 gem 'whenever', :require => false
 group :assets do
   gem 'sass-rails',     '~> 3.2.3'
@@ -31,9 +32,11 @@ group :development, :test do
   gem 'factory_girl_rails'
   gem 'rspec-rails'
 end
-group :production do
-  gem 'unicorn'
-end
+# Use unicorn as the app server
+gem 'unicorn'
+# Deploy with Capistrano
+gem 'capistrano'
+
 group :test do
   gem 'simplecov', :require => false
   gem 'capybara'

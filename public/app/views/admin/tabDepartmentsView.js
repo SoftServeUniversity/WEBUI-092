@@ -6,20 +6,18 @@ define([
   'models/department/DepartmentModel',
   'collections/departments/DepartmentsCollection',
   'collections/teachers/teachersProxyCollection',
-  'collections/faculties/FacultiesCollection'
 
 
 ], function($, _, Backbone, ParentTabView, DepartmentModel, DepartmentsCollection,
-             TeachersProxyCollection, FacultiesCollection){
+             TeachersProxyCollection ){
    
   var TabDepartmentsView = ParentTabView.extend({
 
     collections_classes: {
       departments : DepartmentsCollection,
       teachers    : TeachersProxyCollection,
-      faculties   : FacultiesCollection
-
     },
+    
 
     setConfig: function(){
       var me = this;
@@ -44,9 +42,9 @@ define([
           },
 
           faculty_id: {
-            label: 'Факультет',
-            type:'select',
-            collection:me.collections.faculties
+            label: '',
+            type: 'hidden',
+            value: 1
           }
 
         },
@@ -61,8 +59,10 @@ define([
       return config;
     },
     
-    initialize: function(){ 
-      //call parent's initialize method
+    initialize: function(){
+      if (GlobalUser.currentUser != undefined) {
+        this.dataFilter = { faculty_id: GlobalUser.currentUser.attributes.faculty_admin_attributes.faculty_id }
+      }
       this.constructor.__super__.initialize.apply(this);
     }
   

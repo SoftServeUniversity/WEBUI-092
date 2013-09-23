@@ -11,7 +11,9 @@ define([
   'views/user/loginView',
 ], function($, _, Backbone, bootstrap, jqBootstrapValidation, reg, StudentModel, registrationTemplate, LoginView){
 
+  
   return Backbone.View.extend({
+
 
     el: $("#authBox"),
     model: StudentModel,
@@ -21,8 +23,8 @@ define([
       'click #logout'      : 'logout'
     },
     render: function(){
-      var compiledTemplate = _.template( registrationTemplate );
-      $("#authBox").append(compiledTemplate);
+      var compiledTemplate = _.template(registrationTemplate);
+      $("#authBox").append(compiledTemplate());
     },
 
     log: function(e){

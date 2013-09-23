@@ -18,7 +18,7 @@ define([
 
   var BreadcrumbsView =  Backbone.View.extend({
     initialize:function(){
-
+      var that = this;
       var place = location.hash;
       var page = place.slice(2);
       var index = page.indexOf('\/');
@@ -27,77 +27,136 @@ define([
       var current = "";
       var breadcrumbsObj = []; 
       var seen = {};
+      var parent_id = "";
+      var parent_id_val = "";
+     
 
-      function breadcrumbsFetch(){
+      switch(collType){
+        case "task": parent_id = "work_id";break;
+        case "work": parent_id = "student_id";break;
+        case "student": parent_id = "group_id";break;
+        case "teacher": parent_id = "department_id";break;
+        case "group": parent_id = "department_id";break;
+        case "course": parent_id = "department_id";break;
+        case "department": parent_id = "faculty_id";break;
+        default: parent_id = "";break;
+      }
+
+      function firstBreadcrumbsFetch(){
         current.fetch({
           async:false,
-          success:function () {
-            var a = current.toJSON();
+          data: {
+            filter: {
+              id: index_page
+            }
+          },
+          success:function (arg) {
 
+            var a = arg.toJSON();            
             for(var i = 0; i < a.length; i++){
+              var cssClass = collType;
+              getInfo(a[i].name, a[i].last_name, a[i].id, cssClass);
+              breadcrumbsFetch(parent_id, a[i][parent_id]);
+            }
+          }
+        });
+      }
 
-              if(a[i].id == index_page){
-                
-              var arr = [];
+      function breadcrumbsFetch(id, val){ 
+        current.fetch({
+          async:false,
+          data: {
+            filter: {
+              id: val
+            }
+          },
+          success:function (result) {
+            var a = result.toJSON();
+            for(var i = 0; i < a.length; i++){
+              //if(a.id == index_page){
               var cssClass = '';
 
-                breadcrumbsObj.push(arr); 
-                  
                 if (a[i].work_id){
-                  
+                  parent_id = 'work_id';
+                  parent_id_val = a[i].work_id;
                   current = new WorksCollection();
-                  breadcrumbsFetch();
+                  breadcrumbsFetch(parent_id, parent_id_val);
                   cssClass = "task";
+                  getInfo(a[i].name, null, a[i].id, cssClass);
                 
                 } else if(a[i].student_id){
-                  
+                  parent_id = 'student_id';
+                  parent_id_val = a[i].student_id;
                   current = new StudentsCollection();
-                  breadcrumbsFetch();
+                  breadcrumbsFetch(parent_id, parent_id_val);
                   cssClass = "work";
-                } else if(a[i].group_id){
+                  getInfo(a[i].name, null, a[i].id, cssClass);
+       
 
+                } else if(a[i].group_id){
+                  parent_id = 'group_id';
+                  parent_id_val = a[i].group_id;
                   current = new GroupsCollection();
-                  breadcrumbsFetch();
+                  breadcrumbsFetch(parent_id, parent_id_val);
                   cssClass = "student";
+                  getInfo(a[i].name, a[i].last_name, a[i].id, cssClass);
+
 
                 } else if(a[i].degree){
+                  parent_id = 'teacher_id';
+                  parent_id_val = a[i].teacher_id;
                 
-                current = new DepartmentsCollection();
-                breadcrumbsFetch();
+                  current = new DepartmentsCollection();
+                  breadcrumbsFetch(parent_id, parent_id_val);
 
-                $('.breadcrumb a').find('.department').parent().nextAll().remove();
+                  $('.breadcrumb a').find('.department').parent().nextAll().remove();
 
                   cssClass = "teacher";
+                  getInfo(a[i].name, null, a[i].id, cssClass);
+                
                 } else if(a[i].department_id){
+                  parent_id = 'department_id';
+                  parent_id_val = a[i].department_id;
                   current = new DepartmentsCollection();
-                  breadcrumbsFetch();
+                  breadcrumbsFetch(parent_id, parent_id_val);
                   cssClass = "group";
+                  getInfo(a[i].name, null, a[i].id, cssClass);
+
                 } else if(a[i].faculty_id){
+                  parent_id = 'faculty_id';
+                  parent_id_val = a[i].faculty_id;
                   current = new FacultiesCollection();
-                  breadcrumbsFetch();
+                  breadcrumbsFetch(parent_id, parent_id_val);
                   cssClass = "department";
+                  getInfo(a[i].name, null, a[i].id, cssClass);
+
                 }
 
                 if(a[i].img){
                   cssClass = "faculty";
+                  getInfo(a[i].name, null, a[i].id, cssClass);
+
                   $('.breadcrumb a').find('.department').parent().prevAll().remove();
                 }
 
-                if(a[i].last_name){
-                  arr.push(a[i].last_name+' '+a[i].name);
-                } else if(a[i].name){
-                  arr.push(a[i].name);
-                } else{
-                  return;
-                }
-                
-                arr.push(a[i].id);
-
-                arr.push(cssClass);
-              }
             }
           }
         });
+      }
+      function getInfo(name, last_name, id, cssClass){
+        var arr = [];
+        if(last_name){
+          arr.push(last_name+' '+name);
+        } else if(name){
+          arr.push(name);
+        } else{
+          return;
+        }
+
+        arr.push(id);
+        arr.push(cssClass);
+        breadcrumbsObj.push(arr);
+        return breadcrumbsObj;
       }
 
       function breadcrumbsFind(){
@@ -108,24 +167,15 @@ define([
           });
           
           str = str.replace(/y$/, "ie");
-          
-
-          
-          var collectionName = str+"sCollection";
-          
-              
+          var collectionName = str+"sCollection";   
           eval('current = new ' + collectionName + '()');
-          
-          breadcrumbsFetch();
 
-            breadcrumbsShow();
+          firstBreadcrumbsFetch();
+
         } else{
           return;
         }
-        
       }
-       
-
         if( 
             collType == 'faculty' || 
             collType == 'department' || 
@@ -136,20 +186,21 @@ define([
             collType == 'work' ||
             collType == 'task'
           ){
-
             breadcrumbsFind();
-
+            breadcrumbsShow();
           } else{
             $('.breadcrumb li').remove();
           }
-          
-        
-  
       function breadcrumbsShow(){
-
-        breadcrumbsObj.reverse();
+        breadcrumbsObj[breadcrumbsObj.length-1] = breadcrumbsObj[0];
+        breadcrumbsObj.shift();
 
         for(var i in breadcrumbsObj){
+          if(breadcrumbsObj[i][2] == "teacher"){
+            $('.breadcrumb').find('li a.department').parent().nextAll().remove();
+          }else if(breadcrumbsObj[i][2] == "task"){
+            $('.breadcrumb').find('li a.teacher').parent().remove();
+          }
           var a = breadcrumbsObj[i][2]+"_"+breadcrumbsObj[i][1];
           var c = $('<li></li>');
           var b = $('<a></a>').html(breadcrumbsObj[i][0])
@@ -167,10 +218,9 @@ define([
             $('.breadcrumb').append(c);
             $('.breadcrumb li').fadeIn(1000);
             $('.breadcrumb li').last().addClass('active');
-             
+
         }
 
-        $('.breadcrumb').find('.'+breadcrumbsObj[i][2]).parent().nextAll().remove();
         $('.breadcrumb').append(c);
         $('.breadcrumb li').fadeIn(1000);
 
@@ -194,7 +244,6 @@ define([
             $(this).parent().nextAll('li').remove();
         });
       }
-
       function checkBreadcrumbs(){
         $('.breadcrumb a').each(function() {
           var txt = $(this).attr('class');

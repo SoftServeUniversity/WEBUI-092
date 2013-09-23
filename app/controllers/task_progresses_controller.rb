@@ -1,4 +1,5 @@
 class TaskProgressesController < ApplicationController
+  before_filter :set_current_user
   # GET /task_progresses
   # GET /task_progresses.json
   def index
@@ -8,27 +9,10 @@ class TaskProgressesController < ApplicationController
     end
   end
   def progresses_by_month
-    @task_progresses = TaskProgress.where(task_id: params[:task_id])
-    counter = 0
-    data = []
-    @task_progresses.sort_by!{ |elem| elem['created_at'] }  
-    @task_progresses.each_with_index do |item, index|
-        newIndex = index + 1
-        month = item['created_at'].to_s.split('-')[1]
-        if newIndex == @task_progresses.length 
-          data[counter] = item["progress"]
-          break
-        end
-        prevmonth = @task_progresses[newIndex]["created_at"].to_s.split('-')[1]
-          unless month == prevmonth
-              data[counter] = item["progress"]
-              counter = counter + 1
-          end
-    end
+    @task_progresses = Task.find(params[:task_id]).progresses_by_month
     respond_to do |format|
-      format.json { render json: data }
+      format.json { render json: @task_progresses }
     end
-
   end
     # GET /tasks/:task_id/task_progresses.json
     def task_id_index
@@ -109,5 +93,9 @@ class TaskProgressesController < ApplicationController
       format.html { redirect_to tasks_url }
       format.json { head :no_content }
     end
+  end
+
+  def set_current_user
+    UserInfo.current_user = current_user
   end
 end

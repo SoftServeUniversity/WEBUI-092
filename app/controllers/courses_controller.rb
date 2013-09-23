@@ -4,13 +4,13 @@ class CoursesController < ApplicationController
   def index
 
     if params['filter'] === nil
-      @course = Course.all
+      @courses = Course.all
     else
-      @course = Course.where(params['filter'])
+      @courses = Course.where(params['filter'])
     end
 
     respond_to do |format|
-      format.json { render json: @course }
+      format.json { render json: @courses }
     end
 
   end

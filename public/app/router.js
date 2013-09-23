@@ -3,6 +3,7 @@ define([
   'underscore',
   'backbone',
   'marionettes/user/init',
+  'reg',
   'views/faculty/FacultiesListView',
   'views/registration/RegistrationView',
   'views/group/GroupProgressView',
@@ -25,14 +26,13 @@ define([
 
 
 
-  ], function($, _, Backbone, GlobalUser, FacultiesListView, RegistrationView, GroupProgressView,
+  ], function($, _, Backbone, GlobalUser, reg, FacultiesListView, RegistrationView, GroupProgressView,
   	          StudentProgressView, CourseProgressView,  MainFacultyView, MainDepartmentView,
   	          MainWorkView, TaskView, TasksCollection, NotFoundView,
               AdminFacultyView, AdminView, MainTeacherView, TeacherGroupView, UserSingUpView,
               InfoView, BreadcrumbsView, SearchView
 
              ) {
-
 
 
 
@@ -63,11 +63,16 @@ define([
     };
 
     var AppRouter = Backbone.Router.extend({
+
       initialize: function(){
+
+        this.history = [];
         //update menu when needed
         this.bind( "all", this.updateMenu )
 
-        var searchView = new SearchView();
+        //store history, so it's possible to navigate back
+        this.bind( "all", this.storeRoute )
+
         var registrationView = new RegistrationView();
         registrationView.render();
         $('.brand').click(function() {
@@ -75,6 +80,38 @@ define([
             location.reload();
         });
       },
+
+      //restore history to previous state
+      //(WITHOUT triggering router) in case
+      //of unsuccessful attempt to get to some url
+      storeRoute: function(){
+        this.history.push(Backbone.history.fragment)
+      },
+      previousRoute: function(){
+        if (this.history.length > 1) {
+          this.navigate(this.history[this.history.length-1], false)
+        }
+      },
+
+      //add active class to menu items
+      updateMenu: function(){
+        var link;
+
+        $(".page-link").removeClass('active');
+
+        var path = Backbone.history.fragment;
+
+        var paths = ['info', 'search', '', 'admin', 'fa'];
+
+        _.each(paths, function(p){
+          if(p==path){
+            link = '#'+path+'page-link';
+            $(link).addClass('active');
+          }
+        })
+
+      },
+
       routes: {
         ''                       : 'homeAction',
         'group/:id'              : 'groupProgressAction',
@@ -92,30 +129,30 @@ define([
         'edit_profile'           : 'editProfile',
         'cancel_account'         : 'cancelAccount',
         'info'                   : 'infoAction',
+        'search'                 : 'searchAction',
         // Default
         '*actions': 'defaultAction'
-      },
-
-      //add and remove active class from menu items
-
-      updateMenu: function(){
-        $(".page-link").removeClass('active');
-
-        var path = Backbone.history.fragment;
-
-        if(path == 'info'){
-          $("#info-page-link").addClass('active');
-        };
-        if(path == ''){
-          $("#main-page-link").addClass('active');
-        };
       }
 
     });
 
     var initialize = function(){
 
-      var app_router = new AppRouter;
+      // this function is defined in libs/reg
+      appUtils.Users.adminRoleCheck();
+
+      GlobalUser.vent.on("authentication:logged_out", function(){
+        appUtils.Users.hideAdminButton();
+        GlobalUser.currentUser = null;
+        $('#launch-btn').show();
+      });
+      GlobalUser.vent.on("role_loaded", function(){
+        appUtils.Users.adminRoleCheck();
+      });
+
+
+
+      app_router = new AppRouter;
 
       app_router.on('route:homeAction', function (actions) {
        // display the home page
@@ -126,8 +163,36 @@ define([
 
       });
 
-      app_router.on('route:workShowAction', function (id){
 
+      app_router.on('route:viewAdminFacultyPage', function (){
+
+        var checkInfo = appUtils.Users.checkRole('faculty_admin');
+
+        if(checkInfo.status == true){
+          var adminFacultyView = new AdminFacultyView();
+          var breadcrumbsView = new BreadcrumbsView();
+        } else {
+          //defined in libs/reg
+          appUtils.Users.showWarning(checkInfo.text);
+        }
+      });
+
+      app_router.on('route:viewAdminPage', function (){
+
+        var checkInfo = appUtils.Users.checkRole('admin');
+
+        if(checkInfo.status == true){
+          var adminView = new AdminView();
+          var breadcrumbsView = new BreadcrumbsView();
+        } else {
+          //defined in libs/reg
+          appUtils.Users.showWarning(checkInfo.text);
+        }
+
+      });
+
+
+      app_router.on('route:workShowAction', function (id){
 
         if(this.workView){
           this.workView.$el.undelegate();
@@ -136,58 +201,6 @@ define([
         var breadcrumbsView = new BreadcrumbsView();
         this.workView = new MainWorkView({"id": id});
       });
-
-
-
-//----------------------------- zombie views experiment------------------------------//
-
-      //close method for all views
-      Backbone.View.prototype.close = function(){
-
-        this.remove();
-        this.unbind();
-
-        console.log('child closin...');
-        console.log(this);
-
-          if(this.childViews != undefined){
-          for (i=0; i<this.childViews.length; i++){
-                  Backbone.View.prototype.close.call(this.childViews[i]);
-                }
-          };
-      };
-
-      //remove main view if it already exists
-      function manageViews(view){
-        if ('currentView' in this){
-          //console.log(this.currentView.el);
-          this.currentView.close();
-        } else {
-          //console.log('no current view yet')
-        }
-        this.currentView = view;
-      };
-
-
-
-      app_router.on('route:viewAdminFacultyPage', function (){
-        var adminFacultyView = new AdminFacultyView();
-
-        //manageViews(adminFacultyView);
-        var breadcrumbsView = new BreadcrumbsView();
-      });
-
-      app_router.on('route:viewAdminPage', function (){
-        var adminView = new AdminView();
-
-        //manageViews(adminView);
-        var breadcrumbsView = new BreadcrumbsView();
-      });
-
-//----------------------------- end zombies experiment -------------------------//
-
-
-
 
       app_router.on('route:groupProgressAction', function (id) {
 
@@ -241,6 +254,7 @@ define([
         var userSignUp = new UserSingUpView();
         var breadcrumbsView = new BreadcrumbsView();
         userSignUp.render();
+        $.getScript('/app/libs/reg/reg.js')
       });
 
       app_router.on('route:editProfile', function (){
@@ -261,8 +275,11 @@ define([
         var breadcrumbsView = new BreadcrumbsView();
 
       });
+      app_router.on('route:searchAction', function(){
 
-
+        var breadcrumbsView = new BreadcrumbsView();
+        var searchView = new SearchView();
+      });
       app_router.on('route:taskShow', function (id) {
 
         var breadcrumbsView = new BreadcrumbsView();
@@ -285,7 +302,11 @@ define([
 
       Backbone.history.start();
     };
+
+
     return {
       initialize: initialize
     };
+
+
   });

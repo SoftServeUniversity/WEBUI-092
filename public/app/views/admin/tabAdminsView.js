@@ -5,16 +5,16 @@ define([
   'backbone',
   
   'models/teacher/TeacherModel',
-  'collections/teachers/TeachersCollection',
+  'collections/faculty_admins/FacultyAdminsCollection',
   'views/admin/parentTabView'
   
-], function($, _, Backbone, TeacherModel, TeachersCollection, ParentTabView){   
+], function($, _, Backbone, TeacherModel, FacultyAdminsCollection, ParentTabView){   
 	 
   var tabChildAdminsView = ParentTabView.extend({
 
 
     collections_classes: {
-      fadmins: TeachersCollection
+      faculty_admins: FacultyAdminsCollection
     },
 
     setConfig: function(){
@@ -24,7 +24,7 @@ define([
       	
         model: TeacherModel,
         
-        collection: me.collections.fadmins,
+        collection: me.collections.faculty_admins,
         
         fields: {
           
@@ -46,6 +46,11 @@ define([
           email: {
             label: 'Email',
             type :'text'
+          },
+
+          faculty: {
+            label: 'Факультет',
+            type :'simple'
           }
         },
 
@@ -54,7 +59,7 @@ define([
         },
 
         verification: {
-          collection:me.collections.fadmins,
+          collection:me.collections.faculty_admins,
           tab_id:'admins-tab'
         }
         
