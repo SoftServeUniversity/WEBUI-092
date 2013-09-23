@@ -28,8 +28,8 @@ if !(User.all.empty?)
   name = 'NameABC'
   last_name = "LastNameABC"
   middle_name = "MiddleNameABC"
-  100.times do |time| 
-    usr = User.create! name: (name + time.to_s), middle_name: (middle_name + time.to_s), last_name: (last_name + time.to_s), email: (name.next! + "@example.com"), password: ('Aa88888888'), password_confirmation: ('Aa88888888')
+  420.times do |time| 
+    usr = User.create! name: (name + time.to_s), middle_name: (middle_name + time.to_s), last_name: (last_name + time.to_s), email: (name.next! + "@example.com"), password: (name + last_name + middle_name + '0'), password_confirmation: (name + last_name + middle_name + '0')
     puts 'Created'<< usr.name
   end
 end
@@ -117,7 +117,7 @@ end
 #Student Table
 if Student.all.empty?
  s = 'Student_ABC'
- 20.times do |time| 
+ 400.times do |time| 
    st = Student.create! user_id: (time + 1 + 20), group_id: (rand(20)+1) 
    puts 'created Student'
  end
@@ -129,8 +129,8 @@ end
 #Works Table
 if Work.all.empty?
   s = 'Work Number '
-  20.times do |time| 
-    d = Work.create! name: (s + time.to_s), student_id: (rand(20)+1), teacher_id: (rand(20)+1)
+  4000.times do |time| 
+    d = Work.create! name: (s + time.to_s), student_id: (rand(399)+1), teacher_id: (rand(20)+1)
     puts 'created '<< d.name
   end
 end
@@ -138,8 +138,8 @@ end
 #Task Table
 if Task.all.empty?
   s = 'Task_ABC'
-  20.times do |time| 
-    d = Task.create! name: (s.next! + time.to_s), priority: 0, work_id: Work.all[rand(20)].id
+  8000.times do |time| 
+    d = Task.create! name: (s.next! + time.to_s), priority: 0, work_id: Work.all[rand(4000)].id
     puts 'created '<< d.name
   end
 end
@@ -168,5 +168,4 @@ end
 p = ProgressChange.new
 p.save
 p.aggregate
-
 
