@@ -31,7 +31,10 @@ define([
       window.parsed = [];
 
       $('#search-field').on('keyup', function(){
-
+        console.log("f_id");
+        console.log(f_id);
+        console.log("c_id");
+        console.log(c_id);
         var letters = $(this).val();
         if(letters.length == 2){
           $('#search-field').css('background', 'white url("http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.2/themes/smoothness/images/ui-anim_basic_16x16.gif") 310px center no-repeat');
@@ -43,7 +46,9 @@ define([
             getJSON(studCollection, studObj, letters);
             getJSON(teachCollection, teachObj, letters);
             var people = [];
+           
               people = teachObj[0].concat(studObj[0]);
+
             var str = JSON.stringify(people);
             var parsed = JSON.parse(str, function(k, v) {
                 if (k === "name")
@@ -51,15 +56,15 @@ define([
                else
                     return v;
             });
+            console.log('parsed');
+            console.log(parsed);
             return window.parsed = parsed;
           }());
-          auto();
+          auto(window.parsed);
           $('#search-field').css('background', '#fff');
         }
       });
 
-      $('#search-field').on('blur', function(){
-      });
 
       $('button[data-id = faculty_select]').removeClass('btn-default').addClass('btn-info btn-mini');
       $('button[data-id = course_select]').removeClass('btn-default').addClass('btn-success btn-mini');
@@ -71,14 +76,17 @@ define([
         $(this).siblings('div.dropdown-menu').fadeToggle();
       });
       $('#select-box div.dropdown-menu').click(function(){
-        if($(this).siblings('button[data-id = faculty_select]')){
+        window.parsed = [];
+        $('#search-field').val('');
+        if($(this).siblings('button[data-id = faculty_select]').length){
+          window.parsed = [];
           if($(this).find('li').first().attr('selected')){
             f_id = "";
           }else{
             f_id = $(this).find('li[class = selected] a').attr('data-val');
           }
         console.log(f_id);
-        }else if($(this).siblings('button[data-id = course_select]')){
+        }else if($(this).siblings('button[data-id = course_select]').length){
           if($(this).find('li').first().attr('selected')){
             c_id = "";
 
@@ -131,11 +139,7 @@ define([
 
       function getJSON(collection, obj, letter){
         collection.fetch({
-<<<<<<< HEAD
-          data: {search: 'true', two_last_name: letter, s_faculty_id: "", s_course_id: ""},
-=======
           data: {search: 'true', two_last_name: letter, s_faculty_id: f_id, s_course_id: c_id},
->>>>>>> fd7270f7032efd8a7e0ee7198476e153cd985cb6
           async:false,
           success:function () {
             obj.push(collection.toJSON());
@@ -217,10 +221,10 @@ define([
           }
             
            
-      function auto(){
+      function auto(source){
         $( "#search-field" ).autocomplete({
-            minLength: 1,
-            source: window.parsed,
+            minLength: 2,
+            source: source,
             focus: function( event, ui ) {
               $( "#search-field" ).val( ui.item.label );
 
@@ -253,8 +257,12 @@ define([
             return $( "<li>" ).append(a).appendTo( ul );
           };
       } 
-
-
+      function loadSign(){
+        if($('#search-field').val().length != 2){
+          $('#search-field').css('background', '#fff');
+        }
+      }
+      setInterval(loadSign, 1000);
       function HandleDOM_Change () {
 
             $('.searchDataTable tr').on('click', function(){
