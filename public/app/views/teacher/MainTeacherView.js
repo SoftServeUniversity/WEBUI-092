@@ -93,6 +93,7 @@ define([
           var teacher = this.teacherModel.toJSON()[0];
 
           var worksJSON = this.worksCollection.toJSON();
+          //console.log(worksJSON);
 
           var works = {};
           for (var i = 0; i < worksJSON.length; i++) {

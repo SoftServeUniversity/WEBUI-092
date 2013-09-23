@@ -9,8 +9,8 @@ class Work < ActiveRecord::Base
 
   #after_create :aggregate
 
- def serializable_hash(options={}) 
-    hash_info = super(options) 
+ def serializable_hash(options={})
+    hash_info = super(options)
     hash_info[:progress] = 0
     hash_info[:progress] = progress_changes.last.progress if progress_changes.last
     hash_info

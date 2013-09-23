@@ -34,11 +34,11 @@ define([
 
             this.studentsColOfTeachGroup = new StudentsProxyCollectionForTeacherPage();
             this.studentsColOfTeachGroup.fetch({
-              data: {
+              /*data: {
                 filter: {
                   teacher_id: this.id
                 }
-              },
+              },*/
               success: function() {
                 that.trigger('DataLoaded', 'StudentsOfTeacherGroup');
               }

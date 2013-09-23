@@ -5,9 +5,15 @@ define([
 ], function(_, Backbone, StudentModel) {
 
   var StudentProxyModelForTeacherGroupPage = Backbone.Model.extend({
+    url: /students/,
     initialize : function (attributes) {
+      console.log(attributes);
       this.set('id', attributes.id);
-      this.set('student_full_name', attributes.last_name + ' ' +attributes.first_name + ' ' + attributes.middle_name);
+      //Warning! Set full name as 'name' - for add work dialog
+      this.set('name',
+                    attributes.last_name + ' ' +
+                    attributes.name + ' ' +
+                    attributes.middle_name);
       this.set('work_id', attributes.work_id);
       this.set('work_name', attributes.work_name);
       this.set('group_name', attributes.group_name);

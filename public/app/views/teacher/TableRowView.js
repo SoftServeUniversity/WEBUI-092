@@ -17,13 +17,13 @@ define([
 
         showRemoveDialog: function(){
           var message = 'Ви дійсно бажаєте видалити студента\n' +
-                        '<strong>' + this.model.get('student_full_name') + '</strong>';
+                        '<strong>' + this.model.get('name') + '</strong>';
           var header = 'Видалення студента';
           removeDialogView = new RemoveDialogView({model: this.model}, {message: message, header: header});
         },
 
         addStudentToGroup: function(){
-          attrs = {'group_pending': 1}
+          attrs = {'group_pending': 0}
           this.model.set(attrs);
           this.model.save(attrs, {patch: true});
         },

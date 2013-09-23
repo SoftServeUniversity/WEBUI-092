@@ -11,8 +11,11 @@ class WorksController < ApplicationController
     end
 
     respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @works }
+      format.html # show.html.erb
+      format.json { render json: @works.to_json(:include => {
+        :student => {only: [ :last_name, :name, :middle_name ]},
+        :teacher => {}
+      })}
     end
   end
 
@@ -24,6 +27,8 @@ class WorksController < ApplicationController
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @work.to_json(:include => {
+        :teacher => {},
+        :student => {},
         :thesis_changes => {},
         :tasks => {:include => :thesis_changes}
       })}
