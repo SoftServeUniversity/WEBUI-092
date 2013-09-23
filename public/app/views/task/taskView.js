@@ -65,7 +65,7 @@ define([
         $("#content").html(compiledTemplate);
         this.slider();
         this.chart();
-        console.log(this.collection)
+        $("title").html(this.model.get('name'));
       },
       submit: function(e){
         e.preventDefault();
@@ -86,7 +86,6 @@ define([
           "task_comment": content,
           "task_id": this.model.get("id")
         });
-        console.log(newCommentModel)
         newCommentModel.save();
       },
       slider: function(){
@@ -118,7 +117,18 @@ define([
           if (xmlhttp.readyState == 4) {
             if(xmlhttp.status == 200) {
               chartData = JSON.parse(xmlhttp.responseText);
-              makeChart(chartData);
+              var trueData = [];
+              trueData[0] = chartData[8];
+              trueData[1] = chartData[9];
+              trueData[2] = chartData[10];
+              trueData[3] = chartData[11];
+              trueData[4] = chartData[0];
+              trueData[5] = chartData[1];
+              trueData[6] = chartData[2];
+              trueData[7] = chartData[3];
+              trueData[8] = chartData[4];
+              trueData[9] = chartData[5];
+              makeChart(trueData);
             }
           }
         }
@@ -145,8 +155,12 @@ define([
               min: 0
             },
             xAxis: {
-              categories: ['Січень', 'Лютий', 'Березень', 'Квітень', 'Травень', 'Червень', 'Липень', 'Серпень', 'Вересень','Жовтень', 'Листопад', 'Грудень',]
-            },
+              categories: ['Вересень','Жовтень', 'Листопад', 'Грудень','Січень', 'Лютий', 'Березень', 'Квітень', 'Травень', 'Червень'],
+            labels: {
+                staggerLines: 2
+            }
+            },            
+
             series: [{
               data: chartData
             }]
@@ -196,7 +210,6 @@ define([
       initialize: function(){
         this.page = 0;
         var me = this;
-        GlobalUser.currentUser? console.log('Works'):console.log('sucks');
         this.user = 1;
         this.undelegateEvents();
         this.delegateEvents(this.events);

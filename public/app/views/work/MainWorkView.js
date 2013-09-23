@@ -106,6 +106,8 @@ function($, evil, _, Backbone, bootstrap, WorkTasksTemplate,
       $("#content").html(workTemplate);
       $("#content").append(historyTemplate); 
       $(".editable").hide();
+      $("title").html(this.model.get('name'));
+
     },
     renderWorkName: function(){
       this.$('#work_name').html(this.model.get('name'));

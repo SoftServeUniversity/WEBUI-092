@@ -15,7 +15,6 @@ class WorksController < ApplicationController
       format.json { render json: @works }
     end
   end
-
   # GET /works/1
   # GET /works/1.json
   def show
