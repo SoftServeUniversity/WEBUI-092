@@ -40,8 +40,9 @@ define([
 
     // Extend Backbone.Collection for fetch data
     // fron any collection with filter
-    Backbone.Collection.prototype.FetchCollection =
-    function(filterData = {}) {
+
+    Backbone.Collection.prototype.FetchCollection = function(filterData) {
+
       // Create filter from filterData for fetch collection
       var filterForCollection = {};
       for(item in filterData) {

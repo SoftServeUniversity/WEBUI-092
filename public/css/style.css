@@ -26,9 +26,17 @@ a:hover {
 h1 {
 	margin-bottom:20px;
 }
+#main-top-menu {
+	padding:8px 0px !important;
+}
+#main-top-menu a {
+	padding-top: 2px !important;
+	padding-bottom: 2px !important;
+}
 #main-top-menu .active {
 	text-decoration:underline;
 }
+
 a:hover{
 	color:#0088CC;
 }
@@ -43,9 +51,74 @@ a:hover{
 	margin-bottom:0px;
 
 }
+.authBox, 
+.yearBox{
+    margin-bottom:5px;
+	/*float:left !important;*/
+}
+.control_box {
+	float:right;
+	min-width:360px;
+}
+.control_box *{
+	white-space: nowrap;
+}
+.yearBox {
+	width:195px;
+}
+.yearBox .control-label{ 
+	width:65px;
+}
+.yearBox .bootstrap-select{
+	width:106px;
+}
+.yearBox .controls{
+	margin-left: 75px !important;
+}
 .toggle-list:hover {
   background:#f5f5f5;
 }
+
+@media (max-width: 767px) {
+	#main-top-menu li {
+		float:none;
+		/*display:block !important;*/
+	}
+	#main-top-menu a {
+		padding-left:10px !important;
+		padding-right:10px !important;
+	}
+	.authBox {
+		clear:both;
+	}
+
+
+
+}
+@media (max-width: 480px) {
+	.logo_box,
+    .menu_box{
+	  overflow:hidden;
+    }
+
+    .authBox, 
+    .yearBox{
+        padding-left:10px !important; 
+    }
+    .yearBox{
+    	clear:both !important;
+    }
+    .authBox, 
+    .yearBox {
+    	float:left !important;
+        
+    }
+    .yearBox label {
+    	margin-bottom:-30px;
+    }
+}
+
+
 #main-top-menu .active {
     text-decoration:underline !important;
 }
@@ -65,10 +138,10 @@ header .control-group .control-label{
 
 .authBox{
 	padding-left:20px;
-	padding-right:5px;
 }
 .authBox, .yearBox {
 	float:right;
+	/*float:right;*/
 }
 .yearBox{
 	padding-right:0px;

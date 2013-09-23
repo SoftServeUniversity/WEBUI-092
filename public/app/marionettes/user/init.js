@@ -39,7 +39,7 @@ define([
     GlobalUser.getAbilities();
     $('#launch-btn').replaceWith(_.template(loggedInTemplate));
     $('#launch').slideUp(300);
-    window.location.hash = '/';
+    //window.location.hash = '/';
   });
 
   GlobalUser.vent.on("authentication:logged_out", function() {
