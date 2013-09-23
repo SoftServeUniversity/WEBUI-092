@@ -8,20 +8,20 @@ class Teacher < ActiveRecord::Base
   has_many :works
   has_many :groups
 
-  after_create :add_panding_role
+  after_create :add_pending_role
   has_many :progress_changes, :as => :progressable
 
   accepts_nested_attributes_for :user
 
   #all new users with 'teacher' assoction present, will automaticly have role_panding => true
-  def add_panding_role
+  def add_pending_role
     self.user.add_role :teacher
     self.user.role_pending = true
     self.user.save
   end
 
   def serializable_hash(options={})
-    options.merge(:include => [:user])
+    #options.merge(:include => [:user])
     hash_info = super(options)
     hash_info[:faculty_id] = self.department.faculty.id
     hash_info[:faculty_name] = self.department.faculty.name

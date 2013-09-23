@@ -36,7 +36,10 @@ define([
           this.model.on("remove", me.removeView, me)
           this.model.on("change", me.updateView, me);
           
-        }
+          this.model.on("change:role_pending", me.updatePendingTab)
+
+
+         }
 
         _.bindAll(this, 'verifyItem');
       
@@ -55,7 +58,7 @@ define([
       updateView: function(){
         this.render();
       },
-
+      
       removeView: function(){
         this.remove();
       },
@@ -119,6 +122,11 @@ define([
          this.model.save();
       },
 
+      updatePendingTab: function(){
+        if( $('.verify-button').length == 1 ){
+          $('.nav-tabs .needs-verification').removeClass('needs-verification')
+        }
+      },
 
       hideInputs: function(){
         console.log('hidin')

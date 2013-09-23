@@ -50,12 +50,84 @@ define([
   GlobalUser.vent.on("abilities_loaded", function(data){ GlobalUser.currentUser.abilities = data });
 
   GlobalUser.getRole = function(id){
-    $.post('user_helper/return_current_role', {id: id}, null, 'text' ).done(function(res){ GlobalUser.vent.trigger("role_loaded", res) }); 
+    $.post('user_helper/return_current_role', {id: id}, null, 'text' ).done(function(res){ GlobalUser.vent.trigger("role_loaded", res) });
   }
 
   GlobalUser.getAbilities = function(){
-    $.post('user_helper/receive_user_abilities', null, null, "json").done(function(res){ GlobalUser.vent.trigger("abilities_loaded", res) }); 
+    $.post('user_helper/receive_user_abilities', null, null, "json").done(function(res){ GlobalUser.vent.trigger("abilities_loaded", res) });
   }
+
+
+
+  GlobalUser.checkRole = function(role){
+
+    var notRegistered = 'Для доступу до цієї сторінки необхідно бути зареєстрованим і мати роль ';
+    var textRolePending = 'Ваш акаунт ще не підтверджений адміністратором';
+    var textBadRole = 'Роль вашого користувача не надає доступу до цієї сторінки. Зареєструйте користувача з роллю '
+
+    if(GlobalUser.currentUser != undefined){
+
+      if(GlobalUser.currentUser.role == role){
+        if(GlobalUser.currentUser.attributes.role_pending){
+          return { status: true, verified: false,  text: textRolePending };
+        } else {
+          return { status : true, verified: true }
+        }
+      } else {
+        return { status: false, text: textBadRole + role }
+      }
+
+    } else {
+      return { status: false, text: notRegistered + role }
+    }
+
+  }
+
+  GlobalUser.showWarning = function(warning, role){
+
+    app_router.previousRoute();
+    $('#content #top-warning').remove();
+    $('#content').prepend($('<div id="top-warning" class="alert alert-error"><a class="close" data-dismiss="alert" href="#">×</a><span class="message">'+warning+'</span></div>'))
+    $('#top-warning').delay(3000).fadeOut('slow');
+
+  }
+
+  GlobalUser.showAdminButton = function(tagid, link, text){
+    var el = '<li style="display:none" id="link_admin"><a class="page-link" id="'+tagid+'page-link" href="'+link+'">'+text+'</a></li>';
+    $('#main-top-menu').append($(el));
+    $('#link_admin').fadeIn();
+  }
+
+  GlobalUser.hideAdminButton = function(){
+    $("#link_admin").remove();
+  }
+
+  GlobalUser.adminRoleCheck = function(){
+
+    var adminCheck = this.checkRole('admin');
+    if (adminCheck.status && adminCheck.verified){
+      this.showAdminButton('admin', '#/admin', 'Сторінка адміністратора')
+    }
+    var faCheck = this.checkRole('faculty_admin')
+    if(faCheck.status && faCheck.verified){
+      this.showAdminButton('fa','#/fa', 'Адміністрування факультету')
+    }
+  };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
   $(document).trigger('csrfToken');

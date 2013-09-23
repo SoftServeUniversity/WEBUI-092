@@ -1,4 +1,5 @@
 class TaskProgressesController < ApplicationController
+  before_filter :set_current_user
   # GET /task_progresses
   # GET /task_progresses.json
   def index
@@ -92,5 +93,9 @@ class TaskProgressesController < ApplicationController
       format.html { redirect_to tasks_url }
       format.json { head :no_content }
     end
+  end
+
+  def set_current_user
+    UserInfo.current_user = current_user
   end
 end

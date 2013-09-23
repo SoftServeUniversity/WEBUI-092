@@ -82,7 +82,7 @@ define([
     renderSingleItem: function(item){
       var me = this;
       this.config.newModel = false;
-      var itemView = new ItemView({ model: item, conf: this.config, newModel: false });
+      var itemView = new ItemView({ model: item, collection: me.collection, conf: this.config, newModel: false });
 
       me.childViews[itemView.cid] = itemView;    
       me.$('#tab-body').append(itemView.render().$el)

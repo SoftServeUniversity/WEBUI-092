@@ -19,8 +19,6 @@ define([
       departments  : DepartmentsCollection
     },
 
-    dataFilter: { faculty_id: 1 },
-
     setConfig: function(){
 
       var me = this;
@@ -69,6 +67,11 @@ define([
       };
       
       return config;
+    },
+
+    initialize: function(){
+      this.dataFilter = { faculty_id: GlobalUser.currentUser.attributes.faculty_admin_attributes.faculty_id }
+      this.constructor.__super__.initialize.apply(this);
     }
 
   });
