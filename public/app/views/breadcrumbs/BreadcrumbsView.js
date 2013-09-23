@@ -218,6 +218,10 @@ define([
             $('.breadcrumb').find('li a.department').parent().nextAll().remove();
           }else if(breadcrumbsObj[i][2] == "task"){
             $('.breadcrumb').find('li a.teacher').parent().remove();
+          }else if(breadcrumbsObj[i][2] == "course"){
+            $('.breadcrumb').find('li a.faculty').parent().nextAll().remove();
+          }else if(breadcrumbsObj[i][2] == "department"){
+            $('.breadcrumb').find('li a.course').parent().remove();
           }
           var a = '#/'+breadcrumbsObj[i][2]+"/"+breadcrumbsObj[i][1];
           var c = $('<li></li>');
@@ -246,6 +250,9 @@ define([
 
         $('.breadcrumb li span').css('display', 'inline');
         $('.breadcrumb li:last-child span').css('display', 'none');
+        if($('.breadcrumb li').length == 1){
+           $('.breadcrumb li span').hide();
+        }
 
         $('.breadcrumb').find('.'+collType).parent().nextAll('li').remove();
 
