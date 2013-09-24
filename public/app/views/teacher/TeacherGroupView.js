@@ -70,8 +70,6 @@ define([
         render:function(){
           var teacher = this.teacherModel.toJSON()[0];
 
-          console.log(this.studentsColOfTeachGroup);
-
           var dataForMainTeacherTemplate = {
             teacher: teacher,
             // Mark active link in teacher menu

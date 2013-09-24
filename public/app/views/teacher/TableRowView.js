@@ -22,9 +22,21 @@ define([
         },
 
         addStudentToGroup: function(){
+          var me = this;
           attrs = {'group_pending': false};
           this.model.set(attrs);
-          this.model.save(attrs, {patch: true});
+          // Save only attrs,
+          // when succes - render row again
+          this.model.save(
+            attrs,
+            {
+              patch: true,
+              wait: true,
+              success: function(model, response){
+                me.render(me.counter);
+              }
+            }
+          );
         },
 
         initialize:function(){
@@ -36,10 +48,11 @@ define([
         },
 
         render:function(counter){
-            // counter - use for mark each element in a table
-            this.model.set('counter', counter);
-            this.$el.html(this.template(this.model.toJSON()));
-            return this;
+          // counter - use for mark each element in a table
+          this.model.set('counter', counter);
+          this.counter = counter;
+          this.$el.html(this.template(this.model.toJSON()));
+          return this;
         }
 
     });
