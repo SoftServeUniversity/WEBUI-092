@@ -8,10 +8,11 @@ define([
   {
     var StudentsProxyCollectionForTeacherPage = Backbone.Collection.extend({
       model: StudentProxyModelForTeacherGroupPage,
-      url: "app/collections/teachers/studentsOfTeacherGroup.json",
-      //url: /students/,
+      url: '/students/',
       comparator: function(item) {
-        return [item.get('group_pending'), item.get('student_full_name')];
+        // set sort by first - group_pending? second - name
+        // ! - for display first students, who must be pending
+        return [!item.get('group_pending'), item.get('name')];
       }
     });
 

@@ -9,7 +9,7 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
   end
-  
+
   def update
     authorize! :update, @user, :message => 'Not authorized as an administrator.'
     @user = User.find(params[:id])
@@ -19,7 +19,7 @@ class UsersController < ApplicationController
       redirect_to users_path, :alert => "Unable to update user."
     end
   end
-    
+
   def destroy
     authorize! :destroy, @user, :message => 'Not authorized as an administrator.'
     user = User.find(params[:id])
@@ -31,7 +31,7 @@ class UsersController < ApplicationController
     end
   end
 
-  def get_faculty_admins 
+  def get_faculty_admins
     @faculty_admins = User.all.select{ |u| u.role_ids.include? 2 }
     respond_to do |format|
       format.html # index.html.erb

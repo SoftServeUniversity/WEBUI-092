@@ -2,93 +2,77 @@ define([
     'jquery',
     'underscore',
     'backbone',
-    'collections/departments/DepartmentsCollection',
-    'collections/courses/CoursesCollection',
     'views/teacher/TableView',
     'views/teacher/TeacherAddWorkDialogView',
     'text!templates/teacher/mainTeacherTemplate.html',
-    'collections/faculties/FacultiesCollection',
-    'collections/faculties/FacultyChangeCollection',
     'models/teacher/TeacherModel',
     'collections/students/StudentsProxyCollectionForTeacherPage',
-    'collections/teachers/TeachersCollection',
+    'collections/groups/GroupsCollection'
 ], function($, _, Backbone,
-            DepartmentsCollection,
-            CoursesCollection,
             TableView,
             TeacherAddWorkDialogView,
             mainTeacherTemplate,
-            FacultiesCollection,
-            FacultyChangeCollection,
             TeacherModel,
             StudentsProxyCollectionForTeacherPage,
-            TeachersCollection){
+            GroupsCollection){
 
     var TeacherView = Backbone.View.extend({
         initialize:function(id){
-            var that = this;
+            var me = this;
+
+            this.id = id;
 
             this.teacherModel = new TeacherModel();
             this.teacherModel.fetch({
+              async: false,
               data: {
                 filter: {
-                  id: id
+                  id: this.id
                 }
               },
               success: function() {
-                that.trigger('DataLoaded', 'Teacher');
+                //me.trigger('DataLoaded', 'Teacher');
+              }
+            });
+
+            this.groupsCollection = new GroupsCollection();
+            this.groupsCollection.fetch({
+              async: false,
+              data: {
+                filter: {
+                  teacher_id: this.id
+                }
+              },
+              success: function() {
               }
             });
 
             this.studentsColOfTeachGroup = new StudentsProxyCollectionForTeacherPage();
             this.studentsColOfTeachGroup.fetch({
+              async: false,
               data: {
                 filter: {
-                  teacher_id: id
+                  group_id: this.groupsCollection.toJSON()[0].teacher_id
                 }
               },
               success: function() {
-                that.trigger('DataLoaded', 'StudentsOfTeacherGroup');
               }
             });
 
-            this.faculty_change_col = new FacultyChangeCollection();
-            this.faculty_change_col.fetch({
-              success:function () {
-                  that.trigger('DataLoaded', 'FacultyChange');
-              }
-            });
+            this.render();
 
-            var isTeachLoaded = false;
-            var isStudentsOfTeacherGroupLoaded = false;
-            var isFacChangeLoaded = false;
-
-            this.on('DataLoaded', function (item) {
-                if (item == 'Teacher') {
-                    isTeachLoaded = true;
-                }
-
-                if (item == 'StudentsOfTeacherGroup'){
-                    isStudentsOfTeacherGroupLoaded = true;
-                }
-
-                if (item == 'FacultyChange'){
-                    isFacChangeLoaded = true;
-                }
-
-                if ((isTeachLoaded &&
-                     isFacChangeLoaded &&
-                     isStudentsOfTeacherGroupLoaded) == true){
-                  that.render(id);
-                }
-            });
+            this.on('destroy', function(){
+            me.off();
+            me.remove();
+          });
         },
 
-        render:function(id){
+        render:function(){
           var teacher = this.teacherModel.toJSON()[0];
 
           var dataForMainTeacherTemplate = {
             teacher: teacher,
+            // Mark active link in teacher menu
             activeLink: "teacherGroupPage"
           }
           var compiledTemplate = _.template(mainTeacherTemplate, dataForMainTeacherTemplate);
@@ -97,10 +81,12 @@ define([
           var tableStudInGroupView = new TableView({collection: this.studentsColOfTeachGroup});
           $("#teacherPageContent").html(tableStudInGroupView.el);
 
-          var teacherAddWorkDialogView = new TeacherAddWorkDialogView();
+          var teacherAddWorkDialogView = new TeacherAddWorkDialogView(this.id);
+          $("#teacherAddWorkDialogContent").html(teacherAddWorkDialogView.$el);
 
           return this;
         }
     });
+
     return TeacherView;
 });

@@ -1,7 +1,7 @@
-<td><%= counter %>.&nbsp;<%= student_full_name %></td>
+<td><%= counter %>.&nbsp;<%= name %></td>
 <td><%= email %></td>
 <td>
-  <% if (group_pending === 0) %>
+  <% if (group_pending != 0) %>
     <input type="button" value="Підтвердити" class="btn btn-success">
   <% else { %>
     <div>Підтверджений</div>
