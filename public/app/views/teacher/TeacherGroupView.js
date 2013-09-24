@@ -52,7 +52,7 @@ define([
               async: false,
               data: {
                 filter: {
-                  group_id: this.groupsCollection.toJSON()[0].teacher_id
+                  group_id: this.groupsCollection.toJSON()[0].id
                 }
               },
               success: function() {
@@ -69,6 +69,8 @@ define([
 
         render:function(){
           var teacher = this.teacherModel.toJSON()[0];
+
+          console.log(this.studentsColOfTeachGroup);
 
           var dataForMainTeacherTemplate = {
             teacher: teacher,

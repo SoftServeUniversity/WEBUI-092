@@ -1,7 +1,8 @@
 <h3 id="work_name"><%= work.get("name") %></h3>
 <button class="btn btn-info editable" id="edit_name" style="display: none;">Змінити назву роботи</button>
-<h4><%= work.get("student").last_name %> <%= work.get("student").name %> <%= work.get("student").middle_name %>, <%= work.get("teacher").last_name %> <%= work.get("teacher").name %> <%= work.get("teacher").middle_name %> <sup>1</sup></h4>
-<h5><sup>1</sup> <%= work.get("teacher").degree %> <%= work.get("teacher").title %></h5>
+<h4><%= work.get("student").last_name %> <%= work.get("student").name %> <%= work.get("student").middle_name %></h4>
+<h4><%= work.get("teacher").last_name %> <%= work.get("teacher").name %> <%= work.get("teacher").middle_name %></h4>
+<h5><%= work.get("teacher").degree %> <%= work.get("teacher").title %></h5>
 
 <div id="controls" class="container work-buttons">
   <a href="#myModal" class="btn btn-info btn-small span1 pull-right" data-toggle="modal">Історія</a>

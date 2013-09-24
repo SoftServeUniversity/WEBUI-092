@@ -225,10 +225,10 @@ define([
             // Inspect Student select
             $("#ChainOfChoice4").val().length > 0)
         {
-          //
+          // Cancel event e
           e.preventDefault();
 
-          //
+          // If validation is not confirm - set attribute "aria-invalid = true"
           if ($("#inputWorkName[aria-invalid = true]").is('textarea') == false &&
               $("#ChainOfChoice1[aria-invalid = true]").is('select') == false &&
               $("#ChainOfChoice2[aria-invalid = true]").is('select') == false &&
@@ -237,7 +237,7 @@ define([
           {
             // Create WorkModel and save it for add into database
             this.workModel = new WorkModel();
-            this.workModel.set('name', $("#inputWorkName").val());
+            //this.workModel.set('name', $("#inputWorkName").val());
             this.workModel.set('student_id', $("#ChainOfChoice4").find(":selected").val());
             this.workModel.set('teacher_id', this.currentTeacherId);
             this.workModel.save(
