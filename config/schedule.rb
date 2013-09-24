@@ -21,7 +21,10 @@
 
 
 #every 10.days do
-  
+
+every 1.day do
+  runner "BackupController.regular_backup"
+end
 
 every 10.days do
   command "rails c"

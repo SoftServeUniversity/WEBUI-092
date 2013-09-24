@@ -5,7 +5,6 @@ Webui92::Application.routes.draw do
   resources :students
 
   get "backup/full_backup"
-  get "backup/restore_from_backup"
 
 
   resources :progress_changes
@@ -15,7 +14,7 @@ Webui92::Application.routes.draw do
   resources :tasks
   resources :task_progresses
   resources :task_changes
-  
+
 
 
   resources :works
@@ -33,7 +32,7 @@ Webui92::Application.routes.draw do
 
 
   resources :faculties
-  
+
   resources :info
 
 
@@ -44,10 +43,10 @@ Webui92::Application.routes.draw do
 
   root :to => "home#index"
 
-  
+
   devise_for :users, controllers: { sessions: 'user_sessions/sessions', registrations: 'user_registrations/registrations' }
 
-  
+
   post 'user_helper/receive_current_user'
   post 'user_helper/role_pending'
   post 'user_helper/return_current_role'

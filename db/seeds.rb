@@ -28,7 +28,7 @@ if !(User.all.empty?)
   name = 'NameABC'
   last_name = "LastNameABC"
   middle_name = "MiddleNameABC"
-  420.times do |time| 
+  420.times do |time|
     usr = User.create! name: (name + time.to_s), middle_name: (middle_name + time.to_s), last_name: (last_name + time.to_s), email: (name.next! + "@example.com"), password: (name + last_name + middle_name + '0'), password_confirmation: (name + last_name + middle_name + '0')
     puts 'Created'<< usr.name
   end
@@ -38,7 +38,7 @@ end
 #Users table
 #if User.all.empty?
 #  s = 'User_ABC'
-#  9.times do |time| 
+#  9.times do |time|
 #    fc = User.create! name: (s.next! + time.to_s)
 #    puts 'created '<< fc.name
 #  end
@@ -47,7 +47,7 @@ end
 #Faculty Table
 if Faculty.all.empty?
   s = 'Faculty of Appl. Math and Informatics'
-  1.times do |time| 
+  1.times do |time|
     fc = Faculty.create! name: (s.next! + time.to_s), user_id: User.first.id
     puts 'created '<< fc.name
   end
@@ -56,7 +56,7 @@ end
 #Department Table
 if Department.all.empty?
   s = 'Department of ScienceABC'
-  4.times do |time| 
+  4.times do |time|
     dp = Department.create! name: (s.next! + time.to_s), faculty_id: Faculty.first.id, user_id: time+1
     puts 'created '<< dp.name
   end
@@ -65,7 +65,7 @@ end
 #Course Table
 if Course.all.empty?
   s = 'Course '
-  5.times do |time| 
+  5.times do |time|
     d = Course.create! name: (s.next! + time.to_s), year_of_start: "2012-02-01", faculty_id: Faculty.first.id
     puts 'created '<< d.name
   end
@@ -73,19 +73,19 @@ end
 
 #Teachers Table
 if Teacher.all.empty?
- 5.times do |time| 
+ 5.times do |time|
    tchr = Teacher.create! user_id: time+1, degree: 'PhD', title: 'Proffesor', department_id: 1
    puts 'created teacher'
  end
- 5.times do |time| 
+ 5.times do |time|
    tchr = Teacher.create! user_id: time+6, degree: 'PhD', title: 'Proffesor', department_id: 2
    puts 'created teacher'
  end
- 5.times do |time| 
+ 5.times do |time|
    tchr = Teacher.create! user_id: time+11, degree: 'PhD', title: 'Proffesor', department_id: 3
    puts 'created teacher'
  end
- 5.times do |time| 
+ 5.times do |time|
    tchr = Teacher.create! user_id: time+16, degree: 'PhD', title: 'Proffesor', department_id: 4
    puts 'created teacher'
  end
@@ -96,19 +96,19 @@ end
 #Group Table
 if Group.all.empty?
   s = 'Group PMI-'
-  5.times do |time| 
+  5.times do |time|
     d = Group.create! name: (s.next! + time.to_s), course_id: time+1, department_id: 1, teacher_id: time+1
   end
   s = 'Group PMI-'
-  5.times do |time| 
+  5.times do |time|
     d = Group.create! name: (s.next! + time.to_s), course_id: time+1, department_id: 2, teacher_id: time+6
   end
   s = 'Group PMI-'
-  5.times do |time| 
+  5.times do |time|
     d = Group.create! name: (s.next! + time.to_s), course_id: time+1, department_id: 3, teacher_id: time+11
   end
   s = 'Group PMI-'
-  5.times do |time| 
+  5.times do |time|
     d = Group.create! name: (s.next! + time.to_s), course_id: time+1, department_id: 4, teacher_id: time+16
   end
 end
@@ -117,8 +117,8 @@ end
 #Student Table
 if Student.all.empty?
  s = 'Student_ABC'
- 400.times do |time| 
-   st = Student.create! user_id: (time + 1 + 20), group_id: (rand(20)+1) 
+ 400.times do |time|
+   st = Student.create! user_id: (time + 1 + 20), group_id: (rand(20)+1)
    puts 'created Student'
  end
 end
@@ -129,7 +129,7 @@ end
 #Works Table
 if Work.all.empty?
   s = 'Work Number '
-  4000.times do |time| 
+  40.times do |time|
     d = Work.create! name: (s + time.to_s), student_id: (rand(399)+1), teacher_id: (rand(20)+1)
     puts 'created '<< d.name
   end
@@ -138,30 +138,30 @@ end
 #Task Table
 if Task.all.empty?
   s = 'Task_ABC'
-  8000.times do |time| 
+  100.times do |time|
     d = Task.create! name: (s.next! + time.to_s), priority: 0, work_id: Work.all[rand(4000)].id
     puts 'created '<< d.name
   end
 end
 
 # #Populate Progress Groups
-#   10.times do |time| 
+#   10.times do |time|
 #     d = ProgressChange.create! progressable_id: time+1, progressable_type: "Group", progress: rand(79)
 #   end
 # #Populate Progress Course
-#   10.times do |time| 
+#   10.times do |time|
 #     d = ProgressChange.create! progressable_id: time+1, progressable_type: "Course", progress: rand(69)
 #   end
 # #Populate Progress Department
-#   10.times do |time| 
+#   10.times do |time|
 #     d = ProgressChange.create! progressable_id: time+1, progressable_type: "Department", progress: rand(79)
 #   end
 # #Populate Progress Faculty
-#   10.times do |time| 
+#   10.times do |time|
 #     d = ProgressChange.create! progressable_id: time+1, progressable_type: "Faculty", progress: rand(59)
 #   end
 # #Populate Progress Works
-#  10.times do |time| 
+#  10.times do |time|
 #     d = ProgressChange.create! progressable_id: time+1, progressable_type: "Work", progress: rand(89)
 #   end
 #Populate Progress

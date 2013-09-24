@@ -1,36 +1,14 @@
 <div class="tabbable tabs-left">
-    <ul class="nav nav-tabs">
-        <li>
-            <a href="#loadDump" data-toggle="tab">Load dump</a>
-        </li>
-        <li class="active">
-            <a href="#backUp" data-toggle="tab">BackUp</a>
-        </li>
-    </ul>
+
     <div class="tab-content">
-        <div class="tab-pane" id="loadDump">
-            <div class="DBTab">
-                <form action="" method="post" enctype="multipart/form-data" name="form1" onsubmit="return false;">
-                    <a class="btn" id="loadFile">
-                        <div>Choose file</div>
-                        <input  type="file" size="1" style="" name="file" id="file">
-                    </a>
-                    <div id="name"></div>
-                    <div>
-                        <input id="loadData" class="btn" type="submit" value="Load dump"/>
-                    </div>
-                </form>
-            </div>
-            <div id="imgLoader">
-                <img src="i/ajax-loader.gif">
-            </div>
-        </div>
         <div class="tab-pane active" id="backUp">
             <div class="DBTab">
                 <h4>Full backup</h4>
                 <p>
-                  Виконує повний бекап бази даних та надсилає його Вам.<br>Увага! Може спричиняти затримки у роботі системи
+                  Виконує повний бекап бази даних та надсилає його Вам.<br><strong>Увага!<strong> Може спричиняти затримки у роботі системи</strong>
                 </p>
+
+
                 <a href="/backup/full_backup"><input type="button" id="newBackup" class='btn' value="Create and Download Full Backup"></a>
             </div>
         </div>
