@@ -7,7 +7,6 @@ define([
   var StudentProxyModelForTeacherGroupPage = Backbone.Model.extend({
     urlRoot: "/students/",
     initialize : function (attributes) {
-      console.log(attributes);
       this.set('id', attributes.id);
       //Warning! Set full student name as 'name' - for add work dialog
       this.set('name',

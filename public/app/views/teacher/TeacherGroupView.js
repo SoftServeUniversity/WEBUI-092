@@ -6,61 +6,60 @@ define([
     'views/teacher/TeacherAddWorkDialogView',
     'text!templates/teacher/mainTeacherTemplate.html',
     'models/teacher/TeacherModel',
-    'collections/students/StudentsProxyCollectionForTeacherPage'
+    'collections/students/StudentsProxyCollectionForTeacherPage',
+    'collections/groups/GroupsCollection'
 ], function($, _, Backbone,
             TableView,
             TeacherAddWorkDialogView,
             mainTeacherTemplate,
             TeacherModel,
-            StudentsProxyCollectionForTeacherPage){
+            StudentsProxyCollectionForTeacherPage,
+            GroupsCollection){
 
     var TeacherView = Backbone.View.extend({
         initialize:function(id){
-            var that = this;
+            var me = this;
 
             this.id = id;
 
             this.teacherModel = new TeacherModel();
             this.teacherModel.fetch({
+              async: false,
               data: {
                 filter: {
                   id: this.id
                 }
               },
               success: function() {
-                that.trigger('DataLoaded', 'Teacher');
+                //me.trigger('DataLoaded', 'Teacher');
+              }
+            });
+
+            this.groupsCollection = new GroupsCollection();
+            this.groupsCollection.fetch({
+              async: false,
+              data: {
+                filter: {
+                  teacher_id: this.id
+                }
+              },
+              success: function() {
               }
             });
 
             this.studentsColOfTeachGroup = new StudentsProxyCollectionForTeacherPage();
             this.studentsColOfTeachGroup.fetch({
+              async: false,
               data: {
                 filter: {
-                  student: {teacher_id: this.id}
+                  group_id: this.groupsCollection.toJSON()[0].teacher_id
                 }
               },
               success: function() {
-                that.trigger('DataLoaded', 'StudentsOfTeacherGroup');
               }
             });
 
-            var isTeachLoaded = false;
-            var isStudentsOfTeacherGroupLoaded = false;
-
-            this.on('DataLoaded', function (item) {
-                if (item == 'Teacher') {
-                    isTeachLoaded = true;
-                }
-
-                if (item == 'StudentsOfTeacherGroup'){
-                    isStudentsOfTeacherGroupLoaded = true;
-                }
-
-                if ((isTeachLoaded &&
-                     isStudentsOfTeacherGroupLoaded) == true){
-                  that.render();
-                }
-            });
+            this.render();
 
             this.on('destroy', function(){
             me.off();
@@ -70,8 +69,6 @@ define([
 
         render:function(){
           var teacher = this.teacherModel.toJSON()[0];
-
-          console.log(this.studentsColOfTeachGroup);
 
           var dataForMainTeacherTemplate = {
             teacher: teacher,

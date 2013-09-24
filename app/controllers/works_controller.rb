@@ -14,7 +14,7 @@ class WorksController < ApplicationController
       format.html # show.html.erb
       format.json { render json: @works.to_json(:include => {
         :student => {only: [ :last_name, :name, :middle_name ]},
-        :teacher => {}
+        :teacher => {only: [ :id ]}
       })}
     end
   end
