@@ -180,6 +180,8 @@ define([
     edit: function(){
       $(this.el).html(_.template(EditRegistrationsTemplate, GlobalUser.currentUser.attributes));
       this.swapFields( GlobalUser.currentUser.role );
+      $("input[type=text], textarea, input[type=password]").jqBootstrapValidation();
+
     },
 
     cancel: function(){
