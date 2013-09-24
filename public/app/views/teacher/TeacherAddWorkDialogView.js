@@ -207,6 +207,8 @@ define([
 
         // Add handler for events, when change choice of selects
         this.ObserveChain(this.chainOfResp);
+        // Add Bootstrap Validation to textarea box of work name
+        $("input[type=text], textarea").jqBootstrapValidation();
 
         return this;
       },
@@ -237,7 +239,7 @@ define([
           {
             // Create WorkModel and save it for add into database
             this.workModel = new WorkModel();
-            //this.workModel.set('name', $("#inputWorkName").val());
+            this.workModel.set('name', $("#inputWorkName").val());
             this.workModel.set('student_id', $("#ChainOfChoice4").find(":selected").val());
             this.workModel.set('teacher_id', this.currentTeacherId);
             this.workModel.save(
@@ -273,7 +275,7 @@ define([
                 },
                 // add hendler error
                 error: function(model, response) {
-                  alert(response);
+                  console.log(response);
               }
             });
 
