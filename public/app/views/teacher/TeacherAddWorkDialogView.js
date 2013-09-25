@@ -101,10 +101,11 @@ define([
         };
       },
 
-      initialize:function(id){
+      initialize:function(id, worksCollection){
         var me = this;
 
         this.currentTeacherId = id;
+        this.currenrWorksCollection = worksCollection;
         // Id of div of modal window for add works
         this.el_modal = '#dialogAddStudentWork';
         // Id form in modal window for add works
@@ -237,7 +238,8 @@ define([
               $("#ChainOfChoice3[aria-invalid = true]").is('select') == false &&
               $("#ChainOfChoice4[aria-invalid = true]").is('select') == false)
           {
-            // Create WorkModel and save it for add into database
+            // Create object of WorkModel
+            // and save it for add into database
             this.workModel = new WorkModel();
             this.workModel.set('name', $("#inputWorkName").val());
             this.workModel.set('student_id', $("#ChainOfChoice4").find(":selected").val());
@@ -272,10 +274,16 @@ define([
                     me.hideModalWindow();
                   }
 
+// DELETE !!!!!!!!!!!!!!!! //
+                  console.log(me.workModel);
+                  console.log(model);
+
+                  // Add new WorkModel to WorksCollection
+                  me.currenrWorksCollection.create(me.workModel);
                 },
                 // add hendler error
                 error: function(model, response) {
-                  console.log(response);
+                  //console.log(response);
               }
             });
 

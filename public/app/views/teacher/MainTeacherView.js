@@ -8,7 +8,7 @@ define([
     'text!templates/teacher/teacherWorksTemplate.html',
     'collections/teachers/TeacherChangeCollection',
     'models/teacher/TeacherModel',
-    'collections/work/WorksCollectionOfTeacher'
+    'collections/work/WorkCollection'
 ], function($, _, Backbone,
             ChartView,
             TeacherAddWorkDialogView,
@@ -16,12 +16,12 @@ define([
             teacherWorksTemplate,
             TeacherChangeCollection,
             TeacherModel,
-            WorksCollectionOfTeacher){
+            WorkCollection){
 
     var TeacherView = Backbone.View.extend({
 
         initialize: function(id){
-          var that = this;
+          var me = this;
           this.id = id;
 
           this.teacherModel = new TeacherModel();
@@ -32,11 +32,11 @@ define([
               }
             },
             success: function() {
-              that.trigger('DataLoaded', 'Teacher');
+              me.trigger('DataLoaded', 'Teacher');
             }
           });
 
-          this.worksCollection = new WorksCollectionOfTeacher();
+          this.worksCollection = new WorkCollection();
           this.worksCollection.fetch({
             data: {
               filter: {
@@ -44,7 +44,7 @@ define([
               }
             },
             success: function() {
-              that.trigger('DataLoaded', 'Works');
+              me.trigger('DataLoaded', 'Works');
             }
           });
 
@@ -57,7 +57,7 @@ define([
               }
             },
             success:function () {
-              that.trigger('DataLoaded', 'TeacherChange');
+              me.trigger('DataLoaded', 'TeacherChange');
             }
           });
 
@@ -79,7 +79,7 @@ define([
             }
 
             if ((isTeachLoaded && isTeachChangeLoaded && isWorksLoaded) == true){
-              that.render();
+              me.render();
             }
           });
 
@@ -87,17 +87,33 @@ define([
             me.off();
             me.remove();
           });
+
+          this.worksCollection.on('add', function(){
+            // Fill collection again from database
+            me.worksCollection.fetch({
+              async: false,
+              data: {
+                filter: {
+                  teacher_id: this.id
+                }
+              },
+              success: function() {
+                // if success - re-render this view
+                me.render();
+              }
+            });
+          }, me);
+
         },
 
         render: function(){
           var teacher = this.teacherModel.toJSON()[0];
 
           var worksJSON = this.worksCollection.toJSON();
-          //console.log(worksJSON);
 
           var works = {};
           for (var i = 0; i < worksJSON.length; i++) {
-            var course_name = worksJSON[i].course_name;
+            var course_name = worksJSON[i].student.course_name;
             if (!(course_name in works)){
               works[course_name] = [];
             }
@@ -118,7 +134,7 @@ define([
           var teacherWorksCompiledTemplate = _.template(teacherWorksTemplate, dataForTeacherWorksTemplate);
           $("#teacherPageContent").html(teacherWorksCompiledTemplate);
 
-          var teacherAddWorkDialogView = new TeacherAddWorkDialogView(this.id);
+          var teacherAddWorkDialogView = new TeacherAddWorkDialogView(this.id, this.worksCollection);
           $("#teacherAddWorkDialogContent").html(teacherAddWorkDialogView.$el);
 
           var chartView = new ChartView({
