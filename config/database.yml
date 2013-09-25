@@ -2,10 +2,8 @@ development:
   adapter: mysql2
   encoding: utf8
   database: webui_dev
-  #username:
-  #password:
   username: root
-  password: 
+  password: root
 
 
 production:
@@ -13,4 +11,4 @@ production:
   encoding: utf8
   database: webui_production
   username: root
-  password: 
+  password: bmwthebest

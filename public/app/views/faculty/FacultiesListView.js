@@ -45,7 +45,7 @@ define([
       if (facultiesLoaded && facultiesChangesLoaded) {
       	this.render();
       }
-    })
+    })  
   },
 
   render: function(){

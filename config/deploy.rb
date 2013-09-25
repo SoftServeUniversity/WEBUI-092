@@ -78,6 +78,13 @@ namespace :deploy do
     run "cd #{current_path}; RAILS_ENV=#{rails_env} bundle exec rake db:seed"
   end
 
+  #start delayed_job service
+  #cap deploy:delayed_job
+  desc "Seed the database on already deployed code"
+  task :delayed_job, :only => {:primary => true}, :except => { :no_release => true } do
+    run "cd #{current_path}; RAILS_ENV=#{rails_env} bundle exec rake jobs:work"
+  end
+
   desc "Create production db"
   task :create, :only => {:primary => true}, :except => { :no_release => true } do
     run "cd #{current_path}; RAILS_ENV=#{rails_env} bundle exec rake db:create"

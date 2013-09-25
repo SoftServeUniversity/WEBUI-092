@@ -64,8 +64,6 @@ define([
     manage_admins: function(){
       this.activeMenuId = 'admins-tab';
       this.tabView = new TabAdminsView();
-      
-      this.childViews[this.tabView.cid] = this.tabView;
     },  
     
     manage_database: function(){
@@ -73,8 +71,6 @@ define([
       var tabDbView = new TabDbView();
       $(this.el_tab_content).html(tabDbView.$el.html());
       this.hideAdminButtons();
-
-      this.childViews[tabDbView.cid] = tabDbView;
     },
     
     manage_info: function(){
@@ -103,7 +99,6 @@ define([
 
     this.hideAdminButtons();
 
-    this.childViews[tabInfoView.cid] = tabInfoView;
     },
     
     manage_faculties: function(){   
@@ -111,8 +106,6 @@ define([
       this.activeMenuId = 'faculties-tab';
 
       this.tabView = new TabFacultiesView();
-
-      this.childViews[this.tabView.cid] = this.tabView;
 
     },
 

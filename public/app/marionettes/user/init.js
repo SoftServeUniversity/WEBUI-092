@@ -103,9 +103,8 @@ define([
   }
 
   GlobalUser.adminRoleCheck = function(){
-
     var adminCheck = this.checkRole('admin');
-    if (adminCheck.status && adminCheck.verified){
+    if (adminCheck.status){
       this.showAdminButton('admin', '#/admin', 'Сторінка адміністратора')
     }
     var faCheck = this.checkRole('faculty_admin')
