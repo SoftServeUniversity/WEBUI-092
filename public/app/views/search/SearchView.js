@@ -27,7 +27,7 @@ define([
 
       var studCollection = new StudentsCollection();
       var teachCollection = new TeachersCollection();
-      
+
       var f_id = "";
       var c_id = "";
       var parsed = [];
@@ -95,7 +95,6 @@ define([
       });
 
       $(window).on('hashchange', function() {
-        $('#select-box').hide();
           $('#search-field').val("");
       });
 
