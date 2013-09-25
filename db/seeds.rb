@@ -23,6 +23,7 @@ user.add_role :admin
 # puts 'usr: ' << usr.name
 # usr.add_role :teacher
 
+
 #Create Users
 if !(User.all.empty?)
   name = 'NameABC'
@@ -168,4 +169,7 @@ end
 p = ProgressChange.new
 p.save
 p.aggregate
+
+#!!!! >>>>>  please comment this out after delayed_job starts
+ThesisChange.delete_all
 
