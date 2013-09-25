@@ -149,6 +149,7 @@ define([
         GlobalUser.hideAdminButton();
         GlobalUser.currentUser = null;
         $('#launch-btn').show();
+        window.location.hash = '/'
       });
       GlobalUser.vent.on("authentication:logged_in", function(){
         window.location.hash = '/'
