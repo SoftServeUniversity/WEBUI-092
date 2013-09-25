@@ -13,7 +13,7 @@ define([
   'views/admin/tabTeachersView'
 
 ], function ($, _,  Backbone, FacultiesCollection,
-            ParentAdminView, TabAdminsView, TabCoursesView,
+             ParentAdminView, TabAdminsView, TabCoursesView,
              TabGroupsView, TabDepartmentsView, TabTeachersView) {
   
 var AdminFacultyView = ParentAdminView.extend({  
@@ -65,43 +65,31 @@ var AdminFacultyView = ParentAdminView.extend({
     this.activeMenuId = 'admins-tab';
     this.tabView = new TabAdminsView();
     this.showAdminButtons();
-
-    this.childViews.push(this.tabView);
   },
   manage_roles: function(){
     this.activeMenuId = 'roles-tab';
     this.tabView = new TabRolesView();
     this.showAdminButtons();
-
-    this.childViews.push(this.tabView);    
   },
   manage_courses: function(){
     this.activeMenuId = 'courses-tab';
     this.tabView = new TabCoursesView();
     this.showAdminButtons();
-
-    this.childViews.push(this.tabView);    
   },
   manage_groups: function(){
     this.activeMenuId = 'groups-tab';
     this.tabView = new TabGroupsView();
     this.showAdminButtons();
-
-    this.childViews.push(this.tabView);    
   },
   manage_departments: function(){
     this.activeMenuId = 'departments-tab';
     this.tabView = new TabDepartmentsView();
     this.showAdminButtons();
-
-    this.childViews.push(this.tabView);    
   },
   manage_teachers: function(){
     this.activeMenuId = 'teachers-tab';
     this.tabView = new TabTeachersView();
     this.showAdminButtons();
-
-    this.childViews.push(this.tabView);    
   }
 
 

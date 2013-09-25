@@ -150,10 +150,12 @@ define([
         GlobalUser.currentUser = null;
         $('#launch-btn').show();
       });
+      GlobalUser.vent.on("authentication:logged_in", function(){
+        window.location.hash = '/'
+      })
       GlobalUser.vent.on("role_loaded", function(){
         GlobalUser.adminRoleCheck();
       });
-
 
 
       app_router = new AppRouter;
@@ -185,7 +187,7 @@ define([
 
         var checkInfo = GlobalUser.checkRole('admin');
 
-        if(checkInfo.status == true && checkInfo.verified){
+        if(checkInfo.status == true){
           var adminView = new AdminView();
           var breadcrumbsView = new BreadcrumbsView();
         } else {
