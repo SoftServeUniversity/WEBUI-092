@@ -10,11 +10,12 @@ define([
    
   var TabChildCoursesView = ParentTabView.extend({
 
+    //is used to load collections asynchrounously
     collections_classes: {
       courses: CoursesCollection
     },
     
-    //runs when all collections have loaded
+    //runs when all collections have been loaded
     setConfig: function(){
       var me = this; 
       

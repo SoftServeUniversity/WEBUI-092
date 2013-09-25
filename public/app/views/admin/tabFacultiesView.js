@@ -11,14 +11,14 @@ define([
             FacultiesCollection, TeachersProxyCollection){   
    
   var TabFacultiesView = ParentTabView.extend({
-
+    
+    //is used to load collections asynchrounously
     collections_classes: {
       faculties   : FacultiesCollection,
       teachers    : TeachersProxyCollection
     },
-
-    childViews: [],
-
+    
+    //runs when all collections have been loaded
     setConfig: function(){
       var me = this;
 

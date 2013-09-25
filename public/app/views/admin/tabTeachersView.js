@@ -7,23 +7,22 @@ define([
   'collections/teachers/TeachersCollection',
   'collections/departments/DepartmentsCollection'
 
-
-
 ], function($, _, Backbone, ParentTabView, TeacherModel,
             TeachersCollection, DepartmentsCollection){   
    
   var TabTeachersView = ParentTabView.extend({
-
+    
+    //is used to load collections asynchrounously
     collections_classes: {
       teachers     : TeachersCollection,
       departments  : DepartmentsCollection
     },
-
+    
+    //runs when all collections have been loaded
     setConfig: function(){
 
       var me = this;
       
-
       var config = {
       	
         model     : TeacherModel,
