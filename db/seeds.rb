@@ -170,6 +170,7 @@ p = ProgressChange.new
 p.save
 p.aggregate
 
+
 #!!!! >>>>>  please comment this out after delayed_job starts
 ThesisChange.delete_all
 

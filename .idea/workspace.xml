@@ -5,7 +5,6 @@
       <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/Project_backbone_ruby.iml" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/dictionaries/alena.xml" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db/seeds.rb" afterPath="$PROJECT_DIR$/db/seeds.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="WEBUI-092.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -105,7 +104,7 @@
       <file leaf-file-name="seeds.rb" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/db/seeds.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="173" column="23" selection-start="5791" selection-end="5791" vertical-scroll-proportion="0.8587571">
+            <state line="174" column="4" selection-start="5773" selection-end="5773" vertical-scroll-proportion="0.8870056">
               <folding />
             </state>
           </provider>
@@ -789,7 +788,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/db/seeds.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="173" column="23" selection-start="5791" selection-end="5791" vertical-scroll-proportion="0.8587571">
+        <state line="174" column="4" selection-start="5773" selection-end="5773" vertical-scroll-proportion="0.8870056">
           <folding />
         </state>
       </provider>
