@@ -5,7 +5,7 @@ development:
   #username:
   #password:
   username: root
-  password: bmwthebest
+  password: 
 
 
 production:
@@ -13,4 +13,4 @@ production:
   encoding: utf8
   database: webui_production
   username: root
-  password: bmwthebest
+  password: 
