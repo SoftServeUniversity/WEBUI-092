@@ -52,7 +52,7 @@ define([
               async: false,
               data: {
                 filter: {
-                  group_id: this.groupsCollection.toJSON()[0].teacher_id
+                  group_id: this.groupsCollection.toJSON()[0].id
                 }
               },
               success: function() {

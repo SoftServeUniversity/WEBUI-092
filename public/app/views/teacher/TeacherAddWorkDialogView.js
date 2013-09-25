@@ -207,6 +207,8 @@ define([
 
         // Add handler for events, when change choice of selects
         this.ObserveChain(this.chainOfResp);
+        // Add Bootstrap Validation to textarea box of work name
+        $("input[type=text], textarea").jqBootstrapValidation();
 
         return this;
       },
@@ -225,10 +227,10 @@ define([
             // Inspect Student select
             $("#ChainOfChoice4").val().length > 0)
         {
-          //
+          // Cancel event e
           e.preventDefault();
 
-          //
+          // If validation is not confirm - set attribute "aria-invalid = true"
           if ($("#inputWorkName[aria-invalid = true]").is('textarea') == false &&
               $("#ChainOfChoice1[aria-invalid = true]").is('select') == false &&
               $("#ChainOfChoice2[aria-invalid = true]").is('select') == false &&
@@ -273,7 +275,7 @@ define([
                 },
                 // add hendler error
                 error: function(model, response) {
-                  alert(response);
+                  console.log(response);
               }
             });
 
