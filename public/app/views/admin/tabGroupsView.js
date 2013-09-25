@@ -14,6 +14,7 @@ define([
    
   var TabChildGroupsView = ParentTabView.extend({
 
+    //is used to load collections asynchrounously
     collections_classes: {
       groups      : GroupsCollection,
       courses     : CoursesCollection,
@@ -21,7 +22,7 @@ define([
       departments : DepartmentsCollection
     },
 
-
+    //runs when all collections have been loaded
     setConfig: function(){
       
       var me = this;

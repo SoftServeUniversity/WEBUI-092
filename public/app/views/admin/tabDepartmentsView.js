@@ -7,28 +7,28 @@ define([
   'collections/departments/DepartmentsCollection',
   'collections/teachers/teachersProxyCollection',
 
-
 ], function($, _, Backbone, ParentTabView, DepartmentModel, DepartmentsCollection,
              TeachersProxyCollection ){
-   
+  
   var TabDepartmentsView = ParentTabView.extend({
-
+  
+    //is used to load collections asynchrounously
     collections_classes: {
       departments : DepartmentsCollection,
       teachers    : TeachersProxyCollection,
     },
     
-
+    //runs when all collections have been loaded
     setConfig: function(){
       var me = this;
 
       var config = {
       	
-        model     : DepartmentModel,
+        model: DepartmentModel,
         
         collection: me.collections.departments,
         
-        fields    : {
+        fields: {
 
           name: {
             label:'Кафедра',

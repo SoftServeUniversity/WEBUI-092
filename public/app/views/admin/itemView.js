@@ -6,7 +6,6 @@ define([
   'views/shared/RemoveDialogView',
   'views/admin/EmployeeDialogView'
 
-
 ], function ($, _, Backbone, ItemTemplate, RemoveDialogView, EmployeeDialogView) {
   
     var ItemView = Backbone.View.extend({ 
@@ -19,7 +18,6 @@ define([
 
       initialize: function(data){
         var me = this; 
-        
         this.data = data;
 
         if (me.data.newModel == true){
@@ -33,17 +31,17 @@ define([
         } else {
 
           me.data.newModel = "";
-          this.model.on("remove", me.removeView, me)
+          this.model.on("remove", me.removeView, me);
           this.model.on("change", me.updateView, me);
           
           this.model.on("change:role_pending", me.updatePendingTab)
-
 
          }
 
         _.bindAll(this, 'verifyItem');
       
       },
+
       events: {
         'dblclick .toggle-text'      : 'showInput',
         'click .employee-button'     : 'showEmployee',
@@ -69,13 +67,11 @@ define([
       },
 
       showEmployee: function(){
-
          var employeeTabView = new EmployeeDialogView(this.model.get('id'));
          $('#content').append(employeeTabView.$el);
          $('#employee-modal').modal('show');
       
       },
-
 
       removeItem: function(){
         var message = '';
@@ -113,7 +109,6 @@ define([
       },
 
       saveItem: function(e){
-
          var saveData = {};
          $(e.target).closest('tr').find('.tab-input').each(function(i, input){
             saveData [$(input).attr('name')] = $(input).val();
@@ -137,15 +132,11 @@ define([
       },
 
       render: function(){
-        
         var me = this;
         me.data.model = me.model.toJSON();
         var compiledTemplate = me.template(me.data);
-
         me.$el.html(compiledTemplate); 
-        
         return me;
-
       }
 
     });

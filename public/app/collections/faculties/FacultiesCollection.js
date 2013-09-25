@@ -7,7 +7,6 @@ define([
 
   var FacultiesCollection = Backbone.Collection.extend({
     model: FacultyModel,
-    //url: "app/mocks/faculties.json"
     url: "/faculties/"
   });
 

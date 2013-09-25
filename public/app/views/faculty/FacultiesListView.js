@@ -6,6 +6,7 @@ define([
   'collections/faculties/FacultiesCollection',
   'collections/faculties/FacultiesChangeCollection',
   'libs/jquery/equal-height-blocks'
+
 ], function($, _, Backbone, facultiesListTemplate, FacultiesCollection, FacultiesChangeCollection , HeightEqualizer){
 
   var FacultiesListView = Backbone.View.extend({
@@ -44,7 +45,7 @@ define([
       if (facultiesLoaded && facultiesChangesLoaded) {
       	this.render();
       }
-    })
+    })  
   },
 
   render: function(){

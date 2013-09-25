@@ -44,8 +44,6 @@ define([
       $("#content").html(_.template(signUpTemplate));
       $('#launch').slideUp(100);
       $('#launch-btn').show();
-      //$(this.el).find(".roleStudent").hide();
-      //$(this.el).find(".roleTeacher").hide();
       this.populate_roles_select();
       this.generate_capcha();
       $("input[type=text], textarea, input[type=password]").jqBootstrapValidation();

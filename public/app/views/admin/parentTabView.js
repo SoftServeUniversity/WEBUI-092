@@ -12,23 +12,21 @@ define([
     
     tagName: 'div',
     
-    
     initialize: function(){
     
-      this.childViews = [];  
-
       var me = this;
       var config;
       
       this.loadData();
+
+
+      //do all work when all collections have been loaded
       this.on('dataLoaded', function(){
         
         me.config = me.setConfig();
         me.config = me.augmentConfig();
-
         me.collection = me.config.collection;
         
-
         me.render(me.config)
 
         //all content has loaded, it's time for parent view to render tab
@@ -37,24 +35,25 @@ define([
         GlobalEventBus.on('NewItemAdded', function(model){
           me.renderSingleItem(model);
         })
+
         //display question mark on tab if some model needs verification
         if (me.config.verification){
           me.checkVerification(me.config.verification);
         }
 
         //this method is used only in works view
-        if (me.addCustomEvents) {me.addCustomEvents ()}
+        if (me.addCustomEvents) { me.addCustomEvents() }
+      
       })
-
 
     },
 
     augmentConfig: function(){
 
-        if (!this.config.table_class){
-          this.config.table_class = '';
-        }
-        return this.config;
+      if (!this.config.table_class){
+        this.config.table_class = '';
+      }
+      return this.config;
 
     },
 
@@ -69,7 +68,6 @@ define([
       //render table head
       var tableHeadView = new TableHeadView({ conf: me.config });
       me.$('#tab-head').html(tableHeadView.render().$el); 
-      me.childViews[tableHeadView.cid] = tableHeadView;    
 
       //render rows
       this.collection.each(function(item) {
@@ -84,13 +82,11 @@ define([
       this.config.newModel = false;
       var itemView = new ItemView({ model: item, collection: me.collection, conf: this.config, newModel: false });
 
-      me.childViews[itemView.cid] = itemView;    
       me.$('#tab-body').append(itemView.render().$el)
     },
 
     checkVerification: function(config){
 
-      console.log('checkin verification')
       var me = this;
 
       var collection = me.config.collection.toJSON();
@@ -103,8 +99,9 @@ define([
 
     },
 
-    //asynchronously load all collections what tab needs
+    //asynchronously load all collections tab needs and trigger 'dataLoaded'
     loadData: function(){
+      
       var filter; 
       var me = this;
       var collections_length = 0;
@@ -118,6 +115,7 @@ define([
       for (var c in me.collections_classes){
         collections_length++;
       }
+
       for (var c in me.collections_classes){
         me['collections'][c] = new me.collections_classes[c]();
         me['collections'][c].fetch({ data: filter, success: function(c) {
@@ -130,8 +128,6 @@ define([
       }
     }
 
-
- 
   });
   
   return  ParentTabView;
