@@ -1,9 +1,7 @@
 define([
-	
   'jquery',
   'underscore',
   'backbone',
-  
   'models/teacher/TeacherModel',
   'collections/faculty_admins/FacultyAdminsCollection',
   'views/admin/parentTabView'
@@ -12,13 +10,15 @@ define([
 	 
   var tabChildAdminsView = ParentTabView.extend({
 
-
+    //is used to load collections asynchrounously
     collections_classes: {
       faculty_admins: FacultyAdminsCollection
     },
 
+    //runs when all collections have been loaded
     setConfig: function(){
-    	var me = this;
+    	
+      var me = this;
 
       var config = {
       	
@@ -68,10 +68,6 @@ define([
       return config;
     },
 
-
-
-
-  
   });
   
   return  tabChildAdminsView;

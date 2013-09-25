@@ -21,13 +21,9 @@ define([
     el_tab_content    : '#tab-content',
     el_tab_buttons    : '#tab-buttons',
 
-
     headline: 'Default Admin Headline',
 
     initialize: function(){
-          
-      //do this to prevent duplicate childviews on initialization
-      this.childViews = [];
 
       var me = this;
       
@@ -45,18 +41,13 @@ define([
 
       //Render a tab when it's loaded
       GlobalEventBus.off('tabSubViewLoaded');
+      
       GlobalEventBus.on('tabSubViewLoaded', function(tabContent, config, view){
-
-        me.childViews.push(view);
-        
         me.config = config;
         me.collection = config.collection;
-
         me.renderTab(tabContent);
         me.renderButtons(config);
-
         $('.new-button').html(me.config.buttons['create']);
-
       })
       
     },
@@ -97,19 +88,14 @@ define([
 
 
     appendNewElementRow: function(){
-
       var me = this;
       
       if (this.$('#newElementRow').length < 1){
         
         var model = new me.config.model();
-        
         me.collection.add(model);
-        
         var newElementView = new ItemView({model: model, conf: me.config, newModel: true});
-        
-        $(me.el_tab_content + ' table tbody').append(newElementView.render().el)
-        
+        $(me.el_tab_content + ' table tbody').append(newElementView.render().el)        
         this.newElementRow = true;   
       
       } else {
@@ -195,4 +181,5 @@ define([
   });
 
   return ParentAdminView;
+  
 });

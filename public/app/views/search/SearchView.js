@@ -237,8 +237,8 @@ define([
                     var href = '#/teacher/'+item.id;
                     var status = '<span class="status">викладач</span>';
                   }
-                if(("#ui-id-1 li").length > 1){
-                    $("#ui-id-1 li").eq(8).nextAll().remove();
+                if((".ui-autocomplete li").length > 1){
+                    $(".ui-autocomplete li").eq(8).nextAll().remove();
                 }
                 var searchInfo = $('<span></span>').addClass('searchInfo').html('');
                 var a = $('<a>' + item.label +" "+status);

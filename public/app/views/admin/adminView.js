@@ -4,16 +4,16 @@ define([
   'backbone',
   'views/admin/parentAdminView',
   'bootstrapselect',
-  //subViews for handlers
+  
+  //subViews 
   'views/admin/tabAdminsView',
   'views/admin/tabFacultiesView',
-
   'views/admin/tabDbView',
   'views/admin/tabInfoView'  
 
 ], function ($, _,  Backbone,
-
-            ParentAdminView, bootstrapselect, TabAdminsView, TabFacultiesView, TabDbView, TabInfoView) {   
+            ParentAdminView, bootstrapselect, TabAdminsView,
+             TabFacultiesView, TabDbView, TabInfoView) {   
   
   var AdminView = ParentAdminView.extend({  
     
@@ -23,7 +23,6 @@ define([
 
     //tab menu buttons (you can add your buttons here)
     tabMenuConfig: [
-
       {
         id:'admins-tab',
         label: 'Адміністратори факультетів',
@@ -46,6 +45,11 @@ define([
       }
     ],
 
+    events_own : {
+      "click #loadData" : "imgLoader",
+      "change #file" : "showFileName"
+    },
+
     initialize: function(){
 
       //call parent's initialize method
@@ -63,6 +67,7 @@ define([
       
       this.childViews[this.tabView.cid] = this.tabView;
     },  
+    
     manage_database: function(){
       this.addActiveClass('database-tab');
       var tabDbView = new TabDbView();
@@ -111,11 +116,6 @@ define([
 
     },
 
-    events_own : {
-      "click #loadData" : "imgLoader",
-      "change #file" : "showFileName"
-    },
-
     //loading imgLoader while file is loading
     imgLoader : function(){
       $('#imgLoader').show();
@@ -131,9 +131,7 @@ define([
         fileTitle = fileTitle.replace(reUnix, "$1");
         $('#name').html(fileTitle);
       });
-    },
-
-
+    }
 
   });
 

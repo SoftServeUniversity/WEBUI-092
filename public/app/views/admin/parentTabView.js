@@ -15,12 +15,11 @@ define([
     
     initialize: function(){
     
-      this.childViews = [];  
-
       var me = this;
       var config;
       
       this.loadData();
+
       this.on('dataLoaded', function(){
         
         me.config = me.setConfig();
@@ -28,7 +27,6 @@ define([
 
         me.collection = me.config.collection;
         
-
         me.render(me.config)
 
         //all content has loaded, it's time for parent view to render tab
@@ -37,13 +35,15 @@ define([
         GlobalEventBus.on('NewItemAdded', function(model){
           me.renderSingleItem(model);
         })
+
         //display question mark on tab if some model needs verification
         if (me.config.verification){
           me.checkVerification(me.config.verification);
         }
 
         //this method is used only in works view
-        if (me.addCustomEvents) {me.addCustomEvents ()}
+        if (me.addCustomEvents) { me.addCustomEvents() }
+      
       })
 
 
@@ -84,13 +84,11 @@ define([
       this.config.newModel = false;
       var itemView = new ItemView({ model: item, collection: me.collection, conf: this.config, newModel: false });
 
-      me.childViews[itemView.cid] = itemView;    
       me.$('#tab-body').append(itemView.render().$el)
     },
 
     checkVerification: function(config){
 
-      console.log('checkin verification')
       var me = this;
 
       var collection = me.config.collection.toJSON();
@@ -103,7 +101,7 @@ define([
 
     },
 
-    //asynchronously load all collections what tab needs
+    //asynchronously load all collections tab needs
     loadData: function(){
       var filter; 
       var me = this;
@@ -118,6 +116,8 @@ define([
       for (var c in me.collections_classes){
         collections_length++;
       }
+
+      //magic! Don't touch
       for (var c in me.collections_classes){
         me['collections'][c] = new me.collections_classes[c]();
         me['collections'][c].fetch({ data: filter, success: function(c) {
@@ -130,8 +130,6 @@ define([
       }
     }
 
-
- 
   });
   
   return  ParentTabView;

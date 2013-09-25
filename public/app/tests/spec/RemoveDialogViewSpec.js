@@ -87,14 +87,7 @@ describe('RemoveDialogView', function() {
         expect(spy).toHaveBeenCalled();
 
       });
-      
-      /*it("triggers model destroy action", function(){        
-        var spy = spyOn(me.view.model, 'destroy');
-
-        me.view.$el.find('.confirm-yes').trigger('click')
-        expect(spy).toHaveBeenCalled();
-      })*/
-      
+          
     
     })
     

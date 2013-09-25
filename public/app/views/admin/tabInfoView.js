@@ -13,9 +13,7 @@ define([
   var TabInfoView = Backbone.View.extend({
     
     tagName: 'div',
-    
-    childViews: [],
- 
+     
     initialize: function(){
       var me = this;
       
