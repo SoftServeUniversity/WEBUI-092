@@ -24,11 +24,13 @@ define([
       $("#content").html(compiledTemplate);
   
       $('select').selectpicker();
+
       var studCollection = new StudentsCollection();
       var teachCollection = new TeachersCollection();
+      
       var f_id = "";
       var c_id = "";
-      parsed = [];
+      var parsed = [];
 
       $('#search-field').on('keyup', function(){
         var letters = $(this).val();
@@ -40,8 +42,8 @@ define([
 
             getJSON(studCollection, studObj, letters);
             getJSON(teachCollection, teachObj, letters);
+
             var people = [];
-           
               people = teachObj[0].concat(studObj[0]);
 
             var str = JSON.stringify(people);
@@ -51,10 +53,10 @@ define([
                else
                     return v;
             });
-            console.log(parsed);
+
           auto(parsed); 
         }
-        console.log(parsed);
+
       });
 
       $('button[data-id = faculty_select]').removeClass('btn-default').addClass('btn-info btn-mini');
