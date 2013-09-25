@@ -5,7 +5,7 @@ development:
   #username:
   #password:
   username: root
-  password: bmwthebest
+  password: root
 
 
 production:
