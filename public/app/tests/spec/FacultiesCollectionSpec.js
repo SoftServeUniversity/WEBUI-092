@@ -14,8 +14,9 @@ describe('Faculty collection', function() {
   };
 
 
-  require(['collections/faculties/FacultiesCollection'], function(FacultiesCollection) {
+  require(['collections/faculties/FacultiesCollection', 'models/faculty/FacultyModel'], function(FacultiesCollection, FacultyModel) {
     me.FacultiesCollection = FacultiesCollection;
+    me.FacultyModel = FacultyModel;
   })
 
 
