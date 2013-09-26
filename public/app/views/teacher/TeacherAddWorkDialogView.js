@@ -101,11 +101,13 @@ define([
         };
       },
 
-      initialize:function(id, worksCollection){
+      initialize:function(id, worksCollection, parentView){
         var me = this;
 
         this.currentTeacherId = id;
         this.currenrWorksCollection = worksCollection;
+        this.parentView = parentView;
+
         // Id of div of modal window for add works
         this.el_modal = '#dialogAddStudentWork';
         // Id form in modal window for add works
@@ -300,9 +302,7 @@ define([
         $(this.el_modal).modal('hide');
         // Add new Work models to WorksCollection
         if (me.workModelsList != []){
-          for(work in me.workModelsList){
-            me.currenrWorksCollection.add(work);
-          }
+          me.currenrWorksCollection.add(me.workModelsList);
         }
       },
 

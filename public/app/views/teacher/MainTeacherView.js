@@ -134,7 +134,7 @@ define([
           var teacherWorksCompiledTemplate = _.template(teacherWorksTemplate, dataForTeacherWorksTemplate);
           $("#teacherPageContent").html(teacherWorksCompiledTemplate);
 
-          var teacherAddWorkDialogView = new TeacherAddWorkDialogView(this.id, this.worksCollection);
+          var teacherAddWorkDialogView = new TeacherAddWorkDialogView(this.id, this.worksCollection, this);
           $("#teacherAddWorkDialogContent").html(teacherAddWorkDialogView.$el);
 
           var chartView = new ChartView({
