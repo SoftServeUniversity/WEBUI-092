@@ -1,5 +1,5 @@
 define([
-  //put it on top (it has to be loaded before bootstrap-wysihtml5 starts loading)
+  //bootstrap-wysihtml5 has to be loaded before bootstrap-wysihtml5 starts loading
   'libs/bootstrap_wysihtml5/js/bootstrap-wysihtml5',
   'jquery',
   'underscore',
@@ -19,10 +19,12 @@ define([
       
       this.model = new InfoModel();
 
+      //load text from infopage.html on server
       var ajaxData = me.model.fetch({async:false, success: function(response){
         me.render(response.toJSON());
       }});
     
+      //handler to update content of text file when admin changes it
       GlobalEventBus.on('infoChanged', function(content){
         me.updateInfo(content)
       }, this)
@@ -33,7 +35,8 @@ define([
       var compiledTemplate = _.template(tabInfoTemplate, me.model.toJSON());
       this.$el.html(compiledTemplate);
     },
-
+    
+    //save text on server (use timeout to prevent events firing to often)
     updateInfo: function(content){
       var me = this;
 
