@@ -24,7 +24,7 @@ define([
         },
 
         events: {
-            'click .delete-button'       : 'removeItem'
+            'click .delete-button'       : 'removeTeacher'
         },
 
         updateView: function(){
@@ -32,7 +32,7 @@ define([
         },
 
 
-        removeItem: function(){
+        removeTeacher: function(){
             var message = 'Ви дійсно бажаєте видалити '+ this.model.attributes.name + ' ?</strong>';
             var header = 'Підтвердіть видалення';
             var removeDialogView = new RemoveDialogView({model: this.model}, {message: message, header: header});

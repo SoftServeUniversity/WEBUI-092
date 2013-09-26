@@ -2276,5 +2276,8 @@
     })
   })
 
+/*fix for multiple modal windows bug (too much recursion)*/
+$.fn.modal.Constructor.prototype.enforceFocus = function () {};
+
 
 }(window.jQuery);
