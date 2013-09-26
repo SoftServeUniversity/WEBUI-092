@@ -67,10 +67,7 @@ define([
       },
 
       showEmployee: function(){
-         var employeeTabView = new EmployeeDialogView(this.model.get('id'));
-         $('#content').append(employeeTabView.$el);
-         $('#employee-modal').modal('show');
-      
+        var employeeTabView = new EmployeeDialogView(this.model.get('id'));
       },
 
       removeItem: function(){

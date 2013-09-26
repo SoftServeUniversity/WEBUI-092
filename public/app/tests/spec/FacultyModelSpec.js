@@ -29,7 +29,7 @@ describe('Faculty model', function() {
   });
 
 
-  describe ('test if properties set correctly (do i need this test - i dont know... )', function() {
+  describe ('test if properties set correctly', function() {
     it('should have all properties set', function(){
        var faculty = new me.FacultyModel(MOCK_GET_DATA);
 

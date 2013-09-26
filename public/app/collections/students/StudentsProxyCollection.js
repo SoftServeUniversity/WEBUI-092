@@ -9,7 +9,6 @@ define([
     var StudentsCollection = Backbone.Collection.extend({
       model:StudentProxyModel,
       url: '/students/'
-      // url: '/students/'
     });
     return StudentsCollection;
   });

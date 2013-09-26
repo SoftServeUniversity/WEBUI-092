@@ -12,7 +12,6 @@ define([
     
     tagName: 'div',
     
-    
     initialize: function(){
     
       var me = this;
@@ -20,17 +19,18 @@ define([
       
       this.loadData();
 
+
+      //do all work when all collections have been loaded
       this.on('dataLoaded', function(){
         
         me.config = me.setConfig();
         me.config = me.augmentConfig();
-
         me.collection = me.config.collection;
         
         me.render(me.config)
 
         //all content has loaded, it's time for parent view to render tab
-        GlobalEventBus.trigger('tabSubViewLoaded', me.$el, me.config, me);
+        GlobalEventBus.trigger('tabSubViewLoaded', me.$el, me.config);
         
         GlobalEventBus.on('NewItemAdded', function(model){
           me.renderSingleItem(model);
@@ -46,15 +46,14 @@ define([
       
       })
 
-
     },
 
     augmentConfig: function(){
 
-        if (!this.config.table_class){
-          this.config.table_class = '';
-        }
-        return this.config;
+      if (!this.config.table_class){
+        this.config.table_class = '';
+      }
+      return this.config;
 
     },
 
@@ -69,7 +68,6 @@ define([
       //render table head
       var tableHeadView = new TableHeadView({ conf: me.config });
       me.$('#tab-head').html(tableHeadView.render().$el); 
-      me.childViews[tableHeadView.cid] = tableHeadView;    
 
       //render rows
       this.collection.each(function(item) {
@@ -101,8 +99,9 @@ define([
 
     },
 
-    //asynchronously load all collections tab needs
+    //asynchronously load all collections tab needs and trigger 'dataLoaded'
     loadData: function(){
+      
       var filter; 
       var me = this;
       var collections_length = 0;
@@ -117,7 +116,6 @@ define([
         collections_length++;
       }
 
-      //magic! Don't touch
       for (var c in me.collections_classes){
         me['collections'][c] = new me.collections_classes[c]();
         me['collections'][c].fetch({ data: filter, success: function(c) {

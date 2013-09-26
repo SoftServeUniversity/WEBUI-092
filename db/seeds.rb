@@ -23,6 +23,7 @@ user.add_role :admin
 # puts 'usr: ' << usr.name
 # usr.add_role :teacher
 
+
 #Create Users
 if !(User.all.empty?)
   name = 'NameABC'
@@ -139,7 +140,7 @@ end
 if Task.all.empty?
   s = 'Task_ABC'
   100.times do |time|
-    d = Task.create! name: (s.next! + time.to_s), priority: 0, work_id: Work.all[rand(4000)].id
+    d = Task.create! name: (s.next! + time.to_s), priority: 0, work_id: Work.all[rand(40)].id
     puts 'created '<< d.name
   end
 end
@@ -168,4 +169,8 @@ end
 p = ProgressChange.new
 p.save
 p.aggregate
+
+
+#!!!! >>>>>  please comment this out after delayed_job starts
+ThesisChange.delete_all
 

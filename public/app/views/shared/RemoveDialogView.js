@@ -27,12 +27,13 @@ define([
     },
 
     hideModal: function () {
-      $(this.el_modal).modal('hide');
+      console.log(this)
+      $('#delete-modal').modal('hide');
       this.unLink();
     },
 
     showModal: function () {
-      $(this.el_modal).modal('show');
+      $('#delete-modal').modal('show');
     },
 
     render: function () {
