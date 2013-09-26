@@ -35,7 +35,7 @@ define([
       events: {
         "click #btnAddWork": "sendForm",
         "click #btnAddWorkAndContinue": "sendForm",
-        "click #btnCloseModalWindow": "resetDataOfModalWindow"
+        "click #btnCloseModalWindow": "closeModalWindow"
       },
 
       // Clear all list after current
@@ -273,17 +273,15 @@ define([
                   me.resetDataOfModalWindow();
                   // If click on button "Записати" - hide modal dialog
                   if (e.target.id == 'btnAddWork') {
+                    // Add corrent work model to specially list
+                    // BEFORE hihe ModalWindow
+                    me.workModelsList.push(me.workModel);
                     me.hideModalWindow();
-
-
-                    // Add new this workModel to WorksCollection
-                    //me.currenrWorksCollection.add(me.workModel);
-
-
+                  } else {
+                    // Add corrent work model to specially list
+                    me.workModelsList.push(me.workModel);
                   }
 
-                  // Add corrent work model to specially list
-                  me.workModelsList.push(me.workModel);
                 },
                 // add hendler error
                 error: function(model, response) {
@@ -301,17 +299,20 @@ define([
         var me = this;
         $(this.el_modal).modal('hide');
         // Add new Work models to WorksCollection
-        console.log(me.workModelsList);
         if (me.workModelsList != []){
           for(work in me.workModelsList){
             me.currenrWorksCollection.add(work);
-            console.log(work)
           }
         }
       },
 
       resetDataOfModalWindow: function(){
         document.getElementById(this.modal_form).reset();
+      },
+
+      closeModalWindow: function(){
+        this.resetDataOfModalWindow();
+        this.hideModalWindow();
       },
 
     });

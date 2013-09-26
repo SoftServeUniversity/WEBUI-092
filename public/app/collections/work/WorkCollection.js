@@ -8,7 +8,15 @@ define([
 
   var WorkCollection = Backbone.Collection.extend({
     model: WorkModel,
-    url: '/works/'
+    url: '/works/',
+    comparator: function(item) {
+        // set sort stusents by group
+        if (item.attributes &&
+            item.attributes.student &&
+            item.attributes.student.course_name) {
+          return [item.attributes.student.course_name];
+        }
+      }
   });
 
   return WorkCollection;

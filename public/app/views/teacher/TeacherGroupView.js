@@ -47,17 +47,21 @@ define([
               }
             });
 
-            this.studentsColOfTeachGroup = new StudentsProxyCollectionForTeacherPage();
-            this.studentsColOfTeachGroup.fetch({
-              async: false,
-              data: {
-                filter: {
-                  group_id: this.groupsCollection.toJSON()[0].id
+            if(this.groupsCollection.toJSON()[0]){
+              this.studentsColOfTeachGroup = new StudentsProxyCollectionForTeacherPage();
+              this.studentsColOfTeachGroup.fetch({
+                async: false,
+                data: {
+                  filter: {
+                    group_id: this.groupsCollection.toJSON()[0].id
+                  }
+                },
+                success: function() {
                 }
-              },
-              success: function() {
-              }
-            });
+              });
+            } else {
+              this.studentsColOfTeachGroup = new StudentsProxyCollectionForTeacherPage();
+            }
 
             this.render();
 
@@ -68,7 +72,9 @@ define([
         },
 
         render:function(){
-          var teacher = this.teacherModel.toJSON()[0];
+          if(this.teacherModel.toJSON()[0]){
+            var teacher = this.teacherModel.toJSON()[0];
+          }
 
           var dataForMainTeacherTemplate = {
             teacher: teacher,
