@@ -3,14 +3,14 @@ define([
   'underscore',
   'backbone',
   'collections/groups/GroupsCollection',
-  'collections/teachers/TeachersCollection',
+  'collections/teachers/teachersProxyCollection',
   'views/shared/ListView',
   'views/shared/ChartView',
   'text!templates/shared/MainTemplate.html',
   'collections/departments/DepartmentsCollection',
   'collections/departments/DepartmentChangeCollection',
 
-], function($, _, Backbone, GroupsCollection, TeachersCollection, ListView, ChartView, MainTemplate, DepartmentsCollection, DepartmentChangeCollection){
+], function($, _, Backbone, GroupsCollection, TeachersProxyCollection, ListView, ChartView, MainTemplate, DepartmentsCollection, DepartmentChangeCollection){
 
   var MainDepartmentView =  Backbone.View.extend({
     loadData: function(id){
@@ -36,7 +36,7 @@ define([
         }
       });
 
-      teachers_col = new TeachersCollection();
+      teachers_col = new TeachersProxyCollection();
       teachers_col.fetch({
         data: {
           filter: {
