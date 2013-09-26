@@ -42,7 +42,7 @@ define([
       //Render a tab when it's loaded
       GlobalEventBus.off('tabSubViewLoaded');
       
-      GlobalEventBus.on('tabSubViewLoaded', function(tabContent, config, view){
+      GlobalEventBus.on('tabSubViewLoaded', function(tabContent, config){
         me.config = config;
         me.collection = config.collection;
         me.renderTab(tabContent);
@@ -81,11 +81,6 @@ define([
       $('.nav-tabs *').removeClass('active').find('#'+id).addClass('active');
     },
 
-    reloadTab: function () {
-      $('.nav-tabs .active').trigger('click');
-    },
-
-
 
     appendNewElementRow: function(){
       var me = this;
@@ -116,13 +111,7 @@ define([
 
 
 
-    openModal: function(e){
-      modal_id = ($(e.target).attr('data-target'));
-      $('#'+modal_id).modal('show');
-    },
-
     closeModal: function(){
-      $('#manage-department').modal('hide');
       $('#manage-department-import').modal('hide');
     },
 

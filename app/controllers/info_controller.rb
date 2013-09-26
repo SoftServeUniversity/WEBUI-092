@@ -2,7 +2,6 @@ class InfoController < ApplicationController
 
 
   # GET /info
-  # GET /faculties.json
   # get contents of text file
   def index
     respond_to do |format|
