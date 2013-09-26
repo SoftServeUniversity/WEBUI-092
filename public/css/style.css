@@ -51,7 +51,7 @@ a:hover{
   margin-bottom:0px;
 
 }
-.authBox, 
+.authBox,
 .yearBox{
   margin-bottom:5px;
   /*float:left !important;*/
@@ -66,7 +66,7 @@ a:hover{
 .yearBox {
   width:195px;
 }
-.yearBox .control-label{ 
+.yearBox .control-label{
   width:65px;
 }
 .yearBox .bootstrap-select{
@@ -101,17 +101,17 @@ a:hover{
   overflow:hidden;
   }
 
-  .authBox, 
+  .authBox,
   .yearBox{
-    padding-left:10px !important; 
+    padding-left:10px !important;
   }
   .yearBox{
     clear:both !important;
   }
-  .authBox, 
+  .authBox,
   .yearBox {
     float:left !important;
-    
+
   }
   .yearBox label {
     margin-bottom:-30px;
@@ -994,7 +994,7 @@ div.DTFC_LeftFootWrapper table {
   width: 500px;
 }
 .bootStrapFullRowElement {
-  width: 100%;
+  width: 95%;
 }
 /* end modal window */
 
@@ -1023,11 +1023,11 @@ div.DTFC_LeftFootWrapper table {
   top:35px;
   display: block !important;
 }
-button[data-id = faculty_select], 
-button[data-id = course_select], 
-button[data-id = faculty_select]:hover, 
-button[data-id = course_select]:hover, 
-button[data-id = faculty_select]:focus, 
+button[data-id = faculty_select],
+button[data-id = course_select],
+button[data-id = faculty_select]:hover,
+button[data-id = course_select]:hover,
+button[data-id = faculty_select]:focus,
 button[data-id = course_select]:focus{
   /*width:100px !important;*/
   background: transparent !important;
@@ -1038,8 +1038,8 @@ button[data-id = course_select]:focus{
   color:grey;
   padding-right: 10px;
 }
-button[data-id = course_select], 
-button[data-id = course_select]:hover, 
+button[data-id = course_select],
+button[data-id = course_select]:hover,
 button[data-id = course_select]:focus{
   /*width:70px !important;*/
   color:maroon;

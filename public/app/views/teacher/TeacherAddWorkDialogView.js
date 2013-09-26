@@ -35,7 +35,7 @@ define([
       events: {
         "click #btnAddWork": "sendForm",
         "click #btnAddWorkAndContinue": "sendForm",
-        "click #btnCloseModalWindow": "resetDataOfModalWindow"
+        "click #btnCloseModalWindow": "closeModalWindow"
       },
 
       // Clear all list after current
@@ -101,15 +101,19 @@ define([
         };
       },
 
-      initialize:function(id, worksCollection){
+      initialize:function(id, worksCollection, parentView){
         var me = this;
 
         this.currentTeacherId = id;
         this.currenrWorksCollection = worksCollection;
+        this.parentView = parentView;
+
         // Id of div of modal window for add works
         this.el_modal = '#dialogAddStudentWork';
         // Id form in modal window for add works
         this.modal_form = 'taskCreateForm';
+        // List of works for add to collection
+        this.workModelsList = [];
 
         //For get info about
         //teacher faculty and department
@@ -271,22 +275,22 @@ define([
                   me.resetDataOfModalWindow();
                   // If click on button "Записати" - hide modal dialog
                   if (e.target.id == 'btnAddWork') {
+                    // Add corrent work model to specially list
+                    // BEFORE hihe ModalWindow
+                    me.workModelsList.push(me.workModel);
                     me.hideModalWindow();
+                  } else {
+                    // Add corrent work model to specially list
+                    me.workModelsList.push(me.workModel);
                   }
 
-// DELETE !!!!!!!!!!!!!!!! //
-                  console.log(me.workModel);
-                  console.log(model);
-
-                  // Add new WorkModel to WorksCollection
-                  me.currenrWorksCollection.create(me.workModel);
                 },
                 // add hendler error
                 error: function(model, response) {
                   //console.log(response);
+                }
               }
-            });
-
+            );
           }
         }
 
@@ -294,11 +298,21 @@ define([
       },
 
       hideModalWindow: function(){
+        var me = this;
         $(this.el_modal).modal('hide');
+        // Add new Work models to WorksCollection
+        if (me.workModelsList != []){
+          me.currenrWorksCollection.add(me.workModelsList);
+        }
       },
 
       resetDataOfModalWindow: function(){
         document.getElementById(this.modal_form).reset();
+      },
+
+      closeModalWindow: function(){
+        this.resetDataOfModalWindow();
+        this.hideModalWindow();
       },
 
     });

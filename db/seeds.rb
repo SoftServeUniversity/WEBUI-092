@@ -30,7 +30,7 @@ if !(User.all.empty?)
   last_name = "LastNameABC"
   middle_name = "MiddleNameABC"
   420.times do |time|
-    usr = User.create! name: (name + time.to_s), middle_name: (middle_name + time.to_s), last_name: (last_name + time.to_s), email: (name.next! + "@example.com"), password: (name + last_name + middle_name + '0'), password_confirmation: (name + last_name + middle_name + '0')
+    usr = User.find_or_create_by_email! name: (name + time.to_s), middle_name: (middle_name + time.to_s), last_name: (last_name + time.to_s), email: (name.next! + "@example.com"), password: (name + last_name + middle_name + '0'), password_confirmation: (name + last_name + middle_name + '0')
     puts 'Created'<< usr.name
   end
 end

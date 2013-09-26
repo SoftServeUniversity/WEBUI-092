@@ -91,7 +91,7 @@ define([
                });
                var data = {
                    name: student_name,
-                   listTitle: "Назви курсових робіт",
+                   listTitle: "Назви робіт",
                    list : worksListView.render().$el.html()
 
                }

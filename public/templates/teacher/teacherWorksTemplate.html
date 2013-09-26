@@ -11,8 +11,7 @@
   <% for ( var i=0; i<works[work].length; i++ ) {%>
   <div class="row-fluid text-left">
     <div class="span4"><%= i + 1 %>. <%= '<a href=#/work/' + works[work][i]['id'] + '>' +  works[work][i]['student']['last_name'] + ' ' + works[work][i]['student']['name'] + ' ' + works[work][i]['student']['middle_name'] + '</a>'%></div>
-
-    <div class="span1"><%= works[work][i]['group_name'] %></div>
+    <div class="span1"><%= works[work][i]['student']['group_name'] %></div>
     <div class="span5"><%= works[work][i]['name'] %></div>
     <div class="span2">
       <div class="progress">
