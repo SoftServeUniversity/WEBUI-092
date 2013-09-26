@@ -78,27 +78,19 @@ define([
 
       this.addActiveClass('info-tab');
       var tabInfoView = new TabInfoView();
+      
       $(this.el_tab_content).html(tabInfoView.$el.html())
 
       var editor = $('.wysiwyg').wysihtml5({locale: "ua-UA"}); 
       
       $('body iframe').load(function(){    
-
-        var listen_event = true;
         $('body iframe').contents().find('body').bind("keydown click", function(e){
-            setTimeout(function(){
-                if(listen_event){
-                   var content = $('body iframe').contents().find('body').html();
-
-                   GlobalEventBus.trigger('infoChanged', content)
-                }
-            },1);
+          var content = $('body iframe').contents().find('body').html();
+          GlobalEventBus.trigger('infoChanged', content)
         });
-     
       })
 
-    this.hideAdminButtons();
-
+      this.hideAdminButtons();
     },
     
     manage_faculties: function(){   
