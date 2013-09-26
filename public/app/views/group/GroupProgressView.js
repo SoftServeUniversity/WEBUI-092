@@ -3,7 +3,7 @@ define([
     'underscore',
     'backbone',
     'text!templates/shared/GroupProgressTemplate.html',
-    'collections/students/StudentsCollection',
+    'collections/students/StudentsProxyCollection',
     'views/shared/ListView',
     'views/shared/ChartView',
     'collections/groups/GroupsCollection',
@@ -12,7 +12,7 @@ define([
 
 
 ],
-    function($, _, Backbone, GroupProgressTemplate, StudentsCollection, ListView, ChartView, GroupsCollection, GroupChangeCollection){
+    function($, _, Backbone, GroupProgressTemplate, StudentsProxyCollection, ListView, ChartView, GroupsCollection, GroupChangeCollection){
 
         var GroupProgressView =  Backbone.View.extend({
             loadData: function(id){
@@ -26,7 +26,7 @@ define([
                     }
                 });
 
-                students_col = new StudentsCollection();
+                students_col = new StudentsProxyCollection();
                 students_col.fetch({
                     data: {
                         filter: {
