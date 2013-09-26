@@ -2,7 +2,7 @@
 <div class="template_header">
     <a href ='#/department/<%= group.department_id %>'><%= group.department.name %> </a> |
     <a href ='#/course/<%= group.course_id %>'><%= group.course.name %> </a>|
-    <a href ='#/teacher/<%= group.teacher_id %>'><%= group.teacher.name %> </a>
+    <a href ='#/teacher/<%= group.teacher_id %>'><%= group.teacher.name%> <%=group.teacher.middle_name%> <%=group.teacher.last_name%> </a>
 </div>
 <div id="chart"></div>
 <div class="content">
