@@ -32,6 +32,7 @@ define([
             faculty_id:id
           }
         },
+        
         success: function () {
            me.trigger('DataLoaded', 'Deps');
         }
