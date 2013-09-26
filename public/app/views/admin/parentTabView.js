@@ -30,7 +30,7 @@ define([
         me.render(me.config)
 
         //all content has loaded, it's time for parent view to render tab
-        GlobalEventBus.trigger('tabSubViewLoaded', me.$el, me.config, me);
+        GlobalEventBus.trigger('tabSubViewLoaded', me.$el, me.config);
         
         GlobalEventBus.on('NewItemAdded', function(model){
           me.renderSingleItem(model);
