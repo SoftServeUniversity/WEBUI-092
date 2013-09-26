@@ -19,6 +19,11 @@ define([
 
       faculties_col = new FacultiesCollection();
       faculties_col.fetch({
+        data: {
+          filter: {
+            id:id
+          }
+        },
         success: function () {
           me.trigger('DataLoaded', 'Facs');
         }
