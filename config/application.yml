@@ -21,3 +21,35 @@ STUDENT_MIDDLE_NAME: Petro
 STUDENT_EMAIL: user@inbox.ru
 STUDENT_PASSWORD: chanqwer
 ROLES: [admin, faculty_admin, student, teacher, guest]
+
+#admin of first faculty
+#fa_e-mail: fa@gmail.com
+#fa_passwd: Fffffff1
+
+#teacher of first faculty
+#teacher_e-mail: te@gmail.com
+#teacher_passwd: Ttttttt1
+
+#1 stud of group ПМ-41
+#stud_e-mail: s1@gmail.com
+#teacher_passwd: Stttttt1
+
+#2 stud of group ПМ-41
+#stud_e-mail: s2@gmail.com
+#teacher_passwd: Stttttt1
+
+#3 stud of group ПМ-41
+#stud_e-mail: s3@gmail.com
+#teacher_passwd: Stttttt1
+
+#4 stud of group ПМ-41
+#stud_e-mail: s4@gmail.com
+#teacher_passwd: Stttttt1
+
+#5 stud of group ПМ-41
+#stud_e-mail: s5@gmail.com
+#teacher_passwd: Stttttt1
+
+#6 stud of group ПМ-41
+#stud_e-mail: s6@gmail.com
+#teacher_passwd: Stttttt1

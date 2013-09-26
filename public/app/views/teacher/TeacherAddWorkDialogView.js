@@ -110,6 +110,8 @@ define([
         this.el_modal = '#dialogAddStudentWork';
         // Id form in modal window for add works
         this.modal_form = 'taskCreateForm';
+        // List of works for add to collection
+        this.workModelsList = [];
 
         //For get info about
         //teacher faculty and department
@@ -272,21 +274,23 @@ define([
                   // If click on button "Записати" - hide modal dialog
                   if (e.target.id == 'btnAddWork') {
                     me.hideModalWindow();
+
+
+                    // Add new this workModel to WorksCollection
+                    //me.currenrWorksCollection.add(me.workModel);
+
+
                   }
 
-// DELETE !!!!!!!!!!!!!!!! //
-                  console.log(me.workModel);
-                  console.log(model);
-
-                  // Add new WorkModel to WorksCollection
-                  me.currenrWorksCollection.create(me.workModel);
+                  // Add corrent work model to specially list
+                  me.workModelsList.push(me.workModel);
                 },
                 // add hendler error
                 error: function(model, response) {
                   //console.log(response);
+                }
               }
-            });
-
+            );
           }
         }
 
@@ -294,7 +298,16 @@ define([
       },
 
       hideModalWindow: function(){
+        var me = this;
         $(this.el_modal).modal('hide');
+        // Add new Work models to WorksCollection
+        console.log(me.workModelsList);
+        if (me.workModelsList != []){
+          for(work in me.workModelsList){
+            me.currenrWorksCollection.add(work);
+            console.log(work)
+          }
+        }
       },
 
       resetDataOfModalWindow: function(){

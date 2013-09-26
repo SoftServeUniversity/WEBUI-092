@@ -9,7 +9,6 @@ define([
   var WorkCollection = Backbone.Collection.extend({
     model: WorkModel,
     url: '/works/'
-
   });
 
   return WorkCollection;
