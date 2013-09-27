@@ -29,7 +29,7 @@ if !(User.all.empty?)
   name = 'NameABC'
   last_name = "LastNameABC"
   middle_name = "MiddleNameABC"
-  420.times do |time|
+  40.times do |time|
     usr = User.find_or_create_by_email! name: (name + time.to_s), middle_name: (middle_name + time.to_s), last_name: (last_name + time.to_s), email: (name.next! + "@example.com"), password: (name + last_name + middle_name + '0'), password_confirmation: (name + last_name + middle_name + '0')
     puts 'Created'<< usr.name
   end
@@ -118,7 +118,7 @@ end
 #Student Table
 if Student.all.empty?
  s = 'Student_ABC'
- 400.times do |time|
+ 40.times do |time|
    st = Student.create! user_id: (time + 1 + 20), group_id: (rand(20)+1)
    puts 'created Student'
  end
@@ -139,7 +139,7 @@ end
 #Task Table
 if Task.all.empty?
   s = 'Task_ABC'
-  100.times do |time|
+  40.times do |time|
     d = Task.create! name: (s.next! + time.to_s), priority: 0, work_id: Work.all[rand(40)].id
     puts 'created '<< d.name
   end
@@ -172,5 +172,5 @@ p.aggregate
 
 
 #!!!! >>>>>  please comment this out after delayed_job starts
-#ThesisChange.delete_all
+ThesisChange.delete_all
 
