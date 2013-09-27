@@ -70,16 +70,18 @@ define([
         var filterForFetchCollection = {};
         filterForFetchCollection[filterName] = idForCollectionFilter;
         collection.FetchCollection(filterForFetchCollection);
-        collectionJSON = collection.toJSON();
-        // Append to select list empty <option>
-        $('#' + me.chainOfResp[key].nextKey).append($('<option>', {}));
-        // Append to select list <options> with data for choice
-        $.each(collectionJSON, function (i, item) {
-          $('#' + me.chainOfResp[key].nextKey).append($('<option>', {
-            value: item.id,
-            text : item.name
-          }));
-        });
+        if(collection.length > 0) {
+          var collectionJSON = collection.toJSON();
+          // Append to select list empty <option>
+          $('#' + me.chainOfResp[key].nextKey).append($('<option>', {}));
+          // Append to select list <options> with data for choice
+          $.each(collectionJSON, function (i, item) {
+            $('#' + me.chainOfResp[key].nextKey).append($('<option>', {
+              value: item.id,
+              text : item.name
+            }));
+          });
+        }
       },
 
       ObserveChain: function(chain) {
@@ -101,12 +103,11 @@ define([
         };
       },
 
-      initialize:function(id, worksCollection, parentView){
+      initialize:function(id, worksCollection){
         var me = this;
 
         this.currentTeacherId = id;
         this.currenrWorksCollection = worksCollection;
-        this.parentView = parentView;
 
         // Id of div of modal window for add works
         this.el_modal = '#dialogAddStudentWork';
