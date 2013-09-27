@@ -172,5 +172,5 @@ p.aggregate
 
 
 #!!!! >>>>>  please comment this out after delayed_job starts
-ThesisChange.delete_all
+#ThesisChange.delete_all
 
