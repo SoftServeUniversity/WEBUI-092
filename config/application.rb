@@ -84,5 +84,8 @@ module Webui92
     config.assets.precompile += ['stickyfooter.css.scss']
     config.assets.precompile += ['header.css.scss']
     config.assets.precompile += ['content.css.scss']
+    config.autoload_paths += %W(#{config.root}/lib/modules)
+    # App db sharding functionality
+    config.autoload_paths += %W(#{config.root}/lib/modules/sharder)
   end
 end

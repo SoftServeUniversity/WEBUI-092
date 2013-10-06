@@ -1,4 +1,5 @@
 class ProgressChange < ActiveRecord::Base
+  include OctopusConnector
   attr_accessible :progressable_id, :progress, :progressable_type
   belongs_to :progressable, :polymorphic => true
 

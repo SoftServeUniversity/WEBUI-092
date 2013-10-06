@@ -1,4 +1,5 @@
 class Teacher < ActiveRecord::Base
+  include OctopusConnector
   attr_accessible :degree, :department_id, :title, :user_id, :user_attributes
 
   validates :degree, :department_id, :title, presence: true

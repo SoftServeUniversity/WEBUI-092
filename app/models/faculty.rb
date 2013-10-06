@@ -1,4 +1,5 @@
 class Faculty < ActiveRecord::Base
+  include OctopusConnector
   attr_accessible :name, :user_id
 
   validates :name, length: { in: 1...45 }
