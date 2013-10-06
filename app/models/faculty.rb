@@ -1,5 +1,6 @@
 class Faculty < ActiveRecord::Base
-  include OctopusConnector
+  include DbConnector
+  
   attr_accessible :name, :user_id
 
   validates :name, length: { in: 1...45 }

@@ -1,5 +1,5 @@
 class Ability
-  include OctopusConnector
+  include DbConnector
   include CanCan::Ability
 
   def initialize(user)

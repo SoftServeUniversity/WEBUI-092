@@ -1,5 +1,6 @@
 class TaskProcess < ActiveRecord::Base
-  include OctopusConnector
+  include DbConnector
+  
   attr_accessible :process
   belongs_to :task_change, dependent: :destroy
 end

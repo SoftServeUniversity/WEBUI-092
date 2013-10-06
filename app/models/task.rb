@@ -1,5 +1,6 @@
 class Task < ActiveRecord::Base
-  include OctopusConnector
+  include DbConnector
+  
   attr_accessible :name, :work_id, :priority
  
   # validates :name, :work_id,  presence: true

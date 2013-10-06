@@ -1,5 +1,6 @@
 class User < ActiveRecord::Base
-  include OctopusConnector
+  include DbConnector
+  
   rolify
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable,

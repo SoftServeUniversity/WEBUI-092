@@ -1,5 +1,6 @@
 class FacultyAdmin < ActiveRecord::Base
-  include OctopusConnector
+  include DbConnector
+  
   attr_accessible :user_id, :faculty_id, :user_attributes
 
   validates :faculty_id, presence: true

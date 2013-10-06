@@ -1,5 +1,6 @@
 class Department < ActiveRecord::Base
-  include OctopusConnector
+  include DbConnector
+  
   attr_accessible :faculty_id, :name, :user_id
 
   #has_one :head, class_name: 'User', foreign_key: :department_id

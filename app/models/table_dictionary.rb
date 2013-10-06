@@ -1,4 +1,5 @@
 class TableDictionary < ActiveRecord::Base
-  include OctopusConnector
+  include DbConnector
+  
   attr_accessible :name
 end

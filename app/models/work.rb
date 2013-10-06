@@ -1,5 +1,6 @@
 class Work < ActiveRecord::Base
-  include OctopusConnector
+  include DbConnector
+  
   attr_accessible :name, :progress, :student_id, :teacher_id
 
   belongs_to :student
