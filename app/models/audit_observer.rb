@@ -1,5 +1,4 @@
 class AuditObserver < ActiveRecord::Observer
-  include DbConnector
   include UserInfo
   observe :work, :task, :task_progress
 

@@ -1,5 +1,4 @@
 class Faculty < ActiveRecord::Base
-  include DbConnector
   
   attr_accessible :name, :user_id
 

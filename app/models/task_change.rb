@@ -1,5 +1,4 @@
 class TaskChange < ActiveRecord::Base
-  include DbConnector
   
   attr_accessible :task_comment, :user_id, :task_id, :task_progress_id
   belongs_to :task, dependent: :destroy

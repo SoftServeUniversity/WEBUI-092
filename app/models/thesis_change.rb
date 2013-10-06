@@ -1,5 +1,4 @@
 class ThesisChange < ActiveRecord::Base
-  include DbConnector
   
   attr_accessible :action, :user_name, :value
 

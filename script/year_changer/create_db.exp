@@ -5,7 +5,7 @@ db_host='localhost'
 db_name='webui_dev'
 db_user='root'
 db_pass=''
-new_db_name='db_2012'
+new_db_name='db_2013'
 
 # using a here-document to pass commands to expect.
 # (the commands could be stored in a file as well)
