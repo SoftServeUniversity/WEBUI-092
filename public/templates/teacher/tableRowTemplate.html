@@ -1,12 +1,12 @@
 <td><%= counter %>.&nbsp;<%= name %></td>
 <td><%= email %></td>
-<td>
-  <% if (group_pending != 0) %>
-    <input type="button" value="Підтвердити" class="btn btn-success studentPending">
-  <% else { %>
-    <div>Підтверджений</div>
+  <% if (role_pending != 0) { %>
+    <td><div>Не підтверджений</div></td>
+    <td><input type="button" value="Дозволити" class="btn btn-success confirmLoginStudent"></td>
+  <% } else { %>
+    <td><div>Підтверджений</div></td>
+    <td><input type="button" value="Заборонити" class="btn btn-warning forbidLoginStudent"></td>
   <% } %>
-</td>
 <td>
   <!-- Button for remove student if bad group -->
   <input type="button" value="Відхилити" class="btn btn-danger" data-target="#dialogRejectStudentFromGroup" data-toggle="modal">

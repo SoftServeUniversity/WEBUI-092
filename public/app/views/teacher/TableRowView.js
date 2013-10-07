@@ -11,7 +11,8 @@ define([
         template: _.template(tableRowTemplate),
         events: {
           'click .btn-danger': 'showRemoveDialog',
-          'click .btn-success': 'addStudentToGroup'
+          'click .confirmLoginStudent': 'confirmLoginStudent',
+          'click .forbidLoginStudent': 'forbidLoginStudent'
         },
 
         showRemoveDialog: function(){
@@ -21,9 +22,27 @@ define([
           removeDialogView = new RemoveDialogView({model: this.model}, {message: message, header: header});
         },
 
-        addStudentToGroup: function(){
+        confirmLoginStudent: function(){
           var me = this;
-          attrs = {'group_pending': false};
+          attrs = {'role_pending': false};
+          this.model.set(attrs);
+          // Save only attrs,
+          // when succes - render row again
+          this.model.save(
+            attrs,
+            {
+              patch: true,
+              wait: true,
+              success: function(model, response){
+                me.render(me.counter);
+              }
+            }
+          );
+        },
+
+        forbidLoginStudent: function(){
+          var me = this;
+          attrs = {'role_pending': true};
           this.model.set(attrs);
           // Save only attrs,
           // when succes - render row again
