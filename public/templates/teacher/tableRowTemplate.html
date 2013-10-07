@@ -1,10 +1,10 @@
 <td><%= counter %>.&nbsp;<%= name %></td>
 <td><%= email %></td>
   <% if (role_pending != 0) { %>
-    <td><div>Не підтверджений</div></td>
-    <td><input type="button" value="Дозволити" class="btn btn-success confirmLoginStudent"></td>
+    <td><div class="text_yellow">Не підтверджений</div></td>
+    <td><input type="button" value="Підтвердити" class="btn btn-success confirmLoginStudent"></td>
   <% } else { %>
-    <td><div>Підтверджений</div></td>
+    <td><div class="text_green">Підтверджений</div></td>
     <td><input type="button" value="Заборонити" class="btn btn-warning forbidLoginStudent"></td>
   <% } %>
 <td>

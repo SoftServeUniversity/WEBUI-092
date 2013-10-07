@@ -82,7 +82,9 @@ class StudentsController < ApplicationController
     @student = Student.find(params[:id])
 
     respond_to do |format|
-      if @student.update_attributes(params[:student])
+      if @student.update_attributes(params[:student]) &&
+         @student.user.update_attributes({:role_pending => params[:role_pending]})
+
         format.html { redirect_to @student, notice: 'Student was successfully updated.' }
         format.json { head :no_content }
       else
