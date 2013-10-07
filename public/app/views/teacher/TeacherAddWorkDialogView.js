@@ -74,19 +74,31 @@ define([
           var collectionJSON = collection.toJSON();
           // Append to select list empty <option>
           $('#' + me.chainOfResp[key].nextKey).append($('<option>', {}));
+
+          //Function for append <options> to select
+          function fillSelect(i, item){
+            //  me = this;
+            $('#' + me.chainOfResp[key].nextKey).append($('<option>', {
+                value: item.id,
+                text : item.name
+              }));
+          }
+
           // Append to select list <options> with data for choice
           $.each(collectionJSON, function (i, item) {
-            $('#' + me.chainOfResp[key].nextKey).append($('<option>', {
-              value: item.id,
-              text : item.name
-            }));
+            if (!(item.role_pending)){
+              fillSelect(i, item);
+            }
+            else if (item.role_pending == 0){
+              fillSelect(i, item);
+            }
           });
         }
       },
 
       ObserveChain: function(chain) {
         var me = this;
-        for(key in chain){
+        for(var key in chain){
           $('#' + key).on('change', function(e){
             var eventTargetId = e['currentTarget'].id;
             // Get next select list id for disable lists after current
