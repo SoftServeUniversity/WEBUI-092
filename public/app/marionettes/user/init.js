@@ -111,7 +111,6 @@ define([
         if (adminCheck.status){
           this.showUserHomeButton('admin', '#/admin', 'Сторінка адміністратора')
         }
-        console.log('admin');
       } else if (currentUserRole == 'faculty_admin'){
         var faCheck = this.checkRole('faculty_admin')
         if(faCheck.status && faCheck.verified){
@@ -127,7 +126,6 @@ define([
             this.showUserHomeButton('teacher','#/teacher/' + teacherId, 'Моя сторінка')
           }
         }
-        console.log('teacher');
       } else if (currentUserRole == 'student'){
         var studentCheck = this.checkRole('student')
         if(studentCheck.status && studentCheck.verified)
@@ -137,7 +135,6 @@ define([
             this.showUserHomeButton('student','#/student/' + studentId, 'Моя сторінка')
           }
         }
-        console.log('student');
       }
     }
   }
