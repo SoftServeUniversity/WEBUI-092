@@ -92,40 +92,55 @@ define([
 
   }
 
-  GlobalUser.showAdminButton = function(tagid, link, text){
-    var el = '<li style="display:none" id="link_admin"><a class="page-link" id="'+tagid+'page-link" href="'+link+'">'+text+'</a></li>';
+  GlobalUser.showUserHomeButton = function(tagid, link, text){
+    var el = '<li style="display:none" id="link_userHomeBtn"><a class="page-link" id="'+tagid+'page-link" href="'+link+'">'+text+'</a></li>';
     $('#main-top-menu').append($(el));
-    $('#link_admin').fadeIn();
+    $('#link_userHomeBtn').fadeIn();
   }
 
-  GlobalUser.hideAdminButton = function(){
-    $("#link_admin").remove();
+  GlobalUser.hideUserHomeButton = function(){
+    $("#link_userHomeBtn").remove();
   }
 
-  GlobalUser.adminRoleCheck = function(){
-    var adminCheck = this.checkRole('admin');
-    if (adminCheck.status){
-      this.showAdminButton('admin', '#/admin', 'Сторінка адміністратора')
+  //Function for check role when login user and display button 'UserHomePage'
+  GlobalUser.userRoleCheck = function(){
+    if(GlobalUser.currentUser != undefined){
+      var currentUserRole = GlobalUser.currentUser.role;
+      if (currentUserRole == 'admin'){
+        var adminCheck = this.checkRole('admin');
+        if (adminCheck.status){
+          this.showUserHomeButton('admin', '#/admin', 'Сторінка адміністратора')
+        }
+        console.log('admin');
+      } else if (currentUserRole == 'faculty_admin'){
+        var faCheck = this.checkRole('faculty_admin')
+        if(faCheck.status && faCheck.verified){
+          this.showUserHomeButton('fa','#/fa', 'Адміністрування факультету')
+        }
+        console.log('faculty_admin');
+      } else if (currentUserRole == 'teacher'){
+        var teacherCheck = this.checkRole('teacher')
+        if(teacherCheck.status && teacherCheck.verified)
+        {
+          var teacherId = GlobalUser.currentUser.attributes.teacher_attributes.teacher_id;
+          if (teacherId){
+            this.showUserHomeButton('teacher','#/teacher/' + teacherId, 'Моя сторінка')
+          }
+        }
+        console.log('teacher');
+      } else if (currentUserRole == 'student'){
+        var studentCheck = this.checkRole('student')
+        if(studentCheck.status && studentCheck.verified)
+        {
+          var studentId = GlobalUser.currentUser.attributes.student_attributes.student_id;
+          if (studentId){
+            this.showUserHomeButton('student','#/student/' + studentId, 'Моя сторінка')
+          }
+        }
+        console.log('student');
+      }
     }
-    var faCheck = this.checkRole('faculty_admin')
-    if(faCheck.status && faCheck.verified){
-      this.showAdminButton('fa','#/fa', 'Адміністрування факультету')
-    }
-  };
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+  }
 
 
 

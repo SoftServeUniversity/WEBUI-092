@@ -42,7 +42,7 @@ define([
     // fron any collection with filter
 
     Backbone.Collection.prototype.FetchCollection = function(filterData) {
-      
+
       // Set filterData = {} if filterData is undefined
       filterData = typeof filterData !== 'undefined' ? filterData : {};
 
@@ -143,10 +143,10 @@ define([
     var initialize = function(){
 
       // this function is defined in libs/reg
-      GlobalUser.adminRoleCheck();
-    
+      GlobalUser.userRoleCheck();
+
       GlobalUser.vent.on("authentication:logged_out", function(){
-        GlobalUser.hideAdminButton();
+        GlobalUser.hideUserHomeButton();
         GlobalUser.currentUser = null;
         $('#launch-btn').show();
         window.location.hash = '/'
@@ -155,7 +155,7 @@ define([
         window.location.hash = '/'
       })
       GlobalUser.vent.on("role_loaded", function(){
-        GlobalUser.adminRoleCheck();
+        GlobalUser.userRoleCheck();
       });
 
 
@@ -176,7 +176,7 @@ define([
         var checkInfo = GlobalUser.checkRole('faculty_admin');
 
         if(checkInfo.status == true && checkInfo.verified){
-          var adminFacultyView = new AdminFacultyView();        
+          var adminFacultyView = new AdminFacultyView();
           var breadcrumbsView = new BreadcrumbsView();
         } else {
           //defined in libs/reg
