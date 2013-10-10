@@ -1,0 +1,21 @@
+octopus:
+  replicated: true
+  fully_replicated: true
+  environments:
+    - development
+    - production
+  development:
+    shards:
+      default:
+        adapter: mysql2
+        encoding: utf8
+        database: webui_dev
+        username: root
+        password: 
+  production:
+    default:
+      adapter: mysql2
+      encoding: utf8
+      database: webui_dev
+      username: root
+      password: 

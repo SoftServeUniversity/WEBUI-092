@@ -1,4 +1,6 @@
 class Group < ActiveRecord::Base
+  include DbConnector
+  
   attr_accessible :course_id, :department_id, :name, :teacher_id
 
   belongs_to :course

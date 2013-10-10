@@ -1,0 +1,24 @@
+#!/usr/bin/expect
+
+# mysql credentials and connection data
+current_db_name='webui_dev'
+new_db_name='db_2012'
+db_host='localhost'
+db_user='root'
+db_pass=''
+
+
+# using a here-document to pass commands to expect. 
+# (the commands could be stored in a file as well)
+expect <<EOF
+  log_user 0
+  exp_internal 1
+  spawn sh -c  "mysqldump -h \"$db_host\" -u \"$db_user\" -p \"$current_db_name\" | mysql -h \"$db_host\" -u \"$db_user\" -p \"$new_db_name\" "
+  expect "password:"
+  send "$db_pass\r"
+  expect "password:"
+  send "$db_pass\r"
+  log_user 1
+  expect eof
+EOF
+

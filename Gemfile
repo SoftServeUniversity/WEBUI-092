@@ -1,17 +1,13 @@
 source 'https://rubygems.org'
+
 ruby '2.0.0'
+
 gem 'rails',            '3.2.13'
 gem 'mysql2'
 gem 'backup'
 gem 'delayed_job_active_record'
 gem 'unicorn-rails'
 gem 'whenever', :require => false
-group :assets do
-  gem 'sass-rails',     '~> 3.2.3'
-  gem 'coffee-rails',   '~> 3.2.1'
-  gem 'uglifier',       '>= 1.0.3'
-  gem 'therubyracer'
-end
 gem 'jquery-rails'
 gem 'bootstrap-sass'
 gem 'cancan'
@@ -20,6 +16,16 @@ gem 'figaro'
 gem 'rolify'
 gem 'simple_form'
 gem 'jbuilder',         '1.5.0'
+gem 'unicorn'
+gem 'capistrano'
+gem 'ar-octopus', :require => 'octopus'
+
+group :assets do
+  gem 'sass-rails',     '~> 3.2.3'
+  gem 'coffee-rails',   '~> 3.2.1'
+  gem 'uglifier',       '>= 1.0.3'
+  gem 'therubyracer'
+end
 
 group :development do
   gem 'better_errors'
@@ -28,14 +34,11 @@ group :development do
   gem 'rb-fchange', :require=>false
   gem 'rb-inotify', :require=>false
 end
+
 group :development, :test do
   gem 'factory_girl_rails'
   gem 'rspec-rails'
 end
-# Use unicorn as the app server
-gem 'unicorn'
-# Deploy with Capistrano
-gem 'capistrano'
 
 group :test do
   gem 'simplecov', :require => false

@@ -93,7 +93,7 @@ define([
   }
 
   GlobalUser.showUserHomeButton = function(tagid, link, text){
-    var el = '<li style="display:none" id="link_userHomeBtn"><a class="page-link" id="'+tagid+'page-link" href="'+link+'">'+text+'</a></li>';
+    var el = '<li style="display:none" id="link_userHomeBtn"><a class="page-link" id="'+tagid+'page-link_id" href="'+link+'">'+text+'</a></li>';
     $('#main-top-menu').append($(el));
     $('#link_userHomeBtn').fadeIn();
   }

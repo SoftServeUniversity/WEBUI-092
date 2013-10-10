@@ -105,14 +105,22 @@ define([
 
         var path = Backbone.history.fragment;
 
-        var paths = ['info', 'search', '', 'admin', 'fa'];
+        var allPaths = ['info', 'search', 'admin', 'fa', 'teacher', 'student'];
 
-        _.each(paths, function(p){
-          if(p==path){
-            link = '#'+path+'page-link';
+        for (var i = 0; i < allPaths.length; i++){
+          // If in main page
+          // (blank string contains in all paths)
+          if (path == false) {
+            link = '#page-link_id';
             $(link).addClass('active');
+            break;
+          //if in other paths
+          } else if (path.contains(allPaths[i])){
+            link = '#' + allPaths[i] + 'page-link_id';
+            $(link).addClass('active');
+            break;
           }
-        })
+        }
 
       },
 

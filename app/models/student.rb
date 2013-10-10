@@ -1,4 +1,6 @@
 class Student < ActiveRecord::Base
+  include DbConnector
+  
   attr_accessible :group_id, :user_id, :group_pending
 
   belongs_to :group

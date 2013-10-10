@@ -1,4 +1,6 @@
 class Work < ActiveRecord::Base
+  include DbConnector
+  
   attr_accessible :name, :progress, :student_id, :teacher_id
 
   belongs_to :student
@@ -25,7 +27,7 @@ class Work < ActiveRecord::Base
 	  	res = res/arr.length
 	  	puts res
 	  	p = ProgressChange.create! progressable_id: self.id, progressable_type: self.class.name, progress: res
-	end
-  		return res
+	  end
+  	return res
   end
 end

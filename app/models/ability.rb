@@ -1,4 +1,5 @@
 class Ability
+  include DbConnector
   include CanCan::Ability
 
   def initialize(user)

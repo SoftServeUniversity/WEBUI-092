@@ -21,6 +21,11 @@ define([
 
                students_col = new StudentsCollection();
                students_col.fetch({
+                   data: {
+                       filter: {
+                           id:id
+                       }
+                   },
                    success: function () {
                        me.trigger('DataLoaded', 'Students');
                    }

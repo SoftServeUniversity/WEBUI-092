@@ -90,6 +90,12 @@ namespace :deploy do
     run "cd #{current_path}; RAILS_ENV=#{rails_env} bundle exec rake db:create"
   end
 
+  desc "Create production db"
+  task :reset, :only => {:primary => true}, :except => { :no_release => true } do
+    run "cd #{current_path}; RAILS_ENV=#{rails_env} bundle exec rake db:reset"
+    run "cd #{current_path}; RAILS_ENV=#{rails_env} bundle exec rake db:seed"
+  end
+
   desc "Seed the database on already deployed code"
   task :drop, :only => {:primary => true}, :except => { :no_release => true } do
     run "cd #{current_path}; RAILS_ENV=#{rails_env} bundle exec rake db:drop:all"
