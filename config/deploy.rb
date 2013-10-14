@@ -1,5 +1,6 @@
 require "bundler/capistrano" 
-
+require "delayed/recipes" 
+set :rails_env, "production" #added for delayed job  
 server "198.211.126.95", :web, :app, :db, primary: true
 
 set :application, "webui" 
@@ -18,6 +19,11 @@ ssh_options[:forward_agent] = true
 
 
 after "deploy", "deploy:cleanup" # keep only the last 5 releases
+
+# Delayed Job 
+after "deploy:stop",    "delayed_job:stop" 
+after "deploy:start",   "delayed_job:start" 
+after "deploy:restart", "delayed_job:restart"
 
 namespace :deploy do 
   namespace :assets do
