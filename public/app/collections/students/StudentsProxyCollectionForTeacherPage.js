@@ -10,9 +10,9 @@ define([
       model: StudentProxyModelForTeacherGroupPage,
       url: '/students/',
       comparator: function(item) {
-        // set sort by first - group_pending, second - name
+        // set sort by first - role_pending, second - name
         // ! - for display first students, who must be pending
-        return [!item.get('group_pending'), item.get('name')];
+        return [!item.get('role_pending'), item.get('name')];
       }
     });
 

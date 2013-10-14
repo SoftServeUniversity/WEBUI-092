@@ -291,6 +291,14 @@ progress::-webkit-progress-value { background: #69EB63; }
 .add-task-line{
   margin: 0 0 5px 0;
 }
+
+.text_yellow{
+  color: #FAA732;
+}
+.text_green{
+  color: green;
+}
+
 /*Yasinishyn start*/
 .red{
   color: red;

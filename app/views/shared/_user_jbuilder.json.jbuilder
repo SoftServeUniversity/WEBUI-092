@@ -14,8 +14,10 @@ if resource.teacher
 end
 if resource.student
   json.student_attributes do
+    json.student_id    resource.student.id
     json.group_id      resource.student.group_id
     json.group_pending resource.student.group_pending
+
   end
 end
 if resource.faculty_admin
