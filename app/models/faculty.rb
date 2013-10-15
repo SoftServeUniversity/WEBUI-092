@@ -1,9 +1,8 @@
 class Faculty < ActiveRecord::Base
-  include DbConnector
   
   attr_accessible :name, :user_id
 
-  validates :name, length: { in: 1...45 }
+  validates :name, length: { in: 1...100 }
 
   belongs_to :user
   has_many :departments

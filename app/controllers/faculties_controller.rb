@@ -1,88 +1,51 @@
 class FacultiesController < ApplicationController
-  # GET /faculties
-  # GET /faculties.json
- def index
 
+  respond_to :json
+
+  def index
     if params['filter'] === nil
       @faculties = Faculty.all
     else
       @faculties = Faculty.where(params['filter'])
     end
-
-    respond_to do |format|
-      format.json { render json: @faculties }
-    end
-
+    respond_with @faculties
   end
 
-  # GET /faculties/1
-  # GET /faculties/1.json
   def show
     @faculty = Faculty.find(params[:id])
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @faculty }
-    end
+    respond_with @faculty 
   end
 
-  # GET /faculties/new
-  # GET /faculties/new.json
   def new
     @faculty = Faculty.new
-
-    respond_to do |format|
-      format.html # new.html.erb
-      format.json { render json: @faculty }
-    end
+    respond_with @faculty
   end
 
-  # GET /faculties/1/edit
   def edit
     @faculty = Faculty.find(params[:id])
   end
 
-  # POST /faculties
-  # POST /faculties.json
   def create
     @faculty = Faculty.new(params[:faculty])
-
-    respond_to do |format|
-      if @faculty.save
-        format.html { redirect_to @faculty, notice: 'Faculty was successfully created.' }
-        format.json { render json: @faculty, status: :created, location: @faculty }
-      else
-        format.html { render action: "new" }
-        format.json { render json: @faculty.errors, status: :unprocessable_entity }
-      end
+    if @faculty.save
+      respond_with @faculty, status: :created, location: @faculty
+    else
+      respond_with @faculty.errors, status: :unprocessable_entity
     end
   end
 
-  # PUT /faculties/1
-  # PUT /faculties/1.json
   def update
     @faculty = Faculty.find(params[:id])
-
-    respond_to do |format|
-      if @faculty.update_attributes(params[:faculty])
-        format.html { redirect_to @faculty, notice: 'Faculty was successfully updated.' }
-        format.json { head :no_content }
-      else
-        format.html { render action: "edit" }
-        format.json { render json: @faculty.errors, status: :unprocessable_entity }
-      end
+    if @faculty.update_attributes(params[:faculty])
+      respond_with @faculty
+    else
+      respond_with @faculty.errors, status: :unprocessable_entity 
     end
   end
 
-  # DELETE /faculties/1
-  # DELETE /faculties/1.json
   def destroy
     @faculty = Faculty.find(params[:id])
     @faculty.destroy
-
-    respond_to do |format|
-      format.html { redirect_to faculties_url }
-      format.json { head :no_content }
-    end
+    respond_with head :no_content 
   end
 end

@@ -151,7 +151,7 @@ define([
     var initialize = function(){
 
       // this function is defined in libs/reg
-      GlobalUser.userRoleCheck();
+      GlobalUser.userRoleCheck({ redirect: false });
 
       GlobalUser.vent.on("authentication:logged_out", function(){
         GlobalUser.hideUserHomeButton();
@@ -160,10 +160,12 @@ define([
         window.location.hash = '/'
       });
       GlobalUser.vent.on("authentication:logged_in", function(){
-        window.location.hash = '/'
+        GlobalUser.userRoleCheck({ redirect: true });
+        console.log("authentication:logged_in")
       })
       GlobalUser.vent.on("role_loaded", function(){
-        GlobalUser.userRoleCheck();
+        GlobalUser.userRoleCheck({ redirect: true });
+        console.log("role_loaded")
       });
 
 

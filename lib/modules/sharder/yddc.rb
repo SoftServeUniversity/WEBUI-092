@@ -2,7 +2,6 @@ require 'tempfile'
 require 'fileutils'
 
 class Yddc # Year depend, database changer
-  include OctopusConnector
   
   def self.instance
     return @@instance
@@ -38,6 +37,9 @@ class Yddc # Year depend, database changer
     clone_current year if system("expect -f #{File.read(path)}")
   end #def clone_current year
 
+  def db_exists? db_name
+    true 
+  end
 
   private
     def clone_current year
@@ -70,6 +72,8 @@ class Yddc # Year depend, database changer
     end
 
     def add_to_config new_database
-
+      #add_to_list_of_known_dbs
+      #add_to_shards
     end
+
 end

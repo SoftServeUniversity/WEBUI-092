@@ -1,5 +1,4 @@
 class Task < ActiveRecord::Base
-  include DbConnector
 
   attr_accessible :name, :work_id, :priority
 

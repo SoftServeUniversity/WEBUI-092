@@ -1,5 +1,4 @@
 class Work < ActiveRecord::Base
-  include DbConnector
   
   attr_accessible :name, :progress, :student_id, :teacher_id
 
@@ -30,4 +29,5 @@ class Work < ActiveRecord::Base
 	  end
   	return res
   end
+
 end

@@ -1,5 +1,4 @@
 class User < ActiveRecord::Base
-  include DbConnector
   
   rolify
   # Include default devise modules. Others available are:
@@ -22,7 +21,7 @@ class User < ActiveRecord::Base
   accepts_nested_attributes_for :faculty_admin
 
   #validations
-  validates :email,     uniqueness: true
+  validates :email, uniqueness: true
 
 
   before_create :add_default_role
@@ -32,8 +31,8 @@ class User < ActiveRecord::Base
   end
 
   def add_role role, pending=false
-    self.role_pending = pending # need to get role_pending trought self, bacause of receiver
-    self.save
+    role_pending = pending # need to get role_pending trought self, bacause of receiver
+    save
     remove_role :guest #user must have only one role
     roles << Role.find_by_name(role)
     reload

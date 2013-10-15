@@ -1,5 +1,4 @@
 class Department < ActiveRecord::Base
-  include DbConnector
   
   attr_accessible :faculty_id, :name, :user_id
 

@@ -6,6 +6,7 @@ gem 'rails',            '3.2.13'
 gem 'mysql2'
 gem 'backup'
 gem 'delayed_job_active_record'
+gem 'daemons'
 gem 'unicorn-rails'
 gem 'whenever', :require => false
 gem 'jquery-rails'
