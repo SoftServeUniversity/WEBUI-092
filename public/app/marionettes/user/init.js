@@ -69,9 +69,9 @@ define([
 
       if(GlobalUser.currentUser.role == role){
         if(GlobalUser.currentUser.attributes.role_pending){
-          return { status: true, verified: false,  text: textRolePending };
+          return { status: true, verified: false,  text: textRolePending, role: role };
         } else {
-          return { status : true, verified: true }
+          return { status : true, verified: true, role: role }
         }
       } else {
         return { status: false, text: textBadRole + role }
@@ -82,6 +82,7 @@ define([
     }
 
   }
+
 
   GlobalUser.showWarning = function(warning, role){
 
@@ -103,39 +104,56 @@ define([
   }
 
   //Function for check role when login user and display button 'UserHomePage'
-  GlobalUser.userRoleCheck = function(){
+  GlobalUser.userRoleCheck = function(config){
     if(GlobalUser.currentUser != undefined){
       var currentUserRole = GlobalUser.currentUser.role;
       if (currentUserRole == 'admin'){
         var adminCheck = this.checkRole('admin');
         if (adminCheck.status){
-          this.showUserHomeButton('admin', '#/admin', 'Сторінка адміністратора')
+          this.showUserHomeButton('admin', '#/admin', 'Сторінка адміністратора');
+          if(config.redirect){ window.location.hash = '#/admin'; };
         }
+
       } else if (currentUserRole == 'faculty_admin'){
         var faCheck = this.checkRole('faculty_admin')
+
+        //if faculty admin is verified - redirect him to his own page
         if(faCheck.status && faCheck.verified){
-          this.showUserHomeButton('fa','#/fa', 'Адміністрування факультету')
+          this.showUserHomeButton('fa','#/fa', 'Адміністрування факультету');
+          if(config.redirect){window.location.hash = '#/fa'};
+        
+        //if faculty admin is not verified - redirect him to home page
+        } else {
+          window.location.hash = '/';
         }
-        console.log('faculty_admin');
+
       } else if (currentUserRole == 'teacher'){
         var teacherCheck = this.checkRole('teacher')
         if(teacherCheck.status && teacherCheck.verified)
         {
           var teacherId = GlobalUser.currentUser.attributes.teacher_attributes.teacher_id;
           if (teacherId){
-            this.showUserHomeButton('teacher','#/teacher/' + teacherId, 'Моя сторінка')
+            this.showUserHomeButton('teacher','#/teacher/' + teacherId, 'Моя сторінка');
+            if(config.redirect){window.location.hash = '#/teacher/'+teacherId};
           }
+        } else {
+          window.location.hash = '/';
         }
+
       } else if (currentUserRole == 'student'){
         var studentCheck = this.checkRole('student')
         if(studentCheck.status && studentCheck.verified)
         {
           var studentId = GlobalUser.currentUser.attributes.student_attributes.student_id;
           if (studentId){
-            this.showUserHomeButton('student','#/student/' + studentId, 'Моя сторінка')
+            this.showUserHomeButton('student','#/student/' + studentId, 'Моя сторінка');
+            if(config.redirect){window.location.hash = '#/student/' + studentId};
           }
+        } else {
+          window.location.hash = '/';
         }
-      }
+
+      } 
     }
   }
 
