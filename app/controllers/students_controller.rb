@@ -17,7 +17,6 @@ class StudentsController < ApplicationController
       if params[:s_course_id]!= ""
         search_string += " AND course_id = " + params[:s_course_id]
       end
-      puts search_string
       @students = Student.find_by_sql(search_string)
     else
       if params[:filter] == nil
