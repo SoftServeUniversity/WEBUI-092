@@ -16,13 +16,13 @@ define([
 
   var SearchView =  Backbone.View.extend({
     initialize:function(){
-      
+
       $('#ui-id-1 a').on('click', function(){
         $(this).fadeIn('fast');
       });
       var compiledTemplate = _.template( SearchTemplate );
       $("#content").html(compiledTemplate);
-  
+
       $('select').selectpicker();
 
       var studCollection = new StudentsCollection();
@@ -35,7 +35,7 @@ define([
       $('#search-field').on('keyup', function(){
         var letters = $(this).val();
         if(letters.length == 2){
-          
+
             var teachObj = [];
             var studObj = [];
             parsed = [];
@@ -54,7 +54,7 @@ define([
                     return v;
             });
 
-          auto(parsed); 
+          auto(parsed);
         }
 
       });
@@ -69,7 +69,7 @@ define([
         $(this).siblings('div.dropdown-menu').fadeToggle();
       });
       $('#select-box div.dropdown-menu').click(function(){
-        
+
         $('#search-field').val('');
         if($(this).siblings('button[data-id = faculty_select]').length){
           if($(this).find('li:first-child').hasClass('selected')){
@@ -91,7 +91,7 @@ define([
       $('#search-block').click(function(event){
           event.stopPropagation();
           $('#select-box').show();
-          
+
       });
 
       $(window).on('hashchange', function() {
@@ -139,10 +139,10 @@ define([
         });
         $('#search-field').css('background', '#fff');
       }
-      
+
       getFacultyJSON();
       getCourseJSON();
-     
+
 
       $('button[data-id = faculty_select] + div.dropdown-menu').find('ul li').on('click', function(){
         $('button[data-id = faculty_select] + div.dropdown-menu').find('ul li').removeClass('selected');
@@ -170,9 +170,9 @@ define([
               "oLanguage": {
                 sUrl: "app/libs/datatables/searchDataTables.ukrainian.txt"
               }
-            });         
-      
-          $('#searchFormButton').click(drawTable); 
+            });
+
+          $('#searchFormButton').click(drawTable);
 
           function drawTable(){
             $('.searchDataTable tbody').remove();
@@ -198,9 +198,9 @@ define([
                                             .append($('<td>'+parsed[l].department_name+'</td>'))
                                             .append($('<td>'+course+'</td>'))
                                             .append($('<td>'+st+'</td>'));
-                      $(tbody).append(tr);                      
-        
-                    
+                      $(tbody).append(tr);
+
+
                   }
                   $('.searchDataTable').append(tbody);
               }
@@ -210,7 +210,7 @@ define([
                   sUrl: "app/libs/datatables/searchDataTables.ukrainian.txt"
                 }
               });
-          }    
+          }
           function auto(source){
             $( "#search-field" ).autocomplete({
                 minLength: 2,
@@ -223,7 +223,7 @@ define([
                   $( "#search-field" ).val( ui.item.label );
                   if(ui.item.course_id){
                     location.href = '#/student/'+ui.item.id;
-                    
+
                   }else{
                     location.href = '#/teacher/'+ui.item.id;
                   }
@@ -245,7 +245,7 @@ define([
                 var a = $('<a>' + item.label +" "+status);
                 return $( "<li>" ).append(a).appendTo( ul );
               };
-          } 
+          }
 
           function HandleDOM_Change () {
 
@@ -256,7 +256,7 @@ define([
                 });
 
           }
-              
+
               fireOnDomChange ('.searchDataTable tr', HandleDOM_Change, 100);
 
           function fireOnDomChange (selector, actionFunction, delay){
