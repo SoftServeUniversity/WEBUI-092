@@ -179,14 +179,14 @@ define([
               if($('#search-field').val().length > 1){
                 var tbody = $("<tbody></tbody>");
                   for(var l in parsed){
-                    if(parsed[l].degree){
-                      var st = 'викладач';
-                      var statusClass = 'teacher';
-                      var course = "-";
-                    }else{
+                    if(parsed[l].course_name){
                       var st = 'студент';
                       var statusClass = 'student';
                       var course = parsed[l].course_name;
+                    }else{
+                      var st = 'викладач';
+                      var statusClass = 'teacher';
+                      var course = "-";
                     }
                     var names = parsed[l].label.split(/[ ]+/);
                     var tr = $('<tr></tr>').attr('data-href', '#/'+statusClass+"/"+parsed[l].id)
