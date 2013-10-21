@@ -20,4 +20,4 @@ STUDENT_LAST_NAME: Zaremba
 STUDENT_MIDDLE_NAME: Petro
 STUDENT_EMAIL: user@inbox.ru
 STUDENT_PASSWORD: chanqwer
-ROLES: [admin, faculty_admin, student, teacher, guest]
+ROLES: [admin, faculty_admin, student, teacher, guest, guest]

@@ -33,7 +33,7 @@ class User < ActiveRecord::Base
   def add_role role, pending=false
     role_pending = pending # need to get role_pending trought self, bacause of receiver
     save
-    remove_role :guest #user must have only one role
+    remove_role :guest if has_role? :guest #user must have only one role
     roles << Role.find_by_name(role)
     reload
   end

@@ -29,7 +29,7 @@ class UserRegistrations::RegistrationsController < Devise::RegistrationsControll
       end
     else
       clean_up_passwords resource
-      @resource = resource
+      respond_with resource 
     end
   end
 
@@ -58,6 +58,7 @@ class UserRegistrations::RegistrationsController < Devise::RegistrationsControll
       clean_up_passwords resource
       @resource = resource
     end
+    qwer
   end
 
   # DELETE /resource
