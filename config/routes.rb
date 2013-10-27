@@ -1,6 +1,6 @@
 Webui92::Application.routes.draw do
 
-  #scope "(:year)", year: /[0-9]{4}/ do
+  scope "(:year)", year: /[0-9]{4}/ do
 
     resources :teachers
     resources :faculty_admins
@@ -43,5 +43,5 @@ Webui92::Application.routes.draw do
 
     get '/test', to: redirect('/app/tests/SpecRunner.html')
 
-  #end #scope ':year' do
+  end #scope ':year' do
 end

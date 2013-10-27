@@ -9,6 +9,12 @@ octopus:
       database: db_2013
       username: root
       password: 
+    db_2012:
+      adapter: mysql2
+      encoding: utf8
+      database: db_2012
+      username: root
+      password: 
     default:
       adapter: mysql2
       encoding: utf8

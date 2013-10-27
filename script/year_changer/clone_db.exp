@@ -2,7 +2,7 @@
 
 # mysql credentials and connection data
 current_db_name='webui_dev'
-new_db_name='db_2013'
+new_db_name='db_2012'
 db_host='localhost'
 db_user='root'
 db_pass=''

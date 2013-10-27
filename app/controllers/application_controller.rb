@@ -2,8 +2,9 @@ class ApplicationController < ActionController::Base
 
   protect_from_forgery
 
+  before_filter :default_url_options
   after_filter :set_access_control_headers
-  #around_filter :select_shard 
+  around_filter :select_shard 
 
   rescue_from CanCan::AccessDenied do |exception|
     redirect_to root_path, :alert => exception.message
@@ -15,12 +16,12 @@ class ApplicationController < ActionController::Base
   end
 
 
-  #def default_url_options(options={})
-  #  {year: Date.today.year.to_i}
-  #end 
+  def default_url_options(options={})
+    params.merge!({year: Date.today.year.to_i}) unless params[:year]
+  end 
 
-  #def select_shard
-    # Establish global connection
-  #end
+  def select_shard(&block)
+    Octopus.using("db_#{params[:year]}".to_sym, &block)
+  end
 
 end
