@@ -49,6 +49,11 @@ namespace :deploy do
       end
   end
 
+  desc "Update the crontab file"
+  task :update_crontab, :roles => :db do
+    run "cd #{release_path} && whenever --update-crontab #{application}"
+  end
+
   %w[start stop restart].each do |command|
     desc "#{command} unicorn server" 
     task command, roles: :app, except: {no_release: true} do
